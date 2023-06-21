@@ -22,18 +22,18 @@ public class LineSearchController {
     @Autowired
     private HttpSession session;
 
-    @RequestMapping("line")
-    public ModelAndView Line() {
-        ModelAndView mv = new ModelAndView();
+    // @RequestMapping("line")
+    // public ModelAndView Line() {
+    //     ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("/linesearch");
-        return mv;
-    }
+    //     mv.setViewName("/linesearch");
+    //     return mv;
+    // }
 
     @RequestMapping("lineSearchList")
     public ModelAndView LineSearch(String getrouteCd) throws Exception {
         ModelAndView mv = new ModelAndView();
-
+        System.out.println(getrouteCd);
         String key = "0279357255"; // 인증키
         String type = "xml";
         String setrouteCd = getrouteCd; // 노선 값 받기.
@@ -131,10 +131,10 @@ public class LineSearchController {
                 }
             }
 
-            session.setAttribute("linelist", linelist);
-            mv.setViewName("redirect:/line");
+            mv.addObject("linelist", linelist);
+            mv.setViewName("/linesearch");
         } else {
-            mv.setViewName("redirect:/line");
+            mv.setViewName("/linesearch");
         }
 
         return mv;

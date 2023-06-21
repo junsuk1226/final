@@ -48,10 +48,10 @@
     <!-- button 시작---------------------------------------------------------------------------------------------->
     <div class="container mycustom-btn_search_area">
         <div class="d-flex flex-wrap align-items-center justify-content-center py-2">
-            <button class="mycustom-btn_search_btn" type="button" value="1">현재 휴게소</button>
+            <button class="mycustom-btn_search_btn" type="button" onclick="location.href='/map'">현재 휴게소</button>
         </div>
         <div class="d-flex flex-wrap align-items-center justify-content-center py-2">
-            <button class="mycustom-btn_search_btn" type="button" value="1">노선별 휴게소</button>
+            <button class="mycustom-btn_search_btn" type="button" onclick="location.href='/lineSearchList'">노선별 휴게소</button>
         </div>
     </div>
     <!-- button 끝---------------------------------------------------------------------------------------------->
