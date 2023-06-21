@@ -22,6 +22,8 @@ public class RestVO {
             gudClssNm, // 상하행구분명
             svarAddr, // 휴게소 주소
             rprsTelNo, // 대표전화번호
-            dspnPrkgTrcn; // 장애인주차대수
+            dspnPrkgTrcn, // 장애인주차대수
+            cocrPrkgTrcn, // 소형차주차대수
+            fscarPrkgTrcn; // 대형차주차대수
 
 }

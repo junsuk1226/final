@@ -81,11 +81,15 @@
 
     
     <c:if test="${sessionScope.linelist ne null}">
+        
         <c:forEach var="vo" items="${linelist}">
-            <h1>이름: ${vo.svarNm}/ 상하행: ${vo.gudClssNm}/ 주소: ${vo.svarAddr}/ 전화번호: ${vo.rprsTelNo}
-                소형차주차대수: ${vo.cocrPrkgTrcn}/ 대형차주차대수: ${vo.fscarPrkgTrcn}/ 장애인주차대수: ${vo.dspnPrkgTrcn}
-            </h1>
+            <c:if test="${vo.svarNm ne null}">
+                <h1>이름: ${vo.svarNm}/ 상하행: ${vo.gudClssNm}/ 주소: ${vo.svarAddr}/ 전화번호: ${vo.rprsTelNo}
+                    소형차주차대수: ${vo.cocrPrkgTrcn}/ 대형차주차대수: ${vo.fscarPrkgTrcn}/ 장애인주차대수: ${vo.dspnPrkgTrcn}
+                </h1>
+            </c:if>
         </c:forEach>
+        
     </c:if>
 
     <c:if test="${sessionScope.linelist eq null}">
