@@ -10,11 +10,6 @@
 <body>
 	<div id="map" style="width:700px;height:500px;"></div>
 
-	<p id="unitName"></p>
-	<p id="routeName"></p>
-
-
-	<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=092a22d4a329417bd5fb9544ca6bb378"></script>
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -51,16 +46,11 @@
 
 							var mapX = response.xValue;
 							var mapY = response.yValue;
-							var unitName = response.unitName;
-							var routeName = response.routeName;
+							console.log("mapX:" + mapX);
+							console.log("mapY:" + mapY);
 
-							var locPosition = new kakao.maps.LatLng(mapY, mapX);
-							var message = '<div style="padding:5px;">'+unitName+'</div>';
-
-							$("#unitName").text(unitName);
-							$("#routeName").text(routeName);
-
-							
+							var locPosition = new kakao.maps.LatLng(mapX, mapY);
+							var message = '<div style="padding:5px;">여기에 계신가요?!</div>';
 
 							// 마커와 인포윈도우를 표시합니다
 							displayMarker(locPosition, message);

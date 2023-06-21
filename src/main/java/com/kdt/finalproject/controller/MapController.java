@@ -108,68 +108,6 @@ public class MapController {
 
         }
 
-        Map<String, Object> map2 = new HashMap<>();
-        StringBuffer sb2 = new StringBuffer();
-        sb2.append("http://data.ex.co.kr/openapi/restinfo/restBrandList"); // 호출할 경로
-        sb2.append("?key=");
-        sb2.append(key);
-        sb2.append("&type=xml");
-        sb2.append("&numOfRows=1000");
-        sb2.append("&pageNo=1");
-        sb2.append("&stdRestNm=");
-        sb2.append(vo.getUnitName());
-
-        // 위의 StringBuffer가 가지고 있는 URL전체 경로를 가지고 URL객체를 먼저 생성하자!
-        URL url2 = new URL(sb2.toString());
-
-        // 위의 URL을 요청하기 위해 연결객체 생성하자!
-        HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
-        conn2.connect();// 호출~!
-
-        // 호출했을 때 응답이 XML로 전달된다. 우린 이 XML문서를 파싱할 수 있어야 한다.
-        // mvnrepository.com에서 jdom으로 검색하여 의존성을 알아내야 한다.
-        SAXBuilder builder2 = new SAXBuilder();
-
-        // 위의 SAXBuilder를 이용하여 응답되는 XML문서를 Document로 생성한다.
-        Document doc2 = builder2.build(conn2.getInputStream());
-
-        // 루트엘리먼트 얻기
-        Element root2 = doc2.getRootElement();
-        // System.out.println(root.getName()); // response
-
-        // 루트의 자식들 중 body를 얻어낸다.
-        // Element body = root.getChild("body");
-        // Element items = body.getChild("items");// body의 자식들 중 이름이 items인 요소 검색
-
-        // items안에 자식들 중 이름이 item인 요소들 모두를 List로 받아낸다.
-        List<Element> list2 = root2.getChildren("list");
-
-        // 위의 list 안에 있는 Element들을 ItemVO로 만들어서 배열로 저장해 둔다.
-
-        // double userLatitude = Double.valueOf(lat);
-        // double userLongitude = Double.valueOf(lon);
-
-        MapInfoVO[] info = new MapInfoVO[list2.size()];
-        int i = 0;
-
-        for (Element item : list2) {
-            // item이 가지는 값들 중 내가 필요한 값들(addr1, addr2, firstimage, ....)
-            String brdName = item.getChildText("brdName");
-            String brdDesc = item.getChildText("brdDesc");
-            String stime = item.getChildText("stime");
-            String etime = item.getChildText("etime");
-            String psName = item.getChildText("psName");
-            String psDesc = item.getChildText("psDesc");
-
-            // 위에서 얻어낸 값들을 하나의 VO로 저장해 둔다.
-            MapInfoVO mvo = new MapInfoVO(brdName, brdDesc, stime, etime, psName, psDesc);
-
-            info[i++] = mvo;
-
-        } // 복문의 끝
-
-        map2.put("info", info);
-
         return map;
     }
 
