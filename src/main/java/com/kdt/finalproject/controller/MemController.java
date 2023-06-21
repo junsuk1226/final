@@ -3,6 +3,7 @@ package com.kdt.finalproject.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.MemService;
@@ -20,15 +21,12 @@ public class MemController {
 		return "/login";
 	}
 
-	@RequestMapping("")
-	public ModelAndView all() {
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ModelAndView view(String m_id, String m_pw) {
 		ModelAndView mv = new ModelAndView();
+		MemVO vo = m_Service.ml_login(m_id, m_pw);
 
-		MemVO[] ar = m_Service.all();
-
-		mv.addObject("ar", ar);
-		mv.setViewName("test");
-
+		mv.setViewName("/login");
 		return mv;
 	}
 }
