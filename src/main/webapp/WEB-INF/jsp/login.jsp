@@ -7,95 +7,43 @@
     <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     </head>
     
     <body>
-        <header>
-            <div class = "container-fluid ">
-                <div class = "row justify-content-end">
-                    <div class = "col-4">
-                        <h2>로고 위치</h2>
-                    </div>
-                    <div class = "col-4">
-
-                    </div>
-                </div>
-            </div>
-        </header>
-            <!--content-area-->
-            <div class = "container-fluid ">
-                <div class = "row justify-content-center">
-                    
-                    <div class="col-md-6">
-                    <!-- 일반개인회원-->
-                    <div class="login_area col-md-12 accordion">
-                        <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">회원 로그인</button>
-                        </h2>
-                            <div class="person_login accordion-item">
-                                <form id="login" action="/login" class="input-group" method="post" name="frm">
-                                    <div class="input_area col-md-12">
-                                        <div>
-                                            <input type="text" placeholder="아이디" class="input" id="m_id" name="m_id" />
-                                        </div>
-                                        <div>
-                                            <input type="password" placeholder="비밀번호" class="password" id="m_pw" name="m_pw" />
-                                        </div>
-                                    </div>
-                                    <div class="btnArea_right col-md-12">
-                                        <button type="button" class="submit" onclick="sendData()">로그인</button>
-                                    </div>
-                                    <div class="fclear"></div>
-                                    <p class="login_search  col-md-12">
-                                        <span class="chk_group">
-                                            <input type="checkbox" name="chk" id="ch01" />
-                                            <label for="ch01">아이디저장</label>
-                                        </span>
-                                        <span class="btn b_search">
-                                            <a href="">아이디/비밀번호찾기</a>
-                                        </span>
-                                    </p>
-                                </form>
+        <div class="content-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form id="login" action="/login" class="input-group" method="post" name="frm">
+                        <div class="input_area col-md-12">
+                            <div>
+                                <input type="text" placeholder="아이디" class="input" id="m_id" name="m_id" />
+                            </div>
+                            <div>
+                                <input type="password" placeholder="비밀번호" class="password" id="m_pw" name="m_pw" />
                             </div>
                         </div>
-                    </div>
+                        <div class="btnArea_right col-md-12">
+                            <button type="button" class="submit" onclick="sendData()">로그인</button>
+                        </div>
+                        <div class="fclear"></div>
+                        <p class="login_search  col-md-12">
+                            <span class="chk_group">
+                                <input type="checkbox" name="chk" id="ch01" />
+                                <label for="ch01">아이디저장</label>
+                            </span>
+                            <span class="btn b_search">
+                                <a href="">아이디/비밀번호찾기</a>
+                            </span>
+                        </p>
+                    </form>
                 </div>
-                <!-- 일반 개인회원 끝 -->
-                <!-- 사장 회원-->
-                <div class="group_login">
-                    <h2 class="sub_title title02">사장님 로그인</h2>
-                    <div class="login">
-                        <form action="" method="post">
-                            <div class="input_area">
-                                <p>
-                                    <input type="text" placeholder="아이디" class="input" id="m_id2" name="m_id" />
-                                </p>
-                                <p>
-                                    <input type="password" placeholder="비밀번호" class="password" id="m_pw2" name="m_pw" />
-                                </p>
-                            </div>
-                            <div class="btnArea_right">
-                                <button type="button" class="submit" onclick="sendData()">로그인</button>
-                            </div>
-                            <div class="fclear"></div>
-                            <p class="login_search">
-                                <span class="chk_group">
-                                    <input type="checkbox" name="chk" id="ch02" />
-                                    <label for="ch02">아이디저장</label>
-                                </span>
-                                <span class="btn b_search">
-                                    <a href="">아이디/비밀번호찾기</a>
-                                </span>
-                            </p>
-                        </form>
-                    </div>
-                </div>
-                <!-- 사장회원 끝-->
-            
             </div>
+        </div>
             <!--.container div 끝-->
+
             <div class="form-link">
                 <span>회원가입 하시겠습니까? <a href="/join" class="link">Signup</a></span>
             </div>
