@@ -31,8 +31,8 @@ public class MemService {
     public MemVO ml_login(String m_id, String m_pw) {
 
         Map<String, String> map = new HashMap<String, String>();
-        map.put("email", m_id);
-        map.put("password", m_pw);
+        map.put("m_id", m_id);
+        map.put("m_id", m_pw);
 
         return m_Mapper.login(map);
 

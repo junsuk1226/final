@@ -9,9 +9,9 @@
 	</select>
 
 	<select id="login" parameterType="Map" resultType="com.kdt.finalproject.vo.MemVO">
-    SELECT * FROM member
-    where email = #{email} and
-    password = #{password}
+    SELECT * FROM final.member
+    where m_id = #{m_id} and
+    m_pw = #{m_pw}
   </select>
 
 
