@@ -27,12 +27,17 @@
     </div>
     <!-- 메뉴바끝 ----------------------------------------------------------------------------------------------------------->
 
-    <div class="container d-flex flex-wrap align-items-center justify-content-center">
+    <div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-line_search_btn_area">
         <button class="mycustom-line_search_btn" id="dLabel" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown trigger
+            <c:if test="${restName == null}">
+                노선으로 휴게소 검색
+            </c:if>
+            <c:if test="${restName != null}">
+                ${linelist[0].routeNm}
+            </c:if>
           </button>
         <ul class="dropdown-menu mycustom-line_search_dropdown_menu">
-            <li><h6 class="dropdown-header">노선 선택</h6></li>
+            <li><h6 class="dropdown-header mycustom-line_search_dropdown_header">노선 선택</h6></li>
             <li><a class="dropdown-item" value="0010">경부선</a></li>
             <li><a class="dropdown-item" value="1200">경인선</a></li>
             <li><a class="dropdown-item" value="0140">고창담양선</a></li>
@@ -101,17 +106,19 @@
         </ul>
     </div>
 
-    <div class="container">
+    <div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-line_search_accordion_area">
         <c:if test="${linelist ne null}">
             <div class="accordion accordion-flush">
                 <c:forEach var="vo" items="${linelist}" varStatus="loop">
                     <c:if test="${vo.svarNm ne null}">
-                        <div class="accordion-item">
+                        <div class="accordion-item mycustom-line_search_info">
                             <h2 class="accordion-header" id="flush-heading${loop.index + 1}">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${loop.index + 1}" aria-expanded="false" aria-controls="flush-collapse${loop.index + 1}">
-                                    ${vo.svarNm}(${vo.gudClssNm}) <br/><br/>
-                                    ${vo.svarAddr} / 전화번호: ${vo.rprsTelNo} <br/><br/>
-                                    소형차주차대수: ${vo.cocrPrkgTrcn}/ 대형차주차대수: ${vo.fscarPrkgTrcn}/ 장애인주차대수: ${vo.dspnPrkgTrcn}
+                                    <img class="mycustom-line_search_img" src="https://blog.kakaocdn.net/dn/QiQw7/btq1ByoRVn5/fOPibYxNNlLJWwwNRU3L5k/img.jpg"/>
+                                    <ul class="mycustom-line_search_ul">${vo.svarNm}(${vo.gudClssNm})
+                                        <li>${vo.svarAddr} / 전화번호: ${vo.rprsTelNo}</li>
+                                        <li>소형차주차대수: ${vo.cocrPrkgTrcn} | 대형차주차대수: ${vo.fscarPrkgTrcn} | 장애인주차대수: ${vo.dspnPrkgTrcn}</li>
+                                    </ul>
                                 </button>
                             </h2>
                             <div id="flush-collapse${loop.index + 1}" class="accordion-collapse collapse" aria-labelledby="flush-heading${loop.index + 1}" data-bs-parent="#accordionExample">
@@ -148,7 +155,8 @@
         $('.dropdown-item').click(function(e) {
             // 클릭 이벤트 핸들러 내용
             var value = $(this).attr('value');
-            location.href="/lineSearchList?getrouteCd="+value;
+            var restName = $(this).text();
+            location.href="/lineSearchList?getrouteCd="+value+restName;
         }); 
     });
 
