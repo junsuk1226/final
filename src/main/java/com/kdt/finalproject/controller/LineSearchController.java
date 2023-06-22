@@ -23,14 +23,6 @@ public class LineSearchController {
     @Autowired
     private HttpSession session;
 
-    // @RequestMapping("line")
-    // public ModelAndView Line() {
-    // ModelAndView mv = new ModelAndView();
-
-    // mv.setViewName("/linesearch");
-    // return mv;
-    // }
-
     @RequestMapping("lineSearchList")
     public ModelAndView LineSearch(@RequestParam(value = "getrouteCd", defaultValue = "0010") String getrouteCd,
             String lineName) throws Exception {
