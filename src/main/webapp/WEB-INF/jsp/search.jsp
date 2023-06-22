@@ -39,9 +39,9 @@
                             <fieldset>
                                 <input type="hidden">
                                 <div class="mycustom-search_inputbox">
-                                    <input class="mycustom-search_input" placeholder="휴게소명을 입력해 주세요." type="text">
+                                    <input class="mycustom-search_input" placeholder="휴게소명을 입력해 주세요." type="text"  id="search2" onkeyup="if(window.event.keyCode==13){sendData()}">
                                 </div>
-                                <button class="mycustom-search_btn" type="submit">검색</button>
+                            <button class="mycustom-search_btn" type="button" onclick="sendData()">검색</button>
                             </fieldset>
                         </form>
                     </div>
@@ -60,11 +60,38 @@
                         휴게소</button>
                 </div> --%>
 
-                <c:forEach var="rvo" items="${linelist}">
-                    <div class="d-flex flex-wrap align-items-center justify-content-center py-2">
-                       <h1>${rvo.svarNm}</h1> 
+            <div class="container">
+                <c:if test="${linelist ne null}">
+                    <div class="accordion accordion-flush">
+                        <c:forEach var="vo" items="${linelist}" varStatus="loop">
+                            <c:if test="${vo.svarNm ne null}">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-heading${loop.index + 1}">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#flush-collapse${loop.index + 1}" aria-expanded="false"
+                                            aria-controls="flush-collapse${loop.index + 1}">
+                                            ${vo.svarNm}(${vo.gudClssNm}) <br /><br />
+                                            ${vo.svarAddr} / 전화번호: ${vo.rprsTelNo} <br /><br />
+                                            소형차주차대수: ${vo.cocrPrkgTrcn}/ 대형차주차대수: ${vo.fscarPrkgTrcn}/ 장애인주차대수: ${vo.dspnPrkgTrcn}
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse${loop.index + 1}" class="accordion-collapse collapse"
+                                        aria-labelledby="flush-heading${loop.index + 1}" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                            demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion
+                                            body. Let's imagine this being filled with some actual content.</div>
+                                    </div>
+                                </div>
+                            </c:if>
+                        </c:forEach>
                     </div>
-                </c:forEach>
+                </c:if>
+            
+                <c:if test="${linelist eq null}">
+                    <h1>휴게소가 없습니다.</h1>
+                </c:if>
+            
+            </div>
 
             </div>
             <!-- button 끝---------------------------------------------------------------------------------------------->
@@ -80,9 +107,27 @@
             </body>
             <!-- footer 끝---------------------------------------------------------------------------------------------->
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-                crossorigin="anonymous"></script>
-        </body>
 
-        </html>
+     <form action="/search" method="post" name="ff">
+        <input type="hidden" id="svarNm" name="sname" />
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        function sendData() {
+            let nm = $("#search2").val().trim();
+            if (nm.length == 0) {
+                alert("검색어를 입력하세요");
+                return;
+            }
+            $("#svarNm").val(nm);
+            document.ff.submit();
+        }
+
+    </script>
+    </body>
+    
+    </html>
