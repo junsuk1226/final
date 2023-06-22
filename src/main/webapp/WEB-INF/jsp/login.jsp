@@ -26,7 +26,7 @@
     <body>
 
         <!------------------상단----------------->
-        <div class ="container-fluid text-center logo">
+        <div class ="container-fluid text-center">
             <div class="row justify-content-center ">
 
                 <div class="col-md-12">
@@ -36,7 +36,7 @@
             </div>
         </div>
         <!-----------------본문--------------------->
-        <div class="container-fluid logincard">
+        <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="input_area col-md-12 mx-auto card shadow-lg p-3 mb-5 bg-body rounded" style="margin: 0 auto; border:none; ">
