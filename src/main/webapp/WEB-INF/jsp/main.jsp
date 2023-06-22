@@ -34,7 +34,7 @@
                     <fieldset>
                         <input type="hidden">
                         <div class="mycustom-search_inputbox">
-                            <input class="mycustom-search_input" placeholder="휴게소명을 입력해 주세요." type="text" id="search1" name="sname">
+                            <input class="mycustom-search_input" placeholder="휴게소명을 입력해 주세요." type="text" id="search1" name="sname" onkeyup="if(window.event.keyCode==13){sendData(this.form)}">
                         </div>
                         <button class="mycustom-search_btn" type="button" onclick="sendData(this.form)">검색</button>
                     </fieldset>
