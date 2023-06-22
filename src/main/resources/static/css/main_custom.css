@@ -126,6 +126,8 @@
     font-family: "suite";
     font-size: 25px;
     text-align: center;
+    max-height: 500px;
+    overflow-y: auto;
 }
 
 .mycustom-line_search_dropdown_header{
