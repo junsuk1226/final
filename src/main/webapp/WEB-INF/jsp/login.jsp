@@ -56,9 +56,7 @@
                                 <input type="checkbox" name="chk" id="ch01" />
                                 <label for="ch01">아이디저장</label>
                             </span>
-                            <span class="btn b_search">
-                                <a href="">아이디/비밀번호찾기</a>
-                            </span>
+                         
                         </p>
                     </form>
                 </div>
