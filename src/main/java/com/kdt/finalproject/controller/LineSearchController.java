@@ -24,10 +24,10 @@ public class LineSearchController {
 
     // @RequestMapping("line")
     // public ModelAndView Line() {
-    //     ModelAndView mv = new ModelAndView();
+    // ModelAndView mv = new ModelAndView();
 
-    //     mv.setViewName("/linesearch");
-    //     return mv;
+    // mv.setViewName("/linesearch");
+    // return mv;
     // }
 
     @RequestMapping("lineSearchList")
@@ -63,8 +63,6 @@ public class LineSearchController {
 
         List<Element> list = root.getChildren("list");
 
-        session.removeAttribute("linelist");
-
         if (list.size() > 0) {
             RestVO[] linelist = new RestVO[list.size()];
             int i = 0;
@@ -90,39 +88,6 @@ public class LineSearchController {
                 Loop1: if (svarNm.contains("졸음")) {
                     break Loop1;
                 } else {
-                    // //다른 API 불러오기
-                    // StringBuffer sb2 = new StringBuffer();
-                    // sb2.append("http://data.ex.co.kr/openapi/restinfo/restConvList?"); // 호출 경로
-                    // sb2.append("key=");
-                    // sb2.append(key);
-                    // sb2.append("&type=");
-                    // sb2.append(type);
-                    // sb2.append("&stdRestCd=");
-                    // sb2.append(svarCd);
-                    // sb2.append("&pageNo=14");
-
-                    // URL url2 = new URL(sb2.toString());
-
-                    // HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
-                    // conn2.connect();
-
-                    // SAXBuilder builder2 = new SAXBuilder();
-
-                    // Document doc2 = builder2.build(conn2.getInputStream());
-
-                    // Element root2 = doc2.getRootElement();
-
-                    // List<Element> list2 = root2.getChildren("list");
-
-                    // String[] psCode = new String[list2.size()];
-                    // int a = 0;
-
-                    // for (Element item2 : list2) {
-                    // String getpsCode = item2.getChildText("psCode");
-
-                    // psCode[a++] = getpsCode;
-                    // }
-
                     RestVO vo = new RestVO(svarCd, svarNm, routeCd, routeNm, hdqrCd, hdqrNm, mtnofCd, mtnofNm,
                             gudClssCd,
                             gudClssNm, svarAddr, rprsTelNo, dspnPrkgTrcn, cocrPrkgTrcn, fscarPrkgTrcn);
