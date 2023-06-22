@@ -111,15 +111,13 @@ public class JoinController {
                     JSONObject json2 = (JSONObject) obj2;
                     JSONObject props = (JSONObject) json2.get("properties");
                     String name = (String) props.get("nickname");
-                    String profile_image = (String) props.get("profile_image");
 
                     JSONObject kakao_acc = (JSONObject) json2.get("kakao_account");
                     String email = (String) kakao_acc.get("email");
 
                     MemVO vo = new MemVO();
                     vo.setM_name(name);
-                    vo.setProfile_image(profile_image);
-                    vo.setEmail(email);
+                    vo.setM_id(email);
                     vo.setAccess_token(access_token);
                     vo.setRefresh_token(refresh_token);
                     vo.setM_status(status);
@@ -216,13 +214,11 @@ public class JoinController {
                     JSONObject json2 = (JSONObject) obj2;
                     JSONObject response = (JSONObject) json2.get("response");
                     String name = (String) response.get("nickname");
-                    String profile_image = (String) response.get("profile_image");
                     String email = (String) response.get("email");
 
                     MemVO vo = new MemVO();
                     vo.setM_name(name);
-                    vo.setProfile_image(profile_image);
-                    vo.setEmail(email);
+                    vo.setM_id(email);
                     vo.setAccess_token(access_token);
                     vo.setRefresh_token(refresh_token);
                     vo.setM_status(status);
@@ -260,7 +256,7 @@ public class JoinController {
         String status = "0";
 
         MemVO vo = new MemVO();
-        vo.setEmail(email);
+        vo.setM_id(email);
         vo.setM_pw(password);
         vo.setM_name(name);
         vo.setM_status(status);

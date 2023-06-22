@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.kdt.finalproject.mapper.JoinMapper">
+
+<!-- select -->
+<!-- 카카오, 네이버 로그인 시 중복 가입 방지를 위한 체크 -->
+<select id="check_email" parameterType="com.kdt.finalproject.vo.MemVO" resultType="com.kdt.finalproject.vo.MemVO">
+  	SELECT * FROM member WHERE email = #{email} AND status = #{status}
+</select>
+
+<!-- 일반 회원 가입시 email(ID)비동기식 체크 -->
+<select id="check_id" parameterType="String" resultType="com.kdt.finalproject.vo.MemVO">
+  	SELECT * FROM member WHERE email = #{email}
+</select>
+
+<!-- 회원 정보 가져오기 -->
+<select id="getMem" parameterType="com.kdt.finalproject.vo.MemVO" resultType="com.kdt.finalproject.vo.MemVO">
+	SELECT * FROM member WHERE email = #{email} AND status = #{status}
+</select>
+
+<!-- insert -->
+<insert id="addMem" parameterType="com.kdt.finalproject.vo.MemVO">
+		INSERT INTO member(email, nickname, password, access_token, refresh_token, profile_image, joindate, status)
+		VALUES(#{email}, #{nickname}, #{password}, #{access_token}, #{refresh_token}, #{profile_image}, NOW(), #{status})
+</insert>
+
+<!-- update -->
+<update id="updateToken" parameterType="com.kdt.finalproject.vo.MemVO">
+	UPDATE member
+	SET access_token = #{access_token},
+		refresh_token = #{refresh_token}
+	WHERE email = #{email} AND status = #{status}
+</update>
+
+</mapper>
