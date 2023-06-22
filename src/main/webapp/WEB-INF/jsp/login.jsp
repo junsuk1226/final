@@ -25,6 +25,7 @@
     
     <body>
 
+        <!------------------상단----------------->
         <div class ="content-fluid text-center">
             <div class="row justify-content-center my-4">
 
@@ -34,15 +35,8 @@
 
             </div>
         </div>
-        <!------------------상단----------------->
-        <div class = "container-fluid">
-            <div class = "row justify-content-center ">
-                
-            </div>
-
-        </div>
         <!-----------------본문--------------------->
-        <div class="container-fluid mb-6">
+        <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-6 mt-6" >
                     <div class="input_area col-md-6 mx-auto card shadow-lg p-3 mb-5 bg-body rounded" style="margin: 0 auto; border:none; ">
@@ -51,7 +45,7 @@
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="login_search">
-                                        <div class="chk_group mb-3 d-flex justify-content-end">
+                                        <div class="chk_group mb-2 d-flex justify-content-end">
                                             <input type="checkbox" name="chk" id="ch01" class="form-check-input"/>
                                             <label for="ch01">&nbsp;ID 저장</label>
                                         </div>
@@ -78,33 +72,41 @@
                                 </div>
                             </div>
                         </form>
+                        
                     
                         <p></p>
-                        <div class="form-link mb-3 mx-auto d-flex justify-content-center my-4">
-                            <span>회원가입 하시겠습니까? <a href="/join" class="link-secondary">Signup</a></span>
-                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-md-12">
+                        
                         
                         <div class="d-flex justify-content-between align-items-center my-4">
                             <hr style="width: 35%; border: 0.5px solid #000;">
-                            <span>SNS 로그인</span>
+                            <p class="text-muted">SNS 로그인</p>
                             <hr style="width: 35%; border: 0.5px solid #000;">
                         </div>
-                        <div class="d-flex justify-content-between align-items-center my-4">
-                            <div class="media-options mb-3 mx-auto">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="media-options  mb-3 mx-auto">
                                 <a href="https://kauth.kakao.com/oauth/authorize?client_id=c691b066d7c57c4085e1fa5fc3e2c47b&redirect_uri=http://localhost:8080/kakao/join&response_type=code">
                                     <img src="../images/kakao_login.png">
                                 </a>
                             </div>
-                            <div class="media-options mb-3 mx-auto">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center ">
+                            <div class="media-options  mb-3 mx-auto">
                                 <a href="https://nid.naver.com/oauth2.0/authorize?client_id=6BPvD8rTeGLnG7fdps1C&redirect_uri=http://localhost:8080/naver/join&response_type=code&state=test">
                                     <img src="../images/naver_login.png">
                                 </a>
                             </div>
                         </div>
+                        <div class="form-link mb-3 mx-auto d-flex justify-content-center my-4">
+                            <span>회원가입 하시겠습니까? <a href="/join" class="link-secondary">Signup</a></span>
+                        </div>
+                    </div>
+                    </div>
+                        </div>
                     </div>
                     </div>
                 </div>
-            </div>
             </div>
 
             
