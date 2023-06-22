@@ -2,6 +2,7 @@ package com.kdt.finalproject.controller;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -58,9 +59,10 @@ public class LineSearchController {
 
         List<Element> list = root.getChildren("list");
 
+        RestVO[] linelist = null;
         if (list.size() > 0) {
-            RestVO[] linelist = new RestVO[list.size()];
             int i = 0;
+            List<RestVO> r_list = new ArrayList<>();
 
             for (Element item : list) {
                 String svarCd = item.getChildText("svarCd");
@@ -80,15 +82,18 @@ public class LineSearchController {
                 String fscarPrkgTrcn = item.getChildText("fscarPrkgTrcn");
 
                 // 졸음쉼터 제거
-                Loop1: if (svarNm.contains("졸음")) {
-                    break Loop1;
-                } else {
+                if (!svarNm.contains("졸음")) {
                     RestVO vo = new RestVO(svarCd, svarNm, routeCd, routeNm, hdqrCd, hdqrNm, mtnofCd, mtnofNm,
                             gudClssCd,
                             gudClssNm, svarAddr, rprsTelNo, dspnPrkgTrcn, cocrPrkgTrcn, fscarPrkgTrcn);
 
-                    linelist[i++] = vo;
+                    // linelist[i++] = vo;
+                    r_list.add(vo);
                 }
+            }
+            if (r_list.size() > 0) {
+                linelist = new RestVO[r_list.size()];
+                r_list.toArray(linelist);
             }
 
             mv.addObject("linelist", linelist);

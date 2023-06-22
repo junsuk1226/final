@@ -110,22 +110,20 @@
         <div class="accordion accordion-flush">
             <c:if test="${linelist ne null}">
                 <c:forEach var="vo" items="${linelist}" varStatus="loop">
-                    <c:if test="${vo.svarNm ne null}">
-                        <div class="accordion-item mycustom-line_search_info">
-                            <h2 class="accordion-header" id="flush-heading${loop.index + 1}">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${loop.index + 1}" aria-expanded="false" aria-controls="flush-collapse${loop.index + 1}">
-                                    <img class="mycustom-line_search_img" src="https://blog.kakaocdn.net/dn/QiQw7/btq1ByoRVn5/fOPibYxNNlLJWwwNRU3L5k/img.jpg"/>
-                                    <ul class="mycustom-line_search_ul">${vo.svarNm}(${vo.gudClssNm})
-                                        <li>${vo.svarAddr} / 전화번호: ${vo.rprsTelNo}</li>
-                                        <li>소형차주차대수: ${vo.cocrPrkgTrcn} | 대형차주차대수: ${vo.fscarPrkgTrcn} | 장애인주차대수: ${vo.dspnPrkgTrcn}</li>
-                                    </ul>
-                                </button>
-                            </h2>
-                            <div id="flush-collapse${loop.index + 1}" class="accordion-collapse collapse" aria-labelledby="flush-heading${loop.index + 1}" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
-                            </div>
+                    <div class="accordion-item mycustom-line_search_info">
+                        <h2 class="accordion-header" id="flush-heading${loop.index + 1}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${loop.index + 1}" aria-expanded="false" aria-controls="flush-collapse${loop.index + 1}">
+                                <img class="mycustom-line_search_img" src="https://blog.kakaocdn.net/dn/QiQw7/btq1ByoRVn5/fOPibYxNNlLJWwwNRU3L5k/img.jpg"/>
+                                <ul class="mycustom-line_search_ul">${vo.svarNm}(${vo.gudClssNm})
+                                    <li>${vo.svarAddr} / 전화번호: ${vo.rprsTelNo}</li>
+                                    <li>소형차주차대수: ${vo.cocrPrkgTrcn} | 대형차주차대수: ${vo.fscarPrkgTrcn} | 장애인주차대수: ${vo.dspnPrkgTrcn}</li>
+                                </ul>
+                            </button>
+                        </h2>
+                        <div id="flush-collapse${loop.index + 1}" class="accordion-collapse collapse" aria-labelledby="flush-heading${loop.index + 1}" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
                         </div>
-                    </c:if>
+                    </div>
                 </c:forEach> 
             </c:if>
         </div>
