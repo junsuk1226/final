@@ -104,3 +104,16 @@
     border: solid 1px #bebebe;
     border-radius: 30px;
 }
+
+/*--linesearch css------------------------------------------- */
+
+.mycustom-line_search_btn_area{
+    height: 300px;
+}
+
+.mycustom-line_search_btn{
+    font-family: "jamsil";
+    font-size: 20px;
+    border: 0;
+    background-color: transparent;
+}
