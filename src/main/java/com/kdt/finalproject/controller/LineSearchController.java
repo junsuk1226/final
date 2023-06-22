@@ -16,10 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kdt.finalproject.service.RestService;
 import com.kdt.finalproject.vo.RestVO;
 
 @Controller
 public class LineSearchController {
+
+    @Autowired
+    private RestService r_Service;
 
     @Autowired
     private HttpSession session;
@@ -97,7 +101,6 @@ public class LineSearchController {
             }
 
             mv.addObject("linelist", linelist);
-
             mv.addObject("lineName", lineName);
 
             mv.setViewName("linesearch");
