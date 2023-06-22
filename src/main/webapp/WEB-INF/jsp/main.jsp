@@ -30,7 +30,7 @@
 
             <div class="mycustom-search_group_inner"> 
                 <h1 class="mycustom-search_logo"></h1>
-                <form id="sform" name="search" method="get" action="/search">
+                <form id="sform" name="search" method="post" action="/search">
                     <fieldset>
                         <input type="hidden">
                         <div class="mycustom-search_inputbox">
