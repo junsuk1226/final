@@ -164,3 +164,31 @@
     font-size: 20px;
 }
 
+/* ----map css------------------------ */
+
+.mycustom-map_area{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.mycustom-map{
+    border: solid 1px #AAAAAA;
+}
+
+.mycustom-order_btn{
+    width: 800px;
+    font-family: "suite";
+    font-size: 38px;
+    border:none;
+    margin-bottom: 10px;
+    background-color: #A0DFE1;
+}
+
+.mycustom-order_icon{
+    width:40px;
+    height: 50px;
+}
+
+.mycustom_now_info{
+    width: 900px;
+}

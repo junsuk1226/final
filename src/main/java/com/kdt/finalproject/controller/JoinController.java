@@ -34,7 +34,7 @@ public class JoinController {
 
     @RequestMapping("/join")
     public String init() {
-        return "/join/join";
+        return "/join";
     }
 
     @RequestMapping("/kakao/join")
@@ -247,7 +247,8 @@ public class JoinController {
     }
 
     @PostMapping("/common/join")
-    public ModelAndView commonJoin(String j_email, String j_password, String j_nickname, String j_confirmpassword) {
+    public ModelAndView commonJoin(String j_email, String j_password, String j_nickname, String j_confirmpassword,
+            String m_phone) {
         ModelAndView mv = new ModelAndView();
 
         String email = j_email;
@@ -260,6 +261,7 @@ public class JoinController {
         vo.setM_pw(password);
         vo.setM_name(name);
         vo.setM_status(status);
+        vo.setM_phone(m_phone);
 
         Boolean chk = j_Service.check_email(vo);
 

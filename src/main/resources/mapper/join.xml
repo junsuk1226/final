@@ -8,23 +8,23 @@
 <!-- select -->
 <!-- 카카오, 네이버 로그인 시 중복 가입 방지를 위한 체크 -->
 <select id="check_email" parameterType="com.kdt.finalproject.vo.MemVO" resultType="com.kdt.finalproject.vo.MemVO">
-  	SELECT * FROM member WHERE email = #{email} AND status = #{status}
+  	SELECT * FROM member WHERE m_id = #{m_id} AND m_status = #{m_status}
 </select>
 
 <!-- 일반 회원 가입시 email(ID)비동기식 체크 -->
 <select id="check_id" parameterType="String" resultType="com.kdt.finalproject.vo.MemVO">
-  	SELECT * FROM member WHERE email = #{email}
+  	SELECT * FROM member WHERE m_id = #{m_id}
 </select>
 
 <!-- 회원 정보 가져오기 -->
 <select id="getMem" parameterType="com.kdt.finalproject.vo.MemVO" resultType="com.kdt.finalproject.vo.MemVO">
-	SELECT * FROM member WHERE email = #{email} AND status = #{status}
+	SELECT * FROM member WHERE m_id = #{m_id} AND m_status = #{m_status}
 </select>
 
 <!-- insert -->
 <insert id="addMem" parameterType="com.kdt.finalproject.vo.MemVO">
-		INSERT INTO member(email, nickname, password, access_token, refresh_token, profile_image, joindate, status)
-		VALUES(#{email}, #{nickname}, #{password}, #{access_token}, #{refresh_token}, #{profile_image}, NOW(), #{status})
+		INSERT INTO member(m_id, m_name, m_pw, access_token, refresh_token, m_joinDate, m_status, m_phone)
+		VALUES(#{m_id}, #{m_name}, #{m_pw}, #{access_token}, #{refresh_token}, NOW(), #{m_status}, #{m_phone})
 </insert>
 
 <!-- update -->
@@ -32,7 +32,7 @@
 	UPDATE member
 	SET access_token = #{access_token},
 		refresh_token = #{refresh_token}
-	WHERE email = #{email} AND status = #{status}
+	WHERE m_id = #{m_id} AND m_status = #{m_status}
 </update>
 
 </mapper>

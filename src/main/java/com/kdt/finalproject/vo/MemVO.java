@@ -19,7 +19,7 @@ public class MemVO {
             m_status,
             access_token,
             refresh_token,
-            m_var1,
+            m_phone,
             m_var2,
             m_var3,
             m_var4,
