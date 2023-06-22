@@ -2,21 +2,44 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link rel="stylesheet" href="../css/main_custom.css" />
 <html>
 <head>
 	<meta charset="utf-8">
 	<title>다음 지도 API</title>
-</head>
+</head> 
 <body>
+
+   <!-- 메뉴바 ----------------------------------------------------------------------------------------------------------->
+   <div class="container main_custom_menubar">
+		<header class="d-flex flex-wrap align-items-center justify-content-md-between py-3 mb-3">
+			<a class="nav-link logo_custom" href="/main">내 손안에 휴게소</a>
+			<c:if test="${sessionScope.mvo == null}">
+				<div class="col-md-3 text-end">
+					<button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/login'">로그인</button>
+					<button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/join'">회원가입</button>
+				</div>
+			</c:if>
+		</header>
+	</div>
+	<!-- 메뉴바끝 ----------------------------------------------------------------------------------------------------------->
+
+
 	<div id="map" style="width:700px;height:500px;"></div>
 
 	<p id="unitName"></p>
 	<p id="routeName"></p>
-	
+	<div id="resultContainer"></div>
+	<div id="resultContainer2"></div>
+	<div id="weather"></div>
+	<div id="tem"></div>
+
 	
 
 	<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=092a22d4a329417bd5fb9544ca6bb378"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 
 	<script>
@@ -63,10 +86,78 @@
 							$("#unitName").text(unitName);
 							$("#routeName").text(routeName);
 
+							// 날씨 정보
+							var unitName2 = response.unitName2;
+							var weatherContents = response.weatherContents;
+							var tempValue = response.tempValue;
+							
+							// 날씨 상태에 따른 이미지
+							if(weatherContents.includes("구름조금"))
+							var imgSrc = "../images/cloudy.png"; 
+							else if(weatherContents.includes("구름많음"))
+							var imgSrc = "../images/cloud.png"; 
+							else if(weatherContents.includes("맑음"))
+							var imgSrc = "../images/sun.png"; 
+							else if(weatherContents.includes("비"))
+							var imgSrc = "../images/raining.png"; 
+							else if(weatherContents.includes("눈"))
+							var imgSrc = "../images/snow.png"; 
+							var imgElement = $("<img>").attr("src", imgSrc);
+							$("#weather").empty().append(imgElement);
+
+							$("#tem").text(parseInt(tempValue)); // 소수점 이하 제거
+
 							
 
 							// 마커와 인포윈도우를 표시합니다
 							displayMarker(locPosition, message);
+							
+							
+							// 휴게소의 브랜드 매장 정보
+							var info = response.info;
+							var rest = response.rest;
+							var resultHTML = "";
+							var resultHTML2 = "";
+
+							for(var i = 0 ; i < info.length; i++){
+								if(info[i].brdName != null)
+								var brdName = info[i].brdName;
+								else
+								var bardName = "정보 없음";
+								if(info[i].brdDesc != null)
+								var brdDesc = info[i].brdDesc;
+								else
+								var brdDesc = "정보 없음";
+								if(info[i].stime != null)
+								var stime = info[i].stime;
+								else
+								var stime = "정보 없음";
+								if(info[i].etime != null)
+								var etime = info[i].etime;
+								else
+								var etime = "정보 없음";
+								
+
+								resultHTML += '<p>'+'브랜드명:'+brdName+'</p>'+ '<p>'+'상세내용:'+brdDesc+'</p>'+ '<p>'+'시작시간:'+stime+'</p>'
+								+ '<p>'+'종료시간:'+etime+'</p>';
+							}
+
+							for(var i = 0 ; i < rest.length; i++){
+								if(rest[i].psName != null)
+								var psName = rest[i].psName;
+								else
+								var psName = "정보 없음";
+								if(rest[i].psDesc != null)
+								var psDesc = rest[i].psDesc;
+								else
+								var psDesc = "정보 없음";
+
+								resultHTML2 += '<p>'+'편의시설:'+psName+'</p>' + '<p>'+'상세내용:'+psDesc+'</p>';
+							}
+
+							document.getElementById('resultContainer').innerHTML = resultHTML;
+							document.getElementById('resultContainer2').innerHTML = resultHTML2;
+
 						},
 						error: function() {
 							var locPosition = new kakao.maps.LatLng(33.450701, 126.570667);
