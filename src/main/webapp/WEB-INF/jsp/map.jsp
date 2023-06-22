@@ -93,15 +93,15 @@
 							
 							// 날씨 상태에 따른 이미지
 							if(weatherContents.includes("구름조금"))
-							var imgSrc = "images/cloudy.png"; 
+							var imgSrc = "../images/cloudy.png"; 
 							else if(weatherContents.includes("구름많음"))
-							var imgSrc = "images/cloud.png"; 
+							var imgSrc = "../images/cloud.png"; 
 							else if(weatherContents.includes("맑음"))
-							var imgSrc = "images/sun.png"; 
+							var imgSrc = "../images/sun.png"; 
 							else if(weatherContents.includes("비"))
-							var imgSrc = "images/raining.png"; 
+							var imgSrc = "../images/raining.png"; 
 							else if(weatherContents.includes("눈"))
-							var imgSrc = "images/snow.png"; 
+							var imgSrc = "../images/snow.png"; 
 							var imgElement = $("<img>").attr("src", imgSrc);
 							$("#weather").empty().append(imgElement);
 
