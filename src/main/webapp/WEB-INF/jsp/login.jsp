@@ -108,7 +108,16 @@
                     </div>
                 </div>
             </div>
+              <!-- footer 시작---------------------------------------------------------------------------------------------->
+    <body class="d-flex flex-column">
+        <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
+          <div class="container text-center">
+            <small>Copyright &copy; 2023 팀이름 </small>
+          </div>
+        </footer>
 
+      </body> 
+    <!-- footer 끝---------------------------------------------------------------------------------------------->
             
         <!--부트스트랩 js cdn-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
