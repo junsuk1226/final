@@ -29,4 +29,5 @@ public class MemController {
 		mv.setViewName("/login");
 		return mv;
 	}
+
 }
