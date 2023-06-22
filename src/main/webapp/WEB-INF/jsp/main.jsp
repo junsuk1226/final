@@ -30,13 +30,13 @@
 
             <div class="mycustom-search_group_inner"> 
                 <h1 class="mycustom-search_logo"></h1>
-                <form id="sform" name="search" method="get">
+                <form id="sform" name="search" method="post" action="/search">
                     <fieldset>
                         <input type="hidden">
                         <div class="mycustom-search_inputbox">
-                            <input class="mycustom-search_input" placeholder="휴게소명을 입력해 주세요." type="text" id="search1">
+                            <input class="mycustom-search_input" placeholder="휴게소명을 입력해 주세요." type="text" id="search1" name="sname" onkeyup="if(window.event.keyCode==13){sendData(this.form)}">
                         </div>
-                        <button class="mycustom-search_btn" type="button" onclick="sendData()">검색</button>
+                        <button class="mycustom-search_btn" type="button" onclick="sendData(this.form)">검색</button>
                     </fieldset>
                 </form>
             </div>
@@ -66,21 +66,19 @@
 
       </body> 
     <!-- footer 끝---------------------------------------------------------------------------------------------->
-<form action="/search" method="post" name="ff">
-    <input type="hidden" id="svarNm" name="sname"/>
-</form>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script> 
-    function sendData() {
+<script>
+    function sendData(frm) {
         let nm = $("#search1").val().trim();
         if (nm.length == 0) {
             alert("검색어를 입력하세요");
             return;
         }
-        $("#svarNm").val(nm);
-        document.ff.submit();
+        //$("#svarNm").val(nm);
+        frm.submit();
     }
    
 </script>

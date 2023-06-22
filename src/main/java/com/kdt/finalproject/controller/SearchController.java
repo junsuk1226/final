@@ -2,6 +2,7 @@ package com.kdt.finalproject.controller;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class SearchController {
     @RequestMapping("/search")
     public ModelAndView view_search(String sname) throws Exception {
         ModelAndView mv = new ModelAndView();
-
+        // System.out.println("||sname|||||||||||||||||||" + sname);
         String key = "0279357255"; // 인증키
         String type = "xml";
         // String setrouteCd = getrouteCd; // 노선 값 받기.
@@ -34,7 +35,7 @@ public class SearchController {
         sb.append(type);
         // sb.append("&routeCd=");
         sb.append("&svarNm=");
-        sb.append(sname);
+        sb.append(URLEncoder.encode(sname, "utf-8"));
         sb.append("&svarGsstClssCd=");
         sb.append(svarGsstClssCd);
 
