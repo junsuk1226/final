@@ -25,16 +25,63 @@
 	</div>
 	<!-- 메뉴바끝 ----------------------------------------------------------------------------------------------------------->
 
+	
+	<div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-map_area">
 
-	<div id="map" style="width:700px;height:500px;"></div>
+		<button class="mycustom-order_btn" type="button">
+			<span><img class="mycustom-order_icon" src="https://cdn-icons-png.flaticon.com/512/4645/4645316.png"/></span>
+			주문하기
+		</button>
+		
+		<div class="mycustom-map">
+			<div id="map" style="width:800px;height:500px;"></div>
+		</div>
+	</div>
 
-	<p id="unitName"></p>
-	<p id="routeName"></p>
-	<div id="resultContainer"></div>
-	<div id="resultContainer2"></div>
-	<div id="weather"></div>
-	<div id="tem"></div>
 
+	<div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-line_search_accordion_area">
+        <div class="accordion accordion-flush">
+            
+			
+				
+			<div class="accordion-item mycustom-line_search_info mycustom_now_info">
+				<h2 class="accordion-header" id="flush-heading1">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse1" aria-expanded="false" aria-controls="flush-collapse1">
+						<img class="mycustom-line_search_img" src="https://blog.kakaocdn.net/dn/QiQw7/btq1ByoRVn5/fOPibYxNNlLJWwwNRU3L5k/img.jpg"/>
+						<ul class="mycustom-line_search_ul" id="unitName">
+					</button>
+				</h2>
+				<div id="flush-collapse1" class="accordion-collapse collapse" aria-labelledby="flush-heading1" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						<div class="container">
+							<p id="unitName"></p>
+							<p id="routeName"></p>
+							<div id="resultContainer"></div>
+							<div id="resultContainer2"></div>
+							<div id="weather"></div>
+							<div id="tem"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+            
+        </div>
+    </div>
+	<!-- 아코디언 끝-->
+
+	<!-- footer 시작---------------------------------------------------------------------------------------------->
+    <body class="d-flex flex-column">
+        <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
+          <div class="container text-center">
+            <small>Copyright &copy; 2023 팀이름 </small>
+          </div>
+        </footer>
+
+    </body> 
+    <!-- footer 끝---------------------------------------------------------------------------------------------->
+
+	
 	
 
 	<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
