@@ -3,90 +3,119 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     <!DOCTYPE html>
-    <html class="no-js" lang="zxx">
-    <html lang="en">
+    <html class="no-js" lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-        <link rel="stylesheet" href="../css/main_custom.css" />
+        <title>내 손안에 휴게소 - 마이휴 로그인 페이지</title>
+        <style>
+            .input_area{
+                width: 100%; /* 또는 필요한 크기로 조정 */
+                margin: 0 auto; /* 가운데 정렬 */
+                min-width: 370px;
+                max-width: 370px;
+            }
+
+        </style>
+    
+    
     </head>
     
     <body>
 
         <div class ="content-fluid text-center">
-            <div class="row justify-content-lg-center">
-                <div class ="col-lg-2"></div>
+            <div class="row justify-content-center my-4">
+
                 <div class="col-md-6">
                     <a href="/main"><img src="assets/img/logo.png"/></a>
                 </div>
-                <div class ="col-lg-2"></div>
+
             </div>
         </div>
         <!------------------상단----------------->
+        <div class = "container-fluid">
+            <div class = "row justify-content-center ">
+                
+            </div>
 
-
-
-
-
-
+        </div>
         <!-----------------본문--------------------->
-        <div class="content-fluid">
-            <div class="row justify-content-lg-center">
-                <div class ="col-lg-2"></div>
-                <div class="col-md-6">
-                    <form id="login" action="/login" class="input-group" method="post" name="frm">
-                        <div class="input_area col-md-6 mx-auto">
-                            <div class="input-group mb-3">
-                                <span class = "input-group-text">ID</span> 
-                                <input type="text" placeholder="아이디" class="form-control" id="m_id" name="m_id" />
+        <div class="container-fluid mb-6">
+            <div class="row justify-content-center">
+                <div class="col-md-6 mt-6" >
+                    <div class="input_area col-md-6 mx-auto card shadow-lg p-3 mb-5 bg-body rounded" style="margin: 0 auto; border:none; ">
+                        <div class="card-body">
+                        <form id="login" action="/login" class="input-group mt-5" method="post" name="frm">
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="login_search">
+                                        <div class="chk_group mb-3 d-flex justify-content-end">
+                                            <input type="checkbox" name="chk" id="ch01" class="form-check-input"/>
+                                            <label for="ch01">&nbsp;ID 저장</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" placeholder="아이디" class="form-control" id="m_id" name="m_id" />
+                                        <label for="m_id">아이디</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-floating mb-3">
+                                        <input type="password" placeholder="비밀번호" class="form-control" id="m_pw" name="m_pw" />
+                                        <label for="m_pw">비밀번호</label>
+                                    </div>
+                                </div>
+                            
+                                <div class="col-md-12">
+                                    <div class="d-grid ">
+                                        <button type="button" class="btn btn-dark login_btn" onclick="sendData()">로그인</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="input-group mb-3">
-                                <span class = "input-group-text">PW</span> 
-                                <input type="password" placeholder="비밀번호" class="form-control" id="m_pw" name="m_pw" />
+                        </form>
+                    
+                        <p></p>
+                        <div class="form-link mb-3 mx-auto d-flex justify-content-center my-4">
+                            <span>회원가입 하시겠습니까? <a href="/join" class="link-secondary">Signup</a></span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center my-4">
+                            <hr style="width: 35%; border: 0.5px solid #000;">
+                            <span>SNS 로그인</span>
+                            <hr style="width: 35%; border: 0.5px solid #000;">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center my-4">
+                            <div class="media-options mb-3 mx-auto">
+                                <a href="https://kauth.kakao.com/oauth/authorize?client_id=c691b066d7c57c4085e1fa5fc3e2c47b&redirect_uri=http://localhost:8080/kakao/join&response_type=code">
+                                    <img src="../images/kakao_login.png">
+                                </a>
                             </div>
-                            <div class="d-grid gap-2 col-md-12">
-                                <button type="button" class="btn btn-primary" onclick="sendData()">로그인</button>
+                            <div class="media-options mb-3 mx-auto">
+                                <a href="https://nid.naver.com/oauth2.0/authorize?client_id=6BPvD8rTeGLnG7fdps1C&redirect_uri=http://localhost:8080/naver/join&response_type=code&state=test">
+                                    <img src="../images/naver_login.png">
+                                </a>
                             </div>
                         </div>
-                        <div class="fclear"></div>
-                        <p class="login_search  col-md-12">
-                            <span class="chk_group">
-                                <input type="checkbox" name="chk" id="ch01" />
-                                <label for="ch01">아이디저장</label>
-                            </span>
-                         
-                        </p>
-                    </form>
+                    </div>
+                    </div>
                 </div>
-                <div class ="col-lg-2"></div>
             </div>
         </div>
-            <!--.container div 끝-->
-        <div class="content-fluid">
-            <div class="row justify-content-lg-center">
-                <div class ="col-lg-2"></div>
-                <div class="col-md-6">
-                    <div class="form-link">
-                        <span>회원가입 하시겠습니까? <a href="/join" class="link">Signup</a></span>
-                    </div>
-                    <div class="media-options">
-                        <a href="https://kauth.kakao.com/oauth/authorize?client_id=c691b066d7c57c4085e1fa5fc3e2c47b&redirect_uri=http://localhost:8080/kakao/join&response_type=code">
-                            <img src="../images/kakao_login.png">
-                        </a>
-                    </br>
-                </div>
-                <div class="media-options">
-                    <a href="https://nid.naver.com/oauth2.0/authorize?client_id=6BPvD8rTeGLnG7fdps1C&redirect_uri=http://localhost:8080/naver/join&response_type=code&state=test">
-                        <img src="../images/naver_login.png">
-                    </a>
-                </div>
-            </div>
-            <div class ="col-lg-2"></div>
-            </div>
-            </div>
 
+         <!-- footer 시작---------------------------------------------------------------------------------------------->
+    <body class="d-flex flex-column">
+        <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
+          <div class="container text-center">
+            <small>Copyright &copy; 2023 팀이름 </small>
+          </div>
+        </footer>
+      </body> 
+    <!-- footer 끝---------------------------------------------------------------------------------------------->
             
         <!--부트스트랩 js cdn-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
