@@ -25,6 +25,10 @@
                                     <div class="field input-field">
                                         <input type="text" placeholder="Nickname" class="input" name = "j_nickname" id = "j_nickname">
                                     </div>
+
+                                    <div class="field input-field">
+                                        <input type="text" placeholder="PhoneNumber" class="input" name = "m_phone" id = "m_phone">
+                                    </div>
         
                                     <div class="field button-field">
                                         <button type="button" onclick="send(this.form)">일반 회원가입</button>
@@ -70,13 +74,16 @@
                         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
                     <script>
                         function send(form){
-                            let check1 = /^[a-zA-Z0-9]+@[a-z]+\.[a-zA-Z]{2,3}$/i;
+                            let check1 = /^[a-zA-Z0-9]+@[a-z]+\.[a-zA-Z]{2,3}$/i; // 아이디 이메일 형식 검사
                             let check2 = /^[a-zA-Z0-9]{8,}$/i;
+                           
+
                             
                             let j_email = $("#j_email").val();
                             let j_password = $("#j_password").val();
                             let j_confirmpassword = $("#j_confirmpassword").val();
                             let j_nickname = $("#j_nickname").val();
+                            let m_phone = $("#m_phone").val();
                             
                             if(j_email.trim().length < 1){
                                 alert("이메일을 입력하세요");
@@ -108,6 +115,12 @@
                                 return;
                             }
                             
+                            if(m_phone.trim().length < 1){
+                                alert("휴대폰 번호를 입력해주세요.")
+                                $("#m_phone").focus();
+                                return;
+                            }
+
                             if(j_nickname.trim().length < 1){
                                 alert("닉네임을 입력하세요");
                                 $("#j_nickname").focus();
@@ -126,7 +139,7 @@
                                         data: {"email":str},
                                         dataType:"json"
                                     }).done(function(res){
-                                        if(res.chk == true){
+                                        if(res.chk == true && check1.test(str)){
                                             $("#j_box").html("&nbsp;사용가능");
                                         }else{
                                             $("#j_box").html("&nbsp;사용불가능");
