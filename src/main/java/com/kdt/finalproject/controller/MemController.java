@@ -25,8 +25,9 @@ public class MemController {
 	public ModelAndView view(String m_id, String m_pw) {
 		ModelAndView mv = new ModelAndView();
 		MemVO vo = m_Service.ml_login(m_id, m_pw);
-
-		mv.setViewName("/login");
+		System.out.println(m_id);
+		System.out.println(m_pw);
+		mv.setViewName("/main");
 		return mv;
 	}
 
