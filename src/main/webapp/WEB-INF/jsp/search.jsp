@@ -1,97 +1,133 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-            <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-            <!DOCTYPE html>
-            <div class="pc content">
-                <div class="pc-content">
-                    <div class="pc-inner">
-                        <p class="sec-ti">휴게소 찾기</p>
-                        <div class="pc-oil-station">
-                            <div class="top-search">
-                                <div class="search-box">
-                                    <dl>
-                                        <dt>휴게소명/지역명으로 찾기</dt>
-                                        <dd>
-                                            <span class="inpt-inner pdr100">
-                                                <input type="text" class="w100p pc-input02" placeholder="휴게소명이나 지역명을 입력해 주세요." id="idSearchText-pc">
-                                                <button type="button" class="btn-yellow" id="idDetailSearch-pc">검색</button>
-                                            </span>
-                                            
-                                            <p class="exe">예) 마포, OO휴게소</p>
-                                        </dd>
-                                    </dl>
-                                </div>
-                                <!--
-                                <div class="search-box sub-search">
-                                    <dl class="pt40">
-                                        <dt>지역별 휴게소 찾기</dt>
-                                        <dd class="f0">
-                                            <div class="flex">
-                                                <select class="type01" id="idSiDo-pc">
-                                                    <option value="">시/도 선택</option>
-                                                </select>
-                                                <select  class="type01 ml20" id="idGuGun-pc">
-                                                    <option value="">구/군 선택</option>
-                                                </select>
-                                            </div>
-                                        </dd>
-                                    </dl>
-                                </div>
-                                -->
-                            </div>
+        <!DOCTYPE html>
+        <html>
 
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <title>Insert title here</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+                integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+                crossorigin="anonymous">
+            <link rel="stylesheet" href="../css/main_custom.css" />
+        </head>
 
-                            <div class="pc-search-results">
-                                <div class="title">
-                                    <h3>검색 결과</h3>
-                                    <span>총 <strong class="red" id="idSearchCnt-pc">-</strong>개의 휴게소가 검색되었습니다.</span>
-                                </div>
-                            </div>
-                            <div class="accordion pc-oil-station-list" id="idOilStationList-pc">
-                            
-                            </div>
-                            <div class="pc-no-data none">
-                                <div>검색결과가 없습니다.</div>
-                            </div>
-                            <div class="j_page_div"> 
-								<input type="hidden" name="PAGE_NUM" id="j_now" value="1" />
-								<input type="hidden" name="PAGE_TOT" id="J_tot" value="52" />
-								<input type="hidden" name="PAGE_NOW" id="j_row" value="10" />
-								<input type="hidden" name="PAGE_SIZE" id="j_page" value="5" />
-								<input type="hidden" name="PAGE_EVENT" id="j_event" value="fn_pageList" />
-							</div>
-                            <div class="page-nav pt40 pb60" id="idPaing">
-                            </div>
+        <body>
+            <!-- 메뉴바 ----------------------------------------------------------------------------------------------------------->
+            <div class="container main_custom_menubar">
+                <header class="d-flex flex-wrap align-items-center justify-content-md-between py-3 mb-3">
+                    <a class="nav-link logo_custom" href="/main">내 손안에 휴게소</a>
+                    <c:if test="${sessionScope.mvo == null}">
+                        <div class="col-md-3 text-end">
+                            <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn"
+                                onclick="location.href='/login'">로그인</button>
+                            <button type="button" class="btn btn-outline-success mycustom-mem-btn"
+                                onclick="location.href='/join'">회원가입</button>
                         </div>
-                        
+                    </c:if>
+                </header>
+            </div>
+            <!-- 메뉴바끝 ----------------------------------------------------------------------------------------------------------->
+
+            <!-- search_area----------------------------------------------------------------------------------------------->
+            <div class="container-fluid row align-items-center justify-content-center mb-3 mycustom-search_area">
+                <div class="container-fluid row  mycustom-search_group">
+
+                    <div class="mycustom-search_group_inner">
+                        <h1 class="mycustom-search_logo"></h1>
+                        <form id="sform" name="search" method="get">
+                            <fieldset>
+                                <input type="hidden">
+                                <div class="mycustom-search_inputbox">
+                                    <input class="mycustom-search_input" placeholder="휴게소명을 입력해 주세요." type="text"  id="search2" onkeyup="if(window.event.keyCode==13){sendData()}">
+                                </div>
+                            <button class="mycustom-search_btn" type="button" onclick="sendData()">검색</button>
+                            </fieldset>
+                        </form>
                     </div>
+
                 </div>
             </div>
-		</div>
-        <div class="pc-search-results">
-            <div class="title">
-                <h3>검색 결과</h3>
-                <span>
-                    "총"
-                    <strong class="red" id="idSearchCnt-pc">갯수자리</strong>
-                    "개의 주유소가 검색되었습니다."
-                </span>
-            </div>
-        </div>
-        <div class="accordion pc-hgs-station-list" id="idHgsStationList-pc">
-            <dl class>
-                <dt onclick="" class>
-                    <h4>
-                        <span class="tit">휴게소 이름</span>
-                    </h4>
-                    <div class="info">
-                        <span class="address">휴게소 주소</span>
-                        <span class="tel">
-                            "번호자리"
-                        </span>
-                    </div>
-                </dl>
-            </dl>
+            <!-- search_area 끝----------------------------------------------------------------------------------------------->
 
-        </div>
+            <!-- button 시작---------------------------------------------------------------------------------------------->
+            <div class="container mycustom-btn_search_area">
+               <%--  <div class="d-flex flex-wrap align-items-center justify-content-center py-2">
+                    <button class="mycustom-btn_search_btn" type="button" onclick="location.href='/map'">현재 휴게소</button>
+                </div>
+                <div class="d-flex flex-wrap align-items-center justify-content-center py-2">
+                    <button class="mycustom-btn_search_btn" type="button" onclick="location.href='/lineSearchList'">노선별
+                        휴게소</button>
+                </div> --%>
+
+            <div class="container">
+                <c:if test="${linelist ne null}">
+                    <div class="accordion accordion-flush">
+                        <c:forEach var="vo" items="${linelist}" varStatus="loop">
+                            <c:if test="${vo.svarNm ne null}">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-heading${loop.index + 1}">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#flush-collapse${loop.index + 1}" aria-expanded="false"
+                                            aria-controls="flush-collapse${loop.index + 1}">
+                                            ${vo.svarNm}(${vo.gudClssNm}) <br /><br />
+                                            ${vo.svarAddr} / 전화번호: ${vo.rprsTelNo} <br /><br />
+                                            소형차주차대수: ${vo.cocrPrkgTrcn}/ 대형차주차대수: ${vo.fscarPrkgTrcn}/ 장애인주차대수: ${vo.dspnPrkgTrcn}
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse${loop.index + 1}" class="accordion-collapse collapse"
+                                        aria-labelledby="flush-heading${loop.index + 1}" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                            demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion
+                                            body. Let's imagine this being filled with some actual content.</div>
+                                    </div>
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                    </div>
+                </c:if>
+            
+                <c:if test="${linelist eq null}">
+                    <h1>휴게소가 없습니다.</h1>
+                </c:if>
+            
+            </div>
+
+            </div>
+            <!-- button 끝---------------------------------------------------------------------------------------------->
+
+            <!-- footer 시작---------------------------------------------------------------------------------------------->
+
+            <body class="d-flex flex-column">
+                <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
+                    <div class="container text-center">
+                        <small>Copyright &copy; 2023 팀이름 </small>
+                    </div>
+                </footer>
+            </body>
+            <!-- footer 끝---------------------------------------------------------------------------------------------->
+
+
+     <form action="/search" method="post" name="ff">
+        <input type="hidden" id="svarNm" name="sname" />
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        function sendData() {
+            let nm = $("#search2").val().trim();
+            if (nm.length == 0) {
+                alert("검색어를 입력하세요");
+                return;
+            }
+            $("#svarNm").val(nm);
+            document.ff.submit();
+        }
+
+    </script>
+    </body>
+    
+    </html>
