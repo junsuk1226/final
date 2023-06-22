@@ -12,7 +12,8 @@
 
 	<p id="unitName"></p>
 	<p id="routeName"></p>
-	
+	<div id="resultContainer"></div>
+
 	
 
 	<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
@@ -67,6 +68,42 @@
 
 							// 마커와 인포윈도우를 표시합니다
 							displayMarker(locPosition, message);
+
+							var info = response.info;
+							var resultHTML = "";
+
+							for(var i = 0 ; i < info.length; i++){
+								if(info[i].brdName != null)
+								var brdName = info[i].brdName;
+								else
+								var bardName = "정보 없음";
+								if(info[i].brdDesc != null)
+								var brdDesc = info[i].brdDesc;
+								else
+								var brdDesc = "정보 없음";
+								if(info[i].stime != null)
+								var stime = info[i].stime;
+								else
+								var stime = "정보 없음";
+								if(info[i].etime != null)
+								var etime = info[i].etime;
+								else
+								var etime = "정보 없음";
+								if(info[i].psName != null)
+								var psName = info[i].psName;
+								else
+								var psName = "정보 없음";
+								if(info[i].psDesc != null)
+								var psDesc = info[i].psDesc;
+								else
+								var psDesc = "정보 없음";
+
+								resultHTML += '<p>'+'브랜드명:'+brdName+'</p>'+ '<p>'+'상세내용:'+brdDesc+'</p>'+ '<p>'+'시작시간:'+stime+'</p>'
+								+ '<p>'+'종료시간:'+etime+'</p>'+ '<p>'+'편의시설:'+psName+'</p>' + '<p>'+'상세내용:'+psDesc+'</p>' ;
+							}
+
+							document.getElementById('resultContainer').innerHTML = resultHTML;
+
 						},
 						error: function() {
 							var locPosition = new kakao.maps.LatLng(33.450701, 126.570667);
