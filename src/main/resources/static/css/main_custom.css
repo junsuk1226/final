@@ -107,13 +107,13 @@
 
 /*--linesearch css------------------------------------------- */
 
-.mycustom-line_search_btn_area{
-    height: 300px;
+.mycustom-line_search_btn{
+    width: 706px;
+    height: 50px;
 }
 
-.mycustom-line_search_btn{
-    font-family: "jamsil";
-    font-size: 20px;
-    border: 0;
-    background-color: transparent;
+.mycustom-line_search_dropdown_menu{
+    width: 706px;
+    font-family: "suite";
+    font-size: 25px;
 }
