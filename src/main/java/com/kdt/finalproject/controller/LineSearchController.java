@@ -12,6 +12,7 @@ import org.jdom2.input.SAXBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.vo.RestVO;
@@ -31,9 +32,11 @@ public class LineSearchController {
     // }
 
     @RequestMapping("lineSearchList")
-    public ModelAndView LineSearch(String getrouteCd) throws Exception {
+    public ModelAndView LineSearch(@RequestParam(value = "getrouteCd", defaultValue = "0010") String getrouteCd,
+            String lineName) throws Exception {
         ModelAndView mv = new ModelAndView();
         System.out.println(getrouteCd);
+        System.out.println(lineName);
         String key = "0279357255"; // 인증키
         String type = "xml";
         String setrouteCd = getrouteCd; // 노선 값 받기.
@@ -97,9 +100,14 @@ public class LineSearchController {
             }
 
             mv.addObject("linelist", linelist);
-            mv.setViewName("/linesearch");
+
+            mv.addObject("lineName", lineName);
+
+            mv.setViewName("linesearch");
         } else {
-            mv.setViewName("/linesearch");
+            mv.addObject("lineName", lineName);
+
+            mv.setViewName("linesearch");
         }
 
         return mv;

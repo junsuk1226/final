@@ -29,11 +29,11 @@
 
     <div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-line_search_btn_area">
         <button class="mycustom-line_search_btn" id="dLabel" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <c:if test="${restName == null}">
+            <c:if test="${lineName == null}">
                 노선으로 휴게소 검색
             </c:if>
-            <c:if test="${restName != null}">
-                ${linelist[0].routeNm}
+            <c:if test="${lineName != null}">
+                ${lineName}
             </c:if>
           </button>
         <ul class="dropdown-menu mycustom-line_search_dropdown_menu">
@@ -107,8 +107,8 @@
     </div>
 
     <div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-line_search_accordion_area">
-        <c:if test="${linelist ne null}">
-            <div class="accordion accordion-flush">
+        <div class="accordion accordion-flush">
+            <c:if test="${linelist ne null}">
                 <c:forEach var="vo" items="${linelist}" varStatus="loop">
                     <c:if test="${vo.svarNm ne null}">
                         <div class="accordion-item mycustom-line_search_info">
@@ -127,8 +127,8 @@
                         </div>
                     </c:if>
                 </c:forEach> 
-            </div>
-        </c:if>
+            </c:if>
+        </div>
         
         <c:if test="${linelist eq null}">
             <h1>휴게소가 없습니다.</h1>
@@ -155,8 +155,8 @@
         $('.dropdown-item').click(function(e) {
             // 클릭 이벤트 핸들러 내용
             var value = $(this).attr('value');
-            var restName = $(this).text();
-            location.href="/lineSearchList?getrouteCd="+value+restName;
+            var lineName = $(this).text();
+            location.href="/lineSearchList?getrouteCd="+value+"&lineName="+lineName;
         }); 
     });
 
