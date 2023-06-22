@@ -85,16 +85,16 @@
                             <hr style="width: 35%; border: 0.5px solid #000;">
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
-                            <div class="media-options  mb-3 mx-auto">
+                            <div class="media-options  mb-2 mx-auto">
                                 <a href="https://kauth.kakao.com/oauth/authorize?client_id=c691b066d7c57c4085e1fa5fc3e2c47b&redirect_uri=http://localhost:8080/kakao/join&response_type=code">
-                                    <img src="../images/kakao_login.png">
+                                    <img style="width: 306px;" src="../images/kakao_login.png">
                                 </a>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between align-items-center ">
                             <div class="media-options  mb-3 mx-auto">
                                 <a href="https://nid.naver.com/oauth2.0/authorize?client_id=6BPvD8rTeGLnG7fdps1C&redirect_uri=http://localhost:8080/naver/join&response_type=code&state=test">
-                                    <img src="../images/naver_login.png">
+                                    <img style="width: 306px;" src="../images/naver_login.png">
                                 </a>
                             </div>
                         </div>
