@@ -5,8 +5,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
@@ -25,9 +23,6 @@ public class LineSearchController {
 
     @Autowired
     private RestService r_Service;
-
-    @Autowired
-    private HttpSession session;
 
     @RequestMapping("lineSearchList")
     public ModelAndView LineSearch(@RequestParam(value = "getrouteCd", defaultValue = "0010") String getrouteCd,
@@ -67,7 +62,6 @@ public class LineSearchController {
         RestPhotoVO[] photolist = null;
 
         if (list.size() > 0) {
-            int i = 0;
             List<RestVO> r_list = new ArrayList<>();
             List<RestPhotoVO> rp_list = new ArrayList<>();
 
