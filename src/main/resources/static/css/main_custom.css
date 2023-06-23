@@ -12,6 +12,15 @@
     src: url(font/SUITE-Regular.ttf);
 }
 
+.mycustom-bg{
+    background: linear-gradient(rgba(217, 248, 224, 0.8), rgba(239, 255, 230, 0.8));
+    height: 600px;
+}
+
+.main_custom_menubar{
+    padding-top: 40px;
+}
+
 .logo_custom{
     font-family: "omyu";
     font-size: 30px;
@@ -21,29 +30,27 @@
     border-radius: 30px;
     font-size: 20px;
     font-family: "omyu";
-    border-color: #bebebe;
-    color: #000;
+    border: 2px solid #556B2F;
+    color: #556B2F;
 }
 
 .mycustom-mem-btn:hover{
-    border-color: #bebebe;
-    background-color: #bebebe;
+    border-color: #556B2F;
+    background-color: #556B2F;
 }
 
-.main_custom_menubar{
-    margin-top: 20px;
-}
 
 /* 검색창 css -------------------------------------------------- */
 .mycustom-search_area{
-    padding-top:  70px;
-    padding-bottom: 70px;
+    padding-top:  50px;
+    padding-bottom: 50px;
+    margin: 0;
 }
 .mycustom-search_group{
     z-index: 10;
-    width: 706px;
+    width: 608px;
     height: 58px;
-    border: 1px solid #bebebe;
+    border: 2px solid #556B2F;
     border-radius: 33px;
     background-color: #fff;
     margin: 0;
@@ -61,7 +68,7 @@
 }
 
 .mycustom-search_inputbox{
-    width: 540px;
+    width: 440px;
     background-color: transparent;
 }
 
@@ -84,11 +91,16 @@
     top: 0;
     right: 0;
     border: 0;
-    padding: 17px 27px 16px 10px;
+    padding: 10px 5px 5px 10px;
     background-color: transparent;
     cursor: pointer;
     font-family: "suite";
     font-size: 20px;
+}
+
+.mycustom-search_icon{
+    width: 42px;
+    height: 42px;
 }
 
 /* ------------------------------------------ */
@@ -98,11 +110,15 @@
 }
 
 .mycustom-btn_search_btn{
-    width: 370px;
+    width: 706px;
     height: 50px;
     background-color: #fff;
     border: solid 1px #bebebe;
     border-radius: 30px;
+}
+
+.mycustom-main_footer{
+    margin-top: 50px;
 }
 
 /*--linesearch css------------------------------------------- */
@@ -164,6 +180,10 @@
     font-size: 20px;
 }
 
+.mycustom-line_search_listgroup{
+    width: 810px;
+}
+
 /* ----map css------------------------ */
 
 .mycustom-map_area{
@@ -191,4 +211,70 @@
 
 .mycustom_now_info{
     width: 900px;
+}
+
+/* test */
+.test_container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .test_rectangle {
+    position: relative;
+    width: 700px;
+    height: 700px;
+    background-color: transparent;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  
+  .quadrant {
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+  }
+  
+  .test_quadrant-0 {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+  
+  .test_quadrant-1 {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    background-color: transparent;
+    
+  }
+  
+  .test_quadrant-2 {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+  }
+  
+  .test_quadrant-3 {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    background-color: #fff;
+  }
+  
+  .test_diagonal-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+
+#resultContainer{
+    font-family: "suite";
+}
+
+#resultContainer2{
+    font-family: "suite";
 }
