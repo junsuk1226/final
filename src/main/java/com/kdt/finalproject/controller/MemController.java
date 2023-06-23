@@ -38,13 +38,26 @@ public class MemController {
 		return "/login";
 	}
 
+	@RequestMapping("/logout")
+	public String logout() {
+		session.removeAttribute("mvo");
+		return "redirect:/main";
+	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView view(String m_id, String m_pw) {
 		ModelAndView mv = new ModelAndView();
 		MemVO vo = m_Service.ml_login(m_id, m_pw);
-		System.out.println(m_id);
-		System.out.println(m_pw);
-		mv.setViewName("/main");
+
+		if (vo != null) {
+
+			session.setAttribute("mvo", vo);
+			mv.setViewName("/main");
+
+		} else {
+			mv.setViewName("/login");
+			mv.addObject("alat", "alat");
+		}
 		return mv;
 	}
 

@@ -36,7 +36,7 @@ public class MemService {
 
         Map<String, String> map = new HashMap<String, String>();
         map.put("m_id", m_id);
-        map.put("m_id", m_pw);
+        map.put("m_pw", m_pw);
 
         return m_Mapper.login(map);
 

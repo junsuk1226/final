@@ -17,9 +17,15 @@
             <a class="nav-link logo_custom" href="/main">내 손안에 휴게소</a>
             <c:if test="${sessionScope.mvo == null}">
                 <div class="col-md-3 text-end">
+                     
                     <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/login'">로그인</button>
                     <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/join'">회원가입</button>
                 </div>
+            </c:if>
+            <c:if test="${sessionScope.mvo != null}">
+            <div class="col-md-3 text-end"> 
+                <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/logout'">로그 아웃</button>
+            </div>
             </c:if>
         </header>
     </div>
