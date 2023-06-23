@@ -5,7 +5,15 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link rel="stylesheet" href="../css/main_custom.css" />
 <html>
+	<style>
+		.sky-blue-text {
+		  color: blue;
+		}
+
+		
+	  </style>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 	<title>다음 지도 API</title>
 </head> 
@@ -36,8 +44,14 @@
 		<div class="mycustom-map">
 			<div id="map" style="width:800px;height:500px;"></div>
 		</div>
+
+		<div class="mycustom-weather">
+			<div id="weather" ></div>
+			<div id="tem" style="text-align: center; font-size: 40px;"></div>
+		</div>
 	</div>
 
+	
 
 	<div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-line_search_accordion_area">
         <div class="accordion accordion-flush">
@@ -45,21 +59,19 @@
 			
 				
 			<div class="accordion-item mycustom-line_search_info mycustom_now_info">
-				<h2 class="accordion-header" id="flush-heading1">
-					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse1" aria-expanded="false" aria-controls="flush-collapse1">
+				<h2 class="accordion-header" id="panelsStayOpen-headingOne">
+					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
 						<img class="mycustom-line_search_img" src="https://blog.kakaocdn.net/dn/QiQw7/btq1ByoRVn5/fOPibYxNNlLJWwwNRU3L5k/img.jpg"/>
-						<ul class="mycustom-line_search_ul" id="unitName">
+						<ul class="mycustom-line_search_ul" id="unitName"> 
 					</button>
 				</h2>
-				<div id="flush-collapse1" class="accordion-collapse collapse" aria-labelledby="flush-heading1" data-bs-parent="#accordionExample">
+				<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
 					<div class="accordion-body">
 						<div class="container">
-							<p id="unitName"></p>
-							<p id="routeName"></p>
+							<p id="unitName"></p> 
 							<div id="resultContainer"></div>
 							<div id="resultContainer2"></div>
-							<div id="weather"></div>
-							<div id="tem"></div>
+							
 						</div>
 					</div>
 				</div>
@@ -149,10 +161,15 @@
 							var imgSrc = "../images/raining.png"; 
 							else if(weatherContents.includes("눈"))
 							var imgSrc = "../images/snow.png"; 
-							var imgElement = $("<img>").attr("src", imgSrc);
+							var icon = "../images/free-icon-celsius-481431.png";
+
+							var imgElement = $("<img>").attr("src", imgSrc).css("width", "250px");
+							var imgElement2 = $("<img>").attr("src", icon).css("width", "50px");
+							var spanElement = $("<span>").append(imgElement2);
+
 							$("#weather").empty().append(imgElement);
 
-							$("#tem").text(parseInt(tempValue)); // 소수점 이하 제거
+							$("#tem").text(parseInt(tempValue)).append(spanElement); // 소수점 이하 제거
 
 							
 
@@ -185,8 +202,15 @@
 								var etime = "정보 없음";
 								
 
-								resultHTML += '<p>'+'브랜드명:'+brdName+'</p>'+ '<p>'+'상세내용:'+brdDesc+'</p>'+ '<p>'+'시작시간:'+stime+'</p>'
-								+ '<p>'+'종료시간:'+etime+'</p>';
+								resultHTML += `
+									<div class="card mb-3">
+									<div class="card-body ">
+										<h5 class="card-title sky-blue-text">브랜드명: `+brdName+`</h5>
+										<p class="card-text">상세내용: `+brdDesc+`</p>
+										<p class="card-text">시작시간: `+stime+`</p>
+										<p class="card-text">종료시간: `+etime+`</p>
+									</div>
+									</div>`;
 							}
 
 							for(var i = 0 ; i < rest.length; i++){
@@ -199,7 +223,13 @@
 								else
 								var psDesc = "정보 없음";
 
-								resultHTML2 += '<p>'+'편의시설:'+psName+'</p>' + '<p>'+'상세내용:'+psDesc+'</p>';
+								resultHTML2 += `
+												<div class="card mb-3">
+												<div class="card-body">
+													<h5 class="card-title sky-blue-text">편의시설: `+psName+`</h5>
+													<p class="card-text">상세내용: `+psDesc+`</p>
+												</div>
+												</div>`;
 							}
 
 							document.getElementById('resultContainer').innerHTML = resultHTML;

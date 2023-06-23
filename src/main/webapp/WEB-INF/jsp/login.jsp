@@ -17,22 +17,33 @@
                 min-width: 370px;
                 max-width: 370px;
             }
+            #gif{
+                &.grow {
+                transition: all .2s ease-in-out;
+
+                    &:hover {
+                        transform: scale(1.5);
+                    }
+                }  
+            }
 
         </style>
     
     
     </head>
     
-    <body>
+    <body onload="init()">
+
 
         <!------------------상단----------------->
         <div class ="container-fluid text-center">
             <div class="row justify-content-center ">
 
-                <div class="col-md-12">
-                    <a href="/main"><img src="assets/img/logo.png"/></a>
+                <div class="col-md-12 gif" id="gif">
+                    <a href="/main"><img id="gif" src="assets/img/logo.png"></a>  
                 </div>
 
+                <div id="faux-gif"></div>
             </div>
         </div>
         <!-----------------본문--------------------->
@@ -111,7 +122,7 @@
                 </footer>
             </div> 
     <!-- footer 끝---------------------------------------------------------------------------------------------->
-            
+        <input type="hidden" id="flag" value="${alat}"/>    
         <!--부트스트랩 js cdn-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -128,11 +139,15 @@
                     $("#m_pw").focus();
                     return;
                 }
-                if ("${alat}" == "alat") {
-                    alert("아이디 또는 비밀번호를 잘못 입력했습니다.");
-                    return;
-                }
+                
                 document.frm.submit();
+            }
+
+            function init(){
+                let alat = $("#flag").val();
+                if (alat == "alat") {
+                    alert("아이디 또는 비밀번호를 잘못 입력했습니다.");
+                }
             }
         </script>
     </body>
