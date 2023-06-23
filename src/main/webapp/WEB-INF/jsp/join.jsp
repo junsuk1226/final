@@ -15,6 +15,10 @@
             .form-floating{
                 min-width: 282px;
             }
+            li{
+                text-align: left;
+                font-weight: bold;
+            }
 
         </style>
     
@@ -36,28 +40,41 @@
                         <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="border: none;">
                             <div class="card-body">
                                 <form action="/common/join" method="post">
-                                    <div class="form-floating ">
-                                        <input type="text" placeholder="Email" class="form-control" name = "j_email" id = "j_email">
-                                        <label for="floatingInput">Email address</label>
-                                    </div>
-    
-                                    <div class="">
-                                        <input type="password" placeholder="Create password" class="form-control password" name = "j_password" id = "j_password">
-                                    </div>
-                                    <div class="field input-field">
-                                        <input type="password" placeholder="Confirm password" class="form-control password" name = "j_confirmpassword" id = "j_confirmpassword">
-                                    </div>
-                                  
-                                    <div class="field input-field">
-                                      <input type="text" placeholder="Nickname" class="form-control input" name = "j_nickname" id = "j_nickname">
-                                    </div>
-                                    <div class="field input-field">
-                                        <input type="text" placeholder="PhoneNumber" class="form-control input" name = "m_phone" id = "m_phone">
-                                    </div>
-    
-                                    <div class="field button-field">
-                                        <button type="button" class="btn btn-dark" onclick="send(this.form)">일반 회원가입</button>
-                                    </div>
+                                    <ul class="">
+                                        <li class="mb-3">Enter Email</li>
+                                        <div class="form-floating ">
+                                            <input type="text" placeholder="Email" class="form-control" name = "j_email" id = "j_email">
+                                            <label for="floatingInput">example@email.com</label>
+                                        </div>
+                                        <br/>
+                                        <li class="mb-3">Create Password</li>
+                                        <div class="form-floating">
+                                            <input type="password" placeholder="Create password" class="form-control password" name = "j_password" id = "j_password">
+                                            <label for="floatingInput">8자 이상 입력해 주세요</label>
+                                        </div>
+                                        <br/>
+                                        <li class="mb-3">Confirm Password</li>
+                                        <div class="form-floating">
+                                            <input type="password" placeholder="Confirm password" class="form-control password" name = "j_confirmpassword" id = "j_confirmpassword">
+                                            <label for="floatingInput">비밀번호 확인</label>
+                                        </div>
+                                        <br/>
+                                        <li class="mb-3">Nickname</li>
+                                        <div class="form-floating">
+                                            <input type="text" placeholder="Nickname" class="form-control input" name = "j_nickname" id = "j_nickname">
+                                            <label for="floatingInput">사용할 닉네임을 입력해 주세요</label>
+                                        </div>
+                                        <br/>
+                                        <li class="mb-3">PhoneNumber</li>
+                                        <div class="form-floating mb-5">
+                                            <input type="text" placeholder="PhoneNumber" class="form-control input" name = "m_phone" id = "m_phone">
+                                            <label for="floatingInput">"-"를 제외하고 입력해 주세요</label>
+                                        </div>
+        
+                                        <div class="col-5 d-grid gap-2  mx-auto">
+                                            <button type="button" class="btn btn-dark" onclick="send(this.form)">일반 회원가입</button>
+                                        </div>
+                                    </ul>
                                 </form>
                             <hr>
                             <div class="form-link">
