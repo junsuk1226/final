@@ -107,12 +107,13 @@
     </div>
 
 
+    <!-- 휴게소 list area----------------------------------------------------------------------------------------------->
     <div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-line_search_accordion_area">
         <ul class="list-group">
             <c:if test="${linelist ne null}">
                 <c:forEach var="vo" items="${linelist}" varStatus="loop">
                     <li class="list-group-item mycustom-line_search_listgroup">
-                        <button class="accordion-button" type="button" onclick="">
+                        <button class="accordion-button" type="button" onclick="location.href='/menu'">
                             <img class="mycustom-line_search_img" src="${photolist[loop.index].r_photo}"/>
                             <ul class="mycustom-line_search_ul">${vo.svarNm}(${vo.gudClssNm})
                                 <li>${vo.svarAddr} | 전화번호: ${vo.rprsTelNo}</li>
@@ -128,6 +129,7 @@
             <h1>휴게소가 없습니다.</h1>
         </c:if>
     </div>
+    <!-- 휴게소 list area 끝----------------------------------------------------------------------------------------------->
 
 
     <!-- footer 시작---------------------------------------------------------------------------------------------->
