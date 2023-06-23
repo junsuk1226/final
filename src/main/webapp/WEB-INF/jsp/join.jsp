@@ -9,9 +9,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-        <title>내 손안에 휴게소-마이휴 로그인 페이지</title>
-        
+        <title>내 손안에 휴게소-마이휴 회원가입 페이지</title>
     
+        <style>
+            .form-floating{
+                min-width: 282px;
+            }
+
+        </style>
     
     </head>
     <!------------------상단----------------->
@@ -24,71 +29,70 @@
 
             </div>
         </div>
-        <!---------------본문---------------->
-                    <section class="container-fluid text-center">
-                        <div class="row justify-content-center mb-6">
-                            <div class="col-md-6 card ">
-                            <div class="form-content card-body">
-                                <h5 class="card-title">회원 가입</h5>
-                                    <form action="/common/join" method="post">
-                                    <div class="field input-field">
-                                        <input type="text" placeholder="Email" class="input" name = "j_email" id = "j_email">
-                                        <span id="j_box"></span> 
+        <!--------------본문---------------->
+                <div class="container-fluid text-center">
+                    <div class="row justify-content-center col-md-12">
+                        <div  class="col-md-6">
+                        <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="border: none;">
+                            <div class="card-body">
+                                <form action="/common/join" method="post">
+                                    <div class="form-floating ">
+                                        <input type="text" placeholder="Email" class="form-control" name = "j_email" id = "j_email">
+                                        <label for="floatingInput">Email address</label>
                                     </div>
-        
-                                    <div class="field input-field">
-                                        <input type="password" placeholder="Create password" class="password" name = "j_password" id = "j_password">
+    
+                                    <div class="">
+                                        <input type="password" placeholder="Create password" class="form-control password" name = "j_password" id = "j_password">
                                     </div>
-                                    
                                     <div class="field input-field">
-                                        <input type="password" placeholder="Confirm password" class="password" name = "j_confirmpassword" id = "j_confirmpassword">
+                                        <input type="password" placeholder="Confirm password" class="form-control password" name = "j_confirmpassword" id = "j_confirmpassword">
                                     </div>
-        
+                                  
                                     <div class="field input-field">
-                                        <input type="text" placeholder="Nickname" class="input" name = "j_nickname" id = "j_nickname">
+                                      <input type="text" placeholder="Nickname" class="form-control input" name = "j_nickname" id = "j_nickname">
                                     </div>
-
                                     <div class="field input-field">
-                                        <input type="text" placeholder="PhoneNumber" class="input" name = "m_phone" id = "m_phone">
+                                        <input type="text" placeholder="PhoneNumber" class="form-control input" name = "m_phone" id = "m_phone">
                                     </div>
-        
+    
                                     <div class="field button-field">
-                                        <button type="button" onclick="send(this.form)">일반 회원가입</button>
+                                        <button type="button" class="btn btn-dark" onclick="send(this.form)">일반 회원가입</button>
                                     </div>
                                 </form>
-        
-                                <div class="form-link">
-                                    <span>이미 계정을 갖고 계신가요? <a href="login" class="link login-link">Login</a></span>
-                                </div>
-                            </div>
-        
-                            <div class="line"></div>
-        
-                            <div class="media-options mb-2">
-                                <a href="https://kauth.kakao.com/oauth/authorize?client_id=c691b066d7c57c4085e1fa5fc3e2c47b&redirect_uri=http://localhost:8080/kakao/join&response_type=code">
-                                    <img src="images/kakao_login.png">
-                                </a>
-                            </br>
-                            </div>
-        
-                            <div class="media-options">
-                                <a href="https://nid.naver.com/oauth2.0/authorize?client_id=6BPvD8rTeGLnG7fdps1C&redirect_uri=http://localhost:8080/naver/join&response_type=code&state=test">
-                                    <img src="images/naver_login.png">
-                                </a>
+                            <hr>
+                            <div class="form-link">
+                                <span>이미 계정을 가지고 계신가요? <a href="login" class="link login-link">Login</a></span>
                             </div>
                         </div>
+    
+                        <div class="line"></div>
+    
+                        <div class="media-options mb-2">
+                            <a href="https://kauth.kakao.com/oauth/authorize?client_id=c691b066d7c57c4085e1fa5fc3e2c47b&redirect_uri=http://localhost:8080/kakao/join&response_type=code">
+                                <img style="width: 282px;" src="images/kakao_login.png">
+                            </a>
+                        </br>
                         </div>
-                    </section>
-                    <!---------------------------footer------------------------>
-                    <div class="d-flex flex-column">
-                        <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
-                          <div class="container text-center">
-                            <small>Copyright &copy; 2023 팀이름 </small>
-                          </div>
-                        </footer>
+    
+                        <div class="media-options mb-5">
+                            <a href="https://nid.naver.com/oauth2.0/authorize?client_id=6BPvD8rTeGLnG7fdps1C&redirect_uri=http://localhost:8080/naver/join&response_type=code&state=test">
+                                <img style="width: 282px;" src="images/naver_login.png">
+                            </a>
+                        </div>
                     </div>
-                    <!-- JavaScript -->
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+                    </div>
+                </div>
+            </div>
+                <!---------------------------footer------------------------>
+                <div class="d-flex flex-column">
+                    <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
+                      <div class="container text-center">
+                        <small>Copyright &copy; 2023 팀이름 </small>
+                      </div>
+                    </footer>
+                </div>
+                <!-- JavaScript -->
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
                         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
                         crossorigin="anonymous"></script>
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"

@@ -9,14 +9,20 @@ import java.util.List;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kdt.finalproject.service.RestService;
+import com.kdt.finalproject.vo.RestPhotoVO;
 import com.kdt.finalproject.vo.RestVO;
 
 @Controller
 public class SearchController {
+
+    @Autowired
+    private RestService r_Service;
 
     @RequestMapping("/search")
     public ModelAndView view_search(String sname) throws Exception {
@@ -53,9 +59,11 @@ public class SearchController {
         List<Element> list = root.getChildren("list");
 
         RestVO[] linelist = null;
+        RestPhotoVO[] photolist = null;
+
         if (list.size() > 0) {
-            int i = 0;
             List<RestVO> r_list = new ArrayList<>();
+            List<RestPhotoVO> rp_list = new ArrayList<>();
 
             for (Element item : list) {
                 String svarCd = item.getChildText("svarCd");
@@ -82,6 +90,17 @@ public class SearchController {
 
                     // linelist[i++] = vo;
                     r_list.add(vo);
+
+                    int s = Integer.parseInt(svarCd);
+                    RestPhotoVO rpvo = r_Service.check_photo(s);
+
+                    if (rpvo == null) {
+                        rpvo = new RestPhotoVO();
+                        rpvo.setR_photo("../images/rest_default_photo.png");
+                        rpvo.setSvarCd(s);
+                    }
+
+                    rp_list.add(rpvo);
                 }
             } // for의 끝
             if (r_list.size() > 0) {
@@ -89,6 +108,12 @@ public class SearchController {
                 r_list.toArray(linelist);
             }
 
+            if (rp_list.size() > 0) {
+                photolist = new RestPhotoVO[rp_list.size()];
+                rp_list.toArray(photolist);
+            }
+
+            mv.addObject("photolist", photolist);
             mv.addObject("linelist", linelist);
 
         }

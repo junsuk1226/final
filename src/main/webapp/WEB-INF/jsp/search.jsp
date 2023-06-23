@@ -59,7 +59,7 @@
                                 <div class="accordion-item mycustom-line_search_info">
                                     <h2 class="accordion-header" id="flush-heading${loop.index + 1}">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${loop.index + 1}" aria-expanded="false" aria-controls="flush-collapse${loop.index + 1}">
-                                            <img class="mycustom-line_search_img" src="https://blog.kakaocdn.net/dn/QiQw7/btq1ByoRVn5/fOPibYxNNlLJWwwNRU3L5k/img.jpg"/>
+                                            <img class="mycustom-line_search_img" src="${photolist[loop.index].r_photo}"/>
                                             <ul class="mycustom-line_search_ul">${vo.svarNm}(${vo.gudClssNm})
                                                 <li>${vo.svarAddr} / 전화번호: ${vo.rprsTelNo}</li>
                                                 <li>소형차주차대수: ${vo.cocrPrkgTrcn} | 대형차주차대수: ${vo.fscarPrkgTrcn} | 장애인주차대수: ${vo.dspnPrkgTrcn}</li>

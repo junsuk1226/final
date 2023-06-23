@@ -17,6 +17,15 @@
                 min-width: 370px;
                 max-width: 370px;
             }
+            #gif{
+                &.grow {
+                transition: all .2s ease-in-out;
+
+                    &:hover {
+                        transform: scale(1.5);
+                    }
+                }  
+            }
 
         </style>
     
@@ -30,10 +39,11 @@
         <div class ="container-fluid text-center">
             <div class="row justify-content-center ">
 
-                <div class="col-md-12">
-                    <a href="/main"><img src="assets/img/logo.png"/></a>
+                <div class="col-md-12 gif" id="gif">
+                    <a href="/main"><img id="gif" src="assets/img/logo.png"></a>  
                 </div>
 
+                <div id="faux-gif"></div>
             </div>
         </div>
         <!-----------------본문--------------------->
