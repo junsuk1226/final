@@ -17,16 +17,6 @@
                 min-width: 370px;
                 max-width: 370px;
             }
-            #gif{
-                &.grow {
-                transition: all .2s ease-in-out;
-
-                    &:hover {
-                        transform: scale(1.5);
-                    }
-                }  
-            }
-
         </style>
     
     
@@ -38,12 +28,9 @@
         <!------------------상단----------------->
         <div class ="container-fluid text-center">
             <div class="row justify-content-center ">
-
-                <div class="col-md-12 gif" id="gif">
-                    <a href="/main"><img id="gif" src="assets/img/logo.png"></a>  
+                <div class="col-md-12">
+                    <a href="/main"><img src="assets/img/logo.png"></a>  
                 </div>
-
-                <div id="faux-gif"></div>
             </div>
         </div>
         <!-----------------본문--------------------->
@@ -78,7 +65,7 @@
                             
                                 <div class="col-md-12">
                                     <div class="d-grid ">
-                                        <button type="button" class="btn btn-dark login_btn" style="height: 58px;" onclick="sendData()">로그인</button>
+                                        <button type="button" class="btn btn-dark login_btn " style="height: 58px;" onclick="sendData()">로그인</button>
                                     </div>
                                 </div>
                             </div>
