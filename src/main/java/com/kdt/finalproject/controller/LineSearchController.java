@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.RestService;
+import com.kdt.finalproject.vo.RestPhotoVO;
 import com.kdt.finalproject.vo.RestVO;
 
 @Controller
@@ -32,8 +33,7 @@ public class LineSearchController {
     public ModelAndView LineSearch(@RequestParam(value = "getrouteCd", defaultValue = "0010") String getrouteCd,
             String lineName) throws Exception {
         ModelAndView mv = new ModelAndView();
-        System.out.println(getrouteCd);
-        System.out.println(lineName);
+
         String key = "0279357255"; // 인증키
         String type = "xml";
         String setrouteCd = getrouteCd; // 노선 값 받기.
@@ -64,9 +64,12 @@ public class LineSearchController {
         List<Element> list = root.getChildren("list");
 
         RestVO[] linelist = null;
+        RestPhotoVO[] photolist = null;
+
         if (list.size() > 0) {
             int i = 0;
             List<RestVO> r_list = new ArrayList<>();
+            List<RestPhotoVO> rp_list = new ArrayList<>();
 
             for (Element item : list) {
                 String svarCd = item.getChildText("svarCd");
@@ -91,8 +94,18 @@ public class LineSearchController {
                             gudClssCd,
                             gudClssNm, svarAddr, rprsTelNo, dspnPrkgTrcn, cocrPrkgTrcn, fscarPrkgTrcn);
 
-                    // linelist[i++] = vo;
                     r_list.add(vo);
+
+                    int s = Integer.parseInt(svarCd);
+                    RestPhotoVO rpvo = r_Service.check_photo(s);
+
+                    if (rpvo == null) {
+                        rpvo = new RestPhotoVO();
+                        rpvo.setR_photo("../images/rest_default_photo.png");
+                        rpvo.setSvarCd(s);
+                    }
+
+                    rp_list.add(rpvo);
                 }
             }
             if (r_list.size() > 0) {
@@ -100,6 +113,12 @@ public class LineSearchController {
                 r_list.toArray(linelist);
             }
 
+            if (rp_list.size() > 0) {
+                photolist = new RestPhotoVO[rp_list.size()];
+                rp_list.toArray(photolist);
+            }
+
+            mv.addObject("photolist", photolist);
             mv.addObject("linelist", linelist);
             mv.addObject("lineName", lineName);
 
