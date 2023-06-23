@@ -12,9 +12,9 @@ import lombok.Setter;
 public class PayVO {
     private String p_idx,
             m_idx,
-            restCd,
-            seq,
-            foodCost,
+            restCd, // 휴게소 코드
+            seq, // 음식 코드
+            foodCost, // 개별 음식 가격
             totalCost,
             p_date,
             p_status,
@@ -23,6 +23,6 @@ public class PayVO {
             p_var1,
             p_var2,
             p_var3,
-            p_var4String,
+            p_var4,
             p_var5;
 }

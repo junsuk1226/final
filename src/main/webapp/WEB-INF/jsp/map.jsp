@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link rel="stylesheet" href="../css/main_custom.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <html>
 	<style>
 		.sky-blue-text {
@@ -32,8 +33,89 @@
 		</header>
 	</div>
 	<!-- 메뉴바끝 ----------------------------------------------------------------------------------------------------------->
-
 	
+
+
+	<div class ="container-fluid text-center">
+		<div class="row justify-content-center ">
+
+			<div class="col-md-12 gif" id="gif">
+				<a href="/main"><img id="gif" src="assets/img/logo.png"></a>  
+			</div>
+
+			<div id="faux-gif"></div>
+		</div>
+	</div>
+
+	<div class="row justify-content-center">
+		<div class="col-md-6 row-cols-1 row-cols-md-3 g-4">
+			<div class="input_area col-md-12 mx-auto card shadow p-3 mb-4 bg-body rounded" style="margin: 0 auto; border:none; ">
+				<div class="card-body align-items-center">
+					<div class = "row justify-content-evenly ">
+						
+						<div class="mycustom-weather col-md-3 d-flex align-items-center">
+							<div id="weather" class="me-3"></div>
+							<div id="tem"class="me-5" style="text-align: center; font-size: 25px; font-weight: bold;"></div>
+							<div class="vr"></div>
+						</div>
+						<div class="col-md-2">
+							<div class="" >
+								<img src="../images/raining.png" class="card-img-top" alt="...">	
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							
+							<div class="">
+								<img src="../images/raining.png" class="card-img-top" alt="...">	
+							</div>
+
+						</div>
+						<div class="col-md-2">
+							<div class="">
+								<img src="../images/snow.png" class="card-img-top" alt="...">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<!-------------------------------------------------------------------------------------------->
+	<!-- <div class="container d-flex flex-wrap align-items-center justify-content-center" style="border: 1px solid black; width:800px;">
+		<div class="mycustom-weather">
+			<div id="weather" ></div>
+			<div id="tem" style="text-align: center; font-size: 25px;"></div>
+		</div>
+		<div class="row row-cols-1 row-cols-md-3 g-4">
+			<div class="col">
+				
+			  <div class="card h-100" style="width: 200px;">
+				<img src="../images/raining.png" class="card-img-top" alt="...">
+				
+				
+			  </div>
+			</div>
+			<div class="col">
+			  <div class="card h-100" style="width: 200px;">
+				<img src="../images/sun.png" class="card-img-top" alt="...">
+			  </div>
+			</div>
+			<div class="col">
+			  <div class="card h-100" style="width: 200px;">
+				<img src="../images/snow.png" class="card-img-top" alt="...">
+			  </div>
+			</div>
+		  </div>
+	
+
+	</div> -->
+
 	<div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-map_area">
 
 		<button class="mycustom-order_btn" type="button">
@@ -45,10 +127,6 @@
 			<div id="map" style="width:800px;height:500px;"></div>
 		</div>
 
-		<div class="mycustom-weather">
-			<div id="weather" ></div>
-			<div id="tem" style="text-align: center; font-size: 40px;"></div>
-		</div>
 	</div>
 
 	
@@ -163,8 +241,8 @@
 							var imgSrc = "../images/snow.png"; 
 							var icon = "../images/free-icon-celsius-481431.png";
 
-							var imgElement = $("<img>").attr("src", imgSrc).css("width", "250px");
-							var imgElement2 = $("<img>").attr("src", icon).css("width", "50px");
+							var imgElement = $("<img>").attr("src", imgSrc).css("width", "70px");
+							var imgElement2 = $("<img>").attr("src", icon).css("width", "30px");
 							var spanElement = $("<span>").append(imgElement2);
 
 							$("#weather").empty().append(imgElement);
