@@ -71,8 +71,7 @@
 							<p id="unitName"></p> 
 							<div id="resultContainer"></div>
 							<div id="resultContainer2"></div>
-							<div id="weather"></div>
-							<div id="tem"></div>
+							
 						</div>
 					</div>
 				</div>
