@@ -26,7 +26,7 @@
     <!-- 메뉴바끝 ----------------------------------------------------------------------------------------------------------->
 
     <!-- search_area----------------------------------------------------------------------------------------------->
-    <div class="container-fluid row align-items-center justify-content-center mb-3 mycustom-search_area">
+    <div class="container-fluid row align-items-center justify-content-center mycustom-search_area">
         <div class="container-fluid row  mycustom-search_group">
 
             <div class="mycustom-search_group_inner"> 
@@ -46,26 +46,30 @@
     </div>
     <!-- search_area 끝----------------------------------------------------------------------------------------------->
 
-    <!-- button 시작---------------------------------------------------------------------------------------------->
-    <div class="container mycustom-btn_search_area">
-        <div class="d-flex flex-wrap align-items-center justify-content-center py-2">
-            <button class="mycustom-btn_search_btn" type="button" onclick="location.href='/map'">현재 휴게소</button>
-        </div>
-        <div class="d-flex flex-wrap align-items-center justify-content-center py-2">
-            <button class="mycustom-btn_search_btn" type="button" onclick="location.href='/lineSearchList'">노선별 휴게소</button>
+    <!--test-->
+
+    <div class="container test_container">
+        <div class="rectangle test_rectangle">
+          <div class="quadrant quadrant-0 test_quadrant-0_">
+            <a href="/map"><img src="../test_images/now.png" alt="Image 1" class="diagonal-image test_diagonal-image"></a>
+          </div>
+          <div class="quadrant quadrant-1 test_quadrant-1"></div>
+          <div class="quadrant quadrant-2 test_quadrant-2">
+            <a href="/lineSearchList"><img src="../test_images/way.png" alt="Image 2" class="diagonal-image test_diagonal-image"></a>
+          </div>
+          <div class="quadrant quadrant-3 test_quadrant-3"></div>
         </div>
     </div>
-    <!-- button 끝---------------------------------------------------------------------------------------------->
     
-    <!-- footer 시작---------------------------------------------------------------------------------------------->
-    <body class="d-flex flex-column">
-        <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
+    <!-- footer 시작----------------------------------------------------------------------------------------------> 
+    <!-- <body class="d-flex flex-column"> -->
+        <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mycustom-main_footer">
           <div class="container text-center">
-            <small>Copyright &copy; 2023 팀이름 </small>
+            <small>Copyright &copy; 2023 쉬-잇 </small>
           </div>
         </footer>
 
-      </body> 
+      <!-- </body>  -->
     <!-- footer 끝---------------------------------------------------------------------------------------------->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
