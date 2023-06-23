@@ -247,9 +247,12 @@ public class JoinController {
     }
 
     @PostMapping("/common/join")
-    public ModelAndView commonJoin(String j_email, String j_password, String j_nickname, String j_confirmpassword,
+    @ResponseBody
+    public Map<String, String> commonJoin(String j_email, String j_password, String j_nickname,
+            String j_confirmpassword,
             String m_phone) {
-        ModelAndView mv = new ModelAndView();
+        // ModelAndView mv = new ModelAndView();
+        Map<String, String> map = new HashMap<>();
 
         String email = j_email;
         String password = j_password;
@@ -267,13 +270,15 @@ public class JoinController {
 
         if (chk == true) {
             int cnt = j_Service.addMem(vo);
-            mv.setViewName("redirect:/login");
+            // mv.setViewName("redirect:/login");
+            map.put("commjoin_fail", "0");
         } else {
-            session.setAttribute("commjoin_fail", "commjoin_fail");
-            mv.setViewName("redirect:/join");
+            // session.setAttribute("commjoin_fail", "commjoin_fail");
+            // mv.setViewName("redirect:/join");
+            map.put("commjoin_fail", "1");
         }
 
-        return mv;
+        return map;
     }
 
     @PostMapping("/join/checkid")

@@ -39,46 +39,77 @@
                         <div  class="col-md-6">
                         <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="border: none;">
                             <div class="card-body">
-                                <form action="/common/join" method="post">
-                                    <ul class="">
+                                <form action="/common/join" method="post" class="needs-validation" novalidate>
+                                    <ul class="list-unstyled">
                                         <li class="mb-3">Enter Email</li>
                                         <div class="form-floating ">
-                                            <input type="text" placeholder="Email" class="form-control" name = "j_email" id = "j_email">
-                                            <label for="floatingInput">example@email.com</label>
+                                            <input type="text" placeholder="Email" class="form-control" name = "j_email" id = "j_email" required>
+                                            <label for="floatingInput" class="text-secondary">example@email.com</label>
+                                            <div class="valid-feedback">
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                이메일 형식이 올바르지 않습니다.
+                                            </div>
                                         </div>
                                         <br/>
                                         <li class="mb-3">Create Password</li>
+                                        <figcaption class="blockquote-footer text-start">
+                                            <em>8자 이상 입력해 주세요. </em>
+                                          </figcaption>
                                         <div class="form-floating">
-                                            <input type="password" placeholder="Create password" class="form-control password" name = "j_password" id = "j_password">
-                                            <label for="floatingInput">8자 이상 입력해 주세요</label>
+                                            <input type="password" placeholder="Create password" class="form-control password" name = "j_password" id = "j_password" required>
+                                            <label class="text-secondary" for="floatingInput">비밀번호</label>
+                                            <div class="valid-feedback">
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                비밀번호는 8자 이상 입력해야 합니다.
+                                            </div>
                                         </div>
                                         <br/>
                                         <li class="mb-3">Confirm Password</li>
                                         <div class="form-floating">
-                                            <input type="password" placeholder="Confirm password" class="form-control password" name = "j_confirmpassword" id = "j_confirmpassword">
-                                            <label for="floatingInput">비밀번호 확인</label>
+                                            <input type="password" placeholder="Confirm password" class="form-control password" name = "j_confirmpassword" id = "j_confirmpassword" required>
+                                            <label class="text-secondary" for="floatingInput">비밀번호 확인</label>
+                                            <div class="valid-feedback">
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                비밀번호가 다릅니다.
+                                            </div>
                                         </div>
                                         <br/>
                                         <li class="mb-3">Nickname</li>
                                         <div class="form-floating">
-                                            <input type="text" placeholder="Nickname" class="form-control input" name = "j_nickname" id = "j_nickname">
-                                            <label for="floatingInput">사용할 닉네임을 입력해 주세요</label>
+                                            <input type="text" placeholder="Nickname" class="form-control input" name = "j_nickname" id = "j_nickname" required>
+                                            <label class="text-secondary" for="floatingInput">사용할 닉네임을 입력해 주세요.</label>
+                                            <div class="valid-feedback">
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                닉네임을 입력하세요.
+                                            </div>
                                         </div>
                                         <br/>
                                         <li class="mb-3">PhoneNumber</li>
+                                        <figcaption class="blockquote-footer text-start">
+                                            <em>기호 또는 공백을 제외하고 입력해 주세요.</em>
+                                          </figcaption>
                                         <div class="form-floating mb-5">
-                                            <input type="text" placeholder="PhoneNumber" class="form-control input" name = "m_phone" id = "m_phone">
-                                            <label for="floatingInput">"-"를 제외하고 입력해 주세요</label>
+                                            <input type="text" placeholder="PhoneNumber" class="form-control input" name = "m_phone" id = "m_phone" required>
+                                            <label class="text-secondary" for="floatingInput">01012345678</label>
+                                            <div class="valid-feedback">
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                휴대폰 번호를 입력해주세요.
+                                            </div>
                                         </div>
         
-                                        <div class="col-5 d-grid gap-2  mx-auto">
-                                            <button type="button" class="btn btn-dark" onclick="send(this.form)">일반 회원가입</button>
+                                        <div class="col-7 d-grid gap-2  mx-auto">
+                                            <button type="button" class="btn btn-dark " onclick="send(this.form)">일반 회원가입</button>
                                         </div>
                                     </ul>
                                 </form>
                             <hr>
                             <div class="form-link">
-                                <span>이미 계정을 가지고 계신가요? <a href="login" class="link login-link">Login</a></span>
+                                <span>이미 계정을 가지고 계신가요? <a href="login" class="link-secondary">Login</a></span>
                             </div>
                         </div>
     
@@ -108,6 +139,44 @@
                       </div>
                     </footer>
                 </div>
+
+                <!---------------------------모달------------------------>
+                <div class="modal" id="modal1" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="signupModalLabel">가입 완료</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                가입이 완료되었습니다!
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark mo1btn" data-bs-dismiss="modal">확인</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---------------------------이메일 검사 모달------------------------>
+                <div class="modal" id="modal2" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="signupModalLabel">가입 불가</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                이미 가입된 이메일입니다.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">확인</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
                 <!-- JavaScript -->
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
                         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
@@ -121,7 +190,6 @@
                             let check2 = /^[a-zA-Z0-9]{8,}$/i;
                            
 
-                            
                             let j_email = $("#j_email").val();
                             let j_password = $("#j_password").val();
                             let j_confirmpassword = $("#j_confirmpassword").val();
@@ -129,49 +197,107 @@
                             let m_phone = $("#m_phone").val();
                             
                             if(j_email.trim().length < 1){
-                                alert("이메일을 입력하세요");
+                                $("#j_email").removeClass("is-valid");
+                                $("#j_email").addClass("is-invalid");
                                 $("#j_email").focus();
                                 return;
+                            }else{
+                                $("#j_email").removeClass("is-invalid");
+                                $("#j_email").addClass("is-valid"); 
                             }
         
                             if(!check1.test(j_email)){
-                                alert("이메일 형식이 올바르지 않습니다.");
+                                $("#j_email").removeClass("is-valid");
+                                $("#j_email").addClass("is-invalid");
+
                                 $("#j_email").focus();
                                 return;
+                            }else{
+                                $("#j_email").removeClass("is-invalid");
+                                $("#j_email").addClass("is-valid"); 
                             }
         
                             if(j_password.trim().length < 1){
-                                alert("비밀번호를 입력하세요");
+                                $("#j_password").removeClass("is-valid");
+                                $("#j_password").addClass("is-invalid");
+
                                 $("#j_password").focus();
                                 return;
+                            }else{
+                                $("#j_password").removeClass("is-invalid");
+                                $("#j_password").addClass("is-valid"); 
                             }
                             
                             if(!check2.test(j_password)){
-                                alert("비밀번호는 8자 이상 입력해야 합니다.");
+                                $("#j_password").removeClass("is-valid");
+                                $("#j_password").addClass("is-invalid");
+
                                 $("#j_password").focus();
                                 return;
+                            }else{
+                                $("#j_password").removeClass("is-invalid");
+                                $("#j_password").addClass("is-valid"); 
                             }
                             
                             if(j_confirmpassword.trim() != j_password.trim()){
-                                alert("비밀번호가 다릅니다.");
+                                $("#j_confirmpassword").removeClass("is-valid");
+                                $("#j_confirmpassword").addClass("is-invalid");
+
                                 $("#j_confirmpassword").focus();
                                 return;
+                            }else{
+                                $("#j_confirmpassword").removeClass("is-invalid");
+                                $("#j_confirmpassword").addClass("is-valid"); 
                             }
                             
-                            if(m_phone.trim().length < 1){
-                                alert("휴대폰 번호를 입력해주세요.")
-                                $("#m_phone").focus();
-                                return;
-                            }
-
                             if(j_nickname.trim().length < 1){
-                                alert("닉네임을 입력하세요");
+                                $("#j_nickname").removeClass("is-valid");
+                                $("#j_nickname").addClass("is-invalid");
+
                                 $("#j_nickname").focus();
                                 return;
+                            }else{
+                                $("#j_nickname").removeClass("is-invalid");
+                                $("#j_nickname").addClass("is-valid"); 
                             }
-                            form.submit();
+
+                            if(m_phone.trim().length < 1){
+                                $("#m_phone").removeClass("is-valid");
+                                $("#m_phone").addClass("is-invalid");
+
+                                $("#m_phone").focus();
+                                return;
+                            }else{
+                                $("#m_phone").removeClass("is-invalid");
+                                $("#m_phone").addClass("is-valid"); 
+                            }
+
+                            // 비동기식통신
+                            $.ajax({
+                                url:"/common/join",
+                                type: "post",
+                                data:{"j_email":j_email, "j_password":j_password, "j_nickname":j_nickname, "m_phone":m_phone},
+                                dataType:"json"
+                            }).done(function(data){
+                                if(data.commjoin_fail == "0")// 잘 저장된 경우
+                                    $('#modal1').modal('show');
+                                else{
+                                    $("#j_email").val("");
+                                    $('#modal2').modal('show');
+                                }
+                            })
+
                         }
+
+                        // 모달 1 확인 버튼 클릭 이벤트 처리
+                        $(document).ready(function() {
+                            $('.mo1btn').on('click', function() {
+                                window.location.href="/login"
+                            });
+                        });
+
                         
+
                         $(function(){
                             $("#j_email").bind("keyup", function(){
                                 var str = $(this).val();
@@ -193,10 +319,10 @@
                                 }
                             });
         
-                            if("${commjoin_fail}" == "commjoin_fail"){
-                                alert("이미 가입된 이메일입니다.");
-                                return;
-                            }
+                            // if("${commjoin_fail}" == "commjoin_fail"){
+                            //     alert("이미 가입된 이메일입니다.");
+                            //     return;
+                            // }
                         });
                         
                     </script>

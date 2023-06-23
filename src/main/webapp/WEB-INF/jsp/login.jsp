@@ -37,29 +37,36 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    <div class="input_area col-md-12 mx-auto card shadow-lg p-3 mb-5 bg-body rounded" style="margin: 0 auto; border:none; ">
+                    <div class="input_area col-md-12 mx-auto card shadow-lg p-3 mb-5 bg-body rounded" style="margin: 0 auto; border:none; " >
                         <div class="card-body">
-                        <form id="login" action="/login" class="input-group my-5" method="post" name="frm">
+                        <form id="login" action="/login" class="input-group my-5" method="post" name="frm" novalidate>
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="login_search">
                                         <div class="chk_group mb-2 d-flex justify-content-end">
-                                            <input type="checkbox" name="chk" id="ch01" class="form-check-input"/>
+                                            <input type="checkbox" name="chk" id="ch01" class="form-check-input" />
                                             <label for="ch01">&nbsp;ID 저장</label>
+                                            
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-12">
                                     <div class="form-floating mb-3">
-                                        <input type="text" placeholder="아이디" class="form-control" id="m_id" name="m_id" />
+                                        <input type="text" placeholder="아이디" class="form-control" id="m_id" name="m_id" required/>
                                         <label for="m_id">아이디</label>
+                                        <div class="invalid-feedback">
+                                            아이디를 입력하세요!
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-floating mb-3">
-                                        <input type="password" placeholder="비밀번호" class="form-control" id="m_pw" name="m_pw" />
+                                        <input type="password" placeholder="비밀번호" class="form-control" id="m_pw" name="m_pw" required/>
                                         <label for="m_pw">비밀번호</label>
+                                        <div class="invalid-feedback">
+                                            비밀번호를 입력하세요!
+                                        </div>
                                     </div>
                                 </div>
                             
@@ -68,12 +75,15 @@
                                         <button type="button" class="btn btn-dark login_btn " style="height: 58px;" onclick="sendData()">로그인</button>
                                     </div>
                                 </div>
+                                <div class="form-link mb-3 mx-auto d-flex justify-content-center my-3">
+                                    <span>마이휴 계정이 없으신가요? <a href="/join" class="link-secondary">Signup</a></span>
+                                </div>
                             </div>
                         </form>
 
                         <div class="row align-items-center">
                             <div class="col-md-12">
-                                <div class="d-flex justify-content-between align-items-center my-2">
+                                <div class="d-flex justify-content-between align-items-center my-1">
                                     <hr style="width: 100%; border: 1px solid #000;">
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
@@ -90,9 +100,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="form-link mb-3 mx-auto d-flex justify-content-center my-4">
-                                    <span>마이휴 계정이 없으신가요? <a href="/join" class="link-secondary">Signup</a></span>
-                                </div>
+                                
                             </div>
                         </div>
                         </div>
@@ -109,7 +117,26 @@
                 </footer>
             </div> 
     <!-- footer 끝---------------------------------------------------------------------------------------------->
-        <input type="hidden" id="flag" value="${alat}"/>    
+        <input type="hidden" id="flag" value="${alat}"/>  
+        
+        <!---------------------------모달------------------------>
+        <div class="modal" id="modal1" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="signupModalLabel">로그인 실패</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        아이디 또는 비밀번호를 잘못 입력했습니다.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark mo1btn" data-bs-dismiss="modal">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--부트스트랩 js cdn-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -117,14 +144,23 @@
         <script>
             function sendData() {
                 if ($("#m_id").val().trim().length <= 0) {
-                alert("아이디를 입력하세요!");
-                ("#m_id").focus();
-                return;
+                    $("#m_id").removeClass("is-valid");
+                    $("#m_id").addClass("is-invalid");
+                    $("#m_id").focus();
+                    return;
+                }else{
+                     $("#m_id").removeClass("is-invalid");
+                     $("#m_id").addClass("is-valid"); 
                 }
+
                 if ($("#m_pw").val().trim().length <= 0) {
-                    alert("비밀번호를 입력하세요!");
+                    $("#m_pw").removeClass("is-valid");
+                    $("#m_pw").addClass("is-invalid");
                     $("#m_pw").focus();
                     return;
+                }else{
+                     $("#m_pw").removeClass("is-invalid");
+                     $("#m_pw").addClass("is-valid"); 
                 }
                 
                 document.frm.submit();
@@ -133,7 +169,7 @@
             function init(){
                 let alat = $("#flag").val();
                 if (alat == "alat") {
-                    alert("아이디 또는 비밀번호를 잘못 입력했습니다.");
+                    $('#modal1').modal('show');
                 }
             }
         </script>
