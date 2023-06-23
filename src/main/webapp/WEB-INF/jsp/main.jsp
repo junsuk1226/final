@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="../css/main_custom.css" />
 </head>
 <body>
+<div class="mycustom-bg">
     <!-- 메뉴바 ----------------------------------------------------------------------------------------------------------->
     <div class="container main_custom_menubar">
         <header class="d-flex flex-wrap align-items-center justify-content-md-between py-3 mb-3">
@@ -44,7 +45,7 @@
                         <div class="mycustom-search_inputbox">
                             <input class="mycustom-search_input" placeholder="휴게소명을 입력해 주세요." type="text" id="search1" name="sname" onkeyup="if(window.event.keyCode==13){sendData(this.form)}">
                         </div>
-                        <button class="mycustom-search_btn" type="button" onclick="sendData(this.form)">검색</button>
+                        <button class="mycustom-search_btn" type="button" onclick="sendData(this.form)"><img class="mycustom-search_icon" src="../main_images/search.png"></button>
                     </fieldset>
                 </form>
             </div>
@@ -54,20 +55,21 @@
     <!-- search_area 끝----------------------------------------------------------------------------------------------->
 
     <!--test-->
-
     <div class="container test_container">
         <div class="rectangle test_rectangle">
           <div class="quadrant quadrant-0 test_quadrant-0_">
-            <a href="/map"><img src="../test_images/now.png" alt="Image 1" class="diagonal-image test_diagonal-image"></a>
+            <a href="/map"><img src="../main_images/now.png" alt="Image 1" class="diagonal-image test_diagonal-image"></a>
           </div>
           <div class="quadrant quadrant-1 test_quadrant-1"></div>
           <div class="quadrant quadrant-2 test_quadrant-2">
-            <a href="/lineSearchList"><img src="../test_images/way.png" alt="Image 2" class="diagonal-image test_diagonal-image"></a>
+            <a href="/lineSearchList"><img src="../main_images/way.png" alt="Image 2" class="diagonal-image test_diagonal-image"></a>
           </div>
           <div class="quadrant quadrant-3 test_quadrant-3"></div>
         </div>
     </div>
     
+    
+
     <!-- footer 시작----------------------------------------------------------------------------------------------> 
     <!-- <body class="d-flex flex-column"> -->
         <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mycustom-main_footer">
@@ -78,6 +80,8 @@
 
       <!-- </body>  -->
     <!-- footer 끝---------------------------------------------------------------------------------------------->
+
+</div> <!-- bg 끝-->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
