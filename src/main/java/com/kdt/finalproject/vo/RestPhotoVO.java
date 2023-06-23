@@ -10,5 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RestPhotoVO {
-    private String svarCd, r_photo;
+    private String r_photo;
+    private int svarCd;
 }

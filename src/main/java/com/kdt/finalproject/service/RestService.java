@@ -9,10 +9,13 @@ import com.kdt.finalproject.vo.RestPhotoVO;
 @Service
 public class RestService {
 
-    @Autowired
-    private RestMapper r_Mapper;
+  @Autowired
+  private RestMapper r_Mapper;
 
-    // public RestPhotoVO r_photo(String svarCd) {
+  public RestPhotoVO check_photo(int svarCd) {
 
-    // }
+    RestPhotoVO rpvo = r_Mapper.check_photo(svarCd);
+
+    return rpvo;
+  }
 }
