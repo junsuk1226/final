@@ -128,10 +128,10 @@
             <button id="btnUpdate">수정</button>
             <button type="button" id="btnDelete">장바구니 비우기</button>
             <!--btnUpdate와 btnDelete id는 위쪽에 있는 자바스크립트가 처리한다.-->
+            <button type="button" id="btnList">결제하기</button>
         </form>
     </c:otherwise>
 </c:choose>
-<button type="button" id="btnList">상품목록</button>
 
 
 
