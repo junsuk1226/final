@@ -19,7 +19,7 @@
             <a class="nav-link logo_custom" href="/main">내 손안에 휴게소</a>
             <c:if test="${sessionScope.mvo == null}">
                 <div class="col-md-3 text-end">
-                     
+                    
                     <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/login'">로그인</button>
                     <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/join'">회원가입</button>
                 </div>
@@ -35,50 +35,62 @@
     <!-- 메뉴바끝 ----------------------------------------------------------------------------------------------------------->
 
     <!-- tab 영역------------------------------------------------------------------------------------------------------------>
+    <div class="sticky-top mycustom-sticky_menu">
+        <div class="container" style="max-width: 700px;">
+            <h1>휴게소명</h1>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item mycustom-nav_item" role="presentation">
+                    <button class="nav-link active mycustom-nav_btn" id="menu-tab" data-bs-toggle="tab" data-bs-target="#menu-tab-pane" type="button" role="tab" aria-controls="menu-tab-pane" aria-selected="true">
+                        메뉴
+                    </button>
+                </li>
+                <li class="nav-item mycustom-nav_item" role="presentation">
+                    <button class="nav-link mycustom-nav_btn" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="false">
+                        정보
+                    </button>
+                </li>
+                <li class="nav-item mycustom-nav_item" role="presentation">
+                    <button class="nav-link mycustom-nav_btn" id="review-tab" data-bs-toggle="tab" data-bs-target="#review-tab-pane" type="button" role="tab" aria-controls="review-tab-pane" aria-selected="false">
+                        리뷰
+                    </button>
+                </li>
+            </ul>
+            
+        </div>
+    </div>
+    
+
     <div class="container" style="max-width: 700px;">
-        <h1>휴게소명</h1>
-
-
-
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item mycustom-nav_item" role="presentation">
-                <button class="nav-link active mycustom-nav_btn" id="menu-tab" data-bs-toggle="tab" data-bs-target="#menu-tab-pane" type="button" role="tab" aria-controls="menu-tab-pane" aria-selected="true">
-                    메뉴
-                </button>
-            </li>
-            <li class="nav-item mycustom-nav_item" role="presentation">
-                <button class="nav-link mycustom-nav_btn" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="false">
-                    정보
-                </button>
-            </li>
-            <li class="nav-item mycustom-nav_item" role="presentation">
-                <button class="nav-link mycustom-nav_btn" id="review-tab" data-bs-toggle="tab" data-bs-target="#review-tab-pane" type="button" role="tab" aria-controls="review-tab-pane" aria-selected="false">
-                    리뷰
-                </button>
-            </li>
-        </ul>
 
         <div class="tab-content mycustom-tab_content" id="myTabContent">
             <!-- 메뉴 ------------------------------------------------------------------------------------------------------>
             <div class="tab-pane fade show active" id="menu-tab-pane" role="tabpanel" aria-labelledby="menu-tab" tabindex="0">
                 
-                <div class="container d-flex flex-wrap justify-content-center">
+                <div class="container d-flex flex-wrap justify-content-center" style="padding:0px">
                     <ul class="list-group" style="max-width: 700px; width: 100%;">
+                        
                         <!-- 반복문 돌릴구간 ---------------------------->
+                        <form action="/menu/info">
+                            <input type="hidden" name="" value="">
+                            <input type="hidden" name="" value="">
 
-                        <li class="list-group-item mycustom-menu_list_group_item">
-                            <div class="d-flex">
-                              <div class="mycustom-menu_img">
-                                <img class="mycustom-menu_img" src="https://img-cf.kurly.com/shop/data/goodsview/20200818/gv00000105647_1.jpg"><!-- 메뉴 사진-->
-                              </div>
-                              <div class="mycustom-menu_info">
-                                <h5>메뉴명</h5>
-                                <a>메뉴 가격</a>
-                              </div>
-                            </div>
-                        </li>
+                            <button type="submit" class="mycustom-menu_list_btn">
+                                <li class="list-group-item mycustom-menu_list_group_item">
+                                    <div class="d-flex">
+                                    <div class="mycustom-menu_img">
+                                        <img class="mycustom-menu_img" src="https://img-cf.kurly.com/shop/data/goodsview/20200818/gv00000105647_1.jpg"><!-- 메뉴 사진-->
+                                    </div>
+                                    <div class="mycustom-menu_info">
+                                        <h5>메뉴명</h5>
+                                        <a>메뉴 가격</a>
+                                    </div>
+                                    </div>
+                                </li>
+                            </button>
 
+                        </form>
                         <!---------------------------------------------->
+                        
                     </ul>
                 </div>
 

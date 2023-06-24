@@ -11,6 +11,12 @@
     margin-top: 10px;
 }
 
+.mycustom-sticky_menu{
+    background-color: #fff;
+    position: sticky;
+    top: -0.1px;
+}
+
 .mycustom-nav_item{
     width: 100%;
     max-width: 225px;
@@ -27,6 +33,13 @@
     color: #000;
 }
 
+.mycustom-menu_list_btn{
+    width: 100%;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+}
+
 .mycustom-menu_list_group_item{
     width: 100%;   
 }
@@ -38,7 +51,8 @@
 
 .mycustom-menu_info{
     width: 100%;
-    margin-left: 10px;
+    margin-left: 20px;
+    text-align: left;
 }
 
 .mycustom-rieview_card{

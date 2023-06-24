@@ -10,4 +10,9 @@ public class MenuListController {
     public String menuView() {
         return "/menuList";
     }
+
+    @RequestMapping("/menu/info")
+    public String menuInfo(){
+        return "/menuInfo";
+    }
 }
