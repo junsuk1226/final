@@ -140,7 +140,7 @@
     <!-- footer 시작----------------------------------------------------------------------------------------------> 
     <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mycustom-main_footer">
         <div class="container text-center">
-            <small>Copyright &copy; 2023 쉬-잇 </small>
+            <small>Copyright &copy; 2023 마이휴 </small>
         </div>
     </footer>
     <!-- footer 끝---------------------------------------------------------------------------------------------->
