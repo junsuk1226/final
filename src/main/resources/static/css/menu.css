@@ -1,0 +1,56 @@
+@font-face {
+    font-family: "suite";
+    src: url(font/SUITE-Regular.ttf);
+}
+@font-face {
+    font-family: "omyu";
+    src: url(font/오뮤_다예쁨체.ttf);
+}
+
+.mycustom-tab_content{
+    margin-top: 10px;
+}
+
+.mycustom-nav_item{
+    width: 100%;
+    max-width: 225px;
+}
+
+.mycustom-nav_btn{
+    Width: 100%;
+    font-family: "suite";
+    font-size: 20px;
+    color: #bebebe;
+}
+
+.mycustom-nav_btn:hover{
+    color: #000;
+}
+
+.mycustom-menu_list_group_item{
+    width: 100%;   
+}
+
+.mycustom-menu_img{
+    width: 100px;
+    height: 80px;
+}
+
+.mycustom-menu_info{
+    width: 100%;
+    margin-left: 10px;
+}
+
+.mycustom-rieview_card{
+    border: none;
+}
+
+.mycustom-rieview_img{
+    max-width: 100%;
+}
+  
+  
+  
+  
+  
+  
