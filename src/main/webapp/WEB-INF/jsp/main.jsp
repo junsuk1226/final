@@ -15,10 +15,12 @@
     <!-- 메뉴바 ----------------------------------------------------------------------------------------------------------->
     <div class="container main_custom_menubar">
         <header class="d-flex flex-wrap align-items-center justify-content-md-between py-3 mb-3">
-            <a class="nav-link logo_custom" href="/main">내 손안에 휴게소</a>
+            <!-- <a class="nav-link logo_custom" href="/main">내 손안에 휴게소</a> -->
+            <div class="col-md-9">
+                <a href="/main"><img style="max-width: 300px;" src="../main_images/logo.png"/></a>
+            </div>
             <c:if test="${sessionScope.mvo == null}">
                 <div class="col-md-3 text-end">
-                     
                     <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/login'">로그인</button>
                     <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/join'">회원가입</button>
                 </div>
@@ -33,16 +35,21 @@
     </div>
     <!-- 메뉴바끝 ----------------------------------------------------------------------------------------------------------->
 
-    <div>
-        <img class="mycustom-main_logo" src="../main_images/main_logo.png">
-    </div>
+    <div class ="container-fluid text-center">
+        <div class="row justify-content-center ">
 
+            <div class="col-md-12">
+                <a href="/main"><img style="max-width: 300px;" src="../main_images/main_logo.png"/></a>
+            </div>
+
+        </div>
+    </div>
     <!-- search_area----------------------------------------------------------------------------------------------->
     <div class="container-fluid row align-items-center justify-content-center mycustom-search_area">
         <div class="container-fluid row  mycustom-search_group">
 
             <div class="mycustom-search_group_inner"> 
-                <h1 class="mycustom-search_logo"><img class="mycustom-search_logo_icon" src="../main_images/search_Icon.png"></h1>
+                <h1 class="mycustom-search_logo"><img class="mycustom-search_logo_icon" src="../main_images/search_Icon2.png"></h1>
                 <form id="sform" name="search" method="post" action="/search">
                     <fieldset>
                         <input type="hidden">
