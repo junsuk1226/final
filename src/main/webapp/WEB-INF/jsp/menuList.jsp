@@ -90,6 +90,7 @@
 
                         </form>
                         <!---------------------------------------------->
+
                         
                     </ul>
                 </div>
@@ -101,6 +102,7 @@
             <div class="tab-pane fade" id="info-tab-pane" role="tabpanel" aria-labelledby="info-tab" tabindex="0">
                 <div class="container d-flex flex-wrap justify-content-center">
 
+                    <div id="staticMap" style="width:600px;height:350px;"></div>
                     <!-- 휴게소 정보 뿌릴 구간-->
 
                 </div>
@@ -146,6 +148,26 @@
     <!-- footer 끝---------------------------------------------------------------------------------------------->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f934bd38f9b5c3dd90a887df0540dada"></script>
+    <script>
+        // 이미지 지도에서 마커가 표시될 위치입니다 
+        var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
 
+        // 이미지 지도에 표시할 마커입니다
+        // 이미지 지도에 표시할 마커는 Object 형태입니다
+        var marker = {
+            position: markerPosition
+        };
+
+        var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
+            staticMapOption = { 
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 이미지 지도의 중심좌표
+                level: 3, // 이미지 지도의 확대 레벨
+                marker: marker // 이미지 지도에 표시할 마커 
+            };    
+
+        // 이미지 지도를 생성합니다
+        var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+    </script>
 </body>
 </html>

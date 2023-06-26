@@ -34,7 +34,7 @@
 
     <!-- menuinfo area -->
     <div class="container mycustom-menuinfo_area" style="max-width: 700px;">
-        <div class="d-flex flex-wrap justify-content-center">
+        <div class="d-flex flex-wrap justify-content-center" style="max-width: 700px;">
             <ul class="mycustom-menu_info_list">
                 <li><img class="mycuston-menu_info_img" src="https://img-cf.kurly.com/shop/data/goodsview/20200818/gv00000105647_1.jpg"></li>
                 <li><h1>메뉴명</h1></li>
