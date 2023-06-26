@@ -117,6 +117,7 @@
                         <form action="/menu" method="get">
                             <input type="hidden" name="r_photo" value="${photolist[loop.index].r_photo}"/>
                             <input type="hidden" name="svarCd" value="${vo.svarCd}"/>
+                            <input type="hidden" name="RestNm" value="${vo.svarNm}"/>
                             <button class="accordion-button" type="submit">
                                 <img class="mycustom-line_search_img" src="${photolist[loop.index].r_photo}"/>
                                 <ul class="mycustom-line_search_ul">${vo.svarNm}(${vo.gudClssNm})
