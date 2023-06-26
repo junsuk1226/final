@@ -66,13 +66,17 @@
     <!-- search_area 끝----------------------------------------------------------------------------------------------->
 
     <!--test-->
-    <div class="container test_container">
-        <div class="rectangle test_rectangle">
-          <div class="quadrant quadrant-0 test_quadrant-0 " >
-            <a href="/map"><img  src="../main_images/searchLogo.png" alt="Image 1" class="diagonal-image test_diagonal-image"></a>
+    <div class="container mycustom-main_search_btn_container">
+        <div class="rectangle mycustom-main_rectangle">
+          <div class="quadrant mycustom-main_quadrant quadrant-0 mycustom-main_quadrant-0 " style="margin: 5px;">
+            <a href="/map">
+                <div class="mycustom-diagonal_image_area">
+                    <img  src="../main_images/searchLogo.png" alt="Image 1" class="diagonal-image mycustom-main_diagonal-image">
+                </div>
+            </a>
           </div>
-          <div class="quadrant quadrant-1 test_quadrant-1 " >
-            <a href="/lineSearchList"><img  src="../main_images/wayLogo.png" alt="Image 2" class="diagonal-image test_diagonal-image"></a>
+          <div class="quadrant mycustom-main_quadrant quadrant-1 mycustom-main_quadrant-1 " style="margin: 5px;">
+            <a href="/lineSearchList"><img  src="../main_images/wayLogo.png" alt="Image 2" class="diagonal-image mycustom-main_diagonal-image"></a>
           </div>
         </div>
     </div>
