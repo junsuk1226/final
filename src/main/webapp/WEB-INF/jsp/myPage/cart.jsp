@@ -83,11 +83,10 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                    <li class="nav-item active"><a class="nav-link" href="#!">홈</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#!">로그인</a></li>
-                                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
-                                            id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">박스</a>
+                                    <li class="nav-item active"><a class="nav-link" href="/main">홈</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
+                                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">박스</a>
                                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="#!">공지사항</a> <a class="dropdown-item"
                                                 href="#!">이벤트</a>
@@ -142,7 +141,7 @@
                                                                                 type="text" id="searchValue"
                                                                                 name="searchValue" /> -->
                                                                     <input type="button" class="btn btn-dark"
-                                                                        onclick="sendKeyword(this.form)" value="이동"
+                                                                        onclick="sendKeyword(this.form)" value="검색"
                                                                         id="button-addon" />
                                                                 </div>
                                                             </div>
@@ -376,7 +375,7 @@
                                     <option value="2">상품창으로</option>
                                 </select>
                                 <input type="text" id="searchValue" name="search2" /><br />
-                                <input type="button" value="이동" onclick="search(this.form)" />
+                                <input type="button" value="검색" onclick="search(this.form)" />
                             </form>
                         </div>
 
