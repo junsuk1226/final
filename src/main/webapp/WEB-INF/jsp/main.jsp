@@ -26,7 +26,7 @@
             <c:if test="${sessionScope.mvo != null}">
             <div class="col-md-3 text-end"> 
                 <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/logout'">로그 아웃</button>
-            <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/mypage'">마이페이지</button>
+            <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/myPage'">마이페이지</button>
             </div>
             </c:if>
         </header>

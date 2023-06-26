@@ -40,17 +40,17 @@
             <h1>휴게소명</h1>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item mycustom-nav_item" role="presentation">
-                    <button class="nav-link active mycustom-nav_btn" id="menu-tab" data-bs-toggle="tab" data-bs-target="#menu-tab-pane" type="button" role="tab" aria-controls="menu-tab-pane" aria-selected="true">
+                    <button onclick="hide()" class="nav-link active mycustom-nav_btn" id="menu-tab" data-bs-toggle="tab" data-bs-target="#menu-tab-pane" type="button" role="tab" aria-controls="menu-tab-pane" aria-selected="true">
                         메뉴
                     </button>
                 </li>
                 <li class="nav-item mycustom-nav_item" role="presentation">
-                    <button class="nav-link mycustom-nav_btn" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="false">
+                    <button onclick="show()" class="nav-link mycustom-nav_btn" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="false">
                         정보
                     </button>
                 </li>
                 <li class="nav-item mycustom-nav_item" role="presentation">
-                    <button class="nav-link mycustom-nav_btn" id="review-tab" data-bs-toggle="tab" data-bs-target="#review-tab-pane" type="button" role="tab" aria-controls="review-tab-pane" aria-selected="false">
+                    <button onclick="hide()" class="nav-link mycustom-nav_btn" id="review-tab" data-bs-toggle="tab" data-bs-target="#review-tab-pane" type="button" role="tab" aria-controls="review-tab-pane" aria-selected="false">
                         리뷰
                     </button>
                 </li>
@@ -73,7 +73,8 @@
                         <form action="/menu/info">
                             <input type="hidden" name="" value="">
                             <input type="hidden" name="" value="">
-
+                            
+                            
                             <button type="submit" class="mycustom-menu_list_btn">
                                 <li class="list-group-item mycustom-menu_list_group_item">
                                     <div class="d-flex">
@@ -99,20 +100,20 @@
             <!-- 메뉴 끝------------------------------------------------------------------------------------------------->
 
             <!-- 휴게소정보 ---------------------------------------------------------------------------------------------->
-            <div class="tab-pane fade" id="info-tab-pane" role="tabpanel" aria-labelledby="info-tab" tabindex="0">
-                <div class="container d-flex flex-wrap justify-content-center">
-                    <div style="width: 100%; height:350px;">
-                        <div id="staticMap" style="width:600px;height:350px;"></div>
-                    </div>
-
-                    <!-- 휴게소 정보 뿌릴 구간-->
-
-                </div>
+            
+            <div id="info-tab-pane" style="width: 680px; height: 350px;"  role="tabpanel" aria-labelledby="info-tab" tabindex="1"></div>
+            <div class="container justify-content-center tab-pane fade" role="tabpanel" id="info-tab-pane2">
+                <div class="map-container">
+                    <p style="font-size: 15px;">
+                        알아서 해~~~!
+                    </p>
+                </div>  
             </div>
+            
             <!-- 휴게소정보 끝 -------------------------------------------------------------------------------------------->
            
             <!-- 리뷰 ----------------------------------------------------------------------------------------------------->
-            <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab" tabindex="0">
+            <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab" tabindex="2">
                 <div class="container d-flex flex-wrap justify-content-center">
                     <ul class="list-group list-group-flush" style="max-width: 700px; width: 100%;">
 
@@ -161,7 +162,7 @@
             position: markerPosition
         };
 
-        var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
+        var staticMapContainer  = document.getElementById('info-tab-pane'), // 이미지 지도를 표시할 div  
             staticMapOption = { 
                 center: new kakao.maps.LatLng(33.450701, 126.570667), // 이미지 지도의 중심좌표
                 level: 3, // 이미지 지도의 확대 레벨
@@ -169,7 +170,18 @@
             };    
 
         // 이미지 지도를 생성합니다
-        var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+        var map = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+        
+        $("#info-tab-pane").addClass("tab-pane fade");
+
+
+        function show(){
+            $("#info-tab-pane2").addClass("show active");
+        }
+
+        function hide(){
+            $("#info-tab-pane2").removeClass("show active");
+        }
     </script>
 </body>
 </html>

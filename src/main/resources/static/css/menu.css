@@ -55,6 +55,12 @@
     text-align: left;
 }
 
+#staticMap img{
+    max-width: none;
+	height: auto;
+	border: 0
+}
+
 .mycustom-rieview_card{
     border: none;
 }
