@@ -13,8 +13,14 @@ public class MyPageController {
     }
 
     @RequestMapping("/cart")
-    public String login() {
+    public String cart() {
 
         return "/myPage/cart";
+    }
+
+    @RequestMapping("/info")
+    public String info() {
+
+        return "/myPage/info";
     }
 }

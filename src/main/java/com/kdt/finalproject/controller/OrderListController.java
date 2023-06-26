@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ReviewController {
+public class OrderListController {
 
-    @RequestMapping("/review")
-    public ModelAndView review(String cPage) {
-        ModelAndView mv = new ModelAndView("/myPage/review");
+    @RequestMapping("/order")
+    public ModelAndView order(String cPage) {
+        ModelAndView mv = new ModelAndView("/myPage/orderList");
 
         return mv;
     }

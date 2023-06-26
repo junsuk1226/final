@@ -39,8 +39,8 @@
 	<div class ="container-fluid text-center">
 		<div class="row justify-content-center ">
 
-			<div class="col-md-12 gif" id="gif">
-				<a href="/main"><img id="gif" src="assets/img/logo.png"></a>  
+			<div class="col-md-12" >
+				<a href="/main"><img style="max-width: 300px;" src="../main_images/logo.png"></a>  
 			</div>
 
 			<div id="faux-gif"></div>

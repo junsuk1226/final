@@ -55,21 +55,19 @@
                 <body>
                     <div class="d-flex" id="wrapper">
                         <!-- Sidebar-->
-                        <div class="border-end bg-white" id="sidebar-wrapper">
-                            <div class="sidebar-heading border-bottom bg-light">마이 페이지</div>
-                            <div class="list-group list-group-flush">
-                                <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                                    href="Controller?type=aviewList">회원정보수정</a> <a
-                                    class="list-group-item list-group-item-action list-group-item-light p-3"
-                                    href="Controller?type=aoList">주문 내역</a> <a
-                                    class="list-group-item list-group-item-action list-group-item-light p-3"
-                                    href="Controller?type=aqList">리뷰 관리</a> <a
-                                    class="list-group-item list-group-item-action list-group-item-light p-3"
-                                    href="Controller?type=amList">내 장바구니</a> <a
-                                    class="list-group-item list-group-item-action list-group-item-light p-3"
-                                    href="Controller?type=shop">메인 페이지 돌아가기</a>
-                            </div>
+                    <div class="border-end bg-white" id="sidebar-wrapper">
+                        <div class="sidebar-heading border-bottom bg-light"> <a href="/main"><img style="max-width: 200px;"
+                                    src="../main_images/logo.png"></a></div>
+                        <div class="list-group list-group-flush">
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/myPage">마이
+                                페이지</a>
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/info">회원정보수정</a> <a
+                                class="list-group-item list-group-item-action list-group-item-light p-3" href="/order">주문
+                                내역</a> <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/review">리뷰 관리</a>
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/cart">내
+                                장바구니</a>
                         </div>
+                    </div>
                         <!-- Page content wrapper-->
                         <div id="page-content-wrapper">
                             <!-- Top navigation-->
@@ -83,11 +81,10 @@
                                     </button>
                                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                            <li class="nav-item active"><a class="nav-link" href="#!">홈</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#!">로그인</a></li>
-                                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
-                                                    id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false">박스</a>
+                                        <li class="nav-item active"><a class="nav-link" href="/main">홈</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
+                                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">박스</a>
                                                 <div class="dropdown-menu dropdown-menu-end"
                                                     aria-labelledby="navbarDropdown">
                                                     <a class="dropdown-item" href="#!">공지사항</a> <a
@@ -108,7 +105,7 @@
                                     <div class="col-md-1"></div>
                                     <div class="col-md-11">
                                         <br />
-                                        <h1>OOO님 환영합니다. </h1>
+                                        <h1>올리비아 세바스찬 루이 28세님 환영합니다. </h1>
                                         <br />
                                         <br />
                                     </div>
@@ -163,8 +160,9 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <!-- <c:forEach var="pvo" items="${requestScope.ar }" varStatus="st"> -->
+                                                <%-- <c:forEach var="pvo" items="${requestScope.ar }" varStatus="st"> --%>
                                                     <tr>
+                                                        <%-- 주석시작 --%>
                                                         <%--<td>${page.totalRecord -
                                                             ((page.nowPage-1)*page.numPerPage+st.index) }</td> --%>
                                                             <%-- <td>${pvo.o_idx}</td>
@@ -184,8 +182,34 @@
                                                                     <c:otherwise>택배가 가출했어요</c:otherwise>
                                                                 </c:choose>
                                                             </td> --%>
+                                                        <%-- 주석끝 --%>
+
+
+                                                        <td>휴게소이미지</td>
+                                                        <td colspan="4">
+                                                            <div><p style="font-size: 15px; font-weight: bold;">휴게소명</p></div>
+                                                            <div><p style="font-size: 12px; ">업소명 : 2023-06-24</p></div>
+                                                            <div>리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! </div>
+                                                            <div style="text-align: right;">
+                                                                <button type="button">수정</button>
+                                                                <button type="button">삭제</button>
+                                                            </div>
+                                                        </td>    
                                                     </tr>
-                                                <!-- </c:forEach> -->
+                                                    <tr>
+
+                                                        <td>휴게소이미지</td>
+                                                        <td colspan="4">
+                                                            <div><p style="font-size: 15px; font-weight: bold;">휴게소명</p></div>
+                                                            <div><p style="font-size: 12px; ">업소명 : 2023-06-24</p></div>
+                                                            <div>리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! </div>
+                                                            <div style="text-align: right;">
+                                                                <button type="button">수정</button>
+                                                                <button type="button">삭제</button>
+                                                            </div>
+                                                        </td>    
+                                                    </tr>
+                                                <%-- </c:forEach> --%>
                                             </tbody>
                                         </table>
                                         </form>

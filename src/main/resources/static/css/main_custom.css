@@ -30,13 +30,13 @@
     border-radius: 30px;
     font-size: 20px;
     font-family: "omyu";
-    border: 2px solid #556B2F;
-    color: #556B2F;
+    border: 2px solid #6600db/*#556B2F*/;
+    color: #6600db;
 }
 
 .mycustom-mem-btn:hover{
-    border-color: #556B2F;
-    background-color: #556B2F;
+    border-color: #6600db;
+    background-color: #6600db;
 }
 
 .mycustom-main_logo{
@@ -54,7 +54,7 @@
     z-index: 10;
     width: 608px;
     height: 58px;
-    border: 2px solid #556B2F;
+    border: 2px solid #6600db;
     border-radius: 33px;
     background-color: #fff;
     margin: 0;
