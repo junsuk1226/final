@@ -55,21 +55,19 @@
                 <body>
                     <div class="d-flex" id="wrapper">
                         <!-- Sidebar-->
-                        <div class="border-end bg-white" id="sidebar-wrapper">
-                            <div class="sidebar-heading border-bottom bg-light">마이 페이지</div>
-                            <div class="list-group list-group-flush">
-                                <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                                    href="/info">회원정보수정</a> <a
-                                    class="list-group-item list-group-item-action list-group-item-light p-3"
-                                    href="/order">주문 내역</a> <a
-                                    class="list-group-item list-group-item-action list-group-item-light p-3"
-                                    href="/review">리뷰 관리</a> <a
-                                    class="list-group-item list-group-item-action list-group-item-light p-3"
-                                    href="/cart">내 장바구니</a> <a
-                                    class="list-group-item list-group-item-action list-group-item-light p-3"
-                                    href="/main">메인 페이지 돌아가기</a>
-                            </div>
+                    <div class="border-end bg-white" id="sidebar-wrapper">
+                        <div class="sidebar-heading border-bottom bg-light"> <a href="/main"><img style="max-width: 200px;"
+                                    src="../main_images/logo.png"></a></div>
+                        <div class="list-group list-group-flush">
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/myPage">마이
+                                페이지</a>
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/info">회원정보수정</a> <a
+                                class="list-group-item list-group-item-action list-group-item-light p-3" href="/order">주문
+                                내역</a> <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/review">리뷰 관리</a>
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/cart">내
+                                장바구니</a>
                         </div>
+                    </div>
                         <!-- Page content wrapper-->
                         <div id="page-content-wrapper">
                             <!-- Top navigation-->
