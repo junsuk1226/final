@@ -153,6 +153,7 @@
                                             </table>
                                     </div>
                                 </div>
+                                <!--
                                 <div class="row">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-9">
@@ -166,82 +167,84 @@
                                                     <th>주문상태</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <c:forEach var="pvo" items="${requestScope.ar }" varStatus="st">
-                                                    <tr>
-                                                        <%--<td>${page.totalRecord -
-                                                            ((page.nowPage-1)*page.numPerPage+st.index) }</td> --%>
-                                                            <td>${pvo.o_idx}</td>
-                                                            <td>${pvo.o_class}</td>
-                                                            <td><a href="Controller?type=aoView&o_idx=${pvo.o_idx }">
+
+                                                <tbody>
+                                                    <c:forEach var="pvo" items="${requestScope.ar }" varStatus="st">
+                                                        <tr>
+                                                            <%--<td>${page.totalRecord -
+                                                                ((page.nowPage-1)*page.numPerPage+st.index) }</td> --%>
+                                                                <td>${pvo.o_idx}</td>
+                                                                <td>${pvo.o_class}</td>
+                                                                <td><a href="Controller?type=aoView&o_idx=${pvo.o_idx }">
                                                                     <c:out value="${pvo.o_num }"></c:out>
                                                                 </a></td>
-                                                            <td>${pvo.p_idx}</td>
-                                                            <td>
-                                                                <c:choose>
-                                                                    <c:when test="${pvo.o_status == 1}">배송준비중</c:when>
-                                                                    <c:when test="${pvo.o_status == 2}">배송중</c:when>
-                                                                    <c:when test="${pvo.o_status == 3}">배송완료</c:when>
-                                                                    <c:when test="${pvo.o_status == 4}">주문완료</c:when>
-                                                                    <c:when test="${pvo.o_status == 5}">주문취소</c:when>
-
-                                                                    <c:otherwise>택배가 가출했어요</c:otherwise>
-                                                                </c:choose>
-                                                            </td>
-                                                    </tr>
-                                                </c:forEach>
-                                            </tbody>
-                                        </table>
-                                        </form>
+                                                                <td>${pvo.p_idx}</td>
+                                                                <td>
+                                                                    <c:choose>
+                                                                        <c:when test="${pvo.o_status == 1}">배송준비중</c:when>
+                                                                        <c:when test="${pvo.o_status == 2}">배송중</c:when>
+                                                                        <c:when test="${pvo.o_status == 3}">배송완료</c:when>
+                                                                        <c:when test="${pvo.o_status == 4}">주문완료</c:when>
+                                                                        <c:when test="${pvo.o_status == 5}">주문취소</c:when>
+                                                                        
+                                                                        <c:otherwise>택배가 가출했어요</c:otherwise>
+                                                                    </c:choose>
+                                                                </td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-5">
-                                        <table>
-                                            <tfoot>
-                                                <tr>
-                                                    <td>
-                                                        <ol class="pagination">
-                                                            <c:if test="${page.startPage < page.pagePerBlock}">
-                                                                <li class="page-item disabled"><a
+                                    <div class="row">
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-5">
+                                            <table>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td>
+                                                            <ol class="pagination">
+                                                                <c:if test="${page.startPage < page.pagePerBlock}">
+                                                                    <li class="page-item disabled"><a
                                                                         class="page-link">&lt;</a></li>
-                                                            </c:if>
-                                                            <c:if test="${page.startPage >= page.pagePerBlock}">
-                                                                <li class="page-item"><a class="page-link"
-                                                                        href="Controller?type=aoList&cPage=${page.startPage-page.pagePerBlock }">&lt;</a>
-                                                                </li>
-                                                            </c:if>
-                                                            <c:forEach begin="${page.startPage }" end="${page.endPage }"
-                                                                varStatus="st">
-                                                                <c:if test="${page.nowPage eq st.index}">
-                                                                    <li class="page-item active"><a
+                                                                    </c:if>
+                                                                    <c:if test="${page.startPage >= page.pagePerBlock}">
+                                                                        <li class="page-item"><a class="page-link"
+                                                                            href="Controller?type=aoList&cPage=${page.startPage-page.pagePerBlock }">&lt;</a>
+                                                                        </li>
+                                                                    </c:if>
+                                                                    <c:forEach begin="${page.startPage }" end="${page.endPage }"
+                                                                    varStatus="st">
+                                                                    <c:if test="${page.nowPage eq st.index}">
+                                                                        <li class="page-item active"><a
                                                                             class="page-link">${st.index}</a></li>
-                                                                </c:if>
-                                                                <c:if test="${page.nowPage ne st.index }">
-                                                                    <li class="page-item"><a class="page-link"
-                                                                            href="Controller?type=aoList&cPage=${st.index}">${st.index
-                                                                            }</a></li>
-                                                                </c:if>
-                                                            </c:forEach>
-                                                            <c:if test="${page.endPage<page.totalPage}">
-                                                                <li class="page-item"><a class="page-link"
-                                                                        href="Controller?type=aoList&cPage=${page.startPage+page.pagePerBlock }">&gt;</a>
-                                                                </li>
-                                                            </c:if>
-                                                            <c:if test="${page.endPage == page.totalPage}">
-                                                                <li class="page-item disabled"><a
-                                                                        class="page-link">&gt;</a></li>
-                                                            </c:if>
-                                                        </ol>
-                                                    </td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                
+                                                                        </c:if>
+                                                                        <c:if test="${page.nowPage ne st.index }">
+                                                                            <li class="page-item"><a class="page-link"
+                                                                                href="Controller?type=aoList&cPage=${st.index}">${st.index
+                                                                                }</a></li>
+                                                                            </c:if>
+                                                                        </c:forEach>
+                                                                        <c:if test="${page.endPage<page.totalPage}">
+                                                                            <li class="page-item"><a class="page-link"
+                                                                                href="Controller?type=aoList&cPage=${page.startPage+page.pagePerBlock }">&gt;</a>
+                                                                            </li>
+                                                                        </c:if>
+                                                                        <c:if test="${page.endPage == page.totalPage}">
+                                                                            <li class="page-item disabled"><a
+                                                                                class="page-link">&gt;</a></li>
+                                                                            </c:if>
+                                                                        </ol>
+                                                                    </td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            -->
+                                                
+                                                
                                 
                             </div>
                             <div>
