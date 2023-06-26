@@ -141,7 +141,7 @@
                                                                                 type="text" id="searchValue"
                                                                                 name="searchValue" /> -->
                                                                     <input type="button" class="btn btn-dark"
-                                                                        onclick="sendKeyword(this.form)" value="이동"
+                                                                        onclick="sendKeyword(this.form)" value="검색"
                                                                         id="button-addon" />
                                                                 </div>
                                                             </div>
@@ -375,7 +375,7 @@
                                     <option value="2">상품창으로</option>
                                 </select>
                                 <input type="text" id="searchValue" name="search2" /><br />
-                                <input type="button" value="이동" onclick="search(this.form)" />
+                                <input type="button" value="검색" onclick="search(this.form)" />
                             </form>
                         </div>
 
