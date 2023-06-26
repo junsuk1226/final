@@ -107,7 +107,7 @@ public class MenuListController {
 
         mv.addObject("far", far); // DB에 저장해놓은 음식 리스트
         mv.addObject("fvo", fvo); // API에서 받아오는 음식 리스트
-        mv.setViewName("menu");
+        mv.setViewName("menuList");
 
         return mv;
     }

@@ -114,6 +114,54 @@
 
 /* ------------------------------------------ */
 
+/* 메인 검색버튼 css ================================== */
+.mycustom-main_search_btn_container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+  
+.mycustom-main_rectangle {
+position: relative;
+width: 700px;
+height: 350px;
+background-color: transparent;
+display: grid;
+grid-template-columns: 1fr 1fr;
+}
+
+.mycustom-main_quadrant {
+position: relative;
+overflow: hidden;
+background-color: transparent;
+}
+
+.mycustom-main_quadrant-0 {
+grid-column: 1 / 2;
+}
+
+
+.mycustom-main_quadrant-2 {
+grid-column: 2 / 2;
+grid-row: 2 / 2;
+}
+
+.mycustom-main_diagonal-image {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+/* object-fit: cover; */
+object-fit: contain;
+}
+
+
+/* ---------------------------------- */
+
+
 .mycustom-btn_search_area{
     height: 500px;
 }
@@ -218,52 +266,8 @@
     width: 900px;
 }
 
-/* test */
-.test_container {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .test_rectangle {
-    position: relative;
-    width: 700px;
-    height: 350px;
-    background-color: transparent;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  
-  .quadrant {
-    position: relative;
-    overflow: hidden;
-    background-color: transparent;
-  }
-  
-  .test_quadrant-0 {
-    grid-column: 1 / 2;
-  }
-  
-  
-  .test_quadrant-2 {
-    grid-column: 2 / 2;
-    grid-row: 2 / 2;
-  }
-  
-  .test_diagonal-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* object-fit: cover; */
-    object-fit: contain;
-  }
+/* ------------------------------------ */
 
-
-/* ---------------------------------- */
 #resultContainer{
     font-family: "suite";
 }
