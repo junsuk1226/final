@@ -7,8 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ReviewController {
 
-    @RequestMapping("/myPage/aqList")
-    public ModelAndView aqList(String cPage) {
+    @RequestMapping("/review")
+    public ModelAndView review(String cPage) {
         ModelAndView mv = new ModelAndView("/myPage/review");
 
         return mv;
