@@ -30,15 +30,19 @@
     border-radius: 30px;
     font-size: 20px;
     font-family: "omyu";
-    border: 2px solid #556B2F;
-    color: #556B2F;
+    border: 2px solid #6600db/*#556B2F*/;
+    color: #6600db;
 }
 
 .mycustom-mem-btn:hover{
-    border-color: #556B2F;
-    background-color: #556B2F;
+    border-color: #b699ee;
+    background-color: #b699ee;
 }
 
+.mycustom-main_logo{
+    width:300px;
+    height: 200px;
+}
 
 /* 검색창 css -------------------------------------------------- */
 .mycustom-search_area{
@@ -50,7 +54,7 @@
     z-index: 10;
     width: 608px;
     height: 58px;
-    border: 2px solid #556B2F;
+    border: 2px solid #6600db;
     border-radius: 33px;
     background-color: #fff;
     margin: 0;
@@ -65,6 +69,11 @@
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.mycustom-search_logo_icon{
+    width: 70px;
+    height: 50px;
 }
 
 .mycustom-search_inputbox{
@@ -212,7 +221,7 @@
 /* test */
 .test_container {
     width: 100%;
-    height: 100vh;
+    height: auto;
     display: flex;
     justify-content: center;
     margin-top: 20px;
@@ -221,11 +230,10 @@
   .test_rectangle {
     position: relative;
     width: 700px;
-    height: 700px;
+    height: 350px;
     background-color: transparent;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
   }
   
   .quadrant {
@@ -236,25 +244,12 @@
   
   .test_quadrant-0 {
     grid-column: 1 / 2;
-    grid-row: 1 / 2;
   }
   
-  .test_quadrant-1 {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-    background-color: transparent;
-    
-  }
   
   .test_quadrant-2 {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-  }
-  
-  .test_quadrant-3 {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-    background-color: #fff;
+    grid-column: 2 / 2;
+    grid-row: 2 / 2;
   }
   
   .test_diagonal-image {
@@ -263,7 +258,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    /* object-fit: cover; */
+    object-fit: contain;
   }
 
 

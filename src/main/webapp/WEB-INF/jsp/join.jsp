@@ -24,17 +24,17 @@
     
     </head>
     <!------------------상단----------------->
-        <div class ="container-fluid text-center">
+        <div class ="container-fluid text-center my-6">
             <div class="row justify-content-center ">
 
                 <div class="col-md-12">
-                    <a href="/main"><img src="assets/img/logo.png"/></a>
+                    <a href="/main"><img style="max-width: 300px;" src="../main_images/logo.png"/></a>
                 </div>
 
             </div>
         </div>
         <!--------------본문---------------->
-                <div class="container-fluid text-center">
+                <div class="container-fluid text-center mb-4">
                     <div class="row justify-content-center col-md-12">
                         <div  class="col-md-6">
                         <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="border: none;">
@@ -80,7 +80,7 @@
                                         <li class="mb-3">Nickname</li>
                                         <div class="form-floating">
                                             <input type="text" placeholder="Nickname" class="form-control input" name = "j_nickname" id = "j_nickname" required>
-                                            <label class="text-secondary" for="floatingInput">사용할 닉네임을 입력해 주세요.</label>
+                                            <label class="text-secondary" for="floatingInput">닉네임</label>
                                             <div class="valid-feedback">
                                             </div>
                                             <div class="invalid-feedback">
