@@ -138,20 +138,36 @@
                                                                 -->
                                                                 <div class="xans-element- xans-myshop xans-myshop-bankbook ">
                                                                     <ul>
+                                                                        <li class="coupon displaynone">
+                                                                            <strong class="title">리뷰&nbsp;</strong>
+                                                                            <strong class="cont">
+                                                                                <span> 0개</span>
+                                                                            </strong>
+                                                                            <input type="button" class="btn btn-dark" onclick="" value="조회" id="btn btn-link" />
+                                                                        </li>
+                                                                        <br />
                                                                         <li class="mileage ">
-                                                                            <strong class="title">적립금</strong>
-                                                                            <strong class="cont">0원</strong>
+                                                                            <strong class="title">적립금&nbsp;</strong>
+                                                                            <strong class="cont"> 0원</strong>
                                                                             <input type="button" class="btn btn-dark" onclick=""
                                                                              value="조회" id="button-addon" />
                                                                         </li>
                                                                         <br/>
                                                                         <li class="coupon displaynone">
-                                                                            <strong class="title">쿠폰</strong>
+                                                                            <strong class="title">쿠폰&nbsp;</strong>
                                                                             <strong class="cont">
-                                                                                <span>0개</span>
+                                                                                <span> 0개</span>
                                                                             </strong>
                                                                             <input type="button" class="btn btn-dark" 
                                                                             onclick="" value="조회" id="btn btn-link" />
+                                                                        </li>
+                                                                        <br />
+                                                                        <li class="coupon displaynone">
+                                                                            <strong class="title">찜&nbsp;상품&nbsp;</strong>
+                                                                            <strong class="cont">
+                                                                                <span> 0개</span>
+                                                                            </strong>
+                                                                            <input type="button" class="btn btn-dark" onclick="" value="조회" id="btn btn-link" />
                                                                         </li>
                                                                     </ul>
                                                                 </div>
