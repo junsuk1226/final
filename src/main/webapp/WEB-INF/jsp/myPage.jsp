@@ -239,6 +239,22 @@
                                         </table>
                                     </div>
                                 </div>
+
+                                
+                                
+                            </div>
+                            <div>
+                                <!-- footer 시작---------------------------------------------------------------------------------------------->
+                                <!-- <body class="d-flex flex-column"> -->
+                                <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mycustom-main_footer">
+                                    <div class="container text-center">
+                                        <small>Copyright &copy; 2023 쉬-잇 </small>
+                                    </div>
+                                </footer>
+                            
+                                <!-- </body>  -->
+                                <!-- footer 끝---------------------------------------------------------------------------------------------->
+                            
                             </div>
                         </div>
 
@@ -273,8 +289,9 @@
                                         <input type="button" value="이동" onclick="search(this.form)" />
                                     </form>
                                 </div>
+                                
                             </div>
-                    </div>
+                        </div>
                     </div>
 
 
