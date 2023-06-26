@@ -26,10 +26,10 @@
 
 
         <!------------------상단----------------->
-        <div class ="container-fluid text-center">
-            <div class="row justify-content-center ">
+        <div class ="container-fluid text-center mt-7">
+            <div class="row justify-content-center my-4 ">
                 <div class="col-md-12">
-                    <a href="/main"><img src="assets/img/logo.png"></a>  
+                    <a href="/main"><img style="max-width: 300px;" src="../main_images/logo.png"></a>  
                 </div>
             </div>
         </div>

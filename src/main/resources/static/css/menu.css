@@ -55,6 +55,12 @@
     text-align: left;
 }
 
+#staticMap img{
+    max-width: none;
+	height: auto;
+	border: 0
+}
+
 .mycustom-rieview_card{
     border: none;
 }
@@ -114,7 +120,7 @@
     margin-top: 10px;
     border-radius: 5px;
     border:0;
-    background-color: #556B2F;
+    background-color: #6600db;
     color: #fff;
     font-family: "suite";
     font-size: 35px;
