@@ -59,15 +59,15 @@
                             <div class="sidebar-heading border-bottom bg-light">마이 페이지</div>
                             <div class="list-group list-group-flush">
                                 <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                                    href="Controller?type=aviewList">회원정보수정</a> <a
+                                    href="/info">회원정보수정</a> <a
                                     class="list-group-item list-group-item-action list-group-item-light p-3"
-                                    href="Controller?type=aoList">주문 내역</a> <a
+                                    href="/order">주문 내역</a> <a
                                     class="list-group-item list-group-item-action list-group-item-light p-3"
-                                    href="Controller?type=aqList">리뷰 관리</a> <a
+                                    href="/review">리뷰 관리</a> <a
                                     class="list-group-item list-group-item-action list-group-item-light p-3"
-                                    href="Controller?type=amList">내 장바구니</a> <a
+                                    href="/cart">내 장바구니</a> <a
                                     class="list-group-item list-group-item-action list-group-item-light p-3"
-                                    href="Controller?type=shop">메인 페이지 돌아가기</a>
+                                    href="/main">메인 페이지 돌아가기</a>
                             </div>
                         </div>
                         <!-- Page content wrapper-->
@@ -128,7 +128,7 @@
                                                                     <div class="col-md-3">
                                                                         <select id="SearchType" name="searchType"
                                                                             class="form-select">
-                                                                            <option value="0">관심검색</option>
+                                                                            <option value="0">휴게소검색</option>
                                                                             <option value="1">주문내역</option>
                                                                             <option value="2">리뷰관리</option>
                                                                             <option value="3">장바구니</option>
@@ -137,14 +137,14 @@
                                                                     </div>
                                                                     <div class="col-md-7">
                                                                         <div class="input-group">
-                                                                            <input class="form-control"
+                                                                           <!-- <input class="form-control"
                                                                                 placeholder="검색어를 입력하세요"
                                                                                 aria-describedby="button-addon"
                                                                                 type="text" id="searchValue"
-                                                                                name="searchValue" />
+                                                                                name="searchValue" /> -->
                                                                             <input type="button" class="btn btn-dark"
                                                                                 onclick="sendKeyword(this.form)"
-                                                                                value="검색" id="button-addon" />
+                                                                                value="이동" id="button-addon" />
                                                                         </div>
                                                                     </div>
                                                             </td>

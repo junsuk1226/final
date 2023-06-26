@@ -11,4 +11,10 @@ public class MyPageController {
 
         return "/myPage/myPage";
     }
+
+    @RequestMapping("/cart")
+    public String login() {
+
+        return "/myPage/cart";
+    }
 }
