@@ -73,7 +73,7 @@
                             <!-- Top navigation-->
                             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                                 <div class="container-fluid">
-                                    <button class="btn btn-primary" id="sidebarToggle">메뉴</button>
+                                    <button class="btn btn-outline-success me-2 mycustom-mem-btn" id="sidebarToggle">메뉴</button>
                                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                         aria-expanded="false" aria-label="Toggle navigation">
@@ -143,7 +143,7 @@
                                                                             <strong class="cont">
                                                                                 <span> 0개</span>
                                                                             </strong>
-                                                                            <input type="button" class="btn btn-dark" onclick="" value="조회" id="btn btn-link" />
+                                                                            <input type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
                                                                         </li>
                                                                         <br />
                                                                         <li class="mileage ">
