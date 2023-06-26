@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -113,13 +114,17 @@
             <c:if test="${linelist ne null}">
                 <c:forEach var="vo" items="${linelist}" varStatus="loop">
                     <li class="list-group-item mycustom-line_search_listgroup">
-                        <button class="accordion-button" type="button" onclick="location.href='/menu'">
-                            <img class="mycustom-line_search_img" src="${photolist[loop.index].r_photo}"/>
-                            <ul class="mycustom-line_search_ul">${vo.svarNm}(${vo.gudClssNm})
-                                <li>${vo.svarAddr} | 전화번호: ${vo.rprsTelNo}</li>
-                                <li>소형차주차대수: ${vo.cocrPrkgTrcn} | 대형차주차대수: ${vo.fscarPrkgTrcn} | 장애인주차대수: ${vo.dspnPrkgTrcn}</li>
-                            </ul>
-                        </button>
+                        <form action="/menu" method="get">
+                            <input type="hidden" name="r_photo" value="${photolist[loop.index].r_photo}"/>
+                            <input type="hidden" name="svarCd" value="${vo.svarCd}"/>
+                            <button class="accordion-button" type="submit">
+                                <img class="mycustom-line_search_img" src="${photolist[loop.index].r_photo}"/>
+                                <ul class="mycustom-line_search_ul">${vo.svarNm}(${vo.gudClssNm})
+                                    <li>${vo.svarAddr} | 전화번호: ${vo.rprsTelNo}</li>
+                                    <li>소형차주차대수: ${vo.cocrPrkgTrcn} | 대형차주차대수: ${vo.fscarPrkgTrcn} | 장애인주차대수: ${vo.dspnPrkgTrcn}</li>
+                                </ul>
+                            </button>
+                        </form>
                     </li>
                 </c:forEach> 
             </c:if>

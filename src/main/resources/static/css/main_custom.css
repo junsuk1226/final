@@ -129,7 +129,7 @@
 }
 
 .mycustom-line_search_btn{
-    width: 1000px;
+    width: 810px;
     font-family: "suite";
     font-size: 38px;
     border:none;
@@ -138,7 +138,7 @@
 }
 
 .mycustom-line_search_dropdown_menu{
-    width: 1000px;
+    width: 810px;
     font-family: "suite";
     font-size: 25px;
     text-align: center;
@@ -158,10 +158,6 @@
     width:100px;
     height:120px;
     margin-right: 20px;
-}
-
-.mycustom-line_search_info{
-    width: 1000px;
 }
 
 .mycustom-line_search_ul{
@@ -271,6 +267,7 @@
   }
 
 
+/* ---------------------------------- */
 #resultContainer{
     font-family: "suite";
 }
@@ -278,3 +275,6 @@
 #resultContainer2{
     font-family: "suite";
 }
+/* ----------------------------------- */
+
+

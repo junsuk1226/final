@@ -1,0 +1,128 @@
+@font-face {
+    font-family: "suite";
+    src: url(font/SUITE-Regular.ttf);
+}
+@font-face {
+    font-family: "omyu";
+    src: url(font/오뮤_다예쁨체.ttf);
+}
+
+.mycustom-tab_content{
+    margin-top: 10px;
+}
+
+.mycustom-sticky_menu{
+    background-color: #fff;
+    position: sticky;
+    top: -0.1px;
+}
+
+.mycustom-nav_item{
+    width: 100%;
+    max-width: 225px;
+}
+
+.mycustom-nav_btn{
+    Width: 100%;
+    font-family: "suite";
+    font-size: 20px;
+    color: #bebebe;
+}
+
+.mycustom-nav_btn:hover{
+    color: #000;
+}
+
+.mycustom-menu_list_btn{
+    width: 100%;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+}
+
+.mycustom-menu_list_group_item{
+    width: 100%;   
+}
+
+.mycustom-menu_img{
+    width: 100px;
+    height: 80px;
+}
+
+.mycustom-menu_info{
+    width: 100%;
+    margin-left: 20px;
+    text-align: left;
+}
+
+.mycustom-rieview_card{
+    border: none;
+}
+
+.mycustom-rieview_img{
+    max-width: 100%;
+}
+
+
+/* menuInfo css */
+
+.mycustom-menuInfo_menubar{
+    position: sticky;
+    top: -0.1px;
+}
+
+.mycustom-menuinfo_area{
+    margin-top: 20px;
+    margin-bottom: 90px;
+}
+
+.mycustom-menu_info_list{
+    list-style: none;
+    padding: 0;
+}
+
+.mycustom-menuInfo_title{
+    font-family: "suit";
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.mycustom-menu_info_icon_btn{
+    width: 35px;
+    height: 30px;
+    border: 0;
+    background-color: transparent;
+}
+
+.mycustom-menu_info_icon{
+    width: 35px;
+    height: 30px;
+}
+
+.mycuston-menu_info_img{
+    max-width: 100%;
+}
+
+.mycustom-menuInfo_footer{
+    background-color: #fff;
+    border-top: solid 2px #bebebe;
+    max-width: 700px;
+    height: 80px;
+}
+.mycustom-cart_btn{
+    min-width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+    border:0;
+    background-color: #556B2F;
+    color: #fff;
+    font-family: "suite";
+    font-size: 35px;
+}
+
+  
+  
+  
+  
+  
+  
