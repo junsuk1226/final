@@ -56,16 +56,18 @@
             <div class="d-flex" id="wrapper">
                 <!-- Sidebar-->
                 <div class="border-end bg-white" id="sidebar-wrapper">
-                    <div class="sidebar-heading border-bottom bg-light">마이 페이지</div>
+                    <div class="sidebar-heading border-bottom bg-light"> <a href="/main"><img style="max-width: 200px;"
+                                src="../main_images/logo.png"></a></div>
                     <div class="list-group list-group-flush">
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/myPage">마이
+                            페이지</a>
                         <a class="list-group-item list-group-item-action list-group-item-light p-3"
                             href="/info">회원정보수정</a> <a
                             class="list-group-item list-group-item-action list-group-item-light p-3" href="/order">주문
                             내역</a> <a class="list-group-item list-group-item-action list-group-item-light p-3"
                             href="/review">리뷰 관리</a> <a
                             class="list-group-item list-group-item-action list-group-item-light p-3" href="/cart">내
-                            장바구니</a> <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                            href="/main">메인 페이지 돌아가기</a>
+                            장바구니</a>
                     </div>
                 </div>
                 <!-- Page content wrapper-->
@@ -158,7 +160,7 @@
                                 <!-- map에 자료가 아무것도 없다면 -->
                                 장바구니가 비었습니다.
                             </c:when>
-                        
+
                             <c:otherwise>
                                 <!-- map.count가 0이 아닐때, 즉 자료가 있을때 -->
                                 <!-- form을 실행한다.  -->
@@ -184,27 +186,29 @@
                                             <c:forEach var="row" items="${map.list}">
                                                 <tr align="center">
                                                     <td>${row.product_name}</td>
-                        
+
                                                     <td>
                                                         <fmt:formatNumber value="${row.price}" pattern="#,###,###" />
                                                     </td>
                                                     <!-- fmt:formatNumber 태그는 숫자를 양식에 맞춰서 문자열로 변환해주는 태그이다 -->
                                                     <!-- 여기서는 금액을 표현할 때 사용 -->
                                                     <!-- ex) 5,000 / 10,000 등등등-->
-                        
-                                                    <td><input type="number" name="amount" style="width:30px;" value="<fmt:formatNumber value="
-                                                            ${row.amount}" pattern="#,###,###" />">
+
+                                                    <td><input type="number" name="amount" style="width:30px;"
+                                                            value="<fmt:formatNumber value=" ${row.amount}"
+                                                            pattern="#,###,###" />">
                                                         <!-- 물건의 개수 (amount)를 fmt태그를 사용해서 패턴의 형식에 맞춰서 문자열로 변환함 -->
                                                         <!--1,000 / 5,000 등등~  -->
-                        
+
                                                         <input type="hidden" name="cart_id" value="${row.cart_id}">
-                        
-                        
+
+
                                                     </td>
                                                     <td>
                                                         <fmt:formatNumber value="${row.money}" pattern="#,###,###" />
                                                     </td>
-                                                    <td><a href="${path}/shop/cart/delete.do?cart_id=${row.cart_id}">[삭제]</a>
+                                                    <td><a
+                                                            href="${path}/shop/cart/delete.do?cart_id=${row.cart_id}">[삭제]</a>
                                                         <!-- 삭제 버튼을 누르면 delete.do로 장바구니 개별 id (삭제하길원하는 장바구니 id)를 보내서 삭제한다. -->
                                                     </td>
                                                 </tr>
@@ -230,7 +234,7 @@
                                             </tr>
                                         </tfoot>
                                     </table>
-                        
+
                                 </form>
                             </c:otherwise>
                         </c:choose>
@@ -411,25 +415,25 @@
                     document.frm.submit();
                 }
 
-               
-    $(function () {
-        $("#btnList").click(function () {
-            location.href = "${path}/shop/product/list.do";
-        });
 
-        $("#btnDelete").click(function () {
-            if (confirm("장바구니를 비우시겠습니까?")) {
-                location.href = "${path}/shop/cart/deleteAll.do";
-            }
-        });
-        function delete12() {
+                $(function () {
+                    $("#btnList").click(function () {
+                        location.href = "${path}/shop/product/list.do";
+                    });
 
-            if ("wish" == "wish") {
-                alert("장바구니가 비어졌습니다.");
-            }
-        }
+                    $("#btnDelete").click(function () {
+                        if (confirm("장바구니를 비우시겠습니까?")) {
+                            location.href = "${path}/shop/cart/deleteAll.do";
+                        }
+                    });
+                    function delete12() {
 
-    });
+                        if ("wish" == "wish") {
+                            alert("장바구니가 비어졌습니다.");
+                        }
+                    }
+
+                });
 
             </script>
         </body>
