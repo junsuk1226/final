@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link rel="stylesheet" href="../css/main_custom.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/><!--애니메이션 cdn-->
 </head>
 <body>
 <!-- <div class="mycustom-bg"> -->
@@ -48,7 +49,7 @@
         <div class="container-fluid row  mycustom-search_group">
 
             <div class="mycustom-search_group_inner"> 
-                <h1 class="mycustom-search_logo"><img class="mycustom-search_logo_icon" src="../main_images/search_Icon2.png"></h1>
+                <div class="mycustom-search_logo mb-1"><img class="mycustom-search_logo_icon " src="../main_images/search_Icon2.png"></div>
                 <form id="sform" name="search" method="post" action="/search">
                     <fieldset>
                         <input type="hidden">
@@ -67,19 +68,18 @@
     <!--test-->
     <div class="container test_container">
         <div class="rectangle test_rectangle">
-          <div class="quadrant quadrant-0 test_quadrant-0_">
-            <a href="/map"><img style="min-width: 200px;" src="../main_images/searchLogo.png" alt="Image 1" class="diagonal-image test_diagonal-image"></a>
+          <div class="quadrant quadrant-0 test_quadrant-0 " >
+            <a href="/map"><img  src="../main_images/searchLogo.png" alt="Image 1" class="diagonal-image test_diagonal-image"></a>
           </div>
           <!-- <div class="quadrant quadrant-1 test_quadrant-1"></div> -->
-          <div class="quadrant quadrant-1 test_quadrant-1">
-            <a href="/lineSearchList"><img style="min-width: 200px;" src="../main_images/wayLogo.png" alt="Image 2" class="diagonal-image test_diagonal-image"></a>
+          <div class="quadrant quadrant-1 test_quadrant-1 " >
+            <a href="/lineSearchList"><img  src="../main_images/wayLogo.png" alt="Image 2" class="diagonal-image test_diagonal-image"></a>
           </div>
           <!-- <div class="quadrant quadrant-3 test_quadrant-3"></div> -->
         </div>
     </div>
     
-    
-
+  
     <!-- footer 시작----------------------------------------------------------------------------------------------> 
     <!-- <body class="d-flex flex-column"> -->
         <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mycustom-main_footer">
