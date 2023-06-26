@@ -17,7 +17,7 @@
         <header class="d-flex flex-wrap align-items-center justify-content-md-between py-3 mb-3">
             <!-- <a class="nav-link logo_custom" href="/main">내 손안에 휴게소</a> -->
             <div class="col-md-9">
-                <a href="/main"><img style="max-width: 300px;" src="../main_images/logo.png"/></a>
+                <a href="/main"><img style="max-width: 200px;" src="../main_images/logo.png"/></a>
             </div>
             <c:if test="${sessionScope.mvo == null}">
                 <div class="col-md-3 text-end">
@@ -33,13 +33,12 @@
             </c:if>
         </header>
     </div>
-    <!-- 메뉴바끝 ----------------------------------------------------------------------------------------------------------->
+    <!-- 메뉴바끝 (배너 시작) ----------------------------------------------------------------------------------------------------------->
 
     <div class ="container-fluid text-center">
         <div class="row justify-content-center ">
-
             <div class="col-md-12">
-                <a href="/main"><img style="max-width: 300px;" src="../main_images/main_logo.png"/></a>
+                <a href="/main"><img style="max-width: 300px;" src="../main_images/main_logo.png"/></a><!--배너가 들어갈 곳-->
             </div>
 
         </div>
@@ -69,13 +68,13 @@
     <div class="container test_container">
         <div class="rectangle test_rectangle">
           <div class="quadrant quadrant-0 test_quadrant-0_">
-            <a href="/map"><img src="../main_images/searchLogo.png" alt="Image 1" class="diagonal-image test_diagonal-image"></a>
+            <a href="/map"><img style="min-width: 200px;" src="../main_images/searchLogo.png" alt="Image 1" class="diagonal-image test_diagonal-image"></a>
           </div>
-          <div class="quadrant quadrant-1 test_quadrant-1"></div>
-          <div class="quadrant quadrant-2 test_quadrant-2">
-            <a href="/lineSearchList"><img src="../main_images/wayLogo.png" alt="Image 2" class="diagonal-image test_diagonal-image"></a>
+          <!-- <div class="quadrant quadrant-1 test_quadrant-1"></div> -->
+          <div class="quadrant quadrant-1 test_quadrant-1">
+            <a href="/lineSearchList"><img style="min-width: 200px;" src="../main_images/wayLogo.png" alt="Image 2" class="diagonal-image test_diagonal-image"></a>
           </div>
-          <div class="quadrant quadrant-3 test_quadrant-3"></div>
+          <!-- <div class="quadrant quadrant-3 test_quadrant-3"></div> -->
         </div>
     </div>
     

@@ -24,7 +24,7 @@
     
     </head>
     <!------------------상단----------------->
-        <div class ="container-fluid text-center">
+        <div class ="container-fluid text-center my-6">
             <div class="row justify-content-center ">
 
                 <div class="col-md-12">
@@ -34,7 +34,7 @@
             </div>
         </div>
         <!--------------본문---------------->
-                <div class="container-fluid text-center">
+                <div class="container-fluid text-center mb-4">
                     <div class="row justify-content-center col-md-12">
                         <div  class="col-md-6">
                         <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="border: none;">
