@@ -39,6 +39,10 @@
     background-color: #556B2F;
 }
 
+.mycustom-main_logo{
+    width:300px;
+    height: 200px;
+}
 
 /* 검색창 css -------------------------------------------------- */
 .mycustom-search_area{
@@ -65,6 +69,11 @@
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.mycustom-search_logo_icon{
+    width: 70px;
+    height: 50px;
 }
 
 .mycustom-search_inputbox{
