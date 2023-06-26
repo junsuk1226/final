@@ -12,16 +12,22 @@ import java.util.Map;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kdt.finalproject.service.FoodService;
+import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MapInfoVO;
 import com.kdt.finalproject.vo.MapVO;
 import com.kdt.finalproject.vo.WeatherVO;
 
 @Controller
 public class MapController {
+
+    @Autowired
+    FoodService f_Service;
 
     @RequestMapping("map")
     public String map() {
@@ -314,6 +320,9 @@ public class MapController {
             }
 
         } // 복문의 끝
+
+        FoodVO[] far = f_Service.all();
+        map.put("far", far);
 
         return map;
     }

@@ -47,6 +47,8 @@
 		</div>
 	</div>
 
+	<div id="recommFood"></div>
+
 	<div class="row justify-content-center">
 		<div class="col-md-6 row-cols-1 row-cols-md-3 g-4">
 			<div class="input_area col-md-12 mx-auto card shadow p-3 mb-4 bg-body rounded" style="margin: 0 auto; border:none; ">
@@ -58,7 +60,7 @@
 							<div id="tem"class="me-5" style="text-align: center; font-size: 25px; font-weight: bold;"></div>
 							<div class="vr"></div>
 						</div>
-						<div class="col-md-2">
+						<div class="col-md-2" id="col-md-2">
 							<div class="" >
 								<img src="../images/raining.png" class="card-img-top" alt="...">	
 							</div>
@@ -248,6 +250,38 @@
 							$("#weather").empty().append(imgElement);
 
 							$("#tem").text(parseInt(tempValue)).append(spanElement); // 소수점 이하 제거
+
+							// 음식 정보
+							var far = response.far;
+							var summerFood, winterFood, allFood;
+						
+							
+
+							for(var i = 0; i < far.length; i++) {
+								if(far[i].seasonMenu.trim() === "S") {
+									summerFood = far[i].f_image;
+								} else if(far[i].seasonMenu === "W") {
+									winterFood = far[i].f_image;
+								} else if(far[i].seasonMenu === 4) {
+									allFood = far[i].f_image;
+								}
+
+							var sFoodImg = $("<img>").attr("src", summerFood).css("width", "70px");
+							var wFoodImg = $("<img>").attr("src", winterFood).css("width", "70px");
+							var aFoodImg = $("<img>").attr("src", allFood).css("width", "70px");
+
+								console.log(sFoodImg);
+
+								if(parseInt(tempValue) > 26)
+								$("#recommFood").append(sFoodImg);
+								else if(parseInt(tempValue) < 10)
+								$("#recommFood").append(wFoodImg);
+								else if(parseInt(tempValue) < 26 && parseInt(tempValue) > 10)
+								$("#recommFood").append(aFoodImg);
+
+								
+							}
+							
 
 							
 
