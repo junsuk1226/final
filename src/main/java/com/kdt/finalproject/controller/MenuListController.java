@@ -105,7 +105,7 @@ public class MenuListController {
 
         FoodVO[] far = f_Service.all();
 
-        mv.addObject("far", far); // DB에 저장해놓은 음식 리스트
+        mv.addObject("fList", far); // DB에 저장해놓은 음식 리스트
         mv.addObject("fvo", fvo); // API에서 받아오는 음식 리스트
         mv.setViewName("menuList");
 

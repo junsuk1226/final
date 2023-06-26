@@ -9,6 +9,14 @@
 <title>내 손안에 휴게소, 마이휴</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link rel="stylesheet" href="../css/main_custom.css" />
+<style>
+    @media (max-width: 767px) {
+        .custom-image {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+</style>
 
 </head>
 <body>
@@ -39,50 +47,20 @@
     
 
 
-<!-- 
-    <div class="container-fluid row align-items-center justify-content-center ">
-        <div class="d-flex flex-wrap align-items-center justify-content-sm-between py-3 mb-3 ">
+
+    <div class="container-fluid row align-items-center justify-content-center"  >
+        <div class="d-flex flex-wrap align-items-center justify-content-sm-between py-3 ">
 
             <div class ="container-fluid text-center">
                 <div class="row justify-content-center ">
                     <div class="col-md-12">
-                        <a href=""><img style="max-width: 600px;" src="../main_images/hand2.png"/></a>
+                        <a href=""><img class="img-fluid" style="max-height: 400px;" src="../main_images/hand2.png"/></a>
                     </div>
                 </div>
             </div>   
         </div>
     </div>
 
-     -->
-    <!-- <div class="container-fluid row align-items-center justify-content-center shadow-lg p-3 mb-5 bg-body rounded">
-        <div class="row justify-content-center">
-        <div class="d-flex flex-wrap align-items-center py-3 mb-3 ">
-
-
-    <div id="carouselExampleControls" class="carousel slide" style="max-height: 500px;" data-bs-ride="carousel">
-        <div class="carousel-inner" style="max-width: 600px;">
-          <div class="carousel-item active">
-            <img src="../main_images/hand.png" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="../main_images/hand3.png" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="../main_images/hand2.png" class="d-block w-100" alt="...">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    </div>
-</div>
-</div> -->
 
     <!-- search_area----------------------------------------------------------------------------------------------->
     <div class="container-fluid row align-items-center justify-content-center mycustom-search_area">

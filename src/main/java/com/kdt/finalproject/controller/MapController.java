@@ -257,7 +257,7 @@ public class MapController {
         LocalTime nowTime = LocalTime.now();
         int hour = nowTime.getHour();
         StringBuffer stdHour = new StringBuffer();
-        stdHour.append(hour - 2);
+        stdHour.append(hour - 3);
 
         StringBuffer sb4 = new StringBuffer();
         sb4.append("http://data.ex.co.kr/openapi/restinfo/restWeatherList"); // 현재 위치의 휴게소 날씨 API
@@ -318,6 +318,7 @@ public class MapController {
                 map.put("unitCode2", unitCode2);
                 map.put("weatherContents", weatherContents);
                 map.put("tempValue", tempValue);
+
                 break;
             }
 
