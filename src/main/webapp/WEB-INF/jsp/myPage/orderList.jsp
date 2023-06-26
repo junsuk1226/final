@@ -159,7 +159,7 @@
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr style="background:'#353535'">
-                                                    <th colspan="5">리뷰관리</th>
+                                                    <th colspan="5">주문내역</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -188,26 +188,28 @@
                                                         <%-- 주석끝 --%>
 
 
-                                                        <td>휴게소이미지</td>
+                                                        <td>이미지</td>
                                                         <td colspan="4">
                                                             <div><p style="font-size: 15px; font-weight: bold;">휴게소명</p></div>
                                                             <div><p style="font-size: 12px; ">업소명 : 2023-06-24</p></div>
-                                                            <div>리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! </div>
+                                                            <div>떡볶이 외 21건 </div>
+                                                            <div>-------------------------- </div>
+                                                            <div> 총 218,000원</div>
                                                             <div style="text-align: right;">
-                                                                <button type="button">수정</button>
                                                                 <button type="button">삭제</button>
                                                             </div>
                                                         </td>    
                                                     </tr>
                                                     <tr>
 
-                                                        <td>휴게소이미지</td>
+                                                        <td>이미지</td>
                                                         <td colspan="4">
                                                             <div><p style="font-size: 15px; font-weight: bold;">휴게소명</p></div>
                                                             <div><p style="font-size: 12px; ">업소명 : 2023-06-24</p></div>
-                                                            <div>리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! </div>
+                                                            <div>티본스테이크 외 4건 </div>
+                                                            <div>-------------------------- </div>
+                                                            <div> 총 467,000원</div>
                                                             <div style="text-align: right;">
-                                                                <button type="button">수정</button>
                                                                 <button type="button">삭제</button>
                                                             </div>
                                                         </td>    
