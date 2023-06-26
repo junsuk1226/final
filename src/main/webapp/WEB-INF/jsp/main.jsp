@@ -6,22 +6,22 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>내 손안에 휴게소, 마이휴</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link rel="stylesheet" href="../css/main_custom.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/><!--애니메이션 cdn-->
+
 </head>
 <body>
 <!-- <div class="mycustom-bg"> -->
     <!-- 메뉴바 ----------------------------------------------------------------------------------------------------------->
     <div class="container main_custom_menubar">
-        <header class="d-flex flex-wrap align-items-center justify-content-md-around py-3 mb-3">
+        <header class="d-flex flex-wrap align-items-center justify-content-sm-between py-3 mb-3">
             <!-- <a class="nav-link logo_custom" href="/main">내 손안에 휴게소</a> -->
             <div class="col-md-3">
                 <a href="/main"><img style="max-width: 200px;" src="../main_images/logo.png"/></a>
             </div>
             <c:if test="${sessionScope.mvo == null}">
-                <div class="col-md-3 text-end">
+                <div class="col-md-3 text-end mt-2">
                     <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/login'">로그인</button>
                     <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/join'">회원가입</button>
                 </div>
@@ -36,14 +36,54 @@
     </div>
     <!-- 메뉴바끝 (배너 시작) ----------------------------------------------------------------------------------------------------------->
 
-    <div class ="container-fluid text-center">
-        <div class="row justify-content-center ">
-            <div class="col-md-12">
-                <a href=""><img style="max-width: 300px;" src="../main_images/main_logo.png"/></a><!--배너가 들어갈 곳-->
-            </div>
+    
 
+
+<!-- 
+    <div class="container-fluid row align-items-center justify-content-center ">
+        <div class="d-flex flex-wrap align-items-center justify-content-sm-between py-3 mb-3 ">
+
+            <div class ="container-fluid text-center">
+                <div class="row justify-content-center ">
+                    <div class="col-md-12">
+                        <a href=""><img style="max-width: 600px;" src="../main_images/hand2.png"/></a>
+                    </div>
+                </div>
+            </div>   
         </div>
     </div>
+
+     -->
+    <!-- <div class="container-fluid row align-items-center justify-content-center shadow-lg p-3 mb-5 bg-body rounded">
+        <div class="row justify-content-center">
+        <div class="d-flex flex-wrap align-items-center py-3 mb-3 ">
+
+
+    <div id="carouselExampleControls" class="carousel slide" style="max-height: 500px;" data-bs-ride="carousel">
+        <div class="carousel-inner" style="max-width: 600px;">
+          <div class="carousel-item active">
+            <img src="../main_images/hand.png" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="../main_images/hand3.png" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="../main_images/hand2.png" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+</div>
+</div> -->
+
     <!-- search_area----------------------------------------------------------------------------------------------->
     <div class="container-fluid row align-items-center justify-content-center mycustom-search_area">
         <div class="container-fluid row  mycustom-search_group">
