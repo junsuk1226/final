@@ -15,6 +15,6 @@ public class MyPageController {
     @RequestMapping("/cart")
     public String login() {
 
-        return "/myPage/cart";
+        return "/myPage/cartt";
     }
 }
