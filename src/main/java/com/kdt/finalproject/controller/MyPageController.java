@@ -5,9 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MyPageController {
-    
-    @RequestMapping("/mypage")
-    public String viewMyPage(){
-        return "/myPage";
+
+    @RequestMapping("/myPage")
+    public String myPage() {
+
+        return "/myPage/myPage";
     }
 }

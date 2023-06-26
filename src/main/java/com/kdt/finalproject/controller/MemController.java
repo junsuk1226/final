@@ -38,12 +38,6 @@ public class MemController {
 		return "/login";
 	}
 
-	@RequestMapping("/myPage")
-	public String myPage() {
-
-		return "/myPage";
-	}
-
 	@RequestMapping("/logout")
 	public String logout() {
 		session.removeAttribute("mvo");
