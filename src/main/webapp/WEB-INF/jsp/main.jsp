@@ -15,9 +15,9 @@
 <!-- <div class="mycustom-bg"> -->
     <!-- 메뉴바 ----------------------------------------------------------------------------------------------------------->
     <div class="container main_custom_menubar">
-        <header class="d-flex flex-wrap align-items-center justify-content-md-between py-3 mb-3">
+        <header class="d-flex flex-wrap align-items-center justify-content-md-around py-3 mb-3">
             <!-- <a class="nav-link logo_custom" href="/main">내 손안에 휴게소</a> -->
-            <div class="col-md-9">
+            <div class="col-md-3">
                 <a href="/main"><img style="max-width: 200px;" src="../main_images/logo.png"/></a>
             </div>
             <c:if test="${sessionScope.mvo == null}">
@@ -39,7 +39,7 @@
     <div class ="container-fluid text-center">
         <div class="row justify-content-center ">
             <div class="col-md-12">
-                <a href="/main"><img style="max-width: 300px;" src="../main_images/main_logo.png"/></a><!--배너가 들어갈 곳-->
+                <a href=""><img style="max-width: 300px;" src="../main_images/main_logo.png"/></a><!--배너가 들어갈 곳-->
             </div>
 
         </div>
@@ -67,17 +67,20 @@
 
     <!--test-->
     <div class="container test_container">
-        <div class="rectangle test_rectangle">
-          <div class="quadrant quadrant-0 test_quadrant-0 " >
+        <div class="test_rectangle " style="min-height: 200px; min-width: 200px;">
+          <div class="test_quadrant-0 " >
             <a href="/map"><img  src="../main_images/searchLogo.png" alt="Image 1" class="diagonal-image test_diagonal-image"></a>
           </div>
-          <!-- <div class="quadrant quadrant-1 test_quadrant-1"></div> -->
-          <div class="quadrant quadrant-1 test_quadrant-1 " >
+          <div class="test_quadrant-1 " >
             <a href="/lineSearchList"><img  src="../main_images/wayLogo.png" alt="Image 2" class="diagonal-image test_diagonal-image"></a>
           </div>
-          <!-- <div class="quadrant quadrant-3 test_quadrant-3"></div> -->
         </div>
+        
     </div>
+      <!--------------------------------------------------->
+    
+
+
     
   
     <!-- footer 시작----------------------------------------------------------------------------------------------> 
@@ -90,7 +93,7 @@
 
       <!-- </body>  -->
     <!-- footer 끝---------------------------------------------------------------------------------------------->
-
+        
 <!-- </div> bg 끝 -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
