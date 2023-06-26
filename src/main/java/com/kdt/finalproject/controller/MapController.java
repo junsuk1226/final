@@ -6,22 +6,30 @@ import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kdt.finalproject.service.FoodService;
+import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MapInfoVO;
 import com.kdt.finalproject.vo.MapVO;
 import com.kdt.finalproject.vo.WeatherVO;
 
 @Controller
 public class MapController {
+
+    @Autowired
+    FoodService f_Service;
 
     @RequestMapping("map")
     public String map() {
@@ -314,6 +322,32 @@ public class MapController {
             }
 
         } // 복문의 끝
+
+        FoodVO[] far = f_Service.all();
+
+        FoodVO[] pick_ar = new FoodVO[3];
+        Set<FoodVO> set = new HashSet<>();
+        while (true) {
+            FoodVO fvo = far[(int) (Math.random() * far.length)];
+            if (fvo == null)
+                continue;
+
+            int temp = (int) (Double.parseDouble(wvo.getTempValue()));
+
+            if (temp >= 25 && fvo.getSeasonMenu().equals("S")) {
+                set.add(fvo);
+            } else if (temp < 25 && temp > 10 && fvo.getSeasonMenu().equals("4")) {
+                set.add(fvo);
+            } else if (temp <= 10 && fvo.getSeasonMenu().equals("W")) {
+                set.add(fvo);
+            }
+
+            if (set.size() >= 3)
+                break;
+        }
+        set.toArray(pick_ar);
+
+        map.put("far", pick_ar);
 
         return map;
     }

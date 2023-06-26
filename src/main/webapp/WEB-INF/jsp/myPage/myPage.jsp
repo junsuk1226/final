@@ -73,7 +73,7 @@
                             <!-- Top navigation-->
                             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                                 <div class="container-fluid">
-                                    <button class="btn btn-primary" id="sidebarToggle">메뉴</button>
+                                    <button class="btn btn-outline-success me-2 mycustom-mem-btn" id="sidebarToggle">메뉴</button>
                                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                         aria-expanded="false" aria-label="Toggle navigation">
@@ -138,20 +138,76 @@
                                                                 -->
                                                                 <div class="xans-element- xans-myshop xans-myshop-bankbook ">
                                                                     <ul>
+                                                                        <li class="coupon displaynone">
+                                                                            <strong class="title">리뷰&nbsp;</strong>
+                                                                            <strong class="cont">
+                                                                                <span> 0개</span>
+                                                                            </strong>
+                                                                            <input type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
+                                                                        </li>
+                                                                        <br />
                                                                         <li class="mileage ">
-                                                                            <strong class="title">적립금</strong>
-                                                                            <strong class="cont">0원</strong>
+                                                                            <strong class="title">적립금&nbsp;</strong>
+                                                                            <strong class="cont"> 0원</strong>
                                                                             <input type="button" class="btn btn-dark" onclick=""
                                                                              value="조회" id="button-addon" />
                                                                         </li>
                                                                         <br/>
                                                                         <li class="coupon displaynone">
-                                                                            <strong class="title">쿠폰</strong>
+                                                                            <strong class="title">쿠폰&nbsp;</strong>
                                                                             <strong class="cont">
-                                                                                <span>0개</span>
+                                                                                <span> 0개</span>
                                                                             </strong>
                                                                             <input type="button" class="btn btn-dark" 
                                                                             onclick="" value="조회" id="btn btn-link" />
+                                                                        </li>
+                                                                        <br />
+                                                                        <li class="coupon displaynone">
+                                                                            <strong class="title">찜&nbsp;상품&nbsp;</strong>
+                                                                            <strong class="cont">
+                                                                                <span> 0개</span>
+                                                                            </strong>
+                                                                            <input type="button" class="btn btn-dark" onclick="" value="조회" id="btn btn-link" />
+                                                                        </li>
+                                                                        <br />
+                                                                        <li class="coupon displaynone">
+                                                                            <strong class="title">취소.반품목록&nbsp;</strong>
+                                                                            <strong class="cont">
+                                                                                <span> 0개</span>
+                                                                            </strong>
+                                                                            <input type="button" class="btn btn-dark" onclick="" value="조회" id="btn btn-link" />
+                                                                        </li>
+                                                                        <br />
+                                                                        <li class="coupon displaynone">
+                                                                            <strong class="title">결제수단&nbsp;</strong>
+                                                                            <strong class="cont">
+                                                                                <span> :&nbsp;없음&nbsp;</span>
+                                                                            </strong>
+                                                                            <input type="button" class="btn btn-dark" onclick="" value="조회" id="btn btn-link" />
+                                                                        </li>
+                                                                        <br />
+                                                                        <li class="coupon displaynone">
+                                                                            <strong class="title">기프트카드.제휴포인트&nbsp;</strong>
+                                                                            <strong class="cont">
+                                                                                <span></span>
+                                                                            </strong>
+                                                                            <input type="button" class="btn btn-dark" onclick="" value="조회" id="btn btn-link" />
+                                                                        </li>
+                                                                        <br />
+                                                                        <li class="coupon displaynone">
+                                                                            <strong class="title">선물함&nbsp;</strong>
+                                                                            <strong class="cont">
+                                                                                <span></span>
+                                                                            </strong>
+                                                                            <input type="button" class="btn btn-dark" onclick="" value="조회" id="btn btn-link" />
+                                                                        </li>
+                                                                        <br />
+                                                                        <li class="coupon displaynone">
+                                                                            <strong class="title">고객센터&nbsp;</strong>
+                                                                            <strong class="cont">
+                                                                                <span>02-882-1234</span>
+                                                                            </strong>
+                                                                            <input type="button" class="btn btn-dark" onclick="" value="연결하기" id="btn btn-link" />
                                                                         </li>
                                                                     </ul>
                                                                 </div>
