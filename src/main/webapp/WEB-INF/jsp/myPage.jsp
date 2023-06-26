@@ -65,7 +65,7 @@
                                     class="list-group-item list-group-item-action list-group-item-light p-3"
                                     href="Controller?type=aqList">리뷰 관리</a> <a
                                     class="list-group-item list-group-item-action list-group-item-light p-3"
-                                    href="Controller?type=amList">?</a> <a
+                                    href="Controller?type=amList">내 장바구니</a> <a
                                     class="list-group-item list-group-item-action list-group-item-light p-3"
                                     href="Controller?type=shop">메인 페이지 돌아가기</a>
                             </div>
@@ -83,17 +83,17 @@
                                     </button>
                                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                            <li class="nav-item active"><a class="nav-link" href="#!">Home</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#!">Link</a></li>
+                                            <li class="nav-item active"><a class="nav-link" href="#!">홈</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#!">로그인</a></li>
                                             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
                                                     id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                                                    aria-haspopup="true" aria-expanded="false">박스</a>
                                                 <div class="dropdown-menu dropdown-menu-end"
                                                     aria-labelledby="navbarDropdown">
-                                                    <a class="dropdown-item" href="#!">Action</a> <a
-                                                        class="dropdown-item" href="#!">Another action</a>
+                                                    <a class="dropdown-item" href="#!">장바구니</a> <a
+                                                        class="dropdown-item" href="#!">찜리스트</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#!">Something else here</a>
+                                                    <a class="dropdown-item" href="#!">설정</a>
                                                 </div>
                                             </li>
                                         </ul>
@@ -107,7 +107,7 @@
                                     <div class="col-md-1"></div>
                                     <div class="col-md-11">
                                         <br />
-                                        <h1>주문 현황</h1>
+                                        <h1>OOO님 환영합니다. </h1>
                                         <br />
                                         <br />
                                     </div>
