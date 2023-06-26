@@ -47,7 +47,7 @@
 		</div>
 	</div>
 
-	<div id="recommFood"></div>
+	
 
 	<div class="row justify-content-center">
 		<div class="col-md-6 row-cols-1 row-cols-md-3 g-4">
@@ -60,10 +60,8 @@
 							<div id="tem"class="me-5" style="text-align: center; font-size: 25px; font-weight: bold;"></div>
 							<div class="vr"></div>
 						</div>
-						<div class="col-md-2" id="col-md-2">
-							<div class="" >
-								<img src="../images/raining.png" class="card-img-top" alt="...">	
-							</div>
+						<div class="col-md-2">
+							<span id="recommFood" ></span>
 						</div>
 
 						<div class="col-md-2">
@@ -241,6 +239,9 @@
 							var imgSrc = "../images/raining.png"; 
 							else if(weatherContents.includes("눈"))
 							var imgSrc = "../images/snow.png"; 
+							else
+							var imgSrc = "../images/cloudy.png"; 
+
 							var icon = "../images/free-icon-celsius-481431.png";
 
 							var imgElement = $("<img>").attr("src", imgSrc).css("width", "70px");
@@ -253,35 +254,63 @@
 
 							// 음식 정보
 							var far = response.far;
-							var summerFood, winterFood, allFood;
+							var summerFood = null;
+							var winterFood = null;
+							var allFood = null;
 						
-							
+							var sFoodImg = null;
+							var wFoodImg = null;
+							var aFoodImg = null;
 
+							var food_img = null;
+
+							/*
 							for(var i = 0; i < far.length; i++) {
-								if(far[i].seasonMenu.trim() === "S") {
+							//	console.log("i="+i);
+							summerFood = null;
+							winterFood = null;
+							allFood = null;
+								
+
+								if(far[i].seasonMenu === "S") {
 									summerFood = far[i].f_image;
+									
+								//	console.log(far[i].seasonMenu);
 								} else if(far[i].seasonMenu === "W") {
 									winterFood = far[i].f_image;
-								} else if(far[i].seasonMenu === 4) {
+								//	console.log(far[i].seasonMenu);
+							
+								} else if(far[i].seasonMenu === "4") {
 									allFood = far[i].f_image;
+									
 								}
+								
+							
+								sFoodImg = $("<img>").attr("src", summerFood).css("width", "70px");
+								
+								wFoodImg = $("<img>").attr("src", winterFood).css("width", "70px");
+							
+								aFoodImg = $("<img>").attr("src", allFood).css("width", "70px");
+								
+						
 
-							var sFoodImg = $("<img>").attr("src", summerFood).css("width", "70px");
-							var wFoodImg = $("<img>").attr("src", winterFood).css("width", "70px");
-							var aFoodImg = $("<img>").attr("src", allFood).css("width", "70px");
 
-								console.log(sFoodImg);
-
-								if(parseInt(tempValue) > 26)
-								$("#recommFood").append(sFoodImg);
-								else if(parseInt(tempValue) < 10)
-								$("#recommFood").append(wFoodImg);
+								if(parseInt(tempValue) >= 26)
+								$("#recommFood").append(sFoodImg[0].outerHTML);
+								else if(parseInt(tempValue) <= 10)
+								$("#recommFood").append(wFoodImg[0].outerHTML);
 								else if(parseInt(tempValue) < 26 && parseInt(tempValue) > 10)
-								$("#recommFood").append(aFoodImg);
-
+								$("#recommFood").append(aFoodImg[0].outerHTML);
 								
 							}
-							
+							*/
+							for(var i = 0; i < far.length; i++) {
+								console.log("i="+i);
+								food_img = $("<img>").attr("src", far[i].f_image).css("width", "70px");
+								console.log(food_img);
+								$("#recommFood").append(food_img[0].outerHTML);
+								
+							}
 
 							
 
