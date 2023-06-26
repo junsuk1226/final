@@ -39,7 +39,7 @@
     <div class ="container-fluid text-center">
         <div class="row justify-content-center ">
             <div class="col-md-12">
-                <a href=""><img style="max-width: 300px;" src="../main_images/main_logo.png"/></a><!--배너가 들어갈 곳-->
+                <a href=""><img style="max-width: 300px;" src="../main_images/main_logo.png"/></a><!--내 손안에 휴ㄱㅔ소 -->
             </div>
 
         </div>
