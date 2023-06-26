@@ -53,6 +53,7 @@
 .mycustom-search_group{
     z-index: 10;
     width: 608px;
+    position: relative;
     height: 58px;
     border: 2px solid #6600db;
     border-radius: 33px;
@@ -77,7 +78,7 @@
 }
 
 .mycustom-search_inputbox{
-    width: 440px;
+    width: 100%;
     background-color: transparent;
 }
 
