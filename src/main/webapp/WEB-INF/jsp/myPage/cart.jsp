@@ -224,7 +224,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="5" align="right">
+                                                <td  align="right">
                                                     <button type="button" id="btnUpdate">수정</button>
                                                     <button type="button" id="btnDelete">장바구니 비우기</button>
                                                     <!--btnUpdate와 btnDelete id는 위쪽에 있는 자바스크립트가 처리한다.-->
