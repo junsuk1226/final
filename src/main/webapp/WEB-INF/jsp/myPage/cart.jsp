@@ -23,7 +23,7 @@
             <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
             <style>
                 table {
-                    width: 800px;
+                    width: 100%;
                     border-collapse: collapse;
                 }
 
@@ -37,6 +37,8 @@
                     text-indent: -9999px;
                     height: 0;
                 }
+                
+              
 
                 .popup {
                     display: none;
@@ -221,17 +223,18 @@
                                                     <fmt:formatNumber value="${map.sum}" pattern="#,###,###" />
                                                 </td>
                                             </tr>
-                                        </tbody>
-                                        <tfoot>
                                             <tr>
-                                                <td colspan="5">
-                                                    <button id="btnUpdate">수정</button>
+                                                <td colspan="5" align="right">
+                                                    <button type="button" id="btnUpdate">수정</button>
                                                     <button type="button" id="btnDelete">장바구니 비우기</button>
                                                     <!--btnUpdate와 btnDelete id는 위쪽에 있는 자바스크립트가 처리한다.-->
                                                     <button type="button" id="btnList">결제하기</button>
                                                 </td>
                                             </tr>
-                                        </tfoot>
+                                        </tbody>
+                                        <tbody >
+                                            
+                                        </tbody>
                                     </table>
 
                                 </form>
