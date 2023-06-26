@@ -80,7 +80,7 @@
                                         <li class="mb-3">Nickname</li>
                                         <div class="form-floating">
                                             <input type="text" placeholder="Nickname" class="form-control input" name = "j_nickname" id = "j_nickname" required>
-                                            <label class="text-secondary" for="floatingInput">사용할 닉네임을 입력해 주세요.</label>
+                                            <label class="text-secondary" for="floatingInput">닉네임</label>
                                             <div class="valid-feedback">
                                             </div>
                                             <div class="invalid-feedback">

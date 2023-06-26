@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../css/main_custom.css" />
 </head>
 <body>
-<div class="mycustom-bg">
+<!-- <div class="mycustom-bg"> -->
     <!-- 메뉴바 ----------------------------------------------------------------------------------------------------------->
     <div class="container main_custom_menubar">
         <header class="d-flex flex-wrap align-items-center justify-content-md-between py-3 mb-3">
@@ -33,12 +33,16 @@
     </div>
     <!-- 메뉴바끝 ----------------------------------------------------------------------------------------------------------->
 
+    <div>
+        <img class="mycustom-main_logo" src="../main_images/main_logo.png">
+    </div>
+
     <!-- search_area----------------------------------------------------------------------------------------------->
     <div class="container-fluid row align-items-center justify-content-center mycustom-search_area">
         <div class="container-fluid row  mycustom-search_group">
 
             <div class="mycustom-search_group_inner"> 
-                <h1 class="mycustom-search_logo"></h1>
+                <h1 class="mycustom-search_logo"><img class="mycustom-search_logo_icon" src="../main_images/search_Icon.png"></h1>
                 <form id="sform" name="search" method="post" action="/search">
                     <fieldset>
                         <input type="hidden">
@@ -58,11 +62,11 @@
     <div class="container test_container">
         <div class="rectangle test_rectangle">
           <div class="quadrant quadrant-0 test_quadrant-0_">
-            <a href="/map"><img src="../main_images/now.png" alt="Image 1" class="diagonal-image test_diagonal-image"></a>
+            <a href="/map"><img src="../main_images/searchLogo.png" alt="Image 1" class="diagonal-image test_diagonal-image"></a>
           </div>
           <div class="quadrant quadrant-1 test_quadrant-1"></div>
           <div class="quadrant quadrant-2 test_quadrant-2">
-            <a href="/lineSearchList"><img src="../main_images/way.png" alt="Image 2" class="diagonal-image test_diagonal-image"></a>
+            <a href="/lineSearchList"><img src="../main_images/wayLogo.png" alt="Image 2" class="diagonal-image test_diagonal-image"></a>
           </div>
           <div class="quadrant quadrant-3 test_quadrant-3"></div>
         </div>
@@ -81,7 +85,7 @@
       <!-- </body>  -->
     <!-- footer 끝---------------------------------------------------------------------------------------------->
 
-</div> <!-- bg 끝-->
+<!-- </div> bg 끝 -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
