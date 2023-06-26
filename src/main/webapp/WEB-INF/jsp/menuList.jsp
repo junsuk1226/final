@@ -101,8 +101,10 @@
             <!-- 휴게소정보 ---------------------------------------------------------------------------------------------->
             <div class="tab-pane fade" id="info-tab-pane" role="tabpanel" aria-labelledby="info-tab" tabindex="0">
                 <div class="container d-flex flex-wrap justify-content-center">
+                    <div style="width: 100%; height:350px;">
+                        <div id="staticMap" style="width:600px;height:350px;"></div>
+                    </div>
 
-                    <div id="staticMap" style="width:600px;height:350px;"></div>
                     <!-- 휴게소 정보 뿌릴 구간-->
 
                 </div>
