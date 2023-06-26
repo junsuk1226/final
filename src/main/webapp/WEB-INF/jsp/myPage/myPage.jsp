@@ -90,10 +90,11 @@
                                                     aria-haspopup="true" aria-expanded="false">박스</a>
                                                 <div class="dropdown-menu dropdown-menu-end"
                                                     aria-labelledby="navbarDropdown">
-                                                    <a class="dropdown-item" href="#!">장바구니</a> <a
-                                                        class="dropdown-item" href="#!">찜리스트</a>
+                                                    <a class="dropdown-item" href="#!">공지사항</a> <a
+                                                        class="dropdown-item" href="#!">이벤트</a>
+                                                        <a class="dropdown-item" href="#!">고객센터</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#!">설정</a>
+                                                    <a class="dropdown-item" href="#!">환경설정</a>
                                                 </div>
                                             </li>
                                         </ul>
@@ -127,11 +128,11 @@
                                                                     <div class="col-md-3">
                                                                         <select id="SearchType" name="searchType"
                                                                             class="form-select">
-                                                                            <option value="0">목록</option>
-                                                                            <option value="1">주문자</option>
-                                                                            <option value="2">주문번호</option>
-                                                                            <option value="3">상품번호</option>
-                                                                            <option value="4">주문상태</option>
+                                                                            <option value="0">관심검색</option>
+                                                                            <option value="1">주문내역</option>
+                                                                            <option value="2">리뷰관리</option>
+                                                                            <option value="3">장바구니</option>
+                                                                            <option value="4">휴게소검색</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="col-md-7">
