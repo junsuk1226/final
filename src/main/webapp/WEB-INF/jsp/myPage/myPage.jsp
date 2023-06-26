@@ -123,16 +123,38 @@
                                                         <tr>
                                                             <td>
                                                                 <div class="row">
-                                                                    <div class="col-md-3">
-                                                                        <select id="SearchType" name="searchType"
+                                                                    <!--
+
+                                                                        <div class="col-md-3">
+                                                                            <select id="SearchType" name="searchType"
                                                                             class="form-select">
-                                                                            <option value="0">휴게소검색</option>
-                                                                            <option value="1">주문내역</option>
-                                                                            <option value="2">리뷰관리</option>
-                                                                            <option value="3">장바구니</option>
-                                                                            <option value="4">휴게소검색</option>
+                                                                            <option value="0">빠른이동</option>
+                                                                            <option value="1" name="1">메인화면</option>
+                                                                            <option value="2" name="2">위치검색</option>
+                                                                            <option value="3" name="3">노선검색</option>
+                                                                            <option value="4" name="4">휴게소검색</option>
                                                                         </select>
                                                                     </div>
+                                                                -->
+                                                                <div class="xans-element- xans-myshop xans-myshop-bankbook ">
+                                                                    <ul>
+                                                                        <li class="mileage ">
+                                                                            <strong class="title">적립금</strong>
+                                                                            <strong class="cont">0원</strong>
+                                                                            <input type="button" class="btn btn-dark" onclick=""
+                                                                             value="조회" id="button-addon" />
+                                                                        </li>
+                                                                        <br/>
+                                                                        <li class="coupon displaynone">
+                                                                            <strong class="title">쿠폰</strong>
+                                                                            <strong class="cont">
+                                                                                <span>0개</span>
+                                                                            </strong>
+                                                                            <input type="button" class="btn btn-dark" 
+                                                                            onclick="" value="조회" id="btn btn-link" />
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
                                                                     <div class="col-md-7">
                                                                         <div class="input-group">
                                                                            <!-- <input class="form-control"
@@ -140,9 +162,12 @@
                                                                                 aria-describedby="button-addon"
                                                                                 type="text" id="searchValue"
                                                                                 name="searchValue" /> -->
-                                                                            <input type="button" class="btn btn-dark"
-                                                                                onclick="sendKeyword(this.form)"
-                                                                                value="이동" id="button-addon" />
+                                                                                <!--
+
+                                                                                    <input type="button" class="btn btn-dark"
+                                                                                    onclick="sendKeyword(this.form)"
+                                                                                    value="이동" id="button-addon" />
+                                                                                -->
                                                                         </div>
                                                                     </div>
                                                             </td>
@@ -318,33 +343,14 @@
                         function sendKeyword(form) {
 
                             var value = $("#searchValue").val();
-                            console.log(value);
-                            if (value.trim().length < 1) {
-                                alert("검색어를 1자 이상 입력하세요");
-                                $("searchValue").focus();
-                                return;
+                           
+                            if (value == 1){
+                                location.href = "MainController?type=Main";
                             }
-                            document.frm.submit();
+                            
                         }
 
-                        function fn_cancel_order(order_id) {
-                            var answer = confirm("주문을 취소하시겠습니까?");
-                            if (answer == true) {
-                                var formObj = document.createElement("form");
-                                var i_order_id = document.createElement("input");
-
-                                i_order_id.name = "order_id";
-                                i_order_id.value = order_id;
-
-                                formObj.appendChild(i_order_id);
-                                document.body.appendChild(formObj);
-                                formObj.method = "post";
-                                formObj.action = "${contextPath}/mypage/cancelMyOrder.do";
-                                formObj.submit();
-                            }
-
-
-                        }
+                       
 
 
                     </script>
