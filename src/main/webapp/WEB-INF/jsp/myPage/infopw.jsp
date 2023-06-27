@@ -115,21 +115,6 @@
                                 
                                 
                                 <br />
-                                <li class="mb-3">Create Password</li>
-                                <figcaption class="blockquote-footer text-start">
-                                    <em>8자 이상 입력해 주세요. </em>
-                                </figcaption>
-                                <div class="form-floating">
-                                    <input type="password" placeholder="Create password" class="form-control password" name="j_password" id="j_password"
-                                        required>
-                                    <label class="text-secondary" for="floatingInput">비밀번호</label>
-                                    <div class="valid-feedback">
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        비밀번호는 8자 이상 입력해야 합니다.
-                                    </div>
-                                </div>
-                                <br />
                                 <li class="mb-3">Password</li>
                                 <div class="form-floating">
                                     <input type="password" placeholder="Confirm password" class="form-control password"
@@ -139,6 +124,21 @@
                                     </div>
                                     <div class="invalid-feedback">
                                         비밀번호가 다릅니다.
+                                    </div>
+                                </div>
+                                <br />
+                                <li class="mb-3">Create Password</li>
+                                <figcaption class="blockquote-footer text-start">
+                                    <em>8자 이상 입력해 주세요. </em>
+                                </figcaption>
+                                <div class="form-floating">
+                                    <input type="password" placeholder="Create password" class="form-control password" name="new_pw" id="new_pw"
+                                        required>
+                                    <label class="text-secondary" for="floatingInput">새로운 비밀번호</label>
+                                    <div class="valid-feedback">
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        비밀번호는 8자 이상 입력해야 합니다.
                                     </div>
                                 </div>
 
@@ -280,10 +280,10 @@
                     let check2 = /^[a-zA-Z0-9]{8,}$/i;
 
 
-                    let j_email = $("#j_email").val();
+                   
                     let j_confirmpassword = $("#j_confirmpassword").val();
-                    let j_nickname = $("#j_nickname").val();
-                    let m_phone = $("#m_phone").val();
+                   
+                    let new_pw = $("#new_pw").val();
 
 
                     if (j_confirmpassword.trim().length < 1) {
@@ -297,33 +297,23 @@
                         $("#j_confirmpassword").addClass("is-valid");
                     }
 
-                    if (j_nickname.trim().length < 1) {
-                        $("#j_nickname").removeClass("is-valid");
-                        $("#j_nickname").addClass("is-invalid");
+                    
+                    if (new_pw.trim().length < 1) {
+                        $("#new_pw").removeClass("is-valid");
+                        $("#new_pw").addClass("is-invalid");
 
-                        $("#j_nickname").focus();
+                        $("#new_pw").focus();
                         return;
                     } else {
-                        $("#j_nickname").removeClass("is-invalid");
-                        $("#j_nickname").addClass("is-valid");
-                    }
-
-                    if (m_phone.trim().length < 1) {
-                        $("#m_phone").removeClass("is-valid");
-                        $("#m_phone").addClass("is-invalid");
-
-                        $("#m_phone").focus();
-                        return;
-                    } else {
-                        $("#m_phone").removeClass("is-invalid");
-                        $("#m_phone").addClass("is-valid");
+                        $("#new_pw").removeClass("is-invalid");
+                        $("#new_pw").addClass("is-valid");
                     }
 
                     // 비동기식통신
                     $.ajax({
-                        url: "/myPage/changeInfo",
+                        url: "/myPage/changePw",
                         type: "post",
-                        data: { "m_name": j_nickname, "m_phone": m_phone, "m_pw": j_confirmpassword },
+                        data: { "new_pw": new_pw, "m_pw": j_confirmpassword },
                         dataType: "json"
                     }).done(function (data) {
                         if (data.updateMem_fail == "1")// 잘 저장된 경우

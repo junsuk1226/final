@@ -23,4 +23,11 @@ public class MyPageController {
 
         return "/myPage/info";
     }
+
+    @RequestMapping("/infopw")
+    public String infopw() {
+
+        return "/myPage/infopw";
+    }
+
 }

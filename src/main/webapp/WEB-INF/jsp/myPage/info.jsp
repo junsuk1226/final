@@ -162,8 +162,8 @@
                                     <button type="button" class="btn btn-dark " onclick="send(this.form)">회원정보수정</button>
                                 </div>
                                 <br/>
-                                <div class="col-7 d-grid gap-2  mx-auto">
-                                    <button type="button" class="btn btn-dark " href="/info" >비밀번호변경</button>
+                                <div class="col-7 d-grid gap-2  mx-auto" href="/infopw">
+                                    <button type="button" class="btn btn-dark "> <a class="nav-link" href="/infopw">비밀번호변경 <a/></button>
                                 </div>
                             </ul>
                         </form>
