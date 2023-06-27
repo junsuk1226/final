@@ -40,7 +40,10 @@
                 <li><h1>${foodNm}</h1></li>
                 <li><h5>${etc}</h5></li>
                 <li><h6>${foodMaterial}</h6></li>
-                <li><h5>${foodCost}원</h5></li>
+                <li><h5>
+                  <c:set var="formattedCost" value="${fvo.foodCost}" />
+                  <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
+                </h5></li>
             </ul>
         </div>
     </div>

@@ -141,7 +141,7 @@
 					<div class="accordion-item mycustom-line_search_info mycustom_now_info">
 						<h2 class="accordion-header" id="panelsStayOpen-headingOne">
 							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-								<img class="mycustom-line_search_img" src="https://blog.kakaocdn.net/dn/QiQw7/btq1ByoRVn5/fOPibYxNNlLJWwwNRU3L5k/img.jpg"/>
+								<img class="mycustom-line_search_img" src="../main_images/hand2.png"/>
 								<ul class="mycustom-line_search_ul" id="unitName"> 
 							</button>
 						</h2>
