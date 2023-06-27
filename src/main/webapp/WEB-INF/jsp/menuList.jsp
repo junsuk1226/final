@@ -155,13 +155,25 @@
 
             <!-- 휴게소정보 ---------------------------------------------------------------------------------------------->
             
-            <div id="info-tab-pane" style="width: 680px; height: 350px;"  role="tabpanel" aria-labelledby="info-tab" tabindex="1"></div>
-            <div class="container justify-content-center tab-pane fade" id="info-tab-pane2">
-                <div class="map-container">
-                    <p style="font-size: 15px;">
-                        알아서 해~~~!
-                    </p>
-                </div>  
+            <div id="info-tab-pane" style="max-width: 680px; height: 350px;"  role="tabpanel" aria-labelledby="info-tab" tabindex="1"></div>
+            <div class="container justify-content-center tab-pane fade" id="info-tab-pane2" style="padding: 0">
+                <div class="card mycustom-restInfo_card">
+                    <div class="card-body shadow-sm">
+                        <h5 class="mycustom-restInfo_card_title">영업정보</h5>
+                        <p class="mycustom-restInfo_card_text">노선명: ${favo.routeName}</p>
+                        <p class="mycustom-restInfo_card_text">주소: ${favo.svarAddr}</p>
+                        <p class="mycustom-restInfo_card_text">연락처: ${favo.telNo}</p>
+                    </div>
+                </div> 
+                <div class="card mycustom-restInfo_card">
+                    <div class="card-body shadow-sm">
+                        <h5 class="mycustom-restInfo_card_title">편의시설 정보</h5>
+                        <p class="mycustom-restInfo_card_text">편의시설: ${favo.convenience}</p>
+                        <p class="mycustom-restInfo_card_text">브랜드: ${favo.brand}</p>
+                        <p class="mycustom-restInfo_card_text">화물 휴게소 유무: ${favo.truckSaYn}</p>
+                        <p class="mycustom-restInfo_card_text">경정비 유무: ${favo.truckSaYn}</p>
+                    </div>
+                </div>
             </div>
             
             <!-- 휴게소정보 끝 -------------------------------------------------------------------------------------------->
