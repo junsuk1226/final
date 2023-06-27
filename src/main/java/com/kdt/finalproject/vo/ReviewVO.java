@@ -16,7 +16,7 @@ public class ReviewVO {
             r_score,
             restCd,
             r_status,
-            r_var1,
+            r_writedate,
             r_var2,
             r_var3,
             r_var4,
