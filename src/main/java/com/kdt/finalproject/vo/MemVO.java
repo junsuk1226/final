@@ -23,5 +23,7 @@ public class MemVO {
             restCd,
             m_var3,
             m_var4,
-            m_var5;
+            m_var5,
+            new_pw;
+
 }
