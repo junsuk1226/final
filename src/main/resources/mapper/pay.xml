@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.kdt.finalproject.mapper.PayMapper">
+
+<!-- select -->
+
+
+<!-- insert -->
+<insert id="kakaopay" parameterType="com.kdt.finalproject.vo.PayVO">
+		INSERT INTO member(m_idx, restCd, foodNm, foodCost, totalCost, p_date, p_status, p_time, p_oNum, restNm, payMethod, aid, tid, cid)
+		VALUES(#{m_idx}, #{restCd}, #{foodNm}, #{foodCost}, #{totalCost}, #{p_date}, 0, #{p_time}, #{p_oNum}, #{restNm}, 0, #{aid}, #{tid}, #{cid})
+</insert>
+
+<!-- update -->
+
+
+</mapper>
