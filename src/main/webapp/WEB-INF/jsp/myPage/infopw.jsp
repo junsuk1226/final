@@ -119,7 +119,7 @@
                                 <div class="form-floating">
                                     <input type="password" placeholder="Confirm password" class="form-control password"
                                         name="j_confirmpassword" id="j_confirmpassword" required>
-                                    <label class="text-secondary" for="floatingInput">현재비밀번호를 입력하셔야 변경 가능합니다</label>
+                                    <label class="text-secondary" for="floatingInput">현재 비밀번호를 입력해주세요.</label>
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -127,9 +127,9 @@
                                     </div>
                                 </div>
                                 <br />
-                                <li class="mb-3">Create Password</li>
+                                <li class="mb-3">New Password</li>
                                 <figcaption class="blockquote-footer text-start">
-                                    <em>8자 이상 입력해 주세요. </em>
+                                    <em>변경하실 비밀번호를 입력해 주세요. </em>
                                 </figcaption>
                                 <div class="form-floating">
                                     <input type="password" placeholder="Create password" class="form-control password" name="new_pw" id="new_pw"
@@ -137,9 +137,7 @@
                                     <label class="text-secondary" for="floatingInput">새로운 비밀번호</label>
                                     <div class="valid-feedback">
                                     </div>
-                                    <div class="invalid-feedback">
-                                        비밀번호는 8자 이상 입력해야 합니다.
-                                    </div>
+                                    
                                 </div>
 
 
@@ -156,11 +154,11 @@
 
                     </div>
                     <div>
-                        궁금하신 사항은 .
+                        궁금하신 사항은!
                         <li class="coupon displaynone">
                             <strong class="title">고객센터&nbsp;</strong>
                             <strong class="cont">
-                                <span>02-882-1234</span>
+                                <span>02-112</span>
                             </strong>
                             <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick=""
                                 value="연결하기" id="btn btn-link" />
@@ -224,11 +222,11 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="signupModalLabel">회원정보 수정 완료</h5>
+                            <h5 class="modal-title" id="signupModalLabel">비밀번호 변경 완료</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            회원정보 수정을 성공적으로 완료했습니다!
+                            비밀번호를 성공적으로 변경했습니다!
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-dark mo1btn" data-bs-dismiss="modal">확인</button>
@@ -241,11 +239,11 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="signupModalLabel">수정 실패</h5>
+                            <h5 class="modal-title" id="signupModalLabel">변경 실패</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            회원정보 수정을 실패했습니다.
+                            입력하신 비밀번호가 일치하지 않습니다. 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-dark" data-bs-dismiss="modal">확인</button>
@@ -316,7 +314,7 @@
                         data: { "new_pw": new_pw, "m_pw": j_confirmpassword },
                         dataType: "json"
                     }).done(function (data) {
-                        if (data.updateMem_fail == "1")// 잘 저장된 경우
+                        if (data.updatePw_fail == "1")// 잘 저장된 경우
                             $('#modal1').modal('show');
                         else {
                             //$("#j_email").val("");
@@ -335,32 +333,9 @@
 
 
 
-                $(function () {
-                    $("#j_email").bind("keyup", function () {
-                        var str = $(this).val();
-                        if (str.trim().length > 4) {
-                            $.ajax({
-                                url: "/join/checkid",
-                                type: "post",
-                                data: { "email": str },
-                                dataType: "json"
-                            }).done(function (res) {
-                                if (res.chk == true && check1.test(str)) {
-                                    $("#j_box").html("&nbsp;사용가능");
-                                } else {
-                                    $("#j_box").html("&nbsp;사용불가능");
-                                }
-                            })
-                        } else {
-                            $("#j_box").html("");
-                        }
-                    });
+                
 
-                    // if("${commjoin_fail}" == "commjoin_fail"){
-                    //     alert("이미 가입된 이메일입니다.");
-                    //     return;
-                    // }
-                });
+               
 
             </script>
         </body>

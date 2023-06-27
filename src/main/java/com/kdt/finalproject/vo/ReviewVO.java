@@ -17,7 +17,7 @@ public class ReviewVO {
             restCd,
             r_status,
             r_writedate,
-            r_var2,
+            r_restNm,
             r_var3,
             r_var4,
             r_var5;
