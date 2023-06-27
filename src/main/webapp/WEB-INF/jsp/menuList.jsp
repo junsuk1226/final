@@ -36,7 +36,7 @@
     <!-- 메뉴바끝 ----------------------------------------------------------------------------------------------------------->
 
     <div class="container" style="max-width: 700px;">
-        <c:if test="${r_photo != '../images/rest_default_photo.png' || r_photo != null}">
+        <c:if test="${r_photo != '../images/rest_default_photo.png' && r_photo != null}">
             <img class="mycustom-menuList_main_image" src="${r_photo}">
         </c:if>
         <c:if test="${r_photo == '../images/rest_default_photo.png' || r_photo == null}">
