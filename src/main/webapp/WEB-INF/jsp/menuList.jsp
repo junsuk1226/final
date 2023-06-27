@@ -70,26 +70,60 @@
                     <ul class="list-group" style="max-width: 700px; width: 100%;">
                         
                         <!-- 반복문 돌릴구간 ---------------------------->
-                        <form action="/menu/info">
-                            <input type="hidden" name="" value="">
-                            <input type="hidden" name="" value="">
-                            
-                            
-                            <button type="submit" class="mycustom-menu_list_btn">
-                                <li class="list-group-item mycustom-menu_list_group_item">
-                                    <div class="d-flex">
-                                    <div class="mycustom-menu_img">
-                                        <img class="mycustom-menu_img" src="https://img-cf.kurly.com/shop/data/goodsview/20200818/gv00000105647_1.jpg"><!-- 메뉴 사진-->
-                                    </div>
-                                    <div class="mycustom-menu_info">
-                                        <h5>메뉴명</h5>
-                                        <a>메뉴 가격</a>
-                                    </div>
-                                    </div>
-                                </li>
-                            </button>
+                        <c:forEach var="fvo" items="${fList}">
+                            <form action="/menu/info">
+                                <input type="hidden" name="RestNm" value="${RestNm}">
+                                <input type="hidden" name="foodCost" value="${fvo.foodCost}">
+                                <input type="hidden" name="foodNm" value="${fvo.foodNm}">
+                                <input type="hidden" name="foodMaterial" value="${fvo.foodMaterial}">
+                                <input type="hidden" name="etc" value="${fvo.etc}">
+                                <input type="hidden" name="f_image" value="${fvo.f_image}">
+                                
+                                
+                                <button type="submit" class="mycustom-menu_list_btn">
+                                    <li class="list-group-item mycustom-menu_list_group_item">
+                                        <div class="d-flex">
+                                        <div class="mycustom-menu_img">
+                                            <img class="mycustom-menu_img" src="${fvo.f_image}"><!-- 메뉴 사진-->
+                                        </div>
+                                        <div class="mycustom-menu_info">
+                                            <h5>${fvo.foodNm}</h5>
+                                            <a>${fvo.foodCost}</a>
+                                        </div>
+                                        </div>
+                                    </li>
+                                </button>
 
-                        </form>
+                            </form>
+                        </c:forEach>
+
+                        <c:forEach var="fvo" items="${fvo}">
+                            <form action="/menu/info">
+                                <input type="hidden" name="RestNm" value="${RestNm}">
+                                <input type="hidden" name="foodCost" value="${fvo.foodCost}">
+                                <input type="hidden" name="foodNm" value="${fvo.foodNm}">
+                                <input type="hidden" name="foodMaterial" value="${fvo.foodMaterial}">
+                                <input type="hidden" name="etc" value="${fvo.etc}">
+                                
+                                
+                                <button type="submit" class="mycustom-menu_list_btn">
+                                    <li class="list-group-item mycustom-menu_list_group_item">
+                                        <div class="d-flex">
+                                        <c:if test="${fvo.f_image != null}">
+                                            <div class="mycustom-menu_img">
+                                                <img class="mycustom-menu_img" src="${fvo.f_image}"><!-- 메뉴 사진-->
+                                            </div>
+                                        </c:if>
+                                        <div class="mycustom-menu_info">
+                                            <h5>${fvo.foodNm}</h5>
+                                            <a>${fvo.foodCost}</a>
+                                        </div>
+                                        </div>
+                                    </li>
+                                </button>
+
+                            </form>
+                        </c:forEach>
                         <!---------------------------------------------->
 
                         
@@ -102,7 +136,7 @@
             <!-- 휴게소정보 ---------------------------------------------------------------------------------------------->
             
             <div id="info-tab-pane" style="width: 680px; height: 350px;"  role="tabpanel" aria-labelledby="info-tab" tabindex="1"></div>
-            <div class="container justify-content-center tab-pane fade" role="tabpanel" id="info-tab-pane2">
+            <div class="container justify-content-center tab-pane fade" id="info-tab-pane2">
                 <div class="map-container">
                     <p style="font-size: 15px;">
                         알아서 해~~~!
@@ -149,8 +183,10 @@
         </div>
     </footer>
     <!-- footer 끝---------------------------------------------------------------------------------------------->
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f934bd38f9b5c3dd90a887df0540dada"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script>
         // 이미지 지도에서 마커가 표시될 위치입니다 
         var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
