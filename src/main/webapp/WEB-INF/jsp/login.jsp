@@ -10,6 +10,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
         <link rel="stylesheet" href="../css/main_custom.css" />
         <!--애니메이션 cdn-->
         <title>내 손안에 휴게소-마이휴 로그인 페이지</title>
@@ -46,11 +48,14 @@
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="login_search">
-                                        <div class="chk_group mb-2 d-flex justify-content-end">
-                                            <input type="checkbox" name="chk" id="ch01" class="form-check-input" />
-                                            <label for="ch01">&nbsp;ID 저장</label>
-                                            
-                                        </div>
+                                        <!--
+
+                                            <div class="chk_group mb-2 d-flex justify-content-end">
+                                                
+                                                <input type="checkbox" name="chk" id="ch01" class="form-check-input" />
+                                                <label for="ch01">&nbsp;ID 저장</label>
+                                            </div>
+                                        -->
                                     </div>
                                 </div>
                                 
