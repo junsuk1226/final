@@ -197,15 +197,16 @@ public class OrderPayController {
                 approved_at = (String) json.get("approved_at");
                 amount = Integer.parseInt(String.valueOf(amountjson.get("total")));
 
-                System.out.println(aid);
-                System.out.println(tid);
-                System.out.println(cid);
-                System.out.println(partner_order_id);
-                System.out.println(partner_user_id);
-                System.out.println(approved_at);
-                System.out.println(amount);
+                // System.out.println(aid);
+                // System.out.println(tid);
+                // System.out.println(cid);
+                // System.out.println(partner_order_id);
+                // System.out.println(partner_user_id);
+                // System.out.println(approved_at);
+                // System.out.println(amount);
 
-                // db저장, 그리고
+                // db저장, 그리고 결과 db에서 뽑아올 값 하나 넘기기
+
             }
 
         } catch (Exception e) {
@@ -221,7 +222,7 @@ public class OrderPayController {
     public ModelAndView paymentCancel() {
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("orderpay");
+        mv.setViewName("redirect:/orderpay");
 
         return mv;
     }
@@ -230,7 +231,7 @@ public class OrderPayController {
     public ModelAndView paymentFail() {
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("orderpayfail");
+        mv.setViewName("redirect:/orderpayfail");
 
         return mv;
     }
