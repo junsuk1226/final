@@ -26,6 +26,11 @@
     VALUES (#{m_idx}, NOW(), #{r_idx})
 </insert>
 
+<!-- 리뷰 목록 가져오기 -->
+<select id="getReviewList" parameterType="String" resultType="com.kdt.finalproject.vo.ReviewVO">
+  	SELECT * FROM final.review
+    WHERE m_idx = #{m_idx} and r_status = 0
+</select>
 
 
 </mapper>
