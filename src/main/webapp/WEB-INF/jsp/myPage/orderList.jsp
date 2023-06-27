@@ -18,7 +18,9 @@
             <link href="css/bootstrap.css" rel="stylesheet" />
             <!-- 새로추가 -->
             <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-            
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+            <link rel="stylesheet" href="../css/main_custom.css" />
+
             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
             <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
                 <style>
@@ -73,7 +75,7 @@
                             <!-- Top navigation-->
                             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                                 <div class="container-fluid">
-                                    <button class="btn btn-primary" id="sidebarToggle">메뉴</button>
+                                    <button class="btn btn-outline-success me-2 mycustom-mem-btn" id="sidebarToggle">메뉴</button>
                                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                         aria-expanded="false" aria-label="Toggle navigation">
@@ -124,7 +126,7 @@
                                                                 <div class="row">
                                                                     <div class="col-md-3">
                                                                         <select id="SearchType" name="searchType"
-                                                                            class="form-select">
+                                                                            class="btn btn-outline-success me-2 mycustom-mem-btn">
                                                                             <option value="0">관심검색</option>
                                                                             <option value="1">주문내역</option>
                                                                             <option value="2">리뷰관리</option>
@@ -134,12 +136,12 @@
                                                                     </div>
                                                                     <div class="col-md-7">
                                                                         <div class="input-group">
-                                                                            <input class="form-control"
+                                                                            <input class="btn btn-outline-success me-2 mycustom-mem-btn"
                                                                                 placeholder="검색어를 입력하세요"
                                                                                 aria-describedby="button-addon"
                                                                                 type="text" id="searchValue"
                                                                                 name="searchValue" />
-                                                                            <input type="button" class="btn btn-dark"
+                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn"
                                                                                 onclick="sendKeyword(this.form)"
                                                                                 value="검색" id="button-addon" />
                                                                         </div>
@@ -193,7 +195,7 @@
                                                             <div>-------------------------- </div>
                                                             <div> 총 218,000원</div>
                                                             <div style="text-align: right;">
-                                                                <button type="button">삭제</button>
+                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
                                                             </div>
                                                         </td>    
                                                     </tr>
@@ -206,8 +208,8 @@
                                                             <div>티본스테이크 외 4건 </div>
                                                             <div>-------------------------- </div>
                                                             <div> 총 467,000원</div>
-                                                            <div style="text-align: right;">
-                                                                <button type="button">삭제</button>
+                                                            <div  style="text-align: right;">
+                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
                                                             </div>
                                                         </td>    
                                                     </tr>
