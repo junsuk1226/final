@@ -164,10 +164,10 @@
                                             <tbody>
                                                 <%-- <c:forEach var="pvo" items="${requestScope.ar }" varStatus="st"> --%>
                                                     <tr>
-                                                        <%-- 주석시작 --%>
+                                                        
                                                         <%--<td>${page.totalRecord -
                                                             ((page.nowPage-1)*page.numPerPage+st.index) }</td> --%>
-                                                            <%-- <td>${pvo.o_idx}</td>
+                                                            <%-- <td>${pvo.o_idx}</td>--%>
                                                             <td>${pvo.o_class}</td>
                                                             <td><a href="Controller?type=aoView&o_idx=${pvo.o_idx }">
                                                                     <c:out value="${pvo.o_num }"></c:out>
@@ -184,22 +184,24 @@
                                                                     <c:otherwise>택배가 가출했어요</c:otherwise>
                                                                 </c:choose>
                                                             </td> --%>
-                                                        <%-- 주석끝 --%>
-
-
+                                                        <form action="/orderdetail" method="post">
                                                         <td>이미지</td>
                                                         <td colspan="4">
                                                             <div><p style="font-size: 15px; font-weight: bold;">휴게소명</p></div>
                                                             <div><p style="font-size: 12px; ">업소명 : 2023-06-24</p></div>
                                                             <div>떡볶이 외 21건 </div>
-                                                            <div>-------------------------- </div>
+                                                            <hr/>
                                                             <div> 총 218,000원</div>
                                                             <div style="text-align: right;">
+                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="submit">상세</button>
                                                                 <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
                                                             </div>
-                                                        </td>    
+                                                        
+                                                        </td> 
+                                                        <input type="hidden" value="${p_idx}" name="p_idx"/>  
+                                                    </form>
                                                     </tr>
-                                                    <tr>
+                                                    <!-- <tr>
 
                                                         <td>이미지</td>
                                                         <td colspan="4">
@@ -212,7 +214,7 @@
                                                                 <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
                                                             </div>
                                                         </td>    
-                                                    </tr>
+                                                    </tr> -->
                                                 <%-- </c:forEach> --%>
                                             </tbody>
                                         </table>
