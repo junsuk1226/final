@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,7 @@
             ${RestNm}
           </span>
           <form class="d-flex align-items-center">
-            <button class="mycustom-menu_info_icon_btn me-2" type="button" onclick="location.href='/menu?RestNm=${RestNm}'">
+            <button class="mycustom-menu_info_icon_btn me-2" type="button" onclick="location.href='/menu?RestNm=${RestNm}&r_photo=${r_photo}'">
               <img class="mycustom-menu_info_icon" src="../images/home-icon.png">
             </button>
             <button class="mycustom-menu_info_icon_btn me-2" type="button" href="/cart">
@@ -53,7 +54,11 @@
         <div class="container fixed-bottom d-flex flex-wrap justify-content-center">
             <div class="container mycustom-menuInfo_footer">
                 <button type="button" class="mycustom-cart_btn">
-                  ${foodCost}원 담기
+
+                  <c:set var="formattedCost" value="${foodCost}" />
+                  <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
+                  담기
+                
                 </button>
             </div>
         </div>

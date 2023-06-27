@@ -21,7 +21,7 @@ public class MenuInfoController {
     @Autowired
     private FoodService f_Service;
 
-    public ModelAndView menuInfo(String RestNm, String seq) throws Exception {
+    public ModelAndView menuInfo(String RestNm, String seq, String r_photo) throws Exception {
         ModelAndView mv = new ModelAndView();
 
         String key = "2077960536";// 개인
@@ -96,6 +96,9 @@ public class MenuInfoController {
 
         FoodVO vo = f_Service.foodInfo(seq); // DB에 임의로 저장해놓은 음식 정보
 
+        if (r_photo != null) {
+            mv.addObject("r_photo", r_photo);
+        }
         mv.addObject("vo", vo);
         mv.addObject("fvo", fvo); // API를 통해서 받아온 음식 정보
         mv.setViewName("menuList");

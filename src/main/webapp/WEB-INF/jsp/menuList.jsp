@@ -91,6 +91,13 @@
                                 <input type="hidden" name="foodMaterial" value="${fvo.foodMaterial}">
                                 <input type="hidden" name="etc" value="${fvo.etc}">
                                 <input type="hidden" name="f_image" value="${fvo.f_image}">
+                                <c:if test="${r_photo != '../images/rest_default_photo.png' && r_photo != null}">
+                                    <input type="hidden" name="r_photo" value="${r_photo}">
+                                </c:if>
+                                <c:if test="${r_photo == '../images/rest_default_photo.png' || r_photo == null}">
+                                    <input type="hidden" name="r_photo" value="../main_images/hand2.png">
+                                </c:if>
+                                
                                 
                                 
                                 <button type="submit" class="mycustom-menu_list_btn">
