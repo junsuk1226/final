@@ -21,6 +21,8 @@
 
             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
             <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+            <link rel="stylesheet" href="../css/main_custom.css" />
             <style>
                 table {
                     width: 100%;
@@ -77,7 +79,7 @@
                     <!-- Top navigation-->
                     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                         <div class="container-fluid">
-                            <button class="btn btn-primary" id="sidebarToggle">메뉴</button>
+                            <button class="btn btn-outline-success me-2 mycustom-mem-btn" id="sidebarToggle">메뉴</button>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                 aria-expanded="false" aria-label="Toggle navigation">
@@ -127,7 +129,7 @@
                                                         <div class="row">
                                                             <div class="col-md-3">
                                                                 <select id="SearchType" name="searchType"
-                                                                    class="form-select">
+                                                                    class="btn btn-outline-success me-2 mycustom-mem-btn">
                                                                     <option value="0">휴게소검색</option>
                                                                     <option value="1">주문내역</option>
                                                                     <option value="2">리뷰관리</option>
@@ -142,7 +144,7 @@
                                                                                 aria-describedby="button-addon"
                                                                                 type="text" id="searchValue"
                                                                                 name="searchValue" /> -->
-                                                                    <input type="button" class="btn btn-dark"
+                                                                    <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn"
                                                                         onclick="sendKeyword(this.form)" value="검색"
                                                                         id="button-addon" />
                                                                 </div>
@@ -225,10 +227,10 @@
                                             </tr>
                                             <tr>
                                                 <td  align="right">
-                                                    <button type="button" id="btnUpdate">수정</button>
-                                                    <button type="button" id="btnDelete">장바구니 비우기</button>
+                                                    <button type="button" id="btnUpdate" class="btn btn-outline-success me-2 mycustom-mem-btn">수정</button>
+                                                    <button type="button" id="btnDelete" class="btn btn-outline-success me-2 mycustom-mem-btn">장바구니 비우기</button>
                                                     <!--btnUpdate와 btnDelete id는 위쪽에 있는 자바스크립트가 처리한다.-->
-                                                    <button type="button" id="btnList">결제하기</button>
+                                                    <button type="button" id="btnList" class="btn btn-outline-success me-2 mycustom-mem-btn">결제하기</button>
                                                 </td>
                                             </tr>
                                         </tbody>

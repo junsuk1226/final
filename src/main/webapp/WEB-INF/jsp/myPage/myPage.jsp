@@ -18,7 +18,9 @@
             <link href="css/bootstrap.css" rel="stylesheet" />
             <!-- 새로추가 -->
             <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-            
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+            <link rel="stylesheet" href="../css/main_custom.css" />
+
             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
             <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
                 <style>
@@ -149,7 +151,7 @@
                                                                         <li class="mileage ">
                                                                             <strong class="title">적립금&nbsp;</strong>
                                                                             <strong class="cont"> 0원</strong>
-                                                                            <input type="button" class="btn btn-dark" onclick=""
+                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick=""
                                                                              value="조회" id="button-addon" />
                                                                         </li>
                                                                         <br/>
@@ -158,7 +160,7 @@
                                                                             <strong class="cont">
                                                                                 <span> 0개</span>
                                                                             </strong>
-                                                                            <input type="button" class="btn btn-dark" 
+                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn"
                                                                             onclick="" value="조회" id="btn btn-link" />
                                                                         </li>
                                                                         <br />
@@ -167,7 +169,7 @@
                                                                             <strong class="cont">
                                                                                 <span> 0개</span>
                                                                             </strong>
-                                                                            <input type="button" class="btn btn-dark" onclick="" value="조회" id="btn btn-link" />
+                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
                                                                         </li>
                                                                         <br />
                                                                         <li class="coupon displaynone">
@@ -175,7 +177,7 @@
                                                                             <strong class="cont">
                                                                                 <span> 0개</span>
                                                                             </strong>
-                                                                            <input type="button" class="btn btn-dark" onclick="" value="조회" id="btn btn-link" />
+                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
                                                                         </li>
                                                                         <br />
                                                                         <li class="coupon displaynone">
@@ -183,7 +185,7 @@
                                                                             <strong class="cont">
                                                                                 <span> :&nbsp;없음&nbsp;</span>
                                                                             </strong>
-                                                                            <input type="button" class="btn btn-dark" onclick="" value="조회" id="btn btn-link" />
+                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
                                                                         </li>
                                                                         <br />
                                                                         <li class="coupon displaynone">
@@ -191,7 +193,7 @@
                                                                             <strong class="cont">
                                                                                 <span></span>
                                                                             </strong>
-                                                                            <input type="button" class="btn btn-dark" onclick="" value="조회" id="btn btn-link" />
+                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
                                                                         </li>
                                                                         <br />
                                                                         <li class="coupon displaynone">
@@ -199,7 +201,7 @@
                                                                             <strong class="cont">
                                                                                 <span></span>
                                                                             </strong>
-                                                                            <input type="button" class="btn btn-dark" onclick="" value="조회" id="btn btn-link" />
+                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
                                                                         </li>
                                                                         <br />
                                                                         <li class="coupon displaynone">
@@ -207,7 +209,7 @@
                                                                             <strong class="cont">
                                                                                 <span>02-882-1234</span>
                                                                             </strong>
-                                                                            <input type="button" class="btn btn-dark" onclick="" value="연결하기" id="btn btn-link" />
+                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="연결하기" id="btn btn-link" />
                                                                         </li>
                                                                     </ul>
                                                                 </div>
