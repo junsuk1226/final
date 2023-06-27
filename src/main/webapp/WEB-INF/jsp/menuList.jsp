@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,11 +36,11 @@
     <!-- 메뉴바끝 ----------------------------------------------------------------------------------------------------------->
 
     <div class="container" style="max-width: 700px;">
-        <c:if test="${r_photo != null}">
+        <c:if test="${r_photo != '../images/rest_default_photo.png' || r_photo != null}">
             <img class="mycustom-menuList_main_image" src="${r_photo}">
         </c:if>
-        <c:if test="${r_photo == null}">
-            <img class="mycustom-menuList_main_image" src="../main_images/hand.png">
+        <c:if test="${r_photo == '../images/rest_default_photo.png' || r_photo == null}">
+            <img class="mycustom-menuList_main_image" src="../main_images/hand2.png">
         </c:if>
     </div>
 
@@ -100,7 +101,10 @@
                                         </div>
                                         <div class="mycustom-menu_info">
                                             <h3>${fvo.foodNm}</h3>
-                                            <a>${fvo.foodCost}원</a>
+                                            <a>
+                                                <c:set var="formattedCost" value="${fvo.foodCost}" />
+                                                <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
+                                            </a>
                                         </div>
                                         </div>
                                     </li>
@@ -129,7 +133,10 @@
                                         </c:if>
                                         <div class="mycustom-menu_info">
                                             <h3>${fvo.foodNm}</h3>
-                                            <a>${fvo.foodCost}원</a>
+                                            <a>
+                                                <c:set var="formattedCost" value="${fvo.foodCost}" />
+                                                <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
+                                            </a>
                                         </div>
                                         </div>
                                     </li>
