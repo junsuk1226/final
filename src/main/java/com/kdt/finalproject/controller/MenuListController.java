@@ -10,7 +10,6 @@ import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,7 +24,7 @@ public class MenuListController {
     private FoodService f_Service;
 
     @RequestMapping("/menu")
-    public ModelAndView menu(String RestNm) throws Exception {
+    public ModelAndView menu(String RestNm, String r_photo) throws Exception {
         ModelAndView mv = new ModelAndView();
         String key = "2077960536";// 개인
                                   // 인증키
@@ -109,69 +108,53 @@ public class MenuListController {
         sb2.append("&type=xml");
         sb2.append("&numOfRows=1000");
         sb2.append("&pageNo=1");
-        sb2.append("&stdRestNm=");
+        sb2.append("&serviceAreaName=");
         sb2.append(RestName2);
 
-        // 위의 StringBuffer가 가지고 있는 URL전체 경로를 가지고 URL객체를 먼저 생성하자!
         URL url2 = new URL(sb2.toString());
 
-        // 위의 URL을 요청하기 위해 연결객체 생성하자!
         HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
         conn2.connect();// 호출~!
-
-        // 호출했을 때 응답이 XML로 전달된다. 우린 이 XML문서를 파싱할 수 있어야 한다.
-        // mvnrepository.com에서 jdom으로 검색하여 의존성을 알아내야 한다.
         SAXBuilder builder2 = new SAXBuilder();
-
-        // 위의 SAXBuilder를 이용하여 응답되는 XML문서를 Document로 생성한다.
         Document doc2 = builder2.build(conn2.getInputStream());
 
         // 루트엘리먼트 얻기
         Element root2 = doc2.getRootElement();
 
-        List<Element> list2 = root2.getChildren("list");
+        Element list2 = root2.getChild("list");
 
-        // 위의 list 안에 있는 Element들을 ItemVO로 만들어서 배열로 저장해 둔다.
+        String direction = list2.getChildText("direction");
+        String serviceAreaCode = list2.getChildText("serviceAreaCode");
+        String serviceAreaName = list2.getChildText("serviceAreaName");
+        String telNo = list2.getChildText("telNo");
+        String convenience = list2.getChildText("convenience");
+        String truckSaYn = list2.getChildText("truckSaYn");
+        String maintenanceYn = list2.getChildText("maintenanceYn");
+        String numOfRows = list2.getChildText("numOfRows");
+        String pageNo = list2.getChildText("pageNo");
+        String serviceAreaCode2 = list2.getChildText("serviceAreaCode2");
+        String routeName = list2.getChildText("routeName");
+        String routeCode = list2.getChildText("routeCode");
+        String svarAddr = list2.getChildText("svarAddr");
+        String pageSize = list2.getChildText("pageSize");
+        String code = list2.getChildText("code");
+        String message = list2.getChildText("message");
+        String count = list2.getChildText("count");
+        String brand = list2.getChildText("brand");
 
-        // double userLatitude = Double.valueOf(lat);
-        // double userLongitude = Double.valueOf(lon);
-        FacilitiesVO[] favo = new FacilitiesVO[list2.size()];
-        int k = 0;
-
-        for (Element item : list) {
-            String direction = item.getChildText("direction");
-            String serviceAreaCode = item.getChildText("serviceAreaCode");
-            String serviceAreaName = item.getChildText("serviceAreaName");
-            String telNo = item.getChildText("telNo");
-            String convenience = item.getChildText("convenience");
-            String truckSaYn = item.getChildText("truckSaYn");
-            String maintenanceYn = item.getChildText("maintenanceYn");
-            String numOfRows = item.getChildText("numOfRows");
-            String pageNo = item.getChildText("pageNo");
-            String serviceAreaCode2 = item.getChildText("serviceAreaCode2");
-            String routeName = item.getChildText("routeName");
-            String routeCode = item.getChildText("routeCode");
-            String svarAddr = item.getChildText("svarAddr");
-            String pageSize = item.getChildText("pageSize");
-            String code = item.getChildText("code");
-            String message = item.getChildText("message");
-            String count = item.getChildText("count");
-            String brand = item.getChildText("brand");
-
-            FacilitiesVO vo = new FacilitiesVO(direction, serviceAreaCode, serviceAreaName, telNo, convenience,
-                    truckSaYn, maintenanceYn, numOfRows, pageNo, serviceAreaCode2, routeName, routeCode, svarAddr,
-                    pageSize, code, message, count, brand);
-
-            favo[i++] = vo;
-
-        } // 복문의 끝
+        FacilitiesVO favo = new FacilitiesVO(direction, serviceAreaCode, serviceAreaName, telNo, convenience,
+                truckSaYn, maintenanceYn, numOfRows, pageNo, serviceAreaCode2, routeName, routeCode, svarAddr,
+                pageSize, code, message, count, brand);
 
         FoodVO[] far = f_Service.all();
+
+        if (r_photo != null)
+            mv.addObject("r_photo", r_photo);
 
         mv.addObject("RestNm", RestNm);
         mv.addObject("fList", far); // DB에 저장해놓은 음식 리스트
         mv.addObject("fvo", fvo); // API에서 받아오는 음식 리스트
-        mv.addObject("favo", favo);
+        mv.addObject("favo", favo); // API에서 받아오는 휴게소 정보
         mv.setViewName("menuList");
 
         return mv;

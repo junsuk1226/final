@@ -6,6 +6,27 @@
     font-family: "omyu";
     src: url(font/오뮤_다예쁨체.ttf);
 }
+@font-face {
+    font-family: "jamsil_bold";
+    src: url(font/The\ Jamsil\ 5\ Bold.ttf);
+}
+@font-face {
+    font-family: "jamsil";
+    src: url(font/The\ Jamsil\ 3\ Regular.ttf);
+}
+@font-face {
+    font-family: "dove";
+    src: url(font/Dovemayo_wild.ttf);
+}
+@font-face {
+    font-family: "dovegothic";
+    src: url(font/Dovemayo_gothic.ttf);
+}
+
+.mycustom-menuList_main_image{
+    width: 100%;
+    height: 350px;
+}
 
 .mycustom-tab_content{
     margin-top: 10px;
@@ -16,6 +37,20 @@
     position: sticky;
     top: -0.1px;
 }
+
+.mycustom-rest_name{
+    font-family: "dovegothic";
+    padding-top: 10px;
+    text-align: center;
+}
+
+.mycustom-rest_direction{
+    font-family: "dovegothic";
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
 
 .mycustom-nav_item{
     width: 100%;
@@ -38,6 +73,8 @@
     border: none;
     padding: 0;
     background-color: transparent;
+    font-family: "dovegothic";
+    font-size: 20px;
 }
 
 .mycustom-menu_list_group_item{

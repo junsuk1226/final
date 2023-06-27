@@ -34,10 +34,22 @@
     </div>
     <!-- 메뉴바끝 ----------------------------------------------------------------------------------------------------------->
 
+    <div class="container" style="max-width: 700px;">
+        <c:if test="${r_photo != null}">
+            <img class="mycustom-menuList_main_image" src="${r_photo}">
+        </c:if>
+        <c:if test="${r_photo == null}">
+            <img class="mycustom-menuList_main_image" src="../main_images/hand.png">
+        </c:if>
+    </div>
+
     <!-- tab 영역------------------------------------------------------------------------------------------------------------>
     <div class="sticky-top mycustom-sticky_menu">
         <div class="container" style="max-width: 700px;">
-            <h1>휴게소명</h1>
+            <div style="border: 1px solid #bebebe; border-left:0; border-right:0; margin: 10px 0px;">
+                <h1 class="mycustom-rest_name">${favo.serviceAreaName}</h1>
+                <h3 class="mycustom-rest_direction">${favo.direction} 방향</h3>
+            </div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item mycustom-nav_item" role="presentation">
                     <button onclick="hide()" class="nav-link active mycustom-nav_btn" id="menu-tab" data-bs-toggle="tab" data-bs-target="#menu-tab-pane" type="button" role="tab" aria-controls="menu-tab-pane" aria-selected="true">
@@ -87,8 +99,8 @@
                                             <img class="mycustom-menu_img" src="${fvo.f_image}"><!-- 메뉴 사진-->
                                         </div>
                                         <div class="mycustom-menu_info">
-                                            <h5>${fvo.foodNm}</h5>
-                                            <a>${fvo.foodCost}</a>
+                                            <h3>${fvo.foodNm}</h3>
+                                            <a>${fvo.foodCost}원</a>
                                         </div>
                                         </div>
                                     </li>
@@ -105,6 +117,7 @@
                                 <input type="hidden" name="foodMaterial" value="${fvo.foodMaterial}">
                                 <input type="hidden" name="etc" value="${fvo.etc}">
                                 
+                                <input id="addr" type="hidden" name="svarAddr" value="${favo.svarAddr}">
                                 
                                 <button type="submit" class="mycustom-menu_list_btn">
                                     <li class="list-group-item mycustom-menu_list_group_item">
@@ -115,8 +128,8 @@
                                             </div>
                                         </c:if>
                                         <div class="mycustom-menu_info">
-                                            <h5>${fvo.foodNm}</h5>
-                                            <a>${fvo.foodCost}</a>
+                                            <h3>${fvo.foodNm}</h3>
+                                            <a>${fvo.foodCost}원</a>
                                         </div>
                                         </div>
                                     </li>
@@ -174,7 +187,6 @@
         </div>
     </div>
     <!-- tab 영역 끝------------------------------------------------------------------------------------------------>
-    
 
     <!-- footer 시작----------------------------------------------------------------------------------------------> 
     <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mycustom-main_footer">
@@ -185,27 +197,46 @@
     <!-- footer 끝---------------------------------------------------------------------------------------------->
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f934bd38f9b5c3dd90a887df0540dada"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=092a22d4a329417bd5fb9544ca6bb378&libraries=services"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script>
-        // 이미지 지도에서 마커가 표시될 위치입니다 
-        var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
 
-        // 이미지 지도에 표시할 마커입니다
-        // 이미지 지도에 표시할 마커는 Object 형태입니다
-        var marker = {
-            position: markerPosition
-        };
+        var addr = $("#addr").val();
+            
+        var mapContainer = document.getElementById('info-tab-pane'), // 지도를 표시할 div 
+        mapOption = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            draggable: false,
+            level: 3 // 지도의 확대 레벨
+        };  
 
-        var staticMapContainer  = document.getElementById('info-tab-pane'), // 이미지 지도를 표시할 div  
-            staticMapOption = { 
-                center: new kakao.maps.LatLng(33.450701, 126.570667), // 이미지 지도의 중심좌표
-                level: 3, // 이미지 지도의 확대 레벨
-                marker: marker // 이미지 지도에 표시할 마커 
-            };    
+        // 지도를 생성합니다    
+        var map = new kakao.maps.Map(mapContainer, mapOption); 
 
-        // 이미지 지도를 생성합니다
-        var map = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
+
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch(addr, function(result, status) {
+
+            // 정상적으로 검색이 완료됐으면 
+            if (status === kakao.maps.services.Status.OK) {
+
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                // 결과값으로 받은 위치를 마커로 표시합니다
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords
+                });
+
+                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                map.setCenter(coords);
+            } 
+        });
+   
+
+        
         
         $("#info-tab-pane").addClass("tab-pane fade");
 

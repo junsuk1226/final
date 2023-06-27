@@ -119,7 +119,7 @@
                                 <br />
                               
                                 <br />
-                                <li class="mb-3">Nickname</li>
+                                <li class="mb-3">NickName</li>
                                 <div class="form-floating">
                                     <input type="text" placeholder="Nickname" class="form-control input" name="j_nickname" id="j_nickname"
                                     required value="${sessionScope.mvo.m_name}">
@@ -139,18 +139,18 @@
                                 <div class="form-floating mb-5">
                                     <input type="text" placeholder="PhoneNumber" class="form-control input" name="m_phone" id="m_phone"
                                     required value="${sessionScope.mvo.m_phone}">
-                                    <label class="text-secondary" for="floatingInput">01012345678</label>
+                                    <label class="text-secondary" for="floatingInput">휴대폰번호</label>
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
                                         휴대폰 번호를 입력해주세요.
                                     </div>
                                 </div> 
-                                <li class="mb-3">Password</li>
+                                <li class="mb-3">PassWord</li>
                                 <div class="form-floating">
                                     <input type="password" placeholder="Confirm password" class="form-control password"
                                         name="j_confirmpassword" id="j_confirmpassword" required>
-                                    <label class="text-secondary" for="floatingInput">현재비밀번호를 입력하셔야 변경 가능합니다</label>
+                                    <label class="text-secondary" for="floatingInput">현재 비밀번호를 입력하셔야 변경 가능합니다</label>
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -159,11 +159,11 @@
                                 </div>
                                 <br />
                                 <div class="col-7 d-grid gap-2  mx-auto">
-                                    <button type="button" class="btn btn-dark " onclick="send(this.form)">회원정보수정</button>
+                                    <button type="button" class="btn btn-dark " onclick="send(this.form)">회원정보 수정</button>
                                 </div>
                                 <br/>
                                 <div class="col-7 d-grid gap-2  mx-auto" href="/infopw">
-                                    <button type="button" class="btn btn-dark "> <a class="nav-link" href="/infopw">비밀번호변경 <a/></button>
+                                    <button type="button" class="btn btn-dark "> <a class="nav-link" href="/infopw">비밀번호 변경 <a/></button>
                                 </div>
                             </ul>
                         </form>

@@ -99,6 +99,7 @@ public class MemController {
 
 		// 로그인한 사용자의 정보를 세션에서 얻어온다.
 		Object obj = session.getAttribute("mvo");
+
 		if (obj != null) {
 			// mvo에 m_idx값을 저장해야 한다.
 			MemVO mvo = (MemVO) obj;
@@ -107,7 +108,7 @@ public class MemController {
 			int cnt = m_Service.updatePw(vo);
 			if (cnt > 0) {
 				// 세션에 있는 정보도 수정해 줘야 한다.
-				mvo.setM_name(vo.getNew_pw());
+				mvo.setM_pw(vo.getNew_pw());
 
 			}
 
