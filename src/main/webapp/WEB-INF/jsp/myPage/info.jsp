@@ -175,7 +175,7 @@
                             <li class="coupon displaynone">
                                 <strong class="title">고객센터&nbsp;</strong>
                                 <strong class="cont">
-                                    <span>02-882-1234</span>
+                                    <span>02-112</span>
                                 </strong>
                                 <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="연결하기"
                                     id="btn btn-link" />
