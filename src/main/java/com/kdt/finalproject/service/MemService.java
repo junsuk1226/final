@@ -41,4 +41,13 @@ public class MemService {
         return m_Mapper.login(map);
 
     }
+
+    public int updateMem(MemVO vo) {
+        return m_Mapper.updateMem(vo);
+    }
+
+    public int updatePw(MemVO vo) {
+        return m_Mapper.updatePw(vo);
+    }
+
 }
