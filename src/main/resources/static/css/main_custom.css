@@ -290,7 +290,7 @@ object-fit: contain;
 
 .container{
     box-sizing: border-box;
-    display: flex!important;
+    
 }
 /* ------------------------------------ */
 
