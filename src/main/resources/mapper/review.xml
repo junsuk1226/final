@@ -14,6 +14,18 @@
     WHERE r_idx = #{r_idx}
 </select>
 
+<!--리뷰 작성-->
+<insert id="addReview" parameterType="com.kdt.finalproject.vo.ReviewVO">
+    INSERT INTO final.review(m_idx, r_content, r_score, restCd, r_status)
+    VALUES (#{m_idx}, #{r_content}, #{r_score}, #{restCd}, #{r_status})
+</insert>
+
+<!--리뷰 로그 작성-->
+<insert id="addReviewLog" parameterType="com.kdt.finalproject.vo.ReviewLogVO">
+    INSERT INTO final.reviewlog(m_idx, rl_writeDate, r_idx)
+    VALUES (#{m_idx}, NOW(), #{r_idx})
+</insert>
+
 
 
 </mapper>
