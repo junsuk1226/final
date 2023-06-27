@@ -267,6 +267,33 @@ object-fit: contain;
     width: 900px;
 }
 
+.card-header{
+    font-family: "omyu";
+    text-align: center;
+}
+  
+.card-body span{
+    font-family: "suite";
+}
+
+.accordion-header{
+    box-sizing: border-box;
+    
+}
+
+.accordion-button{
+    box-sizing: border-box;
+}
+
+.accordion{
+    box-sizing: border-box;
+    
+}
+
+.container{
+    box-sizing: border-box;
+    
+}
 /* ------------------------------------ */
 
 #resultContainer{

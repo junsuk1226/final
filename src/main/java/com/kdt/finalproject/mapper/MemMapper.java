@@ -11,4 +11,8 @@ public interface MemMapper {
 
     MemVO login(Map<String, String> map);
 
+    int updateMem(MemVO vo);
+
+    int updatePw(MemVO vo);
+
 }

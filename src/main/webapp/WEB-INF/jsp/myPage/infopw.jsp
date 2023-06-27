@@ -20,7 +20,7 @@
             <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
             <link rel="stylesheet" href="../css/main_custom.css" />
-           
+
             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
             <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
             <style>
@@ -85,10 +85,11 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                <li class="nav-item active"><a class="nav-link" href="/main">홈</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-                                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">박스</a>
+                                    <li class="nav-item active"><a class="nav-link" href="/main">홈</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
+                                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+                                            id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">박스</a>
                                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="#!">공지사항</a> <a class="dropdown-item"
                                                 href="#!">이벤트</a>
@@ -104,48 +105,16 @@
                     <!-- Page content-->
 
                     <div class="card-body">
-                        <form action="/myPage/info" method="post" class="needs-validation" novalidate >
+                        <form action="/common/join" method="post" class="needs-validation" novalidate>
                             <ul class="list-unstyled">
-                                <li class="mb-3">Enter Email</li>
-                                <div class="form-floating ">
-                                    <input type="text" placeholder="Email" class="form-control"  name="j_email" id="j_email" required value="${sessionScope.mvo.m_id}" disabled>
-                                    <label for="floatingInput" class="text-secondary"><example@email.com></label>
-                                    <div class="valid-feedback">
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        이메일 형식이 올바르지 않습니다.
-                                    </div>
-                                </div>
+                                
+                                
+                             
+
+                                
+                                
+                                
                                 <br />
-                              
-                                <br />
-                                <li class="mb-3">Nickname</li>
-                                <div class="form-floating">
-                                    <input type="text" placeholder="Nickname" class="form-control input" name="j_nickname" id="j_nickname"
-                                    required value="${sessionScope.mvo.m_name}">
-                                    <label class="text-secondary" for="floatingInput">닉네임</label>
-                                    <div class="valid-feedback">
-                                    </div>
-                                    <br />
-                                    <div class="invalid-feedback">
-                                        닉네임을 입력하세요.
-                                    </div>
-                                </div>
-                                <br />
-                                <li class="mb-3">PhoneNumber</li>
-                                <figcaption class="blockquote-footer text-start">
-                                    <em>기호 또는 공백을 제외하고 입력해 주세요.</em>
-                                </figcaption>
-                                <div class="form-floating mb-5">
-                                    <input type="text" placeholder="PhoneNumber" class="form-control input" name="m_phone" id="m_phone"
-                                    required value="${sessionScope.mvo.m_phone}">
-                                    <label class="text-secondary" for="floatingInput">01012345678</label>
-                                    <div class="valid-feedback">
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        휴대폰 번호를 입력해주세요.
-                                    </div>
-                                </div> 
                                 <li class="mb-3">Password</li>
                                 <div class="form-floating">
                                     <input type="password" placeholder="Confirm password" class="form-control password"
@@ -158,29 +127,45 @@
                                     </div>
                                 </div>
                                 <br />
-                                <div class="col-7 d-grid gap-2  mx-auto">
-                                    <button type="button" class="btn btn-dark " onclick="send(this.form)">회원정보수정</button>
+                                <li class="mb-3">Create Password</li>
+                                <figcaption class="blockquote-footer text-start">
+                                    <em>8자 이상 입력해 주세요. </em>
+                                </figcaption>
+                                <div class="form-floating">
+                                    <input type="password" placeholder="Create password" class="form-control password" name="new_pw" id="new_pw"
+                                        required>
+                                    <label class="text-secondary" for="floatingInput">새로운 비밀번호</label>
+                                    <div class="valid-feedback">
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        비밀번호는 8자 이상 입력해야 합니다.
+                                    </div>
                                 </div>
-                                <br/>
-                                <div class="col-7 d-grid gap-2  mx-auto" href="/infopw">
-                                    <button type="button" class="btn btn-dark "> <a class="nav-link" href="/infopw">비밀번호변경 <a/></button>
+
+
+                               
+                               
+                                <br />
+                                <div class="col-7 d-grid gap-2  mx-auto">
+                                    <button type="button" class="btn btn-dark "
+                                        onclick="send(this.form)">비밀번호변경</button>
                                 </div>
                             </ul>
                         </form>
                         <hr>
-                        
+
                     </div>
-                        <div>
-                            궁금하신 사항은 .
-                            <li class="coupon displaynone">
-                                <strong class="title">고객센터&nbsp;</strong>
-                                <strong class="cont">
-                                    <span>02-882-1234</span>
-                                </strong>
-                                <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="연결하기"
-                                    id="btn btn-link" />
-                            </li>
-                        </div>
+                    <div>
+                        궁금하신 사항은 .
+                        <li class="coupon displaynone">
+                            <strong class="title">고객센터&nbsp;</strong>
+                            <strong class="cont">
+                                <span>02-882-1234</span>
+                            </strong>
+                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick=""
+                                value="연결하기" id="btn btn-link" />
+                        </li>
+                    </div>
 
                     <div>
                         <!-- footer 시작---------------------------------------------------------------------------------------------->
@@ -288,106 +273,96 @@
             <script src="js/scripts.js"></script>
 
             <script>
-                
-
-    function send(form) {
-        let check1 = /^[a-zA-Z0-9]+@[a-z]+\.[a-zA-Z]{2,3}$/i; // 아이디 이메일 형식 검사
-        let check2 = /^[a-zA-Z0-9]{8,}$/i;
 
 
-        let j_email = $("#j_email").val();
-        let j_confirmpassword = $("#j_confirmpassword").val();
-        let j_nickname = $("#j_nickname").val();
-        let m_phone = $("#m_phone").val();
-
-                
-        if (j_confirmpassword.trim().length < 1) {
-            $("#j_confirmpassword").removeClass("is-valid");
-            $("#j_confirmpassword").addClass("is-invalid");
-
-            $("#j_confirmpassword").focus();
-            return;
-        } else {
-            $("#j_confirmpassword").removeClass("is-invalid");
-            $("#j_confirmpassword").addClass("is-valid");
-        }
-
-        if (j_nickname.trim().length < 1) {
-            $("#j_nickname").removeClass("is-valid");
-            $("#j_nickname").addClass("is-invalid");
-
-            $("#j_nickname").focus();
-            return;
-        } else {
-            $("#j_nickname").removeClass("is-invalid");
-            $("#j_nickname").addClass("is-valid");
-        }
-
-        if (m_phone.trim().length < 1) {
-            $("#m_phone").removeClass("is-valid");
-            $("#m_phone").addClass("is-invalid");
-
-            $("#m_phone").focus();
-            return;
-        } else {
-            $("#m_phone").removeClass("is-invalid");
-            $("#m_phone").addClass("is-valid");
-        }
-
-        // 비동기식통신
-        $.ajax({
-            url: "/myPage/changeInfo",
-            type: "post",
-            data: { "m_name": j_nickname, "m_phone": m_phone, "m_pw": j_confirmpassword  },
-            dataType: "json"
-        }).done(function (data) {
-            if (data.updateMem_fail == "1")// 잘 저장된 경우
-                $('#modal1').modal('show');
-            else {
-                //$("#j_email").val("");
-                $('#modal2').modal('show');
-            }
-        })
-
-    }
-
-    // 모달 1 확인 버튼 클릭 이벤트 처리
-    $(document).ready(function () {
-        $('.mo1btn').on('click', function () {
-            //window.location.href = "/login"
-        });
-    });
+                function send(form) {
+                    let check1 = /^[a-zA-Z0-9]+@[a-z]+\.[a-zA-Z]{2,3}$/i; // 아이디 이메일 형식 검사
+                    let check2 = /^[a-zA-Z0-9]{8,}$/i;
 
 
+                   
+                    let j_confirmpassword = $("#j_confirmpassword").val();
+                   
+                    let new_pw = $("#new_pw").val();
 
-    $(function () {
-        $("#j_email").bind("keyup", function () {
-            var str = $(this).val();
-            if (str.trim().length > 4) {
-                $.ajax({
-                    url: "/join/checkid",
-                    type: "post",
-                    data: { "email": str },
-                    dataType: "json"
-                }).done(function (res) {
-                    if (res.chk == true && check1.test(str)) {
-                        $("#j_box").html("&nbsp;사용가능");
+
+                    if (j_confirmpassword.trim().length < 1) {
+                        $("#j_confirmpassword").removeClass("is-valid");
+                        $("#j_confirmpassword").addClass("is-invalid");
+
+                        $("#j_confirmpassword").focus();
+                        return;
                     } else {
-                        $("#j_box").html("&nbsp;사용불가능");
+                        $("#j_confirmpassword").removeClass("is-invalid");
+                        $("#j_confirmpassword").addClass("is-valid");
                     }
-                })
-            } else {
-                $("#j_box").html("");
-            }
-        });
 
-        // if("${commjoin_fail}" == "commjoin_fail"){
-        //     alert("이미 가입된 이메일입니다.");
-        //     return;
-        // }
-    });
+                    
+                    if (new_pw.trim().length < 1) {
+                        $("#new_pw").removeClass("is-valid");
+                        $("#new_pw").addClass("is-invalid");
 
-</script>
+                        $("#new_pw").focus();
+                        return;
+                    } else {
+                        $("#new_pw").removeClass("is-invalid");
+                        $("#new_pw").addClass("is-valid");
+                    }
+
+                    // 비동기식통신
+                    $.ajax({
+                        url: "/myPage/changePw",
+                        type: "post",
+                        data: { "new_pw": new_pw, "m_pw": j_confirmpassword },
+                        dataType: "json"
+                    }).done(function (data) {
+                        if (data.updateMem_fail == "1")// 잘 저장된 경우
+                            $('#modal1').modal('show');
+                        else {
+                            //$("#j_email").val("");
+                            $('#modal2').modal('show');
+                        }
+                    })
+
+                }
+
+                // 모달 1 확인 버튼 클릭 이벤트 처리
+                $(document).ready(function () {
+                    $('.mo1btn').on('click', function () {
+                        //window.location.href = "/login"
+                    });
+                });
+
+
+
+                $(function () {
+                    $("#j_email").bind("keyup", function () {
+                        var str = $(this).val();
+                        if (str.trim().length > 4) {
+                            $.ajax({
+                                url: "/join/checkid",
+                                type: "post",
+                                data: { "email": str },
+                                dataType: "json"
+                            }).done(function (res) {
+                                if (res.chk == true && check1.test(str)) {
+                                    $("#j_box").html("&nbsp;사용가능");
+                                } else {
+                                    $("#j_box").html("&nbsp;사용불가능");
+                                }
+                            })
+                        } else {
+                            $("#j_box").html("");
+                        }
+                    });
+
+                    // if("${commjoin_fail}" == "commjoin_fail"){
+                    //     alert("이미 가입된 이메일입니다.");
+                    //     return;
+                    // }
+                });
+
+            </script>
         </body>
 
         </html>

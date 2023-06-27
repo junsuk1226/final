@@ -20,8 +20,10 @@ public class MemVO {
             access_token,
             refresh_token,
             m_phone,
-            m_var2,
+            restCd,
             m_var3,
             m_var4,
-            m_var5;
+            m_var5,
+            new_pw;
+
 }
