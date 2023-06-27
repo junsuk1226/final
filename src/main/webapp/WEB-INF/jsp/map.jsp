@@ -131,34 +131,37 @@
 	</div>
 
 	
-
-	<div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-line_search_accordion_area">
-        <div class="accordion accordion-flush">
-            
-			
-				
-			<div class="accordion-item mycustom-line_search_info mycustom_now_info">
-				<h2 class="accordion-header" id="panelsStayOpen-headingOne">
-					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-						<img class="mycustom-line_search_img" src="https://blog.kakaocdn.net/dn/QiQw7/btq1ByoRVn5/fOPibYxNNlLJWwwNRU3L5k/img.jpg"/>
-						<ul class="mycustom-line_search_ul" id="unitName"> 
-					</button>
-				</h2>
-				<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-					<div class="accordion-body">
-						<div class="container">
-							<p id="unitName"></p> 
-							<div id="resultContainer"></div>
-							<div id="resultContainer2"></div>
-							
+	<div class="container" id="accordionExample">
+		<div class="row">
+			<div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-line_search_accordion_area">
+				<div class="accordion accordion-flush">
+					
+					
+						
+					<div class="accordion-item mycustom-line_search_info mycustom_now_info">
+						<h2 class="accordion-header" id="panelsStayOpen-headingOne">
+							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+								<img class="mycustom-line_search_img" src="https://blog.kakaocdn.net/dn/QiQw7/btq1ByoRVn5/fOPibYxNNlLJWwwNRU3L5k/img.jpg"/>
+								<ul class="mycustom-line_search_ul" id="unitName"> 
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+							<div class="accordion-body">
+								<div class="container">
+									<p id="unitName"></p> 
+									<div id="resultContainer"></div>
+									<div id="resultContainer2"></div>
+									
+								</div>
+							</div>
 						</div>
 					</div>
+					
+					
 				</div>
 			</div>
-			
-            
-        </div>
-    </div>
+		</div>
+	</div>
 	<!-- 아코디언 끝-->
 
 	<!-- footer 시작---------------------------------------------------------------------------------------------->
