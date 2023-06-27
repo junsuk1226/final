@@ -52,30 +52,27 @@
 	<div class="row justify-content-center">
 		<div class="col-md-6 row-cols-1 row-cols-md-3 g-4">
 			<div class="input_area col-md-12 mx-auto card shadow p-3 mb-4 bg-body rounded" style="margin: 0 auto; border:none; ">
+				<div class="card-header">
+					마이휴가 추천하는 지금 날씨에 먹기 좋은 음식!
+				  </div>
 				<div class="card-body align-items-center">
 					<div class = "row justify-content-evenly ">
-						
 						<div class="mycustom-weather col-md-3 d-flex align-items-center">
 							<div id="weather" class="me-3"></div>
 							<div id="tem"class="me-5" style="text-align: center; font-size: 25px; font-weight: bold;"></div>
 							<div class="vr"></div>
 						</div>
-						<div class="col-md-2">
-							<span id="recommFood" ></span>
+						<div class="col-md-2" id ="recommFood">
+						
 						</div>
-
-						<div class="col-md-2">
+					
+						<div class="col-md-2" id ="recommFood1">
 							
-							<div class="">
-								<img src="../images/raining.png" class="card-img-top" alt="...">	
-							</div>
-
 						</div>
-						<div class="col-md-2">
-							<div class="">
-								<img src="../images/snow.png" class="card-img-top" alt="...">
-							</div>
+						<div class="col-md-2" id ="recommFood2">
+							
 						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -115,10 +112,14 @@
 	
 
 	</div> -->
+	<form action="menu" method="get" id="frm">
+		<input type="hidden" id="RestNm" name="RestNm" value=""/>
+	</form>
+
 
 	<div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-map_area">
 
-		<button class="mycustom-order_btn" type="button">
+		<button class="mycustom-order_btn" type="button" onclick="exe()">
 			<span><img class="mycustom-order_icon" src="https://cdn-icons-png.flaticon.com/512/4645/4645316.png"/></span>
 			주문하기
 		</button>
@@ -130,34 +131,37 @@
 	</div>
 
 	
-
-	<div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-line_search_accordion_area">
-        <div class="accordion accordion-flush">
-            
-			
-				
-			<div class="accordion-item mycustom-line_search_info mycustom_now_info">
-				<h2 class="accordion-header" id="panelsStayOpen-headingOne">
-					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-						<img class="mycustom-line_search_img" src="https://blog.kakaocdn.net/dn/QiQw7/btq1ByoRVn5/fOPibYxNNlLJWwwNRU3L5k/img.jpg"/>
-						<ul class="mycustom-line_search_ul" id="unitName"> 
-					</button>
-				</h2>
-				<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-					<div class="accordion-body">
-						<div class="container">
-							<p id="unitName"></p> 
-							<div id="resultContainer"></div>
-							<div id="resultContainer2"></div>
-							
+	<div class="container" id="accordionExample">
+		<div class="row">
+			<div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-line_search_accordion_area">
+				<div class="accordion accordion-flush">
+					
+					
+						
+					<div class="accordion-item mycustom-line_search_info mycustom_now_info">
+						<h2 class="accordion-header" id="panelsStayOpen-headingOne">
+							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+								<img class="mycustom-line_search_img" src="https://blog.kakaocdn.net/dn/QiQw7/btq1ByoRVn5/fOPibYxNNlLJWwwNRU3L5k/img.jpg"/>
+								<ul class="mycustom-line_search_ul" id="unitName"> 
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+							<div class="accordion-body">
+								<div class="container">
+									<p id="unitName"></p> 
+									<div id="resultContainer"></div>
+									<div id="resultContainer2"></div>
+									
+								</div>
+							</div>
 						</div>
 					</div>
+					
+					
 				</div>
 			</div>
-			
-            
-        </div>
-    </div>
+		</div>
+	</div>
 	<!-- 아코디언 끝-->
 
 	<!-- footer 시작---------------------------------------------------------------------------------------------->
@@ -180,6 +184,10 @@
 
 
 	<script>
+
+		var unitName;
+		
+
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = {
 		        center: new kakao.maps.LatLng(37.56623, 126.97856), // 지도의 중심좌표
@@ -214,7 +222,7 @@
 
 							var mapX = response.xValue;
 							var mapY = response.yValue;
-							var unitName = response.unitName;
+							unitName = response.unitName;
 							var routeName = response.routeName;
 
 							var locPosition = new kakao.maps.LatLng(mapY, mapX);
@@ -245,22 +253,19 @@
 							var icon = "../images/free-icon-celsius-481431.png";
 
 							var imgElement = $("<img>").attr("src", imgSrc).css("width", "70px");
+							var temDiv = $("#tem");
 							var imgElement2 = $("<img>").attr("src", icon).css("width", "30px");
-							var spanElement = $("<span>").append(imgElement2);
+							var spanElement = $("<span>").text(parseInt(tempValue));
 
 							$("#weather").empty().append(imgElement);
 
-							$("#tem").text(parseInt(tempValue)).append(spanElement); // 소수점 이하 제거
+							var containerDiv = $("<div>").css("display", "flex");
+							containerDiv.append(spanElement).append(imgElement2);
+							temDiv.append(containerDiv);
 
 							// 음식 정보
 							var far = response.far;
-							var summerFood = null;
-							var winterFood = null;
-							var allFood = null;
-						
-							var sFoodImg = null;
-							var wFoodImg = null;
-							var aFoodImg = null;
+							
 
 							var food_img = null;
 
@@ -304,16 +309,31 @@
 								
 							}
 							*/
-							for(var i = 0; i < far.length; i++) {
-								console.log("i="+i);
-								food_img = $("<img>").attr("src", far[i].f_image).css("width", "70px");
-								console.log(food_img);
-								$("#recommFood").append(food_img[0].outerHTML);
+							
+
+							for(var i = 0; i < 1; i++) {
+								food_img = $("<img>").attr("src", far[0].f_image).css({"width": "80px", "height": "50px"});
+								food_img1 = $("<img>").attr("src", far[1].f_image).css({"width": "80px", "height": "50px"});
+								food_img2 = $("<img>").attr("src", far[2].f_image).css({"width": "80px", "height": "50px"});
+								$("#recommFood").append(food_img[0].outerHTML).append($("<span>").text(far[0].foodNm).css({
+																															"display": "flex",
+																															"justify-content": "center",
+																															"width" : "80px"																															
+																															}));
+								$("#recommFood1").append(food_img1[0].outerHTML).append($("<span>").text(far[1].foodNm).css({
+																															"display": "flex",
+																															"justify-content": "center",
+																															"width" : "80px"			
+																															}));
+								$("#recommFood2").append(food_img2[0].outerHTML).append($("<span>").text(far[2].foodNm).css({
+																															"display": "flex",
+																															"justify-content": "center",
+																															"width" : "80px"			
+																															}));
 								
 							}
 
 							
-
 							// 마커와 인포윈도우를 표시합니다
 							displayMarker(locPosition, message);
 							
@@ -426,11 +446,12 @@
 		map.setCenter(locPosition);      
 		}    
 
-		// 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
-		kakao.maps.event.addListener(marker, 'click', function() {
-		    alert('마커를 클릭했습니다!');
-		});
-
+		function exe() {
+			document.getElementById("RestNm").value = unitName;
+	
+			document.getElementById("frm").submit();
+		}
+		
 	</script>
 </body>
 </html>

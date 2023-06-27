@@ -23,7 +23,7 @@
             <button class="mycustom-menu_info_icon_btn me-2" type="button" onclick="location.href='/menu?RestNm=${RestNm}'">
               <img class="mycustom-menu_info_icon" src="../images/home-icon.png">
             </button>
-            <button class="mycustom-menu_info_icon_btn me-2" type="button">
+            <button class="mycustom-menu_info_icon_btn me-2" type="button" href="/cart">
               <img class="mycustom-menu_info_icon" src="../images/cart-icon.png">
             </button>
           </form>

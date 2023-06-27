@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,8 +15,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.JoinService;
@@ -59,6 +63,58 @@ public class MemController {
 			mv.addObject("alat", "alat");
 		}
 		return mv;
+	}
+
+	@PostMapping("/myPage/changeInfo")
+	@ResponseBody
+	public Map<String, String> changeInfo(MemVO vo) {
+		// ModelAndView mv = new ModelAndView();
+		Map<String, String> map = new HashMap<>();
+
+		// 로그인한 사용자의 정보를 세션에서 얻어온다.
+		Object obj = session.getAttribute("mvo");
+		if (obj != null) {
+			// mvo에 m_idx값을 저장해야 한다.
+			MemVO mvo = (MemVO) obj;
+			vo.setM_idx(mvo.getM_idx());
+
+			int cnt = m_Service.updateMem(vo);
+			if (cnt > 0) {
+				// 세션에 있는 정보도 수정해 줘야 한다.
+				mvo.setM_name(vo.getM_name());
+				mvo.setM_phone(vo.getM_phone());
+			}
+
+			map.put("updateMem_fail", String.valueOf(cnt));
+
+		}
+		return map;
+	}
+
+	@PostMapping("/myPage/changePw")
+	@ResponseBody
+	public Map<String, String> changePw(MemVO vo) {
+		// ModelAndView mv = new ModelAndView();
+		Map<String, String> map = new HashMap<>();
+
+		// 로그인한 사용자의 정보를 세션에서 얻어온다.
+		Object obj = session.getAttribute("mvo");
+		if (obj != null) {
+			// mvo에 m_idx값을 저장해야 한다.
+			MemVO mvo = (MemVO) obj;
+			vo.setM_idx(mvo.getM_idx());
+
+			int cnt = m_Service.updateMem(vo);
+			if (cnt > 0) {
+				// 세션에 있는 정보도 수정해 줘야 한다.
+				mvo.setM_name(vo.getNew_pw());
+
+			}
+
+			map.put("updatePw_fail", String.valueOf(cnt));
+
+		}
+		return map;
 	}
 
 	/*
