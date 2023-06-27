@@ -22,6 +22,13 @@
     WHERE m_idx=#{m_idx} and m_pw = #{m_pw}
   </update>
 
+  <!--회원 비빌번호 수정-->
+  <update id="updatePw" parameterType="com.kdt.finalproject.vo.MemVO">
+    UPDATE member
+    SET m_pw = #{new_pw}
+    WHERE m_idx=#{m_idx} and m_pw = #{m_pw}
+  </update>
+
 </mapper>
 
 
