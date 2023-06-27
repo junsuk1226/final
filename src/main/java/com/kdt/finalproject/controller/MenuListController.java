@@ -10,10 +10,12 @@ import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.FoodService;
+import com.kdt.finalproject.vo.FacilitiesVO;
 import com.kdt.finalproject.vo.FoodVO;
 
 @Controller
@@ -21,16 +23,6 @@ public class MenuListController {
 
     @Autowired
     private FoodService f_Service;
-
-    // @RequestMapping("/menu")
-    // public String menuView() {
-    // return "/menuList";
-    // }
-
-    @RequestMapping("/menu/info")
-    public String menuInfo() {
-        return "/menuInfo";
-    }
 
     @RequestMapping("/menu")
     public ModelAndView menu(String RestNm) throws Exception {
@@ -103,11 +95,104 @@ public class MenuListController {
 
         } // 복문의 끝
 
+        // ========휴게소정보=========//
+
+        String key2 = "2077960536";// 개인
+                                   // 인증키
+                                   // (Encoding)
+        String RestName2 = URLEncoder.encode(RestNm, "UTF-8");
+
+        StringBuffer sb2 = new StringBuffer();
+        sb2.append("http://data.ex.co.kr/openapi/business/conveniServiceArea"); // 휴게소 위치 정보 API
+        sb2.append("?key=");
+        sb2.append(key2);
+        sb2.append("&type=xml");
+        sb2.append("&numOfRows=1000");
+        sb2.append("&pageNo=1");
+        sb2.append("&stdRestNm=");
+        sb2.append(RestName2);
+
+        // 위의 StringBuffer가 가지고 있는 URL전체 경로를 가지고 URL객체를 먼저 생성하자!
+        URL url2 = new URL(sb2.toString());
+
+        // 위의 URL을 요청하기 위해 연결객체 생성하자!
+        HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
+        conn2.connect();// 호출~!
+
+        // 호출했을 때 응답이 XML로 전달된다. 우린 이 XML문서를 파싱할 수 있어야 한다.
+        // mvnrepository.com에서 jdom으로 검색하여 의존성을 알아내야 한다.
+        SAXBuilder builder2 = new SAXBuilder();
+
+        // 위의 SAXBuilder를 이용하여 응답되는 XML문서를 Document로 생성한다.
+        Document doc2 = builder2.build(conn2.getInputStream());
+
+        // 루트엘리먼트 얻기
+        Element root2 = doc2.getRootElement();
+
+        List<Element> list2 = root2.getChildren("list");
+
+        // 위의 list 안에 있는 Element들을 ItemVO로 만들어서 배열로 저장해 둔다.
+
+        // double userLatitude = Double.valueOf(lat);
+        // double userLongitude = Double.valueOf(lon);
+        FacilitiesVO[] favo = new FacilitiesVO[list2.size()];
+        int k = 0;
+
+        for (Element item : list) {
+            String direction = item.getChildText("direction");
+            String serviceAreaCode = item.getChildText("serviceAreaCode");
+            String serviceAreaName = item.getChildText("serviceAreaName");
+            String telNo = item.getChildText("telNo");
+            String convenience = item.getChildText("convenience");
+            String truckSaYn = item.getChildText("truckSaYn");
+            String maintenanceYn = item.getChildText("maintenanceYn");
+            String numOfRows = item.getChildText("numOfRows");
+            String pageNo = item.getChildText("pageNo");
+            String serviceAreaCode2 = item.getChildText("serviceAreaCode2");
+            String routeName = item.getChildText("routeName");
+            String routeCode = item.getChildText("routeCode");
+            String svarAddr = item.getChildText("svarAddr");
+            String pageSize = item.getChildText("pageSize");
+            String code = item.getChildText("code");
+            String message = item.getChildText("message");
+            String count = item.getChildText("count");
+            String brand = item.getChildText("brand");
+
+            FacilitiesVO vo = new FacilitiesVO(direction, serviceAreaCode, serviceAreaName, telNo, convenience,
+                    truckSaYn, maintenanceYn, numOfRows, pageNo, serviceAreaCode2, routeName, routeCode, svarAddr,
+                    pageSize, code, message, count, brand);
+
+            favo[i++] = vo;
+
+        } // 복문의 끝
+
         FoodVO[] far = f_Service.all();
 
+        mv.addObject("RestNm", RestNm);
         mv.addObject("fList", far); // DB에 저장해놓은 음식 리스트
         mv.addObject("fvo", fvo); // API에서 받아오는 음식 리스트
+        mv.addObject("favo", favo);
         mv.setViewName("menuList");
+
+        return mv;
+    }
+
+    @RequestMapping("/menu/info")
+    public ModelAndView menuInfo(String foodCost, String foodNm, String foodMaterial, String etc, String f_image,
+            String RestNm) {
+
+        ModelAndView mv = new ModelAndView();
+
+        mv.addObject("RestNm", RestNm);
+        mv.addObject("foodCost", foodCost);
+        mv.addObject("foodNm", foodNm);
+        mv.addObject("foodMaterial", foodMaterial);
+        mv.addObject("etc", etc);
+
+        if (f_image != null)
+            mv.addObject("f_image", f_image);
+
+        mv.setViewName("menuInfo");
 
         return mv;
     }

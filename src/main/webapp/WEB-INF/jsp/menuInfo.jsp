@@ -17,10 +17,10 @@
     <nav class="navbar bg-light mycustom-menuInfo_menubar">
         <div class="container-fluid d-flex justify-content-between" style="max-width: 700px;">
           <span class="navbar-text mycustom-menuInfo_title">
-            메뉴명
+            ${RestNm}
           </span>
           <form class="d-flex align-items-center">
-            <button class="mycustom-menu_info_icon_btn me-2" type="button">
+            <button class="mycustom-menu_info_icon_btn me-2" type="button" onclick="location.href='/menu?RestNm=${RestNm}'">
               <img class="mycustom-menu_info_icon" src="../images/home-icon.png">
             </button>
             <button class="mycustom-menu_info_icon_btn me-2" type="button">
@@ -36,10 +36,11 @@
     <div class="container mycustom-menuinfo_area" style="max-width: 700px;">
         <div class="d-flex flex-wrap justify-content-center" style="max-width: 700px;">
             <ul class="mycustom-menu_info_list">
-                <li><img class="mycuston-menu_info_img" src="https://img-cf.kurly.com/shop/data/goodsview/20200818/gv00000105647_1.jpg"></li>
-                <li><h1>메뉴명</h1></li>
-                <li><h6>메뉴 정보</h6></li>
-                <li><h5>가격 10,000원</h5></li>
+                <li><img class="mycuston-menu_info_img" src="${f_image}"></li>
+                <li><h1>${foodNm}</h1></li>
+                <li><h5>${etc}</h5></li>
+                <li><h6>${foodMaterial}</h6></li>
+                <li><h5>${foodCost}원</h5></li>
             </ul>
         </div>
     </div>
@@ -49,7 +50,7 @@
         <div class="container fixed-bottom d-flex flex-wrap justify-content-center">
             <div class="container mycustom-menuInfo_footer">
                 <button type="button" class="mycustom-cart_btn">
-                    10,000원 담기
+                  ${foodCost}원 담기
                 </button>
             </div>
         </div>

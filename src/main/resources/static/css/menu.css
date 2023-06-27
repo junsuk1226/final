@@ -47,11 +47,11 @@
 .mycustom-menu_img{
     width: 100px;
     height: 80px;
+    margin-right: 20px;
 }
 
 .mycustom-menu_info{
     width: 100%;
-    margin-left: 20px;
     text-align: left;
 }
 

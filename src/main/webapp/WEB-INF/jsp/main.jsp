@@ -23,7 +23,7 @@
 <!-- <div class="mycustom-bg"> -->
     <!-- 메뉴바 ----------------------------------------------------------------------------------------------------------->
     <div class="container main_custom_menubar">
-        <header class="d-flex flex-wrap align-items-center justify-content-sm-between py-3 mb-3">
+        <header class="d-flex flex-wrap align-items-center justify-content-sm-between py-3">
             <!-- <a class="nav-link logo_custom" href="/main">내 손안에 휴게소</a> -->
             <div class="col-md-3">
                 <a href="/main"><img style="max-width: 200px;" src="../main_images/logo.png"/></a>
