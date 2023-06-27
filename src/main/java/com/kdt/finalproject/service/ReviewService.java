@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kdt.finalproject.mapper.ReviewMapper;
+import com.kdt.finalproject.vo.ReviewLogVO;
 import com.kdt.finalproject.vo.ReviewVO;
 
 @Service
@@ -24,5 +25,13 @@ public class ReviewService {
         }
 
         return ar;
+    }
+
+    public int addReview(ReviewVO rvo) {
+        return r_Mapper.addReview(rvo);
+    }
+
+    public int addReviewLog(ReviewLogVO rvo) {
+        return r_Mapper.addReviewLog(rvo);
     }
 }

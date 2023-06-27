@@ -115,7 +115,7 @@
                                 <div class="row">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-7 col-md-offset-5">
-                                        <form name="frm" action="myPage" method="post">
+                                        
                                             <input type="hidden" name="type" value="aoList" />
                                             <table>
                                                 <tbody align=center>
@@ -163,9 +163,10 @@
                                             </thead>
                                             <tbody>
                                                 <%-- <c:forEach var="pvo" items="${requestScope.ar }" varStatus="st"> --%>
+                                                    <form action="/orderDetail" name="ff" method="post">
                                                     <tr>
                                                         
-                                                        <%--<td>${page.totalRecord -
+                                                        <!-- <%--<td>${page.totalRecord -
                                                             ((page.nowPage-1)*page.numPerPage+st.index) }</td> --%>
                                                             <%-- <td>${pvo.o_idx}</td>--%>
                                                             <td>${pvo.o_class}</td>
@@ -183,8 +184,8 @@
 
                                                                     <c:otherwise>택배가 가출했어요</c:otherwise>
                                                                 </c:choose>
-                                                            </td> --%>
-                                                        <form action="/orderdetail" method="post">
+                                                            </td> --%> -->
+                                                        
                                                         <td>이미지</td>
                                                         <td colspan="4">
                                                             <div><p style="font-size: 15px; font-weight: bold;">휴게소명</p></div>
@@ -193,14 +194,14 @@
                                                             <hr/>
                                                             <div> 총 218,000원</div>
                                                             <div style="text-align: right;">
-                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="submit">상세</button>
+                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="viewDetail(this.form)" type="button">상세</button>
                                                                 <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
                                                             </div>
-                                                        
                                                         </td> 
-                                                        <input type="hidden" value="${p_idx}" name="p_idx"/>  
-                                                    </form>
+                                                        <input type="hidden" value="1" name="p_idx"/>  <!--${pvo.p_idx}-->
+                                                        
                                                     </tr>
+                                                    </form>
                                                     <!-- <tr>
 
                                                         <td>이미지</td>
@@ -218,7 +219,7 @@
                                                 <%-- </c:forEach> --%>
                                             </tbody>
                                         </table>
-                                        </form>
+                                        
                                     </div>
                                 </div>
                                 <div class="row">
@@ -340,6 +341,11 @@
                     <script src="js/scripts.js"></script>
 
                     <script>
+
+                        function viewDetail(frm){
+                            frm.submit();
+                        }
+
                         function sendKeyword(form) {
 
                             var value = $("#searchValue").val();

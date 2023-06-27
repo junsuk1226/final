@@ -19,6 +19,9 @@
             <!-- 새로추가 -->
             <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+            <link rel="stylesheet" href="/css/summernote-lite.css">
+
             <link rel="stylesheet" href="../css/main_custom.css" />
 
             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -81,27 +84,41 @@
                             <div class="row">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-9">
-                                    <form action="" name="frm" method="get">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr style="background:'#353535'">
-                                                <th colspan="5">주문내역 상세보기</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                    <form action="/writeReview" name="frm" method="post">
+                                        <!-- <input type="hidden" name="restCd"/>
+                                        <input type="hidden" name="r_restNm"/>
+                                        <input type="hidden" name="m_idx" value="${sessionScope.mvo.m_idx}"/> -->
+                                        <input type="hidden" name="restCd" value="1"/>
+                                        <input type="hidden" name="r_restNm" value="가평(춘천)휴계소" />
+                                        <input type="hidden" name="m_idx" value="${sessionScope.mvo.m_idx}"/>
+                                        <table class="table">
+                                            <thead>
+                                                <tr style="background:'#353535'">
+                                                    <th colspan="5">리뷰쓰기</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                <tr>
+                                                    <td>
+                                                        <select name = "r_score">
+                                                            <option value="5">★★★★★</option>
+                                                            <option value="4">★★★★</option>
+                                                            <option value="3">★★★</option>
+                                                            <option value="2">★★</option>
+                                                            <option value="1">★</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <textarea name="r_content" id="content" cols="50" rows="8"></textarea>
+                                                    </td>
+                                                </tr>
 
-                                            <tr>
-                                                <td></td>
-                                                <td>
-
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>    
+                                            </tbody>
+                                        </table>    
                                     </form>
                                     <div style="text-align: right;">
-                                        <button class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="writeReview()" type="button">리뷰쓰기</button>
+                                        <button class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="sendData()" type="button">저장</button>
                                     </div>
                                 </div>
                             </div>
@@ -136,6 +153,10 @@
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
                     </script>
 
+                    <!-- summernote -->
+                    <script src="/js/summernote-lite.js"></script>
+	                <script src="/js/lang/summernote-ko-KR.js"></script>
+
                     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
                     </script>
@@ -148,6 +169,58 @@
                     <script src="js/scripts.js"></script>
 
                     <script>
+
+                        $(function() {
+                            $('#content').summernote({
+                                height: 600,                 // 에디터 높이
+                                minHeight: null,             // 최소 높이
+                                maxHeight: null,             // 최대 높이
+                                focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+                                lang: "ko-KR",					// 한글 설정
+                                placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+                                callbacks:{
+                                    onImageUpload: function(files, editor){
+                                        //이미지가 에디터에 들어오면 수행하는 곳-이미지는 배열로 저장된다.
+                                        for(var i = 0; i<files.length; i++)
+                                            sendImg(files[i], editor);//서버와 비동기식 통신을 하는 함수 호출
+                                        
+                                    }
+                                }
+                            });
+                        });
+
+                        function sendImg(file, editor){
+                            //이미지 파일을 첨부하여 서버로 보내야 하기 때문에 
+                            //이미지가 아니면 {"type":1, "value":"TEST"} 이런 식으로 파라미터를 만들면 된다.
+                            //하지만 파일을 보낼 때는 FormData를 활용해야 한다.
+                            var frm = new FormData();
+                            
+                            //보내고자 하는 파일을 FormData에 저장!
+                            frm.append("s_file", file); //나중에 서버에서 현재 파일을 받을 때는
+                                                        //반드시 s_file이라는 파라미터 이름으로 받아야 한다.
+                            $.ajax({
+                                url:"/saveImg",
+                                data: frm,
+                                type: "post",
+                                contentType:false,
+                                processData:false,
+                                cache: false,
+                                dataType: "json"
+                            }).done(function(data){
+                                let path = data.path;
+                                let fname = data.fname;
+                                
+                                $("#content").summernote("insertImage", path+"/"+fname); //editor.insertImage했더니 안됐음!!
+                            });
+                            
+                        }
+                        
+                    
+                        function sendData(){
+                                                
+                            document.frm.submit();
+                        }
+
                         function writeReview() {
 
                             document.frm.action="/writeReview";
