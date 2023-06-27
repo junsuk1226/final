@@ -13,4 +13,13 @@ public class OrderListController {
 
         return mv;
     }
+
+    @RequestMapping("/orderdetail")
+    public ModelAndView orderdetail(String cPage, String o_idx) {
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("/myPage/orderDetail");
+        return mv;
+    }
+
 }
