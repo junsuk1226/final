@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.JoinService;
 import com.kdt.finalproject.service.MemService;
+import com.kdt.finalproject.util.Cart;
 import com.kdt.finalproject.vo.MemVO;
 
 @Controller
@@ -56,6 +57,8 @@ public class MemController {
 		if (vo != null) {
 
 			session.setAttribute("mvo", vo);
+			Cart cart = new Cart();
+			session.setAttribute("cart", cart);
 			mv.setViewName("/main");
 
 		} else {
@@ -138,7 +141,7 @@ public class MemController {
 			StringBuffer sb = new StringBuffer();
 			sb.append("grant_type=authorization_code");
 			sb.append("&client_id=c691b066d7c57c4085e1fa5fc3e2c47b");
-			sb.append("&redirect_uri=http://localhost:8080/kakao/join");
+			sb.append("&redirect_uri=http://localhost:8080/kakao/login");
 			sb.append("&code=" + code);
 
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
@@ -214,7 +217,9 @@ public class MemController {
 					MemVO mvo = j_Service.getMem(vo);
 
 					session.setAttribute("mvo", mvo);
-					mv.setViewName("redirect:/tour");
+					Cart cart = new Cart();
+					session.setAttribute("cart", cart);
+					mv.setViewName("redirect:/main");
 				}
 			}
 		} catch (Exception e) {
@@ -240,8 +245,8 @@ public class MemController {
 
 			StringBuffer sb = new StringBuffer();
 			sb.append("grant_type=authorization_code");
-			sb.append("&client_id=6BPvD8rTeGLnG7fdps1C");
-			sb.append("&client_secret=xcqAzUEomv");
+			sb.append("&client_id=py8uuUtaAKsCCxoOKiY3");
+			sb.append("&client_secret=iSXwl3_nLz");
 			sb.append("&code=" + code);
 			sb.append("&state=" + state);
 
@@ -318,7 +323,9 @@ public class MemController {
 					MemVO mvo = j_Service.getMem(vo);
 
 					session.setAttribute("mvo", mvo);
-					mv.setViewName("redirect:/tour");
+					Cart cart = new Cart();
+					session.setAttribute("cart", cart);
+					mv.setViewName("redirect:/main");
 				}
 			}
 		} catch (Exception e) {
