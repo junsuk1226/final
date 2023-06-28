@@ -76,7 +76,7 @@
               font-size: 42px;
               color: #FBB202;
               cursor: pointer;
-              margin: 3px;
+              margin: 0px;
               }
               .rating .star:after {
               content: '\f006';
