@@ -96,9 +96,8 @@ public class MenuInfoController {
 
         FoodVO vo = f_Service.foodInfo(seq); // DB에 임의로 저장해놓은 음식 정보
 
-        if (r_photo != null) {
-            mv.addObject("r_photo", r_photo);
-        }
+        System.out.println("r_photo==||" + r_photo);
+
         mv.addObject("vo", vo);
         mv.addObject("fvo", fvo); // API를 통해서 받아온 음식 정보
         mv.setViewName("menuList");
