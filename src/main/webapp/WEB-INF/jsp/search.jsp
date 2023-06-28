@@ -52,29 +52,27 @@
 
 
             <div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-line_search_accordion_area">
-                <div class="accordion accordion-flush">
+                <ul class="list-group">
                     <c:if test="${linelist ne null}">
                         <c:forEach var="vo" items="${linelist}" varStatus="loop">
-                            <c:if test="${vo.svarNm ne null}">
-                                <div class="accordion-item mycustom-line_search_info">
-                                    <h2 class="accordion-header" id="flush-heading${loop.index + 1}">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${loop.index + 1}" aria-expanded="false" aria-controls="flush-collapse${loop.index + 1}">
-                                            <img class="mycustom-line_search_img" src="${photolist[loop.index].r_photo}"/>
-                                            <ul class="mycustom-line_search_ul">${vo.svarNm}(${vo.gudClssNm})
-                                                <li>${vo.svarAddr} / 전화번호: ${vo.rprsTelNo}</li>
-                                                <li>소형차주차대수: ${vo.cocrPrkgTrcn} | 대형차주차대수: ${vo.fscarPrkgTrcn} | 장애인주차대수: ${vo.dspnPrkgTrcn}</li>
-                                            </ul>
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapse${loop.index + 1}" class="accordion-collapse collapse" aria-labelledby="flush-heading${loop.index + 1}" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
-                                    </div>
-                                </div>
-                            </c:if>
+                            <li class="list-group-item mycustom-line_search_listgroup">
+                                <form action="/menu" method="get">
+                                    <input type="hidden" name="r_photo" value="${photolist[loop.index].r_photo}"/>
+                                    <input type="hidden" name="svarCd" value="${vo.svarCd}"/>
+                                    <input type="hidden" name="RestNm" value="${vo.svarNm}"/>
+                                    <button class="accordion-button" type="submit">
+                                        <img class="mycustom-line_search_img" src="${photolist[loop.index].r_photo}"/>
+                                        <ul class="mycustom-line_search_ul">${vo.svarNm}(${vo.gudClssNm})
+                                            <li>${vo.svarAddr} | 전화번호: ${vo.rprsTelNo}</li>
+                                            <li>소형차주차대수: ${vo.cocrPrkgTrcn} | 대형차주차대수: ${vo.fscarPrkgTrcn} | 장애인주차대수: ${vo.dspnPrkgTrcn}</li>
+                                        </ul>
+                                    </button>
+                                </form>
+                            </li>
                         </c:forEach> 
                     </c:if>
-                </div>
-                    
+                </ul>
+                
                 <c:if test="${linelist eq null}">
                     <h1>휴게소가 없습니다.</h1>
                 </c:if>
