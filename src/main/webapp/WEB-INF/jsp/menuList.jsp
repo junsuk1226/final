@@ -105,19 +105,20 @@
                                 <button type="submit" class="mycustom-menu_list_btn">
                                     <li class="list-group-item mycustom-menu_list_group_item">
                                         <div class="d-flex">
-                                        <div class="mycustom-menu_img">
-                                            <img class="mycustom-menu_img" src="${fvo.f_image}"><!-- 메뉴 사진-->
+                                            <div class="mycustom-menu_img">
+                                                <img class="mycustom-menu_img position-relative" src="${fvo.f_image}">
+                                            </div>
+                                            <div class="mycustom-menu_info">
+                                                <h3>${fvo.foodNm} <c:if test="${fvo.bestfoodyn eq 'Y'}"><img class="mycustom-menu_img" src="../images/recommend.png" style="width:30px; height: 30px;"></c:if></h3>
+                                                <a>
+                                                    <c:set var="formattedCost" value="${fvo.foodCost}" />
+                                                    <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
+                                                </a>
+                                            
                                         </div>
-                                        <div class="mycustom-menu_info">
-                                            <h3>${fvo.foodNm}</h3>
-                                            <a>
-                                                <c:set var="formattedCost" value="${fvo.foodCost}" />
-                                                <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
-                                            </a>
-                                        </div>
-                                        </div>
-                                    </li>
-                                </button>
+                                    </div>
+                                </li>
+                            </button>
 
                             </form>
                         </c:forEach>
