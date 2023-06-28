@@ -190,22 +190,24 @@
                 <div class="container d-flex flex-wrap justify-content-center">
                     <ul class="list-group list-group-flush" style="max-width: 700px; width: 100%;">
 
-                        <!-- 반복문 돌릴구간-->
-                        <li class="list-group-item">
-                            <div class="card mycustom-rieview_card" style="width: 100%">
-                                <div class="card-body">
-                                    <h6 class="card-title">회원닉네임</h6>
-                                    <h6 class="card-subtitle mb-2 text-muted">리뷰점수 어제</h6>
-                                    <p class="card-text">
-                                        <!-- 리뷰 사진이 null이 아닐경우-->
-                                        <img class="mycustom-rieview_img" src="https://www.onlmenu.com/data/editor/2103/thumb-aec247958fd76c50286832ad76213d98_1615532412_3871_835x482.jpg">
-                                        <!--------->
-                                        리뷰내용
-                                    </p>
+                        <c:forEach var="rvo" items="${rList}">
+                            <!-- 반복문 돌릴구간-->
+                            <li class="list-group-item">
+                                <div class="card mycustom-rieview_card" style="width: 100%">
+                                    <div class="card-body">
+                                        <h6 class="card-title">${rvo.m_name}</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">리뷰점수 ${rvo.r_writedate}</h6>
+                                        <p class="card-text">
+                                            <!-- 리뷰 사진이 null이 아닐경우-->
+                                            <img class="mycustom-rieview_img" src="https://www.onlmenu.com/data/editor/2103/thumb-aec247958fd76c50286832ad76213d98_1615532412_3871_835x482.jpg">
+                                            <!--------->
+                                            ${rvo.r_content}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <!-------------------->
+                            </li>
+                            <!-------------------->
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
