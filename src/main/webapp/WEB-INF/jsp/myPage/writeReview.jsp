@@ -27,8 +27,65 @@
             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
             <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
                 
-
-
+            <!--별 아이콘-->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+            <style media="screen">
+              
+              .rating {
+              width: 300px;
+              padding: 10px;
+              margin:0 auto;
+              position: relative;
+              direction: rtl;
+              }
+        
+              .rating input {
+              position: absolute;
+              width: 35px;
+              height: 50px;
+              cursor: pointer;
+              transform: translateX(52px);
+              opacity: 0;
+              z-index: 5;
+              }
+             
+              .rating input:nth-of-type(1) {
+              right: 50px;
+              }
+              .rating input:nth-of-type(2) {
+              right: 100px;
+              }
+              .rating input:nth-of-type(3) {
+              right: 150px;
+              }
+              .rating input:nth-of-type(4) {
+              right: 200px;
+              }
+              .rating input:nth-of-type(5) {
+              right: 250px;
+              }
+              .rating input:nth-of-type(6) {
+              right: 300px;
+              }
+              .rating input:checked ~ .star:after, .rating input:hover ~ .star:after {
+              content: '\f005';
+              }
+              .rating .star {
+              display: inline-block;
+              font-family: FontAwesome;
+              font-size: 42px;
+              color: #FBB202;
+              cursor: pointer;
+              margin: 3px;
+              }
+              .rating .star:after {
+              content: '\f006';
+              }
+              .rating .star:hover ~ .star:after, .rating .star:hover:after {
+              content: '\f005';
+              }
+              
+                </style>
                     <!-- Favicon-->
                 </head>
 
@@ -93,27 +150,27 @@
                                         <input type="hidden" name="m_idx" value="${sessionScope.mvo.m_idx}"/>
                                         <table class="table">
                                             <thead>
-                                                <tr style="background:'#353535'">
+                                                <tr>
                                                     <th colspan="5">리뷰쓰기</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
                                                 <tr>
                                                     <td>
-                                                        <select name = "r_score">
-                                                            <option value="5">★★★★★</option>
-                                                            <option value="4">★★★★</option>
-                                                            <option value="3">★★★</option>
-                                                            <option value="2">★★</option>
-                                                            <option value="1">★</option>
-                                                        </select>
+                                                        <div class="rating">
+                                                            <input type="radio" name="r_score" value="5"/><span class="star"></span>
+                                                            <input type="radio" name="r_score" value="4"/><span class="star"></span>
+                                                            <input type="radio" name="r_score" value="3"/><span class="star"></span>
+                                                            <input type="radio" name="r_score" value="2"/><span class="star"></span>
+                                                            <input type="radio" name="r_score" value="1"/><span class="star"></span>
+                                                          </div>
                                                     </td>
+                                                </tr>
+                                                <tr>
                                                     <td>
                                                         <textarea name="r_content" id="content" cols="50" rows="8"></textarea>
                                                     </td>
                                                 </tr>
-
                                             </tbody>
                                         </table>    
                                     </form>
@@ -172,7 +229,7 @@
 
                         $(function() {
                             $('#content').summernote({
-                                height: 600,                 // 에디터 높이
+                                height: 500,                 // 에디터 높이
                                 minHeight: null,             // 최소 높이
                                 maxHeight: null,             // 최대 높이
                                 focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
