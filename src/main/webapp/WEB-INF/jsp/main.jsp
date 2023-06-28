@@ -17,13 +17,6 @@
         }
     }
 
-
-    .cards:hover{
-
-    box-shadow: 5px 6px 6px 2px #e9ecef;
-        transform: scale(1.05);
-    }
-
     .hover-fade img {
       width: 100%;
       height: auto;
