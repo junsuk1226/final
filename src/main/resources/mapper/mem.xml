@@ -28,6 +28,7 @@
     SET m_pw = #{new_pw}
     WHERE m_idx=#{m_idx} and m_pw = #{m_pw}
   </update>
+  
 
 </mapper>
 

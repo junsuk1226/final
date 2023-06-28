@@ -16,11 +16,13 @@
     
     <!-- 메뉴바 ----------------------------------------------------------------------------------------------------------->
     <div class="container main_custom_menubar">
-        <header class="d-flex flex-wrap align-items-center justify-content-md-between py-3 mb-3">
-            <a class="nav-link logo_custom" href="/main">내 손안에 휴게소</a>
+        <header class="d-flex flex-wrap align-items-center justify-content-sm-between py-3">
+            <!-- <a class="nav-link logo_custom" href="/main">내 손안에 휴게소</a> -->
+            <div class="col-md-3">
+                <a href="/main"><img style="max-width: 200px;" src="../main_images/logo.png"/></a>
+            </div>
             <c:if test="${sessionScope.mvo == null}">
-                <div class="col-md-3 text-end">
-                    
+                <div class="col-md-3 text-end mt-2">
                     <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/login'">로그인</button>
                     <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/join'">회원가입</button>
                 </div>
@@ -28,7 +30,7 @@
             <c:if test="${sessionScope.mvo != null}">
             <div class="col-md-3 text-end"> 
                 <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/logout'">로그 아웃</button>
-            <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/mypage'">마이페이지</button>
+            <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/myPage'">마이페이지</button>
             </div>
             </c:if>
         </header>
@@ -190,22 +192,24 @@
                 <div class="container d-flex flex-wrap justify-content-center">
                     <ul class="list-group list-group-flush" style="max-width: 700px; width: 100%;">
 
-                        <!-- 반복문 돌릴구간-->
-                        <li class="list-group-item">
-                            <div class="card mycustom-rieview_card" style="width: 100%">
-                                <div class="card-body">
-                                    <h6 class="card-title">회원닉네임</h6>
-                                    <h6 class="card-subtitle mb-2 text-muted">리뷰점수 어제</h6>
-                                    <p class="card-text">
-                                        <!-- 리뷰 사진이 null이 아닐경우-->
-                                        <img class="mycustom-rieview_img" src="https://www.onlmenu.com/data/editor/2103/thumb-aec247958fd76c50286832ad76213d98_1615532412_3871_835x482.jpg">
-                                        <!--------->
-                                        리뷰내용
-                                    </p>
+                        <c:forEach var="rvo" items="${rList}">
+                            <!-- 반복문 돌릴구간-->
+                            <li class="list-group-item">
+                                <div class="card mycustom-rieview_card" style="width: 100%">
+                                    <div class="card-body">
+                                        <h6 class="card-title">${rvo.m_name}</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">리뷰점수 ${rvo.r_writedate}</h6>
+                                        <p class="card-text">
+                                            <!-- 리뷰 사진이 null이 아닐경우-->
+                                            <img class="mycustom-rieview_img" src="https://www.onlmenu.com/data/editor/2103/thumb-aec247958fd76c50286832ad76213d98_1615532412_3871_835x482.jpg">
+                                            <!--------->
+                                            ${rvo.r_content}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <!-------------------->
+                            </li>
+                            <!-------------------->
+                        </c:forEach>
                     </ul>
                 </div>
             </div>

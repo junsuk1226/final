@@ -50,10 +50,10 @@
               }
              
               .rating input:nth-of-type(1) {
-              right: 50px;
+              right: 65px;
               }
               .rating input:nth-of-type(2) {
-              right: 100px;
+              right: 110px;
               }
               .rating input:nth-of-type(3) {
               right: 150px;
@@ -62,11 +62,11 @@
               right: 200px;
               }
               .rating input:nth-of-type(5) {
-              right: 250px;
+              right: 240px;
               }
-              .rating input:nth-of-type(6) {
+              /* .rating input:nth-of-type(6) {
               right: 300px;
-              }
+              } */
               .rating input:checked ~ .star:after, .rating input:hover ~ .star:after {
               content: '\f005';
               }
@@ -76,7 +76,7 @@
               font-size: 42px;
               color: #FBB202;
               cursor: pointer;
-              margin: 3px;
+              margin: 0px;
               }
               .rating .star:after {
               content: '\f006';
@@ -285,6 +285,7 @@
                         }
 
                        
+                        
 
 
                     </script>
