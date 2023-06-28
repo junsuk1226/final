@@ -162,56 +162,22 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <%-- <c:forEach var="pvo" items="${requestScope.ar }" varStatus="st"> --%>
+                                                <c:forEach var="rvo" items="${requestScope.ar }" varStatus="st">
                                                     <tr>
-                                                        <%-- 주석시작 --%>
-                                                        <%--<td>${page.totalRecord -
-                                                            ((page.nowPage-1)*page.numPerPage+st.index) }</td> --%>
-                                                            <%-- <td>${pvo.o_idx}</td>
-                                                            <td>${pvo.o_class}</td>
-                                                            <td><a href="Controller?type=aoView&o_idx=${pvo.o_idx }">
-                                                                    <c:out value="${pvo.o_num }"></c:out>
-                                                                </a></td>
-                                                            <td>${pvo.p_idx}</td>
-                                                            <td>
-                                                                <c:choose>
-                                                                    <c:when test="${pvo.o_status == 1}">배송준비중</c:when>
-                                                                    <c:when test="${pvo.o_status == 2}">배송중</c:when>
-                                                                    <c:when test="${pvo.o_status == 3}">배송완료</c:when>
-                                                                    <c:when test="${pvo.o_status == 4}">주문완료</c:when>
-                                                                    <c:when test="${pvo.o_status == 5}">주문취소</c:when>
-
-                                                                    <c:otherwise>택배가 가출했어요</c:otherwise>
-                                                                </c:choose>
-                                                            </td> --%>
-                                                        <%-- 주석끝 --%>
-
-
+                                                        
                                                         <td>휴게소이미지</td>
                                                         <td colspan="4">
-                                                            <div><p style="font-size: 15px; font-weight: bold;">휴게소명</p></div>
-                                                            <div><p style="font-size: 12px; ">업소명 : 2023-06-24</p></div>
-                                                            <div>리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! </div>
+                                                            <div><p style="font-size: 15px; font-weight: bold;">${rvo.r_restNm}</p></div>
+                                                            <div><p style="font-size: 12px; ">${rvo.r_writedate}</p></div>
+                                                            <div>${rvo.r_content}</div>
                                                             <div style="text-align: right;">
                                                                 <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">수정</button>
                                                                 <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
                                                             </div>
                                                         </td>    
                                                     </tr>
-                                                    <tr>
-
-                                                        <td>휴게소이미지</td>
-                                                        <td colspan="4">
-                                                            <div><p style="font-size: 15px; font-weight: bold;">휴게소명</p></div>
-                                                            <div><p style="font-size: 12px; ">업소명 : 2023-06-24</p></div>
-                                                            <div>리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! 리뷰~! </div>
-                                                            <div style="text-align: right;">
-                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">수정</button>
-                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
-                                                            </div>
-                                                        </td>    
-                                                    </tr>
-                                                <%-- </c:forEach> --%>
+                                                    
+                                                </c:forEach>
                                             </tbody>
                                         </table>
                                         </form>
