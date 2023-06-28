@@ -41,33 +41,35 @@
     <div class="container mycustom-menuinfo_area" style="max-width: 700px;">
         <div class="d-flex flex-wrap justify-content-center" style="max-width: 700px;">
             <ul class="mycustom-menu_info_list">
-                <li><img class="mycuston-menu_info_img" src="${f_image}"></li>
+                <li><img class="mycuston-menu_info_img" src="${f_image}" style="height:500px; width: 700px"></li>
                 <li><h1>${foodNm}</h1></li>
                 <li><h5>${etc}</h5></li>
                 <li><h6>${foodMaterial}</h6></li>
                 <li><h5>
-                  <c:set var="formattedCost" value="${fvo.foodCost}" />
-                  <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
+                  
                 </h5></li>
                 <tr style="text-align:center;">
                   
-                  <td>
-                      <button type ="button" id="plus_btn">+</button>
-                      <input type="text" id="pop_out" name="pop_out" value="1" readonly="readonly" style="text-align:center;"/>
-                      <button type="button" id="minus_btn">-</button>
-                  </td>
                 </tr>
-            </ul>
-        </div>
-    </div>
-    
-    <!--menuinfo area 끝----------->
-
-    <footer class="d-flex flex-wrap justify-content-center text-center">
-        <div class="container fixed-bottom d-flex flex-wrap justify-content-center">
-            <div class="container mycustom-menuInfo_footer">
+              </ul>
+            </div>
+            <td>
+                <button type ="button" id="minus_btn">-</button>
+                <input type="text" id="pop_out" name="pop_out" value="1" readonly="readonly" style="text-align:center;"/>
+                <button type="button" id="plus_btn">+</button>
+            </td>
+          </div>
+          
+          <!--menuinfo area 끝----------->
+          
+          <footer class="d-flex flex-wrap justify-content-center text-center">
+            <div class="container fixed-bottom d-flex flex-wrap justify-content-center">
+              
+            </div>
+            <div class="container fixed-bottom d-flex flex-wrap justify-content-center">
+              <div class="container mycustom-menuInfo_footer">
                 <button type="button" class="mycustom-cart_btn" onclick="cart()">
-                  ${foodCost}원 담기
+              1
                 </button>
             </div>
         </div>
@@ -87,6 +89,10 @@
     
     <script>
        // "+" 버튼 클릭 이벤트 핸들러
+       var formatted = new Intl.NumberFormat("ko-KR", { style: "currency", currency: "KRW" , currencyDisplay: "narrowSymbol"});
+        var formattedCost = formatted.format("${foodCost}").replace(/₩/g, "");
+       $(".mycustom-cart_btn").text(formattedCost + "원 담기");
+
         $("#plus_btn").click(function() {
           var quantity = parseInt($("#pop_out").val()); // 현재 수량 가져오기
           quantity += 1; // 수량 증가
@@ -94,10 +100,17 @@
 
           var unitPrice = parseInt("${foodCost}"); // 단일 가격 가져오기
           var totalPrice = quantity * unitPrice; // 총 가격 계산
-          $(".mycustom-cart_btn").text(totalPrice + "원 담기"); // 가격 업데이트
+          var formatted = new Intl.NumberFormat("ko-KR", { style: "currency", currency: "KRW" , currencyDisplay: "narrowSymbol"});
+          var formattedCost = formatted.format(totalPrice).replace(/₩/g, "");
+
+          $(".mycustom-cart_btn").text(formattedCost + "원 담기"); // 가격 업데이트
+
+
 
           $("input[name='quantity']").val(quantity);
           $("input[name='totalPrice']").val(totalPrice);
+
+        
         });
 
         // "-" 버튼 클릭 이벤트 핸들러
@@ -108,7 +121,10 @@
 
           var unitPrice = parseInt("${foodCost}"); // 단일 가격 가져오기
           var totalPrice = quantity * unitPrice; // 총 가격 계산
-          $(".mycustom-cart_btn").text(totalPrice + "원 담기"); // 가격 업데이트
+
+          var formatted = new Intl.NumberFormat("ko-KR", { style: "currency", currency: "KRW" , currencyDisplay: "narrowSymbol"});
+          var formattedCost = formatted.format(totalPrice).replace(/₩/g, "");
+          $(".mycustom-cart_btn").text(formattedCost + "원 담기"); // 가격 업데이트
 
           $("input[name='quantity']").val(quantity);
           $("input[name='totalPrice']").val(totalPrice);
