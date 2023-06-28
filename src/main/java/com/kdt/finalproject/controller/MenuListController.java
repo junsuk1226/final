@@ -5,6 +5,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
@@ -14,11 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.FoodService;
+import com.kdt.finalproject.service.ReviewService;
 import com.kdt.finalproject.vo.FacilitiesVO;
 import com.kdt.finalproject.vo.FoodVO;
+import com.kdt.finalproject.vo.ReviewVO;
 
 @Controller
 public class MenuListController {
+
+    @Autowired
+    private HttpSession session;
+
+    @Autowired
+    private ReviewService reviewService;
 
     @Autowired
     private FoodService f_Service;
@@ -94,7 +104,7 @@ public class MenuListController {
 
         } // 복문의 끝
 
-        // ========휴게소정보=========//
+        // ================================================휴게소정보==============================================================================//
 
         String key2 = "2077960536";// 개인
                                    // 인증키
@@ -146,6 +156,11 @@ public class MenuListController {
                 truckSaYn, maintenanceYn, numOfRows, pageNo, serviceAreaCode2, routeName, routeCode, svarAddr,
                 pageSize, code, message, count, brand);
 
+        // ==================================================================================================================
+
+        // 리뷰리스트=========================================================================================================
+        ReviewVO[] r_list = reviewService.getRestReviewList(RestNm);
+
         FoodVO[] far = f_Service.all();
 
         if (r_photo != null)
@@ -156,26 +171,6 @@ public class MenuListController {
         mv.addObject("fvo", fvo); // API에서 받아오는 음식 리스트
         mv.addObject("favo", favo); // API에서 받아오는 휴게소 정보
         mv.setViewName("menuList");
-
-        return mv;
-    }
-
-    @RequestMapping("/menu/info")
-    public ModelAndView menuInfo(String foodCost, String foodNm, String foodMaterial, String etc, String f_image,
-            String RestNm) {
-
-        ModelAndView mv = new ModelAndView();
-
-        mv.addObject("RestNm", RestNm);
-        mv.addObject("foodCost", foodCost);
-        mv.addObject("foodNm", foodNm);
-        mv.addObject("foodMaterial", foodMaterial);
-        mv.addObject("etc", etc);
-
-        if (f_image != null)
-            mv.addObject("f_image", f_image);
-
-        mv.setViewName("menuInfo");
 
         return mv;
     }

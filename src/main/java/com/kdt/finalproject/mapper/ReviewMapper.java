@@ -13,4 +13,6 @@ public interface ReviewMapper {
     int addReviewLog(ReviewLogVO vo);
 
     List<ReviewVO> getReviewList(String m_idx);
+
+    List<ReviewVO> getRestReviewList(String RestNm);
 }

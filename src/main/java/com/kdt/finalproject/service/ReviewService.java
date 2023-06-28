@@ -34,4 +34,16 @@ public class ReviewService {
     public int addReviewLog(ReviewLogVO rvo) {
         return r_Mapper.addReviewLog(rvo);
     }
+
+    public ReviewVO[] getRestReviewList(String RestNm) {
+        List<ReviewVO> r_list = r_Mapper.getRestReviewList(RestNm);
+
+        ReviewVO[] ar = null;
+        if (r_list != null && r_list.size() > 0) {
+            ar = new ReviewVO[r_list.size()];
+            r_list.toArray(ar);
+        }
+
+        return ar;
+    }
 }
