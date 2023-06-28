@@ -17,11 +17,11 @@ public class CartController {
             throws Exception {
         ModelAndView mv = new ModelAndView();
 
-        // System.out.println(foodNm);
-        // System.out.println(foodCost);
-        // System.out.println(RestNm);
-        // System.out.println(quantity);
-        // System.out.println(totalPrice);
+        System.out.println(foodNm);
+        System.out.println(foodCost);
+        System.out.println(RestNm);
+        System.out.println(quantity);
+        System.out.println(totalPrice);
 
         String location = URLEncoder.encode(RestNm, StandardCharsets.UTF_8.toString());
 

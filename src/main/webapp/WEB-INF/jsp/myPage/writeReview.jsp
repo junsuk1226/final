@@ -32,7 +32,7 @@
             <style media="screen">
               
               .rating {
-              width: 300px;
+              width: 240px;
               padding: 10px;
               margin:0 auto;
               position: relative;
@@ -64,9 +64,9 @@
               .rating input:nth-of-type(5) {
               right: 240px;
               }
-              /* .rating input:nth-of-type(6) {
+              .rating input:nth-of-type(6) {
               right: 300px;
-              } */
+              }
               .rating input:checked ~ .star:after, .rating input:hover ~ .star:after {
               content: '\f005';
               }
@@ -138,45 +138,39 @@
                             </nav>
                             <!-- Page content-->
 
-                            <div class="row">
-                                <div class="col-md-1"></div>
-                                <div class="col-md-9">
+                            <div class="row justify-content-center">
+                                <div class="col-md-9 ">
                                     <form action="/writeReview" name="frm" method="post">
                                         <!-- <input type="hidden" name="restCd"/>
-                                        <input type="hidden" name="r_restNm"/>
-                                        <input type="hidden" name="m_idx" value="${sessionScope.mvo.m_idx}"/> -->
+                                        <input type="hidden" name="r_restNm"/> -->
                                         <input type="hidden" name="restCd" value="1"/>
-                                        <input type="hidden" name="r_restNm" value="가평(춘천)휴계소" />
+                                        <input type="hidden" name="r_restNm" value="가평(춘천)휴게소" />
                                         <input type="hidden" name="m_idx" value="${sessionScope.mvo.m_idx}"/>
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th colspan="5">리뷰쓰기</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
+                                        
+                                        <div class = "col-md-10">
+                                            <div class="row card " style="border: none;">
+                                                <div class="card-body">
+                                                    <div class="col-md-6 my-3 ms-5"><h3 class="text-muted lh-base " style="font-family: 'suite'">${param.r_restNm}는 어떠셨나요? <br/>별점을 남겨주세요!</h3></div>
+                                                    <div class="col-md-3 my-3">
                                                         <div class="rating">
-                                                            <input type="radio" name="r_score" value="5"/><span class="star"></span>
-                                                            <input type="radio" name="r_score" value="4"/><span class="star"></span>
-                                                            <input type="radio" name="r_score" value="3"/><span class="star"></span>
-                                                            <input type="radio" name="r_score" value="2"/><span class="star"></span>
-                                                            <input type="radio" name="r_score" value="1"/><span class="star"></span>
-                                                          </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <textarea name="r_content" id="content" cols="50" rows="8"></textarea>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>    
+                                                            <input type="radio" name="r_score" id="r_score" value="5"/><span class="star"></span>
+                                                            <input type="radio" name="r_score" id="r_score" value="4"/><span class="star"></span>
+                                                            <input type="radio" name="r_score" id="r_score" value="3"/><span class="star"></span>
+                                                            <input type="radio" name="r_score" id="r_score" value="2"/><span class="star"></span>
+                                                            <input type="radio" name="r_score" id="r_score" value="1"/><span class="star"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <textarea  name="r_content" id="content" cols="50" rows="8" ></textarea>
+                                            </div>
+                                            <div style="text-align: right;" class="my-3">
+                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="sendData()" type="button">저장</button>
+                                            </div>
+                                        </div>    
                                     </form>
-                                    <div style="text-align: right;">
-                                        <button class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="sendData()" type="button">저장</button>
-                                    </div>
+                                    
                                 </div>
                             </div>
 
@@ -234,7 +228,7 @@
                                 maxHeight: null,             // 최대 높이
                                 focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
                                 lang: "ko-KR",					// 한글 설정
-                                placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+                                placeholder: '최대 2048자까지 쓸 수 있습니다.',	//placeholder 설정
                                 callbacks:{
                                     onImageUpload: function(files, editor){
                                         //이미지가 에디터에 들어오면 수행하는 곳-이미지는 배열로 저장된다.
@@ -274,7 +268,19 @@
                         
                     
                         function sendData(){
-                                                
+                            if ($('input[name="r_score"]:checked').length <= 0 ){
+                                alert("별점을 남겨주세요!")
+                                return;
+                            }
+                            
+
+                            if($('#content').val().trim().length <= 0){
+
+                                alert("내용을 입력해 주세요")
+                                return;
+                            }
+
+
                             document.frm.submit();
                         }
 

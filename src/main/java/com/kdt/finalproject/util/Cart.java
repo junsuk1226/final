@@ -5,6 +5,9 @@ import java.util.List;
 
 import com.kdt.finalproject.vo.ProductVO;
 
+import lombok.Getter;
+
+@Getter
 public class Cart {
     /*
      * 카트(장바구니)의 기능 분석
@@ -82,7 +85,7 @@ public class Cart {
             vo.setQuantity(q + 1);
             return; // 더 이상 하지 않고 제어권 반환
         }
-
+        System.out.println("list.size:" + list.size());
         list.add(pvo); // 장바구니에 저장
     }
 
