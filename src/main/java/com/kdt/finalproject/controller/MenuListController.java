@@ -19,6 +19,7 @@ import com.kdt.finalproject.service.FoodService;
 import com.kdt.finalproject.service.ReviewService;
 import com.kdt.finalproject.vo.FacilitiesVO;
 import com.kdt.finalproject.vo.FoodVO;
+import com.kdt.finalproject.vo.ReviewVO;
 
 @Controller
 public class MenuListController {
@@ -158,6 +159,7 @@ public class MenuListController {
         // ==================================================================================================================
 
         // 리뷰리스트=========================================================================================================
+        ReviewVO[] r_list = reviewService.getRestReviewList(RestNm);
 
         FoodVO[] far = f_Service.all();
 
