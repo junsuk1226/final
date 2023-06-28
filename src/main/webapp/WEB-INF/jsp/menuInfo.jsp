@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,10 +20,15 @@
             ${RestNm}
           </span>
           <form class="d-flex align-items-center">
-            <button class="mycustom-menu_info_icon_btn me-2" type="button" onclick="location.href='/menu?RestNm=${RestNm}&r_photo=${r_photo}'">
+            <button class="mycustom-menu_info_icon_btn me-2" type="button" onclick="location.href='/menu?RestNm=${RestNm}'">
               <img class="mycustom-menu_info_icon" src="../images/home-icon.png">
             </button>
-            <button class="mycustom-menu_info_icon_btn me-2" type="button" href="/cart">
+            <button class="mycustom-menu_info_icon_btn me-2 position-relative" type="button" href="/viewCart">
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                9+
+                <span class="visually-hidden">unread messages</span>
+              </span>
+            
               <img class="mycustom-menu_info_icon" src="../images/cart-icon.png">
             </button>
           </form>
@@ -53,18 +57,33 @@
     <footer class="d-flex flex-wrap justify-content-center text-center">
         <div class="container fixed-bottom d-flex flex-wrap justify-content-center">
             <div class="container mycustom-menuInfo_footer">
-                <button type="button" class="mycustom-cart_btn">
-
-                  <c:set var="formattedCost" value="${foodCost}" />
-                  <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
-                  담기
-                
+                <button type="button" class="mycustom-cart_btn" onclick="cart()">
+                  ${foodCost}원 담기
                 </button>
             </div>
         </div>
     </footer>
 
+    <form action="/viewCart" method="POST" id="frm">
+      <input type="hidden" name="foodNm" value="${foodNm}">
+      <input type="hidden" name="foodCost" value="${foodCost}">
+      <input type="hidden" name="RestNm" value="${RestNm}">
+      <input type="submit" value="Submit">
+    </form>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-</body>
+    
+    
+    <script>
+      function cart(){
+        sessionStorage.setItem('foodNm', '${foodNm}');
+        sessionStorage.setItem('foodCost', '${foodCost}');
+        sessionStorage.setItem('RestNm', '${RestNm}');
+
+        document.getElementById('frm').submit();
+      }
+    </script>
+
+  </body>
 </html>
