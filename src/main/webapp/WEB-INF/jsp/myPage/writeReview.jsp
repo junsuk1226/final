@@ -64,9 +64,9 @@
               .rating input:nth-of-type(5) {
               right: 240px;
               }
-              .rating input:nth-of-type(6) {
+              /* .rating input:nth-of-type(6) {
               right: 300px;
-              }
+              } */
               .rating input:checked ~ .star:after, .rating input:hover ~ .star:after {
               content: '\f005';
               }
@@ -285,6 +285,7 @@
                         }
 
                        
+                        
 
 
                     </script>
