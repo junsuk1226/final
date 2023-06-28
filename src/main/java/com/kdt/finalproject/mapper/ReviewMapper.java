@@ -12,6 +12,8 @@ public interface ReviewMapper {
 
     int addReviewLog(ReviewLogVO vo);
 
+    void delReview(String r_idx);
+
     List<ReviewVO> getReviewList(String m_idx);
 
     List<ReviewVO> getRestReviewList(String RestNm);

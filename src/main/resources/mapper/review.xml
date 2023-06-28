@@ -20,6 +20,12 @@
     VALUES (#{m_idx}, #{r_content}, #{r_score}, #{restCd}, #{r_restNm}, 0, NOW())
 </insert>
 
+<!--리뷰 삭제-->
+<update id="delReview" parameterType="String">
+    Update final.review SET r_status = '1'
+    WHERE r_idx = #{r_idx}
+</update>
+
 <!--리뷰 로그 작성-->
 <insert id="addReviewLog" parameterType="com.kdt.finalproject.vo.ReviewLogVO">
     INSERT INTO final.reviewlog(m_idx, rl_writeDate, r_idx)
