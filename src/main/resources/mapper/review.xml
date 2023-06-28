@@ -32,5 +32,10 @@
     WHERE m_idx = #{m_idx} and r_status = 0
 </select>
 
+<!-- 휴게소별 리뷰 목록 가져오기 -->
+<select id="getRestReviewList" parameterType="String" resultType="com.kdt.finalproject.vo.ReviewVO">
+  	SELECT * FROM final.review
+    WHERE r_restNm = #{r_restNm} and r_status = 0
+</select>
 
 </mapper>
