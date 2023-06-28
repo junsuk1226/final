@@ -50,10 +50,10 @@
               }
              
               .rating input:nth-of-type(1) {
-              right: 50px;
+              right: 65px;
               }
               .rating input:nth-of-type(2) {
-              right: 100px;
+              right: 110px;
               }
               .rating input:nth-of-type(3) {
               right: 150px;
@@ -62,7 +62,7 @@
               right: 200px;
               }
               .rating input:nth-of-type(5) {
-              right: 250px;
+              right: 240px;
               }
               .rating input:nth-of-type(6) {
               right: 300px;
