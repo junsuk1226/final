@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.JoinService;
 import com.kdt.finalproject.service.MemService;
+import com.kdt.finalproject.util.Cart;
 import com.kdt.finalproject.vo.MemVO;
 
 @Controller
@@ -56,6 +57,8 @@ public class MemController {
 		if (vo != null) {
 
 			session.setAttribute("mvo", vo);
+			Cart cart = new Cart();
+			session.setAttribute("cart", cart);
 			mv.setViewName("/main");
 
 		} else {
@@ -214,6 +217,8 @@ public class MemController {
 					MemVO mvo = j_Service.getMem(vo);
 
 					session.setAttribute("mvo", mvo);
+					Cart cart = new Cart();
+					session.setAttribute("cart", cart);
 					mv.setViewName("redirect:/main");
 				}
 			}
@@ -318,6 +323,8 @@ public class MemController {
 					MemVO mvo = j_Service.getMem(vo);
 
 					session.setAttribute("mvo", mvo);
+					Cart cart = new Cart();
+					session.setAttribute("cart", cart);
 					mv.setViewName("redirect:/main");
 				}
 			}
