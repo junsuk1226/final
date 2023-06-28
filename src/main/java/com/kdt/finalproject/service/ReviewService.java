@@ -35,6 +35,10 @@ public class ReviewService {
         return r_Mapper.addReviewLog(rvo);
     }
 
+    public void delReview(String r_idx) {
+        r_Mapper.delReview(r_idx);
+    }
+
     public ReviewVO[] getRestReviewList(String RestNm) {
         List<ReviewVO> r_list = r_Mapper.getRestReviewList(RestNm);
 
