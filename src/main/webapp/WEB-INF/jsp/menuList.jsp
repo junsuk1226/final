@@ -106,23 +106,15 @@
                                     <li class="list-group-item mycustom-menu_list_group_item">
                                         <div class="d-flex">
                                             <div class="mycustom-menu_img">
-                                                <img class="mycustom-menu_img" src="${fvo.f_image}"><!-- 메뉴 사진-->
+                                                <img class="mycustom-menu_img position-relative" src="${fvo.f_image}">
                                             </div>
                                             <div class="mycustom-menu_info">
-                                                <h3>${fvo.foodNm}</h3>
+                                                <h3>${fvo.foodNm} <c:if test="${fvo.bestfoodyn eq 'Y'}"><img class="mycustom-menu_img" src="../images/recommend.png" style="width:30px; height: 30px;"></c:if></h3>
                                                 <a>
                                                     <c:set var="formattedCost" value="${fvo.foodCost}" />
                                                     <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
                                                 </a>
-                                            <c:if test="${fvo.bestfoodyn eq 'Y'}">
-                                                <span>
-                                                    <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill ">
-                                                        <img class="mycustom-menu_img" src="../images/recommend.png" style="width:30px; height: 30px;"><!-- 메뉴 사진-->
-                                                   
-                                                        <span class="visually-hidden">unread messages</span>
-                                                      </span>
-                                                </span>
-                                            </c:if>
+                                            
                                         </div>
                                     </div>
                                 </li>
