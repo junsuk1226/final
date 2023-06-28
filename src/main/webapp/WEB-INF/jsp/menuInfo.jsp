@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
 
     <!-- 메뉴바 -->
     <nav class="navbar bg-light mycustom-menuInfo_menubar">
-        <div class="container-fluid d-flex justify-content-between" style="max-width: 700px;">
+        <div class="container-fluid d-flex justify-content-between" style="max-width: 700px; padding:0;">
           <span class="navbar-text mycustom-menuInfo_title">
             ${RestNm}
           </span>
@@ -41,36 +42,37 @@
     <div class="container mycustom-menuinfo_area" style="max-width: 700px;">
         <div class="d-flex flex-wrap justify-content-center" style="max-width: 700px;">
             <ul class="mycustom-menu_info_list">
-                <li><img class="mycuston-menu_info_img" src="${f_image}" style="height:500px; width: 700px"></li>
-                <li><h1>${foodNm}</h1></li>
-                <li><h5>${etc}</h5></li>
-                <li><h6>${foodMaterial}</h6></li>
-                <li><h5>
-                  
-                </h5></li>
-                <tr style="text-align:center;">
-                  
-                </tr>
+                <li><img class="mycuston-menu_info_img" src="${f_image}" style="height:500px; width: 700px; margin-bottom: 20px;"></li>
+                <li>
+                  <h1 class="mycustom-menuInfo_menu_title">${foodNm}</h1>
+                </li>
+                <li><h5 class="mycustom-menuInfo_menu_etc">${etc}</h5></li>
+                <!-- <li><h6 class="mycustom-menuInfo_menu_foodMaterial">재료: ${foodMaterial}</h6></li> -->
+                <div class="container-fluid d-flex justify-content-between mycustom-menuInfo_menu_price">
+                  <h5 class="mycustom-menuInfo_count_num">가격</h5>
+                  <h5 class="mycustom-menuInfo_count_num">
+                    <c:set var="formattedCost" value="${foodCost}" />
+                    <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
+                  </h5>
+                </div>
               </ul>
             </div>
-            <td>
-                <button type ="button" id="minus_btn">-</button>
-                <input type="text" id="pop_out" name="pop_out" value="1" readonly="readonly" style="text-align:center;"/>
-                <button type="button" id="plus_btn">+</button>
-            </td>
+            <div class="container-fluid d-flex justify-content-between mycustom-menuInfo_count">
+                <p class="mycustom-menuInfo_count_num">수량</p>
+                <div class="d-flex justify-content-center mycustom-menuInfo_count_box"> 
+                  <button class="mycustom-menuInfo_count_num" type ="button" id="minus_btn">-</button>
+                  <input class="mycustom-menuInfo_count_num" type="text" id="pop_out" name="pop_out" value="1" readonly="readonly" style="text-align:center; width: 150px;/">
+                  <button class="mycustom-menuInfo_count_num" type="button" id="plus_btn">+</button>
+                </div>
+            </div>
           </div>
           
           <!--menuinfo area 끝----------->
           
           <footer class="d-flex flex-wrap justify-content-center text-center">
-            <div class="container fixed-bottom d-flex flex-wrap justify-content-center">
-              
-            </div>
-            <div class="container fixed-bottom d-flex flex-wrap justify-content-center">
+            <div class="container fixed-bottom d-flex flex-wrap justify-content-center" style="padding:0;">
               <div class="container mycustom-menuInfo_footer">
-                <button type="button" class="mycustom-cart_btn" onclick="cart()">
-              1
-                </button>
+                <button type="button" class="mycustom-cart_btn" onclick="cart()">1</button>
             </div>
         </div>
     </footer>
@@ -104,7 +106,6 @@
           var formattedCost = formatted.format(totalPrice).replace(/₩/g, "");
 
           $(".mycustom-cart_btn").text(formattedCost + "원 담기"); // 가격 업데이트
-
 
 
           $("input[name='quantity']").val(quantity);
