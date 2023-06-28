@@ -10,8 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PayVO {
-    private String p_idx,
-            m_idx,
+    private String m_idx,
             restCd, // 휴게소 코드
             foodNm, // 음식 이름
             foodCost, // 개별 음식 가격
