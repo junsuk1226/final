@@ -23,7 +23,7 @@
    <!-- 메뉴바 ----------------------------------------------------------------------------------------------------------->
    <div class="container main_custom_menubar">
 		<header class="d-flex flex-wrap align-items-center justify-content-md-between py-3 mb-3">
-			<a class="nav-link logo_custom" href="/main">내 손안에 휴게소</a>
+			<a class="nav-link logo_custom"></a>
 			<c:if test="${sessionScope.mvo == null}">
 				<div class="col-md-3 text-end">
 					<button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/login'">로그인</button>
