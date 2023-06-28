@@ -147,11 +147,12 @@
                                         <input type="hidden" name="r_restNm" value="가평(춘천)휴게소" />
                                         <input type="hidden" name="m_idx" value="${sessionScope.mvo.m_idx}"/>
                                         
-                                        <div class = "col-md-10">
-                                            <div class="row card " style="border: none;">
-                                                <div class="card-body">
-                                                    <div class="col-md-6 my-3 ms-5"><h3 class="text-muted lh-base " style="font-family: 'suite'">${param.r_restNm}는 어떠셨나요? <br/>별점을 남겨주세요!</h3></div>
-                                                    <div class="col-md-3 my-3">
+                                        <div class = "col-md-10 ms-1 me-1">
+                                            <div class="card" style="border: none;">
+                                                <div class="row card-body justify-content-around">
+
+                                                    <div class="col-md-5 my-3 ms-2 justify-content-center"><h3 class="text-muted lh-base " style="font-family: 'suite'">${param.r_restNm}는 어떠셨나요? <br/>별점을 남겨주세요!</h3></div>
+                                                    <div class="col-md-3 my-3 me-2 justify-content-center">
                                                         <div class="rating">
                                                             <input type="radio" name="r_score" id="r_score" value="5"/><span class="star"></span>
                                                             <input type="radio" name="r_score" id="r_score" value="4"/><span class="star"></span>
