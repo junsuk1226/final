@@ -155,6 +155,7 @@
                                         <input type="hidden" name="restCd" value="1"/>
                                         <input type="hidden" name="r_restNm" value="가평(춘천)휴게소" />
                                         <input type="hidden" name="m_idx" value="${sessionScope.mvo.m_idx}"/>
+                                        <input type="hidden" name="r_file" />
                                         
                                         <div class = "col-md-10 ms-1 me-1">
                                             <div class="card" style="border: none;">
@@ -179,7 +180,7 @@
                                             </div>
                                             <div class ="row">
                                                 <div class="ms-1 me-2 input-group">
-                                                    <input type="file" class="form-control " id="r_file" onchange="uploadFile()" ame="r_file">
+                                                    <input type="file" class="form-control " id="file" onchange="uploadFile()" name="file">
                                                 </div>
                                             </div>
                                             <div class="row ms-1 me-1">
@@ -310,12 +311,12 @@
                             
                         // }
                         function uploadFile() {
-                            var fileInput = document.getElementById('r_file');
+                            var fileInput = document.getElementById('file');
                           
                                 var file = fileInput.files[0];
                                 
                                 var formData = new FormData();
-                                formData.append('r_file', file);
+                                formData.append('file', file);
 
                                 var xhr = new XMLHttpRequest();
                                 xhr.open('POST', '/saveImg', true);
@@ -323,6 +324,11 @@
                                 xhr.onload = function () {
                                     if (xhr.status === 200) {
                                         console.log('파일 업로드 성공');
+                                        var responseData = JSON.parse(xhr.responseText);
+                                        var fileName = responseData.fname; // 저장된 파일명
+                                        
+                                        document.getElementsByName('r_file')[0].value=fileName;
+                                        
                                     } else {
                                         console.log('파일 업로드 실패');
                                     }
