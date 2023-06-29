@@ -93,7 +93,40 @@
               .rating .star:hover ~ .star:after, .rating .star:hover:after {
               content: '\f005';
               }
+
+              /*파일 첨부 버튼 fade*/
               
+                .hover-fade img {
+                width: 100%;
+                height: auto;
+                -webkit-transition: all 0.5s ease-in-out;
+                -moz-transition: all 0.5s ease-in-out;
+                -o-transition: all 0.5s ease-in-out;
+                -ms-transition: all 0.5s ease-in-out;
+                transition: all 0.5s ease-in-out;
+                }
+                .hover-fade:hover img {
+                -webkit-transform: scale(1.05);
+                -moz-transform: scale(1.05);
+                -o-transform: scale(1.05);
+                -ms-transform: scale(1.05);
+                transform: scale(1.05);
+                -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=2)";
+                filter: alpha(opacity=0.5);
+                opacity: 0.5;
+                }
+              
+                /*사진 삭제 버튼*/
+                button.btn-del {
+                    position: absolute;
+                    top: -15px;
+                    left : 315px;
+                    border-radius: 15px;
+                    border: none;
+                    background-color: #6600db;
+                    width: 26px;
+ 
+                }
                 </style>
                     <!-- Favicon-->
                 </head>
@@ -180,9 +213,17 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class ="row">
-                                                <div class="ms-1 me-2 input-group">
-                                                    <input type="file" class="form-control " id="file" onchange="uploadFile()" name="file">
+                                            <div class ="row ms-1 mb-3">
+                                                <div class=" input-group">
+                                                    <label for="file">
+                                                        <div style="height: 100px; width: 150px; margin: 0 auto;" class="hover-fade">
+                                                            <img src="../main_images/addfile.png" style='object-fit:cover; width: 100%; height:100%; cursor: pointer;' class='rounded shadow mb-5' alt="inputFile"/>
+                                                        </div>
+                                                    </label>
+                                                    <input type="file" class="form-control " id="file" name="file" style="display: none;">
+                                                    <div class="ms-3">
+                                                        <div style="background-color: rgb(241, 241, 241); border-radius: 6px; height: 100px; width: 150px; margin: 0 auto;" id="img_area"> </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row ms-1 me-1">
@@ -248,8 +289,7 @@
                     <script type="text/javascript" src="js/bootstrap.js"></script>
 
                     <!-- 제이쿼리 -->
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-                    </script>
+                    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
                     <!-- summernote -->
                     <script src="/js/summernote-lite.js"></script>
@@ -268,6 +308,32 @@
 
                     <script>
 
+                        $(function(){
+                            $("#file").bind("change", function(){
+                                //console.log("DDDDDD");
+                                let fileInput = document.getElementById('file');
+                          
+                                var file = fileInput.files[0];
+
+                                var formData = new FormData();
+                                formData.append('file', file);
+
+                                $.ajax({
+                                    url: "/saveImg",
+                                    type: "post",
+                                    data: formData,
+                                    contentType:false,
+                                    processData:false,
+                                    cache: false,
+                                    dataType: "json"
+                               }).done(function(data){
+                                    //console.log(data.path+"/"+data.fname);
+                                    $("#img_area").html("<img src='"+data.path+"/"+data.fname+"' style='object-fit:cover; width: 100%; height:100%' class='rounded shadow mb-5'/><button type='button' class='btn-del'><i class='fa fa-times' style ='color: #fff'></i></button> ")
+                                    document.frm.r_file.value=data.fname;
+                               });
+                            });
+                        });
+
                         function uploadFile() {
                             var fileInput = document.getElementById('file');
                           
@@ -275,7 +341,7 @@
                                 
                                 var formData = new FormData();
                                 formData.append('file', file);
-
+                                /*
                                 var xhr = new XMLHttpRequest();
                                 xhr.open('POST', '/saveImg', true);
                                 xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -292,7 +358,16 @@
                                     }
                                 };
                                 xhr.send(formData);
-                            
+                                */
+                               $.ajax({
+                                    url: "/saveImg",
+                                    type: "post",
+                                    data: formData,
+                                    dataType: "json"
+                               }).done(function(data){
+                                    console.log(data.path+"/"+data.fname);
+                                    document.frm.r_file.value=data.fname;
+                               });
                         }
 
                     
