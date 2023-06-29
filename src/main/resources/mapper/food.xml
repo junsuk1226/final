@@ -10,7 +10,7 @@
 </select>
 
 <select id="getFoodInfo" parameterType="String" resultType="com.kdt.finalproject.vo.FoodVO">
-  	SELECT * FROM final.food
+  	SELECT * FROM food
     WHERE seq = #{seq}
 </select>
 
