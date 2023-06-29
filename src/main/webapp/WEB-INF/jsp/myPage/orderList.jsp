@@ -112,50 +112,7 @@
                                         <br />
                                     </div>
                                 </div>
-<<<<<<< HEAD
                                 
-=======
-                                <div class="row">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-7 col-md-offset-5">
-                                        
-                                            <input type="hidden" name="type" value="aoList" />
-                                            <table>
-                                                <tbody align=center>
-
-                                                    <thead>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="row">
-                                                                    <div class="col-md-3">
-                                                                        <select id="SearchType" name="searchType"
-                                                                            class="btn btn-outline-success me-2 mycustom-mem-btn">
-                                                                            <option value="0">관심검색</option>
-                                                                            <option value="1">주문내역</option>
-                                                                            <option value="2">리뷰관리</option>
-                                                                            <option value="3">장바구니</option>
-                                                                            <option value="4">휴게소검색</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="col-md-7">
-                                                                        <div class="input-group">
-                                                                            <input class="btn btn-outline-success me-2 mycustom-mem-btn"
-                                                                                placeholder="검색어를 입력하세요"
-                                                                                aria-describedby="button-addon"
-                                                                                type="text" id="searchValue"
-                                                                                name="searchValue" />
-                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn"
-                                                                                onclick="sendKeyword(this.form)"
-                                                                                value="검색" id="button-addon" />
-                                                                        </div>
-                                                                    </div>
-                                                            </td>
-                                                        </tr>
-                                                    </thead>
-                                            </table>
-                                    </div>
-                                </div>
->>>>>>> 6f0c7ee9eb13d8583834dd38f234b91aa4619f66
                                 <div class="row">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-9">
@@ -207,25 +164,7 @@
                                                         <input type="hidden" value="1" name="p_idx"/>  <!--${pvo.p_idx}-->
                                                         
                                                     </tr>
-<<<<<<< HEAD
                                                     
-=======
-                                                    </form>
-                                                    <!-- <tr>
-
-                                                        <td>이미지</td>
-                                                        <td colspan="4">
-                                                            <div><p style="font-size: 15px; font-weight: bold;">휴게소명</p></div>
-                                                            <div><p style="font-size: 12px; ">업소명 : 2023-06-24</p></div>
-                                                            <div>티본스테이크 외 4건 </div>
-                                                            <div>-------------------------- </div>
-                                                            <div> 총 467,000원</div>
-                                                            <div  style="text-align: right;">
-                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
-                                                            </div>
-                                                        </td>    
-                                                    </tr> -->
->>>>>>> 6f0c7ee9eb13d8583834dd38f234b91aa4619f66
                                                 <%-- </c:forEach> --%>
                                             </tbody>
                                         </table>
