@@ -16,6 +16,26 @@
             height: auto;
         }
     }
+
+    .hover-fade img {
+      width: 100%;
+      height: auto;
+      -webkit-transition: all 0.5s ease-in-out;
+      -moz-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
+      -ms-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out;
+    }
+    .hover-fade:hover img {
+      -webkit-transform: scale(1.05);
+      -moz-transform: scale(1.05);
+      -o-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+      transform: scale(1.05);
+      -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0.5)";
+      filter: alpha(opacity=0.5);
+      opacity: 0.5;
+    }
 </style>
 
 </head>
@@ -88,12 +108,12 @@
         <div class="rectangle mycustom-main_rectangle">
           <div class="quadrant mycustom-main_quadrant quadrant-0 mycustom-main_quadrant-0 " style="margin: 5px;">
             <a href="/map">
-                <div class="mycustom-diagonal_image_area">
+                <div class="mycustom-diagonal_image_area hover-fade">
                     <img  src="../main_images/searchLogo.png" alt="Image 1" class="diagonal-image mycustom-main_diagonal-image">
                 </div>
             </a>
           </div>
-          <div class="quadrant mycustom-main_quadrant quadrant-1 mycustom-main_quadrant-1 " style="margin: 5px;">
+          <div class="quadrant mycustom-main_quadrant quadrant-1 mycustom-main_quadrant-1 hover-fade" style="margin: 5px;">
             <a href="/lineSearchList"><img  src="../main_images/wayLogo.png" alt="Image 2" class="diagonal-image mycustom-main_diagonal-image"></a>
           </div>
         </div>

@@ -23,7 +23,7 @@
    <!-- 메뉴바 ----------------------------------------------------------------------------------------------------------->
    <div class="container main_custom_menubar">
 		<header class="d-flex flex-wrap align-items-center justify-content-md-between py-3 mb-3">
-			<a class="nav-link logo_custom" href="/main">내 손안에 휴게소</a>
+			<a class="nav-link logo_custom"></a>
 			<c:if test="${sessionScope.mvo == null}">
 				<div class="col-md-3 text-end">
 					<button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/login'">로그인</button>
@@ -117,17 +117,14 @@
 	</form>
 
 
-	<div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-map_area">
+	<div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-map_area" style="max-width: 800px;">
 
 		<button class="mycustom-order_btn" type="button" onclick="exe()">
 			<span><img class="mycustom-order_icon" src="https://cdn-icons-png.flaticon.com/512/4645/4645316.png"/></span>
 			주문하기
 		</button>
 		
-		<div class="mycustom-map">
-			<div id="map" style="width:800px;height:500px;"></div>
-		</div>
-
+		<div id="map" style="width: 100%; height: 500px;"></div>
 	</div>
 
 	
@@ -141,7 +138,7 @@
 					<div class="accordion-item mycustom-line_search_info mycustom_now_info">
 						<h2 class="accordion-header" id="panelsStayOpen-headingOne">
 							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-								<img class="mycustom-line_search_img" src="https://blog.kakaocdn.net/dn/QiQw7/btq1ByoRVn5/fOPibYxNNlLJWwwNRU3L5k/img.jpg"/>
+								<img class="mycustom-line_search_img" src="../main_images/hand2.png"/>
 								<ul class="mycustom-line_search_ul" id="unitName"> 
 							</button>
 						</h2>

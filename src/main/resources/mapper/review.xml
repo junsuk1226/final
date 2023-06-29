@@ -15,10 +15,16 @@
 </select>
 
 <!--리뷰 작성-->
-<insert id="addReview" parameterType="com.kdt.finalproject.vo.ReviewVO">
-    INSERT INTO final.review(m_idx, r_content, r_score, restCd, r_status)
-    VALUES (#{m_idx}, #{r_content}, #{r_score}, #{restCd}, #{r_status})
+<insert id="addReview" parameterType="com.kdt.finalproject.vo.ReviewVO" useGeneratedKeys="true" keyProperty="r_idx">
+    INSERT INTO final.review(m_idx, r_content, r_score, restCd, r_restNm, r_status, r_writedate)
+    VALUES (#{m_idx}, #{r_content}, #{r_score}, #{restCd}, #{r_restNm}, 0, NOW())
 </insert>
+
+<!--리뷰 삭제-->
+<update id="delReview" parameterType="String">
+    Update final.review SET r_status = '1'
+    WHERE r_idx = #{r_idx}
+</update>
 
 <!--리뷰 로그 작성-->
 <insert id="addReviewLog" parameterType="com.kdt.finalproject.vo.ReviewLogVO">
@@ -32,6 +38,7 @@
     WHERE m_idx = #{m_idx} and r_status = 0
 </select>
 
+<<<<<<< HEAD
   <!-- 리뷰 삭제 -->
   <update id="reviewdel" parameterType="Map">
   	UPDATE final.review
@@ -50,5 +57,18 @@
 	) c WHERE c.rnum BETWEEN #{begin} AND #{end}
   </select>
   -->
+=======
+<!-- 휴게소별 리뷰 목록 가져오기 -->
+<select id="getRestReviewList" parameterType="String" resultType="com.kdt.finalproject.vo.ReviewVO">
+  	SELECT * FROM final.review
+    WHERE r_restNm = #{RestNm} and r_status = 0
+</select>
+>>>>>>> 6f0c7ee9eb13d8583834dd38f234b91aa4619f66
 
+<!--휴게소별 별점 평균(소수점 첫번쨰 자리까지...반올림)-->
+<select id="getScoreAvg" parameterType="String" resultType="float">
+    SELECT ROUND(AVG(r_score),2)
+    FROM final.review
+    WHERE r_restNm=#{r_restNm}
+</select>
 </mapper>

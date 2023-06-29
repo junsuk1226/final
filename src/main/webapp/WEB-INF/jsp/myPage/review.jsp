@@ -164,13 +164,13 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach var="rvo" items="${ar }" varStatus="st">
-
+                                                <c:forEach var="rvo" items="${requestScope.ar }" varStatus="st">
                                                     <tr>
+                                                        
                                                         <td>휴게소이미지</td>
                                                         <td colspan="4">
                                                             <div><p style="font-size: 15px; font-weight: bold;">${rvo.r_restNm}</p></div>
-                                                            <div><p style="font-size: 12px; ">${rvo.r_restNm} : ${rvo.r_writedate}</p></div>
+                                                            <div><p style="font-size: 12px; ">${rvo.r_writedate}</p></div>
                                                             <div>${rvo.r_content}</div>
                                                             <div style="text-align: right;">
                                                                 <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
@@ -178,6 +178,7 @@
                                                         </td>    
                                                     </tr>
 
+                                                    
                                                 </c:forEach>
                                             </tbody>
                                         </table>

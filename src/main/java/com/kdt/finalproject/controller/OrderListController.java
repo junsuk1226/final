@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kdt.finalproject.vo.PayVO;
+
 @Controller
 public class OrderListController {
 
@@ -14,8 +16,8 @@ public class OrderListController {
         return mv;
     }
 
-    @RequestMapping("/orderdetail")
-    public ModelAndView orderdetail(String cPage, String o_idx) {
+    @RequestMapping("/orderDetail")
+    public ModelAndView orderDetail(String cPage, String p_idx) {
         ModelAndView mv = new ModelAndView();
 
         mv.setViewName("/myPage/orderDetail");

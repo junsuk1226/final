@@ -24,30 +24,30 @@
             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
             <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
                 <style>
-                    table {
-                        width: 800px;
-                        border-collapse: collapse;
-                    }
-
-                    table th,
-                    table td {
-                        /*border: 2px solid black;*/
-                        padding: 4px;
-                    }
-
-                    table caption {
-                        text-indent: -9999px;
-                        height: 0;
-                    }
+                
 
                     .popup {
                         display: none;
                     }
 
-                    .empty {
-                        height: 50px;
-                        color: #ababab;
-                    }
+                 
+                    
+    div.left {
+        
+        width: 50%;
+        margin-top: 100px;
+        float: left;
+        box-sizing: border-box;
+        
+        
+    }
+    div.right {
+        width: 100%;
+        float: right;
+        box-sizing: border-box;
+        
+        
+    }
                 </style>
 
 
@@ -103,7 +103,7 @@
                             </nav>
                             <!-- Page content-->
 
-                            <div class="container-fluid">
+                            <div class="right">
                                 <div class="row">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-11">
@@ -113,31 +113,18 @@
                                         <br />
                                     </div>
                                 </div>
-                                <div class="row">
+                                
                                     <div class="col-md-1"></div>
-                                    <div class="col-md-7 col-md-offset-5">
-                                        <form name="frm" action="myPage" method="post">
-                                            <input type="hidden" name="type" value="aoList" />
-                                            <table>
-                                                <tbody align=center>
+                                    <div class="col-md-7 col-md-offset-5" class="right">
+                                     
+                                            <table >
+                                                <tbody >
 
-                                                    <thead>
+                                                    <thead >
                                                         <tr>
                                                             <td>
-                                                                <div class="row">
-                                                                    <!--
-
-                                                                        <div class="col-md-3">
-                                                                            <select id="SearchType" name="searchType"
-                                                                            class="form-select">
-                                                                            <option value="0">빠른이동</option>
-                                                                            <option value="1" name="1">메인화면</option>
-                                                                            <option value="2" name="2">위치검색</option>
-                                                                            <option value="3" name="3">노선검색</option>
-                                                                            <option value="4" name="4">휴게소검색</option>
-                                                                        </select>
-                                                                    </div>
-                                                                -->
+                                                                <div class="row" >
+                                                                    
                                                                 <div class="xans-element- xans-myshop xans-myshop-bankbook ">
                                                                     <ul>
                                                                         <li class="coupon displaynone">
@@ -171,196 +158,115 @@
                                                                             </strong>
                                                                             <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
                                                                         </li>
-                                                                        <br />
-                                                                        <li class="coupon displaynone">
-                                                                            <strong class="title">취소.반품목록&nbsp;</strong>
-                                                                            <strong class="cont">
-                                                                                <span> 0개</span>
-                                                                            </strong>
-                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
-                                                                        </li>
-                                                                        <br />
-                                                                        <li class="coupon displaynone">
-                                                                            <strong class="title">결제수단&nbsp;</strong>
-                                                                            <strong class="cont">
-                                                                                <span> :&nbsp;없음&nbsp;</span>
-                                                                            </strong>
-                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
-                                                                        </li>
-                                                                        <br />
-                                                                        <li class="coupon displaynone">
-                                                                            <strong class="title">기프트카드.제휴포인트&nbsp;</strong>
-                                                                            <strong class="cont">
-                                                                                <span></span>
-                                                                            </strong>
-                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
-                                                                        </li>
-                                                                        <br />
-                                                                        <li class="coupon displaynone">
-                                                                            <strong class="title">선물함&nbsp;</strong>
-                                                                            <strong class="cont">
-                                                                                <span></span>
-                                                                            </strong>
-                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
-                                                                        </li>
-                                                                        <br />
+                                                                        <br/>
                                                                         <li class="coupon displaynone">
                                                                             <strong class="title">고객센터&nbsp;</strong>
                                                                             <strong class="cont">
-                                                                                <span>02-882-1234</span>
+                                                                                <span>02-112</span>
                                                                             </strong>
                                                                             <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="연결하기" id="btn btn-link" />
                                                                         </li>
                                                                     </ul>
                                                                 </div>
-                                                                    <div class="col-md-7">
-                                                                        <div class="input-group">
-                                                                           <!-- <input class="form-control"
-                                                                                placeholder="검색어를 입력하세요"
-                                                                                aria-describedby="button-addon"
-                                                                                type="text" id="searchValue"
-                                                                                name="searchValue" /> -->
-                                                                                <!--
-
-                                                                                    <input type="button" class="btn btn-dark"
-                                                                                    onclick="sendKeyword(this.form)"
-                                                                                    value="이동" id="button-addon" />
-                                                                                -->
-                                                                        </div>
-                                                                    </div>
                                                             </td>
                                                         </tr>
                                                     </thead>
+                                                </div>
                                             </table>
+                                        </div>
+                                        
+                                        
+                                        
+                                        
+                                        <!-- footer 시작---------------------------------------------------------------------------------------------->
+                                        <!-- <body class="d-flex flex-column"> -->
+                                            <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mycustom-main_footer">
+                                                <div class="container text-center">
+                                                    <small>Copyright &copy; 2023 쉬-잇 </small>
+                                                </div>
+                                            </footer>
+                                            
+                                            <!-- </body>  -->
+                                            <!-- footer 끝---------------------------------------------------------------------------------------------->
+                                            
+                                            
+                                        </div>                                            
+                                    </div>
+                                    <div   class="left">
+                                <div class="input-group" >
+                                    <div class="col-md-11">
+                                        
+                                        <h2>내 정보 </h2>
+                                        <br />
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="/myPage/myPage" method="post" class="needs-validation" novalidate>
+                                            <ul class="list-unstyled">
+                                                <li class="mb-3">이메일</li>
+                                                <div class="form-floating ">
+                                                    <input type="text" placeholder="Email" class="form-control" name="j_email" id="j_email" required
+                                                        value="${sessionScope.mvo.m_id}" disabled>
+                                                    <label for="floatingInput" class="text-secondary">
+                                                        
+                                                    </label>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                   
+                                                </div>
+                                                <br />
+                                    
+                                                <br />
+                                                <li class="mb-3">닉네임</li>
+                                                <div class="form-floating">
+                                                    <input type="text" placeholder="Nickname" class="form-control input" name="j_nickname" id="j_nickname"
+                                                        required value="${sessionScope.mvo.m_name}" disabled>
+                                                    
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <br />
+                                                </div>
+                                                <br />
+                                                <li class="mb-3">휴대폰 번호</li>
+                                                
+                                                <div class="form-floating mb-5">
+                                                    <input type="text" placeholder="PhoneNumber" class="form-control input" name="m_phone" id="m_phone"
+                                                        required value="${sessionScope.mvo.m_phone}" disabled>
+                                                  
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    
+                                                </div>
+                                               
+                                                
+                                                <br />
+                                                <div class="col-7 d-grid gap-2  mx-auto" href="/infopw">
+                                                    <button type="button" class="btn btn-dark "> <a class="nav-link" href="/info">회원정보 수정하러 가기 <a /></button>
+                                                </div>
+                                            </ul>
+                                        </form>
+                                        <hr>
+                                    
                                     </div>
                                 </div>
-                                <!--
-                                <div class="row">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-9">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr style="background:'#353535'">
-                                                    <th>목록</th>
-                                                    <th>주문자</th>
-                                                    <th>주문번호</th>
-                                                    <th>상품번호</th>
-                                                    <th>주문상태</th>
-                                                </tr>
-                                            </thead>
-
-                                                <tbody>
-                                                    <c:forEach var="pvo" items="${requestScope.ar }" varStatus="st">
-                                                        <tr>
-                                                            <%--<td>${page.totalRecord -
-                                                                ((page.nowPage-1)*page.numPerPage+st.index) }</td> --%>
-                                                                <td>${pvo.o_idx}</td>
-                                                                <td>${pvo.o_class}</td>
-                                                                <td><a href="Controller?type=aoView&o_idx=${pvo.o_idx }">
-                                                                    <c:out value="${pvo.o_num }"></c:out>
-                                                                </a></td>
-                                                                <td>${pvo.p_idx}</td>
-                                                                <td>
-                                                                    <c:choose>
-                                                                        <c:when test="${pvo.o_status == 1}">배송준비중</c:when>
-                                                                        <c:when test="${pvo.o_status == 2}">배송중</c:when>
-                                                                        <c:when test="${pvo.o_status == 3}">배송완료</c:when>
-                                                                        <c:when test="${pvo.o_status == 4}">주문완료</c:when>
-                                                                        <c:when test="${pvo.o_status == 5}">주문취소</c:when>
-                                                                        
-                                                                        <c:otherwise>택배가 가출했어요</c:otherwise>
-                                                                    </c:choose>
-                                                                </td>
-                                                            </tr>
-                                                        </c:forEach>
-                                                    </tbody>
-                                                </table>
+                            </div>
+                                    <%-- 추가Popup --%>
+                                    <div id="add_popup" class="popup" title="내역 수정 ">
+                                        <div id="content">
+                                            <form action="Controller" method="post">
+                                                <input type="hidden" name="type" value="add" />
+                                                <label for="deptno">주문환불</label>
+                                                <input type="text" id="deptno" name="deptno" /><br />
+                                                <label for="dname">주문반품</label>
+                                                <input type="text" id="dname" name="dname" /><br />
+                                                <label for="location_id">주문상태확인</label>
+                                                <input type="text" id="location_id" name="location_id" /><br />
+                                                
+                                                <input type="button" value="뒤로" onclick="add(this.form)" />
+                                                
                                             </form>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-4"></div>
-                                        <div class="col-md-5">
-                                            <table>
-                                                <tfoot>
-                                                    <tr>
-                                                        <td>
-                                                            <ol class="pagination">
-                                                                <c:if test="${page.startPage < page.pagePerBlock}">
-                                                                    <li class="page-item disabled"><a
-                                                                        class="page-link">&lt;</a></li>
-                                                                    </c:if>
-                                                                    <c:if test="${page.startPage >= page.pagePerBlock}">
-                                                                        <li class="page-item"><a class="page-link"
-                                                                            href="Controller?type=aoList&cPage=${page.startPage-page.pagePerBlock }">&lt;</a>
-                                                                        </li>
-                                                                    </c:if>
-                                                                    <c:forEach begin="${page.startPage }" end="${page.endPage }"
-                                                                    varStatus="st">
-                                                                    <c:if test="${page.nowPage eq st.index}">
-                                                                        <li class="page-item active"><a
-                                                                            class="page-link">${st.index}</a></li>
-                                                                        </c:if>
-                                                                        <c:if test="${page.nowPage ne st.index }">
-                                                                            <li class="page-item"><a class="page-link"
-                                                                                href="Controller?type=aoList&cPage=${st.index}">${st.index
-                                                                                }</a></li>
-                                                                            </c:if>
-                                                                        </c:forEach>
-                                                                        <c:if test="${page.endPage<page.totalPage}">
-                                                                            <li class="page-item"><a class="page-link"
-                                                                                href="Controller?type=aoList&cPage=${page.startPage+page.pagePerBlock }">&gt;</a>
-                                                                            </li>
-                                                                        </c:if>
-                                                                        <c:if test="${page.endPage == page.totalPage}">
-                                                                            <li class="page-item disabled"><a
-                                                                                class="page-link">&gt;</a></li>
-                                                                            </c:if>
-                                                                        </ol>
-                                                                    </td>
-                                                                </tr>
-                                                            </tfoot>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            -->
-                                                
-                                                
-                                
-                            </div>
-                            <div>
-                                <!-- footer 시작---------------------------------------------------------------------------------------------->
-                                <!-- <body class="d-flex flex-column"> -->
-                                <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mycustom-main_footer">
-                                    <div class="container text-center">
-                                        <small>Copyright &copy; 2023 쉬-잇 </small>
-                                    </div>
-                                </footer>
-                            
-                                <!-- </body>  -->
-                                <!-- footer 끝---------------------------------------------------------------------------------------------->
-                            
-                            </div>
-                        </div>
-
-                        <%-- 추가Popup --%>
-                            <div id="add_popup" class="popup" title="내역 수정 ">
-                                <div id="content">
-                                    <form action="Controller" method="post">
-                                        <input type="hidden" name="type" value="add" />
-                                        <label for="deptno">주문환불</label>
-                                        <input type="text" id="deptno" name="deptno" /><br />
-                                        <label for="dname">주문반품</label>
-                                        <input type="text" id="dname" name="dname" /><br />
-                                        <label for="location_id">주문상태확인</label>
-                                        <input type="text" id="location_id" name="location_id" /><br />
-
-                                        <input type="button" value="뒤로" onclick="add(this.form)" />
-
-                                    </form>
-                                </div>
-                            </div>
-
+                                    
                             <div id="search_popup" class="popup" title="리모컨">
                                 <div id="content">
                                     <form action="Controller" method="post">

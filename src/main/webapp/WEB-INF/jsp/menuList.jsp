@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,11 +16,13 @@
     
     <!-- 메뉴바 ----------------------------------------------------------------------------------------------------------->
     <div class="container main_custom_menubar">
-        <header class="d-flex flex-wrap align-items-center justify-content-md-between py-3 mb-3">
-            <a class="nav-link logo_custom" href="/main">내 손안에 휴게소</a>
+        <header class="d-flex flex-wrap align-items-center justify-content-sm-between py-3">
+            <!-- <a class="nav-link logo_custom" href="/main">내 손안에 휴게소</a> -->
+            <div class="col-md-3">
+                <a href="/main"><img style="max-width: 200px;" src="../main_images/logo.png"/></a>
+            </div>
             <c:if test="${sessionScope.mvo == null}">
-                <div class="col-md-3 text-end">
-                    
+                <div class="col-md-3 text-end mt-2">
                     <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/login'">로그인</button>
                     <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/join'">회원가입</button>
                 </div>
@@ -27,7 +30,7 @@
             <c:if test="${sessionScope.mvo != null}">
             <div class="col-md-3 text-end"> 
                 <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/logout'">로그 아웃</button>
-            <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/mypage'">마이페이지</button>
+            <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/myPage'">마이페이지</button>
             </div>
             </c:if>
         </header>
@@ -35,11 +38,11 @@
     <!-- 메뉴바끝 ----------------------------------------------------------------------------------------------------------->
 
     <div class="container" style="max-width: 700px;">
-        <c:if test="${r_photo != null}">
+        <c:if test="${r_photo != '../images/rest_default_photo.png' && r_photo != null}">
             <img class="mycustom-menuList_main_image" src="${r_photo}">
         </c:if>
-        <c:if test="${r_photo == null}">
-            <img class="mycustom-menuList_main_image" src="../main_images/hand.png">
+        <c:if test="${r_photo == '../images/rest_default_photo.png' || r_photo == null}">
+            <img class="mycustom-menuList_main_image" src="../main_images/hand2.png">
         </c:if>
     </div>
 
@@ -50,23 +53,27 @@
                 <h1 class="mycustom-rest_name">${favo.serviceAreaName}</h1>
                 <h3 class="mycustom-rest_direction">${favo.direction} 방향</h3>
             </div>
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item mycustom-nav_item" role="presentation">
-                    <button onclick="hide()" class="nav-link active mycustom-nav_btn" id="menu-tab" data-bs-toggle="tab" data-bs-target="#menu-tab-pane" type="button" role="tab" aria-controls="menu-tab-pane" aria-selected="true">
-                        메뉴
-                    </button>
-                </li>
-                <li class="nav-item mycustom-nav_item" role="presentation">
-                    <button onclick="show()" class="nav-link mycustom-nav_btn" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="false">
-                        정보
-                    </button>
-                </li>
-                <li class="nav-item mycustom-nav_item" role="presentation">
-                    <button onclick="hide()" class="nav-link mycustom-nav_btn" id="review-tab" data-bs-toggle="tab" data-bs-target="#review-tab-pane" type="button" role="tab" aria-controls="review-tab-pane" aria-selected="false">
-                        리뷰
-                    </button>
-                </li>
-            </ul>
+                <div class="row">
+                    <div class="col">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist" style="max-width: 100%;">
+                            <li class="nav-item mycustom-nav_item" role="presentation" style="max-width: 33%;">
+                                <button onclick="hide()" class="nav-link active mycustom-nav_btn" id="menu-tab" data-bs-toggle="tab" data-bs-target="#menu-tab-pane" type="button" role="tab" aria-controls="menu-tab-pane" aria-selected="true">
+                                    메뉴
+                                </button>
+                            </li>
+                            <li class="nav-item mycustom-nav_item" role="presentation" style="max-width: 33%;">
+                                <button onclick="show()" class="nav-link mycustom-nav_btn" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="false">
+                                    정보
+                                </button>
+                            </li>
+                            <li class="nav-item mycustom-nav_item" role="presentation" style="max-width: 34%;">
+                                <button onclick="hide()" class="nav-link mycustom-nav_btn" id="review-tab" data-bs-toggle="tab" data-bs-target="#review-tab-pane" type="button" role="tab" aria-controls="review-tab-pane" aria-selected="false">
+                                    리뷰
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             
         </div>
     </div>
@@ -90,21 +97,32 @@
                                 <input type="hidden" name="foodMaterial" value="${fvo.foodMaterial}">
                                 <input type="hidden" name="etc" value="${fvo.etc}">
                                 <input type="hidden" name="f_image" value="${fvo.f_image}">
+                                <c:if test="${r_photo != '../images/rest_default_photo.png' || r_photo != null}">
+                                    <input type="hidden" name="r_photo" value="${r_photo}">
+                                </c:if>
+                                <c:if test="${r_photo == '../images/rest_default_photo.png' || r_photo == null}">
+                                    <input type="hidden" name="r_photo" value="../main_images/hand2.png">
+                                </c:if>
+                                
                                 
                                 
                                 <button type="submit" class="mycustom-menu_list_btn">
                                     <li class="list-group-item mycustom-menu_list_group_item">
                                         <div class="d-flex">
-                                        <div class="mycustom-menu_img">
-                                            <img class="mycustom-menu_img" src="${fvo.f_image}"><!-- 메뉴 사진-->
+                                            <div class="mycustom-menu_img">
+                                                <img class="mycustom-menu_img position-relative" src="${fvo.f_image}">
+                                            </div>
+                                            <div class="mycustom-menu_info">
+                                                <h3>${fvo.foodNm} <c:if test="${fvo.bestfoodyn eq 'Y'}"><img class="mycustom-menu_img" src="../images/recommend.png" style="width:30px; height: 30px;"></c:if></h3>
+                                                <a>
+                                                    <c:set var="formattedCost" value="${fvo.foodCost}" />
+                                                    <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
+                                                </a>
+                                            
                                         </div>
-                                        <div class="mycustom-menu_info">
-                                            <h3>${fvo.foodNm}</h3>
-                                            <a>${fvo.foodCost}원</a>
-                                        </div>
-                                        </div>
-                                    </li>
-                                </button>
+                                    </div>
+                                </li>
+                            </button>
 
                             </form>
                         </c:forEach>
@@ -129,7 +147,10 @@
                                         </c:if>
                                         <div class="mycustom-menu_info">
                                             <h3>${fvo.foodNm}</h3>
-                                            <a>${fvo.foodCost}원</a>
+                                            <a>
+                                                <c:set var="formattedCost" value="${fvo.foodCost}" />
+                                                <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
+                                            </a>
                                         </div>
                                         </div>
                                     </li>
@@ -148,13 +169,25 @@
 
             <!-- 휴게소정보 ---------------------------------------------------------------------------------------------->
             
-            <div id="info-tab-pane" style="width: 680px; height: 350px;"  role="tabpanel" aria-labelledby="info-tab" tabindex="1"></div>
-            <div class="container justify-content-center tab-pane fade" id="info-tab-pane2">
-                <div class="map-container">
-                    <p style="font-size: 15px;">
-                        알아서 해~~~!
-                    </p>
-                </div>  
+            <div id="info-tab-pane" style="max-width: 680px; height: 350px;"  role="tabpanel" aria-labelledby="info-tab" tabindex="1"></div>
+            <div class="container justify-content-center tab-pane fade" id="info-tab-pane2" style="padding: 0">
+                <div class="card mycustom-restInfo_card">
+                    <div class="card-body shadow-sm">
+                        <h5 class="mycustom-restInfo_card_title">영업정보</h5>
+                        <p class="mycustom-restInfo_card_text">노선명: ${favo.routeName}</p>
+                        <p class="mycustom-restInfo_card_text">주소: ${favo.svarAddr}</p>
+                        <p class="mycustom-restInfo_card_text">연락처: ${favo.telNo}</p>
+                    </div>
+                </div> 
+                <div class="card mycustom-restInfo_card">
+                    <div class="card-body shadow-sm">
+                        <h5 class="mycustom-restInfo_card_title">편의시설 정보</h5>
+                        <p class="mycustom-restInfo_card_text">편의시설: ${favo.convenience}</p>
+                        <p class="mycustom-restInfo_card_text">브랜드: ${favo.brand}</p>
+                        <p class="mycustom-restInfo_card_text">화물 휴게소 유무: ${favo.truckSaYn}</p>
+                        <p class="mycustom-restInfo_card_text">경정비 유무: ${favo.truckSaYn}</p>
+                    </div>
+                </div>
             </div>
             
             <!-- 휴게소정보 끝 -------------------------------------------------------------------------------------------->
@@ -164,22 +197,24 @@
                 <div class="container d-flex flex-wrap justify-content-center">
                     <ul class="list-group list-group-flush" style="max-width: 700px; width: 100%;">
 
-                        <!-- 반복문 돌릴구간-->
-                        <li class="list-group-item">
-                            <div class="card mycustom-rieview_card" style="width: 100%">
-                                <div class="card-body">
-                                    <h6 class="card-title">회원닉네임</h6>
-                                    <h6 class="card-subtitle mb-2 text-muted">리뷰점수 어제</h6>
-                                    <p class="card-text">
-                                        <!-- 리뷰 사진이 null이 아닐경우-->
-                                        <img class="mycustom-rieview_img" src="https://www.onlmenu.com/data/editor/2103/thumb-aec247958fd76c50286832ad76213d98_1615532412_3871_835x482.jpg">
-                                        <!--------->
-                                        리뷰내용
-                                    </p>
+                        <c:forEach var="rvo" items="${rList}">
+                            <!-- 반복문 돌릴구간-->
+                            <li class="list-group-item">
+                                <div class="card mycustom-rieview_card" style="width: 100%">
+                                    <div class="card-body">
+                                        <h6 class="card-title">${rvo.m_name}</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">리뷰점수 ${rvo.r_writedate}</h6>
+                                        <p class="card-text">
+                                            <!-- 리뷰 사진이 null이 아닐경우-->
+                                            <img class="mycustom-rieview_img" src="https://www.onlmenu.com/data/editor/2103/thumb-aec247958fd76c50286832ad76213d98_1615532412_3871_835x482.jpg">
+                                            <!--------->
+                                            ${rvo.r_content}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <!-------------------->
+                            </li>
+                            <!-------------------->
+                        </c:forEach>
                     </ul>
                 </div>
             </div>

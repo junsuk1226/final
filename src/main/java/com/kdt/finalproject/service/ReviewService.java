@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kdt.finalproject.mapper.ReviewMapper;
+import com.kdt.finalproject.vo.ReviewLogVO;
 import com.kdt.finalproject.vo.ReviewVO;
 
 @Service
@@ -24,5 +25,33 @@ public class ReviewService {
         }
 
         return ar;
+    }
+
+    public int addReview(ReviewVO rvo) {
+        return r_Mapper.addReview(rvo);
+    }
+
+    public int addReviewLog(ReviewLogVO rvo) {
+        return r_Mapper.addReviewLog(rvo);
+    }
+
+    public void delReview(String r_idx) {
+        r_Mapper.delReview(r_idx);
+    }
+
+    public ReviewVO[] getRestReviewList(String RestNm) {
+        List<ReviewVO> r_list = r_Mapper.getRestReviewList(RestNm);
+
+        ReviewVO[] ar = null;
+        if (r_list != null && r_list.size() > 0) {
+            ar = new ReviewVO[r_list.size()];
+            r_list.toArray(ar);
+        }
+
+        return ar;
+    }
+
+    public float getScoreAvg(String RestNm) {
+        return r_Mapper.getScoreAvg(RestNm);
     }
 }

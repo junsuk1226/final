@@ -78,6 +78,33 @@
                             </nav>
                             <!-- Page content-->
 
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-9">
+                                    <form action="" name="frm" method="get">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr style="background:'#353535'">
+                                                <th colspan="5">주문내역 상세보기</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td></td>
+                                                <td>
+
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>    
+                                    </form>
+                                    <div style="text-align: right;">
+                                        <button class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="writeReview()" type="button">리뷰쓰기</button>
+                                    </div>
+                                </div>
+                            </div>
 
 
 
@@ -87,7 +114,6 @@
 
 
 
-                            
                             
                                 <!-- footer 시작---------------------------------------------------------------------------------------------->
                                 <!-- <body class="d-flex flex-column"> -->
@@ -122,14 +148,10 @@
                     <script src="js/scripts.js"></script>
 
                     <script>
-                        function sendKeyword(form) {
+                        function writeReview() {
 
-                            var value = $("#searchValue").val();
-                           
-                            if (value == 1){
-                                location.href = "MainController?type=Main";
-                            }
-                            
+                            document.frm.action="/writeReview";
+                            document.frm.submit();
                         }
 
                        

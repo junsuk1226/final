@@ -50,7 +50,25 @@
     margin-bottom: 20px;
 }
 
+.mycustom-restInfo_card{
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-width: 10px;
+    border-color: #f7f7f7;
+}
 
+.mycustom-restInfo_card_title{
+    font-family: "dovegothic";
+    font-size: 25px;
+}
+
+.mycustom-restInfo_card_text{
+    margin: 5px;
+    font-family: "dovegothic";
+    font-size: 20px;
+}
 
 .mycustom-nav_item{
     width: 100%;
@@ -73,7 +91,7 @@
     border: none;
     padding: 0;
     background-color: transparent;
-    font-family: "dovegothic";
+    font-family: "jamsil";
     font-size: 20px;
 }
 
@@ -107,6 +125,8 @@
 }
 
 
+
+
 /* menuInfo css */
 
 .mycustom-menuInfo_menubar{
@@ -122,6 +142,7 @@
 .mycustom-menu_info_list{
     list-style: none;
     padding: 0;
+    font-family: "suite";
 }
 
 .mycustom-menuInfo_title{
@@ -161,6 +182,49 @@
     color: #fff;
     font-family: "suite";
     font-size: 35px;
+}
+
+.mycustom-menuInfo_count{
+    padding: 0;
+}
+
+.mycustom-menuInfo_menu_title{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.mycustom-menuInfo_menu_etc{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.mycustom-menuInfo_menu_foodMaterial{
+    font-size: 20px;
+}
+
+.mycustom-menuInfo_menu_price{
+    padding: 0;
+    border-bottom: solid 10px #e9e9e9;
+    padding-bottom: 10px;
+}
+
+.mycustom-menuInfo_count_num{
+    font-family: "suite";
+    font-size: 25px;
+    font-weight: bold;
+    border: 0;
+    margin: 0;
+    text-align: center;
+    background-color: transparent;
+}
+
+.mycustom-menuInfo_count_box{
+    border: solid 2px #e9e9e9;
+    position: relative;
+}
+
+.translate-middle {
+    transform: translate(-20%,-40%)!important;
 }
 
 
