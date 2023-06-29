@@ -48,6 +48,6 @@
 <select id="getScoreAvg" parameterType="String" resultType="float">
     SELECT ROUND(AVG(r_score),2)
     FROM final.review
-    WHERE restCd=#{restCd}
+    WHERE r_restNm=#{r_restNm}
 </select>
 </mapper>
