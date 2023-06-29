@@ -38,4 +38,21 @@ public class ReviewController {
         return mv;
     }
 
+    @RequestMapping("/delReview")
+    public ModelAndView delReview(String r_idx) {
+        ModelAndView mv = new ModelAndView();
+
+        Object obj = session.getAttribute("mvo");
+        if (obj != null) {
+            // 로그인이 된 경우
+            MemVO vo = (MemVO) obj;
+            String m_idx = vo.getM_idx();
+
+            reviewService.delReview(r_idx);
+        }
+        mv.setViewName("redirect:/review");
+
+        return mv;
+    }
+
 }
