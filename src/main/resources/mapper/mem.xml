@@ -11,7 +11,6 @@
 	<select id="login" parameterType="Map" resultType="com.kdt.finalproject.vo.MemVO">
     SELECT * FROM final.member
     where m_id = #{m_id} and
-    m_pw = #{m_pw}
   </select>
 
   <!--회원 정보 수정-->

@@ -1,5 +1,7 @@
 package com.kdt.finalproject.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.kdt.finalproject.vo.MemVO;
 
 public interface JoinMapper {

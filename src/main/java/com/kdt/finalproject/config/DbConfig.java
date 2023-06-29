@@ -18,8 +18,10 @@ public class DbConfig {
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
 
+        // 비어있는 factory에 DB정보객체를 넣어 인식 시킨다.
         factory.setDataSource(dataSource);
 
+        // SQL문장인 mapper들 (bbs.xml, mem.xml,....) 인식 시키기
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 
         factory.setMapperLocations(resolver.getResources(
@@ -32,5 +34,4 @@ public class DbConfig {
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sessionFactory) {
         return new SqlSessionTemplate(sessionFactory);
     }
-
 }
