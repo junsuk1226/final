@@ -24,6 +24,7 @@ import com.kdt.finalproject.service.ReviewService;
 import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MapInfoVO;
 import com.kdt.finalproject.vo.MapVO;
+import com.kdt.finalproject.vo.ReviewVO;
 import com.kdt.finalproject.vo.WeatherVO;
 
 @Controller
@@ -263,7 +264,7 @@ public class MapController {
         LocalTime nowTime = LocalTime.now();
         int hour = nowTime.getHour();
         StringBuffer stdHour = new StringBuffer();
-        stdHour.append(hour - 2);
+        stdHour.append(hour - 4);
 
         StringBuffer sb4 = new StringBuffer();
         sb4.append("http://data.ex.co.kr/openapi/restinfo/restWeatherList"); // 현재 위치의 휴게소 날씨 API
@@ -271,8 +272,7 @@ public class MapController {
         sb4.append(key);
         sb4.append("&type=xml");
         sb4.append("&sdate=");
-        sb4.append("20230628");
-        // sb4.append(sdate.toString());
+        sb4.append(sdate.toString());
         sb4.append("&stdHour=");
         sb4.append(stdHour.toString());
 
@@ -356,7 +356,10 @@ public class MapController {
         set.toArray(pick_ar);
 
         float avg = r_sService.getScoreAvg(vo.getUnitName());
+        ReviewVO[] review = r_sService.getRestReviewList(vo.getUnitName());
+        int length = review.length;
 
+        map.put("review", length);
         map.put("avg", avg);
         map.put("far", pick_ar);
 
