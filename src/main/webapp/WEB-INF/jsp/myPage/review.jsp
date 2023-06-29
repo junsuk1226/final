@@ -107,7 +107,7 @@
                                     <div class="col-md-1"></div>
                                     <div class="col-md-11">
                                         <br />
-                                        <h1>올리비아 세바스찬 루이 28세님 환영합니다. </h1>
+                                        <h1>${mvo.m_name}님 환영합니다. </h1>
                                         <br />
                                         <br />
                                     </div>
@@ -167,7 +167,7 @@
                                                 <c:forEach var="rvo" items="${requestScope.ar }" varStatus="st">
                                                     <tr>
                                                         
-                                                        <td>휴게소이미지</td>
+                                                        <td style="width: 200px;">휴게소이미지</td>
                                                         <td colspan="4">
                                                             <div><p style="font-size: 15px; font-weight: bold;">${rvo.r_restNm}</p></div>
                                                             <div><p style="font-size: 12px; ">${rvo.r_writedate}</p></div>
