@@ -173,7 +173,7 @@
                                                             <div><p style="font-size: 12px; ">${rvo.r_writedate}</p></div>
                                                             <div>${rvo.r_content}</div>
                                                             <div style="text-align: right;">
-                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
+                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button" onclick="del('${rvo.r_idx}')">삭제</button>
                                                             </div>
                                                         </td>    
                                                     </tr>
@@ -335,7 +335,10 @@
 
                         }
 
-
+                        function del(rIdx){
+                            if(confirm("삭제하시겠습니까?"))
+                                location.href="/delReview?r_idx="+rIdx;
+                        }
                     </script>
                 </body>
 
