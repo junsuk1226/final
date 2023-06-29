@@ -109,7 +109,7 @@
                                 </form>
                             <hr>
                             <div class="form-link">
-                                <span>이미 계정을 가지고 계신가요? <a href="login" class="link-secondary">Login</a></span>
+                                <span>이미 계정을 가지고 계신가요? <a href="/admin" class="link-secondary">Login</a></span>
                             </div>
                         </div>
     

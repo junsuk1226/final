@@ -15,4 +15,9 @@ public class AdminController {
     public String adminJoinTest(){
         return "/admin/join";
     }
+
+    @RequestMapping("/admin/main")
+    public String adminMainTest(){
+        return "/admin/main";
+    }
 }

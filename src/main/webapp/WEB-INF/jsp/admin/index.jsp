@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="form-floating mb-3">
+                                    <div class="form-floating mb-4">
                                         <input type="password" placeholder="비밀번호" class="form-control" id="m_pw" name="m_pw" required/>
                                         <label for="m_pw">비밀번호</label>
                                         <div class="invalid-feedback">
@@ -68,7 +68,7 @@
                             
                                 <div class="col-md-12">
                                     <div class="d-grid ">
-                                        <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px; margin-bottom: 10px;">로그인</button>
+                                        <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px; margin: 30px 0;">로그인</button>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
