@@ -268,50 +268,6 @@
 
                     <script>
 
-                        // $(function() {
-                        //     $('#content').summernote({
-                        //         height: 400,                 // 에디터 높이
-                        //         minHeight: null,             // 최소 높이
-                        //         maxHeight: null,             // 최대 높이
-                        //         focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-                        //         lang: "ko-KR",					// 한글 설정
-                        //         placeholder: '최대 2048자까지 쓸 수 있습니다.',	//placeholder 설정
-                        //         callbacks:{
-                        //             onImageUpload: function(files, editor){
-                        //                 //이미지가 에디터에 들어오면 수행하는 곳-이미지는 배열로 저장된다.
-                        //                 for(var i = 0; i<files.length; i++)
-                        //                     sendImg(files[i], editor);//서버와 비동기식 통신을 하는 함수 호출
-                                        
-                        //             }
-                        //         }
-                        //     });
-                        // });
-
-                        // function sendImg(file, editor){
-                        //     //이미지 파일을 첨부하여 서버로 보내야 하기 때문에 
-                        //     //이미지가 아니면 {"type":1, "value":"TEST"} 이런 식으로 파라미터를 만들면 된다.
-                        //     //하지만 파일을 보낼 때는 FormData를 활용해야 한다.
-                        //     var frm = new FormData();
-                            
-                        //     //보내고자 하는 파일을 FormData에 저장!
-                        //     frm.append("s_file", file); //나중에 서버에서 현재 파일을 받을 때는
-                        //                                 //반드시 s_file이라는 파라미터 이름으로 받아야 한다.
-                        //     $.ajax({
-                        //         url:"/saveImg",
-                        //         data: frm,
-                        //         type: "post",
-                        //         contentType:false,
-                        //         processData:false,
-                        //         cache: false,
-                        //         dataType: "json"
-                        //     }).done(function(data){
-                        //         let path = data.path;
-                        //         let fname = data.fname;
-                                
-                        //         $("#content").summernote("insertImage", path+"/"+fname); //editor.insertImage했더니 안됐음!!
-                        //     });
-                            
-                        // }
                         function uploadFile() {
                             var fileInput = document.getElementById('file');
                           
@@ -340,8 +296,6 @@
                         }
 
                     
-
-
                         function sendData(){
                             if ($('input[name="r_score"]:checked').length <= 0 ){
                                 $('#modal1').modal('show');
