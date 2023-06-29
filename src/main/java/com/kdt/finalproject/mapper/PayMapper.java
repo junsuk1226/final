@@ -8,4 +8,6 @@ public interface PayMapper {
 
     int poNum_count(PayVO vo);
 
+    int tosspay(PayVO vo);
+
 }

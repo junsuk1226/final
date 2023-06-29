@@ -20,4 +20,8 @@ public class PayService {
         return p_Mapper.poNum_count(vo);
     }
 
+    public int tosspay(PayVO vo) {
+        return p_Mapper.tosspay(vo);
+    }
+
 }
