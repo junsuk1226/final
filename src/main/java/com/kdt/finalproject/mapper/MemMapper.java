@@ -9,7 +9,7 @@ public interface MemMapper {
 
     List<MemVO> all();
 
-    MemVO login(Map<String, String> map);
+    MemVO login(String m_id);
 
     int updateMem(MemVO vo);
 

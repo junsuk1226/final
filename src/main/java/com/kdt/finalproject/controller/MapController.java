@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kdt.finalproject.service.FoodService;
+import com.kdt.finalproject.service.ReviewService;
 import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MapInfoVO;
 import com.kdt.finalproject.vo.MapVO;
@@ -30,6 +31,9 @@ public class MapController {
 
     @Autowired
     FoodService f_Service;
+
+    @Autowired
+    ReviewService r_sService;
 
     @RequestMapping("map")
     public String map() {
@@ -172,9 +176,10 @@ public class MapController {
             String etime = item.getChildText("etime");
             String psName = item.getChildText("psName");
             String psDesc = item.getChildText("psDesc");
+            String svarAddr = item.getChildText("svarAddr");
 
             // 위에서 얻어낸 값들을 하나의 VO로 저장해 둔다.
-            MapInfoVO mvo = new MapInfoVO(brdName, brdDesc, stime, etime, psName, psDesc);
+            MapInfoVO mvo = new MapInfoVO(brdName, brdDesc, stime, etime, psName, psDesc, svarAddr);
 
             info[i++] = mvo;
 
@@ -233,9 +238,10 @@ public class MapController {
             String etime = item.getChildText("etime");
             String psName = item.getChildText("psName");
             String psDesc = item.getChildText("psDesc");
+            String svarAddr = item.getChildText("svarAddr");
 
             // 위에서 얻어낸 값들을 하나의 VO로 저장해 둔다.
-            MapInfoVO mvo = new MapInfoVO(brdName, brdDesc, stime, etime, psName, psDesc);
+            MapInfoVO mvo = new MapInfoVO(brdName, brdDesc, stime, etime, psName, psDesc, svarAddr);
             rest[i++] = mvo;
 
         } // 복문의 끝
@@ -257,7 +263,7 @@ public class MapController {
         LocalTime nowTime = LocalTime.now();
         int hour = nowTime.getHour();
         StringBuffer stdHour = new StringBuffer();
-        stdHour.append(hour - 3);
+        stdHour.append(hour - 2);
 
         StringBuffer sb4 = new StringBuffer();
         sb4.append("http://data.ex.co.kr/openapi/restinfo/restWeatherList"); // 현재 위치의 휴게소 날씨 API
@@ -265,7 +271,8 @@ public class MapController {
         sb4.append(key);
         sb4.append("&type=xml");
         sb4.append("&sdate=");
-        sb4.append(sdate.toString());
+        sb4.append("20230628");
+        // sb4.append(sdate.toString());
         sb4.append("&stdHour=");
         sb4.append(stdHour.toString());
 
@@ -348,6 +355,9 @@ public class MapController {
         }
         set.toArray(pick_ar);
 
+        float avg = r_sService.getScoreAvg(vo.getUnitName());
+
+        map.put("avg", avg);
         map.put("far", pick_ar);
 
         return map;

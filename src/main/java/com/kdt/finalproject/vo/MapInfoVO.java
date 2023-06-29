@@ -15,6 +15,7 @@ public class MapInfoVO {
             stime, // 시작시간
             etime, // 종료시간
             psName, // 편의시설 명칭
-            psDesc; // 편의시설 상세내용
+            psDesc, // 편의시설 상세내용
+            svarAddr; // 휴게소 주소
 
 }

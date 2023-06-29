@@ -1,9 +1,11 @@
 package com.kdt.finalproject.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kdt.finalproject.mapper.JoinMapper;
+import com.kdt.finalproject.mapper.MemMapper;
 import com.kdt.finalproject.vo.MemVO;
 
 @Service
@@ -12,7 +14,20 @@ public class JoinService {
   @Autowired
   private JoinMapper j_mapper;
 
-  public int addMem(MemVO vo) {
+  @Autowired
+  private MemMapper m_mapper;
+
+  @Autowired
+  private PasswordEncoder passwordEncoder;
+
+  public int addMem(MemVO mvo) { // reg.jsp에서 전달한 m_id,m_pw,m_name이 채워진 vo다.
+    MemVO vo = new MemVO();
+    vo.setM_id(mvo.getM_id());
+    vo.setM_name(mvo.getM_name());
+
+    // 비밀번호를 암호화 시킨후 다시 vo에 저장
+    vo.setM_pw(passwordEncoder.encode(mvo.getM_pw()));
+
     return j_mapper.addMem(vo);
   }
 

@@ -53,23 +53,27 @@
                 <h1 class="mycustom-rest_name">${favo.serviceAreaName}</h1>
                 <h3 class="mycustom-rest_direction">${favo.direction} 방향</h3>
             </div>
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item mycustom-nav_item" role="presentation">
-                    <button onclick="hide()" class="nav-link active mycustom-nav_btn" id="menu-tab" data-bs-toggle="tab" data-bs-target="#menu-tab-pane" type="button" role="tab" aria-controls="menu-tab-pane" aria-selected="true">
-                        메뉴
-                    </button>
-                </li>
-                <li class="nav-item mycustom-nav_item" role="presentation">
-                    <button onclick="show()" class="nav-link mycustom-nav_btn" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="false">
-                        정보
-                    </button>
-                </li>
-                <li class="nav-item mycustom-nav_item" role="presentation">
-                    <button onclick="hide()" class="nav-link mycustom-nav_btn" id="review-tab" data-bs-toggle="tab" data-bs-target="#review-tab-pane" type="button" role="tab" aria-controls="review-tab-pane" aria-selected="false">
-                        리뷰
-                    </button>
-                </li>
-            </ul>
+                <div class="row">
+                    <div class="col">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist" style="max-width: 100%;">
+                            <li class="nav-item mycustom-nav_item" role="presentation" style="max-width: 33%;">
+                                <button onclick="hide()" class="nav-link active mycustom-nav_btn" id="menu-tab" data-bs-toggle="tab" data-bs-target="#menu-tab-pane" type="button" role="tab" aria-controls="menu-tab-pane" aria-selected="true">
+                                    메뉴
+                                </button>
+                            </li>
+                            <li class="nav-item mycustom-nav_item" role="presentation" style="max-width: 33%;">
+                                <button onclick="show()" class="nav-link mycustom-nav_btn" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="false">
+                                    정보
+                                </button>
+                            </li>
+                            <li class="nav-item mycustom-nav_item" role="presentation" style="max-width: 34%;">
+                                <button onclick="hide()" class="nav-link mycustom-nav_btn" id="review-tab" data-bs-toggle="tab" data-bs-target="#review-tab-pane" type="button" role="tab" aria-controls="review-tab-pane" aria-selected="false">
+                                    리뷰
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             
         </div>
     </div>
@@ -202,9 +206,9 @@
                                         <h6 class="card-subtitle mb-2 text-muted">리뷰점수 ${rvo.r_writedate}</h6>
                                         <p class="card-text">
                                             <!-- 리뷰 사진이 null이 아닐경우-->
-                                            <img class="mycustom-rieview_img" src="https://www.onlmenu.com/data/editor/2103/thumb-aec247958fd76c50286832ad76213d98_1615532412_3871_835x482.jpg">
-                                            <!--------->
-                                            ${rvo.r_content}
+                                            <c:if test="${rvo.r_content != null}">
+                                                ${rvo.r_content}
+                                            </c:if>
                                         </p>
                                     </div>
                                 </div>

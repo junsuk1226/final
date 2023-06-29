@@ -50,9 +50,8 @@ public class MemController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView view(String m_id, String m_pw) {
+	public ModelAndView view(MemVO vo) {
 		ModelAndView mv = new ModelAndView();
-		MemVO vo = m_Service.ml_login(m_id, m_pw);
 
 		if (vo != null) {
 
