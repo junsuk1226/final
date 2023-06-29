@@ -15,4 +15,6 @@ public interface ReviewMapper {
     List<ReviewVO> getReviewList(String m_idx);
 
     List<ReviewVO> getRestReviewList(String RestNm);
+
+    float getScoreAvg(String restNm);
 }

@@ -46,4 +46,8 @@ public class ReviewService {
 
         return ar;
     }
+
+    public float getScoreAvg(String RestNm) {
+        return r_Mapper.getScoreAvg(RestNm);
+    }
 }
