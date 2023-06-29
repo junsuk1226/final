@@ -9,16 +9,22 @@ import java.net.URL;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kdt.finalproject.service.PayService;
 import com.kdt.finalproject.vo.KakaoReadyResponseDTO;
+import com.kdt.finalproject.vo.PayVO;
 
 @Controller
 public class OrderPayController {
     KakaoReadyResponseDTO dto = new KakaoReadyResponseDTO();
+
+    @Autowired
+    private PayService p_Service;
 
     @RequestMapping("/orderpay")
     public ModelAndView orderPay() {
@@ -28,24 +34,15 @@ public class OrderPayController {
         return mv;
     }
 
-    @RequestMapping("/orderpaycomplete")
-    public ModelAndView orderpaycomplete() {
-        ModelAndView mv = new ModelAndView();
-
-        mv.setViewName("orderpaycomplete");
-        return mv;
-    }
-
     @RequestMapping("/kakao/pay")
     public ModelAndView kakaoPay() {
         ModelAndView mv = new ModelAndView();
-        // 받아야 할 것들. (회원정보(m_idx) 구매정보(음식명, 수량, 가격, 총가격, 휴게소명))
 
         String reqURL = "https://kapi.kakao.com/v1/payment/ready";
         String adminkey = "22c4183a06a4812b3265f8971a5fed6e"; // Admin key(kakaodeveloper에서 확인)
         String cid = "TC0ONETIME"; // 테스트용 가맹점 코드
         String partner_order_id = "1001"; // 가맹점 주문번호---------값 받기
-        String partner_user_id = "hahaha"; // 가맹점 회원 id---------값 받기
+        String partner_user_id = "hahaha"; // 가맹점 회원 id(휴게소코드)---------값 받기
         String item_name = "choco"; // 상품명---------값 받기
         String quantity = "2"; // 상품 수량---------값 받기
         String total_amount = "2100"; // 상품 총액---------값 받기
@@ -130,7 +127,7 @@ public class OrderPayController {
     }
 
     @RequestMapping("/kakaopayment/success")
-    public ModelAndView paymentSuccess(@RequestParam("pg_token") String pgToken) {
+    public ModelAndView kakaopaymentSuccess(@RequestParam("pg_token") String pgToken) {
         ModelAndView mv = new ModelAndView();
 
         String reqURL = "https://kapi.kakao.com/v1/payment/approve";
@@ -144,7 +141,7 @@ public class OrderPayController {
 
         String aid = ""; // 요청 고유 번호
         int amount = 0; // 결제 금액
-        String approved_at = ""; // 결제 승인 시각(넘어올때 "approved_at":"2023-06-27T16:39:23")
+        String approved_at = ""; // 결제 승인 시각(넘어올때 "approved_at":"2023-06-27T16:39:23" T를 기준으로 쪼개 넣어야 할 듯.)
         // System.out.println(pg_token);
         // System.out.println(dto.getTid());
 
@@ -206,6 +203,33 @@ public class OrderPayController {
                 // System.out.println(amount);
 
                 // db저장, 그리고 결과 db에서 뽑아올 값 하나 넘기기
+                String datetime[] = approved_at.split("T");
+                String p_date = datetime[0];
+                String p_time = datetime[1];
+                // System.out.println(p_date);
+                // System.out.println(p_time);
+
+                PayVO vo = new PayVO();
+                // vo.setM_idx();
+                // vo.setRestCd();
+                // vo.setRestNm();
+                // vo.setFoodNm();
+                // vo.setFoodCost();
+                // vo.setFoodNm();
+                // vo.setTotalCost();
+
+                vo.setP_date(p_date);
+                vo.setP_time(p_time);
+                vo.setAid(aid);
+                vo.setTid(tid);
+                vo.setCid(cid);
+
+                String poNum_count = String.format("%04d", p_Service.poNum_count(vo) + 1); // vo.setRestNm(); 활성화시
+                                                                                           // 체크해봐야 함.
+
+                // System.out.println(poNum_count);
+                // vo.setP_oNum(RestCd + "_" + poNum_count);
+                int cnt = p_Service.kakaopay(vo);
 
             }
 
@@ -213,13 +237,13 @@ public class OrderPayController {
             e.printStackTrace();
         }
 
-        mv.setViewName("redirect:/orderpaycomplete");
+        mv.setViewName("orderpaycomplete");
 
         return mv;
     }
 
-    @RequestMapping("/payment/cancel")
-    public ModelAndView paymentCancel() {
+    @RequestMapping("/kakaopayment/cancel")
+    public ModelAndView kakaopaymentCancel() {
         ModelAndView mv = new ModelAndView();
 
         mv.setViewName("redirect:/orderpay");
@@ -227,11 +251,138 @@ public class OrderPayController {
         return mv;
     }
 
-    @RequestMapping("/payment/fail")
-    public ModelAndView paymentFail() {
+    @RequestMapping("/kakaopayment/fail")
+    public ModelAndView kakaopaymentFail() {
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("redirect:/orderpayfail");
+        mv.setViewName("redirect:/orderpay");
+
+        return mv;
+    }
+
+    @RequestMapping("/toss/pay")
+    public ModelAndView tossPay() {
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("/tosspay");
+
+        return mv;
+    }
+
+    @RequestMapping("tosspayment/success")
+    public ModelAndView tosspaymentSuccess(String paymentKey, String orderId, String amount, String paymentType) {
+        ModelAndView mv = new ModelAndView();
+
+        String getpaymentKey = paymentKey; // 결제 키값
+        String getorderId = orderId; // 주문건 ID
+        String getamount = amount; // 최종 금액
+        String getpaymentType = paymentType; // 결제 유형
+        String reqURL = "https://api.tosspayments.com/v1/payments/confirm"; // 결제 승인 URL
+        String secretkey = "dGVzdF9za19scFAyWXhKNEs4NzBsQWRNRGtKM1JHWndYTE9iOg=="; // 시크릿 키를 base64로
+                                                                                   // 인코딩.(https://www.base64encode.org/)
+        String header = "Basic " + secretkey;
+
+        System.out.println(getpaymentKey); // k0A2Ga1QqXjExPeJWYVQOJ0monE0zj849R5gvNLdzZwO6oKl
+
+        System.out.println(getorderId); // 10_0005
+        System.out.println(getamount); // 1000000
+        System.out.println(getpaymentType); // NORMAL
+
+        try {
+            URL url = new URL(reqURL);
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setRequestProperty("Authorization", header);
+
+            StringBuffer sb = new StringBuffer();
+            // sb.append("cid=" + cid);
+            // sb.append("&tid=" + tid);
+            // sb.append("&partner_order_id=" + partner_order_id);
+            // sb.append("&partner_user_id=" + partner_user_id);
+            // sb.append("&pg_token=" + pg_token);
+
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+
+            bw.write(sb.toString());
+            // System.out.println(sb.toString());
+            bw.flush();
+
+            int res_code = conn.getResponseCode();
+            // System.out.println(res_code);
+
+            // if (res_code == HttpURLConnection.HTTP_OK) {
+            // BufferedReader br = new BufferedReader(new
+            // InputStreamReader(conn.getInputStream()));
+            // StringBuffer result = new StringBuffer();
+            // String line = null;
+
+            // while ((line = br.readLine()) != null) {
+            // result.append(line);
+            // }
+
+            // JSONParser jsonParser = new JSONParser();
+
+            // Object obj = jsonParser.parse(result.toString());
+            // JSONObject json = (JSONObject) obj;
+            // JSONObject amountjson = (JSONObject) json.get("amount");
+            // // System.out.println(amountjson);
+
+            // aid = (String) json.get("aid");
+            // tid = (String) json.get("tid");
+            // cid = (String) json.get("cid");
+            // partner_order_id = (String) json.get("partner_order_id");
+            // partner_user_id = (String) json.get("partner_user_id");
+            // approved_at = (String) json.get("approved_at");
+            // amount = Integer.parseInt(String.valueOf(amountjson.get("total")));
+
+            // // System.out.println(aid);
+            // // System.out.println(tid);
+            // // System.out.println(cid);
+            // // System.out.println(partner_order_id);
+            // // System.out.println(partner_user_id);
+            // // System.out.println(approved_at);
+            // // System.out.println(amount);
+
+            // // db저장, 그리고 결과 db에서 뽑아올 값 하나 넘기기
+            // String datetime[] = approved_at.split("T");
+            // String p_date = datetime[0];
+            // String p_time = datetime[1];
+            // // System.out.println(p_date);
+            // // System.out.println(p_time);
+
+            // PayVO vo = new PayVO();
+            // // vo.setM_idx();
+            // // vo.setRestCd();
+            // // vo.setRestNm();
+            // // vo.setFoodNm();
+            // // vo.setFoodCost();
+            // // vo.setFoodNm();
+            // // vo.setTotalCost();
+
+            // vo.setP_date(p_date);
+            // vo.setP_time(p_time);
+            // vo.setAid(aid);
+            // vo.setTid(tid);
+            // vo.setCid(cid);
+
+            // String poNum_count = String.format("%04d", p_Service.poNum_count(vo) + 1); //
+            // vo.setRestNm(); 활성화시
+            // // 체크해봐야 함.
+
+            // // System.out.println(poNum_count);
+            // // vo.setP_oNum(RestCd + "_" + poNum_count);
+            // int cnt = p_Service.kakaopay(vo);
+
+            // }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        mv.setViewName("/orderpaycomplete");
 
         return mv;
     }

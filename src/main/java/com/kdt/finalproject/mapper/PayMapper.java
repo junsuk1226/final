@@ -6,4 +6,6 @@ public interface PayMapper {
 
     int kakaopay(PayVO vo);
 
+    int poNum_count(PayVO vo);
+
 }

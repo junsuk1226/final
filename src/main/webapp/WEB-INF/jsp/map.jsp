@@ -117,17 +117,14 @@
 	</form>
 
 
-	<div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-map_area">
+	<div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-map_area" style="max-width: 800px;">
 
 		<button class="mycustom-order_btn" type="button" onclick="exe()">
 			<span><img class="mycustom-order_icon" src="https://cdn-icons-png.flaticon.com/512/4645/4645316.png"/></span>
 			주문하기
 		</button>
 		
-		<div class="mycustom-map">
-			<div id="map" style="width:800px;height:500px;"></div>
-		</div>
-
+		<div id="map" style="width: 100%; height: 500px;"></div>
 	</div>
 
 	
