@@ -10,4 +10,9 @@ public class AdminController {
     public String adminTest() {
         return "/admin/index";
     }
+
+    @RequestMapping("/admin/join")
+    public String adminJoinTest(){
+        return "/admin/join";
+    }
 }

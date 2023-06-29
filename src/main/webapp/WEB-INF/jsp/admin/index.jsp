@@ -44,20 +44,8 @@
                 <div class="col-md-12 mb-5">
                     <div class="input_area col-md-12 mx-auto card shadow-lg p-3 mb-5 bg-body rounded" style="margin: 0 auto; border:none; " >
                         <div class="card-body">
-                        <form id="login" action="/reqLogin" class="input-group my-5" method="post" name="frm" novalidate>
+                        <form id="login" action="" class="input-group my-5" method="post" name="frm" novalidate>
                             <div class="row align-items-center">
-                                <div class="col-md-12">
-                                    <div class="login_search">
-                                        <!--
-
-                                            <div class="chk_group mb-2 d-flex justify-content-end">
-                                                
-                                                <input type="checkbox" name="chk" id="ch01" class="form-check-input" />
-                                                <label for="ch01">&nbsp;ID 저장</label>
-                                            </div>
-                                        -->
-                                    </div>
-                                </div>
                                 
                                 <div class="col-md-12">
                                     <div class="form-floating mb-3">
@@ -80,37 +68,18 @@
                             
                                 <div class="col-md-12">
                                     <div class="d-grid ">
-                                        <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px;" onclick="sendData()">로그인</button>
+                                        <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px; margin-bottom: 10px;">로그인</button>
                                     </div>
                                 </div>
-                                <div class="form-link mb-3 mx-auto d-flex justify-content-center my-3">
-                                    <span>마이휴 계정이 없으신가요? <a href="/join" class="link-secondary">Signup</a></span>
+                                <div class="col-md-12">
+                                    <div class="d-grid ">
+                                        <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px;" onclick="location.href='/admin/join'">회원가입</button>
+                                    </div>
                                 </div>
+                               
                             </div>
                         </form>
 
-                        <div class="row align-items-center">
-                            <div class="col-md-12">
-                                <div class="d-flex justify-content-between align-items-center my-1">
-                                    <hr style="width: 100%; border: 1px solid #000;">
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="media-options  mb-2 mx-auto">
-                                        <a href="https://kauth.kakao.com/oauth/authorize?client_id=c691b066d7c57c4085e1fa5fc3e2c47b&redirect_uri=http://localhost:8080/kakao/login&response_type=code">
-                                            <img style="width: 306px;" src="../images/kakao_login.png">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center ">
-                                    <div class="media-options  mb-3 mx-auto">
-                                        <a href="https://nid.naver.com/oauth2.0/authorize?client_id=py8uuUtaAKsCCxoOKiY3&redirect_uri=http://localhost:8080/naver/login&response_type=code&state=test">
-                                            <img style="width: 306px;" src="../images/naver_login.png">
-                                        </a>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
                         </div>
                     </div>
                     </div>
