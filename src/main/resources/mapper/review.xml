@@ -16,8 +16,8 @@
 
 <!--리뷰 작성-->
 <insert id="addReview" parameterType="com.kdt.finalproject.vo.ReviewVO" useGeneratedKeys="true" keyProperty="r_idx">
-    INSERT INTO final.review(m_idx, r_content, r_score, restCd, r_restNm, r_status, r_writedate)
-    VALUES (#{m_idx}, #{r_content}, #{r_score}, #{restCd}, #{r_restNm}, 0, NOW())
+    INSERT INTO final.review(m_idx, r_content, r_score, restCd, r_restNm, r_status, r_writedate, r_file)
+    VALUES (#{m_idx}, #{r_content}, #{r_score}, #{restCd}, #{r_restNm}, 0, NOW(), #{r_file})
 </insert>
 
 <!--리뷰 삭제-->

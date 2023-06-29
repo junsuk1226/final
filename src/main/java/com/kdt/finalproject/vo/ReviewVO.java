@@ -19,6 +19,6 @@ public class ReviewVO {
             r_writedate,
             r_restNm,
             m_name,
-            r_var4,
+            r_file,
             r_var5;
 }

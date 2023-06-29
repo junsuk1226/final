@@ -48,22 +48,22 @@ public class ReviewWriteController {
 
     @PostMapping("/saveImg")
     @ResponseBody
-    public Map<String, String> saveImg(MultipartFile s_file) { // ajax에서 formdata를 data로 보냈다 -> Spring에서는 파일을 무조건
+    public Map<String, String> saveImg(MultipartFile r_file) { // ajax에서 formdata를 data로 보냈다 -> Spring에서는 파일을 무조건
                                                                // MultipartFile로 받는다+변수명은 같게
         Map<String, String> map = new HashMap<String, String>();
 
         String fname = null;
 
-        if (s_file.getSize() > 0) {
+        if (r_file.getSize() > 0) {
             // 첨부파일을 저장할 위치를 절대경로화 시킨다.
             String realPath = application.getRealPath(editor_img);
 
-            String oname = s_file.getOriginalFilename();
+            String oname = r_file.getOriginalFilename();
             // 첨부파일이 이미 저장된 파일과 이름이 동일한 경우 이름을 변경한다.
             fname = FileRenameUtil.checkFileName(oname, realPath);
 
             try {
-                s_file.transferTo(new File(realPath, fname)); // 파일업로드가 수행됨
+                r_file.transferTo(new File(realPath, fname)); // 파일업로드가 수행됨
 
             } catch (Exception e) {
                 e.printStackTrace();

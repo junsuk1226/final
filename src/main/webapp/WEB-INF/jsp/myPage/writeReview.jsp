@@ -30,7 +30,16 @@
             <!--별 아이콘-->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
             <style media="screen">
-              
+            .note-editor.note-frame{
+                border: none;
+            }
+            .note-toolbar{
+                background-color: #ffffff;
+            }
+            .note-resizebar{
+                background-color: #ffffff;
+            }
+
               .rating {
               width: 240px;
               padding: 10px;
@@ -50,19 +59,19 @@
               }
              
               .rating input:nth-of-type(1) {
-              right: 65px;
+              right: 63px;
               }
               .rating input:nth-of-type(2) {
-              right: 110px;
+              right: 108px;
               }
               .rating input:nth-of-type(3) {
-              right: 150px;
+              right: 153.5px;
               }
               .rating input:nth-of-type(4) {
-              right: 200px;
+              right: 198px;
               }
               .rating input:nth-of-type(5) {
-              right: 240px;
+              right: 242px;
               }
               .rating input:nth-of-type(6) {
               right: 300px;
@@ -150,9 +159,14 @@
                                         <div class = "col-md-10 ms-1 me-1">
                                             <div class="card" style="border: none;">
                                                 <div class="row card-body justify-content-around">
-
-                                                    <div class="col-md-5 my-3 ms-2 justify-content-center"><h3 class="text-muted lh-base " style="font-family: 'suite'">${param.r_restNm}는 어떠셨나요? <br/>별점을 남겨주세요!</h3></div>
-                                                    <div class="col-md-3 my-3 me-2 justify-content-center">
+                                                    <div class="col-md-12 my-3 ms-2 justify-content-center">
+                                                        <h2 class="text-muted lh-base " style="font-family: 'suite'">
+                                                            <span style="background-color: antiquewhite;">${sessionScope.mvo.m_name}</span>님,
+                                                            <br/><span style="background-color: antiquewhite;">${param.r_restNm}</span>는 어떠셨나요? 
+                                                            <br/>리뷰와 별점을 남겨주세요!
+                                                        </h2>
+                                                    </div>
+                                                    <div class="col-md-3 my-3 me-5 justify-content-center">
                                                         <div class="rating">
                                                             <input type="radio" name="r_score" id="r_score" value="5"/><span class="star"></span>
                                                             <input type="radio" name="r_score" id="r_score" value="4"/><span class="star"></span>
@@ -163,13 +177,25 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <textarea  name="r_content" id="content" cols="50" rows="8" ></textarea>
+                                            <div class ="row">
+                                                <div class="ms-1 me-2 input-group">
+                                                    <input type="file" class="form-control " id="r_file" onchange="uploadFile()" ame="r_file">
+                                                </div>
+                                            </div>
+                                            <div class="row ms-1 me-1">
+                                                <label for="content" class="form-label"></label>
+                                                <textarea class="form-control content" name="r_content" id="content" placeholder="리뷰를 작성해 주세요." rows="10" required></textarea>
+                                                <div class="invalid-feedback">
+                                                내용을 작성해 주세요.
+                                                </div>
+                                                <div class="valid-feedback">
+                                                    리뷰 감사합니다!
+                                                </div>
                                             </div>
                                             <div style="text-align: right;" class="my-3">
                                                 <button class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="sendData()" type="button">저장</button>
                                             </div>
-                                        </div>    
+                                        </div>  
                                     </form>
                                     
                                 </div>
@@ -197,6 +223,23 @@
                             
                             </div>
                         </div>
+                       <!-----------경고창 모달---------------------->
+                       <div class="modal" id="modal1" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered ">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="signupModalLabel">등록 실패</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        별점을 남겨주세요!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-dark mo1btn" data-bs-dismiss="modal">확인</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
                     <script type="text/javascript" src="js/bootstrap.js"></script>
@@ -222,65 +265,92 @@
 
                     <script>
 
-                        $(function() {
-                            $('#content').summernote({
-                                height: 500,                 // 에디터 높이
-                                minHeight: null,             // 최소 높이
-                                maxHeight: null,             // 최대 높이
-                                focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-                                lang: "ko-KR",					// 한글 설정
-                                placeholder: '최대 2048자까지 쓸 수 있습니다.',	//placeholder 설정
-                                callbacks:{
-                                    onImageUpload: function(files, editor){
-                                        //이미지가 에디터에 들어오면 수행하는 곳-이미지는 배열로 저장된다.
-                                        for(var i = 0; i<files.length; i++)
-                                            sendImg(files[i], editor);//서버와 비동기식 통신을 하는 함수 호출
+                        // $(function() {
+                        //     $('#content').summernote({
+                        //         height: 400,                 // 에디터 높이
+                        //         minHeight: null,             // 최소 높이
+                        //         maxHeight: null,             // 최대 높이
+                        //         focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+                        //         lang: "ko-KR",					// 한글 설정
+                        //         placeholder: '최대 2048자까지 쓸 수 있습니다.',	//placeholder 설정
+                        //         callbacks:{
+                        //             onImageUpload: function(files, editor){
+                        //                 //이미지가 에디터에 들어오면 수행하는 곳-이미지는 배열로 저장된다.
+                        //                 for(var i = 0; i<files.length; i++)
+                        //                     sendImg(files[i], editor);//서버와 비동기식 통신을 하는 함수 호출
                                         
-                                    }
-                                }
-                            });
-                        });
+                        //             }
+                        //         }
+                        //     });
+                        // });
 
-                        function sendImg(file, editor){
-                            //이미지 파일을 첨부하여 서버로 보내야 하기 때문에 
-                            //이미지가 아니면 {"type":1, "value":"TEST"} 이런 식으로 파라미터를 만들면 된다.
-                            //하지만 파일을 보낼 때는 FormData를 활용해야 한다.
-                            var frm = new FormData();
+                        // function sendImg(file, editor){
+                        //     //이미지 파일을 첨부하여 서버로 보내야 하기 때문에 
+                        //     //이미지가 아니면 {"type":1, "value":"TEST"} 이런 식으로 파라미터를 만들면 된다.
+                        //     //하지만 파일을 보낼 때는 FormData를 활용해야 한다.
+                        //     var frm = new FormData();
                             
-                            //보내고자 하는 파일을 FormData에 저장!
-                            frm.append("s_file", file); //나중에 서버에서 현재 파일을 받을 때는
-                                                        //반드시 s_file이라는 파라미터 이름으로 받아야 한다.
-                            $.ajax({
-                                url:"/saveImg",
-                                data: frm,
-                                type: "post",
-                                contentType:false,
-                                processData:false,
-                                cache: false,
-                                dataType: "json"
-                            }).done(function(data){
-                                let path = data.path;
-                                let fname = data.fname;
+                        //     //보내고자 하는 파일을 FormData에 저장!
+                        //     frm.append("s_file", file); //나중에 서버에서 현재 파일을 받을 때는
+                        //                                 //반드시 s_file이라는 파라미터 이름으로 받아야 한다.
+                        //     $.ajax({
+                        //         url:"/saveImg",
+                        //         data: frm,
+                        //         type: "post",
+                        //         contentType:false,
+                        //         processData:false,
+                        //         cache: false,
+                        //         dataType: "json"
+                        //     }).done(function(data){
+                        //         let path = data.path;
+                        //         let fname = data.fname;
                                 
-                                $("#content").summernote("insertImage", path+"/"+fname); //editor.insertImage했더니 안됐음!!
-                            });
+                        //         $("#content").summernote("insertImage", path+"/"+fname); //editor.insertImage했더니 안됐음!!
+                        //     });
+                            
+                        // }
+                        function uploadFile() {
+                            var fileInput = document.getElementById('r_file');
+                          
+                                var file = fileInput.files[0];
+                                
+                                var formData = new FormData();
+                                formData.append('r_file', file);
+
+                                var xhr = new XMLHttpRequest();
+                                xhr.open('POST', '/saveImg', true);
+                                xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+                                xhr.onload = function () {
+                                    if (xhr.status === 200) {
+                                        console.log('파일 업로드 성공');
+                                    } else {
+                                        console.log('파일 업로드 실패');
+                                    }
+                                };
+                                xhr.send(formData);
                             
                         }
-                        
+
                     
+
+
                         function sendData(){
                             if ($('input[name="r_score"]:checked').length <= 0 ){
-                                alert("별점을 남겨주세요!")
+                                $('#modal1').modal('show');
                                 return;
                             }
                             
+                           
 
                             if($('#content').val().trim().length <= 0){
-
-                                alert("내용을 입력해 주세요")
+                                $("#content").removeClass("is-valid");
+                                $("#content").addClass("is-invalid");
+                                $("#content").focus();
                                 return;
+                            }else{
+                                $("#content").removeClass("is-invalid");
+                                $("#content").addClass("is-valid"); 
                             }
-
 
                             document.frm.submit();
                         }
