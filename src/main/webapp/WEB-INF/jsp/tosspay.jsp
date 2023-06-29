@@ -74,9 +74,9 @@
                         </div>
                     </div>
 
-                     <!-----------토스페이 시작------------->
+                    <!-----------토스페이 시작------------->
 
-                     <!-- 결제위젯, 이용약관 영역 -->
+                    <!-- 결제위젯, 이용약관 영역 -->
                     <div id="payment-method"></div>
                     <div id="agreement"></div>
                     <!-- 결제하기 버튼 -->
@@ -106,7 +106,7 @@
                         // https://docs.tosspayments.com/reference/widget-sdk#requestpayment결제-정보
                         button.addEventListener("click", function () {
                         paymentWidget.requestPayment({
-                            orderId: "10_0005",            // p_oNum
+                            orderId: "${orderId}",            // 48자리 랜덤변수 예정
                             orderName: "떡볶이 곱배기 먹고싶다..",                 // foodNm으로 표시 
                             successUrl: "http://localhost:8080/tosspayment/success",  // 결제에 성공시 이동하는 페이지
                             failUrl: "http://localhost:8080/orderpay",        // 결제에 실패시 이동하는 페이지
