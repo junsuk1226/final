@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,9 @@ public class MemController {
 	@Autowired
 	private JoinService j_Service;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@RequestMapping("/login")
 	public String login() {
 
@@ -49,17 +53,18 @@ public class MemController {
 		return "redirect:/main";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/reqLogin", method = RequestMethod.POST)
 	public ModelAndView view(MemVO vo) {
 		ModelAndView mv = new ModelAndView();
 
 		if (vo != null) {
-
-			session.setAttribute("mvo", vo);
-			Cart cart = new Cart();
-			session.setAttribute("cart", cart);
+			MemVO mvo = m_Service.ml_login(vo);
+			if (mvo != null) {
+				session.setAttribute("mvo", mvo);
+				Cart cart = new Cart();
+				session.setAttribute("cart", cart);
+			}
 			mv.setViewName("/main");
-
 		} else {
 			mv.setViewName("/login");
 			mv.addObject("alat", "alat");
@@ -107,7 +112,7 @@ public class MemController {
 			MemVO mvo = (MemVO) obj;
 			vo.setM_idx(mvo.getM_idx());
 
-			int cnt = m_Service.updatePw(vo);
+			int cnt = m_Service.updatePw(vo, mvo);
 			if (cnt > 0) {
 				// 세션에 있는 정보도 수정해 줘야 한다.
 				mvo.setM_pw(vo.getNew_pw());

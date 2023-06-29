@@ -23,15 +23,15 @@ public class ReviewController {
     @RequestMapping("/review")
     public ModelAndView review(String cPage) {
         ModelAndView mv = new ModelAndView("/myPage/review");
-
+        System.out.println("RERERERERERERER");
         Object obj = session.getAttribute("mvo");
         if (obj != null) {
             // 로그인이 된 경우
             MemVO vo = (MemVO) obj;
             String m_idx = vo.getM_idx();
 
+            System.out.println(m_idx + ": RERERERERERERER");
             ReviewVO[] ar = reviewService.getReviewList(m_idx);
-
             mv.addObject("ar", ar);
         }
 

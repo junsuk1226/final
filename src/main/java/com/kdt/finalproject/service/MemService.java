@@ -53,8 +53,14 @@ public class MemService {
         return m_Mapper.updateMem(vo);
     }
 
-    public int updatePw(MemVO vo) {
-        return m_Mapper.updatePw(vo);
+    public int updatePw(MemVO vo, MemVO mvo) {
+        int cnt = -1;
+        if (passwordEncoder.matches(vo.getM_pw(), mvo.getM_pw())) {
+            vo.setNew_pw(passwordEncoder.encode(vo.getNew_pw()));
+            cnt = m_Mapper.updatePw(vo);
+        }
+
+        return cnt;
     }
 
 }
