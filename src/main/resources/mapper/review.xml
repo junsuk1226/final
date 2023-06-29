@@ -16,13 +16,13 @@
 
 <!--리뷰 작성-->
 <insert id="addReview" parameterType="com.kdt.finalproject.vo.ReviewVO" useGeneratedKeys="true" keyProperty="r_idx">
-    INSERT INTO final.review(m_idx, r_content, r_score, restCd, r_restNm, r_status, r_writedate)
-    VALUES (#{m_idx}, #{r_content}, #{r_score}, #{restCd}, #{r_restNm}, 0, NOW())
+    INSERT INTO final.review(m_idx, r_content, r_score, restCd, r_restNm, r_status, r_writedate, r_file)
+    VALUES (#{m_idx}, #{r_content}, #{r_score}, #{restCd}, #{r_restNm}, 0, NOW(), #{r_file})
 </insert>
 
 <!--리뷰 삭제-->
 <update id="delReview" parameterType="String">
-    Update final.review SET r_status = '1'
+    Update final.review SET r_status = 1
     WHERE r_idx = #{r_idx}
 </update>
 
@@ -38,6 +38,18 @@
     WHERE m_idx = #{m_idx} and r_status = 0
 </select>
 
+
+<!-- 원들들을 가져오는 SELECT 
+  <select id="bbsList" resultMap="map1" parameterType="Map">
+  	SELECT * FROM(
+		SELECT @RN:=@RN+1 AS rnum,a.* FROM(
+			SELECT * FROM mini2_bbs
+			WHERE b_status = 0
+			ORDER BY b_idx DESC
+		) a, (SELECT @RN:=0) b
+	) c WHERE c.rnum BETWEEN #{begin} AND #{end}
+  </select>
+  -->
 <!-- 휴게소별 리뷰 목록 가져오기 -->
 <select id="getRestReviewList" parameterType="String" resultType="com.kdt.finalproject.vo.ReviewVO">
   	SELECT * FROM final.review

@@ -107,11 +107,12 @@
                                     <div class="col-md-1"></div>
                                     <div class="col-md-11">
                                         <br />
-                                        <h1>올리비아 세바스찬 루이 28세님 환영합니다. </h1>
+                                        <h1>${mvo.m_name}님 환영합니다. </h1>
                                         <br />
                                         <br />
                                     </div>
                                 </div>
+                                <!--
                                 <div class="row">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-7 col-md-offset-5">
@@ -152,6 +153,7 @@
                                             </table>
                                     </div>
                                 </div>
+                                -->
                                 <div class="row">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-9">
@@ -165,17 +167,17 @@
                                                 <c:forEach var="rvo" items="${requestScope.ar }" varStatus="st">
                                                     <tr>
                                                         
-                                                        <td>휴게소이미지</td>
+                                                        <td style="width: 200px;">휴게소이미지</td>
                                                         <td colspan="4">
                                                             <div><p style="font-size: 15px; font-weight: bold;">${rvo.r_restNm}</p></div>
                                                             <div><p style="font-size: 12px; ">${rvo.r_writedate}</p></div>
                                                             <div>${rvo.r_content}</div>
                                                             <div style="text-align: right;">
-                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">수정</button>
-                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
+                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button" onclick="del('${rvo.r_idx}')">삭제</button>
                                                             </div>
                                                         </td>    
                                                     </tr>
+
                                                     
                                                 </c:forEach>
                                             </tbody>
@@ -333,7 +335,10 @@
 
                         }
 
-
+                        function del(rIdx){
+                            if(confirm("삭제하시겠습니까?"))
+                                location.href="/delReview?r_idx="+rIdx;
+                        }
                     </script>
                 </body>
 

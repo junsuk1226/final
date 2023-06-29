@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kdt.finalproject.mapper.JoinMapper;
@@ -20,6 +21,9 @@ public class MemService {
     @Autowired
     private JoinMapper j_Mapper;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public MemVO[] all() {
         MemVO[] ar = null;
 
@@ -32,22 +36,31 @@ public class MemService {
         return ar;
     }
 
-    public MemVO ml_login(String m_id, String m_pw) {
+    public MemVO ml_login(MemVO mvo) {
+        MemVO vo = m_Mapper.login(mvo.getM_id());
 
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("m_id", m_id);
-        map.put("m_pw", m_pw);
-
-        return m_Mapper.login(map);
-
+        if (vo != null) { // 사용자가 보내준 id가 DB에 존재할 경우!!
+            // mvo가 가지는 비밀번호와 DB에서 가져온 vo의 비밀번호를
+            // passwordEncoder에게 검증하라고 한다.
+            if (passwordEncoder.matches(mvo.getM_pw(), vo.getM_pw())) {
+                return vo;
+            }
+        }
+        return null;
     }
 
     public int updateMem(MemVO vo) {
         return m_Mapper.updateMem(vo);
     }
 
-    public int updatePw(MemVO vo) {
-        return m_Mapper.updatePw(vo);
+    public int updatePw(MemVO vo, MemVO mvo) {
+        int cnt = -1;
+        if (passwordEncoder.matches(vo.getM_pw(), mvo.getM_pw())) {
+            vo.setNew_pw(passwordEncoder.encode(vo.getNew_pw()));
+            cnt = m_Mapper.updatePw(vo);
+        }
+
+        return cnt;
     }
 
 }

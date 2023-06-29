@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
         <link rel="stylesheet" href="../css/main_custom.css" />
         <!--애니메이션 cdn-->
-        <title>내 손안에 휴게소-마이휴 로그인 페이지</title>
+        <title>내 손안에 휴게소-마이휴 어드민 로그인 페이지</title>
         <style>
             .input_area{
                 width: 100%; /* 또는 필요한 크기로 조정 */
@@ -34,7 +34,7 @@
         <div class ="container-fluid text-center my-5">
             <div class="row justify-content-center my-4 ">
                 <div class="col-md-12">
-                    <a href="/main"><img style="max-width: 300px;" src="../main_images/logo.png"></a>  
+                    <a href="/admin/index"><img style="max-width: 300px;" src="../main_images/logo.png"></a>  
                 </div>
             </div>
         </div>

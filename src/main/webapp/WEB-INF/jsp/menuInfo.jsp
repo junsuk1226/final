@@ -16,7 +16,7 @@
 
     <!-- 메뉴바 -->
     <nav class="navbar bg-light mycustom-menuInfo_menubar">
-        <div class="container-fluid d-flex justify-content-between" style="max-width: 700px; padding:0;">
+        <div class="container-fluid d-flex justify-content-between" style="max-width: 700px; padding:20px;">
           <span class="navbar-text mycustom-menuInfo_title">
             ${RestNm}
           </span>
@@ -39,16 +39,16 @@
     <!-- 메뉴바 끝-->
 
     <!-- menuinfo area -->
-    <div class="container mycustom-menuinfo_area" style="max-width: 700px;">
+    <div class="container mycustom-menuinfo_area" style="max-width: 700px; padding: 0;">
         <div class="d-flex flex-wrap justify-content-center" style="max-width: 700px;">
             <ul class="mycustom-menu_info_list">
                 <li><img class="mycuston-menu_info_img" src="${f_image}" style="height:500px; width: 700px; margin-bottom: 20px;"></li>
                 <li>
-                  <h1 class="mycustom-menuInfo_menu_title">${foodNm}</h1>
+                  <h1 class="mycustom-menuInfo_menu_title" style="padding: 10px">${foodNm}</h1>
                 </li>
-                <li><h5 class="mycustom-menuInfo_menu_etc">${etc}</h5></li>
+                <li><h5 class="mycustom-menuInfo_menu_etc" style="padding: 10px">${etc}</h5></li>
                 <!-- <li><h6 class="mycustom-menuInfo_menu_foodMaterial">재료: ${foodMaterial}</h6></li> -->
-                <div class="container-fluid d-flex justify-content-between mycustom-menuInfo_menu_price">
+                <div class="container-fluid d-flex justify-content-between mycustom-menuInfo_menu_price" style="padding:10px">
                   <h5 class="mycustom-menuInfo_count_num">가격</h5>
                   <h5 class="mycustom-menuInfo_count_num">
                     <c:set var="formattedCost" value="${foodCost}" />
@@ -57,7 +57,7 @@
                 </div>
               </ul>
             </div>
-            <div class="container-fluid d-flex justify-content-between mycustom-menuInfo_count">
+            <div class="container-fluid d-flex justify-content-between mycustom-menuInfo_count" style="padding: 10px">
                 <p class="mycustom-menuInfo_count_num">수량</p>
                 <div class="d-flex justify-content-center mycustom-menuInfo_count_box"> 
                   <button class="mycustom-menuInfo_count_num" type ="button" id="minus_btn">-</button>
