@@ -11,6 +11,20 @@
 		  color: blue;
 		}
 
+		.wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+    .wrap * {padding: 0;margin: 0;}
+    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+    .info .close:hover {cursor: pointer;}
+    .info .body {position: relative;overflow: hidden;}
+    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+    .info .link {color: #5085BB;}
 		
 	  </style>
 <head>
@@ -36,8 +50,8 @@
 	
 
 
-	<div class ="container-fluid text-center">
-		<div class="row justify-content-center ">
+	<div class ="container-fluid text-center" >
+		<div class="row justify-content-center" >
 
 			<div class="col-md-12" >
 				<a href="/main"><img style="max-width: 300px;" src="../main_images/logo.png"></a>  
@@ -48,28 +62,30 @@
 	</div>
 
 	
-
-	<div class="row justify-content-center">
-		<div class="col-md-6 row-cols-1 row-cols-md-3 g-4">
-			<div class="input_area col-md-12 mx-auto card shadow p-3 mb-4 bg-body rounded" style="margin: 0 auto; border:none; ">
+<div class="container" style="max-width: 800px;">
+	<div class="row justify-content-center" style="max-width:100%;">
+		<div class="col-md-6 row-cols-1 row-cols-md-3 g-4" style="width:100%; padding-right: 0px;">
+			<div class="input_area col-md-12 mx-auto card shadow p-3 mb-4 bg-body rounded" style="margin: 0 auto; border:none; width:100%; padding: 0; ">
 				<div class="card-header">
 					마이휴가 추천하는 지금 날씨에 먹기 좋은 음식!
 				  </div>
 				<div class="card-body align-items-center">
 					<div class = "row justify-content-evenly ">
-						<div class="mycustom-weather col-md-3 d-flex align-items-center">
-							<div id="weather" class="me-3"></div>
-							<div id="tem"class="me-5" style="text-align: center; font-size: 25px; font-weight: bold;"></div>
-							<div class="vr"></div>
+						<div class="mycustom-weather col-md-3 d-flex align-items-center"    style="justify-content: center;">
+							<div id="weather" class="me-3" ></div>
 						</div>
-						<div class="col-md-2" id ="recommFood">
+						<div class="mycustom-weather col-md-3 d-flex align-items-center"  style=" justify-content: center; padding-left:60px">
+						<div id="tem"class="me-5" style="text-align: center; font-size: 25px; font-weight: bold;"></div>
+							
+						</div>
+						<div class="col-md-2" id ="recommFood" style="text-align: center;">
 						
 						</div>
 					
-						<div class="col-md-2" id ="recommFood1">
+						<div class="col-md-2" id ="recommFood1" style="text-align: center;">
 							
 						</div>
-						<div class="col-md-2" id ="recommFood2">
+						<div class="col-md-2" id ="recommFood2" style="text-align: center;">
 							
 						</div>
 						
@@ -78,7 +94,7 @@
 			</div>
 		</div>
 	</div>
-
+</div>
 
 
 
@@ -130,21 +146,21 @@
 	
 	<div class="container" id="accordionExample">
 		<div class="row">
-			<div class="container d-flex flex-wrap align-items-center justify-content-center mycustom-line_search_accordion_area">
+			<div class="container align-items-center justify-content-center mycustom-line_search_accordion_area" style="max-width: 800px; padding: 0;">
 				<div class="accordion accordion-flush">
 					
 					
 						
-					<div class="accordion-item mycustom-line_search_info mycustom_now_info">
-						<h2 class="accordion-header" id="panelsStayOpen-headingOne">
-							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+					<div class="accordion-item mycustom-line_search_info mycustom_now_info" style="width: 100%;">
+						<h2 class="accordion-header" id="panelsStayOpen-headingOne" style="width: 100%;">
+							<button style="width: 100%; padding: 10px;" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
 								<img class="mycustom-line_search_img" src="../main_images/hand2.png"/>
-								<ul class="mycustom-line_search_ul" id="unitName"> 
+								<ul class="mycustom-line_search_ul" id="unitName" > 
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-							<div class="accordion-body">
-								<div class="container">
+							<div class="accordion-body" style="padding:0">
+								<div class="container" style="padding:0">
 									<p id="unitName"></p> 
 									<div id="resultContainer"></div>
 									<div id="resultContainer2"></div>
@@ -185,15 +201,7 @@
 		var unitName;
 		
 
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		    mapOption = {
-		        center: new kakao.maps.LatLng(37.56623, 126.97856), // 지도의 중심좌표
-		        level: 2, // 지도의 확대 레벨
-		        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
-		    }; 
-
-		// 지도를 생성한다 
-		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
 
 		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 		if (navigator.geolocation) {
@@ -223,6 +231,20 @@
 							var routeName = response.routeName;
 
 							var locPosition = new kakao.maps.LatLng(mapY, mapX);
+							var message = '<div style="padding:5px;">'+unitName+'</div>';
+
+
+							var avg = response.avg;
+
+							// 휴게소 정보
+							var info = response.info;
+							var rest = response.rest;
+							var review = response.review;
+
+							var locPosition = new kakao.maps.LatLng(mapY, mapX);
+							if(avg != null)
+							var message = '<div style="padding:5px;">'+unitName+'</div>'+ '<img src="../images/star.png" style="width:30px; height:30px; padding-bottom:5px">'+avg;
+							else
 							var message = '<div style="padding:5px;">'+unitName+'</div>';
 
 							$("#unitName").text(unitName);
@@ -315,24 +337,78 @@
 								$("#recommFood").append(food_img[0].outerHTML).append($("<span>").text(far[0].foodNm).css({
 																															"display": "flex",
 																															"justify-content": "center",
-																															"width" : "80px"																															
+																																																														
 																															}));
 								$("#recommFood1").append(food_img1[0].outerHTML).append($("<span>").text(far[1].foodNm).css({
 																															"display": "flex",
 																															"justify-content": "center",
-																															"width" : "80px"			
+																																	
 																															}));
 								$("#recommFood2").append(food_img2[0].outerHTML).append($("<span>").text(far[2].foodNm).css({
 																															"display": "flex",
 																															"justify-content": "center",
-																															"width" : "80px"			
+																																	
 																															}));
 								
 							}
-
-							
 							// 마커와 인포윈도우를 표시합니다
-							displayMarker(locPosition, message);
+							var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+							mapOption = {
+								center: locPosition, // 지도의 중심좌표
+								level: 2, // 지도의 확대 레벨
+								mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
+							}; 
+
+							// 지도를 생성한다 
+							var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+
+							var marker = new kakao.maps.Marker({
+								map: map, 
+								position: locPosition
+							});
+
+							// 커스텀 오버레이에 표시할 컨텐츠 입니다
+							// 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
+							// 별도의 이벤트 메소드를 제공하지 않습니다 
+							var content = '<div class="wrap" id="overlay">' + 
+										'    <div class="info">' + 
+										'        <div class="title">' + 
+																unitName + 
+										'            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+										'        </div>' + 
+										'        <div class="body">' + 
+										'            <div class="img">' +
+										'                <img src="../main_images/hand2.png" width="73" height="70">' +
+										'           </div>' + 
+										'            <div class="desc">' + 
+										'                <div class="ellipsis">'+info[0].svarAddr+'</div>' + 
+										'                <div class="jibun ellipsis"><img src="../images/star.png" style="width:30px; height:30px; padding-bottom:5px">'+avg+ "리뷰"+'('+review+')'+'</div>' + 
+										'             </div>' + 
+										'        </div>' + 
+										'    </div>' +    
+										'</div>';
+
+							// 마커 위에 커스텀오버레이를 표시합니다
+							// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+							var overlay = new kakao.maps.CustomOverlay({
+								content: content,
+								map: map,
+								position: marker.getPosition()       
+							});
+
+							// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+							kakao.maps.event.addListener(marker, 'click', function() {
+								overlay.setMap(map);
+							});
+
+							// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+							function closeOverlay() {
+								overlay.setMap(null);  
+								document.getElementById("overlay").style.display = "none";
+							}
+							
+						//	displayMarker(locPosition);
 							
 							
 							// 휴게소의 브랜드 매장 정보
