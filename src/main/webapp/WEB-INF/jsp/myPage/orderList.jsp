@@ -112,46 +112,7 @@
                                         <br />
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-7 col-md-offset-5">
-                                        <form name="frm" action="myPage" method="post">
-                                            <input type="hidden" name="type" value="aoList" />
-                                            <table>
-                                                <tbody align=center>
-
-                                                    <thead>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="row">
-                                                                    <div class="col-md-3">
-                                                                        <select id="SearchType" name="searchType"
-                                                                            class="btn btn-outline-success me-2 mycustom-mem-btn">
-                                                                            <option value="0">관심검색</option>
-                                                                            <option value="1">주문내역</option>
-                                                                            <option value="2">리뷰관리</option>
-                                                                            <option value="3">장바구니</option>
-                                                                            <option value="4">휴게소검색</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="col-md-7">
-                                                                        <div class="input-group">
-                                                                            <input class="btn btn-outline-success me-2 mycustom-mem-btn"
-                                                                                placeholder="검색어를 입력하세요"
-                                                                                aria-describedby="button-addon"
-                                                                                type="text" id="searchValue"
-                                                                                name="searchValue" />
-                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn"
-                                                                                onclick="sendKeyword(this.form)"
-                                                                                value="검색" id="button-addon" />
-                                                                        </div>
-                                                                    </div>
-                                                            </td>
-                                                        </tr>
-                                                    </thead>
-                                            </table>
-                                    </div>
-                                </div>
+                                
                                 <div class="row">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-9">
@@ -168,22 +129,7 @@
                                                         <%--<td>${page.totalRecord -
                                                             ((page.nowPage-1)*page.numPerPage+st.index) }</td> --%>
                                                             <%-- <td>${pvo.o_idx}</td>--%>
-                                                            <td>${pvo.o_class}</td>
-                                                            <td><a href="Controller?type=aoView&o_idx=${pvo.o_idx }">
-                                                                    <c:out value="${pvo.o_num }"></c:out>
-                                                                </a></td>
-                                                            <td>${pvo.p_idx}</td>
-                                                            <td>
-                                                                <c:choose>
-                                                                    <c:when test="${pvo.o_status == 1}">배송준비중</c:when>
-                                                                    <c:when test="${pvo.o_status == 2}">배송중</c:when>
-                                                                    <c:when test="${pvo.o_status == 3}">배송완료</c:when>
-                                                                    <c:when test="${pvo.o_status == 4}">주문완료</c:when>
-                                                                    <c:when test="${pvo.o_status == 5}">주문취소</c:when>
-
-                                                                    <c:otherwise>택배가 가출했어요</c:otherwise>
-                                                                </c:choose>
-                                                            </td> --%>
+                                                            
                                                         <form action="/orderdetail" method="post">
                                                         <td>이미지</td>
                                                         <td colspan="4">
@@ -201,20 +147,7 @@
                                                         <input type="hidden" value="${p_idx}" name="p_idx"/>  
                                                     </form>
                                                     </tr>
-                                                    <!-- <tr>
-
-                                                        <td>이미지</td>
-                                                        <td colspan="4">
-                                                            <div><p style="font-size: 15px; font-weight: bold;">휴게소명</p></div>
-                                                            <div><p style="font-size: 12px; ">업소명 : 2023-06-24</p></div>
-                                                            <div>티본스테이크 외 4건 </div>
-                                                            <div>-------------------------- </div>
-                                                            <div> 총 467,000원</div>
-                                                            <div  style="text-align: right;">
-                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
-                                                            </div>
-                                                        </td>    
-                                                    </tr> -->
+                                                    
                                                 <%-- </c:forEach> --%>
                                             </tbody>
                                         </table>
