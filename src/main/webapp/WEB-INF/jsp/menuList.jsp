@@ -206,9 +206,9 @@
                                         <h6 class="card-subtitle mb-2 text-muted">리뷰점수 ${rvo.r_writedate}</h6>
                                         <p class="card-text">
                                             <!-- 리뷰 사진이 null이 아닐경우-->
-                                            <img class="mycustom-rieview_img" src="https://www.onlmenu.com/data/editor/2103/thumb-aec247958fd76c50286832ad76213d98_1615532412_3871_835x482.jpg">
-                                            <!--------->
-                                            ${rvo.r_content}
+                                            <c:if test="${rvo.r_content != null}">
+                                                ${rvo.r_content}
+                                            </c:if>
                                         </p>
                                     </div>
                                 </div>
