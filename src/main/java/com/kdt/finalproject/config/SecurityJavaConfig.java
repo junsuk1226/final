@@ -16,7 +16,8 @@ public class SecurityJavaConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/", "/main", "/login", "/join").permitAll()
+                .antMatchers("/", "/main", "/login", "/join", "/**/*.jpg", "/**/*.png", "/**/*.css", "/**/*.js")
+                .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
