@@ -139,7 +139,7 @@
                         아이디 또는 비밀번호를 잘못 입력했습니다.
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-dark mo1btn" data-bs-dismiss="modal">확인</button>
+                        <button type="button" class="btn mycustom-mem-btn mo1btn" data-bs-dismiss="modal">확인</button>
                     </div>
                 </div>
             </div>
@@ -173,7 +173,7 @@
                      $("#m_pw").addClass("is-valid"); 
                 }
                 
-                
+                document.frm.submit();
             }
 
             function init(){
