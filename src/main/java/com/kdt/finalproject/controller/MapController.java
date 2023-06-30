@@ -355,9 +355,20 @@ public class MapController {
         }
         set.toArray(pick_ar);
 
-        float avg = r_sService.getScoreAvg(vo.getUnitName());
+        Float avg = r_sService.getScoreAvg(vo.getUnitName());
+        if(avg == null)
+            avg = (float) 0;
+
         ReviewVO[] review = r_sService.getRestReviewList(vo.getUnitName());
-        int length = review.length;
+       
+       
+        int length = 0;
+        if(review != null){
+        length = review.length;
+        }
+
+        
+        
 
         map.put("review", length);
         map.put("avg", avg);

@@ -44,7 +44,7 @@
                 <div class="col-md-12 mb-5">
                     <div class="input_area col-md-12 mx-auto card shadow-lg p-3 mb-5 bg-body rounded" style="margin: 0 auto; border:none; " >
                         <div class="card-body">
-                        <form id="login" action="/reqLogin" class="input-group my-5" method="post" name="frm" novalidate>
+                        <form id="login" action="/reqLogin" class="input-group my-5" method="post" name="frm" onsubmit="sendData(this.form); return false;" novalidate>
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="login_search">
@@ -80,7 +80,7 @@
                             
                                 <div class="col-md-12">
                                     <div class="d-grid ">
-                                        <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px;" onclick="sendData()">로그인</button>
+                                        <button type="submit" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px;" onclick="sendData()">로그인</button>
                                     </div>
                                 </div>
                                 <div class="form-link mb-3 mx-auto d-flex justify-content-center my-3">
@@ -139,7 +139,7 @@
                         아이디 또는 비밀번호를 잘못 입력했습니다.
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-dark mo1btn" data-bs-dismiss="modal">확인</button>
+                        <button type="button" class="btn mycustom-mem-btn mo1btn" data-bs-dismiss="modal">확인</button>
                     </div>
                 </div>
             </div>
@@ -156,6 +156,7 @@
                     $("#m_id").removeClass("is-valid");
                     $("#m_id").addClass("is-invalid");
                     $("#m_id").focus();
+                    event.preventDefault();
                     return;
                 }else{
                      $("#m_id").removeClass("is-invalid");

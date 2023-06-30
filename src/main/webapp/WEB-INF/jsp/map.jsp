@@ -242,11 +242,7 @@
 							var review = response.review;
 
 							var locPosition = new kakao.maps.LatLng(mapY, mapX);
-							if(avg != null)
-							var message = '<div style="padding:5px;">'+unitName+'</div>'+ '<img src="../images/star.png" style="width:30px; height:30px; padding-bottom:5px">'+avg;
-							else
-							var message = '<div style="padding:5px;">'+unitName+'</div>';
-
+						
 							$("#unitName").text(unitName);
 							$("#routeName").text(routeName);
 
@@ -383,7 +379,7 @@
 										'           </div>' + 
 										'            <div class="desc">' + 
 										'                <div class="ellipsis">'+info[0].svarAddr+'</div>' + 
-										'                <div class="jibun ellipsis"><img src="../images/star.png" style="width:30px; height:30px; padding-bottom:5px">'+avg+ "리뷰"+'('+review+')'+'</div>' + 
+											'                <div class="jibun ellipsis"><img src="../images/star.png" style="width:30px; height:30px; padding-bottom:5px">&nbsp;'+avg+ "&nbsp;리뷰"+'('+review+')'+'</div>' + 
 										'             </div>' + 
 										'        </div>' + 
 										'    </div>' +    

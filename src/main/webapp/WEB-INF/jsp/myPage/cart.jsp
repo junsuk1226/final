@@ -130,11 +130,7 @@
                                                     <td>
                                                         <div class="row">
                                                             <div class="col-md-3">
-                                                                <select id="SearchType" name="searchType"
-                                                                    class="btn btn-outline-success me-2 mycustom-mem-btn">
-                                                                    <option value="0">주문내역</option>
-                                                                    
-                                                                </select>
+                                                                
                                                             </div>
                                                             <div class="col-md-7">
                                                                 <div class="input-group">
@@ -144,7 +140,7 @@
                                                                                 type="text" id="searchValue"
                                                                                 name="searchValue" /> -->
                                                                     <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn"
-                                                                        onclick="sendKeyword(this.form)" value="검색"
+                                                                        onclick="sendKeyword(this.form)" value="더 담기"
                                                                         id="button-addon" />
                                                                 </div>
                                                             </div>
@@ -370,14 +366,8 @@
 
                 function sendKeyword(form) {
 
-                    var value = $("#searchValue").val();
-                    console.log(value);
-                    if (value.trim().length < 1) {
-                        alert("검색어를 1자 이상 입력하세요");
-                        $("searchValue").focus();
-                        return;
-                    }
-                    document.frm.submit();
+
+                    window.history.back();
                 }
 
 
