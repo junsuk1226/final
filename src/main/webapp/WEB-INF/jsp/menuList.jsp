@@ -28,10 +28,11 @@
                 </div>
             </c:if>
             <c:if test="${sessionScope.mvo != null}">
-            <div class="col-md-3 text-end"> 
+            <div class="col-md-4 text-end"> 
                 <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/logout'">로그 아웃</button>
-            <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/myPage'">마이페이지</button>
-            </div>
+                <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/myPage'">마이페이지</button>
+                <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/cartt'">장바구니</button>
+        </div>
             </c:if>
         </header>
     </div>
@@ -53,6 +54,9 @@
                 <h1 class="mycustom-rest_name">${favo.serviceAreaName}</h1>
                 <h3 class="mycustom-rest_direction">${favo.direction} 방향</h3>
             </div>
+                <div class="container" style="max-width: 700px; margin-bottom: 10px;">
+                    <button style="width: 100%;" onclick="location.href='/cart'">장바구니</button>
+                </div>
                 <div class="row">
                     <div class="col">
                         <ul class="nav nav-tabs" id="myTab" role="tablist" style="max-width: 100%;">

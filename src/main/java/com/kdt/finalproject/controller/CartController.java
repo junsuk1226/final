@@ -21,6 +21,12 @@ public class CartController {
     @Autowired
     private HttpSession session;
 
+    @RequestMapping("/cartt")
+    public String cartt() {
+
+        return "/myPage/cart";
+    }
+
     @RequestMapping("/viewCart")
     public ModelAndView cart(String foodNm, String foodCost, String RestNm, String quantity, String totalPrice)
             throws Exception {
