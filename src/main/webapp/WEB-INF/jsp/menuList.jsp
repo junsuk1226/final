@@ -28,10 +28,11 @@
                 </div>
             </c:if>
             <c:if test="${sessionScope.mvo != null}">
-            <div class="col-md-3 text-end"> 
+            <div class="col-md-4 text-end"> 
                 <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/logout'">로그 아웃</button>
-            <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/myPage'">마이페이지</button>
-            </div>
+                <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/myPage'">마이페이지</button>
+                <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/cartt'">장바구니</button>
+        </div>
             </c:if>
         </header>
     </div>
