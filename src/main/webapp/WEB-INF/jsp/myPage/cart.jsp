@@ -112,7 +112,7 @@
                             <div class="col-md-1"></div>
                             <div class="col-md-11">
                                 <br />
-                                <h1>${sessionScope.mvo.m_name}님 환영합니다.</h1>
+                                <h1>OOO님 환영합니다. </h1>
                                 <br />
                                 <br />
                             </div>
@@ -130,7 +130,11 @@
                                                     <td>
                                                         <div class="row">
                                                             <div class="col-md-3">
-                                                                
+                                                                <select id="SearchType" name="searchType"
+                                                                    class="btn btn-outline-success me-2 mycustom-mem-btn">
+                                                                    <option value="0">주문내역</option>
+                                                                    
+                                                                </select>
                                                             </div>
                                                             <div class="col-md-7">
                                                                 <div class="input-group">
@@ -140,7 +144,7 @@
                                                                                 type="text" id="searchValue"
                                                                                 name="searchValue" /> -->
                                                                     <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn"
-                                                                        onclick="sendKeyword(this.form)" value="더 담기"
+                                                                        onclick="sendKeyword(this.form)" value="검색"
                                                                         id="button-addon" />
                                                                 </div>
                                                             </div>
@@ -184,13 +188,12 @@
                                         
                                         
                                         <tbody>
+                                            
                                             <hr />
+                                            <c:set var="sumPrice" value="0"/>
+                                            <c:set var="fee" value="0"/>
                                                 <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st"> 
-                                                    
                                                         <tr >
-                                            
-                                    
-                                            
                                                             <td>${pvo.foodNm} 이미지</td>
                                                             <td colspan="4">
                                                                 <div>
@@ -204,18 +207,18 @@
                                                                 <div> &nbsp;&nbsp; <fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />원</div>
                                                                 <div style="text-align: right;">
                                                                     
-                                                                    <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
+                                                                 <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
                                                                 <hr />
                                                                 </div>
                                                             </td>
                                                             <input type="hidden" value="1" name="p_idx" /> <%--${pvo.p_idx}--%>
                                             
                                                         </tr>
+                                                        <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}"/>
                                                     </c:forEach>
                                                     
                                                     
-                                                    <c:set var="sumPrice" value="0"/>
-                                                    <c:set var="fee" value="0"/>
+                                                    
                                                     <!-- map에 있는 list출력하기 위해 forEach문을 사용해 row라는 변수에 넣는다. -->
                                                     <%--
                                                     카트:<c:out value="${fn:length(cart.list)}"/>
@@ -246,7 +249,7 @@
                                                                 <!-- 삭제 버튼을 누르면 delete.do로 장바구니 개별 id (삭제하길원하는 장바구니 id)를 보내서 삭제한다. -->
                                                             </td>
                                                         </tr>
-                                                        <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}"/>
+                                                        
                                                     </c:forEach>
                                                     --%>         
                                                     
@@ -256,9 +259,9 @@
                                                             
                                                             장바구니 금액 합계 :
                                                             
-                                                            <c:forEach var="pvo" items="${sessionScope.cart.list}">
-                                                                <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}" />
-                                                            </c:forEach>
+                                                            <fmt:formatNumber value="${sumPrice}" pattern="#,###,###" />원
+                                                               
+                                                            
                                                             <br/>
                                                             총개수 :
                                                             <fmt:formatNumber value="${fn:length(cart.list)}" pattern="#,###,###" />
@@ -293,6 +296,16 @@
                                 <small>Copyright &copy; 2023 쉬-잇 </small>
                             </div>
                         </footer>
+
+                        
+                        <form action="/orderpay" method="POST" name="frm2">
+                            <input type="hidden" name="foodNm" value="${foodNm}">
+                            <input type="hidden" name="foodCost" value="${foodCost}">
+                            <input type="hidden" name="RestNm" value="${RestNm}">
+                            <input type="hidden" name="totalPrice" value="${foodCost}">
+                            <input type="hidden" name="quantity" value="1">
+                        </form>
+                        
 
                         <!-- </body>  -->
                         <!-- footer 끝---------------------------------------------------------------------------------------------->
@@ -359,15 +372,21 @@
                 
                 
                 function sendData(frm) {
-                    window.location.href = "/orderpay"
-                   document.frm.submit();
+                   
+                   document.frm2.submit();
                }
 
 
                 function sendKeyword(form) {
 
-
-                    window.history.back();
+                    var value = $("#searchValue").val();
+                    console.log(value);
+                    if (value.trim().length < 1) {
+                        alert("검색어를 1자 이상 입력하세요");
+                        $("searchValue").focus();
+                        return;
+                    }
+                    document.frm.submit();
                 }
 
 

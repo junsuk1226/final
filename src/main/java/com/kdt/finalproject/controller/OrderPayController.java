@@ -13,6 +13,9 @@ import java.util.Base64;
 import java.util.Random;
 import java.util.Base64.Encoder;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kdt.finalproject.service.PayService;
 import com.kdt.finalproject.vo.KakaoReadyResponseDTO;
 import com.kdt.finalproject.vo.PayVO;
+import com.kdt.finalproject.vo.ProductVO;
 
 @Controller
 public class OrderPayController {
@@ -33,14 +37,9 @@ public class OrderPayController {
     private PayService p_Service;
 
     @RequestMapping("/orderpay")
-    public ModelAndView orderPay(String foodNm, String foodCost, String RestNm, String quantity, String totalPrice)
+    public ModelAndView orderPay()
             throws Exception {
         ModelAndView mv = new ModelAndView();
-        System.out.println(foodNm);
-        System.out.println(foodCost);
-        System.out.println(RestNm);
-        System.out.println(quantity);
-        System.out.println(totalPrice);
 
         mv.setViewName("orderpay");
 
@@ -279,6 +278,127 @@ public class OrderPayController {
         ModelAndView mv = new ModelAndView();
 
         mv.setViewName("redirect:/orderpay");
+
+        return mv;
+    }
+
+    @RequestMapping("/kakaopayment/refund")
+    public ModelAndView kakaopaymentRefund() {
+        ModelAndView mv = new ModelAndView();
+
+        String reqURL = "https://kapi.kakao.com/v1/payment/cancel";
+        String adminkey = "22c4183a06a4812b3265f8971a5fed6e"; // Admin key(kakaodeveloper에서 확인)
+        String tid = "T49d31437bb255dbe7bd"; // 결제 고유번호-----DB셀렉
+
+        String cid = "TC0ONETIME"; // 테스트용 가맹점 코드-----DB셀렉
+        int cancel_amount = 0; // 결제 총액-----DB셀렉
+        int cancel_tax_free_amount = 0; // 가맹점 회원 id
+        String header = "KakaoAK " + adminkey;
+
+        String aid = ""; // 요청 고유 번호
+        int amount = 0; // 결제 금액
+        String approved_at = ""; // 결제 승인 시각(넘어올때 "approved_at":"2023-06-27T16:39:23" T를 기준으로 쪼개 넣어야 할 듯.)
+        // System.out.println(pg_token);
+        // System.out.println(dto.getTid());
+
+        try {
+            URL url = new URL(reqURL);
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setRequestProperty("Authorization", header);
+
+            StringBuffer sb = new StringBuffer();
+            sb.append("cid=" + cid);
+            sb.append("&tid=" + tid);
+
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+
+            bw.write(sb.toString());
+            // System.out.println(sb.toString());
+            bw.flush();
+
+            int res_code = conn.getResponseCode();
+            // System.out.println(res_code);
+
+            if (res_code == HttpURLConnection.HTTP_OK) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                StringBuffer result = new StringBuffer();
+                String line = null;
+
+                while ((line = br.readLine()) != null) {
+                    result.append(line);
+                }
+
+                JSONParser jsonParser = new JSONParser();
+
+                Object obj = jsonParser.parse(result.toString());
+                JSONObject json = (JSONObject) obj;
+                JSONObject amountjson = (JSONObject) json.get("amount");
+                // System.out.println(amountjson);
+
+                aid = (String) json.get("aid");
+                tid = (String) json.get("tid");
+                cid = (String) json.get("cid");
+                approved_at = (String) json.get("approved_at");
+                amount = Integer.parseInt(String.valueOf(amountjson.get("total")));
+
+                // System.out.println(aid);
+                // System.out.println(tid);
+                // System.out.println(cid);
+                // System.out.println(partner_order_id);
+                // System.out.println(partner_user_id);
+                // System.out.println(approved_at);
+                // System.out.println(amount);
+
+                String datetime[] = approved_at.split("T");
+                String p_date = datetime[0];
+                String p_time = datetime[1];
+                // System.out.println(p_date);
+                // System.out.println(p_time);
+
+                Random rnd = new Random();
+                StringBuffer sb2 = new StringBuffer();
+
+                for (int i = 0; i < 48; i++) {
+                    if (rnd.nextBoolean()) {
+                        sb2.append((char) ((int) (rnd.nextInt(26)) + 97));
+                    } else {
+                        sb2.append((rnd.nextInt(10)));
+                    }
+                }
+
+                PayVO vo = new PayVO();
+                // vo.setM_idx();
+                // vo.setRestCd();
+                // vo.setRestNm();
+                // vo.setFoodNm();
+                // vo.setFoodCost();
+                // vo.setFoodNm();
+
+                vo.setP_date(p_date);
+                vo.setP_time(p_time);
+                vo.setAid(aid);
+                vo.setTid(tid);
+                vo.setCid(cid);
+                vo.setTotalCost(amount);
+                vo.setP_oderId(sb2.toString());
+                // System.out.println(sb2.toString());
+
+                String poNum_count = String.format("%04d", p_Service.poNum_count(vo) + 1); // vo.setRestNm();
+                vo.setP_oNum("RestCd" + "_" + poNum_count);
+
+                int cnt = p_Service.kakaopay(vo);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        mv.setViewName("orderpaycomplete");
 
         return mv;
     }
