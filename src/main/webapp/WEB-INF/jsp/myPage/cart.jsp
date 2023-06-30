@@ -193,19 +193,20 @@
                                                                 <div>주문 음식 : ${pvo.foodNm}</div>
                                                                 <hr style="border:3px dotted green;" />
                                                                 <div> &nbsp;&nbsp; <fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />원</div>
+                                                                <div>&nbsp;&nbsp; ${pvo.quantity}개</div>
                                                                 <div style="text-align: right;">
-                                                                    
                                                                  <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
                                                                 <hr />
                                                                 </div>
                                                             </td>
+                                                            
                                                             <input type="hidden" value="1" name="p_idx" /> <%--${pvo.p_idx}--%>
-                                            
+                                                            
                                                         </tr>
                                                         <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}"/>
-                                                    
-                                                    
+                                                        
                                                     </c:forEach>
+                                                    
                                                     
                                                     <!-- map에 있는 list출력하기 위해 forEach문을 사용해 row라는 변수에 넣는다. -->
                                                     <%--
@@ -251,8 +252,7 @@
                                                                
                                                             
                                                             <br/>
-                                                            총개수 :
-                                                            <fmt:formatNumber value="${fn:length(cart.list)}" pattern="#,###,###" />
+                                                            총 개수: ${pvo.quantity}
                                                         </td>
                                                     </tr>
                                                     
