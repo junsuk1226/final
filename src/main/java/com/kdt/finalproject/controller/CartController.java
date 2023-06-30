@@ -21,22 +21,16 @@ public class CartController {
     @Autowired
     private HttpSession session;
 
-    @RequestMapping("/cartt")
-    public String cartt() {
-
-        return "/myPage/cart";
-    }
-
     @RequestMapping("/viewCart")
     public ModelAndView cart(String foodNm, String foodCost, String RestNm, String quantity, String totalPrice)
             throws Exception {
         ModelAndView mv = new ModelAndView();
 
-        System.out.println(foodNm);
-        System.out.println(foodCost);
-        System.out.println(RestNm);
-        System.out.println(quantity);
-        System.out.println(totalPrice);
+        // System.out.println(foodNm);
+        // System.out.println(foodCost);
+        // System.out.println(RestNm);
+        // System.out.println(quantity);
+        // System.out.println(totalPrice);
 
         int f_cost = 0;
         int t_price = 0;
@@ -60,7 +54,7 @@ public class CartController {
 
         String location = URLEncoder.encode(RestNm, StandardCharsets.UTF_8.toString());
 
-        mv.setViewName("redirect:menu/?RestNm=" + location);
+        mv.setViewName("redirect:menu?RestNm=" + location);
 
         return mv;
     }
