@@ -29,69 +29,95 @@
             <!--별 아이콘-->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
             <style media="screen">
-            .note-editor.note-frame{
-                border: none;
-            }
-            .note-toolbar{
-                background-color: #ffffff;
-            }
-            .note-resizebar{
-                background-color: #ffffff;
-            }
 
-              .rating {
-              width: 240px;
-              padding: 10px;
-              margin:0 auto;
-              position: relative;
-              direction: rtl;
-              }
-        
-              .rating input {
-              position: absolute;
-              width: 35px;
-              height: 50px;
-              cursor: pointer;
-              transform: translateX(52px);
-              opacity: 0;
-              z-index: 5;
-              }
-             
-              .rating input:nth-of-type(1) {
-              right: 63px;
-              }
-              .rating input:nth-of-type(2) {
-              right: 108px;
-              }
-              .rating input:nth-of-type(3) {
-              right: 153.5px;
-              }
-              .rating input:nth-of-type(4) {
-              right: 198px;
-              }
-              .rating input:nth-of-type(5) {
-              right: 242px;
-              }
-              .rating input:nth-of-type(6) {
-              right: 300px;
-              }
-              .rating input:checked ~ .star:after, .rating input:hover ~ .star:after {
-              content: '\f005';
-              }
-              .rating .star {
-              display: inline-block;
-              font-family: FontAwesome;
-              font-size: 42px;
-              color: #FBB202;
-              cursor: pointer;
-              margin: 0px;
-              }
-              .rating .star:after {
-              content: '\f006';
-              }
-              .rating .star:hover ~ .star:after, .rating .star:hover:after {
-              content: '\f005';
-              }
+                .rating {
+                width: 240px;
+                padding: 10px;
+                margin:0 auto;
+                position: relative;
+                direction: rtl;
+                }
+            
+                .rating input {
+                position: absolute;
+                width: 40px;
+                height: 50px;
+                cursor: pointer;
+                transform: translateX(52px);
+                opacity: 0;
+                z-index: 5;
+                }
+
+/*               
+                
+                
+                .rating:hover .star {
+                color: #fc0;
+                text-shadow: #fc0 0 0 20px;
+                }
+
+                .rating:hover .star:nth-child(4) {
+                transition-delay: 30ms;
+                }
+
+                .rating:hover .star:nth-child(3) {
+                transition-delay: 60ms;
+                }
+
+                .rating:hover .star:nth-child(2) {
+                transition-delay: 90ms;
+                }
+
+                .rating:hover .star:nth-child(1) {
+                transition-delay: 120ms;
+                } */
+
+                /* .rating .star, .rating .star:hover ~ input {
+                color: #222;
+                text-shadow: none;
+                transition: color 200ms,
+                            text-shadow 200ms;
+               
+                transition-delay: 0;
+                } */
+
+
+                .rating input:nth-of-type(1) {
+                right: 63px;
+                }
+                .rating input:nth-of-type(2) {
+                right: 108px;
+                }
+                .rating input:nth-of-type(3) {
+                right: 153.5px;
+                }
+                .rating input:nth-of-type(4) {
+                right: 198px;
+                }
+                .rating input:nth-of-type(5) {
+                right: 242px;
+                }
+                .rating input:nth-of-type(6) {
+                right: 300px;
+                }
+                .rating input:checked ~ .star:after, .rating input:hover ~ .star:after {
+                content: '\f005';
+                }
+                .rating .star {
+                display: inline-block;
+                font-family: FontAwesome;
+                font-size: 42px;
+                color: #FBB202;
+                cursor: pointer;
+                margin: 0px;
+                }
+                .rating .star:after {
+                content: '\f006';
+                }
+                .rating .star:hover ~ .star:after, .rating .star:hover:after {
+                content: '\f005';
+                text-shadow: #fc0 0 0 20px;
+                }
 
               /*파일 첨부 버튼 fade*/
               
@@ -161,18 +187,7 @@
                                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                                             <li class="nav-item active"><a class="nav-link" href="/main">홈</a></li>
                                             <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-                                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
-                                                    id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false">박스</a>
-                                                <div class="dropdown-menu dropdown-menu-end"
-                                                    aria-labelledby="navbarDropdown">
-                                                    <a class="dropdown-item" href="#!">공지사항</a> <a
-                                                        class="dropdown-item" href="#!">이벤트</a>
-                                                        <a class="dropdown-item" href="#!">고객센터</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#!">환경설정</a>
-                                                </div>
-                                            </li>
+                                           
                                         </ul>
                                     </div>
                                 </div>
@@ -201,7 +216,7 @@
                                                             <br/>리뷰와 별점을 남겨주세요!
                                                         </h2>
                                                     </div>
-                                                    <div class="col-md-3 my-3 me-5 justify-content-center">
+                                                    <div class="col-md-4 my-3  justify-content-center">
                                                         <div class="rating">
                                                             <input type="radio" name="r_score" id="r_score" value="5"/><span class="star"></span>
                                                             <input type="radio" name="r_score" id="r_score" value="4"/><span class="star"></span>
@@ -209,6 +224,9 @@
                                                             <input type="radio" name="r_score" id="r_score" value="2"/><span class="star"></span>
                                                             <input type="radio" name="r_score" id="r_score" value="1"/><span class="star"></span>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-4" id="printScore" style="border: 1px solid black; height: 115px">
+                                                    
                                                     </div>
                                                 </div>
                                             </div>
@@ -278,7 +296,7 @@
                                         별점을 남겨주세요!
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-dark mo1btn" data-bs-dismiss="modal">확인</button>
+                                        <button type="button" class="btn mycustom-mem-btn mo1btn" data-bs-dismiss="modal">확인</button>
                                     </div>
                                 </div>
                             </div>

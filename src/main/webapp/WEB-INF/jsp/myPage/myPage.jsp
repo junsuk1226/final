@@ -71,18 +71,7 @@
                                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                                             <li class="nav-item active"><a class="nav-link" href="/main">홈</a></li>
                                             <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-                                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
-                                                    id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false">박스</a>
-                                                <div class="dropdown-menu dropdown-menu-end"
-                                                    aria-labelledby="navbarDropdown">
-                                                    <a class="dropdown-item" href="#!">공지사항</a> <a
-                                                        class="dropdown-item" href="#!">이벤트</a>
-                                                        <a class="dropdown-item" href="#!">고객센터</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#!">환경설정</a>
-                                                </div>
-                                            </li>
+                                            
                                         </ul>
                                     </div>
                                 </div>
@@ -122,12 +111,12 @@
                                                                                 <span> 0개</span>
                                                                             </strong>
                                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                            <input type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
+                                                                            <input type="button" class="btn btn-outline-success mycustom-mem-btn"  onclick="review1(this.form)" value="조회" id="btn btn-link" />
                                                                         </li>
                                                                         <br />
                                                                         <li class="mileage ">
                                                                             <strong class="title">적립금&nbsp;</strong>
-                                                                            <strong class="cont"> 0원</strong>
+                                                                            <strong class="cont"> 230원</strong>
                                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                             <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick=""
                                                                              value="조회" id="button-addon" />
@@ -136,17 +125,17 @@
                                                                         <li class="coupon displaynone">
                                                                             <strong class="title">쿠폰&nbsp;&nbsp;&nbsp;&nbsp;</strong>
                                                                             <strong class="cont">
-                                                                                <span> 0개</span>
+                                                                                <span> 2개</span>
                                                                             </strong>
                                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                             <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn"
-                                                                            onclick="" value="조회" id="btn btn-link" />
+                                                                            value="조회" id="btn btn-link">
                                                                         </li>
                                                                         <br />
                                                                         <li class="coupon displaynone">
-                                                                            <strong class="title">찜&nbsp;상품&nbsp;</strong>
+                                                                            <strong class="title">지난&nbsp;주문내역&nbsp;</strong>
                                                                             <strong class="cont">
-                                                                                <span>0개</span>
+                                                                                <span>21개</span>
                                                                             </strong>
                                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                             <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
@@ -309,6 +298,9 @@
                                 location.href = "MainController?type=Main";
                             }
                             
+                        }
+                        function  review1(form){
+                             location.href = "/review";
                         }
 
                        

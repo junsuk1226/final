@@ -10,6 +10,10 @@
   	SELECT count(restCd) FROM paylog GROUP BY restCd HAVING restCd = "restCd"
 </select>
 
+<select id="kakao_refunt_select" parameterType="String" resultType="com.kdt.finalproject.vo.PayVO">
+  	SELECT * FROM paylog tid = #{tid}
+</select>
+
 <!-- insert -->
 <insert id="kakaopay" parameterType="com.kdt.finalproject.vo.PayVO">
 		INSERT INTO paylog(m_idx, restCd, foodNm, foodCost, totalCost, p_date, p_status, p_time, p_oNum, restNm, payMethod, aid, tid, cid, p_oderId)
