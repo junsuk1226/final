@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 
         <html lang="en">
@@ -30,7 +31,15 @@
                         display: none;
                     }
 
-                 
+                    div.carousel-item img{
+                        object-fit:cover; 
+                        width: 100%; 
+                        height:100%;
+                    }
+                    div.carousel-item{
+                        width: 20rem; 
+                        height:13rem;
+                    }
                     
 
    
@@ -43,19 +52,20 @@
                 <body>
                     <div class="d-flex" id="wrapper">
                         <!-- Sidebar-->
-                    <div class="border-end bg-white" id="sidebar-wrapper">
-                        <div class="sidebar-heading border-bottom bg-light"> <a href="/main"><img style="max-width: 200px;"
-                                    src="../main_images/logo.png"></a></div>
-                        <div class="list-group list-group-flush">
-                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/myPage">마이
-                                페이지</a>
-                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/info">회원정보수정</a> <a
-                                class="list-group-item list-group-item-action list-group-item-light p-3" href="/order">주문
-                                내역</a> <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/review">리뷰 관리</a>
-                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/cart">내
-                                장바구니</a>
+                        <div class="border-end bg-white" id="sidebar-wrapper">
+                            <div class="sidebar-heading border-bottom bg-light"> <a href="/main"><img style="max-width: 200px;"
+                                        src="../main_images/logo.png"></a></div>
+                            <div class="list-group list-group-flush">
+                                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/myPage">마이
+                                    페이지</a>
+                                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/info">회원정보 수정</a> <a
+                                    class="list-group-item list-group-item-action list-group-item-light p-3" href="/order">주문
+                                    내역</a> <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/review">리뷰 관리</a>
+                                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/cart">내
+                                    장바구니</a>
+                            </div>
                         </div>
-                    </div>
+                    
                         <!-- Page content wrapper-->
                         <div id="page-content-wrapper">
                             <!-- Top navigation-->
@@ -74,151 +84,94 @@
                                             
                                         </ul>
                                     </div>
-                                </div>
-                            </nav>
+                                </nav>
+                       
                             <!-- Page content-->
-
-                            <div class="right">
-                                <div class="row">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-11">
-                                        <br />
-                                        <h1>${sessionScope.mvo.m_name}님 환영합니다. </h1>
-                                        <br />
-                                        <br />
+                            <div class="container-fluid">
+                                <div class="row justify-content-center mt-5">
+                                    <div class="col-md-9 mb-3">
+                                            <h2 class=" lh-base mt-5" style="font-family: 'suite'">
+                                                ${sessionScope.mvo.m_name}<span class="text-muted">님 환영합니다.</span>
+                                            </h2>
                                     </div>
                                 </div>
-                                
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-16 col-md-offset-5" class="right">
-                                     
-                                            <table>
-                                                <tbody >
-                                                    <colgroup>
-                                                        <col width="30%"/>
-                                                        <col width="70%"/>
-                                                    </colgroup>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="row justify-content-center my-5">
+                                    <div class="col-md-6 mb-3">
+                                            <div class="card 30em shadow p-3 mb-5 bg-body rounded position-relative" style="border: none;">
+                                                <div class="card-body">
+                                                    <h4 style="font-family: 'suite';"class="card-title text-muted mt-2">내 정보</h4>
+                                                    <hr/>
+                                                    <!--이메일-->
+                                                    <label for="email" class="form-label mt-4 "><span class="ms-1">이메일</span></label>
+                                                    <div class="input-group input-group-lg">
+                                                        <input style="border: none;" type="text" id="email" class="text-muted form-control" value="${sessionScope.mvo.m_id}" disabled>
+                                                    </div>
 
-                                                        <tr>
-                                                            <td>
-                                                                <div class="row" >
-                                                                    
-                                                                <div class="xans-element- xans-myshop xans-myshop-bankbook ">
-                                                                    <ul>
-                                                                        <li class="coupon displaynone">
-                                                                            <strong class="title">리뷰</strong>
-                                                                            <strong class="cont">
-                                                                                <span> 0개</span>
-                                                                            </strong>
-                                                                           
-                                                                            <input type="button" class="btn btn-outline-success mycustom-mem-btn"  onclick="review1(this.form)" value="조회" id="btn btn-link" />
-                                                                        </li>
-                                                                        <br />
-                                                                        <li class="mileage ">
-                                                                            <strong class="title">적립금&nbsp;</strong>
-                                                                            <strong class="cont"> 230원</strong>
-                                                                            
-                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick=""
-                                                                             value="조회" id="button-addon" />
-                                                                        </li>
-                                                                        <br/>
-                                                                        <li class="coupon displaynone">
-                                                                            <strong class="title">쿠폰</strong>
-                                                                            <strong class="cont">
-                                                                                <span> 2개</span>
-                                                                            </strong>
-                                                                            
-                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn"
-                                                                            value="조회" id="btn btn-link">
-                                                                        </li>
-                                                                        <br />
-                                                                        <li class="coupon displaynone">
-                                                                            <strong class="title">지난&nbsp;주문내역&nbsp;</strong>
-                                                                            <strong class="cont">
-                                                                                <span>21개</span>
-                                                                            </strong>
-                                                                           
-                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
-                                                                        </li>
-                                                                        <br/>
-                                                                        <li class="coupon displaynone">
-                                                                            <strong class="title">고객센터&nbsp;</strong>
-                                                                            <strong class="cont">
-                                                                                <span>02-112</span>
-                                                                            </strong>
-                                                                            
-                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="연결하기" id="btn btn-link" />
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="left">
-                                                                    <div class="input-group">
-                                                                        <div class="col-md-11">
-                                                                
-                                                                            <h2>내 정보 </h2>
-                                                                            <br />
-                                                                        </div>
-                                                                        <div class="card-body">
-                                                                            <form action="/myPage/myPage" method="post" class="needs-validation" novalidate>
-                                                                                <ul class="list-unstyled">
-                                                                                    <li class="mb-3">이메일</li>
-                                                                                    <div class="form-floating ">
-                                                                                        <input type="text" placeholder="Email" class="form-control" name="j_email" id="j_email" required
-                                                                                            value="${sessionScope.mvo.m_id}" disabled>
-                                                                                        <label for="floatingInput" class="text-secondary">
-                                                                
-                                                                                        </label>
-                                                                                        <div class="valid-feedback">
-                                                                                        </div>
-                                                                
-                                                                                    </div>
-                                                                                    <br />
-                                                                
-                                                                                    <br />
-                                                                                    <li class="mb-3">닉네임</li>
-                                                                                    <div class="form-floating">
-                                                                                        <input type="text" placeholder="Nickname" class="form-control input" name="j_nickname"
-                                                                                            id="j_nickname" required value="${sessionScope.mvo.m_name}" disabled>
-                                                                
-                                                                                        <div class="valid-feedback">
-                                                                                        </div>
-                                                                                        <br />
-                                                                                    </div>
-                                                                                    <br />
-                                                                                    <li class="mb-3">휴대폰 번호</li>
-                                                                
-                                                                                    <div class="form-floating mb-5">
-                                                                                        <input type="text" placeholder="PhoneNumber" class="form-control input" name="m_phone"
-                                                                                            id="m_phone" required value="${sessionScope.mvo.m_phone}" disabled>
-                                                                
-                                                                                        <div class="valid-feedback">
-                                                                                        </div>
-                                                                
-                                                                                    </div>
-                                                                
-                                                                
-                                                                                    <br />
-                                                                                    <div class="col-7 d-grid gap-2  mx-auto" href="/infopw">
-                                                                                        <button type="button" class="btn btn-dark "> <a class="nav-link" href="/info">회원정보 수정하러 가기
-                                                                                                <a /></button>
-                                                                                    </div>
-                                                                                </ul>
-                                                                            </form>
-                                                                            <hr>
-                                                                
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                            </table>
+                                                    <!--닉네임-->
+                                                    <c:set var="tel" value="${sessionScope.mvo.m_phone}"/>
+                                                    <label for="name" class="form-label mt-4 "><span class="ms-1">닉네임</span></label>
+                                                    <div class="input-group mb-1 input-group-lg">
+                                                        <input style="border: none;" id="name" type="text" class="text-muted form-control"  value="${sessionScope.mvo.m_name}" disabled>
+                                                    </div>
+
+                                                    <!--연락처 (페이지 상에서 기호 표현)-->
+                                                    <c:set var="tel" value="${sessionScope.mvo.m_phone}"/>
+                                                    <label for="phone" class="form-label mt-4 "><span class="ms-1">휴대폰 번호</span></label>
+                                                    <div class="input-group mb-5 input-group-lg">
+                                                        <input style="border: none;" id="phone" type="text" class="text-muted form-control" value="${fn:substring(tel, 0, 3)}-${fn:substring(tel, 3, 7)}-${fn:substring(tel, 7,11)}" disabled>
+                                                    </div>
+
+
+                                                    <!--버튼-->
+                                                    <div class="d-grid gap-2 col-7 mx-auto " style="max-width: 240px;" href="/infopw">
+                                                        <button type="button" class="btn btn-dark " > 
+                                                            <a class="nav-link" href="/info">회원정보<br/>수정하러 가기</a>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+                                        <div class="col-md-4 d-flex justify-content-center"> 
+                                            <div class="row">
+                                            <!--캐러셀-->
+                                                <div class="carousel slide" data-bs-ride="carousel">
+                                                    <div class="carousel-inner shadow bg-body rounded">
+                                                    <div class="carousel-item active" data-bs-interval="4000">
+                                                        <img src="../images/도토리묵밥.jpg" class="d-block rounded w-100" alt="...">
+                                                    </div>
+                                                    <div class="carousel-item" data-bs-interval="4000">
+                                                        <img src="../images/김치볶음밥.png" class="d-block rounded w-100" alt="...">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img src="../images/어묵탕.png" class="d-block rounded w-100" alt="...">
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                 
+                                              <!--카드-->
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <!--카드 내부 영역-->
+                                                        <table>
+                                                            
+
+                                                        </table>
+                                                    </div>
+                                                    </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                         
                                         
                                         
+                                        
+                            </div>
+                        </div>
+                    </div>
                                         
                                         <!-- footer 시작---------------------------------------------------------------------------------------------->
                                         <!-- <body class="d-flex flex-column"> -->
@@ -231,10 +184,6 @@
                                             <!-- </body>  -->
                                             <!-- footer 끝---------------------------------------------------------------------------------------------->
                                             
-                                            
-                                        </div>                                            
-                                    </div>
-                                    
                                     <%-- 추가Popup --%>
                                     <div id="add_popup" class="popup" title="내역 수정 ">
                                         <div id="content">
