@@ -205,7 +205,7 @@
                                                         <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}"/>
                                                     
                                                     
-                                                    
+                                                    </c:forEach>
                                                     
                                                     <!-- map에 있는 list출력하기 위해 forEach문을 사용해 row라는 변수에 넣는다. -->
                                                     <%--
@@ -269,7 +269,7 @@
                                             </table>
                                         </form>
                                             
-                                        </c:forEach>
+                                       
                             </c:otherwise>
                         </c:choose>
                        
