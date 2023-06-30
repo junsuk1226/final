@@ -34,7 +34,8 @@
         <div class ="container-fluid text-center my-5">
             <div class="row justify-content-center my-4 ">
                 <div class="col-md-12">
-                    <a href="/admin/index"><img style="max-width: 300px;" src="../main_images/logo.png"></a>  
+                    <a href="/admin/index"><img style="max-width: 300px; margin-top: 20px; margin-bottom: 30px;" 
+                        src="../admin_images/myhyu_logo.png"></a>
                 </div>
             </div>
         </div>
@@ -44,7 +45,8 @@
                 <div class="col-md-12 mb-5">
                     <div class="input_area col-md-12 mx-auto card shadow-lg p-3 mb-5 bg-body rounded" style="margin: 0 auto; border:none; " >
                         <div class="card-body">
-                        <form id="login" action="" class="input-group my-5" method="post" name="frm" novalidate>
+
+                        <form id="login" action="/reqAdminLogin" class="input-group my-5" method="post" name="frm" novalidate>
                             <div class="row align-items-center">
                                 
                                 <div class="col-md-12">
