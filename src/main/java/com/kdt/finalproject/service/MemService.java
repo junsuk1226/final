@@ -49,8 +49,18 @@ public class MemService {
         return null;
     }
 
-    public int updateMem(MemVO vo) {
-        return m_Mapper.updateMem(vo);
+    public int updateMem(MemVO vo, MemVO mvo) {
+        int cnt = -1;
+        if (passwordEncoder.matches(vo.getM_pw(), mvo.getM_pw())) {
+            vo.setM_pw(passwordEncoder.encode(vo.getNew_pw())); // 새로운 비밀번호로 업데이트
+            cnt = m_Mapper.updateMem(vo);
+            if (cnt > 0) {
+                // 세션에 있는 정보도 수정해 줘야 한다.
+                mvo.setM_name(vo.getM_name());
+                mvo.setM_phone(vo.getM_phone());
+            }
+        }
+        return cnt;
     }
 
     public int updatePw(MemVO vo, MemVO mvo) {

@@ -85,7 +85,7 @@ public class Cart {
             vo.setQuantity(q + 1);
             return; // 더 이상 하지 않고 제어권 반환
         }
-        System.out.println("list.size:" + list.size());
+
         list.add(pvo); // 장바구니에 저장
     }
 

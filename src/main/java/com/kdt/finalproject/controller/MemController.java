@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -74,18 +75,18 @@ public class MemController {
 
 	@PostMapping("/myPage/changeInfo")
 	@ResponseBody
-	public Map<String, String> changeInfo(MemVO vo) {
-		// ModelAndView mv = new ModelAndView();
+	public Map<String, String> changeInfo(MemVO vo, HttpServletRequest request) {
 		Map<String, String> map = new HashMap<>();
 
 		// 로그인한 사용자의 정보를 세션에서 얻어온다.
+		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("mvo");
 		if (obj != null) {
-			// mvo에 m_idx값을 저장해야 한다.
 			MemVO mvo = (MemVO) obj;
 			vo.setM_idx(mvo.getM_idx());
 
-			int cnt = m_Service.updateMem(vo);
+			int cnt = m_Service.updateMem(vo, mvo);
+
 			if (cnt > 0) {
 				// 세션에 있는 정보도 수정해 줘야 한다.
 				mvo.setM_name(vo.getM_name());
@@ -93,7 +94,6 @@ public class MemController {
 			}
 
 			map.put("updateMem_fail", String.valueOf(cnt));
-
 		}
 		return map;
 	}

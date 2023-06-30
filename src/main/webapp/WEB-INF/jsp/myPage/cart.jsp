@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
         <!DOCTYPE html>
 
         <html lang="en">
@@ -118,7 +119,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-1"></div>
-                            <div class="col-md-7 col-md-offset-5">
+                            <div class="col-md-12 col-md-offset-5">
                                 <form name="frm" action="myPage" method="post">
                                     <input type="hidden" name="type" value="aoList" />
                                     <table>
@@ -131,11 +132,8 @@
                                                             <div class="col-md-3">
                                                                 <select id="SearchType" name="searchType"
                                                                     class="btn btn-outline-success me-2 mycustom-mem-btn">
-                                                                    <option value="0">휴게소검색</option>
-                                                                    <option value="1">주문내역</option>
-                                                                    <option value="2">리뷰관리</option>
-                                                                    <option value="3">장바구니</option>
-                                                                    <option value="4">휴게소검색</option>
+                                                                    <option value="0">주문내역</option>
+                                                                    
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-7">
@@ -169,8 +167,12 @@
                                 <!-- map.count가 0이 아닐때, 즉 자료가 있을때 -->
                                 <!-- form을 실행한다.  -->
                                 <!-- form의 id를 form1로 하고, method 방식을 post로 한다. 그리고 update.do페이지로 이동시킨다. -->
-                                <form id="form1" name="form1" method="post" action="${cart}">
+                               
                                     <table id="cart_table">
+                                        <colgroup>
+                                            <col width="20%" />
+                                            <col width="80%" />
+                                        </colgroup>
                                         <thead>
                                             <tr>
                                                 <td colspan="5">
@@ -179,164 +181,111 @@
                                             </tr>
                                             <tr>
                                                 <th>상품명</th>
-                                                <th>단가</th>
-                                                <th>수량</th>
-                                                <th>금액</th>
+                                                
                                                 <th>&nbsp;</th>
                                             </tr>
                                         </thead>
+                                        
+                                        
                                         <tbody>
-                                            <c:set var="sumPrice" value="0"/>
-                                            <c:set var="fee" value="0"/>
-                                            <!-- map에 있는 list출력하기 위해 forEach문을 사용해 row라는 변수에 넣는다. -->
-                                            카트:<c:out value="${fn:length(cart.list)}"/>
-                                            <c:forEach var="pvo" items="${sessionScope.cart.list}">
-                                                <tr align="center">
-                                                    <td>${pvo.foodNm}</td>
-
-                                                    <td>
-                                                        <fmt:formatNumber value="${pvo.foodCost}" pattern="#,###,###" />
-                                                    </td>
-                                                    <!-- fmt:formatNumber 태그는 숫자를 양식에 맞춰서 문자열로 변환해주는 태그이다 -->
-                                                    <!-- 여기서는 금액을 표현할 때 사용 -->
-                                                    <!-- ex) 5,000 / 10,000 등등등-->
-
-                                                    <td><input type="number" name="amount" style="width:30px;"
-                                                            value="<fmt:formatNumber value=" ${pvo.quantity}"
-                                                            pattern="#,###,###" />">
-                                                        <!-- 물건의 개수 (amount)를 fmt태그를 사용해서 패턴의 형식에 맞춰서 문자열로 변환함 -->
-                                                        <!--1,000 / 5,000 등등~  -->
-
-
-                                                    </td>
-                                                    <td>
-                                                        <fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />
-                                                    </td>
-                                                    <td><a
-                                                            href="${path}/shop/cart/delete.do?cart_id=${row.cart_id}">[삭제]</a>
-                                                        <!-- 삭제 버튼을 누르면 delete.do로 장바구니 개별 id (삭제하길원하는 장바구니 id)를 보내서 삭제한다. -->
-                                                    </td>
-                                                </tr>
-                                                <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}"/>
-                                            </c:forEach>
-                                            <tr>
-                                                <td colspan="5" align="right">
-                                                    장바구니 금액 합계 :
-                                                    <fmt:formatNumber value="${sumPrice}" pattern="#,###,###" /><br>
-                                                    배송료 : ${fee}<br>
-                                                    총합계 :
-                                                    <fmt:formatNumber value="${fn:length(cart.list)}" pattern="#,###,###" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td  align="right">
-                                                    <button type="button" id="btnUpdate" class="btn btn-outline-success me-2 mycustom-mem-btn">수정</button>
-                                                    <button type="button" id="btnDelete" class="btn btn-outline-success me-2 mycustom-mem-btn">장바구니 비우기</button>
-                                                    <!--btnUpdate와 btnDelete id는 위쪽에 있는 자바스크립트가 처리한다.-->
-                                                    <button type="button" id="btnList" class="btn btn-outline-success me-2 mycustom-mem-btn">결제하기</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        <tbody >
+                                            <hr />
+                                                <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st"> 
+                                                    <form action="/viewCart" name="ff" method="post">
+                                                        <tr >
                                             
-                                        </tbody>
-                                    </table>
-
-                                </form>
+                                    
+                                            
+                                                            <td>${pvo.foodNm} 이미지</td>
+                                                            <td colspan="4">
+                                                                <div>
+                                                                    <p style="font-size: 15px; font-weight: bold;">${pvo.restNm}</p>
+                                                                </div>
+                                                                <div>
+                                                                    <p style="font-size: 12px; ">${pvo.restNm} : 2023-06-24</p>
+                                                                </div>
+                                                                <div>주문 음식 : ${pvo.foodNm}</div>
+                                                                <hr style="border:3px dotted green;" />
+                                                                <div> &nbsp;&nbsp; <fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />원</div>
+                                                                <div style="text-align: right;">
+                                                                    
+                                                                    <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
+                                                                <hr />
+                                                                </div>
+                                                            </td>
+                                                            <input type="hidden" value="1" name="p_idx" /> <%--${pvo.p_idx}--%>
+                                            
+                                                        </tr>
+                                                    </c:forEach>
+                                                    
+                                                    
+                                                    <c:set var="sumPrice" value="0"/>
+                                                    <c:set var="fee" value="0"/>
+                                                    <!-- map에 있는 list출력하기 위해 forEach문을 사용해 row라는 변수에 넣는다. -->
+                                                    <%--
+                                                    카트:<c:out value="${fn:length(cart.list)}"/>
+                                                    <c:forEach var="pvo" items="${sessionScope.cart.list}">
+                                                        <tr align="center">
+                                                            <td>${pvo.foodNm}</td>
+                                                            
+                                                            <td>
+                                                                <fmt:formatNumber value="${pvo.foodCost}" pattern="#,###,###" />
+                                                            </td>
+                                                            <!-- fmt:formatNumber 태그는 숫자를 양식에 맞춰서 문자열로 변환해주는 태그이다 -->
+                                                            <!-- 여기서는 금액을 표현할 때 사용 -->
+                                                            <!-- ex) 5,000 / 10,000 등등등-->
+                                                            
+                                                            <td><input type="number" name="amount" style="width:30px;"
+                                                                value="<fmt:formatNumber value='${pvo.quantity}'
+                                                                pattern='#,###,###' />">
+                                                                <!-- 물건의 개수 (amount)를 fmt태그를 사용해서 패턴의 형식에 맞춰서 문자열로 변환함 -->
+                                                                <!--1,000 / 5,000 등등~  -->
+                                                                
+                                                                
+                                                            </td>
+                                                            <td>
+                                                                <fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />
+                                                            </td>
+                                                            <td><a
+                                                                href="${path}/shop/cart/delete.do?cart_id=${row.cart_id}">[삭제]</a>
+                                                                <!-- 삭제 버튼을 누르면 delete.do로 장바구니 개별 id (삭제하길원하는 장바구니 id)를 보내서 삭제한다. -->
+                                                            </td>
+                                                        </tr>
+                                                        <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}"/>
+                                                    </c:forEach>
+                                                    --%>         
+                                                    
+                                                    <tr>
+                                                        <td colspan="5" align="right">
+                                                            
+                                                            
+                                                            장바구니 금액 합계 :
+                                                            
+                                                            <c:forEach var="pvo" items="${sessionScope.cart.list}">
+                                                                <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}" />
+                                                            </c:forEach>
+                                                            <br/>
+                                                            총개수 :
+                                                            <fmt:formatNumber value="${fn:length(cart.list)}" pattern="#,###,###" />
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td colspan="2" align="right">
+                                                            
+                                                            <button type="button" id="btnDelete" class="btn btn-outline-success me-2 mycustom-mem-btn">장바구니 비우기</button>
+                                                            <!--btnUpdate와 btnDelete id는 위쪽에 있는 자바스크립트가 처리한다.-->
+                                                            <button type="button" id="btnList" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="sendData()">결제하기</button>
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </form>
+                                            
+                                            
                             </c:otherwise>
                         </c:choose>
-                        <!--
-                                <div class="row">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-9">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr style="background:'#353535'">
-                                                    <th>목록</th>
-                                                    <th>주문자</th>
-                                                    <th>주문번호</th>
-                                                    <th>상품번호</th>
-                                                    <th>주문상태</th>
-                                                </tr>
-                                            </thead>
-
-                                                <tbody>
-                                                    <c:forEach var="pvo" items="${requestScope.ar }" varStatus="st">
-                                                        <tr>
-                                                            <%--<td>${page.totalRecord -
-                                                                ((page.nowPage-1)*page.numPerPage+st.index) }</td> --%>
-                                                                <td>${pvo.o_idx}</td>
-                                                                <td>${pvo.o_class}</td>
-                                                                <td><a href="Controller?type=aoView&o_idx=${pvo.o_idx }">
-                                                                    <c:out value="${pvo.o_num }"></c:out>
-                                                                </a></td>
-                                                                <td>${pvo.p_idx}</td>
-                                                                <td>
-                                                                    <c:choose>
-                                                                        <c:when test="${pvo.o_status == 1}">배송준비중</c:when>
-                                                                        <c:when test="${pvo.o_status == 2}">배송중</c:when>
-                                                                        <c:when test="${pvo.o_status == 3}">배송완료</c:when>
-                                                                        <c:when test="${pvo.o_status == 4}">주문완료</c:when>
-                                                                        <c:when test="${pvo.o_status == 5}">주문취소</c:when>
-                                                                        
-                                                                        <c:otherwise>택배가 가출했어요</c:otherwise>
-                                                                    </c:choose>
-                                                                </td>
-                                                            </tr>
-                                                        </c:forEach>
-                                                    </tbody>
-                                                </table>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4"></div>
-                                        <div class="col-md-5">
-                                            <table>
-                                                <tfoot>
-                                                    <tr>
-                                                        <td>
-                                                            <ol class="pagination">
-                                                                <c:if test="${page.startPage < page.pagePerBlock}">
-                                                                    <li class="page-item disabled"><a
-                                                                        class="page-link">&lt;</a></li>
-                                                                    </c:if>
-                                                                    <c:if test="${page.startPage >= page.pagePerBlock}">
-                                                                        <li class="page-item"><a class="page-link"
-                                                                            href="Controller?type=aoList&cPage=${page.startPage-page.pagePerBlock }">&lt;</a>
-                                                                        </li>
-                                                                    </c:if>
-                                                                    <c:forEach begin="${page.startPage }" end="${page.endPage }"
-                                                                    varStatus="st">
-                                                                    <c:if test="${page.nowPage eq st.index}">
-                                                                        <li class="page-item active"><a
-                                                                            class="page-link">${st.index}</a></li>
-                                                                        </c:if>
-                                                                        <c:if test="${page.nowPage ne st.index }">
-                                                                            <li class="page-item"><a class="page-link"
-                                                                                href="Controller?type=aoList&cPage=${st.index}">${st.index
-                                                                                }</a></li>
-                                                                            </c:if>
-                                                                        </c:forEach>
-                                                                        <c:if test="${page.endPage<page.totalPage}">
-                                                                            <li class="page-item"><a class="page-link"
-                                                                                href="Controller?type=aoList&cPage=${page.startPage+page.pagePerBlock }">&gt;</a>
-                                                                            </li>
-                                                                        </c:if>
-                                                                        <c:if test="${page.endPage == page.totalPage}">
-                                                                            <li class="page-item disabled"><a
-                                                                                class="page-link">&gt;</a></li>
-                                                                            </c:if>
-                                                                        </ol>
-                                                                    </td>
-                                                                </tr>
-                                                            </tfoot>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            -->
-
-
+                       
 
                     </div>
                     <div>
@@ -424,6 +373,12 @@
 
 
                 $(function () {
+
+                     function sendData() {
+                        document.frm.submit();
+                    }
+
+
                     $("#btnList").click(function () {
                         location.href = "${path}/shop/product/list.do";
                     });
@@ -441,6 +396,24 @@
                     }
 
                 });
+                  function fn_cancel_order(order_id) {
+                        var answer = confirm("주문을 취소하시겠습니까?");
+                        if (answer == true) {
+                            var formObj = document.createElement("form");
+                            var i_order_id = document.createElement("input");
+
+                            i_order_id.name = "order_id";
+                            i_order_id.value = order_id;
+
+                            formObj.appendChild(i_order_id);
+                            document.body.appendChild(formObj);
+                            formObj.method = "post";
+                            formObj.action = "${contextPath}/mypage/cancelMyOrder.do";
+                            formObj.submit();
+                        }
+
+
+                    }
 
             </script>
         </body>

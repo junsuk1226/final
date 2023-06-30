@@ -115,12 +115,15 @@
                                 </div>
                                 
                                     <div class="col-md-1"></div>
-                                    <div class="col-md-7 col-md-offset-5" class="right">
+                                    <div class="col-md-12 col-md-offset-5" class="right">
                                      
-                                            <table >
+                                            <table>
+                                                <colgroup>
+                                                    <col width="500px"/>
+                                                    <col width="1000px"/>
+                                                </colgroup>
                                                 <tbody >
 
-                                                    <thead >
                                                         <tr>
                                                             <td>
                                                                 <div class="row" >
@@ -169,9 +172,68 @@
                                                                     </ul>
                                                                 </div>
                                                             </td>
+                                                            <td>
+                                                                <div class="left">
+                                                                    <div class="input-group">
+                                                                        <div class="col-md-11">
+                                                                
+                                                                            <h2>내 정보 </h2>
+                                                                            <br />
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <form action="/myPage/myPage" method="post" class="needs-validation" novalidate>
+                                                                                <ul class="list-unstyled">
+                                                                                    <li class="mb-3">이메일</li>
+                                                                                    <div class="form-floating ">
+                                                                                        <input type="text" placeholder="Email" class="form-control" name="j_email" id="j_email" required
+                                                                                            value="${sessionScope.mvo.m_id}" disabled>
+                                                                                        <label for="floatingInput" class="text-secondary">
+                                                                
+                                                                                        </label>
+                                                                                        <div class="valid-feedback">
+                                                                                        </div>
+                                                                
+                                                                                    </div>
+                                                                                    <br />
+                                                                
+                                                                                    <br />
+                                                                                    <li class="mb-3">닉네임</li>
+                                                                                    <div class="form-floating">
+                                                                                        <input type="text" placeholder="Nickname" class="form-control input" name="j_nickname"
+                                                                                            id="j_nickname" required value="${sessionScope.mvo.m_name}" disabled>
+                                                                
+                                                                                        <div class="valid-feedback">
+                                                                                        </div>
+                                                                                        <br />
+                                                                                    </div>
+                                                                                    <br />
+                                                                                    <li class="mb-3">휴대폰 번호</li>
+                                                                
+                                                                                    <div class="form-floating mb-5">
+                                                                                        <input type="text" placeholder="PhoneNumber" class="form-control input" name="m_phone"
+                                                                                            id="m_phone" required value="${sessionScope.mvo.m_phone}" disabled>
+                                                                
+                                                                                        <div class="valid-feedback">
+                                                                                        </div>
+                                                                
+                                                                                    </div>
+                                                                
+                                                                
+                                                                                    <br />
+                                                                                    <div class="col-7 d-grid gap-2  mx-auto" href="/infopw">
+                                                                                        <button type="button" class="btn btn-dark "> <a class="nav-link" href="/info">회원정보 수정하러 가기
+                                                                                                <a /></button>
+                                                                                    </div>
+                                                                                </ul>
+                                                                            </form>
+                                                                            <hr>
+                                                                
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
                                                         </tr>
-                                                    </thead>
-                                                </div>
+                                                    </tbody>
                                             </table>
                                         </div>
                                         
@@ -192,63 +254,7 @@
                                             
                                         </div>                                            
                                     </div>
-                                    <div   class="left">
-                                <div class="input-group" >
-                                    <div class="col-md-11">
-                                        
-                                        <h2>내 정보 </h2>
-                                        <br />
-                                    </div>
-                                    <div class="card-body">
-                                        <form action="/myPage/myPage" method="post" class="needs-validation" novalidate>
-                                            <ul class="list-unstyled">
-                                                <li class="mb-3">이메일</li>
-                                                <div class="form-floating ">
-                                                    <input type="text" placeholder="Email" class="form-control" name="j_email" id="j_email" required
-                                                        value="${sessionScope.mvo.m_id}" disabled>
-                                                    <label for="floatingInput" class="text-secondary">
-                                                        
-                                                    </label>
-                                                    <div class="valid-feedback">
-                                                    </div>
-                                                   
-                                                </div>
-                                                <br />
                                     
-                                                <br />
-                                                <li class="mb-3">닉네임</li>
-                                                <div class="form-floating">
-                                                    <input type="text" placeholder="Nickname" class="form-control input" name="j_nickname" id="j_nickname"
-                                                        required value="${sessionScope.mvo.m_name}" disabled>
-                                                    
-                                                    <div class="valid-feedback">
-                                                    </div>
-                                                    <br />
-                                                </div>
-                                                <br />
-                                                <li class="mb-3">휴대폰 번호</li>
-                                                
-                                                <div class="form-floating mb-5">
-                                                    <input type="text" placeholder="PhoneNumber" class="form-control input" name="m_phone" id="m_phone"
-                                                        required value="${sessionScope.mvo.m_phone}" disabled>
-                                                  
-                                                    <div class="valid-feedback">
-                                                    </div>
-                                                    
-                                                </div>
-                                               
-                                                
-                                                <br />
-                                                <div class="col-7 d-grid gap-2  mx-auto" href="/infopw">
-                                                    <button type="button" class="btn btn-dark "> <a class="nav-link" href="/info">회원정보 수정하러 가기 <a /></button>
-                                                </div>
-                                            </ul>
-                                        </form>
-                                        <hr>
-                                    
-                                    </div>
-                                </div>
-                            </div>
                                     <%-- 추가Popup --%>
                                     <div id="add_popup" class="popup" title="내역 수정 ">
                                         <div id="content">
