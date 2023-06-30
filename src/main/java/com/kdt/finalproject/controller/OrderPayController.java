@@ -288,18 +288,19 @@ public class OrderPayController {
 
         String reqURL = "https://kapi.kakao.com/v1/payment/cancel";
         String adminkey = "22c4183a06a4812b3265f8971a5fed6e"; // Admin key(kakaodeveloper에서 확인)
-        String tid = "T49d31437bb255dbe7bd"; // 결제 고유번호-----DB셀렉
 
-        String cid = "TC0ONETIME"; // 테스트용 가맹점 코드-----DB셀렉
-        int cancel_amount = 0; // 결제 총액-----DB셀렉
-        int cancel_tax_free_amount = 0; // 가맹점 회원 id
+        String tid = "T49e44587bb255dbf187"; // 결제 고유번호-----DB셀렉(리스트 선택 값 받고 검색)
+
+        PayVO pvo = p_Service.kakao_refunt_select(tid);
+
+        String cid = pvo.getCid(); // 테스트용 가맹점 코드-----DB셀렉
+        int cancel_amount = pvo.getTotalCost(); // 결제 총액-----DB셀렉
+        int cancel_tax_free_amount = 0; // 상품 비과세 금액-----모르겠다.
         String header = "KakaoAK " + adminkey;
+        String canceled_at = "";
 
-        String aid = ""; // 요청 고유 번호
-        int amount = 0; // 결제 금액
-        String approved_at = ""; // 결제 승인 시각(넘어올때 "approved_at":"2023-06-27T16:39:23" T를 기준으로 쪼개 넣어야 할 듯.)
-        // System.out.println(pg_token);
-        // System.out.println(dto.getTid());
+        // System.out.println(cid);
+        // System.out.println(cancel_amount);
 
         try {
             URL url = new URL(reqURL);
@@ -313,6 +314,8 @@ public class OrderPayController {
             StringBuffer sb = new StringBuffer();
             sb.append("cid=" + cid);
             sb.append("&tid=" + tid);
+            sb.append("&cancel_amount=" + cancel_amount);
+            sb.append("&cancel_tax_free_amount=" + cancel_tax_free_amount);
 
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 
@@ -321,7 +324,7 @@ public class OrderPayController {
             bw.flush();
 
             int res_code = conn.getResponseCode();
-            // System.out.println(res_code);
+            System.out.println(res_code);
 
             if (res_code == HttpURLConnection.HTTP_OK) {
                 BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -336,61 +339,39 @@ public class OrderPayController {
 
                 Object obj = jsonParser.parse(result.toString());
                 JSONObject json = (JSONObject) obj;
-                JSONObject amountjson = (JSONObject) json.get("amount");
-                // System.out.println(amountjson);
+                // System.out.println(json);
 
-                aid = (String) json.get("aid");
-                tid = (String) json.get("tid");
-                cid = (String) json.get("cid");
-                approved_at = (String) json.get("approved_at");
-                amount = Integer.parseInt(String.valueOf(amountjson.get("total")));
+                canceled_at = (String) json.get("canceled_at");
+                // System.out.println(canceled_at);
 
-                // System.out.println(aid);
-                // System.out.println(tid);
-                // System.out.println(cid);
-                // System.out.println(partner_order_id);
-                // System.out.println(partner_user_id);
-                // System.out.println(approved_at);
-                // System.out.println(amount);
+                String canceldatetime[] = canceled_at.split("T");
+                String c_date = canceldatetime[0];
+                String c_time = canceldatetime[1];
+                System.out.println(c_date);
+                System.out.println(c_time);
 
-                String datetime[] = approved_at.split("T");
-                String p_date = datetime[0];
-                String p_time = datetime[1];
-                // System.out.println(p_date);
-                // System.out.println(p_time);
+                // PayVO vo = new PayVO();
+                // // vo.setM_idx();
+                // // vo.setRestCd();
+                // // vo.setRestNm();
+                // // vo.setFoodNm();
+                // // vo.setFoodCost();
+                // // vo.setFoodNm();
 
-                Random rnd = new Random();
-                StringBuffer sb2 = new StringBuffer();
+                // vo.setP_date(p_date);
+                // vo.setP_time(p_time);
+                // vo.setAid(aid);
+                // vo.setTid(tid);
+                // vo.setCid(cid);
+                // vo.setTotalCost(amount);
+                // vo.setP_oderId(sb2.toString());
+                // // System.out.println(sb2.toString());
 
-                for (int i = 0; i < 48; i++) {
-                    if (rnd.nextBoolean()) {
-                        sb2.append((char) ((int) (rnd.nextInt(26)) + 97));
-                    } else {
-                        sb2.append((rnd.nextInt(10)));
-                    }
-                }
-
-                PayVO vo = new PayVO();
-                // vo.setM_idx();
-                // vo.setRestCd();
+                // String poNum_count = String.format("%04d", p_Service.poNum_count(vo) + 1); //
                 // vo.setRestNm();
-                // vo.setFoodNm();
-                // vo.setFoodCost();
-                // vo.setFoodNm();
+                // vo.setP_oNum("RestCd" + "_" + poNum_count);
 
-                vo.setP_date(p_date);
-                vo.setP_time(p_time);
-                vo.setAid(aid);
-                vo.setTid(tid);
-                vo.setCid(cid);
-                vo.setTotalCost(amount);
-                vo.setP_oderId(sb2.toString());
-                // System.out.println(sb2.toString());
-
-                String poNum_count = String.format("%04d", p_Service.poNum_count(vo) + 1); // vo.setRestNm();
-                vo.setP_oNum("RestCd" + "_" + poNum_count);
-
-                int cnt = p_Service.kakaopay(vo);
+                // int cnt = p_Service.kakaopay(vo);
 
             }
 
@@ -494,16 +475,6 @@ public class OrderPayController {
                 String p_date = datetime[0];
                 String p_time = datetime[1];
 
-                aid = (String) json.get("lastTransactionKey");
-                tid = (String) json.get("paymentKey");
-                int totalCost = Integer.parseInt(String.valueOf(json.get("totalAmount")));
-
-                // System.out.println(p_date);
-                // System.out.println(p_time);
-                // System.out.println(aid);
-                // System.out.println(tid);
-                // System.out.println(totalCost);
-
                 PayVO vo = new PayVO();
                 // vo.setM_idx();
                 // vo.setRestCd();
@@ -516,7 +487,6 @@ public class OrderPayController {
                 vo.setP_time(p_time);
                 vo.setAid(aid);
                 vo.setTid(tid);
-                vo.setTotalCost(totalCost);
                 vo.setP_oderId(getorderId);
 
                 String poNum_count = String.format("%04d", p_Service.poNum_count(vo) + 1); // vo.setRestNm(); 체크

@@ -11,7 +11,7 @@
 </select>
 
 <select id="kakao_refunt_select" parameterType="String" resultType="com.kdt.finalproject.vo.PayVO">
-  	SELECT * FROM paylog tid = #{tid}
+  	SELECT * FROM paylog where tid = #{tid}
 </select>
 
 <!-- insert -->

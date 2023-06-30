@@ -72,8 +72,8 @@
                                 </div></br>
                                 <div class="card border border-2" style="width: 26rem;">
                                     <div class="paybox">
-                                        <p class="text-left text_bold" style="margin-left: 20px; margin-top: 15px;" >주문자: ${mvo.m_id}개똥이</p>
-                                        <p class="text-left" style="margin-left: 20px;" >전호번호: ${mvo.m_phone}999-9999-9999</p>
+                                        <p class="text-left text_bold" style="margin-left: 20px; margin-top: 15px;" >주문자: ${mvo.m_id}</p>
+                                        <p class="text-left" style="margin-left: 20px;" >전호번호: ${mvo.m_phone}</p>
                                     </div>
                                 </div></br>
                             
@@ -111,46 +111,22 @@
                                     <button type="button" class="btn btn-outline-secondary" onclick="location.href='/main'">결제 취소</button>
                                 </div>
                                 <div style="text-align: right;">
-                                    <button type="button" class="btn btn-outline-secondary" onclick="location.href='/main'">카카오 환불(테스트)</button>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="location.href='/kakaopayment/refund'">카카오 환불(테스트)</button>
                                 </div>
                                 <div style="text-align: right;">
                                     <button type="button" class="btn btn-outline-secondary" onclick="location.href='/main'">토스 환불(테스트)</button>
                                 </div>
 
 
-
-
-
-                                <hr />
-                                <c:set var="sumPrice" value="0"/>
-                                <c:set var="fee" value="0"/>
+                                테스트------------</br>
                                 <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st"> 
-                                    <tr >
-                                        <td>${pvo.foodNm} 이미지</td>
-                                        <td colspan="4">
-                                            <div>
-                                                <p style="font-size: 15px; font-weight: bold;">${pvo.restNm}</p>
-                                            </div>
-                                            <div>
-                                                <p style="font-size: 12px; ">${pvo.restNm} : 2023-06-24</p>
-                                            </div>
-                                            <div>주문 음식 : ${pvo.foodNm}</div>
-                                            <hr style="border:3px dotted green;" />
-                                            <div> &nbsp;&nbsp; 
-                                                <fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />원</div>
-                                            <div style="text-align: right;">
-                                                
-                                             <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
-                                            <hr />
-                                            </div>
-                                        </td>
-                                        <input type="hidden" value="1" name="p_idx" /> <%--${pvo.p_idx}--%>
-                        
-                                    </tr>
-                                    <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}"/>
+                                        ${pvo.foodNm} </br>
+                                        ${pvo.foodCost} </br>
+                                        ${pvo.totalPrice} </br>
+                                        ${pvo.quantity} </br>
+                                        ${pvo.restNm} </br>
                                 </c:forEach>
-
-
+                                테스트------------
                             </div>
                         </div>
                     </div>
