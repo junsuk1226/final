@@ -18,7 +18,7 @@
     UPDATE member
     SET m_name = #{m_name}, 
       m_phone = #{m_phone}
-    WHERE m_idx=#{m_idx} and m_pw = #{m_pw}
+    WHERE m_idx=#{m_idx}
   </update>
 
   <!--회원 비빌번호 수정-->
