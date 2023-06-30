@@ -120,7 +120,7 @@
                         <div class="row">
                             <div class="col-md-1"></div>
                             <div class="col-md-12 col-md-offset-5">
-                                <form name="frm" action="myPage" method="post">
+                                <form name="frm" action="/orderpay" method="post">
                                     <input type="hidden" name="type" value="aoList" />
                                     <table>
                                         <tbody align=center>
@@ -190,7 +190,7 @@
                                         <tbody>
                                             <hr />
                                                 <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st"> 
-                                                    <form action="/viewCart" name="ff" method="post">
+                                                    
                                                         <tr >
                                             
                                     
@@ -274,7 +274,7 @@
                                                             
                                                             <button type="button" id="btnDelete" class="btn btn-outline-success me-2 mycustom-mem-btn">장바구니 비우기</button>
                                                             <!--btnUpdate와 btnDelete id는 위쪽에 있는 자바스크립트가 처리한다.-->
-                                                            <button type="button" id="btnList" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="sendData()">결제하기</button>
+                                                            <button type="button" id="btnList" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="sendData(this.form)">결제하기</button>
                                                         </td>
                                                     </tr>
                                                     
@@ -359,6 +359,15 @@
             <script src="js/scripts.js"></script>
 
             <script>
+
+                
+                
+                function sendData(frm) {
+                    window.location.href = "/orderpay"
+                   document.frm.submit();
+               }
+
+
                 function sendKeyword(form) {
 
                     var value = $("#searchValue").val();
@@ -372,14 +381,11 @@
                 }
 
 
-                $(function () {
-
-                     function sendData() {
-                        document.frm.submit();
-                    }
+               
 
 
-                    $("#btnList").click(function () {
+
+                    $("#Lis").click(function () {
                         location.href = "${path}/shop/product/list.do";
                     });
 
@@ -395,7 +401,7 @@
                         }
                     }
 
-                });
+               
                   function fn_cancel_order(order_id) {
                         var answer = confirm("주문을 취소하시겠습니까?");
                         if (answer == true) {
