@@ -107,7 +107,7 @@
                                     <div class="col-md-1"></div>
                                     <div class="col-md-11">
                                         <br />
-                                        <h1>${mvo.m_name}님 환영합니다. </h1>
+                                        <h1>${sessionScope.mvo.m_name}님 환영합니다. </h1>
                                         <br />
                                         <br />
                                     </div>

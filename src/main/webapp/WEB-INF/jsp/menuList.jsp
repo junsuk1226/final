@@ -32,6 +32,7 @@
             <div class="col-md-4 text-end"> 
                 <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/logout'">로그 아웃</button>
                 <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/myPage'">마이페이지</button>
+                
         </div>
             </c:if>
         </header>
@@ -55,7 +56,7 @@
                 <h3 class="mycustom-rest_direction">${favo.direction} 방향</h3>
             </div>
                 <div class="container" style="max-width: 700px; margin-bottom: 10px;">
-                    <button style="width: 100%;" onclick="location.href='/cart'">장바구니</button>
+                    <button style="width: 100%;" class="btn btn-outline-success me-2 mycustom-mem-btn"  onclick="location.href='/cart'">장바구니</button>
                 </div>
                 <div class="row">
                     <div class="col">
