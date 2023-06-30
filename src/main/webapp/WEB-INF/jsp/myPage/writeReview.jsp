@@ -227,7 +227,7 @@
                                             </div>
                                             <div class="row ms-1 me-1">
                                                 <label for="content" class="form-label"></label>
-                                                <textarea class="form-control content" name="r_content" id="content" placeholder="리뷰를 작성해 주세요." rows="10" required></textarea>
+                                                <textarea class="form-control content" name="r_content" id="content" placeholder="리뷰를 작성해 주세요." rows="7" required></textarea>
                                                 <div class="invalid-feedback">
                                                 내용을 작성해 주세요.
                                                 </div>
