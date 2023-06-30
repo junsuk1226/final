@@ -21,6 +21,12 @@ public class CartController {
     @Autowired
     private HttpSession session;
 
+    @RequestMapping("/cartt")
+    public String cartt() {
+
+        return "/myPage/cart";
+    }
+
     @RequestMapping("/viewCart")
     public ModelAndView cart(String foodNm, String foodCost, String RestNm, String quantity, String totalPrice)
             throws Exception {
@@ -54,7 +60,7 @@ public class CartController {
 
         String location = URLEncoder.encode(RestNm, StandardCharsets.UTF_8.toString());
 
-        mv.setViewName("redirect:menu?RestNm=" + location);
+        mv.setViewName("redirect:menu/?RestNm=" + location);
 
         return mv;
     }

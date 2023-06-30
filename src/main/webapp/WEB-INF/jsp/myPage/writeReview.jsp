@@ -20,7 +20,6 @@
             <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-            <link rel="stylesheet" href="/css/summernote-lite.css">
 
             <link rel="stylesheet" href="../css/main_custom.css" />
 
@@ -119,8 +118,8 @@
                 /*사진 삭제 버튼*/
                 button.btn-del {
                     position: absolute;
-                    top: -15px;
-                    left : 315px;
+                    top: -10px;
+                    left : 310px;
                     border-radius: 15px;
                     border: none;
                     background-color: #6600db;
@@ -228,7 +227,7 @@
                                             </div>
                                             <div class="row ms-1 me-1">
                                                 <label for="content" class="form-label"></label>
-                                                <textarea class="form-control content" name="r_content" id="content" placeholder="리뷰를 작성해 주세요." rows="10" required></textarea>
+                                                <textarea class="form-control content" name="r_content" id="content" placeholder="리뷰를 작성해 주세요." rows="7" required></textarea>
                                                 <div class="invalid-feedback">
                                                 내용을 작성해 주세요.
                                                 </div>
@@ -291,9 +290,6 @@
                     <!-- 제이쿼리 -->
                     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
-                    <!-- summernote -->
-                    <script src="/js/summernote-lite.js"></script>
-	                <script src="/js/lang/summernote-ko-KR.js"></script>
 
                     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -307,32 +303,40 @@
                     <script src="js/scripts.js"></script>
 
                     <script>
+                        var savedpath ="";
+                        var savedfname =""
 
                         $(function(){
                             $("#file").bind("change", function(){
                                 //console.log("DDDDDD");
                                 let fileInput = document.getElementById('file');
-                          
+                                
+                                
                                 var file = fileInput.files[0];
-
+                                
                                 var formData = new FormData();
                                 formData.append('file', file);
-
+                                
+                                
                                 $.ajax({
                                     url: "/saveImg",
                                     type: "post",
                                     data: formData,
-                                    contentType:false,
-                                    processData:false,
-                                    cache: false,
+                                    contentType:false, //파일 전송 시
+                                    processData:false, //파일 전송 시
+                                    cache: false,      //파일 전송 시
                                     dataType: "json"
                                }).done(function(data){
                                     //console.log(data.path+"/"+data.fname);
-                                    $("#img_area").html("<img src='"+data.path+"/"+data.fname+"' style='object-fit:cover; width: 100%; height:100%' class='rounded shadow mb-5'/><button type='button' class='btn-del'><i class='fa fa-times' style ='color: #fff'></i></button> ")
+                                    savedpath=data.path;
+                                    savedfname=data.fname;
+                                    $("#img_area").html("<img src='"+data.path+"/"+data.fname+"' style='object-fit:cover; width: 100%; height:100%' class='rounded shadow mb-5' id='insertedImg'/><button type='button' onclick='delImg()' class='btn-del' id='insertedBtn'><i class='fa fa-times' style ='color: #fff'></i></button> ")
                                     document.frm.r_file.value=data.fname;
                                });
                             });
                         });
+
+                     
 
                         function uploadFile() {
                             var fileInput = document.getElementById('file');
@@ -341,24 +345,6 @@
                                 
                                 var formData = new FormData();
                                 formData.append('file', file);
-                                /*
-                                var xhr = new XMLHttpRequest();
-                                xhr.open('POST', '/saveImg', true);
-                                xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-                                xhr.onload = function () {
-                                    if (xhr.status === 200) {
-                                        console.log('파일 업로드 성공');
-                                        var responseData = JSON.parse(xhr.responseText);
-                                        var fileName = responseData.fname; // 저장된 파일명
-                                        
-                                        document.getElementsByName('r_file')[0].value=fileName;
-                                        
-                                    } else {
-                                        console.log('파일 업로드 실패');
-                                    }
-                                };
-                                xhr.send(formData);
-                                */
                                $.ajax({
                                     url: "/saveImg",
                                     type: "post",
@@ -366,10 +352,34 @@
                                     dataType: "json"
                                }).done(function(data){
                                     console.log(data.path+"/"+data.fname);
+                                    
                                     document.frm.r_file.value=data.fname;
                                });
                         }
 
+                        function delImg(){
+
+                            $.ajax({
+                                url:"/delImg",
+                                type:"post",
+                                contentType: 'application/json',
+                                data: JSON.stringify({"path":savedpath, "fname":savedfname}),  //data: JSON.stringify(senddata),
+                                dataType: "json"
+
+                            }).done(function(data){
+                                if(data){
+                                    console.log("삭제 완료");
+                                    $("img").remove("#insertedImg");
+                                    $("button").remove("#insertedBtn");
+                                    $("#file").val(""); //파일 선택기 초기화
+                                    
+                                }else{
+                                    console.log("삭제 실패");
+                                }
+                            });
+
+
+                        }
                     
                         function sendData(){
                             if ($('input[name="r_score"]:checked').length <= 0 ){

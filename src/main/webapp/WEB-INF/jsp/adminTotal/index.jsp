@@ -45,7 +45,8 @@
                 <div class="col-md-12 mb-5">
                     <div class="input_area col-md-12 mx-auto card shadow-lg p-3 mb-5 bg-body rounded" style="margin: 0 auto; border:none; " >
                         <div class="card-body">
-                        <form id="login" action="" class="input-group my-5" method="post" name="frm" novalidate>
+
+                        <form id="login" action="/reqAdminLogin" class="input-group my-5" method="post" name="frm" novalidate>
                             <div class="row align-items-center">
                                 
                                 <div class="col-md-12">

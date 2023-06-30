@@ -12,12 +12,7 @@ public class AdminController {
     }
 
     @RequestMapping("/admin/join")
-    public String adminJoinTest(){
+    public String adminJoinTest() {
         return "/admin/join";
-    }
-
-    @RequestMapping("/admin/main")
-    public String adminMainTest(){
-        return "/admin/main";
     }
 }
