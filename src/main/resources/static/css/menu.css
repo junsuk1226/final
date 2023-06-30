@@ -116,8 +116,14 @@
 	border: 0
 }
 
-.mycustom-rieview_card{
+.mycustom-review_card{
     border: none;
+    
+}
+
+.mycustom-review_card .card-title{
+    font-family: "omyu";
+    font-size: 20px;
 }
 
 .mycustom-rieview_img{
@@ -225,6 +231,60 @@
 
 .translate-middle {
     transform: translate(-20%,-40%)!important;
+}
+
+.rating {
+width: 240px;
+padding: 10px;
+margin:0 auto;
+position: relative;
+direction: rtl;
+}
+
+.rating input {
+position: absolute;
+width: 35px;
+height: 50px;
+cursor: pointer;
+transform: translateX(52px);
+opacity: 0;
+z-index: 5;
+}
+
+.rating input:nth-of-type(1) {
+right: 63px;
+}
+.rating input:nth-of-type(2) {
+right: 108px;
+}
+.rating input:nth-of-type(3) {
+right: 153.5px;
+}
+.rating input:nth-of-type(4) {
+right: 198px;
+}
+.rating input:nth-of-type(5) {
+right: 242px;
+}
+.rating input:nth-of-type(6) {
+right: 300px;
+}
+.rating input:checked ~ .star:after, .rating input:hover ~ .star:after {
+content: '\f005';
+}
+.rating .star {
+display: inline-block;
+font-family: FontAwesome;
+font-size: 42px;
+color: #FBB202;
+cursor: pointer;
+margin: 0px;
+}
+.rating .star:after {
+content: '\f006';
+}
+.rating .star:hover ~ .star:after, .rating .star:hover:after {
+content: '\f005';
 }
 
 

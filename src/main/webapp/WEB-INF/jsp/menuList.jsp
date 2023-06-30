@@ -11,6 +11,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link rel="stylesheet" href="../css/main_custom.css" />
 <link rel="stylesheet" href="../css/menu.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <body>
     
@@ -31,7 +32,6 @@
             <div class="col-md-4 text-end"> 
                 <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/logout'">로그 아웃</button>
                 <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/myPage'">마이페이지</button>
-                <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/cartt'">장바구니</button>
         </div>
             </c:if>
         </header>
@@ -203,16 +203,32 @@
 
                         <c:forEach var="rvo" items="${rList}">
                             <!-- 반복문 돌릴구간-->
-                            <li class="list-group-item">
-                                <div class="card mycustom-rieview_card" style="width: 100%">
-                                    <div class="card-body">
-                                        <h6 class="card-title">${rvo.m_name}</h6>
-                                        <h6 class="card-subtitle mb-2 text-muted">리뷰점수 ${rvo.r_writedate}</h6>
+                            <li class="list-group-item" style="padding: 0;">
+                                <div class="card mycustom-review_card" style="width: 100%">
+                                    <div class="card-body" style="padding: 0;">
+                                        <h6 class="card-title" style="margin-top: 10px;">
+                                            ${rvo.m_name}
+                                        </h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">
+                                            <div class="col-md-3 my-2 me-5 justify-content-center">
+                                                <c:forEach begin="1" end="${rvo.r_score}">
+                                                    <i class="bi bi-star-fill" style="color: #FBB202;"></i>
+                                                </c:forEach>
+                                                <c:forEach begin="1" end="${5 - rvo.r_score}">
+                                                    <i class="bi bi-star" style="color: #FBB202;"></i>
+                                                </c:forEach>
+                                                <h6>
+                                                    ${rvo.r_writedate}
+                                                </h6>
+                                            </div>
+                                            
+                                        </h6>
                                         <p class="card-text">
                                             <!-- 리뷰 사진이 null이 아닐경우-->
-                                            <c:if test="${rvo.r_content != null}">
-                                                ${rvo.r_content}
+                                            <c:if test="${rvo.r_file != null}">
+                                                <img style="width: 100%;" src="/editor_upload/${rvo.r_file}">
                                             </c:if>
+                                            <h6>${rvo.r_content}</h6>
                                         </p>
                                     </div>
                                 </div>
