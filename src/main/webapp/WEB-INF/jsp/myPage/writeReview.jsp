@@ -48,40 +48,6 @@
                 z-index: 5;
                 }
 
-/*               
-                
-                
-                .rating:hover .star {
-                color: #fc0;
-                text-shadow: #fc0 0 0 20px;
-                }
-
-                .rating:hover .star:nth-child(4) {
-                transition-delay: 30ms;
-                }
-
-                .rating:hover .star:nth-child(3) {
-                transition-delay: 60ms;
-                }
-
-                .rating:hover .star:nth-child(2) {
-                transition-delay: 90ms;
-                }
-
-                .rating:hover .star:nth-child(1) {
-                transition-delay: 120ms;
-                } */
-
-                /* .rating .star, .rating .star:hover ~ input {
-                color: #222;
-                text-shadow: none;
-                transition: color 200ms,
-                            text-shadow 200ms;
-               
-                transition-delay: 0;
-                } */
-
-
                 .rating input:nth-of-type(1) {
                 right: 63px;
                 }
@@ -110,13 +76,14 @@
                 color: #FBB202;
                 cursor: pointer;
                 margin: 0px;
+                
                 }
                 .rating .star:after {
                 content: '\f006';
                 }
                 .rating .star:hover ~ .star:after, .rating .star:hover:after {
                 content: '\f005';
-                text-shadow: #fc0 0 0 20px;
+                
                 }
 
               /*파일 첨부 버튼 fade*/
@@ -225,9 +192,7 @@
                                                             <input type="radio" name="r_score" id="r_score" value="1"/><span class="star"></span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4" id="printScore" style="border: 1px solid black; height: 115px">
                                                     
-                                                    </div>
                                                 </div>
                                             </div>
                                             <div class ="row ms-1 mb-3">
