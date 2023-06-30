@@ -13,12 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.ReviewService;
 import com.kdt.finalproject.util.FileRenameUtil;
+import com.kdt.finalproject.vo.ImageData;
 import com.kdt.finalproject.vo.ReviewLogVO;
 import com.kdt.finalproject.vo.ReviewVO;
 
@@ -77,6 +79,26 @@ public class ReviewWriteController {
         }
 
         return map;
+    }
+
+    @PostMapping("/delImg")
+    @ResponseBody
+    public boolean delImg(@RequestBody ImageData data) {
+        Boolean res = false;
+
+        String path = data.getPath();
+        String fname = data.getFname();
+
+        String realPath = application.getRealPath(path);
+
+        File f = new File(realPath, fname);
+
+        if (f.exists()) {
+            res = f.delete();
+            // System.out.println("파일이 존재함");
+        }
+
+        return res;
     }
 
     @PostMapping("/writeReview")

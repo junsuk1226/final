@@ -32,22 +32,8 @@
 
                  
                     
-    div.left {
-        
-        width: 50%;
-        margin-top: 100px;
-        float: left;
-        box-sizing: border-box;
-        
-        
-    }
-    div.right {
-        width: 100%;
-        float: right;
-        box-sizing: border-box;
-        
-        
-    }
+
+   
                 </style>
 
 
@@ -108,21 +94,21 @@
                                     <div class="col-md-1"></div>
                                     <div class="col-md-11">
                                         <br />
-                                        <h1>OOO님 환영합니다. </h1>
+                                        <h1>${sessionScope.mvo.m_name}님 환영합니다. </h1>
                                         <br />
                                         <br />
                                     </div>
                                 </div>
                                 
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-12 col-md-offset-5" class="right">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-16 col-md-offset-5" class="right">
                                      
                                             <table>
-                                                <colgroup>
-                                                    <col width="500px"/>
-                                                    <col width="1000px"/>
-                                                </colgroup>
                                                 <tbody >
+                                                    <colgroup>
+                                                        <col width="30%"/>
+                                                        <col width="70%"/>
+                                                    </colgroup>
 
                                                         <tr>
                                                             <td>
@@ -131,25 +117,28 @@
                                                                 <div class="xans-element- xans-myshop xans-myshop-bankbook ">
                                                                     <ul>
                                                                         <li class="coupon displaynone">
-                                                                            <strong class="title">리뷰&nbsp;</strong>
+                                                                            <strong class="title">리뷰&nbsp;&nbsp;&nbsp;&nbsp;</strong>
                                                                             <strong class="cont">
                                                                                 <span> 0개</span>
                                                                             </strong>
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                             <input type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
                                                                         </li>
                                                                         <br />
                                                                         <li class="mileage ">
                                                                             <strong class="title">적립금&nbsp;</strong>
                                                                             <strong class="cont"> 0원</strong>
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                             <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick=""
                                                                              value="조회" id="button-addon" />
                                                                         </li>
                                                                         <br/>
                                                                         <li class="coupon displaynone">
-                                                                            <strong class="title">쿠폰&nbsp;</strong>
+                                                                            <strong class="title">쿠폰&nbsp;&nbsp;&nbsp;&nbsp;</strong>
                                                                             <strong class="cont">
                                                                                 <span> 0개</span>
                                                                             </strong>
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                             <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn"
                                                                             onclick="" value="조회" id="btn btn-link" />
                                                                         </li>
@@ -157,8 +146,9 @@
                                                                         <li class="coupon displaynone">
                                                                             <strong class="title">찜&nbsp;상품&nbsp;</strong>
                                                                             <strong class="cont">
-                                                                                <span> 0개</span>
+                                                                                <span>0개</span>
                                                                             </strong>
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                             <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" />
                                                                         </li>
                                                                         <br/>
@@ -167,6 +157,7 @@
                                                                             <strong class="cont">
                                                                                 <span>02-112</span>
                                                                             </strong>
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                             <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="연결하기" id="btn btn-link" />
                                                                         </li>
                                                                     </ul>
