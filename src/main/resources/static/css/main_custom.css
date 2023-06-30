@@ -184,19 +184,23 @@ object-fit: contain;
 .mycustom-line_search_btn_area{
     margin-top: 80px;
     margin-bottom: 40px;
+    max-width: 810px;
+    position: relative;
 }
 
 .mycustom-line_search_btn{
-    width: 810px;
+    width: 100%;
     font-family: "suite";
     font-size: 38px;
     border:none;
     background-color: #FFBDA3;
     border-radius: 10px;
+    position: absolute;
 }
 
 .mycustom-line_search_dropdown_menu{
-    width: 810px;
+    position: absolute;
+    width: 100%;
     font-family: "suite";
     font-size: 25px;
     text-align: center;
@@ -210,6 +214,13 @@ object-fit: contain;
 
 .mycustom-line_search_accordion_area{
     margin-bottom: 40px;
+    max-width: 810px;
+    padding: 0;
+}
+
+.mycustom-line_search_accordion_area .list-group{
+    width: 100%;
+    padding: 0;
 }
 
 .mycustom-line_search_img{
@@ -225,6 +236,7 @@ object-fit: contain;
     font-family: "suite";
     font-size: 30px;
     font-style: bold;
+    width: 100%;
     
 }
 
@@ -235,7 +247,7 @@ object-fit: contain;
 }
 
 .mycustom-line_search_listgroup{
-    width: 810px;
+    width: 100%;
 }
 
 /* ----map css------------------------ */

@@ -10,4 +10,6 @@ public interface PayMapper {
 
     int tosspay(PayVO vo);
 
+    PayVO kakao_refunt_select(String tid);
+
 }
