@@ -53,6 +53,9 @@
                 <h1 class="mycustom-rest_name">${favo.serviceAreaName}</h1>
                 <h3 class="mycustom-rest_direction">${favo.direction} 방향</h3>
             </div>
+                <div class="container" style="max-width: 700px; margin-bottom: 10px;">
+                    <button style="width: 100%;" onclick="location.href='/cart'">장바구니</button>
+                </div>
                 <div class="row">
                     <div class="col">
                         <ul class="nav nav-tabs" id="myTab" role="tablist" style="max-width: 100%;">
