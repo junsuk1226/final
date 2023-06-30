@@ -173,7 +173,7 @@
                      $("#m_pw").addClass("is-valid"); 
                 }
                 
-                document.frm.submit();
+                
             }
 
             function init(){
