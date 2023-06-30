@@ -118,8 +118,8 @@
                 /*사진 삭제 버튼*/
                 button.btn-del {
                     position: absolute;
-                    top: -15px;
-                    left : 315px;
+                    top: -10px;
+                    left : 310px;
                     border-radius: 15px;
                     border: none;
                     background-color: #6600db;
