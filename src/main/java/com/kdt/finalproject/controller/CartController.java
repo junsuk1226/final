@@ -60,7 +60,7 @@ public class CartController {
 
         String location = URLEncoder.encode(RestNm, StandardCharsets.UTF_8.toString());
 
-        mv.setViewName("redirect:menu?RestNm=" + location);
+        mv.setViewName("redirect:menu/?RestNm=" + location);
 
         return mv;
     }
