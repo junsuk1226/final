@@ -50,6 +50,16 @@
     margin-bottom: 20px;
 }
 
+.mycustom-menuList_cart_btn{
+    width: 100%;
+    border: 1px solid #616161;
+    border-radius: 10px;
+    background-color: #fff;
+    font-family: "dovegothic";
+    font-size: 30px;
+    color: #616161;
+}
+
 .mycustom-restInfo_card{
     border-radius: 0;
     border-left: 0;

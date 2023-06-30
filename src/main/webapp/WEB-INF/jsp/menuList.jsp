@@ -49,14 +49,16 @@
 
     <!-- tab 영역------------------------------------------------------------------------------------------------------------>
     <div class="sticky-top mycustom-sticky_menu">
-        <div class="container" style="max-width: 700px;">
+        <div class="container" style="max-width: 700px; padding-top: 5px;">
             <div style="border: 1px solid #bebebe; border-left:0; border-right:0; margin: 10px 0px;">
                 <h1 class="mycustom-rest_name">${favo.serviceAreaName}</h1>
                 <h3 class="mycustom-rest_direction">${favo.direction} 방향</h3>
             </div>
-                <div class="container" style="max-width: 700px; margin-bottom: 10px;">
-                    <button style="width: 100%;" onclick="location.href='/cart'">장바구니</button>
-                </div>
+                <c:if test="${sessionScope.mvo != null}">
+                    <div class="container" style="max-width: 700px; margin-bottom: 10px; padding: 0;">
+                        <button class="mycustom-menuList_cart_btn" onclick="location.href='/cart'">카트보기</button>
+                    </div>
+                </c:if>
                 <div class="row">
                     <div class="col">
                         <ul class="nav nav-tabs" id="myTab" role="tablist" style="max-width: 100%;">
@@ -108,25 +110,45 @@
                                     <input type="hidden" name="r_photo" value="../main_images/hand2.png">
                                 </c:if>
                                 
-                                
-                                
-                                <button type="submit" class="mycustom-menu_list_btn">
-                                    <li class="list-group-item mycustom-menu_list_group_item">
-                                        <div class="d-flex">
-                                            <div class="mycustom-menu_img">
-                                                <img class="mycustom-menu_img position-relative" src="${fvo.f_image}">
+                                <!-- 로그인이 되어있을때, 상세보기로 이동가능 -->
+                                <c:if test="${sessionScope.mvo != null}">
+                                    <button type="submit" class="mycustom-menu_list_btn">
+                                        <li class="list-group-item mycustom-menu_list_group_item">
+                                            <div class="d-flex">
+                                                <div class="mycustom-menu_img">
+                                                    <img class="mycustom-menu_img position-relative" src="${fvo.f_image}">
+                                                </div>
+                                                <div class="mycustom-menu_info">
+                                                    <h3>${fvo.foodNm} <c:if test="${fvo.bestfoodyn eq 'Y'}"><img class="mycustom-menu_img" src="../images/recommend.png" style="width:30px; height: 30px;"></c:if></h3>
+                                                    <a>
+                                                        <c:set var="formattedCost" value="${fvo.foodCost}" />
+                                                        <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div class="mycustom-menu_info">
-                                                <h3>${fvo.foodNm} <c:if test="${fvo.bestfoodyn eq 'Y'}"><img class="mycustom-menu_img" src="../images/recommend.png" style="width:30px; height: 30px;"></c:if></h3>
-                                                <a>
-                                                    <c:set var="formattedCost" value="${fvo.foodCost}" />
-                                                    <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
-                                                </a>
-                                            
-                                        </div>
-                                    </div>
-                                </li>
-                            </button>
+                                        </li>
+                                    </button>
+                                </c:if>
+
+                                <!-- 로그인이 안되어있을때, 상세보기로 이동불가 -->
+                                <c:if test="${sessionScope.mvo == null}">
+                                    <button type="button" class="mycustom-menu_list_btn">
+                                        <li class="list-group-item mycustom-menu_list_group_item">
+                                            <div class="d-flex">
+                                                <div class="mycustom-menu_img">
+                                                    <img class="mycustom-menu_img position-relative" src="${fvo.f_image}">
+                                                </div>
+                                                <div class="mycustom-menu_info">
+                                                    <h3>${fvo.foodNm} <c:if test="${fvo.bestfoodyn eq 'Y'}"><img class="mycustom-menu_img" src="../images/recommend.png" style="width:30px; height: 30px;"></c:if></h3>
+                                                    <a>
+                                                        <c:set var="formattedCost" value="${fvo.foodCost}" />
+                                                        <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </button>
+                                </c:if>
 
                             </form>
                         </c:forEach>
@@ -141,24 +163,49 @@
                                 
                                 <input id="addr" type="hidden" name="svarAddr" value="${favo.svarAddr}">
                                 
-                                <button type="submit" class="mycustom-menu_list_btn">
-                                    <li class="list-group-item mycustom-menu_list_group_item">
-                                        <div class="d-flex">
-                                        <c:if test="${fvo.f_image != null}">
-                                            <div class="mycustom-menu_img">
-                                                <img class="mycustom-menu_img" src="${fvo.f_image}"><!-- 메뉴 사진-->
-                                            </div>
-                                        </c:if>
-                                        <div class="mycustom-menu_info">
-                                            <h3>${fvo.foodNm}</h3>
-                                            <a>
-                                                <c:set var="formattedCost" value="${fvo.foodCost}" />
-                                                <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
-                                            </a>
-                                        </div>
-                                        </div>
-                                    </li>
-                                </button>
+                                    <!-- 로그인이 되어있을때, 상세보기로 이동가능 -->
+                                    <c:if test="${sessionScope.mvo != null}">
+                                        <button id="gomenu_btn" type="submit" class="mycustom-menu_list_btn">
+                                            <li class="list-group-item mycustom-menu_list_group_item">
+                                                <div class="d-flex">
+                                                <c:if test="${fvo.f_image != null}">
+                                                    <div class="mycustom-menu_img">
+                                                        <img class="mycustom-menu_img" src="${fvo.f_image}"><!-- 메뉴 사진-->
+                                                    </div>
+                                                </c:if>
+                                                <div class="mycustom-menu_info">
+                                                    <h3>${fvo.foodNm}</h3>
+                                                    <a>
+                                                        <c:set var="formattedCost" value="${fvo.foodCost}" />
+                                                        <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
+                                                    </a>
+                                                </div>
+                                                </div>
+                                            </li>
+                                        </button>
+                                    </c:if>
+                                    
+                                    <!-- 로그인이 안되어있을때, 상세보기로 이동불가 -->
+                                    <c:if test="${sessionScope.mvo == null}">
+                                        <button id="gomenu_btn" type="button" class="mycustom-menu_list_btn">
+                                            <li class="list-group-item mycustom-menu_list_group_item">
+                                                <div class="d-flex">
+                                                <c:if test="${fvo.f_image != null}">
+                                                    <div class="mycustom-menu_img">
+                                                        <img class="mycustom-menu_img" src="${fvo.f_image}"><!-- 메뉴 사진-->
+                                                    </div>
+                                                </c:if>
+                                                <div class="mycustom-menu_info">
+                                                    <h3>${fvo.foodNm}</h3>
+                                                    <a>
+                                                        <c:set var="formattedCost" value="${fvo.foodCost}" />
+                                                        <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
+                                                    </a>
+                                                </div>
+                                                </div>
+                                            </li>
+                                        </button>
+                                    </c:if>
 
                             </form>
                         </c:forEach>

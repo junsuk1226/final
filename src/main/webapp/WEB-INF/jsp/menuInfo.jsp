@@ -40,9 +40,9 @@
 
     <!-- menuinfo area -->
     <div class="container mycustom-menuinfo_area" style="max-width: 700px; padding: 0;">
-        <div class="d-flex flex-wrap justify-content-center" style="max-width: 700px;">
+        <div class="d-flex flex-wrap justify-content-center" style="max-width: 700px; padding: 0;">
             <ul class="mycustom-menu_info_list">
-                <li><img class="mycuston-menu_info_img" src="${f_image}" style="height:500px; width: 700px; margin-bottom: 20px;"></li>
+                <li><img class="mycuston-menu_info_img" src="${f_image}" style="height:500px; width: 100%; margin-bottom: 20px; padding: 0px 10px;"></li>
                 <li>
                   <h1 class="mycustom-menuInfo_menu_title" style="padding: 10px">${foodNm}</h1>
                 </li>
