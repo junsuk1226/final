@@ -58,6 +58,10 @@
                         cursor: pointer;
                         transform: translateY(-4px);
                     }
+                    .btn:active {
+                        outline: none !important;
+                        box-shadow: none !important;
+                    }
                     
                 </style>
 
@@ -132,9 +136,9 @@
                                                                 </div>
                                                                 <div class="my-3">${rvo.r_content}</div>
                                                                 <div style="text-align: right;">
-                                                                    <button class="btn" type="button" onclick="del('${rvo.r_idx}')">
-                                                                        <a><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
-                                                                    </button>
+                                                                    <a  onclick="del('${rvo.r_idx}')">
+                                                                        <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+                                                                    </a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -144,7 +148,7 @@
 
                                                 </c:forEach>
 
-                                                <!--db 없어서 만들어 놓음-->
+                                                <!--db 없어서 보려고 만들어 놓음!!-->
                                                 <input type="hidden" value="1" name="p_idx"/>  <!--${pvo.p_idx}-->
                                                     <div class = "row justify-content-around">
                                                         <div class="col-md-3 mb-3 .square-div">
@@ -159,9 +163,9 @@
                                                                 </div>
                                                                 <div class="my-3">리뷰입니다.</div>
                                                                 <div style="text-align: right;">
-                                                                    <button class="btn" type="button" onclick="del('${rvo.r_idx}')">
-                                                                        <a><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
-                                                                    </button>
+                                                                    <a  onclick="del('1')">
+                                                                        <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+                                                                    </a>
                                                                 </div>
 
                                                             </div>
@@ -236,85 +240,7 @@
 
 
 
-                            <div class="container-fluid">
-                                
-                                <!--
-                                <div class="row">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-7 col-md-offset-5">
-                                        <form name="frm" action="myPage" method="post">
-                                            <input type="hidden" name="type" value="aoList" />
-                                            <table>
-                                                <tbody align=center>
-                                                    
-                                                    <thead>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="row">
-                                                                    <div class="col-md-3">
-                                                                        <select id="SearchType" name="searchType"
-                                                                            class="btn btn-outline-success me-2 mycustom-mem-btn">
-                                                                            <option value="0">관심검색</option>
-                                                                            <option value="1">주문내역</option>
-                                                                            <option value="2">리뷰관리</option>
-                                                                            <option value="3">장바구니</option>
-                                                                            <option value="4">휴게소검색</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="col-md-7">
-                                                                        <div class="input-group">
-                                                                            <input class="btn btn-outline-success me-2 mycustom-mem-btn"
-                                                                                placeholder="검색어를 입력하세요"
-                                                                                aria-describedby="button-addon"
-                                                                                type="text" id="searchValue"
-                                                                                name="searchValue" />
-                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn"
-                                                                                onclick="sendKeyword(this.form)"
-                                                                                value="검색" id="button-addon" />
-                                                                        </div>
-                                                                    </div>
-                                                            </td>
-                                                        </tr>
-                                                    </thead>
-                                            </table>
-                                    </div>
-                                </div>
-                                -->
-                                <div class="row">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-9">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr style="background:'#353535'">
-                                                    <th colspan="5">리뷰관리</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach var="rvo" items="${requestScope.ar }" varStatus="st">
-                                                    <tr>
-                                                        
-                                                        <td style="width: 200px;">휴게소이미지</td>
-                                                        <td colspan="4">
-                                                            <div><p style="font-size: 15px; font-weight: bold;">${rvo.r_restNm}</p></div>
-                                                            <div><p style="font-size: 12px; ">${rvo.r_writedate}</p></div>
-                                                            <div>${rvo.r_content}</div>
-                                                            <div style="text-align: right;">
-                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button" onclick="del('${rvo.r_idx}')">삭제</button>
-                                                            </div>
-                                                        </td>    
-                                                    </tr>
-
-                                                    
-                                                </c:forEach>
-                                            </tbody>
-                                        </table>
-                                        </form>
-                                    </div>
-                                </div>
-
-                                
-                                
-                            </div>
+                            
                             <div>
                                 <!-- footer 시작---------------------------------------------------------------------------------------------->
                                 <!-- <body class="d-flex flex-column"> -->
@@ -417,6 +343,7 @@
                         }
 
                         function del(rIdx){
+                            console.log(rIdx);
                             if(confirm("삭제하시겠습니까?"))
                                 location.href="/delReview?r_idx="+rIdx;
                         }
