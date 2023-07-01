@@ -24,6 +24,8 @@
 
             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
             <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+            <!--아이콘 cdn-->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
                 <style>
                 
 
@@ -41,6 +43,14 @@
                         height:13rem;
                     }
                     
+                    /* 화살표 css*/
+                    .arrow{
+                        color: #6600db;
+                    }
+                    .arrow:hover {
+                        color: #b699ee;
+                        cursor: pointer;
+                    }
 
    
                 </style>
@@ -101,7 +111,7 @@
                                     <div class="col-md-6 mb-3">
                                             <div class="card 30em shadow p-3 mb-5 bg-body rounded position-relative" style="border: none;">
                                                 <div class="card-body">
-                                                    <h4 style="font-family: 'suite';"class="card-title text-muted mt-2">내 정보</h4>
+                                                    <h4 style="font-family: 'suite'; font-weight:bold;"class="card-title mt-2">내 정보</h4>
                                                     <hr/>
                                                     <!--이메일-->
                                                     <label for="email" class="form-label mt-4 "><span class="ms-1">이메일</span></label>
@@ -137,7 +147,7 @@
                                             <div class="row">
                                             <!--캐러셀-->
                                                 <div class="carousel slide" data-bs-ride="carousel">
-                                                    <div class="carousel-inner shadow bg-body rounded" style="max-width: 300px;">
+                                                    <div class="carousel-inner shadow bg-body rounded justify-content-center" style="max-width: 300px;">
                                                     <div class="carousel-item active" data-bs-interval="4000">
                                                         <img src="../images/도토리묵밥.jpg" class="d-block rounded w-100" alt="...">
                                                     </div>
@@ -151,41 +161,49 @@
                                                     
                                                     <!--카드-->
                                                     <div class="card mt-5 shadow bg-body rounded" style="border: none;">
-                                                        <div class="card-body">
-                                                            <div class="card-title"><h5 class=" lh-base mt-2" style="font-family: 'suite'">나의 현황</h5></div>
+                                                        <div class="card-body" style="max-width: 300px;">
+                                                            <div class="card-title"><h5 class="ms-2 lh-base mt-2" style="font-family: 'suite'; font-weight: 700;">나의 현황</h5></div>
                                                             <hr/>
                                                             <!--카드 내부 영역 (어떤 정보 가져올 것인지?정확하게 정하기)-->
-                                                            <table>
-                                                                <colgroup>
-                                                                    <col width="100px;"/>
-                                                                    <col width="100px;"/>
-                                                                    <col width="100px;"/>
-                                                                </colgroup>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <th>리뷰</th>
-                                                                        <td>0개</td>
-                                                                        <td style="text-align: right;">
-                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn"  onclick="review1(this.form)" value="조회" id="btn btn-link" />
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th>적립금</th>
-                                                                        <td>230원</td>
-                                                                        <td style="text-align: right;"> <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" /></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th>쿠폰</th>
-                                                                        <td>2개</td>
-                                                                        <td style="text-align: right;"> <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" /></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th>지난 주문</th>
-                                                                        <td>21건</td>
-                                                                        <td style="text-align: right;"> <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" /></td>
-                                                                    </tr>
-                                                                </tbody>  
-                                                            </table>
+                                                            <form method="post">
+                                                                <table class="table">
+                                                                    <colgroup>
+                                                                        <col width="100px;"/>
+                                                                        <col width="100px;"/>
+                                                                        <col width="100px;"/>
+                                                                    </colgroup>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th style="font-family: 'suite'">리뷰</th>
+                                                                            <td style="font-family: 'suite'">0개</td>
+                                                                            <td style="text-align: center;">
+                                                                                <a onclick="review1(this.form)" ><i class="fa arrow fa-arrow-right fa-lg" aria-hidden="true"></i></f>  
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th style="font-family: 'suite'">적립금</th>
+                                                                            <td style="font-family: 'suite'">230원</td>
+                                                                            <td style="text-align: center;">
+                                                                                <a onclick=""><i class="fa fa-arrow-right arrow fa-lg" aria-hidden="true"></i></a>  
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th style="font-family: 'suite'">쿠폰</th>
+                                                                            <td style="font-family: 'suite'">2개</td>
+                                                                            <td style="text-align: center;">
+                                                                                <a onclick=""><i class="fa fa-arrow-right arrow fa-lg" aria-hidden="true"></i></a>   
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr >
+                                                                            <th style="font-family: 'suite'">지난 주문</th>
+                                                                            <td style="font-family: 'suite'">21건</td>
+                                                                            <td style="text-align: center;"> 
+                                                                                <a onclick=""><i class="fa fa-arrow-right arrow fa-lg" aria-hidden="true"></i></a>                                        
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>  
+                                                                </table>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div><!---캐러셀의 끝--->
@@ -193,7 +211,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                        
+                                   <!-- 본문 div 끝-->     
                                         
                                         
                                         
