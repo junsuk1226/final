@@ -133,11 +133,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 d-flex justify-content-center"> 
+                                        <div class="col-md-4 ms-1 me-1 d-flex justify-content-center"> 
                                             <div class="row">
                                             <!--캐러셀-->
                                                 <div class="carousel slide" data-bs-ride="carousel">
-                                                    <div class="carousel-inner shadow bg-body rounded">
+                                                    <div class="carousel-inner shadow bg-body rounded" style="max-width: 300px;">
                                                     <div class="carousel-item active" data-bs-interval="4000">
                                                         <img src="../images/도토리묵밥.jpg" class="d-block rounded w-100" alt="...">
                                                     </div>
@@ -148,19 +148,47 @@
                                                         <img src="../images/어묵탕.png" class="d-block rounded w-100" alt="...">
                                                     </div>
                                                     </div>
-                                                </div>
-                                                 
-                                              <!--카드-->
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <!--카드 내부 영역-->
-                                                        <table>
-                                                            
-
-                                                        </table>
+                                                    
+                                                    <!--카드-->
+                                                    <div class="card mt-5 shadow bg-body rounded" style="border: none;">
+                                                        <div class="card-body">
+                                                            <div class="card-title"><h5 class=" lh-base mt-2" style="font-family: 'suite'">나의 현황</h5></div>
+                                                            <hr/>
+                                                            <!--카드 내부 영역 (어떤 정보 가져올 것인지?정확하게 정하기)-->
+                                                            <table>
+                                                                <colgroup>
+                                                                    <col width="100px;"/>
+                                                                    <col width="100px;"/>
+                                                                    <col width="100px;"/>
+                                                                </colgroup>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th>리뷰</th>
+                                                                        <td>0개</td>
+                                                                        <td style="text-align: right;">
+                                                                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn"  onclick="review1(this.form)" value="조회" id="btn btn-link" />
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>적립금</th>
+                                                                        <td>230원</td>
+                                                                        <td style="text-align: right;"> <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" /></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>쿠폰</th>
+                                                                        <td>2개</td>
+                                                                        <td style="text-align: right;"> <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" /></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>지난 주문</th>
+                                                                        <td>21건</td>
+                                                                        <td style="text-align: right;"> <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="조회" id="btn btn-link" /></td>
+                                                                    </tr>
+                                                                </tbody>  
+                                                            </table>
+                                                        </div>
                                                     </div>
-                                                    </div>
-                                                
+                                                </div><!---캐러셀의 끝--->
                                             </div>
                                         </div>
                                     </div>
