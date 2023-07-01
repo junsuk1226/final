@@ -117,7 +117,7 @@
                     </div>
 
                     <div class="container-fluid mb-4">
-                        <div class="row justify-content-center col-md-12">
+                        <div class="row justify-content-center col-md-12 my-5">
                             <div  class="col-md-6">
                                  <div class="card shadow p-3 mb-5 bg-body rounded justify-content-center" style="border: none;">
                                     <div class="card-body">

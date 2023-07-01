@@ -117,7 +117,7 @@
                     </div>
 
                     <div class="container-fluid mb-4">
-                        <div class="row justify-content-center col-md-12">
+                        <div class="row justify-content-center col-md-12 my-5">
                             <div  class="col-md-9">
                                  <div class="card shadow p-3 mb-5 bg-body rounded justify-content-center" style="border: none;">
                                     <div class="card-body">
@@ -186,18 +186,6 @@
                             </div>
                         </div>
                     </div>
-
-                        <!-- <div>
-                            궁금하신 사항은 .
-                            <li class="coupon displaynone">
-                                <strong class="title">고객센터&nbsp;</strong>
-                                <strong class="cont">
-                                    <span>02-112</span>
-                                </strong>
-                                <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="연결하기"
-                                    id="btn btn-link" />
-                            </li>
-                        </div> -->
 
                     <div>
                         <!-- footer 시작---------------------------------------------------------------------------------------------->

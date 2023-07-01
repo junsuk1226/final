@@ -160,6 +160,19 @@
                                 </div>
                             </nav>
                             <!-- Page content-->
+                            <div class="container-fluid">
+                                <div class="row justify-content-center mt-5">
+                                    <div class="col-md-9 mb-3 ">
+                                        <div class="col-md-12 my-3 ms-2 justify-content-center">
+                                            <h2 class="text-muted lh-base ms-1" style="font-family: 'suite'">
+                                                <span style="color: black;">${sessionScope.mvo.m_name}</span>님,
+                                                <br/><span style="color: black;">${param.r_restNm}</span>는 어떠셨나요? 
+                                                <br/>리뷰와 별점을 남겨주세요!
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row justify-content-center">
                                 <div class="col-md-9 ">
@@ -171,18 +184,10 @@
                                         <input type="hidden" name="m_idx" value="${sessionScope.mvo.m_idx}"/>
                                         <input type="hidden" name="m_name" value="${sessionScope.mvo.m_name}"/>
                                         <input type="hidden" name="r_file" />
-
                                         
-                                        <div class = "col-md-10 ms-1 me-1">
-                                            <div class="card" style="border: none;">
+                                        
+                                            <div class="card shadow p-3 mb-5 bg-body rounded mx-1" style="border: none;">
                                                 <div class="row card-body justify-content-around">
-                                                    <div class="col-md-12 my-3 ms-2 justify-content-center">
-                                                        <h2 class="text-muted lh-base " style="font-family: 'suite'">
-                                                            <span style="background-color: antiquewhite;">${sessionScope.mvo.m_name}</span>님,
-                                                            <br/><span style="background-color: antiquewhite;">${param.r_restNm}</span>는 어떠셨나요? 
-                                                            <br/>리뷰와 별점을 남겨주세요!
-                                                        </h2>
-                                                    </div>
                                                     <div class="col-md-4 my-3  justify-content-center">
                                                         <div class="rating">
                                                             <input type="radio" name="r_score" id="r_score" value="5"/><span class="star"></span>
@@ -192,36 +197,36 @@
                                                             <input type="radio" name="r_score" id="r_score" value="1"/><span class="star"></span>
                                                         </div>
                                                     </div>
-                                                    
-                                                </div>
-                                            </div>
-                                            <div class ="row ms-1 mb-3">
-                                                <div class=" input-group">
-                                                    <label for="file">
-                                                        <div style="height: 100px; width: 150px; margin: 0 auto;" class="hover-fade">
-                                                            <img src="../main_images/addfile.png" style='object-fit:cover; width: 100%; height:100%; cursor: pointer;' class='rounded shadow mb-5' alt="inputFile"/>
+                                                
+                                                    <div class ="row ms-1 mb-3">
+                                                        <div class=" input-group">
+                                                            <label for="file">
+                                                                <div style="height: 100px; width: 150px; margin: 0 auto;" class="hover-fade">
+                                                                    <img src="../main_images/addfile.png" style='object-fit:cover; width: 100%; height:100%; cursor: pointer;' class='rounded shadow mb-5' alt="inputFile"/>
+                                                                </div>
+                                                            </label>
+                                                            <input type="file" class="form-control " id="file" name="file" style="display: none;">
+                                                            <div class="ms-3">
+                                                                <div style="background-color: rgb(241, 241, 241); border-radius: 6px; height: 100px; width: 150px; margin: 0 auto;" id="img_area"> </div>
+                                                            </div>
                                                         </div>
-                                                    </label>
-                                                    <input type="file" class="form-control " id="file" name="file" style="display: none;">
-                                                    <div class="ms-3">
-                                                        <div style="background-color: rgb(241, 241, 241); border-radius: 6px; height: 100px; width: 150px; margin: 0 auto;" id="img_area"> </div>
                                                     </div>
+                                                    <div class="row ms-1 me-1">
+                                                        <label for="content" class="form-label"></label>
+                                                        <textarea class="form-control content" name="r_content" id="content" placeholder="리뷰를 작성해 주세요." rows="7" required></textarea>
+                                                        <div class="invalid-feedback">
+                                                        내용을 작성해 주세요.
+                                                        </div>
+                                                        <div class="valid-feedback">
+                                                            리뷰 감사합니다!
+                                                        </div>
+                                                    </div>
+                                                    <div style="text-align: right;" class="my-3">
+                                                        <button class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="sendData()" type="button">저장</button>
+                                                    </div>  
                                                 </div>
                                             </div>
-                                            <div class="row ms-1 me-1">
-                                                <label for="content" class="form-label"></label>
-                                                <textarea class="form-control content" name="r_content" id="content" placeholder="리뷰를 작성해 주세요." rows="7" required></textarea>
-                                                <div class="invalid-feedback">
-                                                내용을 작성해 주세요.
-                                                </div>
-                                                <div class="valid-feedback">
-                                                    리뷰 감사합니다!
-                                                </div>
-                                            </div>
-                                            <div style="text-align: right;" class="my-3">
-                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="sendData()" type="button">저장</button>
-                                            </div>
-                                        </div>  
+                                         
                                     </form>
                                     
                                 </div>
