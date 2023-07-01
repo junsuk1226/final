@@ -116,6 +116,21 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--별점 평균-->
+                            <div class="container-fluid">
+                                <div class="row justify-content-center mt-5">
+                                    <div class="col-md-9 mb-3">
+                                            <div class ="card">
+                                                <div class = "card-body">
+                                                    <div class="card-title"><span>나의 별점 평균</span></div>
+
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-------->
+
                             <div class="row justify-content-center my-5">
                                 <div class="col-md-9 mb-3">
                                         <div class="card ms-2 me-1 shadow p-3 mb-5 bg-body rounded" style="border: none;">
@@ -148,7 +163,7 @@
 
                                                 </c:forEach>
 
-                                                <!--db 없어서 보려고 만들어 놓음!!-->
+                                                <!--db 없어서 css 보려고 만들어 놓음!!-->
                                                 <input type="hidden" value="1" name="p_idx"/>  <!--${pvo.p_idx}-->
                                                     <div class = "row justify-content-around">
                                                         <div class="col-md-3 mb-3 .square-div">
