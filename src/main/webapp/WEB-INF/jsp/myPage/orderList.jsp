@@ -23,6 +23,9 @@
 
             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
             <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
+            <!--아이콘 cdn-->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
                 <style>
                     table {
                         width: 800px;
@@ -48,13 +51,48 @@
                         height: 50px;
                         color: #ababab;
                     }
+
+                    /*아이콘*/
+                    .fa-search-plus{
+                        color: rgb(91, 124, 91);
+                    }
+                    .fa-search-plus:hover{
+                        cursor: pointer;
+                        color: green;
+                        transform: translateY(-4px);
+                    }
+
+
+                    .fa-trash{
+                        color: rgb(167, 102, 102);
+                    }
+                    .fa-trash:hover{
+                        color: red;
+                        cursor: pointer;
+                        transform: translateY(-4px);
+                    }
+                    
+                    /* 이미지 css*/
+                    .square-div {
+                        position: relative;
+                        width: 100%;
+                        padding-bottom: 100%; /* 높이를 가로 길이와 같게 설정 */
+                    }
+
+                    .square-div img {
+                        position: absolute;
+                        object-fit: cover;
+                        width: 100%;
+                        height: 100%;
+                    }
+
                 </style>
 
 
                     <!-- Favicon-->
                 </head>
 
-                <body>
+                <div>
                     <div class="d-flex" id="wrapper">
                         <!-- Sidebar-->
                     <div class="border-end bg-white" id="sidebar-wrapper">
@@ -92,136 +130,107 @@
                             </nav>
                             <!-- Page content-->
 
+
                             <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-11">
-                                        <br />
-                                        <h1>${sessionScope.mvo.m_name}님 환영합니다. </h1>
-                                        <br />
-                                        <br />
+                                <div class="row justify-content-center mt-5">
+                                    <div class="col-md-9 mb-3">
+                                            <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
+                                                ${sessionScope.mvo.m_name}<span class="text-muted">님의 주문 내역</span>
+                                            </h2>
                                     </div>
                                 </div>
-                                
-                                <div class="row">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-9">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr style="background:'#353535'">
-                                                    <th colspan="5">주문내역</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <%-- <c:forEach var="pvo" items="${requestScope.ar }" varStatus="st"> --%>
-                                                    <form action="/orderDetail" name="ff" method="post">
-                                                    <tr>
-                                                        
-                                                        <!-- <%--<td>${page.totalRecord -
-                                                            ((page.nowPage-1)*page.numPerPage+st.index) }</td> --%>
-                                                            <%-- <td>${pvo.o_idx}</td>--%>
-                                                            
-                                                        <form action="/orderdetail" method="post">
-                                                            <td>${pvo.o_class}</td>
-                                                            <td><a href="Controller?type=aoView&o_idx=${pvo.o_idx }">
-                                                                    <c:out value="${pvo.o_num }"></c:out>
-                                                                </a></td>
-                                                            <td>${pvo.p_idx}</td>
-                                                            <td>
-                                                                <c:choose>
-                                                                    <c:when test="${pvo.o_status == 1}">배송준비중</c:when>
-                                                                    <c:when test="${pvo.o_status == 2}">배송중</c:when>
-                                                                    <c:when test="${pvo.o_status == 3}">배송완료</c:when>
-                                                                    <c:when test="${pvo.o_status == 4}">주문완료</c:when>
-                                                                    <c:when test="${pvo.o_status == 5}">주문취소</c:when>
-
-                                                                    <c:otherwise>택배가 가출했어요</c:otherwise>
-                                                                </c:choose>
-                                                            </td> --%> -->
-                                                        
-                                                        <td>이미지</td>
-                                                        <td colspan="4">
-                                                            <div><p style="font-size: 15px; font-weight: bold;">휴게소명</p></div>
-                                                            <div><p style="font-size: 12px; ">업소명 : 2023-06-24</p></div>
-                                                            <div>떡볶이 외 21건 </div>
-                                                            <hr/>
-                                                            <div> 총 218,000원</div>
-                                                            <div style="text-align: right;">
-                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="viewDetail(this.form)" type="button">상세</button>
-                                                                <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
-                                                            </div>
-                                                        </td> 
-                                                        <input type="hidden" value="1" name="p_idx"/>  <!--${pvo.p_idx}-->
-                                                        
-                                                    </tr>
-                                                    
-                                                <%-- </c:forEach> --%>
-                                            </tbody>
-                                        </table>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-5">
-                                        <table>
-                                            <tfoot>
-                                                <tr>
-                                                    <td>
-                                                        <ol class="pagination">
-                                                            <c:if test="${page.startPage < page.pagePerBlock}">
-                                                                <li class="page-item disabled"><a
-                                                                        class="page-link">&lt;</a></li>
-                                                            </c:if>
-                                                            <c:if test="${page.startPage >= page.pagePerBlock}">
-                                                                <li class="page-item"><a class="page-link"
-                                                                        href="Controller?type=aoList&cPage=${page.startPage-page.pagePerBlock }">&lt;</a>
-                                                                </li>
-                                                            </c:if>
-                                                            <c:forEach begin="${page.startPage }" end="${page.endPage }"
-                                                                varStatus="st">
-                                                                <c:if test="${page.nowPage eq st.index}">
-                                                                    <li class="page-item active"><a
-                                                                            class="page-link">${st.index}</a></li>
-                                                                </c:if>
-                                                                <c:if test="${page.nowPage ne st.index }">
-                                                                    <li class="page-item"><a class="page-link"
-                                                                            href="Controller?type=aoList&cPage=${st.index}">${st.index
-                                                                            }</a></li>
-                                                                </c:if>
-                                                            </c:forEach>
-                                                            <c:if test="${page.endPage<page.totalPage}">
-                                                                <li class="page-item"><a class="page-link"
-                                                                        href="Controller?type=aoList&cPage=${page.startPage+page.pagePerBlock }">&gt;</a>
-                                                                </li>
-                                                            </c:if>
-                                                            <c:if test="${page.endPage == page.totalPage}">
-                                                                <li class="page-item disabled"><a
-                                                                        class="page-link">&gt;</a></li>
-                                                            </c:if>
-                                                        </ol>
-                                                    </td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                
-                                
                             </div>
-                            <div>
+                            <div class="row justify-content-center my-5">
+                                <div class="col-md-9 mb-3">
+                                        <div class="card ms-2 me-1 shadow p-3 mb-5 bg-body rounded" style="border: none;">
+                                            <div class="card-body justify-content-center">
+                                                <!--c:forEach-->
+                                                <form action="/orderDetail" name="ff" method="post">
+                                                    <input type="hidden" value="1" name="p_idx"/>  <!--${pvo.p_idx}-->
+                                                    <div class = "row justify-content-around">
+                                                        <div class="col-md-3 mb-3 .square-div">
+                                                            <img style="object-fit: cover; width: 100%; height:auto;" class="rounded img-fluid" src="..\images\중앙선0550-07-000249.png">
+                                                        </div>
+                                                    
+                                                        <div class="col-md-7 mx-2">
+                                                            <div class ="row ">
+                                                                <div class="d-flex justify-content-between" >
+                                                                    <p style="font-size: larger; font-weight: bold; font-family:'suite';">평창자연휴게소</p>
+                                                                    <em><p style="font-size: medium; font-family: 'suite';" class="text-muted">2023-06-24</p></em>
+                                                                </div>
+                                                                <div class="my-3">떡볶이 외 21건</div>
+                                                                <hr style="border: 0.5px dashed;"/>
+                                                                <div class="row d-flex justify-content-between align-items-center">
+                                                                    <div class="col-md-3"> 총 218,000원</div>
+                                                                    <div class="col-md-3 mb-2 d-flex justify-content-end">
+                                                                        <a onclick="viewDetail()" class="me-3">
+                                                                            <i class="fa fa-search-plus fa-2x" aria-hidden="true"></i><!--상세보기 버튼-->
+                                                                        </a>
+                                                                        <a onclick="">
+                                                                            <i class="fa fa-trash fa-2x" aria-hidden="true"></i><!--삭제 버튼-->
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                        
+                                                    <hr/><!--구분선-->
+                                                </form>
+                                                <!--c:forEach-->
+                                            </div> 
+                                                      
+                                        
+
+                                                <div class="col-md-6 d-grid gap-2 my-3 mx-auto justify-content-center">
+                                                    <ol class="pagination">
+                                                        <c:if test="${page.startPage < page.pagePerBlock}">
+                                                            <li class="page-item disabled"><a
+                                                                    class="page-link">&lt;</a></li>
+                                                        </c:if>
+                                                        <c:if test="${page.startPage >= page.pagePerBlock}">
+                                                            <li class="page-item"><a class="page-link"
+                                                                    href="Controller?type=aoList&cPage=${page.startPage-page.pagePerBlock }">&lt;</a>
+                                                            </li>
+                                                        </c:if>
+                                                        <c:forEach begin="${page.startPage }" end="${page.endPage }"
+                                                            varStatus="st">
+                                                            <c:if test="${page.nowPage eq st.index}">
+                                                                <li class="page-item active"><a
+                                                                        class="page-link">${st.index}</a></li>
+                                                            </c:if>
+                                                            <c:if test="${page.nowPage ne st.index }">
+                                                                <li class="page-item"><a class="page-link"
+                                                                        href="Controller?type=aoList&cPage=${st.index}">${st.index
+                                                                        }</a></li>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                        <c:if test="${page.endPage<page.totalPage}">
+                                                            <li class="page-item"><a class="page-link"
+                                                                    href="Controller?type=aoList&cPage=${page.startPage+page.pagePerBlock }">&gt;</a>
+                                                            </li>
+                                                        </c:if>
+                                                        <c:if test="${page.endPage == page.totalPage}">
+                                                            <li class="page-item disabled"><a
+                                                                    class="page-link">&gt;</a></li>
+                                                        </c:if>
+                                                    </ol>
+                                                </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            
+
                                 <!-- footer 시작---------------------------------------------------------------------------------------------->
-                                <!-- <body class="d-flex flex-column"> -->
+                                
                                 <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mycustom-main_footer">
                                     <div class="container text-center">
                                         <small>Copyright &copy; 2023 쉬-잇 </small>
                                     </div>
                                 </footer>
                             
-                                <!-- </body>  -->
                                 <!-- footer 끝---------------------------------------------------------------------------------------------->
-                            
                             </div>
                         </div>
 
@@ -281,8 +290,9 @@
 
                     <script>
 
-                        function viewDetail(frm){
-                            frm.submit();
+                        function viewDetail(){
+                            document.ff.submit();
+                            
                         }
 
                         function sendKeyword(form) {
