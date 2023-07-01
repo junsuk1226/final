@@ -23,6 +23,9 @@
 
             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
             <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
+            <!--아이콘 cdn-->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
             <style>
                 table {
                     width: 800px;
@@ -48,6 +51,15 @@
                     height: 50px;
                     color: #ababab;
                 }
+
+                 /*아이콘 css*/
+                 .phone{
+                        color: #6600db;
+                    }
+                .phone:hover {
+                    color: #b699ee;
+                    cursor: pointer;
+                }
             </style>
 
 
@@ -64,7 +76,7 @@
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/myPage">마이
                             페이지</a>
                         <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                            href="/info">회원정보수정</a> <a
+                            href="/info">회원정보 수정</a> <a
                             class="list-group-item list-group-item-action list-group-item-light p-3" href="/order">주문
                             내역</a> <a class="list-group-item list-group-item-action list-group-item-light p-3"
                             href="/review">리뷰 관리</a> <a
@@ -94,68 +106,58 @@
                     </nav>
                     <!-- Page content-->
 
-                    <div class="card-body">
-                        <form action="/common/join" method="post" class="needs-validation" novalidate>
-                            <ul class="list-unstyled">
-                                
-                                
-                             
-
-                                
-                                
-                                
-                                <br />
-                                <li class="mb-3">Password</li>
-                                <div class="form-floating">
-                                    <input type="password" placeholder="Confirm password" class="form-control password"
-                                        name="j_confirmpassword" id="j_confirmpassword" required>
-                                    <label class="text-secondary" for="floatingInput">현재 비밀번호를 입력해주세요.</label>
-                                    <div class="valid-feedback">
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        비밀번호가 다릅니다.
-                                    </div>
-                                </div>
-                                <br />
-                                <li class="mb-3">New Password</li>
-                                <figcaption class="blockquote-footer text-start">
-                                    <em>변경하실 비밀번호를 입력해 주세요. </em>
-                                </figcaption>
-                                <div class="form-floating">
-                                    <input type="password" placeholder="Create password" class="form-control password" name="new_pw" id="new_pw"
-                                        required>
-                                    <label class="text-secondary" for="floatingInput">새로운 비밀번호</label>
-                                    <div class="valid-feedback">
-                                    </div>
-                                    
-                                </div>
-
-
-                               
-                               
-                                <br />
-                                <div class="col-7 d-grid gap-2  mx-auto">
-                                    <button type="button" class="btn btn-dark "
-                                        onclick="send(this.form)">비밀번호변경</button>
-                                </div>
-                            </ul>
-                        </form>
-                        <hr>
-
-                    </div>
-                    <div>
-                        궁금하신 사항은!
-                        <li class="coupon displaynone">
-                            <strong class="title">고객센터&nbsp;</strong>
-                            <strong class="cont">
-                                <span>02-112</span>
-                            </strong>
-                            <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick=""
-                                value="연결하기" id="btn btn-link" />
-                        </li>
+                    <div class="container-fluid">
+                        <div class="row justify-content-center mt-5">
+                            <div class="col-md-6 mb-3">
+                                    <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
+                                        <span class="text-muted">비밀번호 변경</span>
+                                    </h2>
+                            </div>
+                        </div>
                     </div>
 
-                    <div>
+                    <div class="container-fluid mb-4">
+                        <div class="row justify-content-center col-md-12">
+                            <div  class="col-md-6">
+                                 <div class="card shadow p-3 mb-5 bg-body rounded justify-content-center" style="border: none;">
+                                    <div class="card-body">
+                                        
+                                        <form action="/common/join" method="post" class="needs-validation" novalidate >
+                                            <ul class="list-unstyled">
+                                                <li class="my-3 fw-bold">Password</li>
+                                                <div class="form-floating mb-5">
+                                                    <input type="password" placeholder="Confirm password" class="form-control password"
+                                                        name="j_confirmpassword" id="j_confirmpassword" required>
+                                                    <label class="text-secondary" for="floatingInput">현재 비밀번호를 입력해주세요.</label>
+                                                    <div class="invalid-feedback">
+                                                        비밀번호가 다릅니다.
+                                                    </div>
+                                                </div>
+                
+                                                <li class="fw-bold">New Password</li>
+                                                <a class="mb-5 text-muted " style="font-size: small; text-decoration: none;">*변경하실 비밀번호를 입력해 주세요.</a>
+                                                <div class="form-floating mb-5 mt-1">
+                                                    <input type="password" placeholder="Create password" class="form-control password" name="new_pw" id="new_pw"
+                                                        required>
+                                                    <label class="text-secondary" for="floatingInput">새로운 비밀번호</label>
+                                                </div>
+                                                
+                                                <hr/>
+                                                <div class="col-6 d-grid gap-2 mx-auto my-3">
+                                                    <button type="button" class="btn btn-dark " style="min-height: 50px;" onclick="send(this.form)">비밀번호변경</button>
+                                                </div>
+                                            </ul>
+                                        </form>
+                                
+                                        
+                                    </div>
+                                </div><!--card 끝-->
+                                <p class="fw-bold text-muted ms-1" style="font-family: 'suite';">궁금하신 사항은! 고객센터&nbsp;<span class="me-2">02-112</span><a onclick=""><i class="fa fa-phone phone fa-lg" aria-hidden="true"></i></a> </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    
                         <!-- footer 시작---------------------------------------------------------------------------------------------->
                         <!-- <body class="d-flex flex-column"> -->
                         <footer id="sticky-footer"
@@ -168,7 +170,7 @@
                         <!-- </body>  -->
                         <!-- footer 끝---------------------------------------------------------------------------------------------->
 
-                    </div>
+                    
                 </div>
 
                 <%-- 추가Popup --%>
@@ -219,7 +221,7 @@
                             비밀번호를 성공적으로 변경했습니다!
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-dark mo1btn" data-bs-dismiss="modal">확인</button>
+                            <button type="button" class="btn mycustom-mem-btn mo1btn" data-bs-dismiss="modal">확인</button>
                         </div>
                     </div>
                 </div>
@@ -236,7 +238,7 @@
                             입력하신 비밀번호가 일치하지 않습니다. 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">확인</button>
+                            <button type="button" class="btn mycustom-mem-btn" data-bs-dismiss="modal">확인</button>
                         </div>
                     </div>
                 </div>

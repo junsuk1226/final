@@ -68,7 +68,7 @@
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/myPage">마이
                             페이지</a>
                         <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                            href="/info">회원정보수정</a> <a
+                            href="/info">회원정보 수정</a> <a
                             class="list-group-item list-group-item-action list-group-item-light p-3" href="/order">주문
                             내역</a> <a class="list-group-item list-group-item-action list-group-item-light p-3"
                             href="/review">리뷰 관리</a> <a

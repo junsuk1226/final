@@ -23,6 +23,8 @@
            
             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
             <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+              <!--아이콘 cdn-->
+              <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
             <style>
                 table {
                     width: 800px;
@@ -48,6 +50,17 @@
                     height: 50px;
                     color: #ababab;
                 }
+
+                /*아이콘 css*/
+                .phone{
+                        color: #6600db;
+                    }
+                .phone:hover {
+                    color: #b699ee;
+                    cursor: pointer;
+                }
+                 
+
             </style>
 
 
@@ -64,7 +77,7 @@
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/myPage">마이
                             페이지</a>
                         <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                            href="/info">회원정보수정</a> <a
+                            href="/info">회원정보 수정</a> <a
                             class="list-group-item list-group-item-action list-group-item-light p-3" href="/order">주문
                             내역</a> <a class="list-group-item list-group-item-action list-group-item-light p-3"
                             href="/review">리뷰 관리</a> <a
@@ -93,75 +106,88 @@
                         </div>
                     </nav>
                     <!-- Page content-->
-
-                    <div class="card-body">
-                        <form action="/myPage/info" method="post" class="needs-validation" novalidate >
-                            <ul class="list-unstyled">
-                                <li class="mb-3">Enter Email</li>
-                                <div class="form-floating ">
-                                    <input type="text" placeholder="Email" class="form-control"  name="j_email" id="j_email" required value="${sessionScope.mvo.m_id}" disabled>
-                                    <label for="floatingInput" class="text-secondary"><example@email.com></label>
-                                    <div class="valid-feedback">
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        이메일 형식이 올바르지 않습니다.
-                                    </div>
-                                </div>
-                                <br />
-                              
-                                <br />
-                                <li class="mb-3">NickName</li>
-                                <div class="form-floating">
-                                    <input type="text" placeholder="Nickname" class="form-control input" name="j_nickname" id="j_nickname"
-                                    required value="${sessionScope.mvo.m_name}">
-                                    <label class="text-secondary" for="floatingInput">닉네임</label>
-                                    <div class="valid-feedback">
-                                    </div>
-                                    <br />
-                                    <div class="invalid-feedback">
-                                        닉네임을 입력하세요.
-                                    </div>
-                                </div>
-                                <br />
-                                <li class="mb-3">PhoneNumber</li>
-                                <figcaption class="blockquote-footer text-start">
-                                    <em>기호 또는 공백을 제외하고 입력해 주세요.</em>
-                                </figcaption>
-                                <div class="form-floating mb-5">
-                                    <input type="text" placeholder="PhoneNumber" class="form-control input" name="m_phone" id="m_phone"
-                                    required value="${sessionScope.mvo.m_phone}">
-                                    <label class="text-secondary" for="floatingInput">휴대폰번호</label>
-                                    <div class="valid-feedback">
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        휴대폰 번호를 입력해주세요.
-                                    </div>
-                                </div> 
-                                <li class="mb-3">PassWord</li>
-                                <div class="form-floating">
-                                    <input type="password" placeholder="Confirm password" class="form-control password"
-                                        name="j_confirmpassword" id="j_confirmpassword" required>
-                                    <label class="text-secondary" for="floatingInput">현재 비밀번호를 입력하셔야 변경 가능합니다</label>
-                                    <div class="valid-feedback">
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        비밀번호가 다릅니다.
-                                    </div>
-                                </div>
-                                <br />
-                                <div class="col-7 d-grid gap-2  mx-auto">
-                                    <button type="button" class="btn btn-dark " onclick="send(this.form)">회원정보 수정</button>
-                                </div>
-                                <br/>
-                                <div class="col-7 d-grid gap-2  mx-auto" href="/infopw">
-                                    <button type="button" class="btn btn-dark "> <a class="nav-link" href="/infopw">비밀번호 변경 <a/></button>
-                                </div>
-                            </ul>
-                        </form>
-                        <hr>
-                        
+                    <div class="container-fluid">
+                        <div class="row justify-content-center mt-5">
+                            <div class="col-md-9 mb-3">
+                                    <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
+                                        <span class="text-muted">회원정보 수정</span>
+                                    </h2>
+                            </div>
+                        </div>
                     </div>
-                        <div>
+
+                    <div class="container-fluid mb-4">
+                        <div class="row justify-content-center col-md-12">
+                            <div  class="col-md-9">
+                                 <div class="card shadow p-3 mb-5 bg-body rounded justify-content-center" style="border: none;">
+                                    <div class="card-body">
+                                        <div class="row justify-content-end ">
+                                            <div class="col-6 mb-2 float-end text-end" href="/infopw">
+                                                <a class=" arrow nav-link" href="/infopw" style="font-family: 'suite'; font-weight: bold; color: #887e94; font-size: large;" >비밀번호 변경&nbsp;&nbsp;<i class="fa fa-arrow-right " aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        <div class=" row ">
+                                        <form action="/myPage/info" method="post" class="needs-validation" novalidate >
+                                            <ul class="list-unstyled">
+                                                <li class="mb-3 fw-bold">Your Email</li>
+                                                <div class="form-floating mb-5">
+                                                    <input type="text" placeholder="Email" class="form-control"  name="j_email" id="j_email" required value="${sessionScope.mvo.m_id}" disabled>
+                                                    <label for="floatingInput" class="text-secondary"><example@email.com></label>
+                                                    <div class="invalid-feedback">
+                                                        이메일 형식이 올바르지 않습니다.
+                                                    </div>
+                                                </div>
+                                                
+                                                <li class="mb-3 fw-bold">New NickName</li>
+                                                <div class="form-floating mb-5">
+                                                    <input type="text" placeholder="Nickname" class="form-control input" name="j_nickname" id="j_nickname"
+                                                    required value="${sessionScope.mvo.m_name}">
+                                                    <label class="text-secondary" for="floatingInput">닉네임</label>
+                                                    <div class="invalid-feedback">
+                                                        닉네임을 입력하세요.
+                                                    </div>
+                                                </div>
+                                                
+                                                <li class=" fw-bold">New PhoneNumber</li>
+                                                <a class="mb-5 text-muted " style="font-size: small; text-decoration: none;">*기호 또는 공백을 제외하고 입력해 주세요.</a>
+                                                <div class="form-floating mb-5 mt-1">
+                                                    <input type="text" placeholder="PhoneNumber" class="form-control input" name="m_phone" id="m_phone"
+                                                    required value="${sessionScope.mvo.m_phone}">
+                                                    <label class="text-secondary" for="floatingInput">휴대폰번호</label>
+                                                    <div class="invalid-feedback">
+                                                        휴대폰 번호를 입력해주세요.
+                                                    </div>
+                                                </div>
+
+                                                <li class="mb-3 fw-bold">Password</li>
+                                                <div class="form-floating mb-5">
+                                                    <input type="password" placeholder="Confirm password" class="form-control password"
+                                                        name="j_confirmpassword" id="j_confirmpassword" required>
+                                                    <label class="text-secondary" for="floatingInput">현재 비밀번호를 입력해주세요.</label>
+                                                    <div class="invalid-feedback">
+                                                        비밀번호가 다릅니다.
+                                                    </div>
+                                                </div>
+
+                                                
+                                                <div class="col-6 d-grid gap-2 my-3 mx-auto">
+                                                    <button type="button" class="btn btn-dark " style="min-height: 50px; " onclick="send(this.form)">회원정보 수정</button>
+                                                </div>
+                                                
+                                            </ul>
+                                        </form>
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <p class="fw-bold text-muted ms-1" style="font-family: 'suite';">궁금하신 사항은! 고객센터&nbsp;<span class="me-2">02-112</span><a onclick=""><i class="fa fa-phone phone fa-lg" aria-hidden="true"></i></a> </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                        <!-- <div>
                             궁금하신 사항은 .
                             <li class="coupon displaynone">
                                 <strong class="title">고객센터&nbsp;</strong>
@@ -171,7 +197,7 @@
                                 <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="" value="연결하기"
                                     id="btn btn-link" />
                             </li>
-                        </div>
+                        </div> -->
 
                     <div>
                         <!-- footer 시작---------------------------------------------------------------------------------------------->
@@ -237,7 +263,7 @@
                             회원정보 수정을 성공적으로 완료했습니다!
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-dark mo1btn" data-bs-dismiss="modal">확인</button>
+                            <button type="button" class="btn mycustom-mem-btn mo1btn" data-bs-dismiss="modal">확인</button>
                         </div>
                     </div>
                 </div>
@@ -254,7 +280,7 @@
                             회원정보 수정을 실패했습니다.
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">확인</button>
+                            <button type="button" class="btn mycustom-mem-btn " data-bs-dismiss="modal">확인</button>
                         </div>
                     </div>
                 </div>

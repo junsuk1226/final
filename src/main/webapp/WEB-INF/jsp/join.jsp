@@ -27,7 +27,7 @@
         <div class ="container-fluid text-center my-6">
             <div class="row justify-content-center ">
 
-                <div class="col-md-12">
+                <div class="col-md-12 my-3">
                     <a href="/main"><img style="max-width: 300px;" src="../main_images/logo.png"/></a>
                 </div>
 
@@ -38,36 +38,34 @@
                     <div class="row justify-content-center col-md-12">
                         <div  class="col-md-6">
                         <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="border: none;">
-                            <div class="card-body">
+                            <div class="card-body text-start">
                                 <form action="/common/join" method="post" class="needs-validation" novalidate>
                                     <ul class="list-unstyled">
-                                        <li class="mb-3">Enter Email</li>
-                                        <div class="form-floating ">
+                                        <li class="mb-3" >Enter Email</li>
+                                        <div class="form-floating mb-4">
                                             <input type="text" placeholder="Email" class="form-control" name = "j_email" id = "j_email" required>
-                                            <label for="floatingInput" class="text-secondary">example@email.com</label>
+                                            <label for="floatingInput" class="text-secondary" >ex) example@email.com</label>
                                             <div class="valid-feedback">
                                             </div>
-                                            <div class="invalid-feedback">
+                                            <div class="invalid-feedback" >
                                                 이메일 형식이 올바르지 않습니다.
                                             </div>
                                         </div>
-                                        <br/>
-                                        <li class="mb-3">Create Password</li>
-                                        <figcaption class="blockquote-footer text-start">
-                                            <em>8자 이상 입력해 주세요. </em>
-                                          </figcaption>
-                                        <div class="form-floating">
+                                        
+                                        <li class="">Create Password</li>
+                                        <a class="mb-5 text-muted " style="font-size: small; text-align: left; text-decoration: none;">&nbsp;*8자 이상 입력해 주세요.</a>
+                                        <div class="form-floating mb-4 mt-1">
                                             <input type="password" placeholder="Create password" class="form-control password" name = "j_password" id = "j_password" required>
-                                            <label class="text-secondary" for="floatingInput">비밀번호</label>
+                                            <label class="text-secondary" for="floatingInput" >비밀번호</label>
                                             <div class="valid-feedback">
                                             </div>
                                             <div class="invalid-feedback">
                                                 비밀번호는 8자 이상 입력해야 합니다.
                                             </div>
                                         </div>
-                                        <br/>
+                                        
                                         <li class="mb-3">Confirm Password</li>
-                                        <div class="form-floating">
+                                        <div class="form-floating mb-4">
                                             <input type="password" placeholder="Confirm password" class="form-control password" name = "j_confirmpassword" id = "j_confirmpassword" required>
                                             <label class="text-secondary" for="floatingInput">비밀번호 확인</label>
                                             <div class="valid-feedback">
@@ -76,25 +74,23 @@
                                                 비밀번호가 다릅니다.
                                             </div>
                                         </div>
-                                        <br/>
+                                        
                                         <li class="mb-3">Nickname</li>
-                                        <div class="form-floating">
+                                        <div class="form-floating mb-4">
                                             <input type="text" placeholder="Nickname" class="form-control input" name = "j_nickname" id = "j_nickname" required>
-                                            <label class="text-secondary" for="floatingInput">닉네임</label>
+                                            <label class="text-secondary" for="floatingInput">ex) 홍길동</label>
                                             <div class="valid-feedback">
                                             </div>
                                             <div class="invalid-feedback">
                                                 닉네임을 입력하세요.
                                             </div>
                                         </div>
-                                        <br/>
-                                        <li class="mb-3">PhoneNumber</li>
-                                        <figcaption class="blockquote-footer text-start">
-                                            <em>기호 또는 공백을 제외하고 입력해 주세요.</em>
-                                          </figcaption>
-                                        <div class="form-floating mb-5">
+                                        
+                                        <li class="">PhoneNumber</li>
+                                        <a class="mb-5 text-muted " style="font-size: small; text-align: left; text-decoration: none;">&nbsp;*기호 또는 공백을 제외하고 입력해 주세요.</a>
+                                        <div class="form-floating mb-5 mt-1">
                                             <input type="text" placeholder="PhoneNumber" class="form-control input" name = "m_phone" id = "m_phone" required>
-                                            <label class="text-secondary" for="floatingInput">01012345678</label>
+                                            <label class="text-secondary" for="floatingInput">ex) 01012345678</label>
                                             <div class="valid-feedback">
                                             </div>
                                             <div class="invalid-feedback">
@@ -102,13 +98,13 @@
                                             </div>
                                         </div>
         
-                                        <div class="col-7 d-grid gap-2  mx-auto">
-                                            <button type="button" class="btn btn-dark " onclick="send(this.form)">일반 회원가입</button>
+                                        <div class="col-6 d-grid gap-2  mx-auto">
+                                            <button type="button" class="btn btn-dark " style="min-height: 50px;" onclick="send(this.form)">일반 회원가입</button>
                                         </div>
                                     </ul>
                                 </form>
                             <hr>
-                            <div class="form-link">
+                            <div class="form-link text-center">
                                 <span>이미 계정을 가지고 계신가요? <a href="login" class="link-secondary">Login</a></span>
                             </div>
                         </div>

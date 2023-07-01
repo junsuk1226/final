@@ -100,7 +100,7 @@
                             <div class="container-fluid">
                                 <div class="row justify-content-center mt-5">
                                     <div class="col-md-9 mb-3">
-                                            <h2 class=" lh-base mt-5" style="font-family: 'suite'">
+                                            <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
                                                 ${sessionScope.mvo.m_name}<span class="text-muted">님 환영합니다.</span>
                                             </h2>
                                     </div>
@@ -109,21 +109,22 @@
                             <div class="container-fluid">
                                 <div class="row justify-content-center my-5">
                                     <div class="col-md-6 mb-3">
+                                        <form action="/myPage/myPage" method="post">
                                             <div class="card 30em shadow p-3 mb-5 bg-body rounded position-relative" style="border: none;">
                                                 <div class="card-body">
                                                     <h4 style="font-family: 'suite'; font-weight:bold;"class="card-title mt-2">내 정보</h4>
                                                     <hr/>
                                                     <!--이메일-->
-                                                    <label for="email" class="form-label mt-4 "><span class="ms-1">이메일</span></label>
+                                                    <label for="j_email" class="form-label mt-4 "><span class="ms-1">이메일</span></label>
                                                     <div class="input-group input-group-lg">
-                                                        <input style="border: none;" type="text" id="email" class="text-muted form-control" value="${sessionScope.mvo.m_id}" disabled>
+                                                        <input style="border: none;" type="text" name="j_email" id="j_email" class="text-muted form-control" value="${sessionScope.mvo.m_id}" disabled>
                                                     </div>
 
                                                     <!--닉네임-->
-                                                    <c:set var="tel" value="${sessionScope.mvo.m_phone}"/>
-                                                    <label for="name" class="form-label mt-4 "><span class="ms-1">닉네임</span></label>
+                                                    <label for="j_nickname" class="form-label mt-4 "><span class="ms-1">닉네임</span></label>
                                                     <div class="input-group mb-1 input-group-lg">
-                                                        <input style="border: none;" id="name" type="text" class="text-muted form-control"  value="${sessionScope.mvo.m_name}" disabled>
+                                                        <input style="border: none;" name="j_nickname"
+                                                        id="j_nickname" type="text" class="text-muted form-control"  value="${sessionScope.mvo.m_name}" disabled>
                                                     </div>
 
                                                     <!--연락처 (페이지 상에서 기호 표현)-->
@@ -142,93 +143,93 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4 ms-1 me-1 d-flex justify-content-center"> 
-                                            <div class="row">
-                                            <!--캐러셀-->
-                                                <div class="carousel slide" data-bs-ride="carousel">
-                                                    <div class="carousel-inner shadow bg-body rounded justify-content-center" style="max-width: 300px;">
-                                                    <div class="carousel-item active" data-bs-interval="4000">
-                                                        <img src="../images/도토리묵밥.jpg" class="d-block rounded w-100" alt="...">
+                                        </form>
+                                    </div>
+                                    <div class="col-md-4 ms-1 me-1 d-flex justify-content-center"> 
+                                        <div class="row">
+                                        <!--캐러셀-->
+                                            <div class="carousel slide" data-bs-ride="carousel">
+                                                <div class="carousel-inner shadow bg-body rounded justify-content-center" style="max-width: 300px;">
+                                                <div class="carousel-item active" data-bs-interval="4000">
+                                                    <img src="../images/도토리묵밥.jpg" class="d-block rounded w-100" alt="...">
+                                                </div>
+                                                <div class="carousel-item" data-bs-interval="4000">
+                                                    <img src="../images/김치볶음밥.png" class="d-block rounded w-100" alt="...">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img src="../images/어묵탕.png" class="d-block rounded w-100" alt="...">
+                                                </div>
+                                                </div>
+                                                
+                                                <!--카드-->
+                                                <div class="card mt-5 shadow bg-body rounded" style="border: none;">
+                                                    <div class="card-body" style="max-width: 300px;">
+                                                        <div class="card-title"><h5 class="ms-2 lh-base mt-2" style="font-family: 'suite'; font-weight: 700;">나의 현황</h5></div>
+                                                        <hr/>
+                                                        <!--카드 내부 영역 (어떤 정보 가져올 것인지?정확하게 정하기)-->
+                                                        <form method="post">
+                                                            <table class="table">
+                                                                <colgroup>
+                                                                    <col width="100px;"/>
+                                                                    <col width="100px;"/>
+                                                                    <col width="100px;"/>
+                                                                </colgroup>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th style="font-family: 'suite'">리뷰</th>
+                                                                        <td style="font-family: 'suite'">0개</td>
+                                                                        <td style="text-align: center;">
+                                                                            <a onclick="review1(this.form)" ><i class="fa arrow fa-arrow-right fa-lg" aria-hidden="true"></i></f>  
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th style="font-family: 'suite'">적립금</th>
+                                                                        <td style="font-family: 'suite'">230원</td>
+                                                                        <td style="text-align: center;">
+                                                                            <a onclick=""><i class="fa fa-arrow-right arrow fa-lg" aria-hidden="true"></i></a>  
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th style="font-family: 'suite'">쿠폰</th>
+                                                                        <td style="font-family: 'suite'">2개</td>
+                                                                        <td style="text-align: center;">
+                                                                            <a onclick=""><i class="fa fa-arrow-right arrow fa-lg" aria-hidden="true"></i></a>   
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr >
+                                                                        <th style="font-family: 'suite'">지난 주문</th>
+                                                                        <td style="font-family: 'suite'">21건</td>
+                                                                        <td style="text-align: center;"> 
+                                                                            <a onclick=""><i class="fa fa-arrow-right arrow fa-lg" aria-hidden="true"></i></a>                                        
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>  
+                                                            </table>
+                                                        </form>
                                                     </div>
-                                                    <div class="carousel-item" data-bs-interval="4000">
-                                                        <img src="../images/김치볶음밥.png" class="d-block rounded w-100" alt="...">
-                                                    </div>
-                                                    <div class="carousel-item">
-                                                        <img src="../images/어묵탕.png" class="d-block rounded w-100" alt="...">
-                                                    </div>
-                                                    </div>
-                                                    
-                                                    <!--카드-->
-                                                    <div class="card mt-5 shadow bg-body rounded" style="border: none;">
-                                                        <div class="card-body" style="max-width: 300px;">
-                                                            <div class="card-title"><h5 class="ms-2 lh-base mt-2" style="font-family: 'suite'; font-weight: 700;">나의 현황</h5></div>
-                                                            <hr/>
-                                                            <!--카드 내부 영역 (어떤 정보 가져올 것인지?정확하게 정하기)-->
-                                                            <form method="post">
-                                                                <table class="table">
-                                                                    <colgroup>
-                                                                        <col width="100px;"/>
-                                                                        <col width="100px;"/>
-                                                                        <col width="100px;"/>
-                                                                    </colgroup>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <th style="font-family: 'suite'">리뷰</th>
-                                                                            <td style="font-family: 'suite'">0개</td>
-                                                                            <td style="text-align: center;">
-                                                                                <a onclick="review1(this.form)" ><i class="fa arrow fa-arrow-right fa-lg" aria-hidden="true"></i></f>  
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th style="font-family: 'suite'">적립금</th>
-                                                                            <td style="font-family: 'suite'">230원</td>
-                                                                            <td style="text-align: center;">
-                                                                                <a onclick=""><i class="fa fa-arrow-right arrow fa-lg" aria-hidden="true"></i></a>  
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th style="font-family: 'suite'">쿠폰</th>
-                                                                            <td style="font-family: 'suite'">2개</td>
-                                                                            <td style="text-align: center;">
-                                                                                <a onclick=""><i class="fa fa-arrow-right arrow fa-lg" aria-hidden="true"></i></a>   
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            <th style="font-family: 'suite'">지난 주문</th>
-                                                                            <td style="font-family: 'suite'">21건</td>
-                                                                            <td style="text-align: center;"> 
-                                                                                <a onclick=""><i class="fa fa-arrow-right arrow fa-lg" aria-hidden="true"></i></a>                                        
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>  
-                                                                </table>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div><!---캐러셀의 끝--->
-                                            </div>
+                                                </div>
+                                            </div><!---캐러셀의 끝--->
                                         </div>
                                     </div>
                                 </div>
-                                   <!-- 본문 div 끝-->     
-                                        
+                            </div>
+                    <!-- 본문 div 끝-->     
+                                  <!-- footer 시작---------------------------------------------------------------------------------------------->
+                                       
+                                  <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mycustom-main_footer">
+                                    <div class="container text-center">
+                                        <small>Copyright &copy; 2023 쉬-잇 </small>
+                                    </div>
+                                </footer>
+                               
+                                <!-- footer 끝---------------------------------------------------------------------------------------------->      
                                         
                                         
                             </div>
                         </div>
                     </div>
                                         
-                                        <!-- footer 시작---------------------------------------------------------------------------------------------->
-                                        <!-- <body class="d-flex flex-column"> -->
-                                            <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mycustom-main_footer">
-                                                <div class="container text-center">
-                                                    <small>Copyright &copy; 2023 쉬-잇 </small>
-                                                </div>
-                                            </footer>
-                                            
-                                            <!-- </body>  -->
-                                            <!-- footer 끝---------------------------------------------------------------------------------------------->
+                                        
                                             
                                     <%-- 추가Popup --%>
                                     <div id="add_popup" class="popup" title="내역 수정 ">

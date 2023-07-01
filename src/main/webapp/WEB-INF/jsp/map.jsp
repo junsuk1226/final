@@ -36,10 +36,10 @@
 
    <!-- 메뉴바 ----------------------------------------------------------------------------------------------------------->
    <div class="container main_custom_menubar">
-		<header class="d-flex flex-wrap align-items-center justify-content-md-between py-3 mb-3">
+		<header class="d-flex flex-wrap align-items-center justify-content-end py-3 mb-3 me-2">
 			<a class="nav-link logo_custom"></a>
 			<c:if test="${sessionScope.mvo == null}">
-				<div class="col-md-3 text-end">
+				<div class="col-md-3 text-end ms-auto">
 					<button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/login'">로그인</button>
 					<button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/join'">회원가입</button>
 				</div>
@@ -57,7 +57,6 @@
 				<a href="/main"><img style="max-width: 300px;" src="../main_images/logo.png"></a>  
 			</div>
 
-			<div id="faux-gif"></div>
 		</div>
 	</div>
 
