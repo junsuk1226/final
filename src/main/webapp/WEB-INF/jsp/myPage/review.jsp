@@ -23,6 +23,8 @@
 
             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
             <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+            <!--아이콘 cdn-->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
                 <style>
                     table {
                         width: 800px;
@@ -48,6 +50,15 @@
                         height: 50px;
                         color: #ababab;
                     }
+                    .fa-trash{
+                        color: rgb(167, 102, 102);
+                    }
+                    .fa-trash:hover{
+                        color: red;
+                        cursor: pointer;
+                        transform: translateY(-4px);
+                    }
+                    
                 </style>
 
 
@@ -93,15 +104,140 @@
                             <!-- Page content-->
 
                             <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-11">
-                                        <br />
-                                        <h1>${sessionScope.mvo.m_name}님 환영합니다. </h1>
-                                        <br />
-                                        <br />
+                                <div class="row justify-content-center mt-5">
+                                    <div class="col-md-9 mb-3">
+                                            <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
+                                                ${sessionScope.mvo.m_name}<span class="text-muted">님의 리뷰 목록</span>
+                                            </h2>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row justify-content-center my-5">
+                                <div class="col-md-9 mb-3">
+                                        <div class="card ms-2 me-1 shadow p-3 mb-5 bg-body rounded" style="border: none;">
+                                            <div class="card-body justify-content-center">
+                                                <c:forEach var="rvo" items="${requestScope.ar }" varStatus="st">
+                                
+                                                    <input type="hidden" value="1" name="p_idx"/>  <!--${pvo.p_idx}-->
+                                                    <div class = "row justify-content-around">
+                                                        <div class="col-md-3 mb-3 .square-div">
+                                                            <img style="object-fit: cover; width: 100%; height:auto;" class="rounded img-fluid" src="..\images\중앙선0550-07-000249.png">
+                                                        </div>
+                                                    
+                                                        <div class="col-md-7 mx-2">
+                                                            <div class ="row ">
+                                                                <div class="d-flex justify-content-between" >
+                                                                    <p style="font-size: larger; font-weight: bold; font-family:'suite';">${rvo.r_restNm}</p>
+                                                                    <em><p style="font-size: medium; font-family: 'suite';" class="text-muted">${rvo.r_writedate}</p></em>
+                                                                </div>
+                                                                <div class="my-3">${rvo.r_content}</div>
+                                                                <div style="text-align: right;">
+                                                                    <button class="btn" type="button" onclick="del('${rvo.r_idx}')">
+                                                                        <a><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                        
+                                                    <hr/><!--구분선-->
+
+                                                </c:forEach>
+
+                                                <!--db 없어서 만들어 놓음-->
+                                                <input type="hidden" value="1" name="p_idx"/>  <!--${pvo.p_idx}-->
+                                                    <div class = "row justify-content-around">
+                                                        <div class="col-md-3 mb-3 .square-div">
+                                                            <img style="object-fit: cover; width: 100%; height:auto;" class="rounded img-fluid" src="..\editor_upload\KakaoTalk_20230617_200836354.jpg">
+                                                        </div>
+                                                    
+                                                        <div class="col-md-7 mx-2">
+                                                            <div class ="row ">
+                                                                <div class="d-flex justify-content-between" >
+                                                                    <p style="font-size: larger; font-weight: bold; font-family:'suite';">평창자연휴게소</p>
+                                                                    <em><p style="font-size: medium; font-family: 'suite';" class="text-muted">2023-06-28</p></em>
+                                                                </div>
+                                                                <div class="my-3">리뷰입니다.</div>
+                                                                <div style="text-align: right;">
+                                                                    <button class="btn" type="button" onclick="del('${rvo.r_idx}')">
+                                                                        <a><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
+                                                                    </button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!------------------>
+                                            </div> 
+                                                      
+                                        
+
+                                                <div class="col-md-6 d-grid gap-2 my-3 mx-auto justify-content-center">
+                                                    <ol class="pagination">
+                                                        <c:if test="${page.startPage < page.pagePerBlock}">
+                                                            <li class="page-item disabled"><a
+                                                                    class="page-link">&lt;</a></li>
+                                                        </c:if>
+                                                        <c:if test="${page.startPage >= page.pagePerBlock}">
+                                                            <li class="page-item"><a class="page-link"
+                                                                    href="Controller?type=aoList&cPage=${page.startPage-page.pagePerBlock }">&lt;</a>
+                                                            </li>
+                                                        </c:if>
+                                                        <c:forEach begin="${page.startPage }" end="${page.endPage }"
+                                                            varStatus="st">
+                                                            <c:if test="${page.nowPage eq st.index}">
+                                                                <li class="page-item active"><a
+                                                                        class="page-link">${st.index}</a></li>
+                                                            </c:if>
+                                                            <c:if test="${page.nowPage ne st.index }">
+                                                                <li class="page-item"><a class="page-link"
+                                                                        href="Controller?type=aoList&cPage=${st.index}">${st.index
+                                                                        }</a></li>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                        <c:if test="${page.endPage<page.totalPage}">
+                                                            <li class="page-item"><a class="page-link"
+                                                                    href="Controller?type=aoList&cPage=${page.startPage+page.pagePerBlock }">&gt;</a>
+                                                            </li>
+                                                        </c:if>
+                                                        <c:if test="${page.endPage == page.totalPage}">
+                                                            <li class="page-item disabled"><a
+                                                                    class="page-link">&gt;</a></li>
+                                                        </c:if>
+                                                    </ol>
+                                                </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="container-fluid">
+                                
                                 <!--
                                 <div class="row">
                                     <div class="col-md-1"></div>
@@ -110,7 +246,7 @@
                                             <input type="hidden" name="type" value="aoList" />
                                             <table>
                                                 <tbody align=center>
-
+                                                    
                                                     <thead>
                                                         <tr>
                                                             <td>
@@ -173,51 +309,6 @@
                                             </tbody>
                                         </table>
                                         </form>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-5">
-                                        <table>
-                                            <tfoot>
-                                                <tr>
-                                                    <td>
-                                                        <ol class="pagination">
-                                                            <c:if test="${page.startPage < page.pagePerBlock}">
-                                                                <li class="page-item disabled"><a
-                                                                        class="page-link">&lt;</a></li>
-                                                            </c:if>
-                                                            <c:if test="${page.startPage >= page.pagePerBlock}">
-                                                                <li class="page-item"><a class="page-link"
-                                                                        href="Controller?type=aoList&cPage=${page.startPage-page.pagePerBlock }">&lt;</a>
-                                                                </li>
-                                                            </c:if>
-                                                            <c:forEach begin="${page.startPage }" end="${page.endPage }"
-                                                                varStatus="st">
-                                                                <c:if test="${page.nowPage eq st.index}">
-                                                                    <li class="page-item active"><a
-                                                                            class="page-link">${st.index}</a></li>
-                                                                </c:if>
-                                                                <c:if test="${page.nowPage ne st.index }">
-                                                                    <li class="page-item"><a class="page-link"
-                                                                            href="Controller?type=aoList&cPage=${st.index}">${st.index
-                                                                            }</a></li>
-                                                                </c:if>
-                                                            </c:forEach>
-                                                            <c:if test="${page.endPage<page.totalPage}">
-                                                                <li class="page-item"><a class="page-link"
-                                                                        href="Controller?type=aoList&cPage=${page.startPage+page.pagePerBlock }">&gt;</a>
-                                                                </li>
-                                                            </c:if>
-                                                            <c:if test="${page.endPage == page.totalPage}">
-                                                                <li class="page-item disabled"><a
-                                                                        class="page-link">&gt;</a></li>
-                                                            </c:if>
-                                                        </ol>
-                                                    </td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
                                     </div>
                                 </div>
 
