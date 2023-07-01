@@ -120,11 +120,11 @@
                             <div class="container-fluid">
                                 <div class="row justify-content-center mt-5">
                                     <div class="col-md-9 mb-3">
-                                            <div class ="card">
+                                            <div class ="card shadow-sm p-3 mb-3 bg-body rounded" style="border: none;">
                                                 <div class = "card-body">
                                                     <div class="card-title"><span>나의 별점 평균</span></div>
 
-                                                </div>
+                                                </div>  
                                             </div>
                                     </div>
                                 </div>
@@ -186,6 +186,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <hr/>
                                                     <!------------------>
                                             </div> 
                                                       
