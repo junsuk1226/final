@@ -12,6 +12,20 @@
 <link rel="stylesheet" href="../css/main_custom.css" />
 <link rel="stylesheet" href="../css/menu.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<style>
+     /*모바일 화면 로그인 버튼*/
+     @media (max-width: 767px) {
+    .main_custom_menubar .d-flex {
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+    .main_custom_menubar .col-md-3 {
+      flex-basis: 100%;
+    }
+  }
+
+</style>
+
 </head>
 <body>
     

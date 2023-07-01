@@ -16,6 +16,7 @@
             height: auto;
         }
     }
+    /*모바일 화면 로그인 버튼*/
     @media (max-width: 767px) {
     .main_custom_menubar .d-flex {
       flex-direction: row;
