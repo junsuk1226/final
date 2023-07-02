@@ -13,5 +13,9 @@ public class KakaoReadyResponseDTO {
             next_redirect_pc_url, // pc 웹일 경우 받는 결제 페이지
             created_at, // 결제 준비 요청 시간
             partner_order_id, // 가맹점 주문번호
-            partner_user_id; // 가맹점 회원 ID
+            partner_user_id, // 가맹점 회원 ID
+            m_idx,
+            foonNm,
+            foodCost,
+            restNm;
 }
