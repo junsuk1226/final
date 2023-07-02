@@ -1,0 +1,46 @@
+@font-face {
+    font-family: "suite";
+    src: url(font/SUITE-Regular.ttf);
+}
+@font-face {
+    font-family: "omyu";
+    src: url(font/오뮤_다예쁨체.ttf);
+}
+@font-face {
+    font-family: "jamsil_bold";
+    src: url(font/The\ Jamsil\ 5\ Bold.ttf);
+}
+@font-face {
+    font-family: "jamsil";
+    src: url(font/The\ Jamsil\ 3\ Regular.ttf);
+}
+@font-face {
+    font-family: "dove";
+    src: url(font/Dovemayo_wild.ttf);
+}
+@font-face {
+    font-family: "dovegothic";
+    src: url(font/Dovemayo_gothic.ttf);
+}
+
+
+.admin-sidebar{
+    height: 100vh; /* 화면 세로 높이에 맞게 사이드바의 높이를 설정합니다. */
+    position: fixed; /* 사이드바를 고정 위치로 지정합니다. */
+    top: 0; /* 사이드바의 상단을 화면 상단에 고정시킵니다. */
+    left: 0; /* 사이드바의 왼쪽을 화면 왼쪽에 고정시킵니다. */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤바를 표시합니다. */
+    z-index: 1;
+    padding-right: 0;
+    font-family: "jamsil";
+    font-size: 20px;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background-color: #343541;
+}
+
+.admin-main_area{
+    margin-left: 280px;
+}
+
