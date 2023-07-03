@@ -17,15 +17,19 @@
         }
     }
     /*모바일 화면 로그인 버튼*/
-    @media (max-width: 767px) {
-    .main_custom_menubar .d-flex {
-      flex-direction: row;
-      justify-content: flex-end;
-    }
     .main_custom_menubar .col-md-3 {
-      flex-basis: 100%;
+        white-space: nowrap;
     }
-  }
+
+    @media (max-width: 767px) {
+        .main_custom_menubar .d-flex {
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+        .main_custom_menubar .col-md-3 {
+            flex-basis: 100%;
+        }
+    }
 
     .hover-fade img {
       width: 100%;

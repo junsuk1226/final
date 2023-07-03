@@ -131,12 +131,8 @@
                                         <form action="/myPage/info" method="post" class="needs-validation" novalidate >
                                             <ul class="list-unstyled">
                                                 <li class="mb-3 fw-bold">Your Email</li>
-                                                <div class="form-floating mb-5">
-                                                    <input type="text" placeholder="Email" class="form-control"  name="j_email" id="j_email" required value="${sessionScope.mvo.m_id}" disabled>
-                                                    <label for="floatingInput" class="text-secondary"><example@email.com></label>
-                                                    <div class="invalid-feedback">
-                                                        이메일 형식이 올바르지 않습니다.
-                                                    </div>
+                                                <div class="input-group-lg mb-5">
+                                                    <input type="text" placeholder="Email" class="text-muted form-control"  name="j_email" id="j_email" required value="${sessionScope.mvo.m_id}" disabled>
                                                 </div>
                                                 
                                                 <li class="mb-3 fw-bold">New NickName</li>
