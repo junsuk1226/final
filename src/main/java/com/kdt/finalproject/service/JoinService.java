@@ -5,7 +5,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kdt.finalproject.mapper.JoinMapper;
-import com.kdt.finalproject.mapper.MemMapper;
 import com.kdt.finalproject.vo.MemVO;
 
 @Service
@@ -13,9 +12,6 @@ public class JoinService {
 
   @Autowired
   private JoinMapper j_mapper;
-
-  @Autowired
-  private MemMapper m_mapper;
 
   @Autowired
   private PasswordEncoder passwordEncoder;
@@ -63,4 +59,18 @@ public class JoinService {
 
     return mvo;
   }
+
+  // 관리자 회원가입 신청
+  public int addAdmin(MemVO mvo) {
+    MemVO vo = new MemVO();
+    vo.setM_id(mvo.getM_id());
+    vo.setM_name(mvo.getM_name());
+    vo.setM_phone(mvo.getM_phone());
+
+    // 비밀번호를 암호화 시킨후 다시 vo에 저장
+    vo.setM_pw(passwordEncoder.encode(mvo.getM_pw()));
+
+    return j_mapper.addAdmin(vo);
+  }
+
 }

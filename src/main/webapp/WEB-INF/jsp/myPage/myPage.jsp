@@ -177,7 +177,7 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <th style="font-family: 'suite'">리뷰</th>
-                                                                        <td style="font-family: 'suite'">0개</td>
+                                                                        <td style="font-family: 'suite'">${scoreCnt}개</td>
                                                                         <td style="text-align: center;">
                                                                             <a onclick="review1(this.form)" ><i class="fa arrow fa-arrow-right fa-lg" aria-hidden="true"></i></f>  
                                                                         </td>

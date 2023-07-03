@@ -1,10 +1,14 @@
 package com.kdt.finalproject.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.FoodService;
@@ -37,19 +41,30 @@ public class OrderListController {
 
             PayVO[] ar = p_service.order_list(m_idx);
 
-            for (PayVO pvo : ar) {
-                String[] name_ar = pvo.getFoodNm().split("/");
+            if (ar != null) {
+                for (PayVO pvo : ar) {
+                    String[] name_ar = pvo.getFoodNm().split("/");
 
-                FoodVO fvo = f_service.getFoodImg(name_ar[0]);
-                if (fvo != null)
-                    pvo.setF_image(fvo.getF_image());
+                    FoodVO fvo = f_service.getFoodImg(name_ar[0]);
+                    if (fvo != null)
+                        pvo.setF_image(fvo.getF_image());
 
+                }
             }
-
             mv.addObject("ar", ar);
         }
 
         return mv;
+    }
+
+    @RequestMapping("/orderDel")
+    @ResponseBody
+    public Map<String, Integer> orderDel(String p_idx) {
+        int cnt = p_service.delOrder(p_idx);
+
+        Map<String, Integer> map = new HashMap<>();
+        map.put("res", cnt);
+        return map;
     }
 
     @RequestMapping("/orderDetail")

@@ -171,7 +171,7 @@
                                                                         <a onclick="viewDetail()" class="me-3">
                                                                             <i class="fa fa-search-plus fa-2x" aria-hidden="true"></i><!--상세보기 버튼-->
                                                                         </a>
-                                                                        <a onclick="">
+                                                                        <a onclick="delOrder('${pvo.p_idx}')">
                                                                             <i class="fa fa-trash fa-2x" aria-hidden="true"></i><!--삭제 버튼-->
                                                                         </a>
                                                                     </div>
@@ -329,6 +329,24 @@
                             }
 
 
+                        }
+
+                        function delOrder(p_idx) {
+                            //console.log("p_idx:"+p_idx);
+
+                            if(confirm("삭제하시겠습니까?")){
+                                $.ajax({
+                                    url : "/orderDel",
+                                    data : {"p_idx":p_idx},
+                                    type : "post",
+                                    dataType : "json",
+
+                                }).done(function(data) {
+                                // 서버와 통신이 성공했을 때
+                                if(data.res == 1)
+                                    location.reload();
+                                });
+                            }
                         }
 
 

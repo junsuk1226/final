@@ -14,4 +14,6 @@ public interface JoinMapper {
     MemVO check_id(String email);
 
     MemVO getMem(MemVO vo);
+
+    int addAdmin(MemVO vo); // 관리자 회원가입
 }

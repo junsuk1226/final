@@ -19,4 +19,6 @@ public interface PayMapper {
 
     List<PayVO> order_list(String m_idx);
 
+    int delOrder(String p_idx);
+
 }

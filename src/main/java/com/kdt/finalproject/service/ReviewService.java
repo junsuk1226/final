@@ -1,6 +1,9 @@
 package com.kdt.finalproject.service;
 
+import java.net.InetAddress;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,4 +57,26 @@ public class ReviewService {
     public Float getScoreAvg(String RestNm) {
         return r_Mapper.getScoreAvg(RestNm);
     }
+
+    public Float getScoreAvg_Mem(String m_idx) {
+        return r_Mapper.getScoreAvg_Mem(m_idx);
+    }
+
+    public int getScoreCnt(String m_idx) {
+        return r_Mapper.getScoreCnt(m_idx);
+    }
+
+    public Map<String, Integer> getStarCnt(String m_idx) {
+
+        Map<String, Integer> map = new HashMap<String, Integer>();
+
+        map.put("five", r_Mapper.get5StarCnt(m_idx));
+        map.put("four", r_Mapper.get4StarCnt(m_idx));
+        map.put("three", r_Mapper.get3StarCnt(m_idx));
+        map.put("two", r_Mapper.get2StarCnt(m_idx));
+        map.put("one", r_Mapper.get1StarCnt(m_idx));
+
+        return map;
+    }
+
 }

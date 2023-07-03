@@ -40,7 +40,7 @@
                         <div  class="col-md-6">
                         <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="border: none;">
                             <div class="card-body">
-                                <form action="/common/join" method="post" class="needs-validation" novalidate>
+                                <form action="/admin/join" method="post" class="needs-validation" novalidate>
                                     <ul class="list-unstyled">
                                         <li class="mb-3">가입 요청할 이메일 주소</li>
                                         <div class="form-floating ">
@@ -81,7 +81,7 @@
                                         <li class="mb-3">휴게소명</li>
                                         <div class="form-floating">
                                             <input type="text" placeholder="Nickname" class="form-control input" name = "j_nickname" id = "j_nickname" required>
-                                            <label class="text-secondary" for="floatingInput">ex)서울(죽전)휴게소</label>
+                                            <label class="text-secondary" for="floatingInput">ex)죽전(서울)휴게소</label>
                                             <div class="valid-feedback">
                                             </div>
                                             <div class="invalid-feedback">
@@ -175,7 +175,7 @@
                         function send(form){
                             let check1 = /^[a-zA-Z0-9]+@[a-z]+\.[a-zA-Z]{2,3}$/i; // 아이디 이메일 형식 검사
                             let check2 = /^[a-zA-Z0-9]{8,}$/i;
-                           
+                            let check3 = /^010[0-9]{8}$/; // 휴대폰 번호 형식 검사
 
                             let j_email = $("#j_email").val();
                             let j_password = $("#j_password").val();
@@ -248,7 +248,7 @@
                                 $("#j_nickname").addClass("is-valid"); 
                             }
 
-                            if(m_phone.trim().length < 1){
+                            if(!check3.test(m_phone)){
                                 $("#m_phone").removeClass("is-valid");
                                 $("#m_phone").addClass("is-invalid");
 
@@ -259,9 +259,10 @@
                                 $("#m_phone").addClass("is-valid"); 
                             }
 
+
                             // 비동기식통신
                             $.ajax({
-                                url:"/common/join",
+                                url:"/admin/join",
                                 type: "post",
                                 data:{"j_email":j_email, "j_password":j_password, "j_nickname":j_nickname, "m_phone":m_phone},
                                 dataType:"json"
@@ -279,7 +280,7 @@
                         // 모달 1 확인 버튼 클릭 이벤트 처리
                         $(document).ready(function() {
                             $('.mo1btn').on('click', function() {
-                                window.location.href="/login"
+                                window.location.href="/admin"
                             });
                         });
 
