@@ -24,7 +24,7 @@
             <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
                 <a href="#home" class="nav-link text-white active">
-                
+                홈
                 </a>
             </li>
             <li>
