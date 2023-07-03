@@ -70,12 +70,12 @@
                             
                                 <div class="col-md-12">
                                     <div class="d-grid ">
-                                        <button type="submit" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px;" onclick="sendData()">로그인</button>
+                                        <button type="submit" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px; margin-top: 30px; margin-bottom: 20px;" onclick="sendData()">로그인</button>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="d-grid ">
-                                        <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px;" onclick="location.href='/admin/join'">회원가입</button>
+                                        <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px;" onclick="location.href='/admin/join'">가입신청</button>
                                     </div>
                                 </div>
                                
@@ -127,10 +127,11 @@
                     $("#m_id").removeClass("is-valid");
                     $("#m_id").addClass("is-invalid");
                     $("#m_id").focus();
+                    event.preventDefault();
                     return;
                 }else{
-                     $("#m_id").removeClass("is-invalid");
-                     $("#m_id").addClass("is-valid"); 
+                        $("#m_id").removeClass("is-invalid");
+                        $("#m_id").addClass("is-valid"); 
                 }
 
                 if ($("#m_pw").val().trim().length <= 0) {
@@ -139,8 +140,8 @@
                     $("#m_pw").focus();
                     return;
                 }else{
-                     $("#m_pw").removeClass("is-invalid");
-                     $("#m_pw").addClass("is-valid"); 
+                        $("#m_pw").removeClass("is-invalid");
+                        $("#m_pw").addClass("is-valid"); 
                 }
                 
                 document.frm.submit();

@@ -618,7 +618,17 @@ public class OrderPayController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        PayVO pvo = p_Service.order_receipt(getorderId);
 
+        // 음식 이름 배열
+        String[] foodname = pvo.getFoodNm().split("/");
+
+        // 음식 수량 배열
+        String[] foodqnt = pvo.getFoodQn().split("/");
+
+        mv.addObject("pvo", pvo);
+        mv.addObject("foodname", foodname);
+        mv.addObject("foodqnt", foodqnt);
         mv.setViewName("/orderpaycomplete");
 
         return mv;
