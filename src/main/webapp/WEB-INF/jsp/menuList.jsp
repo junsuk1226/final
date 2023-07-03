@@ -195,7 +195,7 @@
                                 
                                     <!-- 로그인이 되어있을때, 상세보기로 이동가능 -->
                                     <c:if test="${sessionScope.mvo != null}">
-                                        <button id="gomenu_btn" type="submit" class="mycustom-menu_list_btn">
+                                        <button id="gomenu_btn" type="button" class="mycustom-menu_list_btn">
                                             <li class="list-group-item mycustom-menu_list_group_item">
                                                 <div class="d-flex">
                                                 <c:if test="${fvo.f_image != null}">
@@ -205,10 +205,10 @@
                                                 </c:if>
                                                 <div class="mycustom-menu_info">
                                                     <h3>${fvo.foodNm}</h3>
-                                                    <a>
+                                                    
                                                         <c:set var="formattedCost" value="${fvo.foodCost}" />
                                                         <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
-                                                    </a>
+                                                    
                                                 </div>
                                                 </div>
                                             </li>
@@ -227,10 +227,10 @@
                                                 </c:if>
                                                 <div class="mycustom-menu_info">
                                                     <h3>${fvo.foodNm}</h3>
-                                                    <a>
+                                                   
                                                         <c:set var="formattedCost" value="${fvo.foodCost}" />
                                                         <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
-                                                    </a>
+                                                    
                                                 </div>
                                                 </div>
                                             </li>
