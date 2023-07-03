@@ -26,17 +26,20 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/reqLogin", method = RequestMethod.POST)
-    public ModelAndView view(MemVO vo) {
+    public ModelAndView adminLogin(MemVO vo) {
         ModelAndView mv = new ModelAndView();
 
         if (vo != null) {
             MemVO mvo = m_Service.admin_login(vo);
             if (mvo != null) {
                 session.setAttribute("mvo", mvo);
+                mv.setViewName("/admin/main");
+            } else {
+                mv.setViewName("/admin/index");
+                mv.addObject("alat", "alat");
             }
-            mv.setViewName("/admin/main");
         } else {
-            mv.setViewName("/admin");
+            mv.setViewName("/admin/index");
             mv.addObject("alat", "alat");
         }
         return mv;
