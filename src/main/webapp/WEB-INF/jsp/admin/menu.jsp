@@ -14,53 +14,54 @@
 </head>
 <body>
 
-    <div class="d-flex flex-row flex-shrink-0">
-        <!-- 사이드 바 -->
-        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark admin-sidebar" style="width: 280px;">
-            <a href="/admin/main"><img style="max-width: 250px;" 
-                src="../admin_images/admin_logo.png"></a>
-            <hr> <!--구분선-->
+<div class="d-flex flex-row flex-shrink-0">
+    <!-- 사이드 바 -->
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark admin-sidebar" style="width: 280px;">
+        <a href="/admin/main"><img style="max-width: 250px;" 
+            src="../admin_images/admin_logo.png"></a>
+        <hr> <!--구분선-->
 
-            <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a href="#home" class="nav-link text-white active">
-                홈
-                </a>
-            </li>
-            <li>
-                <a href="/admin/menu" class="nav-link text-white">
-                메뉴관리
-                </a>
-            </li>
-            <li>
-                <a href="/admin/sales" class="nav-link text-white">
-                매출관리
-                </a>
-            </li>
-            </ul>
-
-            <hr><!--구분선-->
-
-            
-            </div>
-        </div>
-        <!-- 사이드바 끝 -->
-
-        <!-- 메인 컨텐츠 내용 -->
-        <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
-            
+        <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="/admin/main" class="nav-link text-white">
             홈
-            
+            </a>
+        </li>
+        <li>
+            <a href="/admin/menu" class="nav-link text-white active">
+            메뉴관리
+            </a>
+        </li>
+        <li>
+            <a href="/admin/sales" class="nav-link text-white">
+            매출관리
+            </a>
+        </li>
+        </ul>
+
+        <hr><!--구분선-->
+
+        
         </div>
-        <!-- 메인 컨텐츠 끝 -->
     </div>
+    <!-- 사이드바 끝 -->
+
+    <!-- 메인 컨텐츠 내용 -->
+    <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
+        
+        메뉴관리
+        
+    </div>
+    <!-- 메인 컨텐츠 끝 -->
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+    
 <script>
-   
+    
 </script>
 
 </body>
