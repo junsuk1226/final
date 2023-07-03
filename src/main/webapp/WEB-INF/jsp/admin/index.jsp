@@ -45,7 +45,8 @@
                 <div class="col-md-12 mb-5">
                     <div class="input_area col-md-12 mx-auto card shadow-lg p-3 mb-5 bg-body rounded" style="margin: 0 auto; border:none; " >
                         <div class="card-body">
-                        <form id="login" action="" class="input-group my-5" method="post" name="frm" novalidate>
+
+                        <form id="login" action="/admin/reqLogin" class="input-group my-5" method="post" name="frm" onsubmit="sendData(this.form); return false;" novalidate>
                             <div class="row align-items-center">
                                 
                                 <div class="col-md-12">
@@ -69,7 +70,7 @@
                             
                                 <div class="col-md-12">
                                     <div class="d-grid ">
-                                        <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px; margin: 30px 0;">로그인</button>
+                                        <button type="submit" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px;" onclick="sendData()">로그인</button>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -90,7 +91,7 @@
             <div class="d-flex flex-column">
                 <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
                   <div class="container text-center">
-                    <small>Copyright &copy; 2023 팀이름 </small>
+                    <small>Copyright &copy; 2023 마이휴 </small>
                   </div>
                 </footer>
             </div> 

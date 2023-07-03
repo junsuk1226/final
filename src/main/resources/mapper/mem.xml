@@ -27,6 +27,12 @@
     SET m_pw = #{new_pw}
     WHERE m_idx=#{m_idx}
   </update>
+
+  <!-- 관리자 로그인 -->
+  <select id="adminLogin" parameterType="Map" resultType="com.kdt.finalproject.vo.MemVO">
+    SELECT * FROM final.member
+    where m_id = #{m_id} and status = 1
+  </select>
   
 
 </mapper>
