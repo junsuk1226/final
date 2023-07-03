@@ -266,7 +266,7 @@ public class MapController {
         LocalTime nowTime = LocalTime.now();
         int hour = nowTime.getHour();
         StringBuffer stdHour = new StringBuffer();
-        if (hour - 3 < 10)
+        if (hour - 2 < 10)
             stdHour.append("0");
         stdHour.append(hour - 2);
 
@@ -279,7 +279,7 @@ public class MapController {
         sb4.append(sdate.toString());
         sb4.append("&stdHour=");
         sb4.append(stdHour.toString());
-        // System.out.println(sb4.toString());
+        System.out.println(sb4.toString());
         // 위의 StringBuffer가 가지고 있는 URL전체 경로를 가지고 URL객체를 먼저 생성하자!
         URL url4 = new URL(sb4.toString());
 
