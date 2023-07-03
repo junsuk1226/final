@@ -7,17 +7,21 @@
 
 <!-- select -->
 <select id="poNum_count" parameterType="com.kdt.finalproject.vo.PayVO" resultType="int">
-  	SELECT count(restCd) FROM paylog GROUP BY restCd HAVING restCd = "restCd"
+    SELECT COUNT(COALESCE(restNm, 0)) FROM paylog WHERE restNm = #{restNm};
 </select>
 
 <select id="kakao_refunt_select" parameterType="String" resultType="com.kdt.finalproject.vo.PayVO">
   	SELECT * FROM paylog where tid = #{tid}
 </select>
 
+<select id="order_receipt" parameterType="String" resultType="com.kdt.finalproject.vo.PayVO">
+    SELECT * FROM paylog where p_oderId = #{p_oderId}
+</select>
+
 <!-- insert -->
 <insert id="kakaopay" parameterType="com.kdt.finalproject.vo.PayVO">
-		INSERT INTO paylog(m_idx, restCd, foodNm, foodCost, totalCost, p_date, p_status, p_time, p_oNum, restNm, payMethod, aid, tid, cid, p_oderId)
-    VALUES(#{m_idx}, "restCd", #{foodNm}, #{foodCost}, #{totalCost}, #{p_date}, 0, #{p_time},  #{p_oNum}, "restNm", 0, #{aid}, #{tid}, #{cid}, #{p_oderId})
+		INSERT INTO paylog(m_idx, restCd, foodNm, foodCost, totalCost, p_date, p_status, p_time, p_oNum, restNm, payMethod, aid, tid, cid, p_oderId, foodQn)
+    VALUES(#{m_idx}, "restCd", #{foodNm}, #{foodCost}, #{totalCost}, #{p_date}, 0, #{p_time},  #{p_oNum}, #{restNm}, 0, #{aid}, #{tid}, #{cid}, #{p_oderId}, #{foodQn})
 </insert>
 
 <insert id="tosspay" parameterType="com.kdt.finalproject.vo.PayVO">

@@ -17,5 +17,6 @@ public class KakaoReadyResponseDTO {
             m_idx,
             foonNm,
             foodCost,
-            restNm;
+            restNm,
+            foodQnTotal;
 }
