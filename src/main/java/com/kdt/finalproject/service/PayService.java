@@ -51,9 +51,12 @@ public class PayService {
         return ar;
     }
 
-    public int delOrder(String p_idx) {
+    public int kakaorefund(PayVO vo) {
+        int cnt = 0;
 
-        return p_Mapper.delOrder(p_idx);
+        cnt = p_Mapper.kakaorefund(vo);
+
+        return cnt;
     }
 
 }
