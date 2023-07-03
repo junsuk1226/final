@@ -64,8 +64,11 @@ public class MemController {
 				session.setAttribute("mvo", mvo);
 				Cart cart = new Cart();
 				session.setAttribute("cart", cart);
+				mv.setViewName("/main");
+			} else {
+				mv.setViewName("/login");
+				mv.addObject("alat", "alat");
 			}
-			mv.setViewName("/main");
 		} else {
 			mv.setViewName("/login");
 			mv.addObject("alat", "alat");

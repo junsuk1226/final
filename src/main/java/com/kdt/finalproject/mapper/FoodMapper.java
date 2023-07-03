@@ -8,4 +8,6 @@ public interface FoodMapper {
     List<FoodVO> getFood(String RestNm);
 
     FoodVO getFoodInfo(String seq);
+
+    FoodVO getFood_img(String fname);
 }

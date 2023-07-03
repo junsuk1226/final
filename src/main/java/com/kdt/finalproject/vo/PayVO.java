@@ -11,6 +11,7 @@ import lombok.Setter;
 @Setter
 public class PayVO {
     private String m_idx,
+            p_idx, // 주문 기본 키
             restCd, // 휴게소 코드
             foodNm, // 음식 이름
             foodCost, // 개별 음식 가격
@@ -30,4 +31,6 @@ public class PayVO {
             reg_idx; // 등록된 휴게소 외래키
 
     private int totalCost; // 전체 음식 가격
+
+    private String f_image;
 }
