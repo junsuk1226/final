@@ -148,7 +148,7 @@
                                                                             </td>
                                                                             <td>
                                                                               <div class="progress mb-2">
-                                                                                <div class="progress-bar bg-warning" style="width: ${(score.one / scoreCnt) * 100}%; role="progressbar" aria-valuenow="${score.one}" aria-valuemin="0" aria-valuemax="${scoreCnt}"></div>
+                                                                                <div class="progress-bar bg-warning" style="width: ${(score.one / scoreCnt) * 100}%;" role="progressbar" aria-valuenow="${score.one}" aria-valuemin="0" aria-valuemax="${scoreCnt}"></div>
                                                                               </div>
                                                                             </td>
                                                                           </tr>
@@ -211,24 +211,31 @@
                                         <div class="card ms-2 me-1 shadow p-3 mb-5 bg-body rounded" style="border: none;">
                                             <div class="card-body justify-content-center">
                                                 <c:forEach var="rvo" items="${requestScope.ar }" varStatus="st">
-                                
-                                                    <input type="hidden" value="1" name="p_idx"/>  <!--${pvo.p_idx}-->
-                                                    <div class = "row justify-content-around">
+                                                    <!-- <input type="hidden" value="1" name="p_idx"/>  ${pvo.p_idx} -->
+                                                    <div class = "row justify-content-around align-items-center">
                                                         <div class="col-md-3 mb-3 .square-div">
                                                             <img style="object-fit: cover; width: 100%; height:auto;" class="rounded img-fluid" src="../editor_upload/${rvo.r_file}"/>
                                                         </div>
                                                     
                                                         <div class="col-md-7 mx-2">
                                                             <div class ="row ">
-                                                                <div class="d-flex justify-content-between" >
-                                                                    <p style="font-size: larger; font-weight: bold; font-family:'suite';">${rvo.r_restNm}</p>
+                                                                <div class="d-flex justify-content-between align-items-center" >
+                                                                    <span style="font-size: larger; font-weight: bold;">${rvo.r_restNm}</span>
                                                                     <em><p style="font-size: medium; font-family: 'suite';" class="text-muted">${rvo.r_writedate}</p></em>
                                                                 </div>
-                                                                <div class="">
-
-
+                                                                    <div class="col-md-4 my-2 me-5 justify-content-center">
+                                                                        <c:forEach begin="1" end="${rvo.r_score}">
+                                                                            <i class="fa fa-star" style="color: #FBB202;"></i>
+                                                                        </c:forEach>
+                                                                        <c:forEach begin="1" end="${5 - rvo.r_score}">
+                                                                            <i class="fa fa-star-o" style="color: #FBB202;"></i>
+                                                                        </c:forEach>
+                                                                    </div>
+                                                                <div class="card mb-3" style="border: none; background-color: rgb(247, 245, 238);">
+                                                                    <div class="card-body">
+                                                                        <div class="my-3">${rvo.r_content}</div>
+                                                                    </div>   
                                                                 </div>
-                                                                <div class="my-3">${rvo.r_content}</div>
                                                                 <div style="text-align: right;">
                                                                     <a  onclick="del('${rvo.r_idx}')">
                                                                         <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
@@ -282,30 +289,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                             
