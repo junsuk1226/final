@@ -62,4 +62,41 @@
     FROM final.review
     WHERE r_restNm=#{r_restNm}
 </select>
+
+<!--회원별 별점 평균-->
+<select id="getScoreAvg_Mem" parameterType="String" resultType="float">
+    SELECT ROUND(AVG(r_score),2)
+    FROM review
+    WHERE m_idx=#{m_idx}
+</select>
+
+<!--회원별 리뷰 갯수-->
+<select id="getScoreCnt" parameterType="String" resultType="int">
+  SELECT COUNT(*) FROM review
+  WHERE m_idx=#{m_idx} AND r_status = '0'
+</select>
+
+
+<!--(회원별)점수별 별점 갯수-->
+<select id="get5StarCnt" parameterType="String" resultType="int">
+  SELECT COUNT(*) FROM review
+  WHERE m_idx=#{m_idx} AND r_score ='5' AND r_status = '0'
+</select>
+<select id="get4StarCnt" parameterType="String" resultType="int">
+  SELECT COUNT(*) FROM review
+  WHERE m_idx=#{m_idx} AND r_score ='4' AND r_status = '0'
+</select>
+<select id="get3StarCnt" parameterType="String" resultType="int">
+  SELECT COUNT(*) FROM review
+  WHERE m_idx=#{m_idx} AND r_score ='3' AND r_status = '0'
+</select>
+<select id="get2StarCnt" parameterType="String" resultType="int">
+  SELECT COUNT(*) FROM review
+  WHERE m_idx=#{m_idx} AND r_score ='2' AND r_status = '0'
+</select>
+<select id="get1StarCnt" parameterType="String" resultType="int">
+  SELECT COUNT(*) FROM review
+  WHERE m_idx=#{m_idx} AND r_score ='1' AND r_status = '0'
+</select>
+
 </mapper>
