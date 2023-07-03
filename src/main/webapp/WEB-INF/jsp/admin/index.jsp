@@ -127,10 +127,11 @@
                     $("#m_id").removeClass("is-valid");
                     $("#m_id").addClass("is-invalid");
                     $("#m_id").focus();
+                    event.preventDefault();
                     return;
                 }else{
-                     $("#m_id").removeClass("is-invalid");
-                     $("#m_id").addClass("is-valid"); 
+                        $("#m_id").removeClass("is-invalid");
+                        $("#m_id").addClass("is-valid"); 
                 }
 
                 if ($("#m_pw").val().trim().length <= 0) {
@@ -139,8 +140,8 @@
                     $("#m_pw").focus();
                     return;
                 }else{
-                     $("#m_pw").removeClass("is-invalid");
-                     $("#m_pw").addClass("is-valid"); 
+                        $("#m_pw").removeClass("is-invalid");
+                        $("#m_pw").addClass("is-valid"); 
                 }
                 
                 document.frm.submit();
