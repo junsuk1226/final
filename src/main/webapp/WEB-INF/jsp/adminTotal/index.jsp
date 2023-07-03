@@ -34,7 +34,7 @@
         <div class ="container-fluid text-center my-5">
             <div class="row justify-content-center my-4 ">
                 <div class="col-md-12">
-                    <a href="/admin/index"><img style="max-width: 300px; margin-top: 20px; margin-bottom: 30px;" 
+                    <a href="/admin"><img style="max-width: 300px; margin-top: 20px; margin-bottom: 30px;" 
                         src="../admin_images/myhyu_logo.png"></a>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                     <div class="input_area col-md-12 mx-auto card shadow-lg p-3 mb-5 bg-body rounded" style="margin: 0 auto; border:none; " >
                         <div class="card-body">
 
-                        <form id="login" action="/reqAdminLogin" class="input-group my-5" method="post" name="frm" novalidate>
+                        <form id="login" action="/adminTotal/reqLogin" class="input-group my-5" method="post" name="frm" onsubmit="sendData(this.form); return false;" novalidate>
                             <div class="row align-items-center">
                                 
                                 <div class="col-md-12">
@@ -70,12 +70,12 @@
                             
                                 <div class="col-md-12">
                                     <div class="d-grid ">
-                                        <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px; margin: 30px 0;">로그인</button>
+                                        <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px; margin-top: 30px; margin-bottom: 20px;" onclick="sendData()">로그인</button>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="d-grid ">
-                                        <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px;" onclick="location.href='/admin/join'">회원가입</button>
+                                        <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" style="height: 58px;" onclick="location.href='/admin/join'">가입신청</button>
                                     </div>
                                 </div>
                                
@@ -91,7 +91,7 @@
             <div class="d-flex flex-column">
                 <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
                   <div class="container text-center">
-                    <small>Copyright &copy; 2023 팀이름 </small>
+                    <small>Copyright &copy; 2023 마이휴 </small>
                   </div>
                 </footer>
             </div> 
@@ -127,10 +127,11 @@
                     $("#m_id").removeClass("is-valid");
                     $("#m_id").addClass("is-invalid");
                     $("#m_id").focus();
+                    event.preventDefault();
                     return;
                 }else{
-                     $("#m_id").removeClass("is-invalid");
-                     $("#m_id").addClass("is-valid"); 
+                        $("#m_id").removeClass("is-invalid");
+                        $("#m_id").addClass("is-valid"); 
                 }
 
                 if ($("#m_pw").val().trim().length <= 0) {
@@ -139,8 +140,8 @@
                     $("#m_pw").focus();
                     return;
                 }else{
-                     $("#m_pw").removeClass("is-invalid");
-                     $("#m_pw").addClass("is-valid"); 
+                        $("#m_pw").removeClass("is-invalid");
+                        $("#m_pw").addClass("is-valid"); 
                 }
                 
                 document.frm.submit();
