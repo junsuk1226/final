@@ -258,16 +258,20 @@ public class MapController {
         if (month < 10)
             sdate.append("0");
         sdate.append(month);
+        if (day < 10)
+            sdate.append("0");
         sdate.append(day);
 
         // 현재 시간 구하기
         LocalTime nowTime = LocalTime.now();
         int hour = nowTime.getHour();
         StringBuffer stdHour = new StringBuffer();
-        stdHour.append(hour - 4);
+        if (hour - 3 < 10)
+            stdHour.append("0");
+        stdHour.append(hour - 2);
 
         StringBuffer sb4 = new StringBuffer();
-        sb4.append("http://data.ex.co.kr/openapi/restinfo/restWeatherList"); // 현재 위치의 휴게소 날씨 API
+        sb4.append("http://data.ex.co.kr/openapi/restinfo/restWeatherList"); // 휴게소 위치별 날씨정보
         sb4.append("?key=");
         sb4.append(key);
         sb4.append("&type=xml");
@@ -275,7 +279,7 @@ public class MapController {
         sb4.append(sdate.toString());
         sb4.append("&stdHour=");
         sb4.append(stdHour.toString());
-
+        // System.out.println(sb4.toString());
         // 위의 StringBuffer가 가지고 있는 URL전체 경로를 가지고 URL객체를 먼저 생성하자!
         URL url4 = new URL(sb4.toString());
 
@@ -308,8 +312,9 @@ public class MapController {
 
         WeatherVO wvo = null;
 
+        // 현재 위치의 휴게소 날씨 API 구하기
         for (Element item : list4) {
-            // item이 가지는 값들 중 내가 필요한 값들(addr1, addr2, firstimage, ....)
+
             String unitName2 = item.getChildText("unitName");
             String unitCode2 = item.getChildText("unitCode");
             String weatherContents = item.getChildText("weatherContents");
@@ -356,19 +361,15 @@ public class MapController {
         set.toArray(pick_ar);
 
         Float avg = r_sService.getScoreAvg(vo.getUnitName());
-        if(avg == null)
+        if (avg == null)
             avg = (float) 0;
 
         ReviewVO[] review = r_sService.getRestReviewList(vo.getUnitName());
-       
-       
-        int length = 0;
-        if(review != null){
-        length = review.length;
-        }
 
-        
-        
+        int length = 0;
+        if (review != null) {
+            length = review.length;
+        }
 
         map.put("review", length);
         map.put("avg", avg);
