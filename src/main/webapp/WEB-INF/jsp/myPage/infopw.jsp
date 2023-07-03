@@ -144,7 +144,7 @@
                                                 
                                                 <hr/>
                                                 <div class="col-6 d-grid gap-2 mx-auto my-3">
-                                                    <button type="button" class="btn btn-dark " style="min-height: 50px;" onclick="send(this.form)">비밀번호변경</button>
+                                                    <button type="button" class="btn btn-dark " style="min-height: 50px;" onclick="send(this.form)">비밀번호 변경</button>
                                                 </div>
                                             </ul>
                                         </form>

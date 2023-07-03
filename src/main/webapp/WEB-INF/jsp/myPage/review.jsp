@@ -122,8 +122,32 @@
                                     <div class="col-md-9 mb-3">
                                             <div class ="card shadow-sm p-3 mb-3 bg-body rounded" style="border: none;">
                                                 <div class = "card-body">
-                                                    <div class="card-title"><span>나의 별점 평균</span></div>
+                                                    <div class="card-title">
+                                                        <span>나의 별점 평균</span>
+                                                        <div class="row">
+                                                            <div id="score-num col-md-3">
+                                                                <h2>4.5</h2>
+                                                            </div>
+                                                            <div id="score-bar col-md-6">
+                                                                <div class="progress mb-2">
+                                                                    <div class="progress-bar bg-warning" role="progressbar" aria-label="Success example" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                </div>
+                                                                <div class="progress mb-2">
+                                                                    <div class="progress-bar bg-warning" role="progressbar" aria-label="Info example" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                </div>
+                                                                <div class="progress mb-2">
+                                                                    <div class="progress-bar bg-warning" role="progressbar" aria-label="Warning example" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                </div>
+                                                                <div class="progress mb-2">
+                                                                    <div class="progress-bar bg-warning" role="progressbar" aria-label="Danger example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                </div>
+                                                                <div class="progress mb-12">
+                                                                    <div class="progress-bar bg-warning" role="progressbar" aria-label="Danger example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                </div>
 
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>  
                                             </div>
                                     </div>
