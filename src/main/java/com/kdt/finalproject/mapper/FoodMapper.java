@@ -5,7 +5,9 @@ import java.util.List;
 import com.kdt.finalproject.vo.FoodVO;
 
 public interface FoodMapper {
-    List<FoodVO> getFood();
+    List<FoodVO> getFood(String RestNm);
 
     FoodVO getFoodInfo(String seq);
+
+    FoodVO getFood_img(String fname);
 }

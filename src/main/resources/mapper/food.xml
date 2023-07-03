@@ -5,13 +5,19 @@
   
 <mapper namespace="com.kdt.finalproject.mapper.FoodMapper">
 
-<select id="getFood" resultType="com.kdt.finalproject.vo.FoodVO">
+<select id="getFood" resultType="com.kdt.finalproject.vo.FoodVO" parameterType="String">
   	SELECT * FROM final.food
+    WHERE stdRestNm = #{RestNm}
 </select>
 
 <select id="getFoodInfo" parameterType="String" resultType="com.kdt.finalproject.vo.FoodVO">
   	SELECT * FROM food
     WHERE seq = #{seq}
+</select>
+
+<select id="getFood_img" parameterType="String" resultType="com.kdt.finalproject.vo.FoodVO">
+  	SELECT * FROM food
+    WHERE foodNm = #{fname}
 </select>
 
 

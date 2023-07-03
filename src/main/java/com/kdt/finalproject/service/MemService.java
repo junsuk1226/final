@@ -73,4 +73,32 @@ public class MemService {
         return cnt;
     }
 
+    // 어드민 로그인
+    public MemVO admin_login(MemVO mvo) {
+        MemVO vo = m_Mapper.adminLogin(mvo.getM_id());
+
+        if (vo != null) { // 사용자가 보내준 id가 DB에 존재할 경우!!
+            // mvo가 가지는 비밀번호와 DB에서 가져온 vo의 비밀번호를
+            // passwordEncoder에게 검증하라고 한다.
+            if (passwordEncoder.matches(mvo.getM_pw(), vo.getM_pw())) {
+                return vo;
+            }
+        }
+        return null;
+    }
+
+    // 어드민(total) 로그인
+    public MemVO adminTotal_login(MemVO mvo) {
+        MemVO vo = m_Mapper.adminTotalLogin(mvo.getM_id());
+
+        if (vo != null) { // 사용자가 보내준 id가 DB에 존재할 경우!!
+            // mvo가 가지는 비밀번호와 DB에서 가져온 vo의 비밀번호를
+            // passwordEncoder에게 검증하라고 한다.
+            if (passwordEncoder.matches(mvo.getM_pw(), vo.getM_pw())) {
+                return vo;
+            }
+        }
+        return null;
+    }
+
 }

@@ -64,7 +64,7 @@ public class OrderPayController {
         foodNmsb.setLength(foodNmsb.length() - 1);
         // System.out.println(foodNmsb.toString());
 
-        // 음식숫자-------------int값 수정해야 함.
+        // 음식숫자
         String[] getfoodQn = foodQn;
         StringBuffer foodQnsb = new StringBuffer();
         for (String str : getfoodQn) {
@@ -450,8 +450,46 @@ public class OrderPayController {
     }
 
     @RequestMapping("/toss/pay")
-    public ModelAndView tossPay() {
+    public ModelAndView tossPay(String sumPrice, String[] foodNm, String[] foodQn,
+            String[] ggetfoodCost, String m_idx, String restNm) {
         ModelAndView mv = new ModelAndView();
+
+        // 음식명
+        String[] getfoodNm = foodNm;
+        StringBuffer foodNmsb = new StringBuffer();
+        for (String str : getfoodNm) {
+            foodNmsb.append(str + "/");
+        }
+
+        foodNmsb.setLength(foodNmsb.length() - 1);
+        System.out.println(foodNmsb.toString());
+
+        // 음식숫자
+        String[] getfoodQn = foodQn;
+        StringBuffer foodQnsb = new StringBuffer();
+        for (String str : getfoodQn) {
+            foodQnsb.append(str + "/");
+        }
+
+        foodQnsb.setLength(foodQnsb.length() - 1);
+        // System.out.println(foodQnsb.toString());
+
+        // 음식개별 가격
+        String[] getfoodCost = ggetfoodCost;
+        StringBuffer foodCostsb = new StringBuffer();
+        for (String str : getfoodCost) {
+            foodCostsb.append(str + "/");
+        }
+
+        foodCostsb.setLength(foodCostsb.length() - 1);
+        // System.out.println(foodCostsb.toString());
+
+        String getm_idx = m_idx;
+        String getrestNm = restNm;
+        String getsumPrice = sumPrice;
+        // System.out.println(getm_idx);
+        // System.out.println(getrestNm);
+        System.out.println(getsumPrice);
 
         Random rnd = new Random();
         StringBuffer sb = new StringBuffer();
@@ -463,8 +501,18 @@ public class OrderPayController {
                 sb.append((rnd.nextInt(10)));
             }
         }
-        // System.out.println(sb.toString());
+
+        dto.setM_idx(getm_idx);
+        dto.setFoonNm(foodNmsb.toString());
+        dto.setFoodCost(foodCostsb.toString());
+        dto.setRestNm(getrestNm);
+        dto.setFoodQnTotal(getsumPrice);
+        dto.setFoodCost(foodCostsb.toString());
+        dto.setFoodQnTotal(foodQnsb.toString());
+
         mv.addObject("orderId", sb.toString());
+        mv.addObject("foodNm", foodNmsb.toString());
+        mv.addObject("sumPrice", getsumPrice);
         mv.setViewName("/tosspay");
 
         return mv;
@@ -483,6 +531,7 @@ public class OrderPayController {
         String aid = "";
         String tid = "";
         String approved_at = "";
+        int totalAmount = 0;
 
         try {
             Encoder encoder = Base64.getEncoder();
@@ -534,6 +583,9 @@ public class OrderPayController {
                 // System.out.println(json);
 
                 approved_at = (String) json.get("approvedAt");
+                aid = (String) json.get("lastTransactionKey");
+                tid = (String) json.get("paymentKey");
+                totalAmount = Integer.parseInt(String.valueOf(json.get("totalAmount")));
 
                 String subapproved_at = approved_at.substring(0, approved_at.lastIndexOf("+"));
                 String datetime[] = subapproved_at.split("T");
@@ -541,12 +593,14 @@ public class OrderPayController {
                 String p_time = datetime[1];
 
                 PayVO vo = new PayVO();
-                // vo.setM_idx();
+                vo.setM_idx(dto.getM_idx());
                 // vo.setRestCd();
-                // vo.setRestNm();
-                // vo.setFoodNm();
-                // vo.setFoodCost();
-                // vo.setFoodNm();
+                vo.setRestNm(dto.getRestNm());
+                vo.setFoodNm(dto.getFoonNm());
+                vo.setFoodCost(dto.getFoodCost());
+                vo.setTotalCost(totalAmount);
+                vo.setFoodCost(dto.getFoodCost());
+                vo.setFoodQn(dto.getFoodQnTotal());
 
                 vo.setP_date(p_date);
                 vo.setP_time(p_time);
@@ -554,8 +608,8 @@ public class OrderPayController {
                 vo.setTid(tid);
                 vo.setP_oderId(getorderId);
 
-                String poNum_count = String.format("%04d", p_Service.poNum_count(vo) + 1); // vo.setRestNm(); 체크
-                vo.setP_oNum("RestCd" + "_" + poNum_count);
+                String poNum_count = String.format("%04d", p_Service.poNum_count(vo) + 1); // vo.setRestNm();
+                vo.setP_oNum(poNum_count);
 
                 int cnt = p_Service.tosspay(vo);
 
@@ -564,7 +618,17 @@ public class OrderPayController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        PayVO pvo = p_Service.order_receipt(getorderId);
 
+        // 음식 이름 배열
+        String[] foodname = pvo.getFoodNm().split("/");
+
+        // 음식 수량 배열
+        String[] foodqnt = pvo.getFoodQn().split("/");
+
+        mv.addObject("pvo", pvo);
+        mv.addObject("foodname", foodname);
+        mv.addObject("foodqnt", foodqnt);
         mv.setViewName("/orderpaycomplete");
 
         return mv;

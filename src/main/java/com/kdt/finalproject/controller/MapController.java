@@ -336,7 +336,7 @@ public class MapController {
 
         } // 복문의 끝
 
-        FoodVO[] far = f_Service.all();
+        FoodVO[] far = f_Service.all(vo.getUnitName());
 
         FoodVO[] pick_ar = new FoodVO[3];
         Set<FoodVO> set = new HashSet<>();
