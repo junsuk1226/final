@@ -117,35 +117,86 @@
                                 </div>
                             </div>
                             <!--별점 평균-->
+                            
                             <div class="container-fluid">
                                 <div class="row justify-content-center mt-5">
                                     <div class="col-md-9 mb-3">
                                             <div class ="card shadow-sm p-3 mb-3 bg-body rounded" style="border: none;">
                                                 <div class = "card-body">
-                                                    <div class="card-title">
-                                                        <span>나의 별점 평균</span>
+                                                    <div class="card-title mb-2">
+                                                        <span style="font-size: larger;">나의 별점 평균
+                                                            <span class="text-muted mb-1" style="font-size: large;">(${scoreCnt}건)
+                                                                
+                                                            </span>
+                                                        </span>
                                                         <div class="row justify-content-around align-items-center">
                                                             <div class="score-num col-md-3 justify-content-end">
-                                                                <h2><i class="fa fa-star me-2" aria-hidden="true" style="color: #ffd000;"></i><span>4.5</span></h2>
+                                                                <h2><i class="fa fa-star me-2" aria-hidden="true" style="color: #ffd000;"></i><span>${scoreAvg}</span></h2>
                                                             </div>
-                                                            <div class="score-bar col-md-8">
-                                                                <div class="progress mb-2">
-                                                                    <div class="progress-bar bg-warning"  role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                                                </div>
-                                                                <div class="progress mb-2">
-                                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                                </div>
-                                                                <div class="progress mb-2">
-                                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                                                </div>
-                                                                <div class="progress mb-2">
-                                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                                                </div>
-                                                                <div class="progress mb-12">
-                                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            <c:set var="score" value="${score}"></c:set>
+                                                            <div class="col-md-8">
+                                                                <div class="row d-flex">
+                                                                    <table>
+                                                                        <colgroup>
+                                                                            <col style="width:65px;"/>
+                                                                            <col style="width:auto;"/>
+                                                                        </colgroup>
+                                                                        <tbody>
+                                                                          <tr>
+                                                                            <td>
+                                                                              <span>1점<span class="text-muted ms-1" style="font-size: small;">(${score.one})</span></span>
+                                                                            </td>
+                                                                            <td>
+                                                                              <div class="progress mb-2">
+                                                                                <div class="progress-bar bg-warning" style="width: ${(score.one / scoreCnt) * 100}%; role="progressbar" aria-valuenow="${score.one}" aria-valuemin="0" aria-valuemax="${scoreCnt}"></div>
+                                                                              </div>
+                                                                            </td>
+                                                                          </tr>
+                                                                          <tr>
+                                                                            <td>
+                                                                              <span>2점<span class="text-muted ms-1" style="font-size: small;">(${score.two})</span></span>
+                                                                            </td>
+                                                                            <td>
+                                                                              <div class="progress mb-2">
+                                                                                <div class="progress-bar bg-warning" role="progressbar" style="width: ${(score.two / scoreCnt) * 100}%;" aria-valuenow="${score.two}" aria-valuemin="0" aria-valuemax="${scoreCnt}"></div>
+                                                                              </div>
+                                                                            </td>
+                                                                          </tr>
+                                                                          <tr>
+                                                                            <td>
+                                                                              <span>3점<span class="text-muted ms-1" style="font-size: small;">(${score.three})</span></span>
+                                                                            </td>
+                                                                            <td>
+                                                                              <div class="progress mb-2">
+                                                                                <div class="progress-bar bg-warning" role="progressbar" style="width: ${(score.three / scoreCnt) * 100}%;" aria-valuenow="${score.three}" aria-valuemin="0" aria-valuemax="${scoreCnt}"></div>
+                                                                              </div>
+                                                                            </td>
+                                                                          </tr>
+                                                                          <tr>
+                                                                            <td>
+                                                                              <span>4점<span class="text-muted ms-1" style="font-size: small;">(${score.four})</span></span>
+                                                                            </td>
+                                                                            <td>
+                                                                              <div class="progress mb-2">
+                                                                                <div class="progress-bar bg-warning" role="progressbar" style="width: ${(score.four / scoreCnt) * 100}%;" aria-valuenow="${score.four}" aria-valuemin="0" aria-valuemax="${scoreCnt}"></div>
+                                                                              </div>
+                                                                            </td>
+                                                                          </tr>
+                                                                          <tr>
+                                                                            <td>
+                                                                              <span>5점<span class="text-muted ms-1" style="font-size: small;">(${score.five})</span></span>
+                                                                            </td>
+                                                                            <td>
+                                                                              <div class="progress mb-2">
+                                                                                <div class="progress-bar bg-warning" role="progressbar" style="width: ${(score.five / scoreCnt) * 100}%;" aria-valuenow="${score.five}" aria-valuemin="0" aria-valuemax="${scoreCnt}"></div>
+                                                                              </div>
+                                                                            </td>
+                                                                          </tr>
+                                                                        </tbody>
+                                                                      </table>
+                                                                      
                                                                 </div>
                                                             </div>
-                                                        
                                                         </div>
                                                     </div>
                                                 </div>  
@@ -164,7 +215,7 @@
                                                     <input type="hidden" value="1" name="p_idx"/>  <!--${pvo.p_idx}-->
                                                     <div class = "row justify-content-around">
                                                         <div class="col-md-3 mb-3 .square-div">
-                                                            <img style="object-fit: cover; width: 100%; height:auto;" class="rounded img-fluid" src="..\images\중앙선0550-07-000249.png">
+                                                            <img style="object-fit: cover; width: 100%; height:auto;" class="rounded img-fluid" src="../editor_upload/${rvo.r_file}"/>
                                                         </div>
                                                     
                                                         <div class="col-md-7 mx-2">
@@ -172,6 +223,10 @@
                                                                 <div class="d-flex justify-content-between" >
                                                                     <p style="font-size: larger; font-weight: bold; font-family:'suite';">${rvo.r_restNm}</p>
                                                                     <em><p style="font-size: medium; font-family: 'suite';" class="text-muted">${rvo.r_writedate}</p></em>
+                                                                </div>
+                                                                <div class="">
+
+
                                                                 </div>
                                                                 <div class="my-3">${rvo.r_content}</div>
                                                                 <div style="text-align: right;">
@@ -185,32 +240,6 @@
                                                     <hr/><!--구분선-->
 
                                                 </c:forEach>
-
-                                                <!--db 없어서 css 보려고 만들어 놓음!!-->
-                                                <input type="hidden" value="1" name="p_idx"/>  <!--${pvo.p_idx}-->
-                                                    <div class = "row justify-content-around">
-                                                        <div class="col-md-3 mb-3 .square-div">
-                                                            <img style="object-fit: cover; width: 100%; height:auto;" class="rounded img-fluid" src="..\editor_upload\KakaoTalk_20230617_200836354.jpg">
-                                                        </div>
-                                                    
-                                                        <div class="col-md-7 mx-2">
-                                                            <div class ="row ">
-                                                                <div class="d-flex justify-content-between" >
-                                                                    <p style="font-size: larger; font-weight: bold; font-family:'suite';">평창자연휴게소</p>
-                                                                    <em><p style="font-size: medium; font-family: 'suite';" class="text-muted">2023-06-28</p></em>
-                                                                </div>
-                                                                <div class="my-3">리뷰입니다.</div>
-                                                                <div style="text-align: right;">
-                                                                    <a  onclick="del('1')">
-                                                                        <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
-                                                                    </a>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <hr/>
-                                                    <!------------------>
                                             </div> 
                                                       
                                         

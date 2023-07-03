@@ -19,4 +19,18 @@ public interface ReviewMapper {
     List<ReviewVO> getRestReviewList(String RestNm);
 
     Float getScoreAvg(String restNm);
+
+    Float getScoreAvg_Mem(String m_idx);
+
+    int getScoreCnt(String m_idx);
+
+    int get5StarCnt(String m_idx);
+
+    int get4StarCnt(String m_idx);
+
+    int get3StarCnt(String m_idx);
+
+    int get2StarCnt(String m_idx);
+
+    int get1StarCnt(String m_idx);
 }
