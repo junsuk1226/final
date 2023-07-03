@@ -185,6 +185,8 @@
                         function send(form){
                             let check1 = /^[a-zA-Z0-9]+@[a-z]+\.[a-zA-Z]{2,3}$/i; // 아이디 이메일 형식 검사
                             let check2 = /^[a-zA-Z0-9]{8,}$/i;
+                            let check3 = /^010[0-9]{8}$/; // 휴대폰 번호 형식 검사
+
                            
 
                             let j_email = $("#j_email").val();
@@ -258,7 +260,7 @@
                                 $("#j_nickname").addClass("is-valid"); 
                             }
 
-                            if(m_phone.trim().length < 1){
+                            if(!check3.test(m_phone)){
                                 $("#m_phone").removeClass("is-valid");
                                 $("#m_phone").addClass("is-invalid");
 

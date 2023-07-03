@@ -80,7 +80,7 @@
     <form action="/viewCart" method="POST" id="frm">
       <input type="hidden" name="foodNm" value="${foodNm}">
       <input type="hidden" name="foodCost" value="${foodCost}">
-      <input type="hidden" name="RestNm" value="${RestNm}">
+      <input type="hidden" name="RestNm"  value="${RestNm}">
       <input type="hidden" name="totalPrice" value="${foodCost}">
       <input type="hidden" name="quantity" value="1">
       </form>
@@ -132,6 +132,22 @@
         });
 
       function cart(){
+        var inputElement = document.querySelector('input[name="RestNm"]');
+
+        // 값 가져오기
+        var restNm = inputElement.value;
+        var getRestNm = "${sessionScope.RestNm}";
+        
+        if (restNm !== getRestNm) {
+          var confirmMessage = "장바구니에는 같은 휴게소의 메뉴만 담을 수 있습니다.\n\n";
+          confirmMessage += "선택하신 메뉴를 장바구니에 담을 경우 이전에 담은 메뉴가 삭제됩니다.\n\n";
+
+      
+          if (!confirm(confirmMessage)) {
+            return; // 취소 버튼을 눌렀을 경우 함수 실행 중단
+          }
+        }
+
         document.getElementById('frm').submit();
       }
     </script>

@@ -31,6 +31,13 @@ public class CartController {
         // System.out.println(RestNm);
         // System.out.println(quantity);
         // System.out.println(totalPrice);
+        // 세션에 값 저장하기
+
+        session.setAttribute("foodNm", foodNm);
+        session.setAttribute("foodCost", foodCost);
+        session.setAttribute("RestNm", RestNm);
+        session.setAttribute("totalPrice", totalPrice);
+        session.setAttribute("quantity", quantity);
 
         int f_cost = 0;
         int t_price = 0;
@@ -55,7 +62,6 @@ public class CartController {
         String location = URLEncoder.encode(RestNm, StandardCharsets.UTF_8.toString());
 
         mv.setViewName("redirect:menu?RestNm=" + location);
-
         return mv;
     }
 }

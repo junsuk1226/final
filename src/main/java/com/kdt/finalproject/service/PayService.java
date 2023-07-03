@@ -30,4 +30,10 @@ public class PayService {
         return pvo;
     }
 
+    public PayVO order_receipt(String p_oderId) {
+        PayVO pvo = p_Mapper.order_receipt(p_oderId);
+
+        return pvo;
+    }
+
 }
