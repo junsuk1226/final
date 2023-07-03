@@ -9,4 +9,10 @@
   	SELECT * FROM regrest WHERE reg_status = 0 and reg_restNm = #{RestNm}
 </select>
 
+<!-- 가입신청한 휴게소 정보 가져오기 -->
+<select id="regList" resultType="com.kdt.finalproject.vo.MemVO">
+  SELECT * FROM member
+  WHERE m_status = 3
+</select>
+
 </mapper>
