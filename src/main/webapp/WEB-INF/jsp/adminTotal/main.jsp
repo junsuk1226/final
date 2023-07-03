@@ -17,24 +17,24 @@
     <div class="d-flex flex-row flex-shrink-0">
         <!-- 사이드 바 -->
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark admin-sidebar" style="width: 280px;">
-            <a href="/admin/main"><img style="max-width: 250px;" 
+            <a href="/adminTotal/main"><img style="max-width: 250px;" 
                 src="../admin_images/admin_logo.png"></a>
             <hr> <!--구분선-->
 
             <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="/admin/main" class="nav-link text-white active">
+                <a href="/adminTotal/main" class="nav-link text-white active">
                 홈
                 </a>
             </li>
             <li>
-                <a href="/admin/menu" class="nav-link text-white">
-                메뉴관리
+                <a href="/adminTotal/joinList" class="nav-link text-white">
+                가입신청 목록
                 </a>
             </li>
             <li>
-                <a href="/admin/sales" class="nav-link text-white">
-                매출관리
+                <a href="/adminTotal/menuList" class="nav-link text-white">
+                메뉴 관리
                 </a>
             </li>
             </ul>

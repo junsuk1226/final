@@ -45,4 +45,14 @@ public class AdminTotalController {
         return mv;
     }
 
+    @RequestMapping("/adminTotal/main")
+    public String adminTotalMainTest() {
+        return "/adminTotal/main";
+    }
+
+    @RequestMapping("/adminTotal/joinList")
+    public String adminTotalJoinListTest() {
+        return "/adminTotal/joinList";
+    }
+
 }
