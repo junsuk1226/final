@@ -31,4 +31,6 @@ public class PayVO {
             reg_idx; // 등록된 휴게소 외래키
 
     private int totalCost; // 전체 음식 가격
+
+    private String f_image;
 }
