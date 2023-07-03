@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="../css/main_custom.css" />
 <link rel="stylesheet" href="../css/menu.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+ <!--아이콘 cdn-->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
 <style>
      /*모바일 화면 로그인 버튼*/
      .main_custom_menubar .col-md-3 {
