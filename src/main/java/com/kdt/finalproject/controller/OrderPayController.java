@@ -501,7 +501,15 @@ public class OrderPayController {
                 sb.append((rnd.nextInt(10)));
             }
         }
-        // System.out.println(sb.toString());
+
+        dto.setM_idx(getm_idx);
+        dto.setFoonNm(foodNmsb.toString());
+        dto.setFoodCost(foodCostsb.toString());
+        dto.setRestNm(getrestNm);
+        dto.setFoodQnTotal(getsumPrice);
+        dto.setFoodCost(foodCostsb.toString());
+        dto.setFoodQnTotal(foodQnsb.toString());
+
         mv.addObject("orderId", sb.toString());
         mv.addObject("foodNm", foodNmsb.toString());
         mv.addObject("sumPrice", getsumPrice);
@@ -523,6 +531,7 @@ public class OrderPayController {
         String aid = "";
         String tid = "";
         String approved_at = "";
+        int totalAmount = 0;
 
         try {
             Encoder encoder = Base64.getEncoder();
@@ -574,6 +583,9 @@ public class OrderPayController {
                 // System.out.println(json);
 
                 approved_at = (String) json.get("approvedAt");
+                aid = (String) json.get("lastTransactionKey");
+                tid = (String) json.get("paymentKey");
+                totalAmount = Integer.parseInt(String.valueOf(json.get("totalAmount")));
 
                 String subapproved_at = approved_at.substring(0, approved_at.lastIndexOf("+"));
                 String datetime[] = subapproved_at.split("T");
@@ -581,12 +593,14 @@ public class OrderPayController {
                 String p_time = datetime[1];
 
                 PayVO vo = new PayVO();
-                // vo.setM_idx();
+                vo.setM_idx(dto.getM_idx());
                 // vo.setRestCd();
-                // vo.setRestNm();
-                // vo.setFoodNm();
-                // vo.setFoodCost();
-                // vo.setFoodNm();
+                vo.setRestNm(dto.getRestNm());
+                vo.setFoodNm(dto.getFoonNm());
+                vo.setFoodCost(dto.getFoodCost());
+                vo.setTotalCost(totalAmount);
+                vo.setFoodCost(dto.getFoodCost());
+                vo.setFoodQn(dto.getFoodQnTotal());
 
                 vo.setP_date(p_date);
                 vo.setP_time(p_time);
@@ -594,8 +608,8 @@ public class OrderPayController {
                 vo.setTid(tid);
                 vo.setP_oderId(getorderId);
 
-                String poNum_count = String.format("%04d", p_Service.poNum_count(vo) + 1); // vo.setRestNm(); 체크
-                vo.setP_oNum("RestCd" + "_" + poNum_count);
+                String poNum_count = String.format("%04d", p_Service.poNum_count(vo) + 1); // vo.setRestNm();
+                vo.setP_oNum(poNum_count);
 
                 int cnt = p_Service.tosspay(vo);
 

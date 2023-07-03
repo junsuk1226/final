@@ -36,6 +36,7 @@ public class MenuListController {
     @RequestMapping("/menu")
     public ModelAndView menu(String RestNm, String r_photo) throws Exception {
         ModelAndView mv = new ModelAndView();
+
         String key = "2077960536";// 개인
                                   // 인증키
                                   // (Encoding)

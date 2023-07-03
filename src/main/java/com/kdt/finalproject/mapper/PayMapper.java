@@ -1,5 +1,7 @@
 package com.kdt.finalproject.mapper;
 
+import java.util.List;
+
 import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.PayVO;
 
@@ -14,5 +16,7 @@ public interface PayMapper {
     PayVO kakao_refunt_select(String tid);
 
     PayVO order_receipt(String p_oderId);
+
+    List<PayVO> order_list(String m_idx);
 
 }
