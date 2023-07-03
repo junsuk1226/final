@@ -102,7 +102,7 @@
             // ------  결제위젯 렌더링 ------ 
             // 결제수단 UI를 렌더링할 위치를 지정합니다. `#payment-method`와 같은 CSS 선택자와 결제 금액 객체를 추가하세요.
             // https://docs.tosspayments.com/reference/widget-sdk#renderpaymentmethods선택자-결제-금액-옵션
-            paymentWidget.renderPaymentMethods("#payment-method", { value: 1000000 }) //-----------------------------------------총 결제금액 넣을 자리
+            paymentWidget.renderPaymentMethods("#payment-method", { value: "${sumPrice}" }) //-----------------------------------------총 결제금액 넣을 자리
 
             // ------  이용약관 렌더링 ------
             // 이용약관 UI를 렌더링할 위치를 지정합니다. `#agreement`와 같은 CSS 선택자를 추가하세요.
@@ -115,11 +115,11 @@
             button.addEventListener("click", function () {
             paymentWidget.requestPayment({
                 orderId: "${orderId}",            // 48자리 랜덤변수 예정
-                orderName: "떡볶이 곱배기 먹고싶다..",                 // foodNm으로 표시 
+                orderName: "${foodNm}",                 // foodNm으로 표시 
                 successUrl: "http://localhost:8080/tosspayment/success",  // 결제에 성공시 이동하는 페이지
                 failUrl: "http://localhost:8080/orderpay",        // 결제에 실패시 이동하는 페이지
-                customerEmail: "customer123@gmail.com", //m_id
-                customerName: "김토스"  //m_name
+                customerEmail: "${mvo.m_id}", //m_id
+                customerName: "${mvo.m_name}"  //m_name
             })
             })
         </script>
