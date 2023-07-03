@@ -34,7 +34,7 @@
         <div class ="container-fluid text-center my-5">
             <div class="row justify-content-center my-4 ">
                 <div class="col-md-12">
-                    <a href="/admin/index"><img style="max-width: 300px; margin-top: 20px; margin-bottom: 30px;" 
+                    <a href="/admin"><img style="max-width: 300px; margin-top: 20px; margin-bottom: 30px;" 
                         src="../admin_images/myhyu_logo.png"></a>
                 </div>
             </div>

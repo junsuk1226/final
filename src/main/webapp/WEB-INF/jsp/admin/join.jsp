@@ -28,7 +28,8 @@
             <div class="row justify-content-center ">
 
                 <div class="col-md-12">
-                    <a href="/main"><img style="max-width: 300px;" src="../main_images/logo.png"/></a>
+                    <a href="/admin"><img style="max-width: 300px; margin-top: 20px; margin-bottom: 30px;" 
+                        src="../admin_images/myhyu_logo.png"></a>
                 </div>
 
             </div>
