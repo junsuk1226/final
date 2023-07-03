@@ -30,7 +30,7 @@ public class AdminController {
         ModelAndView mv = new ModelAndView();
 
         if (vo != null) {
-            MemVO mvo = m_Service.ml_login(vo);
+            MemVO mvo = m_Service.admin_login(vo);
             if (mvo != null) {
                 session.setAttribute("mvo", mvo);
             }

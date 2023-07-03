@@ -31,7 +31,13 @@
   <!-- 관리자 로그인 -->
   <select id="adminLogin" parameterType="Map" resultType="com.kdt.finalproject.vo.MemVO">
     SELECT * FROM final.member
-    where m_id = #{m_id} and status = 1
+    where m_id = #{m_id} and m_status = 1
+  </select>
+
+   <!-- 총 관리자 로그인 -->
+  <select id="adminTotalLogin" parameterType="Map" resultType="com.kdt.finalproject.vo.MemVO">
+    SELECT * FROM final.member
+    where m_id = #{m_id} and m_status = 2
   </select>
   
 

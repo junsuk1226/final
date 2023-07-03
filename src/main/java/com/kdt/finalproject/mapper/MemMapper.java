@@ -16,4 +16,6 @@ public interface MemMapper {
     int updatePw(MemVO vo);
 
     MemVO adminLogin(String m_id);
+
+    MemVO adminTotalLogin(String m_id);
 }
