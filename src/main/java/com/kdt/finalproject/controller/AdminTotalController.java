@@ -26,17 +26,20 @@ public class AdminTotalController {
     }
 
     @RequestMapping(value = "/adminTotal/reqLogin", method = RequestMethod.POST)
-    public ModelAndView view(MemVO vo) {
+    public ModelAndView adminTotalLogin(MemVO vo) {
         ModelAndView mv = new ModelAndView();
 
         if (vo != null) {
             MemVO mvo = m_Service.adminTotal_login(vo);
             if (mvo != null) {
                 session.setAttribute("mvo", mvo);
+                mv.setViewName("/adminTotal/main");
+            } else {
+                mv.setViewName("/adminTotal/index");
+                mv.addObject("alat", "alat");
             }
-            mv.setViewName("/adminTotal/main");
         } else {
-            mv.setViewName("/adminTotal");
+            mv.setViewName("/adminTotal/index");
             mv.addObject("alat", "alat");
         }
         return mv;
