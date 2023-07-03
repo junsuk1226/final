@@ -2,7 +2,6 @@ package com.kdt.finalproject.mapper;
 
 import java.util.List;
 
-import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.PayVO;
 
 public interface PayMapper {
@@ -20,5 +19,7 @@ public interface PayMapper {
     List<PayVO> order_list(String m_idx);
 
     int delOrder(String p_idx);
+
+    PayVO order_selected(String p_idx);
 
 }

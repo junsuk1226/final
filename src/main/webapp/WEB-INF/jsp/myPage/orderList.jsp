@@ -148,7 +148,7 @@
                                             <div class="card-body justify-content-center">
                                             <c:forEach var="pvo" items="${ar}">
                                                 <form action="/orderDetail" name="ff" method="post">
-                                                    <input type="hidden" value="${pvo.p_idx}" name="p_idx"/>  <!--${pvo.p_idx}-->
+                                                    <input type="hidden" value="${pvo.p_idx}" name="p_idx"/> 
                                                     <div class = "row justify-content-around">
                                                         <div class="col-md-3 mb-3 .square-div">
                                                             <img style="object-fit: cover; width: 100%; height:auto;" class="rounded img-fluid" src="${pvo.f_image}">

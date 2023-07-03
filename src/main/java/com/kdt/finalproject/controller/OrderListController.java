@@ -71,6 +71,10 @@ public class OrderListController {
     public ModelAndView orderDetail(String cPage, String p_idx) {
         ModelAndView mv = new ModelAndView();
 
+        PayVO pvo = p_service.order_selected(p_idx);
+
+        mv.addObject("pvo", pvo);
+
         mv.setViewName("/myPage/orderDetail");
         return mv;
     }

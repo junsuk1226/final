@@ -200,7 +200,7 @@
                                                                         <th style="font-family: 'suite'">지난 주문</th>
                                                                         <td style="font-family: 'suite'">21건</td>
                                                                         <td style="text-align: center;"> 
-                                                                            <a onclick=""><i class="fa fa-arrow-right arrow fa-lg" aria-hidden="true"></i></a>                                        
+                                                                            <a href='/order'><i class="fa fa-arrow-right arrow fa-lg" aria-hidden="true"></i></a>                                        
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>  

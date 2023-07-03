@@ -67,42 +67,60 @@
                             </nav>
                             <!-- Page content-->
 
-                            <div class="row">
-                                <div class="col-md-1"></div>
-                                <div class="col-md-9">
-                                    <form action="" name="frm" method="get">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr style="background:'#353535'">
-                                                <th colspan="5">주문내역 상세보기</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <tr>
-                                                <td></td>
-                                                <td>
-
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>    
-                                    </form>
-                                    <div style="text-align: right;">
-                                        <button class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="writeReview()" type="button">리뷰쓰기</button>
+                            <div class="container-fluid">
+                                <div class="row justify-content-center mt-5">
+                                    <div class="col-md-9 mb-3">
+                                            <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
+                                                <span class="text-muted">주문 상세정보</span>
+                                            </h2>
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
+        
+                            <div class="container-fluid mb-4">
+                                <div class="row justify-content-center col-md-12 my-5">
+                                    <div  class="col-md-9">
+                                         <div class="card shadow p-3 mb-5 bg-body rounded justify-content-center" style="border: none;">
+                                            <div class="card-body">
+                                                <form action="" name="frm" method="get">
+                                        
+                                                    <div class="paybox">
+                                                        주문 번호: 값 주세요(휴게소별 번호 다르게, 999번 초기화)</br>
+                                                        주문 일시: 값 주세요(날짜 시간)모두 db에서 뽑아
+                                                    </div></br>
+                                
+                                                    <div class="paybox">
+                                                        회원 이름: 값 주세요</br>
+                                                        회원 전화번호: 값 주세요
+                                                    </div></br>
+                                
+                                                    <div class="paybox">
+                                                        휴게소: 값 주세요 휴게소</br>
+                                                        상품 이름: 값 주세요 1 / 수량: 값 주세요 1 / 가격: <fmt:formatNumber value="${row.price}" pattern="#,###,###" />원</br>
+                                                        상품 이름: 값 주세요 2 / 수량: 값 주세요 2 / 가격: <fmt:formatNumber value="${row.price}" pattern="#,###,###" />원</br>
+                                                        총 결제 금액: <fmt:formatNumber value="${row.price}" pattern="#,###,###" />원</br>
+                                                        결제방식: 값 주세요
+                                                    </div></br>
+                                
+                                                    <div class="paybox">
+                                                    </div></br>
+            
+                                                    <button class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="writeReview()" type="button">리뷰쓰기</button>
+            
+                                                </form>
+                                                
+                                                
+                                            </div>
+                                        </div>
+        
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div>
+                                    
+                                    
+                    
                             
                                 <!-- footer 시작---------------------------------------------------------------------------------------------->
                                 <!-- <body class="d-flex flex-column"> -->
