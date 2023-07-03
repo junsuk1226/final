@@ -110,9 +110,9 @@
                             <div class="container-fluid">
                                 <div class="row justify-content-center mt-5">
                                     <div class="col-md-9 mb-3">
-                                            <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
-                                                ${sessionScope.mvo.m_name}<span class="text-muted">님의 리뷰 목록</span>
-                                            </h2>
+                                        <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
+                                            ${sessionScope.mvo.m_name}<span class="text-muted">님의 리뷰 목록</span>
+                                        </h2>
                                     </div>
                                 </div>
                             </div>
@@ -124,11 +124,11 @@
                                                 <div class = "card-body">
                                                     <div class="card-title">
                                                         <span>나의 별점 평균</span>
-                                                        <div class="row justify-content-between">
-                                                            <div class="score-num col-md-3">
-                                                                <h2>4.5</h2>
+                                                        <div class="row justify-content-around align-items-center">
+                                                            <div class="score-num col-md-3 justify-content-end">
+                                                                <h2><i class="fa fa-star me-2" aria-hidden="true" style="color: #ffd000;"></i><span>4.5</span></h2>
                                                             </div>
-                                                            <div class="score-bar col-md-6">
+                                                            <div class="score-bar col-md-8">
                                                                 <div class="progress mb-2">
                                                                     <div class="progress-bar bg-warning"  role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                                 </div>
@@ -154,7 +154,7 @@
                                 </div>
                             </div>
                             <!-------->
-
+                            <!-----리뷰 목록------>
                             <div class="row justify-content-center my-5">
                                 <div class="col-md-9 mb-3">
                                         <div class="card ms-2 me-1 shadow p-3 mb-5 bg-body rounded" style="border: none;">
@@ -181,8 +181,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                        
+                                                    </div> 
                                                     <hr/><!--구분선-->
 
                                                 </c:forEach>
