@@ -49,38 +49,43 @@ public class OrderPayController {
         return mv;
     }
 
-    @RequestMapping("/kakao/pay")//음식숫자 DB 만들어야 함.
-    public ModelAndView kakaoPay(HttpServletRequest request, String sumPrice, String[] foodNm, String[] foodQn, String[] ggetfoodCost, String m_idx, String restNm) {
+    @RequestMapping("/kakao/pay") // 음식숫자 DB 만들어야 함.
+    public ModelAndView kakaoPay(String sumPrice, String[] foodNm, String[] foodQn,
+            String[] ggetfoodCost, String m_idx, String restNm) {
         ModelAndView mv = new ModelAndView();
-        
-        //음식명
+
+        // 음식명
         String[] getfoodNm = foodNm;
         StringBuffer foodNmsb = new StringBuffer();
-        for(String str : getfoodNm){
-            foodNmsb.append(str+"/");
+        for (String str : getfoodNm) {
+            foodNmsb.append(str + "/");
         }
-        
-        foodNmsb.setLength(foodNmsb.length()-1);
+
+        foodNmsb.setLength(foodNmsb.length() - 1);
         // System.out.println(foodNmsb.toString());
 
-        //음식숫자-------------int값 수정해야 함.
+        // 음식숫자-------------int값 수정해야 함.
         String[] getfoodQn = foodQn;
         StringBuffer foodQnsb = new StringBuffer();
-        for(String str : getfoodQn){
-            foodQnsb.append(str+"/");
+        for (String str : getfoodQn) {
+            foodQnsb.append(str + "/");
         }
 
-        foodQnsb.setLength(foodQnsb.length()-1);
+        foodQnsb.setLength(foodQnsb.length() - 1);
         // System.out.println(foodQnsb.toString());
 
-        //음식개별 가격
+        // quantity값이 int라 배열의 문자열은 넣을 수 없음. 첫번쨰 수량만 대표로 넣는다.
+        int foonQn = Integer.valueOf(getfoodQn[0]);
+        // System.out.println(foonQn);
+
+        // 음식개별 가격
         String[] getfoodCost = ggetfoodCost;
         StringBuffer foodCostsb = new StringBuffer();
-        for(String str : getfoodCost){
-            foodCostsb.append(str+"/");
+        for (String str : getfoodCost) {
+            foodCostsb.append(str + "/");
         }
 
-        foodCostsb.setLength(foodCostsb.length()-1);
+        foodCostsb.setLength(foodCostsb.length() - 1);
         // System.out.println(foodCostsb.toString());
 
         String getm_idx = m_idx;
@@ -92,23 +97,24 @@ public class OrderPayController {
         String adminkey = "22c4183a06a4812b3265f8971a5fed6e"; // Admin key(kakaodeveloper에서 확인)
         String cid = "TC0ONETIME"; // 테스트용 가맹점 코드
 
-        //가맹점 주문번호 생성 시작
+        // 가맹점 주문번호 생성 시작
         Random rnd = new Random();
         StringBuffer sb2 = new StringBuffer();
 
-                for (int i = 0; i < 48; i++) {
-                    if (rnd.nextBoolean()) {
-                        sb2.append((char) ((int) (rnd.nextInt(26)) + 97));
-                    } else {
-                        sb2.append((rnd.nextInt(10)));
-                    }
-                }
-        //가맹점 주문번호 생성 끝
+        for (int i = 0; i < 48; i++) {
+            if (rnd.nextBoolean()) {
+                sb2.append((char) ((int) (rnd.nextInt(26)) + 97));
+            } else {
+                sb2.append((rnd.nextInt(10)));
+            }
+        }
+        // 가맹점 주문번호 생성 끝
 
         String partner_order_id = sb2.toString(); // 가맹점 주문번호
         String partner_user_id = "restCd"; // 가맹점 회원 id(휴게소코드)---------값 받기 넘겨주세요.
         String item_name = foodNmsb.toString(); // 상품명
-        String quantity = "1"; // 상품 수량
+        int quantity = foonQn; // 상품 수량
+        String foodQnTotal = foodQnsb.toString(); // 상품 개별 수량
         String foodCost = foodCostsb.toString(); // 상품 개별 가격
         String total_amount = sumPrice; // 상품 총액
         String tax_free_amount = "0"; // 상품 비과세 금액-----모르겠다.
@@ -129,12 +135,13 @@ public class OrderPayController {
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);
             conn.setRequestProperty("Authorization", header);
+            conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
             StringBuffer sb = new StringBuffer();
             sb.append("cid=" + cid);
             sb.append("&partner_order_id=" + partner_order_id);
             sb.append("&partner_user_id=" + partner_user_id);
-            sb.append("&item_name=" + item_name);
+            sb.append("&item_name=" + URLEncoder.encode(item_name, "UTF-8"));
             sb.append("&quantity=" + quantity);
             sb.append("&total_amount=" + total_amount);
             sb.append("&tax_free_amount=" + tax_free_amount);
@@ -149,7 +156,7 @@ public class OrderPayController {
             bw.flush();
 
             int res_code = conn.getResponseCode();
-            System.out.println(res_code);
+            // System.out.println(res_code);
 
             if (res_code == HttpURLConnection.HTTP_OK) {
                 BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -184,6 +191,7 @@ public class OrderPayController {
                 dto.setFoonNm(item_name);
                 dto.setFoodCost(foodCost);
                 dto.setRestNm(getrestNm);
+                dto.setFoodQnTotal(foodQnTotal);
             }
 
         } catch (Exception e) {
@@ -277,13 +285,13 @@ public class OrderPayController {
                 // System.out.println(p_date);
                 // System.out.println(p_time);
 
-                System.out.println(dto.getFoodCost());
+                // System.out.println(dto.getFoodCost());
                 PayVO vo = new PayVO();
                 vo.setM_idx(dto.getM_idx());
-                // vo.setRestCd();
                 vo.setRestNm(dto.getRestNm());
                 vo.setFoodNm(dto.getFoonNm());
                 vo.setFoodCost(dto.getFoodCost());
+                vo.setFoodQn(dto.getFoodQnTotal());
 
                 vo.setP_date(p_date);
                 vo.setP_time(p_time);
@@ -295,7 +303,7 @@ public class OrderPayController {
                 // System.out.println(sb2.toString());
 
                 String poNum_count = String.format("%04d", p_Service.poNum_count(vo) + 1); // vo.setRestNm();
-                vo.setP_oNum("RestCd" + "_" + poNum_count);
+                vo.setP_oNum(poNum_count);
 
                 int cnt = p_Service.kakaopay(vo);
 
@@ -305,6 +313,17 @@ public class OrderPayController {
             e.printStackTrace();
         }
 
+        PayVO pvo = p_Service.order_receipt(partner_order_id);
+
+        // 음식 이름 배열
+        String[] foodname = pvo.getFoodNm().split("/");
+
+        // 음식 수량 배열
+        String[] foodqnt = pvo.getFoodQn().split("/");
+
+        mv.addObject("pvo", pvo);
+        mv.addObject("foodname", foodname);
+        mv.addObject("foodqnt", foodqnt);
         mv.setViewName("orderpaycomplete");
 
         return mv;

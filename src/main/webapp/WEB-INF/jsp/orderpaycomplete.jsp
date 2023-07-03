@@ -73,20 +73,20 @@
                                 </div></br>
                                 <div class="card border border-2" style="width: 26rem;">
                                     <div class="paybox">
-                                        <p class="text-left text_bold" id="order_num" style="text-align: center; margin-top: 15px;">restCd_0001</p></br>
-                                        <p class="text-left" style="margin-left: 20px;" >주문 일시: 2000-01-01 / 12:12:12</p>
+                                        <p class="text-left text_bold" id="order_num" style="text-align: center; margin-top: 15px;">${pvo.p_oNum}</p></br>
+                                        <p class="text-left" style="margin-left: 20px;" >주문 일시: ${pvo.p_date} / ${pvo.p_time}</p>
                                     </div>
                                 </div></br>
 
                                 <div class="card border border-2 container" style="width: 26rem;">
                                     <div class="paybox row">
-                                        <p class="text-left text_bold" style="margin-left: 10px; margin-top: 15px;" >서울만남(부산)휴게소(하행)</p>
-                                        <p class="col-md-12">
-                                            <span style="display: inline-block; float: left; margin-left: 10px;" >상품 이름1 / 1개</span>
-                                        </p>
-                                        <p class="col-md-12">
-                                            <span style="display: inline-block; float: left; margin-left: 10px;" >상품 이름2 / 2개</span>
-                                        </p>
+                                        <p class="text-left text_bold" style="margin-left: 10px; margin-top: 15px; padding-bottom: 10px;" >${pvo.restNm}</p>
+                                        <c:forEach var="foodname1" items="${foodname }" varStatus="st">
+                                            <p class="col-md-12">
+                                                <span style="display: inline-block; float: left; margin-left: 10px;" >${foodname1} / ${foodqnt[st.index]}개</span>
+                                            </p>
+                                        </c:forEach>    
+
                                     </div>
                                 </div></br>
                                 <div style="text-align: right;">

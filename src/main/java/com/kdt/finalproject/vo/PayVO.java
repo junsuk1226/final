@@ -25,7 +25,8 @@ public class PayVO {
             aid, // 요청 고유 번호(카카오), lastTransactionKey(토스)
             tid, // 결제 고유 번호(카카오), paymentKey(토스)
             cid, // 가맹점 코드
-            p_oderId; // 주문 번호(48자리 랜덤변수)
+            p_oderId, // 주문 번호(48자리 랜덤변수)
+            foodQn; // 개별 음식 주문량
 
     private int totalCost; // 전체 음식 가격
 }
