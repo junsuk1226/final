@@ -14,17 +14,28 @@
                  /*모바일 화면 로그인 버튼*/
                 .main_custom_menubar .col-md-3 {
                     white-space: nowrap;
-                }  
-                 
-                 @media (max-width: 767px) {
+                }
+
+                @media (max-width: 767px) {
                     .main_custom_menubar .d-flex {
-                    flex-direction: row;
-                    justify-content: flex-end;
+                        flex-direction: row;
+                        justify-content: flex-end;
                     }
                     .main_custom_menubar .col-md-3 {
-                    flex-basis: 100%;
+                        flex-basis: 100%;
                     }
                 }
+
+                .fa-user-circle{
+                    color: #6600db;
+                }
+                .fa-user-circle:hover{
+                    color: #b699ee;
+                }
+                .fa-custom-size {
+                    font-size: 2.6em;
+                }
+                /*여기까지*/
 
             </style>
         </head>
@@ -45,7 +56,8 @@
                     <c:if test="${sessionScope.mvo != null}">
                     <div class="col-md-3 text-end d-flex align-items-center"> 
                         <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/logout'">로그 아웃</button>
-                        <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/myPage'">마이페이지</button>
+                        <!-- <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/myPage'">마이페이지</button> -->
+                        <a class="align-items-center" href='/myPage'><i class="fa fa-user-circle fa-custom-size " aria-hidden="true"></i></a>
                     </div>
                     </c:if>
                 </header>
