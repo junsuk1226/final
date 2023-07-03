@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.kdt.finalproject.mapper.RegRestMapper">
+
+<select id="getRegRest" parameterType="String" resultType="com.kdt.finalproject.vo.RegRestVO">
+  	SELECT * FROM regrest WHERE reg_status = 0 and reg_restNm = #{RestNm}
+</select>
+
+</mapper>

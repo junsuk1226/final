@@ -13,10 +13,10 @@ public class FoodService {
     @Autowired
     private FoodMapper f_Mapper;
 
-    public FoodVO[] all() {
+    public FoodVO[] all(String RestNm) {
         FoodVO[] ar = null;
 
-        List<FoodVO> list = f_Mapper.getFood();
+        List<FoodVO> list = f_Mapper.getFood(RestNm);
         if (list != null && list.size() > 0) {
             ar = new FoodVO[list.size()];
             list.toArray(ar);
