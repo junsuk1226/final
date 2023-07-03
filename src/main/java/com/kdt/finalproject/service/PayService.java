@@ -1,5 +1,7 @@
 package com.kdt.finalproject.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +36,19 @@ public class PayService {
         PayVO pvo = p_Mapper.order_receipt(p_oderId);
 
         return pvo;
+    }
+
+    public PayVO[] order_list(String m_idx) {
+
+        List<PayVO> list = p_Mapper.order_list(m_idx);
+        PayVO[] ar = null;
+
+        if (list != null && list.size() > 0) {
+            ar = new PayVO[list.size()];
+            list.toArray(ar);
+        }
+
+        return ar;
     }
 
 }

@@ -18,6 +18,11 @@
     SELECT * FROM paylog where p_oderId = #{p_oderId}
 </select>
 
+<select id="order_list" parameterType="String" resultType="com.kdt.finalproject.vo.PayVO">
+    SELECT * FROM paylog where m_idx = #{m_idx}
+</select>
+
+
 <!-- insert -->
 <insert id="kakaopay" parameterType="com.kdt.finalproject.vo.PayVO">
 		INSERT INTO paylog(m_idx, restCd, foodNm, foodCost, totalCost, p_date, p_status, p_time, p_oNum, restNm, payMethod, aid, tid, cid, p_oderId, foodQn)

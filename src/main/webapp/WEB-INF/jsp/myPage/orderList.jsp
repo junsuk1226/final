@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 
         <html lang="en">
@@ -144,9 +145,9 @@
                                 <div class="col-md-9 mb-3">
                                         <div class="card ms-2 me-1 shadow p-3 mb-5 bg-body rounded" style="border: none;">
                                             <div class="card-body justify-content-center">
-                                                <!--c:forEach-->
+                                            <c:forEach var="pvo" items="${ar}">
                                                 <form action="/orderDetail" name="ff" method="post">
-                                                    <input type="hidden" value="1" name="p_idx"/>  <!--${pvo.p_idx}-->
+                                                    <input type="hidden" value="${pvo.p_idx}" name="p_idx"/>  <!--${pvo.p_idx}-->
                                                     <div class = "row justify-content-around">
                                                         <div class="col-md-3 mb-3 .square-div">
                                                             <img style="object-fit: cover; width: 100%; height:auto;" class="rounded img-fluid" src="..\images\중앙선0550-07-000249.png">
@@ -155,10 +156,10 @@
                                                         <div class="col-md-7 mx-2">
                                                             <div class ="row ">
                                                                 <div class="d-flex justify-content-between" >
-                                                                    <p style="font-size: larger; font-weight: bold; font-family:'suite';">평창자연휴게소</p>
-                                                                    <em><p style="font-size: medium; font-family: 'suite';" class="text-muted">2023-06-24</p></em>
+                                                                    <p style="font-size: larger; font-weight: bold; font-family:'suite';">${pvo.restNm}</p>
+                                                                    <em><p style="font-size: medium; font-family: 'suite';" class="text-muted">${pvo.p_date}</p></em>
                                                                 </div>
-                                                                <div class="my-3">떡볶이 외 21건</div>
+                                                                <div class="my-3">${fn:split(pvo.foodNm,'/')[0]} 외 21건</div>
                                                                 <hr style="border: 0.5px dashed;"/>
                                                                 <div class="row d-flex justify-content-between align-items-center">
                                                                     <div class="col-md-3"> 총 218,000원</div>
@@ -177,7 +178,7 @@
                                                         
                                                     <hr/><!--구분선-->
                                                 </form>
-                                                <!--c:forEach-->
+                                            </c:forEach>
                                             </div> 
                                                       
                                         
