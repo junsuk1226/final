@@ -124,28 +124,29 @@
                                                 <div class = "card-body">
                                                     <div class="card-title">
                                                         <span>나의 별점 평균</span>
-                                                        <div class="row">
-                                                            <div id="score-num col-md-3">
+                                                        <div class="row justify-content-between">
+                                                            <div class="score-num col-md-3">
                                                                 <h2>4.5</h2>
                                                             </div>
-                                                            <div id="score-bar col-md-6">
+                                                            <div class="score-bar col-md-6">
                                                                 <div class="progress mb-2">
-                                                                    <div class="progress-bar bg-warning" role="progressbar" aria-label="Success example" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    <label for="">1점(0)</span>
+                                                                    <div class="progress-bar bg-warning"  role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                                 </div>
                                                                 <div class="progress mb-2">
-                                                                    <div class="progress-bar bg-warning" role="progressbar" aria-label="Info example" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                                                 </div>
                                                                 <div class="progress mb-2">
-                                                                    <div class="progress-bar bg-warning" role="progressbar" aria-label="Warning example" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                                                                 </div>
                                                                 <div class="progress mb-2">
-                                                                    <div class="progress-bar bg-warning" role="progressbar" aria-label="Danger example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                                                 </div>
                                                                 <div class="progress mb-12">
-                                                                    <div class="progress-bar bg-warning" role="progressbar" aria-label="Danger example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                                                 </div>
-
                                                             </div>
+                                                        
                                                         </div>
                                                     </div>
                                                 </div>  
