@@ -1,13 +1,19 @@
 package com.kdt.finalproject.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kdt.finalproject.service.JoinService;
 import com.kdt.finalproject.service.MemService;
 import com.kdt.finalproject.vo.MemVO;
 
@@ -19,6 +25,9 @@ public class AdminController {
 
     @Autowired
     private MemService m_Service;
+
+    @Autowired
+    private JoinService j_Service;
 
     @RequestMapping("/admin")
     public String adminTest() {
@@ -45,9 +54,42 @@ public class AdminController {
         return mv;
     }
 
-    @RequestMapping("/admin/join")
-    public String adminJoinTest() {
+    @GetMapping("/admin/join")
+    public String AdminJoin() {
         return "/admin/join";
+    }
+
+    @RequestMapping("/admin/join")
+    @ResponseBody
+    public Map<String, String> commonJoin(String j_email, String j_password, String j_nickname,
+            String j_confirmpassword,
+            String m_phone) {
+        // ModelAndView mv = new ModelAndView();
+        Map<String, String> map = new HashMap<>();
+
+        String email = j_email;
+        String password = j_password;
+        String name = j_nickname;
+
+        MemVO vo = new MemVO();
+        vo.setM_id(email);
+        vo.setM_pw(password);
+        vo.setM_name(name);
+        vo.setM_phone(m_phone);
+
+        Boolean chk = j_Service.check_email(vo);
+
+        if (chk == true) {
+            int cnt = j_Service.addAdmin(vo);
+            // mv.setViewName("redirect:/login");
+            map.put("commjoin_fail", "0");
+        } else {
+            // session.setAttribute("commjoin_fail", "commjoin_fail");
+            // mv.setViewName("redirect:/join");
+            map.put("commjoin_fail", "1");
+        }
+
+        return map;
     }
 
     @RequestMapping("/admin/main")
