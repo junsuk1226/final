@@ -4,12 +4,15 @@
         <html>
 
         <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>Insert title here</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
                 integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
                 crossorigin="anonymous">
             <link rel="stylesheet" href="../css/main_custom.css" />
+            <!--아이콘 cdn-->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
             <style>
                  /*모바일 화면 로그인 버튼*/
                 .main_custom_menubar .col-md-3 {
@@ -69,14 +72,14 @@
                 <div class="container-fluid row  mycustom-search_group">
         
                     <div class="mycustom-search_group_inner"> 
-                        <h1 class="mycustom-search_logo"></h1>
+                        <div class="mycustom-search_logo mb-1"><img class="mycustom-search_logo_icon " src="../main_images/search_Icon2.png"></div>
                         <form id="sform" name="search" method="post" action="/search">
                             <fieldset>
                                 <input type="hidden">
                                 <div class="mycustom-search_inputbox">
                                     <input class="mycustom-search_input" placeholder="휴게소명을 입력해 주세요." type="text" id="search1" name="sname" onkeyup="if(window.event.keyCode==13){sendData(this.form)}">
                                 </div>
-                                <button class="mycustom-search_btn" type="button" onclick="sendData(this.form)">검색</button>
+                                <button class="mycustom-search_btn" type="button" onclick="sendData(this.form)"><img class="mycustom-search_icon" src="../main_images/search.png"></button>
                             </fieldset>
                         </form>
                     </div>
