@@ -64,7 +64,7 @@ public class OrderPayController {
         foodNmsb.setLength(foodNmsb.length() - 1);
         // System.out.println(foodNmsb.toString());
 
-        // 음식숫자-------------int값 수정해야 함.
+        // 음식숫자
         String[] getfoodQn = foodQn;
         StringBuffer foodQnsb = new StringBuffer();
         for (String str : getfoodQn) {
@@ -450,8 +450,46 @@ public class OrderPayController {
     }
 
     @RequestMapping("/toss/pay")
-    public ModelAndView tossPay() {
+    public ModelAndView tossPay(String sumPrice, String[] foodNm, String[] foodQn,
+            String[] ggetfoodCost, String m_idx, String restNm) {
         ModelAndView mv = new ModelAndView();
+
+        // 음식명
+        String[] getfoodNm = foodNm;
+        StringBuffer foodNmsb = new StringBuffer();
+        for (String str : getfoodNm) {
+            foodNmsb.append(str + "/");
+        }
+
+        foodNmsb.setLength(foodNmsb.length() - 1);
+        System.out.println(foodNmsb.toString());
+
+        // 음식숫자
+        String[] getfoodQn = foodQn;
+        StringBuffer foodQnsb = new StringBuffer();
+        for (String str : getfoodQn) {
+            foodQnsb.append(str + "/");
+        }
+
+        foodQnsb.setLength(foodQnsb.length() - 1);
+        // System.out.println(foodQnsb.toString());
+
+        // 음식개별 가격
+        String[] getfoodCost = ggetfoodCost;
+        StringBuffer foodCostsb = new StringBuffer();
+        for (String str : getfoodCost) {
+            foodCostsb.append(str + "/");
+        }
+
+        foodCostsb.setLength(foodCostsb.length() - 1);
+        // System.out.println(foodCostsb.toString());
+
+        String getm_idx = m_idx;
+        String getrestNm = restNm;
+        String getsumPrice = sumPrice;
+        // System.out.println(getm_idx);
+        // System.out.println(getrestNm);
+        System.out.println(getsumPrice);
 
         Random rnd = new Random();
         StringBuffer sb = new StringBuffer();
@@ -465,6 +503,8 @@ public class OrderPayController {
         }
         // System.out.println(sb.toString());
         mv.addObject("orderId", sb.toString());
+        mv.addObject("foodNm", foodNmsb.toString());
+        mv.addObject("sumPrice", getsumPrice);
         mv.setViewName("/tosspay");
 
         return mv;

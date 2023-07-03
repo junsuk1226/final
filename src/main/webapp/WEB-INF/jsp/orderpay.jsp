@@ -112,13 +112,20 @@
                                                 <input type="hidden" name="ggetfoodCost" value="${pvo.foodCost}"/>
                                             </c:forEach>
                                             <input type="hidden" name="restNm" value="${RestNm0 }"/>
-                                           
                                         </form>
                                     </div>
-                                    <div class="paybox" style="padding-top: 30px; padding-bottom: 20px;">
-                                        <a href="/toss/pay">
-                                            <img style="height: 30px;" src="images/toss_pay.png">
-                                        </a>
+                                    <div class="paybox" style="padding-top: 10px; padding-bottom: 10px;">
+                                        <form action="/toss/pay" name="frm2" method="post">
+                                            <img style="height: 30px; cursor:pointer;" src="images/toss_pay.png" onclick="sendData2()">
+                                            <input type="hidden" name="sumPrice" value="${sumPrice}"/>
+                                            <input type="hidden" name="m_idx" value="${mvo.m_idx}"/>
+                                            <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st">
+                                                <input type="hidden" name="foodNm" value="${pvo.foodNm}"/>
+                                                <input type="hidden" name="foodQn" value="${pvo.quantity}"/>
+                                                <input type="hidden" name="ggetfoodCost" value="${pvo.foodCost}"/>
+                                            </c:forEach>
+                                            <input type="hidden" name="restNm" value="${RestNm0 }"/>
+                                        </form>
                                     </div>
                                 </div></br>
                                 <div style="text-align: right;">
@@ -130,17 +137,6 @@
                                 <div style="text-align: right;">
                                     <button type="button" class="btn btn-outline-secondary" onclick="location.href='/main'">토스 환불(테스트)</button>
                                 </div>
-
-
-                                테스트------------</br>
-                                <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st"> 
-                                        ${pvo.foodNm} </br>
-                                        ${pvo.foodCost} </br>
-                                        ${pvo.totalPrice} </br>
-                                        ${pvo.quantity} </br>
-                                        ${pvo.restNm} </br>
-                                </c:forEach>
-                                테스트------------
                             </div>
                         </div>
                     </div>
@@ -164,24 +160,11 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
         <script>
             function sendData(){
-                // if ($('input[name="r_score"]:checked').length <= 0 ){
-                //     $('#modal1').modal('show');
-                //     return;
-                // }
-                
-            
-
-                // if($('#content').val().trim().length <= 0){
-                //     $("#content").removeClass("is-valid");
-                //     $("#content").addClass("is-invalid");
-                //     $("#content").focus();
-                //     return;
-                // }else{
-                //     $("#content").removeClass("is-invalid");
-                //     $("#content").addClass("is-valid"); 
-                // }
-
                 document.frm.submit();
+            }
+
+            function sendData2(){
+                document.frm2.submit();
             }
         </script>
     </body> 
