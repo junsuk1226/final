@@ -178,6 +178,7 @@
                                             
                                             <hr />
                                             <c:set var="sumPrice" value="0"/>
+                                            <c:set var="sumCount" value="0"/>
                                             <c:set var="fee" value="0"/>
                                                 <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st"> 
                                                         <tr >
@@ -203,6 +204,7 @@
                                                             
                                                         </tr>
                                                         <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}"/>
+                                                        <c:set var="sumCount" value="${sumCount+pvo.quantity}"/>
                                                         
                                                     </c:forEach>
                                                     
@@ -251,7 +253,7 @@
                                                                
                                                             
                                                             <br/>
-                                                            총 개수: ${pvo.quantity}
+                                                            총 개수: <fmt:formatNumber value="${sumCount}" pattern="#,###,###" />
                                                         </td>
                                                     </tr>
                                                     
@@ -391,6 +393,8 @@
                             alert("장바구니가 비어졌습니다.");
                         }
                     }
+
+                    
 
                
                   function fn_cancel_order(order_id) {

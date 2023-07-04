@@ -22,7 +22,8 @@ public class CartController {
     private HttpSession session;
 
     @RequestMapping("/viewCart")
-    public ModelAndView cart(String foodNm, String foodCost, String RestNm, String quantity, String totalPrice)
+    public ModelAndView cart(String foodNm, String foodCost, String RestNm,
+            String quantity, String totalPrice, String emptyCart)
             throws Exception {
         ModelAndView mv = new ModelAndView();
 
@@ -56,6 +57,12 @@ public class CartController {
         Cart cart = null;
         if (ob != null) {
             cart = (Cart) ob;
+
+            // 인자인 emptyCart의 값이 "1"이면 무조건
+            // 장바구니를 비운다.
+            if (emptyCart != null && emptyCart.equals("1"))
+                cart.cartClear();
+
             cart.addProduct(pvo);
         }
 
