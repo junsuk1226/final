@@ -121,8 +121,7 @@
                                                     <td>
                                                         <div class="row">
                                                             <div class="col-md-3">
-                                                                <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" 
-                                                                    value="항상 감사합니다." id="button-addon" />
+                                                               
                                                             </div>
                                                             <div class="col-md-7">
                                                                 <div class="input-group">

@@ -52,7 +52,7 @@ public class MemService {
     public int updateMem(MemVO vo, MemVO mvo) {
         int cnt = -1;
         if (passwordEncoder.matches(vo.getM_pw(), mvo.getM_pw())) {
-            vo.setM_pw(passwordEncoder.encode(vo.getNew_pw())); // 새로운 비밀번호로 업데이트
+            vo.setM_pw(passwordEncoder.encode(vo.getM_pw())); // 새로운 비밀번호로 업데이트
             cnt = m_Mapper.updateMem(vo);
             if (cnt > 0) {
                 // 세션에 있는 정보도 수정해 줘야 한다.
@@ -66,7 +66,7 @@ public class MemService {
     public int updatePw(MemVO vo, MemVO mvo) {
         int cnt = -1;
         if (passwordEncoder.matches(vo.getM_pw(), mvo.getM_pw())) {
-            vo.setNew_pw(passwordEncoder.encode(vo.getNew_pw()));
+            vo.setM_pw(passwordEncoder.encode(vo.getNew_pw()));
             cnt = m_Mapper.updatePw(vo);
         }
 

@@ -78,11 +78,11 @@ public class MemController {
 
 	@PostMapping("/myPage/changeInfo")
 	@ResponseBody
-	public Map<String, String> changeInfo(MemVO vo, HttpServletRequest request) {
+	public Map<String, String> changeInfo(MemVO vo) {
 		Map<String, String> map = new HashMap<>();
 
 		// 로그인한 사용자의 정보를 세션에서 얻어온다.
-		HttpSession session = request.getSession();
+
 		Object obj = session.getAttribute("mvo");
 		if (obj != null) {
 			MemVO mvo = (MemVO) obj;

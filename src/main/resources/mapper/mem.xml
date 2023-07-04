@@ -15,7 +15,7 @@
 
   <!--회원 정보 수정-->
   <update id="updateMem" parameterType="com.kdt.finalproject.vo.MemVO">
-    UPDATE member
+    UPDATE final.member
     SET m_name = #{m_name}, 
       m_phone = #{m_phone}
     WHERE m_idx=#{m_idx}
@@ -23,7 +23,7 @@
 
   <!--회원 비빌번호 수정-->
   <update id="updatePw" parameterType="com.kdt.finalproject.vo.MemVO">
-    UPDATE member
+    UPDATE final.member
     SET m_pw = #{new_pw}
     WHERE m_idx=#{m_idx}
   </update>
