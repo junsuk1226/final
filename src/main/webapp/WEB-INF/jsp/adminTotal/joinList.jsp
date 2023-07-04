@@ -104,7 +104,7 @@
   
     // Ajax 요청 보내기
     $.ajax({
-        url: 'adminTotal/approval',
+        url: '/adminTotal/approval',
         type: 'POST',
         data: {"m_id": m_id},
         success: function(response) {

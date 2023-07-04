@@ -1,6 +1,8 @@
 package com.kdt.finalproject.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,10 +33,21 @@ public class RegRestService {
         return ar;
     }
 
-    // 승인시 status값 변경
-    public void approval(String m_id) {
+    public MemVO getRestInfo(String m_id) {
+
+        MemVO mvo = reg_Mapper.getRestInfo(m_id);
+
+        return mvo;
+    }
+
+    // 승인시 status값 변경 & member log 추가
+    public void approval(String m_id, Map map, Map map2) {
 
         reg_Mapper.approval(m_id);
+
+        reg_Mapper.addLog(map);
+
+        reg_Mapper.addRegRest(map2);
 
     }
 

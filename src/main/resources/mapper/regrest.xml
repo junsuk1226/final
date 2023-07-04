@@ -9,6 +9,12 @@
   	SELECT * FROM regrest WHERE reg_status = 0 and reg_restNm = #{RestNm}
 </select>
 
+<!-- 휴게소 검색 -->
+<select id="getRestInfo" resultType="com.kdt.finalproject.vo.MemVO" parameterType="String">
+  SELECT * FROM member
+  WHERE m_id = #{m_id}
+</select>
+
 <!-- 가입신청한 휴게소 정보 가져오기 -->
 <select id="regList" resultType="com.kdt.finalproject.vo.MemVO">
   SELECT * FROM member
@@ -22,10 +28,14 @@
   WHERE m_id = #{m_id}
 </update>
 
-<update id="approval_log" parameterType="Map">
-  UPDATE final.memberlog
-    SET m_status = 1
-    WHERE m_id = #{m_id}   
-</update>
+<insert id="addLog" parameterType="Map">
+  INSERT INTO memberlog (m_id, m_pw, m_name, m_joinDate, m_editDate, m_status, m_phone, restCd, m_idx)
+  VALUES (#{m_id}, #{m_pw}, #{m_name}, #{m_joinDate}, NOW(), #{m_status}, #{m_phone}, #{restCd}, #{m_idx})
+</insert>
+
+<insert id="addRegRest" parameterType="Map">
+  INSERT INTO regrest (reg_restNm, reg_restCd, reg_addr, reg_phone, reg_joinDate, reg_status, reg_ownerPhone, reg_ownerEmail, m_idx)
+  VALUES (#{reg_restNm}, #{reg_restCd}, #{reg_addr}, #{reg_phone}, NOW(), 0, #{reg_ownerPhone}, #{reg_ownerEmail}, #{m_idx})
+</insert>
 
 </mapper>
