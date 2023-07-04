@@ -20,5 +20,10 @@
     WHERE foodNm = #{fname}
 </select>
 
+<select id="getOneFood" parameterType="String" resultType="com.kdt.finalproject.vo.FoodVO">
+  SELECT * FROM final.food
+  WHERE f_idx = #{f_idx}
+</select>
+
 
 </mapper>

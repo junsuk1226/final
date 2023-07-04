@@ -21,6 +21,7 @@ public class FoodVO {
             recommendyn, // 추천 메뉴(Y,N)
             seasonMenu, // 시즌 메뉴(4:사계절, S:여름, W:겨울)
             seq, // 음식 고유번호(API 제공)
-            f_image; // 음식 이미지
+            f_image, // 음식 이미지
+            f_status; // 음식 상태값(0:판매중, 1: 품절, 2: 삭제)
 
 }
