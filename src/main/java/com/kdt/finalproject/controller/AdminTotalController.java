@@ -4,7 +4,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +13,7 @@ import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -81,90 +81,98 @@ public class AdminTotalController {
         return mv;
     }
 
-    @RequestMapping("adminTotal/approval")
+    @PostMapping("/adminTotal/approval")
     @ResponseBody
-    public void approval(String m_id) throws Exception {
+    public String approval(String m_id) {
 
-        // 해당 아이디와 일치하는 휴게소 멤버 정보 가져오기
-        MemVO mvo = r_Service.getRestInfo(m_id);
+        try {
 
-        String key = "0279357255"; // 인증키
-        String type = "xml";
-        String svarGsstClssCd = "0"; // 0: 휴게소 1: 주유소
+            // 해당 아이디와 일치하는 휴게소 멤버 정보 가져오기
+            MemVO mvo = r_Service.getRestInfo(m_id);
 
-        StringBuffer sb = new StringBuffer();
-        sb.append("http://data.ex.co.kr/openapi/restinfo/hiwaySvarInfoList?"); // 호출 경로
-        sb.append("key=");
-        sb.append(key);
-        sb.append("&type=");
-        sb.append(type);
-        // sb.append("&routeCd=");
-        sb.append("&svarNm=");
-        sb.append(URLEncoder.encode(mvo.getM_name(), "utf-8"));
-        sb.append("&svarGsstClssCd=");
-        sb.append(svarGsstClssCd);
+            String key = "0279357255"; // 인증키
+            String type = "xml";
+            String svarGsstClssCd = "0"; // 0: 휴게소 1: 주유소
 
-        URL url = new URL(sb.toString());
+            StringBuffer sb = new StringBuffer();
+            sb.append("http://data.ex.co.kr/openapi/restinfo/hiwaySvarInfoList?"); // 호출 경로
+            sb.append("key=");
+            sb.append(key);
+            sb.append("&type=");
+            sb.append(type);
+            // sb.append("&routeCd=");
+            sb.append("&svarNm=");
+            sb.append(URLEncoder.encode(mvo.getM_name(), "utf-8"));
+            sb.append("&svarGsstClssCd=");
+            sb.append(svarGsstClssCd);
 
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.connect();
+            URL url = new URL(sb.toString());
 
-        SAXBuilder builder = new SAXBuilder();
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.connect();
 
-        Document doc = builder.build(conn.getInputStream());
+            SAXBuilder builder = new SAXBuilder();
 
-        Element root = doc.getRootElement();
+            Document doc = builder.build(conn.getInputStream());
 
-        Element el = root.getChild("list");
+            Element root = doc.getRootElement();
 
-        RestVO rvo = null;
+            Element el = root.getChild("list");
 
-        if (el != null) {
-            String svarCd = el.getChildText("svarCd");
-            String svarNm = el.getChildText("svarNm");
-            String routeCd = el.getChildText("routeCd");
-            String routeNm = el.getChildText("routeNm");
-            String hdqrCd = el.getChildText("hdqrCd");
-            String hdqrNm = el.getChildText("hdqrNm");
-            String mtnofCd = el.getChildText("mtnofCd");
-            String mtnofNm = el.getChildText("mtnofNm");
-            String gudClssCd = el.getChildText("gudClssCd");
-            String gudClssNm = el.getChildText("gudClssNm");
-            String svarAddr = el.getChildText("svarAddr");
-            String rprsTelNo = el.getChildText("rprsTelNo");
-            String dspnPrkgTrcn = el.getChildText("dspnPrkgTrcn");
-            String cocrPrkgTrcn = el.getChildText("cocrPrkgTrcn");
-            String fscarPrkgTrcn = el.getChildText("fscarPrkgTrcn");
+            RestVO rvo = null;
 
-            rvo = new RestVO(svarCd, svarNm, routeCd, routeNm, hdqrCd, hdqrNm,
-                    mtnofCd, mtnofNm, gudClssCd, gudClssNm, svarAddr, rprsTelNo,
-                    dspnPrkgTrcn, cocrPrkgTrcn, fscarPrkgTrcn);
+            if (el != null) {
+                String svarCd = el.getChildText("svarCd");
+                String svarNm = el.getChildText("svarNm");
+                String routeCd = el.getChildText("routeCd");
+                String routeNm = el.getChildText("routeNm");
+                String hdqrCd = el.getChildText("hdqrCd");
+                String hdqrNm = el.getChildText("hdqrNm");
+                String mtnofCd = el.getChildText("mtnofCd");
+                String mtnofNm = el.getChildText("mtnofNm");
+                String gudClssCd = el.getChildText("gudClssCd");
+                String gudClssNm = el.getChildText("gudClssNm");
+                String svarAddr = el.getChildText("svarAddr");
+                String rprsTelNo = el.getChildText("rprsTelNo");
+                String dspnPrkgTrcn = el.getChildText("dspnPrkgTrcn");
+                String cocrPrkgTrcn = el.getChildText("cocrPrkgTrcn");
+                String fscarPrkgTrcn = el.getChildText("fscarPrkgTrcn");
+
+                rvo = new RestVO(svarCd, svarNm, routeCd, routeNm, hdqrCd, hdqrNm,
+                        mtnofCd, mtnofNm, gudClssCd, gudClssNm, svarAddr, rprsTelNo,
+                        dspnPrkgTrcn, cocrPrkgTrcn, fscarPrkgTrcn);
+            }
+
+            // ---------------------------------
+
+            Map<String, String> map = new HashMap<>();
+
+            map.put("m_id", mvo.getM_id());
+            map.put("m_pw", mvo.getM_pw());
+            map.put("m_name", mvo.getM_name());
+            map.put("m_joinDate", mvo.getM_joinDate());
+            map.put("m_status", "1");
+            map.put("m_phone", mvo.getM_phone());
+            map.put("restCd", rvo.getRouteCd());
+            map.put("m_idx", mvo.getM_idx());
+
+            Map<String, String> map2 = new HashMap<>();
+            map2.put("reg_restNm", mvo.getM_name());
+            map2.put("reg_restCd", rvo.getRouteCd());
+            map2.put("reg_addr", rvo.getSvarAddr());
+            map2.put("reg_phone", rvo.getRprsTelNo());
+            map2.put("reg_ownerPhone", mvo.getM_phone());
+            map2.put("reg_ownerEmail", mvo.getM_id());
+            map2.put("m_idx", mvo.getM_idx());
+
+            // 해당 휴게소의 m_status 값을 1로 변경 & log 추가 & regrest테이블에 저장
+            r_Service.approval(m_id, map, map2);
+
+            return "승인이 완료되었습니다.";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "승인 과정에서 오류가 발생했습니다.";
         }
-
-        // ---------------------------------
-
-        Map<String, String> map = new HashMap<>();
-
-        map.put("m_id", mvo.getM_id());
-        map.put("m_pw", mvo.getM_pw());
-        map.put("m_name", mvo.getM_name());
-        map.put("m_joinDate", mvo.getM_joinDate());
-        map.put("m_status", "1");
-        map.put("m_phone", mvo.getM_phone());
-        map.put("restCd", rvo.getRouteCd());
-        map.put("m_idx", mvo.getM_idx());
-
-        Map<String, String> map2 = new HashMap<>();
-        map2.put("reg_restNm", mvo.getM_name());
-        map2.put("reg_restCd", rvo.getRouteCd());
-        map2.put("reg_addr", rvo.getSvarAddr());
-        map2.put("reg_phone", rvo.getRprsTelNo());
-        map2.put("reg_ownerPhone", mvo.getM_phone());
-        map2.put("reg_ownerEmail", mvo.getM_id());
-        map2.put("m_idx", mvo.getM_idx());
-
-        // 해당 휴게소의 m_status 값을 1로 변경 & log 추가 & regrest테이블에 저장
-        r_Service.approval(m_id, map, map2);
 
     }
 

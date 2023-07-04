@@ -108,8 +108,9 @@
         type: 'POST',
         data: {"m_id": m_id},
         success: function(response) {
-        // 요청이 성공적으로 완료됨
-        console.log("승인이 완료되었습니다.");
+            // 요청이 성공적으로 완료됨
+            console.log("승인이 완료되었습니다.");
+            location.reload();
         },
         error: function(xhr, status, error) {
         // 요청이 실패함
