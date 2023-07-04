@@ -85,8 +85,8 @@
                                                 <form action="" name="frm" method="get">
                                         
                                                     <div class="paybox">
-                                                        주문 번호: 값 주세요(휴게소별 번호 다르게, 999번 초기화)</br>
-                                                        주문 일시: 값 주세요(날짜 시간)모두 db에서 뽑아
+                                                        주문 번호: </br>
+                                                        주문 일시: ${pvo.p_date}
                                                     </div></br>
                                 
                                                     <div class="paybox">

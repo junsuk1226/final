@@ -18,6 +18,8 @@ public interface PayMapper {
 
     List<PayVO> order_list(String m_idx);
 
+    int kakaorefund(PayVO vo);
+
     int delOrder(String p_idx);
 
     PayVO order_selected(String p_idx);

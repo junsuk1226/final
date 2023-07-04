@@ -19,12 +19,20 @@
 </select>
 
 <select id="order_list" parameterType="String" resultType="com.kdt.finalproject.vo.PayVO">
-    SELECT * FROM paylog where m_idx = #{m_idx} and p_status &lt; 2
+    SELECT * FROM paylog where m_idx = #{m_idx}
 </select>
 
+<<<<<<< HEAD
 <select id="order_selected" parameterType="String" resultType="com.kdt.finalproject.vo.PayVO">
     SELECT * FROM paylog WHERE p_idx=#{p_idx}
 </select>
+=======
+<update id="delOrder" parameterType="String">
+  UPDATE paylog
+  SET p_status = 2
+  WHERE p_idx = #{p_idx}
+</update>
+>>>>>>> 04e6887ac28ebab5dda73ec33c73bdd7a933d423
 
 
 <!-- insert -->
@@ -39,10 +47,7 @@
 </insert>
 
 <!-- update -->
-<update id="delOrder" parameterType="String">
-  UPDATE paylog
-  SET p_status = 2
-  WHERE p_idx = #{p_idx}
-</update>
-
+<update id="kakaorefund" parameterType="com.kdt.finalproject.vo.PayVO">
+    UPDATE paylog SET c_date = #{c_date}, c_time = #{c_time}, p_status = 1 WHERE tid=#{tid}
+  </update>
 </mapper>

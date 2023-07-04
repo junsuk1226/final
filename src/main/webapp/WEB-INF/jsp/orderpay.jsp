@@ -135,7 +135,7 @@
                                     <button type="button" class="btn btn-outline-secondary" onclick="location.href='/kakaopayment/refund'">카카오 환불(테스트)</button>
                                 </div>
                                 <div style="text-align: right;">
-                                    <button type="button" class="btn btn-outline-secondary" onclick="location.href='/main'">토스 환불(테스트)</button>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="location.href='/tosspayment/refund'">토스 환불(테스트)</button>
                                 </div>
                             </div>
                         </div>

@@ -72,16 +72,18 @@
                         </thead>
                         <tbody>
 
-                        <tr>
-                            <th scope="row"></th>
-                            <td>서울(죽전)휴게소</td>
-                            <td>jukjeon@naver.com</td>
-                            <td>010-1234-5678</td>
-                            <td>2023-07-03</td>
-                            <td ><button style="width: 100%;">승인</button></td>
-                            <td><button style="width: 100%;">거절</button></td>
-                            <td></td>
-                        </tr>
+                        <c:forEach var="mvo" items="${ar}">
+                            <tr>
+                                <th scope="row"></th>
+                                <td>${mvo.m_name}</td>
+                                <td>${mvo.m_id}</td>
+                                <td>${mvo.m_phone}</td>
+                                <td>${mvo.m_joinDate}</td>
+                                <td ><button style="width: 100%;">승인</button></td>
+                                <td><button style="width: 100%;">거절</button></td>
+                                <td></td>
+                            </tr>
+                        </c:forEach>
                         
                         </tbody>
 

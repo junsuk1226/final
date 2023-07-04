@@ -180,7 +180,7 @@
                                         <!-- <input type="hidden" name="restCd"/>
                                         <input type="hidden" name="r_restNm"/> -->
                                         <input type="hidden" name="restCd" value="1"/>
-                                        <input type="hidden" name="r_restNm" value="가평(춘천)휴게소" />
+                                        <input type="hidden" name="r_restNm" value="${rvo.r_restNm}" />
                                         <input type="hidden" name="m_idx" value="${sessionScope.mvo.m_idx}"/>
                                         <input type="hidden" name="m_name" value="${sessionScope.mvo.m_name}"/>
                                         <input type="hidden" name="r_file" />

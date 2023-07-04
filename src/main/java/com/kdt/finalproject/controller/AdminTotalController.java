@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.MemService;
+import com.kdt.finalproject.service.RegRestService;
 import com.kdt.finalproject.vo.MemVO;
 
 @Controller
@@ -19,6 +20,9 @@ public class AdminTotalController {
 
     @Autowired
     private MemService m_Service;
+
+    @Autowired
+    private RegRestService r_Service;
 
     @RequestMapping("/adminTotal")
     public String adminTest() {
@@ -51,8 +55,18 @@ public class AdminTotalController {
     }
 
     @RequestMapping("/adminTotal/joinList")
-    public String adminTotalJoinListTest() {
-        return "/adminTotal/joinList";
+    public ModelAndView viewJoinList() {
+        ModelAndView mv = new ModelAndView();
+
+        MemVO[] ar = r_Service.regList();
+
+        if (ar != null) {
+
+            mv.addObject("ar", ar);
+            mv.setViewName("adminTotal/joinList");
+        }
+
+        return mv;
     }
 
 }

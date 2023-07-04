@@ -16,7 +16,7 @@ public class PayVO {
             foodNm, // 음식 이름
             foodCost, // 개별 음식 가격
             p_date, // 결제 일자
-            p_status, // 결제 상태(결제0, 취소1)
+            p_status, // 결제 상태(결제0, 환불1, 목록지우기2)
             p_time, // 결제 시간
             p_oNum, // 주문 번호(키오스크 수령 번호)
             restNm, // 휴게소 이름
