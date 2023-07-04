@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 
         <html lang="en">
@@ -24,7 +26,8 @@
             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
             <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
                 
-
+            <!--아이콘 cdn-->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
                     <!-- Favicon-->
                 </head>
@@ -76,34 +79,41 @@
                                     </div>
                                 </div>
                             </div>
-        
+                            
                             <div class="container-fluid mb-4">
                                 <div class="row justify-content-center col-md-12 my-5">
                                     <div  class="col-md-9">
                                          <div class="card shadow p-3 mb-5 bg-body rounded justify-content-center" style="border: none;">
-                                            <div class="card-body">
+                                            <div class="card-body justify-content-center">
                                                 <form action="" name="frm" method="get">
-                                        
-                                                    <div class="paybox">
-                                                        주문 번호: </br>
-                                                        주문 일시: ${pvo.p_date}
-                                                    </div></br>
+                                                    <input type="hidden" value="${pvo.restNm}"/>
+                                                    
+                                                        주문 번호: ${pvo.p_oNum}</br>
+                                                        주문 일시: ${pvo.p_date}&nbsp;${pvo.p_time}
+                                                    
                                 
-                                                    <div class="paybox">
-                                                        회원 이름: 값 주세요</br>
-                                                        회원 전화번호: 값 주세요
-                                                    </div></br>
+                                                   
+                                                        회원 이름: ${sessionScope.mvo.m_name}</br>
+                                                    
                                 
-                                                    <div class="paybox">
-                                                        휴게소: 값 주세요 휴게소</br>
-                                                        상품 이름: 값 주세요 1 / 수량: 값 주세요 1 / 가격: <fmt:formatNumber value="${row.price}" pattern="#,###,###" />원</br>
-                                                        상품 이름: 값 주세요 2 / 수량: 값 주세요 2 / 가격: <fmt:formatNumber value="${row.price}" pattern="#,###,###" />원</br>
-                                                        총 결제 금액: <fmt:formatNumber value="${row.price}" pattern="#,###,###" />원</br>
-                                                        결제방식: 값 주세요
-                                                    </div></br>
-                                
-                                                    <div class="paybox">
-                                                    </div></br>
+                                                  
+                                                        휴게소: ${pvo.restNm}</br>
+                                                        <c:set var="foodNm" value="${fn:split(pvo.foodNm, '/')}"></c:set>
+                                                        <c:set var="foodCost" value="${fn:split(pvo.foodCost, '/')}"></c:set>
+                                                        <c:set var="foodQn" value="${fn:split(pvo.foodQn, '/')}"></c:set>
+                                                        <c:forEach var="i" begin="0" end="${fn:length(foodNm) - 1}">
+                                                            <c:set var="price" value="${fn:trim(foodCost[i])}" />
+                                                            
+                                                            상품 이름:  ${foodNm[i]}/ 수량:   ${foodQn[i]}/ 가격: <fmt:formatNumber value="${foodCost[i]}" pattern="#,###,###" />원</br>
+                                                        </c:forEach>
+                                                        총 결제 금액: <fmt:formatNumber value="${pvo.totalCost}" pattern="#,###,###" />원</br>
+                                                        결제방식: 
+                                                        <c:choose>
+                                                            <c:when test="${pvo.payMethod eq '0'}"> 카카오페이 결제 </c:when>
+                                                            <c:when test="${pvo.payMethod eq '1'}"> 토스페이 결제 </c:when>
+                                                            <c:otherwise> ... </c:otherwise>
+                                                        </c:choose>
+                                                   
             
                                                     <button class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="writeReview()" type="button">리뷰쓰기</button>
             

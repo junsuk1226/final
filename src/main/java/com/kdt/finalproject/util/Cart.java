@@ -107,4 +107,11 @@ public class Cart {
         if (vo != null)
             vo.setQuantity(q);
     }
+
+    public boolean cartClear() {
+
+        list.clear();
+
+        return true;
+    }
 }

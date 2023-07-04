@@ -147,7 +147,7 @@
                                         <div class="card ms-2 me-1 shadow p-3 mb-5 bg-body rounded" style="border: none;">
                                             <div class="card-body justify-content-center">
                                             <c:forEach var="pvo" items="${ar}">
-                                                <form action="/orderDetail" name="ff" method="post">
+                                                <form action="/orderDetail" id="form_${pvo.p_idx}" method="post">
                                                     <input type="hidden" value="${pvo.p_idx}" name="p_idx"/> 
                                                     <div class = "row justify-content-around">
                                                         <div class="col-md-3 mb-3 .square-div">
@@ -168,7 +168,7 @@
                                                                     
                                                                     <div class="col-md-3"> 총 <fmt:formatNumber value="${pvo.totalCost}" />원</div>
                                                                     <div class="col-md-3 mb-2 d-flex justify-content-end">
-                                                                        <a onclick="viewDetail()" class="me-3">
+                                                                        <a onclick="viewDetail('form_${pvo.p_idx}')" class="me-3">
                                                                             <i class="fa fa-search-plus fa-2x" aria-hidden="true"></i><!--상세보기 버튼-->
                                                                         </a>
                                                                         <a onclick="delOrder('${pvo.p_idx}')">
@@ -295,9 +295,8 @@
 
                     <script>
 
-                        function viewDetail(){
-                            document.ff.submit();
-                            
+                        function viewDetail(formId){
+                            document.getElementById(formId).submit();
                         }
 
                         function sendKeyword(form) {

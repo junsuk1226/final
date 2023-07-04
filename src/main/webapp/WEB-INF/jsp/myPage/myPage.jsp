@@ -130,13 +130,13 @@
                                                     <!--연락처 (페이지 상에서 기호 표현)-->
                                                     <c:set var="tel" value="${sessionScope.mvo.m_phone}"/>
                                                     <label for="phone" class="form-label mt-4 "><span class="ms-1">휴대폰 번호</span></label>
-                                                    <div class="input-group mb-5 input-group-lg">
+                                                    <div class="input-group mb-1 input-group-lg">
                                                         <input style="border: none;" id="phone" type="text" class="text-muted form-control" value="${fn:substring(tel, 0, 3)}-${fn:substring(tel, 3, 7)}-${fn:substring(tel, 7,11)}" disabled>
                                                     </div>
 
                                                     <!-- 가입일 -->
-                                                    <label for="j_joinDate" class="form-label mt-4 "><span class="ms-1">회원 가입일</span></label>
-                                                    <div class="input-group mb-1 input-group-lg">
+                                                    <label for="j_joinDate" class="form-label mt-4"><span class="ms-1">회원 가입일</span></label>
+                                                    <div class="input-group mb-5 input-group-lg">
                                                         <input style="border: none;" name="j_joinDate"
                                                         id="j_joinDate" type="text" class="text-muted form-control"  value="${sessionScope.mvo.m_joinDate}" disabled>
                                                     </div>

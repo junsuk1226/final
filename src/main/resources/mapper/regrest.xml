@@ -21,6 +21,7 @@
   WHERE m_status = 3
 </select>
 
+
 <!-- 승인시 status값 변경 -->
 <update id="approval" parameterType="String">
   UPDATE final.member
@@ -37,5 +38,24 @@
   INSERT INTO regrest (reg_restNm, reg_restCd, reg_addr, reg_phone, reg_joinDate, reg_status, reg_ownerPhone, reg_ownerEmail, m_idx)
   VALUES (#{reg_restNm}, #{reg_restCd}, #{reg_addr}, #{reg_phone}, NOW(), 0, #{reg_ownerPhone}, #{reg_ownerEmail}, #{m_idx})
 </insert>
+
+<!-- 승인거절시 status값 변경-->
+<update id="refuse" parameterType="String">
+  UPDATE final.member
+  SET m_status = 5
+  WHERE m_id = #{m_id}
+</update>
+
+<!-- 휴게소 변경 로그 가져오기 -->
+<select id="regLogList" resultType="com.kdt.finalproject.vo.MemVO">
+  SELECT * FROM memberlog
+  WHERE m_status IN (1, 3, 5)
+</select>
+
+<!-- 가입 되어있는 휴게소 정보 가져오기 -->
+<select id="getRegRestList" resultType="com.kdt.finalproject.vo.RegRestVO">
+  SELECT * FROM regrest
+  WHERE reg_status = 0
+</select>
 
 </mapper>

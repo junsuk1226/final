@@ -23,7 +23,7 @@
 
             <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="/adminTotal/main" class="nav-link text-white active">
+                <a href="/adminTotal/main" class="nav-link text-white">
                 홈
                 </a>
             </li>
@@ -43,7 +43,7 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/editMem" class="nav-link text-white">
+                <a href="/adminTotal/editMem" class="nav-link text-white active">
                 회원정보 수정(고객)
                 </a>
             </li>

@@ -28,12 +28,12 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/joinList" class="nav-link text-white active">
+                <a href="/adminTotal/joinList" class="nav-link text-white">
                 가입신청 목록
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/editAdmin" class="nav-link text-white">
+                <a href="/adminTotal/editAdmin" class="nav-link text-white active">
                 회원정보 수정(관리자)
                 </a>
             </li>
@@ -69,35 +69,37 @@
         <!-- 메인 컨텐츠 내용 -->
         <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
             <div class="container" style="width:100%; margin: 0">
-                <h1>가입신청 목록</h1>
+                <h1>회원정보수정(관리자)</h1>
                 <br/>
                 
                 <div class="container">
                     <table class="table" style="text-align: center;">
-                        
+                        <form>
+                            <input>
+                        </form>
                         <thead>
                         <tr>
                             <th scope="col" style="width: 10px;"></th>
                             <th scope="col" style="width: 150px;">휴게소명</th>
                             <th scope="col" style="width: 200px;">요청아이디</th>
                             <th scope="col" style="width: 150px;">담당자 연락처</th>
-                            <th scope="col" style="width: 150px;">가입신청일 <button class="arrow_btn"><i class="bi bi-arrow-down-up"></i></button></th>
-                            <th scope="col" style="width: 60px;"></th>
-                            <th scope="col" style="width: 60px;"></th>
+                            <th scope="col" style="width: 150px;">수정일 <button class="arrow_btn"><i class="bi bi-arrow-down-up"></i></button></th>
+                            <th scope="col" style="width: 100px;"></th>
                             <th scope="col" style="width: 10px;"></th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        <c:forEach var="mvo" items="${ar}">
+                        <c:forEach var="rvo" items="${ar}">
                             <tr>
                                 <th scope="row"></th>
-                                <td>${mvo.m_name}</td>
-                                <td>${mvo.m_id}</td>
-                                <td>${mvo.m_phone}</td>
-                                <td>${mvo.m_joinDate}</td>
-                                <td ><button style="width: 100%;" onclick="approveUser('${mvo.m_id}')">승인</button></td>
-                                <td><button style="width: 100%;" onclick="refuseUser('${mvo.m_id}')">거절</button></td>
+                                <td>${rvo.reg_restNm}</td>
+                                <td>${rvo.reg_ownerEmail}</td>
+                                <td>${rvo.reg_ownerPhone}</td>
+                                <td>${rvo.reg_joinDate}</td>
+
+                                <td><button>수정</button></td>
+
                                 <td></td>
                             </tr>
                         </c:forEach>
@@ -117,43 +119,7 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <script>
-   function approveUser(m_id) {
-  
-        // Ajax 요청 보내기
-        $.ajax({
-            url: '/adminTotal/approval',
-            type: 'POST',
-            data: {"m_id": m_id},
-            success: function(response) {
-                // 요청이 성공적으로 완료됨
-                console.log("승인이 완료되었습니다.");
-                location.reload();
-            },
-            error: function(xhr, status, error) {
-            // 요청이 실패함
-            console.error("승인 요청에 실패했습니다.");
-            }
-        });
-    }
-
-
-    function refuseUser(m_id) {
-        // Ajax 요청 보내기
-        $.ajax({
-            url: '/adminTotal/refuse',
-            type: 'POST',
-            data: {"m_id": m_id},
-            success: function(response) {
-                // 요청이 성공적으로 완료됨
-                console.log("승인거절이 완료되었습니다.");
-                location.reload();
-            },
-            error: function(xhr, status, error) {
-            // 요청이 실패함
-            console.error("승인 요청에 실패했습니다.");
-            }
-        });
-    }
+   
 </script>
 
 </body>

@@ -58,10 +58,7 @@
                         cursor: pointer;
                         transform: translateY(-4px);
                     }
-                    .btn:active {
-                        outline: none !important;
-                        box-shadow: none !important;
-                    }
+                   
                     
                 </style>
 
