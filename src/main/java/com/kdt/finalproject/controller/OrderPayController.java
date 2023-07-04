@@ -617,10 +617,11 @@ public class OrderPayController {
         ModelAndView mv = new ModelAndView();
 
         String reqURL = "https://api.tosspayments.com/v1/payments/";
-        String paymentkey = "dJv2eBNjG0Poxy1XQL8Rxd9zObzpZ4V7nO5Wmlg96RKwZz4Y"; // 결제 고유번호-DB셀렉(리스트 선택 값 받고 검색) tid에
+        String paymentkey = "vdX0wJDpj5mBZ1gQ4YVXKMJ9YwnMNx3l2KPoqNbMGOkn9EW7"; // 결제 고유번호-DB셀렉(리스트 선택 값 받고 검색) tid에
                                                                                 // 저장되어 있음.
         String secretKey = "test_sk_lpP2YxJ4K870lAdMDkJ3RGZwXLOb:"; // toss 시크릿 키
         String cancelReason = "변심";// 그냥 고정값으로 해둠. 필수값
+        String approved_at = "";
 
         try {
             Encoder encoder = Base64.getEncoder();
@@ -642,73 +643,44 @@ public class OrderPayController {
             outputStream.write(jobj.toString().getBytes("UTF-8"));
 
             int res_code = connection.getResponseCode();
-            System.out.println(res_code);
+            // System.out.println(res_code);
 
-            // if (res_code == HttpURLConnection.HTTP_OK) {
-            // BufferedReader br = new BufferedReader(
-            // new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
-            // StringBuffer result = new StringBuffer();
-            // String line = null;
+            if (res_code == HttpURLConnection.HTTP_OK) {
+                BufferedReader br = new BufferedReader(
+                        new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
+                StringBuffer result = new StringBuffer();
+                String line = null;
 
-            // while ((line = br.readLine()) != null) {
-            // result.append(line);
-            // }
+                while ((line = br.readLine()) != null) {
+                    result.append(line);
+                }
 
-            // JSONParser jsonParser = new JSONParser();
+                JSONParser jsonParser = new JSONParser();
 
-            // Object obj = jsonParser.parse(result.toString());
-            // JSONObject json = (JSONObject) obj;
-            // // System.out.println(json);
+                Object obj = jsonParser.parse(result.toString());
+                JSONObject json = (JSONObject) obj;
+                // System.out.println(json);
 
-            // approved_at = (String) json.get("approvedAt");
-            // aid = (String) json.get("lastTransactionKey");
-            // tid = (String) json.get("paymentKey");
-            // totalAmount = Integer.parseInt(String.valueOf(json.get("totalAmount")));
+                approved_at = (String) json.get("approvedAt");
 
-            // String subapproved_at = approved_at.substring(0,
-            // approved_at.lastIndexOf("+"));
-            // String datetime[] = subapproved_at.split("T");
-            // String p_date = datetime[0];
-            // String p_time = datetime[1];
+                String subapproved_at = approved_at.substring(0, approved_at.lastIndexOf("+"));
+                String datetime[] = subapproved_at.split("T");
+                String c_date = datetime[0];
+                String c_time = datetime[1];
 
-            // PayVO vo = new PayVO();
-            // vo.setM_idx(dto.getM_idx());
-            // // vo.setRestCd();
-            // vo.setRestNm(dto.getRestNm());
-            // vo.setFoodNm(dto.getFoonNm());
-            // vo.setFoodCost(dto.getFoodCost());
-            // vo.setTotalCost(totalAmount);
-            // vo.setFoodCost(dto.getFoodCost());
-            // vo.setFoodQn(dto.getFoodQnTotal());
+                PayVO vo = new PayVO();
+                vo.setC_date(c_date);
+                vo.setC_time(c_time);
+                vo.setTid(paymentkey);
 
-            // vo.setP_date(p_date);
-            // vo.setP_time(p_time);
-            // vo.setAid(aid);
-            // vo.setTid(tid);
-            // vo.setP_oderId(getorderId);
+                int cnt = p_Service.kakaorefund(vo);
 
-            // String poNum_count = String.format("%04d", p_Service.poNum_count(vo) + 1); //
-            // vo.setRestNm();
-            // vo.setP_oNum(poNum_count);
-
-            // int cnt = p_Service.tosspay(vo);
-
-            // }
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // PayVO pvo = p_Service.order_receipt(getorderId);
 
-        // // 음식 이름 배열
-        // String[] foodname = pvo.getFoodNm().split("/");
-
-        // // 음식 수량 배열
-        // String[] foodqnt = pvo.getFoodQn().split("/");
-
-        // mv.addObject("pvo", pvo);
-        // mv.addObject("foodname", foodname);
-        // mv.addObject("foodqnt", foodqnt);
         mv.setViewName("redirect:/orderpay");
 
         return mv;
