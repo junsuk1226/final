@@ -73,6 +73,7 @@ public class OrderListController {
 
         PayVO pvo = p_service.order_selected(p_idx);
 
+        mv.addObject("cPage", cPage);
         mv.addObject("pvo", pvo);
 
         mv.setViewName("/myPage/orderDetail");
