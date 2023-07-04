@@ -7,7 +7,7 @@
 
 <select id="getFood" resultType="com.kdt.finalproject.vo.FoodVO" parameterType="String">
   	SELECT * FROM final.food
-    WHERE stdRestNm = #{RestNm}
+    WHERE stdRestNm = #{RestNm} and f_status = 0 or f_status = 1
 </select>
 
 <select id="getFoodInfo" parameterType="String" resultType="com.kdt.finalproject.vo.FoodVO">
