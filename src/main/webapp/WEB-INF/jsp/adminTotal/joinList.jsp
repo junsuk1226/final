@@ -79,7 +79,7 @@
                                 <td>${mvo.m_id}</td>
                                 <td>${mvo.m_phone}</td>
                                 <td>${mvo.m_joinDate}</td>
-                                <td ><button style="width: 100%;">승인</button></td>
+                                <td ><button style="width: 100%;" onclick="approveUser('${mvo.m_id}')">승인</button></td>
                                 <td><button style="width: 100%;">거절</button></td>
                                 <td></td>
                             </tr>
@@ -100,7 +100,23 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <script>
-   
+   function approveUser(m_id) {
+  
+    // Ajax 요청 보내기
+    $.ajax({
+        url: 'adminTotal/approval',
+        type: 'POST',
+        data: {"m_id": m_id},
+        success: function(response) {
+        // 요청이 성공적으로 완료됨
+        console.log("승인이 완료되었습니다.");
+        },
+        error: function(xhr, status, error) {
+        // 요청이 실패함
+        console.error("승인 요청에 실패했습니다.");
+        }
+    });
+}
 </script>
 
 </body>

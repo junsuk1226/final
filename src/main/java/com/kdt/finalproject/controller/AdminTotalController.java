@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.MemService;
@@ -67,6 +68,17 @@ public class AdminTotalController {
         }
 
         return mv;
+    }
+
+    @RequestMapping("adminTotal/approval")
+    @ResponseBody
+    public void approval(String m_id) {
+
+        // 해당 휴게소의 m_status 값을 1로 변경
+        m_Service.approval(m_id);
+
+        // 휴게소 정보를 regrest table에 저장
+
     }
 
 }

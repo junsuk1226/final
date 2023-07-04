@@ -39,6 +39,13 @@
     SELECT * FROM final.member
     where m_id = #{m_id} and m_status = 2
   </select>
+
+  <!-- 승인시 status값 변경 -->
+  <update id="approval" parameterType="String">
+    UPDATE final.member
+    SET m_status = 1
+    WHERE m_id = #{m_id}
+  </update>
   
 
 </mapper>
