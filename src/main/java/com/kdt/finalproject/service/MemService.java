@@ -101,10 +101,4 @@ public class MemService {
         return null;
     }
 
-    public void approval(String m_id) {
-
-        m_Mapper.approval(m_id);
-
-    }
-
 }

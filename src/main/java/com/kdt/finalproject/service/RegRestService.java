@@ -31,4 +31,11 @@ public class RegRestService {
         return ar;
     }
 
+    // 승인시 status값 변경
+    public void approval(String m_id) {
+
+        reg_Mapper.approval(m_id);
+
+    }
+
 }

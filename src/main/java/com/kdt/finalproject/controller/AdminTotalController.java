@@ -75,9 +75,11 @@ public class AdminTotalController {
     public void approval(String m_id) {
 
         // 해당 휴게소의 m_status 값을 1로 변경
-        m_Service.approval(m_id);
+        r_Service.approval(m_id);
 
-        // 휴게소 정보를 regrest table에 저장
+        // 멤버로그 테이블에 저장
+
+        // 휴게소 정보를 api에서 불러와서 regrest table에 저장
 
     }
 

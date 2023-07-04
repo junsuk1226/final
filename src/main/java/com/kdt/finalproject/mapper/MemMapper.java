@@ -19,6 +19,4 @@ public interface MemMapper {
 
     MemVO adminTotalLogin(String m_id);
 
-    void approval(String m_id);
-
 }
