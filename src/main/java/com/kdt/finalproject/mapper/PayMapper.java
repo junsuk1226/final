@@ -20,4 +20,6 @@ public interface PayMapper {
 
     int kakaorefund(PayVO vo);
 
+    int delOrder(String p_idx);
+
 }

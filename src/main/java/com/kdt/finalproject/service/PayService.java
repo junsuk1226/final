@@ -59,4 +59,9 @@ public class PayService {
         return cnt;
     }
 
+    public int delOrder(String p_idx) {
+
+        return p_Mapper.delOrder(p_idx);
+    }
+
 }

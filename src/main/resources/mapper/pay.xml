@@ -22,6 +22,12 @@
     SELECT * FROM paylog where m_idx = #{m_idx}
 </select>
 
+<update id="delOrder" parameterType="String">
+  UPDATE paylog
+  SET p_status = 2
+  WHERE p_idx = #{p_idx}
+</update>
+
 
 <!-- insert -->
 <insert id="kakaopay" parameterType="com.kdt.finalproject.vo.PayVO">
