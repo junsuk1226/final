@@ -16,4 +16,6 @@ public interface JoinMapper {
     MemVO getMem(MemVO vo);
 
     int addAdmin(MemVO vo); // 관리자 회원가입
+
+    int addAdminLog(MemVO vo); // 관리자 회원가입시 로그기록
 }

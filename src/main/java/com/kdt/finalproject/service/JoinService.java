@@ -73,4 +73,16 @@ public class JoinService {
     return j_mapper.addAdmin(vo);
   }
 
+  public int addAdminLog(MemVO mvo) {
+    MemVO vo = new MemVO();
+    vo.setM_id(mvo.getM_id());
+    vo.setM_name(mvo.getM_name());
+    vo.setM_phone(mvo.getM_phone());
+
+    // 비밀번호를 암호화 시킨후 다시 vo에 저장
+    vo.setM_pw(passwordEncoder.encode(mvo.getM_pw()));
+
+    return j_mapper.addAdminLog(vo);
+  }
+
 }

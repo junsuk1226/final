@@ -112,9 +112,10 @@ public class MenuListController {
                 String seasonMenu = item.getChildText("seasonMenu");
                 String seq = item.getChildText("seq");
                 String f_image = item.getChildText("f_image");
+                String f_status = item.getChildText("f_status");
 
                 FoodVO vo = new FoodVO(f_image, foodCost, foodNm, foodMaterial, etc, stdRestNm, bestfoodyn, premiumyn,
-                        recommendyn, seasonMenu, seq, f_image);
+                        recommendyn, seasonMenu, seq, f_image, f_status);
 
                 fvo[i++] = vo;
 

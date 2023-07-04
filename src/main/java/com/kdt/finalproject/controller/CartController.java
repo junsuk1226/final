@@ -64,4 +64,10 @@ public class CartController {
         mv.setViewName("redirect:menu?RestNm=" + location);
         return mv;
     }
+
+    @RequestMapping("/cartout")
+    public String logout() {
+        session.removeAttribute("vo");
+        return "/myPage/cart";
+    }
 }
