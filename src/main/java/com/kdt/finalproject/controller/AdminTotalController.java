@@ -153,7 +153,7 @@ public class AdminTotalController {
             map.put("m_joinDate", mvo.getM_joinDate());
             map.put("m_status", "1");
             map.put("m_phone", mvo.getM_phone());
-            map.put("restCd", rvo.getRouteCd());
+            map.put("restCd", rvo.getSvarCd());
             map.put("m_idx", mvo.getM_idx());
 
             Map<String, String> map2 = new HashMap<>();
@@ -174,6 +174,48 @@ public class AdminTotalController {
             return "승인 과정에서 오류가 발생했습니다.";
         }
 
+    }
+
+    @PostMapping("/adminTotal/refuse")
+    @ResponseBody
+    public void refuse(String m_id) {
+
+        // 해당 아이디와 일치하는 휴게소 멤버 정보 가져오기
+        MemVO mvo = r_Service.getRestInfo(m_id);
+
+        Map<String, String> map = new HashMap<>();
+
+        map.put("m_id", mvo.getM_id());
+        map.put("m_pw", mvo.getM_pw());
+        map.put("m_name", mvo.getM_name());
+        map.put("m_joinDate", mvo.getM_joinDate());
+        map.put("m_status", "5");
+        map.put("m_phone", mvo.getM_phone());
+        map.put("restCd", mvo.getRestCd());
+        map.put("m_idx", mvo.getM_idx());
+
+        // 해당 휴게소의 m_status 값을 5로 변경 & log 추가
+        r_Service.refuse(m_id, map);
+    }
+
+    @RequestMapping("/adminTotal/regLogList")
+    public ModelAndView viewRegStatus() {
+        ModelAndView mv = new ModelAndView();
+
+        MemVO[] ar = r_Service.regLogList();
+
+        if (ar != null) {
+
+            mv.addObject("ar", ar);
+            mv.setViewName("/adminTotal/regLogList");
+        }
+
+        return mv;
+    }
+
+    @RequestMapping("/adminTotal/menuList")
+    public String menuListTest() {
+        return "/adminTotal/menuList";
     }
 
 }

@@ -23,7 +23,7 @@
 
             <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="/adminTotal/main" class="nav-link text-white active">
+                <a href="/adminTotal/main" class="nav-link text-white">
                 홈
                 </a>
             </li>
@@ -33,12 +33,12 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/regStatus" class="nav-link text-white">
+                <a href="/adminTotal/regLogList" class="nav-link text-white">
                 승인/거절 현황
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/menuList" class="nav-link text-white">
+                <a href="/adminTotal/menuList" class="nav-link text-white active">
                 메뉴 관리
                 </a>
             </li>

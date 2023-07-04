@@ -40,7 +40,7 @@ public class RegRestService {
         return mvo;
     }
 
-    // 승인시 status값 변경 & member log 추가
+    // 승인시 status값 변경 & member log추가 & regrest 테이블에 추가
     public void approval(String m_id, Map map, Map map2) {
 
         reg_Mapper.approval(m_id);
@@ -49,6 +49,28 @@ public class RegRestService {
 
         reg_Mapper.addRegRest(map2);
 
+    }
+
+    // 거절시 status값 변경 & member log추가
+    public void refuse(String m_id, Map map) {
+
+        reg_Mapper.refuse(m_id);
+
+        reg_Mapper.addLog(map);
+
+    }
+
+    // 휴게소 회원 상태 로그
+    public MemVO[] regLogList() {
+        MemVO[] ar = null;
+
+        List<MemVO> list = reg_Mapper.regLogList();
+        if (list != null && list.size() > 0) {
+            ar = new MemVO[list.size()];
+            list.toArray(ar);
+        }
+
+        return ar;
     }
 
 }
