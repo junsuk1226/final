@@ -80,4 +80,15 @@ public class OrderListController {
         return mv;
     }
 
+    @RequestMapping("/getFileName")
+    @ResponseBody
+    public String getFileName(String foodNm) {
+
+        FoodVO vo = f_service.getFoodImg(foodNm);
+
+        String fname = vo.getF_image();
+
+        return fname;
+    }
+
 }

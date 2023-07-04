@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kdt.finalproject.service.ReviewService;
 import com.kdt.finalproject.util.FileRenameUtil;
 import com.kdt.finalproject.vo.ImageData;
+import com.kdt.finalproject.vo.PayVO;
 import com.kdt.finalproject.vo.ReviewLogVO;
 import com.kdt.finalproject.vo.ReviewVO;
 
@@ -42,9 +43,10 @@ public class ReviewWriteController {
     private String editor_img = "/editor_upload";
 
     @GetMapping("/writeReview")
-    public ModelAndView writeReview(String cPage) {
+    public ModelAndView writeReview(String cPage, String restNm) {
         ModelAndView mv = new ModelAndView("/myPage/writeReview");
 
+        mv.addObject("restNm", restNm);
         return mv;
     }
 

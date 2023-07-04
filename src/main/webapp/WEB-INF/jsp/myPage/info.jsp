@@ -123,7 +123,7 @@
                                     <div class="card-body">
                                         <div class="row justify-content-end ">
                                             <div class="col-6 mb-2 float-end text-end" href="/infopw">
-                                                <a class=" arrow nav-link" href="/infopw" style="font-family: 'suite'; font-weight: bold; color: #887e94; font-size: large;" >비밀번호 변경&nbsp;&nbsp;<i class="fa fa-arrow-right " aria-hidden="true"></i></a>
+                                                <a class=" arrow nav-link" href="/infopw" style="font-family: 'suite'; font-weight: bold; color: #887e94; font-size: large;" >비밀번호 변경<i class="fa fa-arrow-right ms-2" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                         <hr/>

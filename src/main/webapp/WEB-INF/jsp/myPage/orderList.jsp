@@ -149,8 +149,8 @@
                                             <c:forEach var="pvo" items="${ar}">
                                                 <form action="/orderDetail" id="form_${pvo.p_idx}" method="post">
                                                     <input type="hidden" value="${pvo.p_idx}" name="p_idx"/> 
-                                                    <div class = "row justify-content-around">
-                                                        <div class="col-md-3 mb-3 .square-div">
+                                                    <div class = "row justify-content-around align-items-center">
+                                                        <div class="col-md-3 mb-3 .square-div ">
                                                             <img style="object-fit: cover; width: 100%; height:auto;" class="rounded img-fluid" src="${pvo.f_image}">
                                                         </div>
                                                     

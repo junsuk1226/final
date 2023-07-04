@@ -22,7 +22,7 @@
 <select id="getFood_img" parameterType="String" resultType="com.kdt.finalproject.vo.FoodVO">
   	SELECT * FROM food
     WHERE foodNm = #{fname}
-</select>
+</select> 
 
 <!--메뉴 수정 시 특정 음식에 대한 정보 호출-->
 <select id="getOneFood" parameterType="String" resultType="com.kdt.finalproject.vo.FoodVO">

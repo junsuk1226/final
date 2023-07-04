@@ -167,7 +167,7 @@
                                         <div class="col-md-12 my-3 ms-2 justify-content-center">
                                             <h2 class="text-muted lh-base ms-1" style="font-family: 'suite'">
                                                 <span style="color: black;">${sessionScope.mvo.m_name}</span>님,
-                                                <br/><span style="color: black;">${param.r_restNm}</span>는 어떠셨나요? 
+                                                <br/><span style="color: black;">${restNm}</span>는 어떠셨나요? 
                                                 <br/>리뷰와 별점을 남겨주세요!
                                             </h2>
                                         </div>
@@ -178,13 +178,9 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-9 ">
                                     <form action="/writeReview" name="frm" method="post">
-                                        <!-- <input type="hidden" name="restCd"/>
-                                        <input type="hidden" name="r_restNm"/> -->
-                                        <input type="hidden" name="restCd" value="1"/>
-                                        <input type="hidden" name="r_restNm" value="${rvo.r_restNm}" />
+                                        <input type="hidden" name="r_restNm" value="${restNm}" />
                                         <input type="hidden" name="m_idx" value="${sessionScope.mvo.m_idx}"/>
                                         <input type="hidden" name="m_name" value="${sessionScope.mvo.m_name}"/>
-                                        <input type="hidden" name="r_file" />
                                         
                                         
                                             <div class="card shadow p-3 mb-5 bg-body rounded mx-1" style="border: none;">

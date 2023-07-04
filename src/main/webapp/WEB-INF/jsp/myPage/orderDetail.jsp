@@ -29,6 +29,16 @@
             <!--아이콘 cdn-->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
+            <style>
+                .nav-link{
+                    color: #6600db;
+                }
+                .nav-link:hover{
+                    color: #b699ee; cursor: pointer;
+                }
+
+            </style>
+
                     <!-- Favicon-->
                 </head>
 
@@ -72,7 +82,7 @@
 
                             <div class="container-fluid">
                                 <div class="row justify-content-center mt-5">
-                                    <div class="col-md-9 mb-3">
+                                    <div class="col-md-6 mb-3">
                                             <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
                                                 <span class="text-muted">주문 상세정보</span>
                                             </h2>
@@ -82,40 +92,64 @@
                             
                             <div class="container-fluid mb-4">
                                 <div class="row justify-content-center col-md-12 my-5">
-                                    <div  class="col-md-9">
+                                    <div  class="col-md-6">
                                          <div class="card shadow p-3 mb-5 bg-body rounded justify-content-center" style="border: none;">
-                                            <div class="card-body justify-content-center">
+                                            <div class="card-body justify-content-center text-center">
                                                 <form action="" name="frm" method="get">
-                                                    <input type="hidden" value="${pvo.restNm}"/>
-                                                    
-                                                        주문 번호: ${pvo.p_oNum}</br>
-                                                        주문 일시: ${pvo.p_date}&nbsp;${pvo.p_time}
-                                                    
-                                
-                                                   
-                                                        회원 이름: ${sessionScope.mvo.m_name}</br>
-                                                    
-                                
-                                                  
-                                                        휴게소: ${pvo.restNm}</br>
-                                                        <c:set var="foodNm" value="${fn:split(pvo.foodNm, '/')}"></c:set>
-                                                        <c:set var="foodCost" value="${fn:split(pvo.foodCost, '/')}"></c:set>
-                                                        <c:set var="foodQn" value="${fn:split(pvo.foodQn, '/')}"></c:set>
-                                                        <c:forEach var="i" begin="0" end="${fn:length(foodNm) - 1}">
-                                                            <c:set var="price" value="${fn:trim(foodCost[i])}" />
-                                                            
-                                                            상품 이름:  ${foodNm[i]}/ 수량:   ${foodQn[i]}/ 가격: <fmt:formatNumber value="${foodCost[i]}" pattern="#,###,###" />원</br>
-                                                        </c:forEach>
-                                                        총 결제 금액: <fmt:formatNumber value="${pvo.totalCost}" pattern="#,###,###" />원</br>
-                                                        결제방식: 
-                                                        <c:choose>
-                                                            <c:when test="${pvo.payMethod eq '0'}"> 카카오페이 결제 </c:when>
-                                                            <c:when test="${pvo.payMethod eq '1'}"> 토스페이 결제 </c:when>
-                                                            <c:otherwise> ... </c:otherwise>
-                                                        </c:choose>
-                                                   
-            
-                                                    <button class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="writeReview()" type="button">리뷰쓰기</button>
+                                                    <input type="hidden" name="restNm" value="${pvo.restNm}"/>
+                                                    <span class="text-muted">주문번호</span>
+                                                    <div class="text-center"><h1>${pvo.p_oNum}</h1></div>
+                                                    <hr/>
+                                                    <div class="d-flex justify-content-between mt-3 mb-5 align-items-center">
+                                                        <div class ="text-start" style="font-weight: bold; font-size: x-large;"><span>${pvo.restNm}</span></div>
+                                                        <div class="text-end text-muted" style="font-size: small;">${pvo.p_date}&nbsp;${pvo.p_time}</div>
+                                                    </div>
+                                                        <div class="mb-3">
+                                                            <c:set var="foodNm" value="${fn:split(pvo.foodNm, '/')}"></c:set>
+                                                            <c:set var="foodCost" value="${fn:split(pvo.foodCost, '/')}"></c:set>
+                                                            <c:set var="foodQn" value="${fn:split(pvo.foodQn, '/')}"></c:set>
+                                                            <c:forEach var="i" begin="0" end="${fn:length(foodNm) - 1}">
+                                                                <c:set var="price" value="${fn:trim(foodCost[i])}" />
+                                                                <hr style="border: 1px dashed black;"/>
+                                                                <div class="d-flex justify-content-between">
+                                                                    <div class="d-flex">    
+                                                                        <div class="ms-1" style ="width: 100px; height: 100px;">
+                                                                            <img id="${foodNm[i]}_img" style="object-fit: cover; width: 100%; height: 100%; background-color: rgb(240, 240, 240);" class="rounded "/> 
+                                                                        </div>
+                                                                        
+                                                                        <div class="ms-4 text-start">
+                                                                            <span style="font-size: large; font-weight: bold;">${foodNm[i]}</span>
+                                                                            <br/>
+                                                                            <span class="ps-2 text-muted">└ ${foodQn[i]}개</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        
+                                                                        <div class="text-end d-flex align-items-end">
+                                                                            <span class="me-2 text-muted">가격:</span><fmt:formatNumber value="${foodCost[i]}" pattern="#,###,###" />원
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </c:forEach>
+                                                        </div>
+                                                        <hr/>
+                                                        <div class="d-flex justify-content-between">
+                                                            <div class="text-start" style="font-size: larger; font-weight: bold;"><span>결제금액</span></div> 
+                                                            <div class="text-end">
+                                                                <fmt:formatNumber value="${pvo.totalCost}" pattern="#,###,###" />원<br/>
+                                                                <c:choose>
+                                                                    <c:when test="${pvo.payMethod eq '0'}"><span class="text-muted">(카카오페이 결제)</span></c:when>
+                                                                    <c:when test="${pvo.payMethod eq '1'}"><span class="text-muted">(토스페이 결제)</span></c:when>
+                                                                    <c:otherwise>(...)</c:otherwise>
+                                                                </c:choose>
+                                                            </div> 
+                                                        </div>
+                                                        <div class="text-end"><span class="text-muted"> 결제자: ${sessionScope.mvo.m_name}</span></div>
+                                                        <div class="row justify-content-end mt-4">
+                                                            <div class="col-6 mb-2 float-end text-end">
+                                                                <a class="nav-link" onclick="writeReview()" style="font-family: 'suite'; font-weight: bold; font-size: large;" >리뷰 작성<i class="fa fa-pencil-square-o fa-lg ms-2" aria-hidden="true"></i></a>
+                                                            </div>
+                                                        </div>
             
                                                 </form>
                                                 
@@ -171,7 +205,32 @@
                             document.frm.submit();
                         }
 
-                       
+                        //파일이름을 비동기식으로 가져오기
+                        $(document).ready(function() {
+                            
+                            <c:forEach var="i" begin="0" end="${fn:length(foodNm) - 1}">
+                                var foodNm = "${foodNm[i]}";
+                                sendAjaxRequest(foodNm);
+                                //console.log(foodNm);
+                            </c:forEach>
+
+
+                            function sendAjaxRequest(foodNm){
+                                $.ajax({
+                                    url:"/getFileName",
+                                    method: 'post',
+                                    data: {'foodNm': foodNm},
+                                    dataType: 'text'
+                                }).done(function(data){
+                                    // var imageUrl = encodeURIComponent(data);
+                                    console.log(data);
+
+                                    $("#" + foodNm + "_img").attr("src",data);
+                                });
+
+                            }
+                        
+                        })
 
 
                     </script>
