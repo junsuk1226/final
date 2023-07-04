@@ -22,4 +22,6 @@ public interface PayMapper {
 
     int delOrder(String p_idx);
 
+    PayVO order_selected(String p_idx);
+
 }

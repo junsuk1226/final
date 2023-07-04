@@ -64,4 +64,8 @@ public class PayService {
         return p_Mapper.delOrder(p_idx);
     }
 
+    public PayVO order_selected(String p_idx) {
+        return p_Mapper.order_selected(p_idx);
+    }
+
 }

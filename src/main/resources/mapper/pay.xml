@@ -22,11 +22,17 @@
     SELECT * FROM paylog where m_idx = #{m_idx} and p_status &lt; 2
 </select>
 
+<<<<<<< HEAD
+<select id="order_selected" parameterType="String" resultType="com.kdt.finalproject.vo.PayVO">
+    SELECT * FROM paylog WHERE p_idx=#{p_idx}
+</select>
+=======
 <update id="delOrder" parameterType="String">
   UPDATE paylog
   SET p_status = 2
   WHERE p_idx = #{p_idx}
 </update>
+>>>>>>> 04e6887ac28ebab5dda73ec33c73bdd7a933d423
 
 
 <!-- insert -->
