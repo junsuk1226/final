@@ -37,4 +37,7 @@ public class FoodService {
         return f_Mapper.getFood_img(fname);
     }
 
+    public FoodVO getOneFood(String f_idx) {
+        return f_Mapper.getOneFood(f_idx);
+    }
 }

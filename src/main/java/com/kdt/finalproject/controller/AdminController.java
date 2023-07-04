@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kdt.finalproject.service.FoodService;
 import com.kdt.finalproject.service.JoinService;
 import com.kdt.finalproject.service.MemService;
+import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MemVO;
 
 @Controller
@@ -28,6 +30,9 @@ public class AdminController {
 
     @Autowired
     private JoinService j_Service;
+
+    @Autowired
+    private FoodService f_Service;
 
     @RequestMapping("/admin")
     public String adminTest() {
@@ -81,6 +86,7 @@ public class AdminController {
 
         if (chk == true) {
             int cnt = j_Service.addAdmin(vo);
+            int cnt2 = j_Service.addAdminLog(vo);
             // mv.setViewName("redirect:/login");
             map.put("commjoin_fail", "0");
         } else {
@@ -97,9 +103,35 @@ public class AdminController {
         return "/admin/main";
     }
 
+    // @RequestMapping("/admin/menu")
+    // public String adminMenuTest() {
+    // return "/admin/menu";
+    // }
+
     @RequestMapping("/admin/menu")
-    public String adminMenuTest() {
-        return "/admin/menu";
+    public ModelAndView adminMenu() {
+        ModelAndView mv = new ModelAndView();
+
+        MemVO vo = (MemVO) session.getAttribute("mvo");
+
+        FoodVO[] foodList = f_Service.all(vo.getM_name());
+
+        mv.addObject("fvo", foodList);
+        mv.setViewName("/admin/menu");
+
+        return mv;
+    }
+
+    @RequestMapping("/admin/menuEdit")
+    public ModelAndView adminMenuEdit(String f_idx) {
+        ModelAndView mv = new ModelAndView();
+
+        FoodVO food = f_Service.getOneFood(f_idx);
+
+        mv.addObject("fvo", food);
+        mv.setViewName("/admin/menuEdit");
+
+        return mv;
     }
 
     @RequestMapping("/admin/sales")

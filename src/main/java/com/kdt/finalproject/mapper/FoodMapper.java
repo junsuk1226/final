@@ -10,4 +10,6 @@ public interface FoodMapper {
     FoodVO getFoodInfo(String seq);
 
     FoodVO getFood_img(String fname);
+
+    FoodVO getOneFood(String f_idx);
 }
