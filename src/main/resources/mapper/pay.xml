@@ -19,7 +19,7 @@
 </select>
 
 <select id="order_list" parameterType="String" resultType="com.kdt.finalproject.vo.PayVO">
-    SELECT * FROM paylog where m_idx = #{m_idx}
+    SELECT * FROM paylog where m_idx = #{m_idx} and p_status &lt; 2
 </select>
 
 <update id="delOrder" parameterType="String">
