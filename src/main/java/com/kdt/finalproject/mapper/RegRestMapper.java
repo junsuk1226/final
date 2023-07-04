@@ -24,4 +24,13 @@ public interface RegRestMapper {
     void addLog(Map map);
 
     void addRegRest(Map map2);
+
+    // 가입 거절
+    void refuse(String m_id);
+
+    List<MemVO> regLogList();
+
+    // 현재 가입되어있는 휴게소 정보
+    List<RegRestVO> getRegRestList();
+
 }

@@ -83,6 +83,7 @@
       <input type="hidden" name="RestNm"  value="${RestNm}">
       <input type="hidden" name="totalPrice" value="${foodCost}">
       <input type="hidden" name="quantity" value="1">
+      <input type="hidden" name="emptyCart" id="emptyCart">
       </form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
@@ -142,7 +143,8 @@
           var confirmMessage = "장바구니에는 같은 휴게소의 메뉴만 담을 수 있습니다.\n\n";
           confirmMessage += "선택하신 메뉴를 장바구니에 담을 경우 이전에 담은 메뉴가 삭제됩니다.\n\n";
 
-      
+          // 휴게소가 달라졌으니 emptyCart의 value를 1로 지정하고 서버로 보낸다.
+          $("#emptyCart").val("1");
           if (!confirm(confirmMessage)) {
             return; // 취소 버튼을 눌렀을 경우 함수 실행 중단
           }

@@ -48,47 +48,31 @@
             </header>
         </div>
         <!-- 메뉴바끝  메인 이미지 시작-------------------------------------------------------------------------------------------------->
-        <div class ="container-fluid text-center">
-            <div class="row justify-content-center ">
+        <div class ="container-fluid text-center" >
+            <div class="row justify-content-center" >
                 <div class="col-md-12" >
                     <a href="/main"><img style="max-width: 300px;" src="../main_images/logo.png"></a>  
                 </div>
-                <div id="faux-gif"></div>
             </div>
         </div>
         <!-- 메인 이미지 끝-------------------------------------------------------------------------------------------------->
 
         <!-----------토스페이 시작------------->
-
-        <div class="container">
-            <div class="d-flex justify-content-center">
-                <div class="p-3 mb-2 bg-secondary bg-opacity-25">
-                    <div class="card" style="width: 30rem;">
-                        <div class="p-3 mb-2 bg-white text-dark rounded">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-center">
-                                    <div class="card border border-2" style="width: 26rem;">
-                                        <div class="paybox">
-                                            <!-- 결제위젯, 이용약관 영역 -->
-                                            <div id="payment-method"></div>
-                                            <div id="agreement"></div>
-                                        </div>
-                                    </div></br>
-                                </div></br>
-                                <!-- 결제하기 버튼 -->
-                                <div style="text-align: right;">
-                                    <button type="button" class="btn btn-outline-secondary" id="payment-button">결제하기</button>
-                                </div>
-                            </div>
-                        </div>
+        <div class="container d-flex justify-content-center">
+            <div class="row p-3 bg-secondary bg-opacity-25" style="width: 32rem;">
+                <div class="card p-3 bg-white text-dark rounded" >
+                    <div class="card paybox border-2">
+                        <!-- 결제위젯, 이용약관 영역 -->
+                        <div id="payment-method"></div>
+                        <div id="agreement"></div>
+                    </div></br>
+                    <div style="text-align: right;">
+                        <button type="button" class="btn btn-outline-secondary" id="payment-button">결제하기</button>
                     </div>
                 </div>
             </div>
         </div></br>
 
-
-        
-    
         <script>
             const clientKey = "test_ck_YyZqmkKeP8gObZJ9knn8bQRxB9lG"
             const customerKey = "HV_7WljA1x4k2dp1ZQOJj" // 내 상점에서 고객을 구분하기 위해 발급한 고객의 고유 ID--------------------(m_idx 예정)
@@ -126,9 +110,9 @@
         <!-----------토스페이 끝-------------->
 
     <!-- footer 시작---------------------------------------------------------------------------------------------->
-        <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
+        <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mycustom-main_footer">
             <div class="container text-center">
-            <small>Copyright &copy; 2023 팀이름 </small>
+                <small>Copyright &copy; 2023 쉬-잇 </small>
             </div>
         </footer>
 

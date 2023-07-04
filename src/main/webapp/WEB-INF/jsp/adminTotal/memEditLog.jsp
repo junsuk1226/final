@@ -23,7 +23,7 @@
 
             <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="/adminTotal/main" class="nav-link text-white active">
+                <a href="/adminTotal/main" class="nav-link text-white">
                 홈
                 </a>
             </li>
@@ -48,7 +48,7 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/memEditLog" class="nav-link text-white">
+                <a href="/adminTotal/memEditLog" class="nav-link text-white active">
                 일반회원 수정내역
                 </a>
             </li>
