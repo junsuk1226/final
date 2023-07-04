@@ -48,12 +48,12 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/memEditLog" class="nav-link text-white">
+                <a href="/adminTotal/memEditLog" class="nav-link text-white active">
                 일반회원 수정내역
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/menuList" class="nav-link text-white active">
+                <a href="/adminTotal/menuList" class="nav-link text-white">
                 메뉴 관리
                 </a>
             </li>

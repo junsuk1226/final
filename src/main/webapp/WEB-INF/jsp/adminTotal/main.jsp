@@ -33,8 +33,23 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/regStatus" class="nav-link text-white">
-                승인/거절 현황
+                <a href="/adminTotal/editAdmin" class="nav-link text-white">
+                회원정보 수정(관리자)
+                </a>
+            </li>
+            <li>
+                <a href="/adminTotal/adminEditLog" class="nav-link text-white">
+                관리자회원 수정내역
+                </a>
+            </li>
+            <li>
+                <a href="/adminTotal/editMem" class="nav-link text-white">
+                회원정보 수정(고객)
+                </a>
+            </li>
+            <li>
+                <a href="/adminTotal/memEditLog" class="nav-link text-white">
+                일반회원 수정내역
                 </a>
             </li>
             <li>

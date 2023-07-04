@@ -13,6 +13,7 @@ import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kdt.finalproject.service.MemService;
 import com.kdt.finalproject.service.RegRestService;
 import com.kdt.finalproject.vo.MemVO;
+import com.kdt.finalproject.vo.RegRestVO;
 import com.kdt.finalproject.vo.RestVO;
 
 @Controller
@@ -198,7 +200,7 @@ public class AdminTotalController {
         r_Service.refuse(m_id, map);
     }
 
-    @RequestMapping("/adminTotal/regLogList")
+    @RequestMapping("/adminTotal/adminEditLog")
     public ModelAndView viewRegStatus() {
         ModelAndView mv = new ModelAndView();
 
@@ -207,10 +209,30 @@ public class AdminTotalController {
         if (ar != null) {
 
             mv.addObject("ar", ar);
-            mv.setViewName("/adminTotal/regLogList");
+            mv.setViewName("/adminTotal/adminEditLog");
         }
 
         return mv;
+    }
+
+    @RequestMapping("/adminTotal/editAdmin")
+    public ModelAndView getRegRestList() {
+
+        ModelAndView mv = new ModelAndView();
+
+        RegRestVO[] ar = r_Service.getRegRestList();
+
+        if (ar != null) {
+            mv.addObject("ar", ar);
+            mv.setViewName("/adminTotal/editAdmin");
+        }
+
+        return mv;
+    }
+
+    @RequestMapping("/adminTotal/memEditLog")
+    public String memEditLogTest() {
+        return "/adminTotal/memEditLog";
     }
 
     @RequestMapping("/adminTotal/menuList")

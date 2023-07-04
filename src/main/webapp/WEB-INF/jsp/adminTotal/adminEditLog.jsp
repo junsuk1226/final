@@ -33,8 +33,23 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/regLogList" class="nav-link text-white active">
-                회원 로그
+                <a href="/adminTotal/editAdmin" class="nav-link text-white">
+                회원정보 수정(관리자)
+                </a>
+            </li>
+            <li>
+                <a href="/adminTotal/adminEditLog" class="nav-link text-white active">
+                관리자회원 수정내역
+                </a>
+            </li>
+            <li>
+                <a href="/adminTotal/editMem" class="nav-link text-white">
+                회원정보 수정(고객)
+                </a>
+            </li>
+            <li>
+                <a href="/adminTotal/memEditLog" class="nav-link text-white">
+                일반회원 수정내역
                 </a>
             </li>
             <li>
@@ -54,7 +69,7 @@
          <!-- 메인 컨텐츠 내용 -->
          <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
             <div class="container" style="width:100%; margin: 0">
-                <h1>회원 로그</h1>
+                <h1>관리자회원 수정내역</h1>
                 <br/>
                 
                 <div class="container">

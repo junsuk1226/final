@@ -30,4 +30,7 @@ public interface RegRestMapper {
 
     List<MemVO> regLogList();
 
+    // 현재 가입되어있는 휴게소 정보
+    List<RegRestVO> getRegRestList();
+
 }

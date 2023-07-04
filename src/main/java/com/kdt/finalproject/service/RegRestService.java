@@ -73,4 +73,18 @@ public class RegRestService {
         return ar;
     }
 
+    // 현재 가입되어있는 휴게소 리스트 가져오는 함수
+    public RegRestVO[] getRegRestList() {
+
+        RegRestVO[] ar = null;
+
+        List<RegRestVO> list = reg_Mapper.getRegRestList();
+        if (list != null && list.size() > 0) {
+            ar = new RegRestVO[list.size()];
+            list.toArray(ar);
+        }
+
+        return ar;
+    }
+
 }
