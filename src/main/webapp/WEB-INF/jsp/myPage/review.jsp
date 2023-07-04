@@ -245,27 +245,43 @@
 
                                                 </c:forEach>
                                             </div> 
-                                                    <c:forEach var="vo" items="${ar }" varStatus="st">
-                                                        <tr>
-                                                            <td>
-                                                                <%-- 순차적인 번호를 만들어서 표현하자 --%>
-                                                                    ${totalRecord - ((nowPage-1)*blockList+st.index) }
-                                                                    <%-- ${vo.b_idx } --%>
-                                                            </td>
-                                                            <td style="text-align: left">
-                                                                <a href="ReviewController?r_idx=${vo.r_idx}&cPage=${nowPage}">
-                                                                    ${vo.subject }
-                                                                    <c:if test="${vo.c_list.size() > 0 }">
-                                                                        (${vo.c_list.size() })
-                                                                    </c:if>
-                                                                </a>
-                                                            </td>
-                                                            <td>${vo.r_content}</td>
-                                                            <td>${vo.r_writedate }</td>
-                                                            <td>${vo.r_restNm }</td>
+                                                 
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-9">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr style="background:'#353535'">
+                                                            <th colspan="5">리뷰관리</th>
                                                         </tr>
-                                                    </c:forEach>
+                                                    </thead>
+                                                    <tbody>
+                                                        <c:forEach var="rvo" items="${requestScope.ar }" varStatus="st">
+                                                            <tr>
                                         
+                                                                <td style="width: 200px;">휴게소이미지</td>
+                                                                <td colspan="4">
+                                                                    <div>
+                                                                        <p style="font-size: 15px; font-weight: bold;">${rvo.r_restNm}</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p style="font-size: 12px; ">${rvo.r_writedate}</p>
+                                                                    </div>
+                                                                    <div>${rvo.r_content}</div>
+                                                                    <div style="text-align: right;">
+                                                                        <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button"
+                                                                            onclick="del('${rvo.r_idx}')">삭제</button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                        
+                                        
+                                                        </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                                </form>
+                                            </div>
+                                        </div>
                                             
                                                 <tr>
                                                     <td colspan="4">
