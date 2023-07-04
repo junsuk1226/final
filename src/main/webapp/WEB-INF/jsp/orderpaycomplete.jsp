@@ -51,49 +51,40 @@
             </header>
         </div>
         <!-- 메뉴바끝  메인 이미지 시작-------------------------------------------------------------------------------------------------->
-        <div class ="container-fluid text-center">
-            <div class="row justify-content-center ">
+        <div class ="container-fluid text-center" >
+            <div class="row justify-content-center" >
                 <div class="col-md-12" >
                     <a href="/main"><img style="max-width: 300px;" src="../main_images/logo.png"></a>  
                 </div>
-                <div id="faux-gif"></div>
             </div>
         </div>
         <!-- 메인 이미지 끝-------------------------------------------------------------------------------------------------->
 
         <!---------------------------------결제 완료 영역 ------------------------------------->
-        <div class="container">
-            <div class="d-flex justify-content-center">
-                <div class="p-3 mb-2 bg-secondary bg-opacity-25">
-                    <div class="card" style="width: 30rem;">
-                        <div class="p-3 mb-2 bg-white text-dark rounded">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-center">
-                                    <h3 class="card-title" id="order_title">주문 확인</h3>
-                                </div></br>
-                                <div class="card border border-2" style="width: 26rem;">
-                                    <div class="paybox">
-                                        <p class="text-left text_bold" id="order_num" style="text-align: center; margin-top: 15px;">${pvo.p_oNum}</p></br>
-                                        <p class="text-left" style="margin-left: 20px;" >주문 일시: ${pvo.p_date} / ${pvo.p_time}</p>
-                                    </div>
-                                </div></br>
-
-                                <div class="card border border-2 container" style="width: 26rem;">
-                                    <div class="paybox row">
-                                        <p class="text-left text_bold" style="margin-left: 10px; margin-top: 15px; padding-bottom: 10px;" >${pvo.restNm}</p>
-                                        <c:forEach var="foodname1" items="${foodname }" varStatus="st">
-                                            <p class="col-md-12">
-                                                <span style="display: inline-block; float: left; margin-left: 10px;" >${foodname1} / ${foodqnt[st.index]}개</span>
-                                            </p>
-                                        </c:forEach>    
-
-                                    </div>
-                                </div></br>
-                                <div style="text-align: right;">
-                                    <button type="button" class="btn btn-outline-secondary" onclick="location.href='/main'">확인</button>
-                                    <button type="button" class="btn btn-outline-secondary" onclick="location.href=''">주문상세보기</button>
-                                </div>
-                            </div>
+        <div class="container d-flex justify-content-center">
+            <div class="row p-3 bg-secondary bg-opacity-25" style="width: 32rem;">
+                <div class="card p-3 bg-white text-dark rounded" >
+                    <div class="card-header border-light">
+                        <div class="d-flex justify-content-center">
+                            <h3 class="card-title" id="order_title">주문 확인</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="paybox card border-2">
+                            <p class="text-left text_bold" id="order_num" style="text-align: center; margin-top: 15px;">${pvo.p_oNum}</p></br>
+                            <p class="text-left" style="margin-left: 20px;" >주문 일시: ${pvo.p_date} / ${pvo.p_time}</p>
+                        </div></br>
+                        <div class="card border-2">
+                            <p class="text-left text_bold" style="margin-left: 10px; margin-top: 15px; padding-bottom: 10px;" >${pvo.restNm}</p>
+                            <c:forEach var="foodname1" items="${foodname }" varStatus="st">
+                                <p class="col-md-12">
+                                    <span style="display: inline-block; float: left; margin-left: 10px;" >${foodname1} / ${foodqnt[st.index]}개</span>
+                                </p>
+                            </c:forEach>
+                        </div></br>
+                        <div style="text-align: right;">
+                            <button type="button" class="btn btn-outline-secondary" onclick="location.href='/main'">확인</button>
+                            <button type="button" class="btn btn-outline-secondary" onclick="location.href=''">주문상세보기</button>
                         </div>
                     </div>
                 </div>
@@ -103,7 +94,7 @@
         <!-- footer 시작---------------------------------------------------------------------------------------------->
         <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
             <div class="container text-center">
-            <small>Copyright &copy; 2023 팀이름 </small>
+                <small>Copyright &copy; 2023 팀이름 </small>
             </div>
         </footer>
 

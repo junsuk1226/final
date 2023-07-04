@@ -36,71 +36,65 @@
         </style>
     </head> 
     <body class="d-flex flex-column">
-    <!-- 메뉴바 ----------------------------------------------------------------------------------------------------------->
-    <div class="container main_custom_menubar">
-		<header class="d-flex flex-wrap align-items-center justify-content-end py-3 mb-3 me-2">
-			<a class="nav-link logo_custom"></a>
-			<c:if test="${sessionScope.mvo == null}">
-				<div class="col-md-3 text-end ms-auto">
-					<button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/login'">로그인</button>
-					<button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/join'">회원가입</button>
-				</div>
-			</c:if>
-		</header>
-	</div>
+        <!-- 메뉴바 ----------------------------------------------------------------------------------------------------------->
+        <div class="container main_custom_menubar">
+            <header class="d-flex flex-wrap align-items-center justify-content-end py-3 mb-3 me-2">
+                <a class="nav-link logo_custom"></a>
+                <c:if test="${sessionScope.mvo == null}">
+                    <div class="col-md-3 text-end ms-auto">
+                        <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/login'">로그인</button>
+                        <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/join'">회원가입</button>
+                    </div>
+                </c:if>
+            </header>
+        </div>
         <!-- 메뉴바끝  메인 이미지 시작-------------------------------------------------------------------------------------------------->
         <div class ="container-fluid text-center" >
             <div class="row justify-content-center" >
-    
                 <div class="col-md-12" >
                     <a href="/main"><img style="max-width: 300px;" src="../main_images/logo.png"></a>  
                 </div>
-    
             </div>
         </div>
         <!-- 메인 이미지 끝-------------------------------------------------------------------------------------------------->
 
         <!---------------------------------결제 영역 ------------------------------------->
         <div class="container d-flex justify-content-center">
-            <div class="row p-3 bg-secondary bg-opacity-25">
-                <div class="card p-3 mb-2 bg-white text-dark rounded">
-                    <div class="card-body">
+            <div class="row p-3 bg-secondary bg-opacity-25" style="width: 32rem;">
+                <div class="card p-3 bg-white text-dark rounded" >
+                    <div class="card-header border-light">
                         <div class="d-flex justify-content-center">
                             <h3 class="card-title" id="order_title">주문하기</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card border-2">
+                            <p class="text-left text_bold" style="margin-left: 20px; margin-top: 15px;" >주문자: ${mvo.m_id}</p>
+                            <p class="text-left" style="margin-left: 20px;" >전호번호: ${mvo.m_phone}</p>
                         </div></br>
-                        <div class="card border border-2" style="width: 26rem;">
-                            <div class="paybox">
-                                <p class="text-left text_bold" style="margin-left: 20px; margin-top: 15px;" >주문자: ${mvo.m_id}</p>
-                                <p class="text-left" style="margin-left: 20px;" >전호번호: ${mvo.m_phone}</p>
-                            </div>
-                        </div></br>
-                    
-                        <div class="card border border-2 container" style="width: 26rem;">
-                            <div class="paybox row">
-                                <c:set var="sumPrice" value="0"/>
-                                <c:set var="RestNm0" value=""/>
-                                <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st">
-                                    <c:set var="RestNm0" value="${pvo.restNm }"/>
-                                </c:forEach>
-                                <p class="text-left text_bold" style="margin-left: 10px; margin-top: 15px; padding-bottom: 15px;" >${RestNm0 }</p>
-                                <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st">
-                                    <p class="col-md-12">
-                                        <span style="display: inline-block; float: left; margin-left: 10px;" >${pvo.foodNm} / ${pvo.quantity}개</span>
-                                        <span style="display: inline-block; float: right; margin-right: 10px;"><fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />원</span>
-                                    </p>
-                                    <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}"/>
-                                </c:forEach>
-                                <p class="col-md-12" style="font-weight: 800">
-                                    <span style="display: inline-block; float: left; margin-left: 10px; padding-top: 15px;" >총 결제금액</span>
-                                    <span style="display: inline-block; float: right; margin-right: 10px; padding-top: 15px;"><fmt:formatNumber value="${sumPrice}" pattern="#,###,###" />원</span>
+                        <div class="card border-2">
+                            <c:set var="sumPrice" value="0"/>
+                            <c:set var="RestNm0" value=""/>
+                            <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st">
+                                <c:set var="RestNm0" value="${pvo.restNm }"/>
+                            </c:forEach>
+                            <p class="text-left text_bold" style="margin-left: 10px; margin-top: 15px; padding-bottom: 15px;" >${RestNm0 }</p>
+                            <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st">
+                                <p class="col-md-12">
+                                    <span style="display: inline-block; float: left; margin-left: 10px;" >${pvo.foodNm} / ${pvo.quantity}개</span>
+                                    <span style="display: inline-block; float: right; margin-right: 10px;"><fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />원</span>
                                 </p>
-                            </div>
+                                <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}"/>
+                            </c:forEach>
+                            <p class="col-md-12" style="font-weight: 800">
+                                <span style="display: inline-block; float: left; margin-left: 10px; padding-top: 15px;" >총 결제금액</span>
+                                <span style="display: inline-block; float: right; margin-right: 10px; padding-top: 15px;"><fmt:formatNumber value="${sumPrice}" pattern="#,###,###" />원</span>
+                            </p>
                         </div></br>
-                    
-                        <div class="card border border-2" style="width: 26rem; text-align: center;">
+                        <div class="card border-2" style="text-align: center;">
                             <div class="paybox"></br>
                                 <form action="/kakao/pay" name="frm" method="post">
-                                    <img style="width: 360px; cursor:pointer;" src="images/kakao_pay.png" onclick="sendData()">
+                                    <img class="img-fluid" style="width: 360px; cursor:pointer;" src="images/kakao_pay.png" onclick="sendData()">
                                     <input type="hidden" name="sumPrice" value="${sumPrice}"/>
                                     <input type="hidden" name="m_idx" value="${mvo.m_idx}"/>
                                     <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st">
@@ -113,7 +107,7 @@
                             </div>
                             <div class="paybox" style="padding-top: 10px; padding-bottom: 10px;">
                                 <form action="/toss/pay" name="frm2" method="post">
-                                    <img style="height: 30px; cursor:pointer;" src="images/toss_pay.png" onclick="sendData2()">
+                                    <img class="img-fluid" style="height: 30px; cursor:pointer;" src="images/toss_pay.png" onclick="sendData2()">
                                     <input type="hidden" name="sumPrice" value="${sumPrice}"/>
                                     <input type="hidden" name="m_idx" value="${mvo.m_idx}"/>
                                     <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st">
@@ -139,16 +133,15 @@
             </div>
         </div></br>
         
-        
         <!---------------------------------결제 영역 끝------------------------------------->
                     
 
         <!-- footer 시작---------------------------------------------------------------------------------------------->
         <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mycustom-main_footer">
             <div class="container text-center">
-              <small>Copyright &copy; 2023 쉬-잇 </small>
+                <small>Copyright &copy; 2023 쉬-잇 </small>
             </div>
-          </footer>
+        </footer>
 
         <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
         <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=092a22d4a329417bd5fb9544ca6bb378"></script>
