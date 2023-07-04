@@ -48,8 +48,65 @@
 
     <!-- 메인 컨텐츠 내용 -->
     <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
-        
-      
+        <form action="/admin/EditConfirm" method="post" id="frm">
+        <table>
+            <colgroup>
+              <col width="20.4%">
+              <col width="79.6%">
+            </colgroup>
+            <div class="u-container-layout u-container-layout-1"><span class="u-file-icon u-icon u-icon-1"><img src="/${fvo.f_image }" style="width:750px;"></span>
+            <tbody class="u-table-body">
+              <tr style="height: 68px;">
+                <td>음식명</td>
+                <td><input type="text" size= "80" name="foodNm" value="${fvo.foodNm }" /></td>
+              </tr>
+              <tr style="height: 66px;">
+                <td>음식재료</td>
+                <td><input type="text" size= "80" name="foodMaterial" value="${fvo.foodMaterial}" /></td>
+              </tr>
+              <tr style="height: 63px;">
+                <td>가격</td>
+                <td>
+                
+                       <input type="text" size= "80" name="foodCost" value="${fvo.foodCost}" />
+                
+                
+               
+                </td>
+              </tr>
+              <tr style="height: 69px;">
+                <td>판매상태</td>
+                <td>
+                    <select class="form-select" aria-label="Default select example" name="f_status">
+                        <c:choose>
+                            <c:when test="${fvo.f_status eq '0'}">
+                                <option value="0" selected>판매중</option>
+                                <option value="1">품절</option>
+                                <option value="2">삭제</option>
+                            </c:when>
+                            <c:when test="${fvo.f_status eq '1'}">
+                                <option value="0">판매중</option>
+                                <option value="1" selected>품절</option>
+                                <option value="2">삭제</option>
+                            </c:when>
+                            <c:when test="${fvo.f_status eq '2'}">
+                                <option value="0">판매중</option>
+                                <option value="1">품절</option>
+                                <option value="2" selected>삭제</option>
+                            </c:when>
+                        </c:choose>
+                    </select>
+              </td>
+              </tr>
+              <tr style="height: 259px;">
+                <td class="u-border-2 u-border-palette-1-base u-first-column u-grey-5 u-table-cell u-table-cell-9">내용</td>
+                <td class="u-border-2 u-border-palette-1-light-1 u-table-cell"><textarea name="etc" cols="80" rows="9">${fvo.etc}</textarea></td>
+              </tr>
+              <td style="width: 50px;"><a class="btn btn-dark" style="width:60px" href="">수정</a></td>
+              <td style="width: 50px;"><a class="btn btn-dark" style="width:60px" href="">취소</a></td>
+            </tbody>
+          </table>
+        </form>
     </div>
     <!-- 메인 컨텐츠 끝 -->
 </div>

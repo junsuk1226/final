@@ -257,13 +257,11 @@ public class JoinController {
         String email = j_email;
         String password = j_password;
         String name = j_nickname;
-        String status = "0";
 
         MemVO vo = new MemVO();
         vo.setM_id(email);
         vo.setM_pw(password);
         vo.setM_name(name);
-        vo.setM_status(status);
         vo.setM_phone(m_phone);
 
         Boolean chk = j_Service.check_email(vo);

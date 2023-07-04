@@ -5,25 +5,35 @@
   
 <mapper namespace="com.kdt.finalproject.mapper.FoodMapper">
 
+
+<!--특정 휴게소 클릭 시 DB에 등록된 모든 음식 호출, 관리자 페이지 메뉴관리에서 메뉴 리스트 호출-->
 <select id="getFood" resultType="com.kdt.finalproject.vo.FoodVO" parameterType="String">
   	SELECT * FROM final.food
     WHERE stdRestNm = #{RestNm} and f_status = 0 or f_status = 1
 </select>
 
+<!--특정 음식 클릭 시 음식 정보 호출-->
 <select id="getFoodInfo" parameterType="String" resultType="com.kdt.finalproject.vo.FoodVO">
   	SELECT * FROM food
     WHERE seq = #{seq}
 </select>
 
+<!--음식 이미지 호출-->
 <select id="getFood_img" parameterType="String" resultType="com.kdt.finalproject.vo.FoodVO">
   	SELECT * FROM food
     WHERE foodNm = #{fname}
 </select>
 
+<!--메뉴 수정 시 특정 음식에 대한 정보 호출-->
 <select id="getOneFood" parameterType="String" resultType="com.kdt.finalproject.vo.FoodVO">
   SELECT * FROM final.food
   WHERE f_idx = #{f_idx}
 </select>
 
-
+<!-- 메뉴 수정
+<update id="editFood" parameterType="com.kdt.finalproject.vo.FoodVO">
+  UPDATE final.food
+  	SET like_count = like_count-1
+  	WHERE p_idx = #{p_idx}
+<update> -->
 </mapper>

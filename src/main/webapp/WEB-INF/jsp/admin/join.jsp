@@ -267,7 +267,7 @@
                                 data:{"j_email":j_email, "j_password":j_password, "j_nickname":j_nickname, "m_phone":m_phone},
                                 dataType:"json"
                             }).done(function(data){
-                                if(data.commjoin_fail == "0")// 잘 저장된 경우
+                                if(data.adminjoin_fail == "0")// 잘 저장된 경우
                                     $('#modal1').modal('show');
                                 else{
                                     $("#j_email").val("");
@@ -276,6 +276,33 @@
                             })
 
                         }
+                        $(function(){
+                            $("#j_email").bind("keyup", function(){
+                                var str = $(this).val();
+                                if(str.trim().length > 4){
+                                    $.ajax({
+                                        url: "/admin/checkid",
+                                        type: "post",
+                                        data: {"email":str},
+                                        dataType:"json"
+                                    }).done(function(res){
+                                        if(res.chk == true && check1.test(str)){
+                                            $("#j_box").html("&nbsp;사용가능");
+                                        }else{
+                                            $("#j_box").html("&nbsp;사용불가능");
+                                        }
+                                    })
+                                }else{
+                                    $("#j_box").html("");
+                                }
+                            });
+        
+                            // if("${commjoin_fail}" == "commjoin_fail"){
+                            //     alert("이미 가입된 이메일입니다.");
+                            //     return;
+                            // }
+                        });
+                        
 
                         // 모달 1 확인 버튼 클릭 이벤트 처리
                         $(document).ready(function() {
@@ -291,7 +318,7 @@
                                 var str = $(this).val();
                                 if(str.trim().length > 4){
                                     $.ajax({
-                                        url: "/join/checkid",
+                                        url: "/admin/checkid",
                                         type: "post",
                                         data: {"email":str},
                                         dataType:"json"

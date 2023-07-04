@@ -12,5 +12,5 @@ import lombok.Setter;
 public class RegRestVO {
     private String reg_idx, reg_restNm, reg_restCd, reg_addr, reg_phone, reg_crn, reg_joinDate, reg_dropDate,
             reg_status,
-            reg_ownerNm, reg_ownerPhone, reg_ownerEmail, m_idx;
+            reg_ownerNm, reg_ownerPhone, reg_ownerEmail, m_idx, reg_image;
 }

@@ -67,11 +67,11 @@
                 <td> <img src="${vo.f_image}" style="width:80px; height: 60px;"></td>
                 <td>${vo.foodNm}</td>
                 <td>${vo.foodCost}</td>
-                <c:if test="${vo.f_status eq '0'} ">
+                <c:if test="${vo.f_status == 0}">
                     <td>판매중</td>
                 </c:if>
-                <c:if test="${vo.f_status} eq 1">
-                    <td>품절</td>
+                <c:if test="${vo.f_status == 1}">
+                    <td>품 절</td>
                 </c:if>
                 <td style="width: 50px;"><a class="btn btn-dark" style="width:60px" href="/admin/menuEdit?f_idx=${vo.f_idx}">수정</a></td>
               

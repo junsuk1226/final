@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -66,7 +67,7 @@ public class AdminController {
 
     @RequestMapping("/admin/join")
     @ResponseBody
-    public Map<String, String> commonJoin(String j_email, String j_password, String j_nickname,
+    public Map<String, String> adminJoin(String j_email, String j_password, String j_nickname,
             String j_confirmpassword,
             String m_phone) {
         // ModelAndView mv = new ModelAndView();
@@ -83,17 +84,27 @@ public class AdminController {
         vo.setM_phone(m_phone);
 
         Boolean chk = j_Service.check_email(vo);
-
         if (chk == true) {
-            int cnt = j_Service.addAdmin(vo);
-            int cnt2 = j_Service.addAdminLog(vo);
+            j_Service.addAdmin(vo);
+            j_Service.addAdminLog(vo);
             // mv.setViewName("redirect:/login");
-            map.put("commjoin_fail", "0");
+            map.put("adminjoin_fail", "0");
         } else {
             // session.setAttribute("commjoin_fail", "commjoin_fail");
             // mv.setViewName("redirect:/join");
-            map.put("commjoin_fail", "1");
+            map.put("adminjoin_fail", "1");
         }
+
+        return map;
+    }
+
+    @PostMapping("/amdin/checkid")
+    @ResponseBody
+    public Map<String, Object> check_id(String email) {
+        boolean chk = j_Service.check_id(email);
+        System.out.println(chk);
+        Map<String, Object> map = new HashMap<>();
+        map.put("chk", chk);
 
         return map;
     }
