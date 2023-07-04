@@ -134,7 +134,14 @@
                                                         <input style="border: none;" id="phone" type="text" class="text-muted form-control" value="${fn:substring(tel, 0, 3)}-${fn:substring(tel, 3, 7)}-${fn:substring(tel, 7,11)}" disabled>
                                                     </div>
 
+                                                    <!-- 가입일 -->
+                                                    <label for="j_joinDate" class="form-label mt-4 "><span class="ms-1">회원 가입일</span></label>
+                                                    <div class="input-group mb-1 input-group-lg">
+                                                        <input style="border: none;" name="j_joinDate"
+                                                        id="j_joinDate" type="text" class="text-muted form-control"  value="${sessionScope.mvo.m_joinDate}" disabled>
+                                                    </div>
 
+                                                </br>
                                                     <!--버튼-->
                                                     <div class="d-grid gap-2 col-7 mx-auto " style="max-width: 240px;" href="/infopw">
                                                         <button type="button" class="btn btn-dark " > 

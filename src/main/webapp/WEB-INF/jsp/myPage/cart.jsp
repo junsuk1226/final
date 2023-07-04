@@ -99,15 +99,15 @@
                     <!-- Page content-->
 
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-11">
-                                <br />
-                                <h1>${sessionScope.mvo.m_name}님 환영합니다. </h1>
-                                <br />
-                                <br />
+                        <div class="row justify-content-center mt-5">
+                            <div class="col-md-9 mb-3">
+                                <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
+                                    ${sessionScope.mvo.m_name}<span class="text-muted">님의 장바구니</span>
+                                </h2>
                             </div>
                         </div>
+                   
+
                         <div class="row">
                             <div class="col-md-1"></div>
                             <div class="col-md-12 col-md-offset-5">
@@ -163,11 +163,11 @@
                                         <thead>
                                             <tr>
                                                 <td colspan="5">
-                                                    <h1>장바구니</h1>
+                                                    <h1></h1>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>상품명</th>
+                                                <th><h3>상품리스트</h3></th>
                                                 
                                                 <th>&nbsp;</th>
                                             </tr>
@@ -258,8 +258,9 @@
                                                     <tr>
                                                         <td colspan="2" align="right">
                                                             
-                                                            <button type="button" id="btnDelete" class="btn btn-outline-success me-2 mycustom-mem-btn">장바구니 비우기</button>
+                                                            <button type="button" id="btnDelete" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="senda(this.form)">장바구니 비우기</button>
                                                             <!--btnUpdate와 btnDelete id는 위쪽에 있는 자바스크립트가 처리한다.-->
+                                                           
                                                             <button type="button" id="btnList" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="sendData(this.form)">결제하기</button>
                                                         </td>
                                                     </tr>
@@ -335,7 +336,7 @@
                     </div>
             </div>
             </div>
-
+</div>
 
             <script type="text/javascript" src="js/bootstrap.js"></script>
 
@@ -370,7 +371,7 @@
                    window.history.back();
                 }
 
-
+           
                
 
 
@@ -381,7 +382,7 @@
 
                     $("#btnDelete").click(function () {
                         if (confirm("장바구니를 비우시겠습니까?")) {
-                            location.href = "${path}/shop/cart/deleteAll.do";
+                            location.href = "/cartout";
                         }
                     });
                     function delete12() {
