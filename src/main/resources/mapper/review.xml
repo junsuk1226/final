@@ -6,9 +6,9 @@
 <mapper namespace="com.kdt.finalproject.mapper.ReviewMapper">
 
 <resultMap id="map1" type="com.kdt.finalproject.mapper.ReviewMapper">
-  <id property="id" column="id" />
-  <result property="name" column="name" />
-  <!-- 다른 필드들의 매핑 -->
+  <id property="r_idx" column="r_idx" />
+ <collection property="r_list" ofType="com.kdt.finalproject.mapper.ReviewMapper" 
+  		select="getReviewList" column="r_idx"/>
 </resultMap>
 
 

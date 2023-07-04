@@ -245,7 +245,26 @@
 
                                                 </c:forEach>
                                             </div> 
-                                                      
+                                                    <c:forEach var="vo" items="${ar }" varStatus="st">
+                                                        <tr>
+                                                            <td>
+                                                                <%-- 순차적인 번호를 만들어서 표현하자 --%>
+                                                                    ${totalRecord - ((nowPage-1)*blockList+st.index) }
+                                                                    <%-- ${vo.b_idx } --%>
+                                                            </td>
+                                                            <td style="text-align: left">
+                                                                <a href="ReviewController?r_idx=${vo.r_idx}&cPage=${nowPage}">
+                                                                    ${vo.subject }
+                                                                    <c:if test="${vo.c_list.size() > 0 }">
+                                                                        (${vo.c_list.size() })
+                                                                    </c:if>
+                                                                </a>
+                                                            </td>
+                                                            <td>${vo.r_content}</td>
+                                                            <td>${vo.r_writedate }</td>
+                                                            <td>${vo.r_restNm }</td>
+                                                        </tr>
+                                                    </c:forEach>
                                         
                                             
                                                 <tr>
