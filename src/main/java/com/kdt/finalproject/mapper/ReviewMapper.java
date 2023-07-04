@@ -33,4 +33,9 @@ public interface ReviewMapper {
     int get2StarCnt(String m_idx);
 
     int get1StarCnt(String m_idx);
+
+    int totalCount();
+
+    List<ReviewVO> ReviewList(int begin, int end);
+
 }

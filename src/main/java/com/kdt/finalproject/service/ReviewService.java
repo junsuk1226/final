@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.catalina.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -77,6 +78,22 @@ public class ReviewService {
         map.put("one", r_Mapper.get1StarCnt(m_idx));
 
         return map;
+    }
+
+    public int getTotalCount() {
+        return r_Mapper.totalCount();
+    }
+
+    public ReviewVO[] getList(int begin, int end) {
+        ReviewVO[] ar = null;
+
+        List<ReviewVO> list = r_Mapper.ReviewList(begin, end);
+        if (list != null && list.size() > 0) {
+            ar = new ReviewVO[list.size()];
+            list.toArray(ar);
+        }
+
+        return ar;
     }
 
 }

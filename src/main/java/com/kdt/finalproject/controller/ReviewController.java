@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.ReviewService;
+import com.kdt.finalproject.util.Paging;
 import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.ReviewVO;
 
@@ -27,6 +28,7 @@ public class ReviewController {
     @RequestMapping("/review")
     public ModelAndView review(String cPage) {
         ModelAndView mv = new ModelAndView("/myPage/review");
+
         // System.out.println("RERERERERERERER");
         Object obj = session.getAttribute("mvo");
         if (obj != null) {
@@ -62,6 +64,32 @@ public class ReviewController {
             reviewService.delReview(r_idx);
         }
         mv.setViewName("redirect:/review");
+
+        return mv;
+    }
+
+    @RequestMapping("/reviewlist")
+    public ModelAndView reviewlist(String cPage) {
+        ModelAndView mv = new ModelAndView("/myPage/review");
+        int nowPage = 1;
+
+        int totalRecord = reviewService.getTotalCount();
+
+        if (cPage != null)
+            nowPage = Integer.parseInt(cPage);
+
+        Paging page = new Paging(nowPage, totalRecord, 10, 5);
+        String pageCode = page.getSb().toString();
+        // -------------------------------
+        ReviewVO[] ar = reviewService.getList(page.getBegin(), page.getEnd()); // JSP에서 표현할 목록 가져오기
+        mv.addObject("ar", ar);
+        mv.addObject("page", page);
+        mv.addObject("pageCode", pageCode); // 페이징에 필요한 HTML코드
+        mv.addObject("totalRecord", totalRecord);// 총 게시물의 수
+        mv.addObject("nowPage", nowPage);// 현재페이지 값
+        mv.addObject("blockList", page.getNumPerPage());// 한페이지에 표현할 게시물 수
+
+        mv.setViewName("redirect:/review");// 뷰 페이지 지정
 
         return mv;
     }

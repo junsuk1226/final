@@ -247,42 +247,44 @@
                                             </div> 
                                                       
                                         
-
-                                                <div class="col-md-6 d-grid gap-2 my-3 mx-auto justify-content-center">
-                                                    <ol class="pagination">
-                                                        <c:if test="${page.startPage < page.pagePerBlock}">
-                                                            <li class="page-item disabled"><a
-                                                                    class="page-link">&lt;</a></li>
-                                                        </c:if>
-                                                        <c:if test="${page.startPage >= page.pagePerBlock}">
-                                                            <li class="page-item"><a class="page-link"
-                                                                    href="Controller?type=aoList&cPage=${page.startPage-page.pagePerBlock }">&lt;</a>
-                                                            </li>
-                                                        </c:if>
-                                                        <c:forEach begin="${page.startPage }" end="${page.endPage }"
-                                                            varStatus="st">
-                                                            <c:if test="${page.nowPage eq st.index}">
-                                                                <li class="page-item active"><a
-                                                                        class="page-link">${st.index}</a></li>
-                                                            </c:if>
-                                                            <c:if test="${page.nowPage ne st.index }">
-                                                                <li class="page-item"><a class="page-link"
-                                                                        href="Controller?type=aoList&cPage=${st.index}">${st.index
-                                                                        }</a></li>
-                                                            </c:if>
-                                                        </c:forEach>
-                                                        <c:if test="${page.endPage<page.totalPage}">
-                                                            <li class="page-item"><a class="page-link"
-                                                                    href="Controller?type=aoList&cPage=${page.startPage+page.pagePerBlock }">&gt;</a>
-                                                            </li>
-                                                        </c:if>
-                                                        <c:if test="${page.endPage == page.totalPage}">
-                                                            <li class="page-item disabled"><a
-                                                                    class="page-link">&gt;</a></li>
-                                                        </c:if>
-                                                    </ol>
-                                                </div>
                                             
+                                                <tr>
+                                                    <td colspan="4">
+                                                
+                                                        <ol class="pagination">
+                                                            <c:if test="${page.startPage < page.pagePerBlock}">
+                                                                <li class="page-item disabled"><a class="page-link">&lt;</a></li>
+                                                            </c:if>
+                                                            <c:if test="${page.startPage >= page.pagePerBlock}">
+                                                                <li class="page-item"><a class="page-link"
+                                                                        href="ReviewController?type=reviewlist&cPage=${page.startPage-page.pagePerBlock }">&lt;</a></li>
+                                                            </c:if>
+                                                            <c:forEach begin="${page.startPage }" end="${page.endPage }" varStatus="st">
+                                                                <c:if test="${page.nowPage eq st.index}">
+                                                                    <li class="page-item active"><a class="page-link">${st.index}</a></li>
+                                                                </c:if>
+                                                                <c:if test="${page.nowPage ne st.index }">
+                                                                    <li class="page-item"><a class="page-link" href="ReviewController?type=reviewlist&cPage=${st.index}">${st.index }</a>
+                                                                    </li>
+                                                                </c:if>
+                                                            </c:forEach>
+                                                            <c:if test="${page.endPage<page.totalPage}">
+                                                                <li class="page-item"><a class="page-link"
+                                                                        href="ReviewController?type=reviewlist&cPage=${page.startPage+page.pagePerBlock }">&gt;</a></li>
+                                                            </c:if>
+                                                            <c:if test="${page.endPage == page.totalPage}">
+                                                                <li class="page-item disabled"><a class="page-link">&gt;</a></li>
+                                                            </c:if>
+                                                        </ol>
+                                                
+                                                    </td>
+                                                </tr>
+                                            <c:if test="${ar eq null }">
+                                                <tr>
+                                                    <td colspan="5" class="empty">현재 등록된 게시물이 없습니다.</td>
+                                                </tr>
+                                                    </tr>
+                                                    </c:if>
                                         </div>
                                     </div>
                                 </div>
