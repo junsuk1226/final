@@ -93,7 +93,7 @@ public class ReviewController {
         String pageCode = page.getSb().toString();
         // -------------------------------
         ReviewVO[] ar = reviewService.getReviewList(page.getBegin(), page.getEnd(), m_idx); // JSP에서 표현할 목록 가져오기
-        System.out.println(totalRecord + "/" + page.getBegin() + "/" + page.getEnd() + "/" + m_idx);
+
         mv.addObject("ar", ar);
         mv.addObject("page", page);
         mv.addObject("pageCode", pageCode); // 페이징에 필요한 HTML코드
