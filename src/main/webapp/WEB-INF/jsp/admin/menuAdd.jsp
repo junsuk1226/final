@@ -62,17 +62,17 @@
             <tbody class="u-table-body">
               <tr style="height: 68px;">
                 <td>음식명</td>
-                <td><input type="text" size= "80" name="foodNm" value="" /></td>
+                <td><input type="text" size= "80" name="foodNm" id="foodNm" value="" /></td>
               </tr>
               <tr style="height: 66px;">
                 <td>음식재료</td>
-                <td><input type="text" size= "80" name="foodMaterial" value="" /></td>
+                <td><input type="text" size= "80" name="foodMaterial" id="foodMaterial" value="" /></td>
               </tr>
               <tr style="height: 63px;">
                 <td>가격</td>
                 <td>
                 
-                       <input type="text" size= "80" name="foodCost" value="" />
+                       <input type="text" size= "80" name="foodCost" id="foodCost" value="" />
                 </td>
               </tr>
  
@@ -93,7 +93,7 @@
               </tr>
               <tr style="height: 259px;">
                 <td class="u-border-2 u-border-palette-1-base u-first-column u-grey-5 u-table-cell u-table-cell-9">내용</td>
-                <td class="u-border-2 u-border-palette-1-light-1 u-table-cell"><textarea name="etc" cols="80" rows="9"></textarea></td>
+                <td class="u-border-2 u-border-palette-1-light-1 u-table-cell"><textarea name="etc" id="etc" cols="80" rows="9"></textarea></td>
               </tr>
               <td style="width: 50px;"><button type="button" class="btn btn-dark" style="width:60px" onclick="exe(this.form)">신청</button></td>
               <td style="width: 50px;"><a class="btn btn-dark" style="width:60px" href="javascript:history.go(-1);">취소</a></td>
@@ -122,6 +122,34 @@
 
 
     function exe(frm){
+      let foodNm = document.getElementById("foodNm").value;
+      let foodMaterial = document.getElementById("foodMaterial").value;
+      let foodCost = document.getElementById("foodCost").value;
+      let etc = document.getElementById("etc").value;
+
+      if(foodNm.trim() < 1){
+        alert("음식이름을 입력해주세요.");
+        foodNm.clear();
+        foodNm.focus();
+        return;
+      }else if(foodMaterial.trim() < 1){
+        alert("음식 재료를 입력해주세요.");
+        foodMaterial.clear();
+        foodMaterial.focus();
+        return;
+      }else if(foodCost.trim() < 1){
+        alert("음식 가격을 입력해주세요.");
+        foodCost.clear();
+        foodCost.focus();
+        return;
+      }else if(etc.trim() < 1){
+        alert("음식 상세설명을 입력해주세요.");
+        etc.clear();
+        etc.focus();
+        return; 
+      }
+
+
       frm.submit();
     }
 
