@@ -63,9 +63,4 @@
   VALUES(#{foodCost}, #{foodNm},#{foodMaterial}, #{etc}, #{seq}, #{stdRestNm}, #{bestfoodyn}, #{premiumyn}, #{recommendyn}, 3)
 </insert>
 
-<update id="addSeq">
-    <!-- seq 값을 1씩 증가시킵니다 -->
-    UPDATE food SET seq = seq + 1;
-</update>
-
 </mapper>

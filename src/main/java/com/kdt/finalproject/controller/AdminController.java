@@ -44,6 +44,8 @@ public class AdminController {
         return "/admin/index";
     }
 
+    int seq = 1;
+
     @RequestMapping(value = "/admin/reqLogin", method = RequestMethod.POST)
     public ModelAndView adminLogin(MemVO vo) {
         ModelAndView mv = new ModelAndView();
@@ -174,6 +176,9 @@ public class AdminController {
         ModelAndView mv = new ModelAndView();
         MemVO mvo = (MemVO) session.getAttribute("mvo");
         vo.setStdRestNm(mvo.getM_name());
+        ++seq;
+        vo.setSeq(seq);
+
         f_Service.addFood(vo);
 
         mv.setViewName("redirect:/admin/menu");
