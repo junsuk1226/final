@@ -189,25 +189,25 @@
                                                                             <a onclick="review1(this.form)" ><i class="fa arrow fa-arrow-right fa-lg" aria-hidden="true"></i></f>  
                                                                         </td>
                                                                     </tr>
-                                                                    <tr>
-                                                                        <th style="font-family: 'suite'">적립금</th>
-                                                                        <td style="font-family: 'suite'">230원</td>
-                                                                        <td style="text-align: center;">
-                                                                            <a onclick=""><i class="fa fa-arrow-right arrow fa-lg" aria-hidden="true"></i></a>  
+                                                                    <tr >
+                                                                        <th style="font-family: 'suite'">지난 주문</th>
+                                                                        <td style="font-family: 'suite'">0건</td>
+                                                                        <td style="text-align: center;"> 
+                                                                            <a href='/order'><i class="fa fa-arrow-right arrow fa-lg" aria-hidden="true"></i></a>                                        
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th style="font-family: 'suite'">쿠폰</th>
-                                                                        <td style="font-family: 'suite'">2개</td>
+                                                                        <td style="font-family: 'suite'">0개</td>
                                                                         <td style="text-align: center;">
                                                                             <a onclick=""><i class="fa fa-arrow-right arrow fa-lg" aria-hidden="true"></i></a>   
                                                                         </td>
                                                                     </tr>
-                                                                    <tr >
-                                                                        <th style="font-family: 'suite'">지난 주문</th>
-                                                                        <td style="font-family: 'suite'">21건</td>
-                                                                        <td style="text-align: center;"> 
-                                                                            <a href='/order'><i class="fa fa-arrow-right arrow fa-lg" aria-hidden="true"></i></a>                                        
+                                                                    <tr>
+                                                                        <th style="font-family: 'suite'">선물함</th>
+                                                                        <td style="font-family: 'suite'"></td>
+                                                                        <td style="text-align: center;">
+                                                                            <a onclick=""><i class="fa fa-arrow-right arrow fa-lg" aria-hidden="true"></i></a>  
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>  
