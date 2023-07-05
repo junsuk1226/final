@@ -190,7 +190,7 @@ ul {
 ol,
 ul,
 dl {
-  margin-top: 0;
+  margin: 0 auto;
   margin-bottom: 1rem;
 }
 

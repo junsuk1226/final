@@ -25,32 +25,33 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @RequestMapping("/review")
-    public ModelAndView review(String cPage) {
-        ModelAndView mv = new ModelAndView("/myPage/review");
-
-        // System.out.println("RERERERERERERER");
-        Object obj = session.getAttribute("mvo");
-        if (obj != null) {
-            // 로그인이 된 경우
-            MemVO vo = (MemVO) obj;
-            String m_idx = vo.getM_idx();
-            Float scoreAvg = reviewService.getScoreAvg_Mem(m_idx);
-            int scoreCnt = reviewService.getScoreCnt(m_idx);
-
-            Map<String, Integer> score = reviewService.getStarCnt(m_idx);
-
-            ReviewVO[] ar = reviewService.getReviewList(m_idx);
-            mv.addObject("scoreAvg", scoreAvg);
-            mv.addObject("scoreCnt", scoreCnt);
-            mv.addObject("ar", ar);
-            mv.addObject("score", score);
-
-        }
-
-        return mv;
-    }
-
+    /*
+     * @RequestMapping("/review")
+     * public ModelAndView review(String cPage) {
+     * ModelAndView mv = new ModelAndView("/myPage/review");
+     * 
+     * // System.out.println("RERERERERERERER");
+     * Object obj = session.getAttribute("mvo");
+     * if (obj != null) {
+     * // 로그인이 된 경우
+     * MemVO vo = (MemVO) obj;
+     * String m_idx = vo.getM_idx();
+     * Float scoreAvg = reviewService.getScoreAvg_Mem(m_idx);
+     * int scoreCnt = reviewService.getScoreCnt(m_idx);
+     * 
+     * Map<String, Integer> score = reviewService.getStarCnt(m_idx);
+     * 
+     * ReviewVO[] ar = reviewService.getReviewList(m_idx);
+     * mv.addObject("scoreAvg", scoreAvg);
+     * mv.addObject("scoreCnt", scoreCnt);
+     * mv.addObject("ar", ar);
+     * mv.addObject("score", score);
+     * 
+     * }
+     * 
+     * return mv;
+     * }
+     */
     @RequestMapping("/delReview")
     public ModelAndView delReview(String r_idx) {
         ModelAndView mv = new ModelAndView();
@@ -68,20 +69,31 @@ public class ReviewController {
         return mv;
     }
 
-    @RequestMapping("/reviewlist")
+    @RequestMapping("/review")
     public ModelAndView reviewlist(String cPage) {
         ModelAndView mv = new ModelAndView("/myPage/review");
         int nowPage = 1;
+        Object obj = session.getAttribute("mvo");
+        int m_idx = -1;
+        String mIdx = null;
 
-        int totalRecord = reviewService.getTotalCount();
+        if (obj != null) {
+            // 로그인이 된 경우
+            MemVO vo = (MemVO) obj;
+            mIdx = vo.getM_idx();
+            m_idx = Integer.parseInt(mIdx);
+        }
+
+        int totalRecord = reviewService.getTotalCount(mIdx);
 
         if (cPage != null)
             nowPage = Integer.parseInt(cPage);
 
-        Paging page = new Paging(nowPage, totalRecord, 10, 5);
+        Paging page = new Paging(nowPage, totalRecord, 5, 5);
         String pageCode = page.getSb().toString();
         // -------------------------------
-        ReviewVO[] ar = reviewService.getList(page.getBegin(), page.getEnd()); // JSP에서 표현할 목록 가져오기
+        ReviewVO[] ar = reviewService.getReviewList(page.getBegin(), page.getEnd(), m_idx); // JSP에서 표현할 목록 가져오기
+        System.out.println(totalRecord + "/" + page.getBegin() + "/" + page.getEnd() + "/" + m_idx);
         mv.addObject("ar", ar);
         mv.addObject("page", page);
         mv.addObject("pageCode", pageCode); // 페이징에 필요한 HTML코드
@@ -89,7 +101,7 @@ public class ReviewController {
         mv.addObject("nowPage", nowPage);// 현재페이지 값
         mv.addObject("blockList", page.getNumPerPage());// 한페이지에 표현할 게시물 수
 
-        mv.setViewName("redirect:/review");// 뷰 페이지 지정
+        // mv.setViewName("redirect:/review");// 뷰 페이지 지정
 
         return mv;
     }

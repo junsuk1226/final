@@ -42,22 +42,11 @@
 	) c WHERE c.rnum BETWEEN #{begin} AND #{end}
 </select>
 
-<select id="totalCount" resultType="int">
+<select id="totalCount" resultType="int" parameterType="String">
   	SELECT COUNT(*) FROM final.review
-    WHERE status = 0 AND m_name='MBC'
+    WHERE r_status = 0 AND m_idx = #{m_idx}
 </select>
 
-
-<!-- 원들들을 가져오는 SELECT -->
-  <select id="ReviewList" resultMap="map1" parameterType="Map">
-  SELECT * FROM(
-    SELECT @RN:=@RN+1 AS rnum,a.* FROM(
-      SELECT * FROM final.review
-      WHERE r_status = 0
-      ORDER BY r_idx DESC
-    ) a, (SELECT @RN:=0) b
-  ) c WHERE c.rnum BETWEEN #{begin} AND #{end}
-</select>
   
 <!-- 휴게소별 리뷰 목록 가져오기 -->
 <select id="getRestReviewList" parameterType="String" resultType="com.kdt.finalproject.vo.ReviewVO">
