@@ -14,13 +14,13 @@
 
 <!--특정 음식 클릭 시 음식 정보 호출-->
 <select id="getFoodInfo" parameterType="String" resultType="com.kdt.finalproject.vo.FoodVO">
-  	SELECT * FROM food
+  	SELECT * FROM final.food
     WHERE seq = #{seq}
 </select>
 
 <!--음식 이미지 호출-->
 <select id="getFood_img" parameterType="String" resultType="com.kdt.finalproject.vo.FoodVO">
-  	SELECT * FROM food
+  	SELECT * FROM final.food
     WHERE seq = #{seq}
 </select> 
 

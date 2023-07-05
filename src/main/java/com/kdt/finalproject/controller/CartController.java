@@ -12,7 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kdt.finalproject.mapper.FoodMapper;
+import com.kdt.finalproject.service.FoodService;
 import com.kdt.finalproject.util.Cart;
+import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.ProductVO;
 
 @Controller
@@ -25,6 +28,7 @@ public class CartController {
     public ModelAndView cart(String foodNm, String foodCost, String RestNm,
             String quantity, String totalPrice, String emptyCart, String seq)
             throws Exception {
+
         ModelAndView mv = new ModelAndView();
 
         // System.out.println(foodNm);
@@ -32,6 +36,8 @@ public class CartController {
         // System.out.println(RestNm);
         // System.out.println(quantity);
         // System.out.println(totalPrice);
+        System.out.println(seq);
+
         // 세션에 값 저장하기
 
         session.setAttribute("foodNm", foodNm);
@@ -43,17 +49,15 @@ public class CartController {
         int f_cost = 0;
         int t_price = 0;
         int q = 0;
-        int se = 0;
+
         if (foodCost != null)
             f_cost = Integer.parseInt(foodCost);
         if (totalPrice != null)
             t_price = Integer.parseInt(totalPrice);
         if (quantity != null)
             q = Integer.parseInt(quantity);
-        if (seq != null)
-            se = Integer.parseInt(seq);
 
-        ProductVO pvo = new ProductVO(foodNm, RestNm, f_cost, t_price, q, se);
+        ProductVO pvo = new ProductVO(foodNm, RestNm, f_cost, t_price, q);
 
         // 카트 가져오기
         Object ob = session.getAttribute("cart");
