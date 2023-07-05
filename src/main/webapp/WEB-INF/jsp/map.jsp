@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<link rel="stylesheet" href="../css/main_custom.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
-<html>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>내 손안에 휴게소, 마이휴</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<link rel="stylesheet" href="../css/main_custom.css" />
+	<!--아이콘 cdn-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+
 	<style>
 		.sky-blue-text {
 		  color: blue;
@@ -26,11 +33,35 @@
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
 		
+		 /*모바일 화면 로그인 버튼*/
+		 .main_custom_menubar .col-md-3 {
+			white-space: nowrap;
+		}
+	
+		@media (max-width: 767px) {
+			.main_custom_menubar .d-flex {
+				flex-direction: row;
+				justify-content: flex-end;
+			}
+			.main_custom_menubar .col-md-3 {
+				flex-basis: 100%;
+			}
+		}
+	
+		.fa-user-circle{
+			color: #6600db;
+		}
+		.fa-user-circle:hover{
+			color: #b699ee;
+		}
+		.fa-custom-size {
+			font-size: 2.6em;
+		}
+		/*여기까지*/
+
 	  </style>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="utf-8">
-	<title>다음 지도 API</title>
+
+	
 </head> 
 <body>
 
@@ -44,6 +75,13 @@
 					<button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/join'">회원가입</button>
 				</div>
 			</c:if>
+			<c:if test="${sessionScope.mvo != null}">
+            <div class="col-md-3 text-end d-flex align-items-center"> 
+                <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/logout'">로그 아웃</button>
+                <!-- <button type="button" class="btn btn-outline-success mycustom-mem-btn" onclick="location.href='/myPage'">마이페이지</button> -->
+                <a class="align-items-center" href='/myPage'><i class="fa fa-user-circle fa-custom-size " aria-hidden="true"></i></a>
+            </div>
+            </c:if>
 		</header>
 	</div>
 	<!-- 메뉴바끝 ----------------------------------------------------------------------------------------------------------->
