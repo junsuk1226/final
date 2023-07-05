@@ -63,6 +63,36 @@
     WHERE r_restNm=#{r_restNm} AND r_status = '0'
 </select>
 
+<!--휴게소별 리뷰 갯수-->
+<select id="getScoreCnt_Rest" parameterType="String" resultType="int">
+  SELECT COUNT(*) FROM review
+  WHERE r_restNm=#{r_restNm} AND r_status = '0'
+</select>
+
+<!--(휴게소별)점수별 별점 갯수-->
+<select id="get5StarCnt_Rest" parameterType="String" resultType="int">
+  SELECT COUNT(*) FROM review
+  WHERE r_restNm=#{r_restNm} AND r_score ='5' AND r_status = '0'
+</select>
+<select id="get4StarCnt_Rest" parameterType="String" resultType="int">
+  SELECT COUNT(*) FROM review
+  WHERE r_restNm=#{r_restNm} AND r_score ='4' AND r_status = '0'
+</select>
+<select id="get3StarCnt_Rest" parameterType="String" resultType="int">
+  SELECT COUNT(*) FROM review
+  WHERE r_restNm=#{r_restNm} AND r_score ='3' AND r_status = '0'
+</select>
+<select id="get2StarCnt_Rest" parameterType="String" resultType="int">
+  SELECT COUNT(*) FROM review
+  WHERE r_restNm=#{r_restNm} AND r_score ='2' AND r_status = '0'
+</select>
+<select id="get1StarCnt_Rest" parameterType="String" resultType="int">
+  SELECT COUNT(*) FROM review
+  WHERE r_restNm=#{r_restNm} AND r_score ='1' AND r_status = '0'
+</select>
+
+
+
 <!--회원별 별점 평균-->
 <select id="getScoreAvg_Mem" parameterType="String" resultType="float">
     SELECT ROUND(AVG(r_score),2)
