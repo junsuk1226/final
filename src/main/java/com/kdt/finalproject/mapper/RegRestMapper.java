@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.RegRestVO;
 
@@ -19,11 +20,15 @@ public interface RegRestMapper {
     MemVO getRestInfo(String m_id);
 
     // 가입 승인 시 status값 변경
-    void approval(String m_id);
+    int approval(String m_id);
 
-    void addLog(Map map);
+    int addLog(Map<String, String> map);
 
-    void addRegRest(Map map2);
+    int addRegRest(Map<String, String> map2);
+
+    int insertMenuData(List<FoodVO> f_list);
+
+    int insertMenuDataLog(List<FoodVO> f_list);
 
     // 가입 거절
     void refuse(String m_id);

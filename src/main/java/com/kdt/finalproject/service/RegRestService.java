@@ -6,8 +6,11 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.kdt.finalproject.mapper.RegRestMapper;
+import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.RegRestVO;
 
@@ -40,14 +43,26 @@ public class RegRestService {
         return mvo;
     }
 
+    @Transactional
     // 승인시 status값 변경 & member log추가 & regrest 테이블에 추가
-    public void approval(String m_id, Map map, Map map2) {
+    public void approval(String m_id, Map<String, String> map, Map<String, String> map2, List<FoodVO> f_list) {
 
-        reg_Mapper.approval(m_id);
+        try {
 
-        reg_Mapper.addLog(map);
+            reg_Mapper.approval(m_id);
 
-        reg_Mapper.addRegRest(map2);
+            reg_Mapper.addLog(map);
+
+            reg_Mapper.addRegRest(map2);
+
+            reg_Mapper.insertMenuData(f_list);
+
+            reg_Mapper.insertMenuDataLog(f_list);
+
+        } catch (Exception e) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            throw e;
+        }
 
     }
 

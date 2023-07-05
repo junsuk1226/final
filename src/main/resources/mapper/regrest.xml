@@ -39,6 +39,24 @@
   VALUES (#{reg_restNm}, #{reg_restCd}, #{reg_addr}, #{reg_phone}, NOW(), 0, #{reg_ownerPhone}, #{reg_ownerEmail}, #{m_idx})
 </insert>
 
+<insert id="insertMenuData" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="f_idx">
+  INSERT INTO food (foodCost, foodNm, foodMaterial, etc, stdRestNm, bestfoodyn, premiumyn, recommendyn, seasonMenu, seq, f_status)
+  VALUES
+  <foreach collection="f_list" item="vo" separator=",">
+    (#{vo.foodCost}, #{vo.foodNm}, #{vo.foodMaterial}, #{vo.etc}, #{vo.stdRestNm}, #{vo.bestfoodyn}, #{vo.premiumyn}, #{vo.recommendyn}, #{vo.seasonMenu}, #{vo.seq}, 0)
+  </foreach>
+</insert>
+
+<insert id="insertMenuDataLog" parameterType="java.util.List">
+  INSERT INTO foodlog (foodCost, foodNm, foodMaterial, etc, stdRestNm, bestfoodyn, premiumyn, recommendyn, seasonMenu, seq, editDate, f_idx, f_status)
+  VALUES
+  <foreach collection="f_list" item="vo" separator=",">
+    (#{vo.foodCost}, #{vo.foodNm}, #{vo.foodMaterial}, #{vo.etc}, #{vo.stdRestNm}, #{vo.bestfoodyn}, #{vo.premiumyn}, #{vo.recommendyn}, #{vo.seasonMenu}, #{vo.seq},NOW(), #{vo.f_idx}, 0)
+  </foreach>
+</insert>
+
+<!-- 승인 -->
+
 <!-- 승인거절시 status값 변경-->
 <update id="refuse" parameterType="String">
   UPDATE final.member

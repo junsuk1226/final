@@ -3,7 +3,9 @@ package com.kdt.finalproject.controller;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.MemService;
 import com.kdt.finalproject.service.RegRestService;
+import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.RegRestVO;
 import com.kdt.finalproject.vo.RestVO;
@@ -92,7 +95,9 @@ public class AdminTotalController {
             // 해당 아이디와 일치하는 휴게소 멤버 정보 가져오기
             MemVO mvo = r_Service.getRestInfo(m_id);
 
-            String key = "0279357255"; // 인증키
+            System.out.println(mvo.getM_name());
+
+            String key = "2077960536"; // 인증키
             String type = "xml";
             String svarGsstClssCd = "0"; // 0: 휴게소 1: 주유소
 
@@ -147,6 +152,56 @@ public class AdminTotalController {
 
             // ---------------------------------
 
+            // 휴게소 메뉴 정보
+            String RestName = URLEncoder.encode(mvo.getM_name(), "UTF-8");
+
+            StringBuffer sb2 = new StringBuffer();
+            sb2.append("http://data.ex.co.kr/openapi/restinfo/restBestfoodList"); // 휴게소 위치 정보 API
+            sb2.append("?key=");
+            sb2.append(key);
+            sb2.append("&type=xml");
+            sb2.append("&numOfRows=1000");
+            sb2.append("&pageNo=1");
+            sb2.append("&stdRestNm=");
+            sb2.append(RestName);
+
+            URL url2 = new URL(sb2.toString());
+
+            HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
+            conn2.connect();
+
+            SAXBuilder builder2 = new SAXBuilder();
+            Document doc2 = builder2.build(conn2.getInputStream());
+
+            Element root2 = doc2.getRootElement();
+
+            List<Element> list2 = root2.getChildren("list");
+
+            List<FoodVO> f_list = new ArrayList<FoodVO>();
+
+            for (Element item : list2) {
+                String f_idx = null;
+                String foodCost = item.getChildText("foodCost");
+                String foodNm = item.getChildText("foodNm");
+                String foodMaterial = item.getChildText("foodMaterial");
+                String etc = item.getChildText("etc");
+                String stdRestNm = item.getChildText("stdRestNm");
+                String bestfoodyn = item.getChildText("bestfoodyn");
+                String premiumyn = item.getChildText("premiumyn");
+                String recommendyn = item.getChildText("recommendyn");
+                String seasonMenu = item.getChildText("seasonMenu");
+                String seq = item.getChildText("seq");
+                String f_image = item.getChildText("f_image");
+                String f_status = item.getChildText("f_status");
+
+                FoodVO fvo = new FoodVO(f_idx, foodCost, foodNm, foodMaterial, etc, stdRestNm, bestfoodyn, premiumyn,
+                        recommendyn, seasonMenu, seq, f_image, f_status);
+
+                f_list.add(fvo);
+            }
+
+            // ---------------------------------------------
+
             Map<String, String> map = new HashMap<>();
 
             map.put("m_id", mvo.getM_id());
@@ -168,7 +223,7 @@ public class AdminTotalController {
             map2.put("m_idx", mvo.getM_idx());
 
             // 해당 휴게소의 m_status 값을 1로 변경 & log 추가 & regrest테이블에 저장
-            r_Service.approval(m_id, map, map2);
+            r_Service.approval(m_id, map, map2, f_list);
 
             return "승인이 완료되었습니다.";
         } catch (Exception e) {
