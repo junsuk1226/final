@@ -33,12 +33,12 @@
             </a>
         </li>
         <li>
-            <a href="/admin/sales" class="nav-link text-white active">
+            <a href="/admin/sales" class="nav-link text-white">
             매출관리
             </a>
         </li>
         <li>
-            <a href="/admin/review" class="nav-link text-white">
+            <a href="/admin/review" class="nav-link text-white active">
             리뷰관리
             </a>
         </li>

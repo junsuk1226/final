@@ -62,13 +62,9 @@ public class FoodService {
         return f_Mapper.editFoodLog(vo);
     }
 
-    @Transactional
     public int addFood(FoodVO vo) {
+
         return f_Mapper.addFood(vo);
     }
 
-    @Transactional
-    public int addSeq() {
-        return f_Mapper.addSeq();
-    }
 }
