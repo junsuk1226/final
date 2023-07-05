@@ -73,7 +73,7 @@
             <img class="mycustom-menuList_main_image" src="${r_photo}">
         </c:if>
         <c:if test="${r_photo == '../images/rest_default_photo.png' || r_photo == null}">
-            <img class="mycustom-menuList_main_image" src="../main_images/hand2.png">
+            <img class="mycustom-menuList_main_image" style="object-fit: contain;" src="../main_images/hand2.png">
         </c:if>
     </div>
 
@@ -278,6 +278,13 @@
                 <div class="container d-flex flex-wrap justify-content-center">
                     <ul class="list-group list-group-flush" style="max-width: 700px; width: 100%;">
 
+                        <!--별점------------------------------------------->
+
+
+
+
+
+                        <!------------------------------------------------->
                         <c:forEach var="rvo" items="${rList}">
                             <!-- 반복문 돌릴구간-->
                             <li class="list-group-item" style="padding: 0;">
