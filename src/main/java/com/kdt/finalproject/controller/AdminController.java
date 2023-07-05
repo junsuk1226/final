@@ -125,7 +125,7 @@ public class AdminController {
 
         MemVO vo = (MemVO) session.getAttribute("mvo");
 
-        FoodVO[] foodList = f_Service.all(vo.getM_name());
+        FoodVO[] foodList = f_Service.allList(vo.getM_name());
 
         mv.addObject("fvo", foodList);
         mv.setViewName("/admin/menu");
@@ -141,6 +141,20 @@ public class AdminController {
 
         mv.addObject("fvo", food);
         mv.setViewName("/admin/menuEdit");
+
+        return mv;
+    }
+
+    @RequestMapping("/admin/editConfirm")
+    public ModelAndView editConfirm(FoodVO vo) {
+        ModelAndView mv = new ModelAndView();
+
+        System.out.println(vo.getF_idx());
+
+        f_Service.editFood(vo);
+        f_Service.editFoodLog(vo);
+
+        mv.setViewName("redirect:/admin/menuEdit?f_idx=" + vo.getF_idx());
 
         return mv;
     }

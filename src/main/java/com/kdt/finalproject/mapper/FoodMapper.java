@@ -15,4 +15,11 @@ public interface FoodMapper {
     FoodVO getFood_img(String fname);
 
     FoodVO getOneFood(String f_idx);
+
+    List<FoodVO> getFoodList(String RestNm);
+
+    int editFood(FoodVO vo);
+
+    int editFoodLog(FoodVO vo);
+
 }
