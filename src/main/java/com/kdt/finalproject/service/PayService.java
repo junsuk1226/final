@@ -1,6 +1,8 @@
 package com.kdt.finalproject.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,9 +40,18 @@ public class PayService {
         return pvo;
     }
 
-    public PayVO[] order_list(String m_idx) {
+    public PayVO[] order_list(int begin, int end, String m_idx, String searchType, String searchValue) {
 
-        List<PayVO> list = p_Mapper.order_list(m_idx);
+        Map<String, Object> map = new HashMap<>();
+        map.put("begin", begin);
+        map.put("end", end);
+        map.put("m_idx", m_idx);
+        if (searchType != null && searchValue != null) {
+            map.put("searchType", searchType);
+            map.put("searchValue", searchValue);
+        }
+
+        List<PayVO> list = p_Mapper.order_list(map);
         PayVO[] ar = null;
 
         if (list != null && list.size() > 0) {
@@ -66,6 +77,10 @@ public class PayService {
 
     public PayVO order_selected(String p_idx) {
         return p_Mapper.order_selected(p_idx);
+    }
+
+    public int getTotalCount(String m_idx) {
+        return p_Mapper.totalCount(m_idx);
     }
 
 }

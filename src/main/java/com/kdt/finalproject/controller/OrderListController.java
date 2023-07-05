@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.FoodService;
 import com.kdt.finalproject.service.PayService;
+import com.kdt.finalproject.util.Paging;
 import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.PayVO;
@@ -30,16 +31,23 @@ public class OrderListController {
     private HttpSession session;
 
     @RequestMapping("/order")
-    public ModelAndView order(String cPage) {
+    public ModelAndView order(String cPage, String searchType, String searchValue) {
         ModelAndView mv = new ModelAndView("/myPage/orderList");
-
+        int nowPage = 1;
         Object obj = session.getAttribute("mvo");
         if (obj != null) {
             MemVO mvo = (MemVO) obj;
 
             String m_idx = mvo.getM_idx();
 
-            PayVO[] ar = p_service.order_list(m_idx);
+            int totalRecord = p_service.getTotalCount(m_idx);
+
+            if (cPage != null)
+                nowPage = Integer.parseInt(cPage);
+
+            Paging page = new Paging(nowPage, totalRecord, 5, 5);
+
+            PayVO[] ar = p_service.order_list(page.getBegin(), page.getEnd(), m_idx, searchType, searchValue);
 
             if (ar != null) {
                 for (PayVO pvo : ar) {
@@ -52,6 +60,10 @@ public class OrderListController {
                 }
             }
             mv.addObject("ar", ar);
+            mv.addObject("page", page);
+            mv.addObject("totalRecord", totalRecord);// 총 게시물의 수
+            mv.addObject("nowPage", nowPage);// 현재페이지 값
+            mv.addObject("blockList", page.getNumPerPage());// 한페이지에 표현할 게시물 수
         }
 
         return mv;

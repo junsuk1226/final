@@ -1,6 +1,7 @@
 package com.kdt.finalproject.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kdt.finalproject.vo.PayVO;
 
@@ -16,12 +17,14 @@ public interface PayMapper {
 
     PayVO order_receipt(String p_oderId);
 
-    List<PayVO> order_list(String m_idx);
+    List<PayVO> order_list(Map<String, Object> map);
 
     int kakaorefund(PayVO vo);
 
     int delOrder(String p_idx);
 
     PayVO order_selected(String p_idx);
+
+    int totalCount(String m_idx);
 
 }
