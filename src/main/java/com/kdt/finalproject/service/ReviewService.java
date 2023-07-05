@@ -80,6 +80,23 @@ public class ReviewService {
         return map;
     }
 
+    public int getScoreCnt_Rest(String r_restNm) {
+        return r_Mapper.getScoreCnt_Rest(r_restNm);
+    }
+
+    public Map<String, Integer> getStarCnt_Rest(String r_restNm) {
+
+        Map<String, Integer> map = new HashMap<String, Integer>();
+
+        map.put("five", r_Mapper.get5StarCnt_Rest(r_restNm));
+        map.put("four", r_Mapper.get4StarCnt_Rest(r_restNm));
+        map.put("three", r_Mapper.get3StarCnt_Rest(r_restNm));
+        map.put("two", r_Mapper.get2StarCnt_Rest(r_restNm));
+        map.put("one", r_Mapper.get1StarCnt_Rest(r_restNm));
+
+        return map;
+    }
+
     public int getTotalCount() {
         return r_Mapper.totalCount();
     }

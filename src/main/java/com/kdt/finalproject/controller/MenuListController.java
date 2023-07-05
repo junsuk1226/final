@@ -4,6 +4,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -190,6 +191,15 @@ public class MenuListController {
         mv.addObject("favo", favo); // API에서 받아오는 휴게소 정보
         mv.addObject("rList", r_list); // DB에 저장해놓은 리뷰 리스트
         mv.setViewName("menuList");
+
+        // 별점
+        Float scoreAvg = reviewService.getScoreAvg(RestNm);
+        int scoreCnt = reviewService.getScoreCnt_Rest(RestNm);
+        Map<String, Integer> score = reviewService.getStarCnt_Rest(RestNm);
+
+        mv.addObject("score", score);
+        mv.addObject("scoreAvg", scoreAvg);
+        mv.addObject("scoreCnt", scoreCnt);
 
         return mv;
     }
