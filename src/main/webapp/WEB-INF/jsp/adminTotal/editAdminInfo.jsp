@@ -69,46 +69,12 @@
         <!-- 메인 컨텐츠 내용 -->
         <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
             <div class="container" style="width:100%; margin: 0">
-                <h1>회원정보수정(관리자)</h1>
+                <h1>${rvo.reg_restNm}</h1>
                 <br/>
+                <button onclick="location.href='/adminTotal/editAdmin'">목록으로</button>
                 
                 <div class="container">
-                    <table class="table" style="text-align: center;">
-                        <form>
-                            <input>
-                        </form>
-                        <thead>
-                        <tr>
-                            <th scope="col" style="width: 10px;"></th>
-                            <th scope="col" style="width: 150px;">휴게소명</th>
-                            <th scope="col" style="width: 200px;">요청아이디</th>
-                            <th scope="col" style="width: 150px;">담당자 연락처</th>
-                            <th scope="col" style="width: 150px;">수정일 <button class="arrow_btn"><i class="bi bi-arrow-down-up"></i></button></th>
-                            <th scope="col" style="width: 100px;"></th>
-                            <th scope="col" style="width: 10px;"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        <c:forEach var="rvo" items="${ar}">
-                            
-                            <tr>
-                                <th scope="row"></th>
-                                <td>${rvo.reg_restNm}</td>
-                                <td>${rvo.reg_ownerEmail}</td>
-                                <td>${rvo.reg_ownerPhone}</td>
-                                <td>${rvo.reg_joinDate}</td>
-
-                                <td><button onclick="location.href='/editAdminInfo?RestNm=${rvo.reg_restNm}'">수정</button></td>
-
-                                <td></td>
-                            </tr>
-                            
-                        </c:forEach>
-                        
-                        </tbody>
-
-                    </table>
+                    
                 </div>
             </div>
             
