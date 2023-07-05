@@ -28,12 +28,12 @@
             </a>
         </li>
         <li>
-            <a href="/admin/menu" class="nav-link text-white active">
+            <a href="/admin/menu" class="nav-link text-white">
             메뉴관리
             </a>
         </li>
         <li>
-            <a href="/admin/sales" class="nav-link text-white">
+            <a href="/admin/sales" class="nav-link text-white active">
             매출관리
             </a>
         </li>
@@ -54,36 +54,7 @@
     <!-- 메인 컨텐츠 내용 -->
     <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
         
-        <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">번호</th>
-                <th scope="col">음식사진</th>
-                <th scope="col">음식명</th>
-                <th scope="col">음식가격</th>
-                <th scope="col">등록상태</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="vo" items="${fvo}">
-              <tr>
-                <th scope="row">${vo.f_idx}</th>
-                <td> <img src="${vo.f_image}" style="width:80px; height: 60px;"></td>
-                <td>${vo.foodNm}</td>
-                <td>${vo.foodCost}</td>
-                <c:if test="${vo.f_status == 0}">
-                    <td>판매중</td>
-                </c:if>
-                <c:if test="${vo.f_status == 1}">
-                    <td>품 절</td>
-                </c:if>
-                <td style="width: 50px;"><a class="btn btn-dark" style="width:60px" href="/admin/menuEdit?f_idx=${vo.f_idx}">수정</a></td>
-              
-              </tr>
-            </c:forEach>
-            </tbody>
-          </table>
+        리뷰관리
         
     </div>
     <!-- 메인 컨텐츠 끝 -->

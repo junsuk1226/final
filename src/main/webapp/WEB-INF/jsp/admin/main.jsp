@@ -37,6 +37,11 @@
                 매출관리
                 </a>
             </li>
+            <li>
+                <a href="/admin/review" class="nav-link text-white">
+                리뷰관리
+                </a>
+            </li>
             </ul>
 
             <hr><!--구분선-->

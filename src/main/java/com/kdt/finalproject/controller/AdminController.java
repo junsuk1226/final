@@ -150,4 +150,8 @@ public class AdminController {
         return "/admin/sales";
     }
 
+    @RequestMapping("/admin/review")
+    public String adminReview() {
+        return "/admin/review";
+    }
 }
