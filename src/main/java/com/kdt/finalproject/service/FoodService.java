@@ -67,4 +67,9 @@ public class FoodService {
         return f_Mapper.addFood(vo);
     }
 
+    public int addFoodLog(FoodVO vo) {
+
+        return f_Mapper.addFoodLog(vo);
+    }
+
 }

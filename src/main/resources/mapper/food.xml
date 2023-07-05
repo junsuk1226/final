@@ -63,4 +63,9 @@
   VALUES(#{foodCost}, #{foodNm},#{foodMaterial}, #{etc}, #{seq}, #{stdRestNm}, #{bestfoodyn}, #{premiumyn}, #{recommendyn}, 3)
 </insert>
 
+<insert id="addFoodLog" parameterType="com.kdt.finalproject.vo.FoodVO">
+  INSERT INTO foodlog (foodCost, foodNm, foodMaterial, etc, seq, stdRestNm, bestfoodyn, premiumyn, recommendyn, f_status, editDate)
+  VALUES(#{foodCost}, #{foodNm},#{foodMaterial}, #{etc}, #{seq}, #{stdRestNm}, #{bestfoodyn}, #{premiumyn}, #{recommendyn}, 3, NOW())
+</insert>
+
 </mapper>
