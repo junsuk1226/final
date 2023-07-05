@@ -248,7 +248,7 @@
                                                  
                                         
                                             
-                                            <div class="card-body justify-content-center">
+                                            <div class="card-body justify-content-center" style="margin:0 auto">
                                                 
                                                         <ol class="pagination">
                                                             <c:if test="${page.startPage < page.pagePerBlock}">
