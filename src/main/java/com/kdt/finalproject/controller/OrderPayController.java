@@ -33,10 +33,10 @@ public class OrderPayController {
     private PayService p_Service;
 
     @RequestMapping("/orderpay")
-    public ModelAndView orderPay(String seq)
+    public ModelAndView orderPay()
             throws Exception {
         ModelAndView mv = new ModelAndView();
-        System.out.println(seq);
+
         mv.setViewName("orderpay");
 
         return mv;
