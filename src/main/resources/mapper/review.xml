@@ -34,7 +34,7 @@
 
 <!-- 리뷰 목록 가져오기 -->
 <select id="getReviewList" parameterType="Map" resultType="com.kdt.finalproject.vo.ReviewVO">
-  	SELECT * FROM(
+  SELECT * FROM(
 		SELECT @RN:=@RN+1 AS rnum,a.* FROM(
       SELECT * FROM final.review
       WHERE m_idx = #{m_idx} and r_status = 0
