@@ -27,6 +27,7 @@ public class CartController {
             throws Exception {
         ModelAndView mv = new ModelAndView();
 
+        mv.addObject("seq", seq);
         // System.out.println(foodNm);
         // System.out.println(foodCost);
         // System.out.println(RestNm);
@@ -40,21 +41,20 @@ public class CartController {
         session.setAttribute("RestNm", RestNm);
         session.setAttribute("totalPrice", totalPrice);
         session.setAttribute("quantity", quantity);
+        session.setAttribute("seq", seq);
 
         int f_cost = 0;
         int t_price = 0;
         int q = 0;
-        int se = 0;
+
         if (foodCost != null)
             f_cost = Integer.parseInt(foodCost);
         if (totalPrice != null)
             t_price = Integer.parseInt(totalPrice);
         if (quantity != null)
             q = Integer.parseInt(quantity);
-        // if (seq != null)
-        // se = Integer.parseInt(seq);
 
-        ProductVO pvo = new ProductVO(foodNm, RestNm, f_cost, t_price, q);
+        ProductVO pvo = new ProductVO(foodNm, RestNm, seq, f_cost, t_price, q);
 
         // 카트 가져오기
         Object ob = session.getAttribute("cart");
@@ -73,6 +73,7 @@ public class CartController {
         String location = URLEncoder.encode(RestNm, StandardCharsets.UTF_8.toString());
 
         mv.setViewName("redirect:menu?RestNm=" + location);
+
         return mv;
     }
 
