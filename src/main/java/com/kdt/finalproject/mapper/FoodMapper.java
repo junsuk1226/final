@@ -12,7 +12,18 @@ public interface FoodMapper {
 
     FoodVO getFoodInfo(String seq);
 
-    FoodVO getFood_img(String fname);
+    FoodVO getFood_img(String seq);
 
     FoodVO getOneFood(String f_idx);
+
+    List<FoodVO> getFoodList(String RestNm);
+
+    int editFood(FoodVO vo);
+
+    int editFoodLog(FoodVO vo);
+
+    int addFood(FoodVO vo);
+
+    int addFoodLog(FoodVO vo);
+
 }

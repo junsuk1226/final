@@ -116,7 +116,7 @@ public class MenuListController {
                 String f_status = item.getChildText("f_status");
 
                 FoodVO vo = new FoodVO(f_image, foodCost, foodNm, foodMaterial, etc, stdRestNm, bestfoodyn, premiumyn,
-                        recommendyn, seasonMenu, seq, f_image, f_status);
+                        recommendyn, seasonMenu, f_image, f_status, Integer.parseInt(seq));
 
                 fvo[i++] = vo;
 

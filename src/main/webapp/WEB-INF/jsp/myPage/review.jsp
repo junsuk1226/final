@@ -248,8 +248,7 @@
                                                  
                                         
                                             
-                                                <tr>
-                                                    <td colspan="4">
+                                            <div class="card-body justify-content-center" style="margin:0 auto">
                                                 
                                                         <ol class="pagination">
                                                             <c:if test="${page.startPage < page.pagePerBlock}">
@@ -277,14 +276,12 @@
                                                             </c:if>
                                                         </ol>
                                                 
-                                                    </td>
-                                                </tr>
+                                            </div>
                                             <c:if test="${ar eq null }">
-                                                <tr>
-                                                    <td colspan="5" class="empty">현재 등록된 게시물이 없습니다.</td>
-                                                </tr>
-                                                    </tr>
-                                                    </c:if>
+                                                <div class="card-body justify-content-center">
+                                                    <div class="empty">현재 등록된 게시물이 없습니다.</div>
+                                                </div>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </div>

@@ -111,22 +111,24 @@
                                                             <c:forEach var="i" begin="0" end="${fn:length(foodNm) - 1}">
                                                                 <c:set var="price" value="${fn:trim(foodCost[i])}" />
                                                                 <hr style="border: 1px dashed black;"/>
-                                                                <div class="d-flex justify-content-between">
-                                                                    <div class="d-flex">    
-                                                                        <div class="ms-1" style ="width: 100px; height: 100px;">
+                                                                <div class="d-flex ">
+                                                                    <div class="d-flex col-md-12">    
+                                                                        <div class="me-3 col-md-3" style ="width: 100px; height: 100px;">
                                                                             <img id="${foodNm[i]}_img" style="object-fit: cover; width: 100%; height: 100%; background-color: rgb(240, 240, 240);" class="rounded "/> 
                                                                         </div>
                                                                         
-                                                                        <div class="ms-4 text-start">
-                                                                            <span style="font-size: large; font-weight: bold;">${foodNm[i]}</span>
-                                                                            <br/>
-                                                                            <span class="ps-2 text-muted">└ ${foodQn[i]}개</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        
-                                                                        <div class="text-end d-flex align-items-end">
-                                                                            <span class="me-2 text-muted">가격:</span><fmt:formatNumber value="${foodCost[i]}" pattern="#,###,###" />원
+                                                                        <div class="row col-md-9 ms-1">
+                                                                            <div class="col-md-12 text-start">
+                                                                                <span style="font-size: large; font-weight: bold;">${foodNm[i]}</span>
+                                                                                <br/>
+                                                                                <span class="ps-2 text-muted">└ ${foodQn[i]}개</span>
+                                                                            </div>
+                                                                            <div class="text-end col-md-12 d-flex justify-content-end">
+                                                                                <span class="me-2 text-muted" style="font-size: small; ">개당 <fmt:formatNumber value="${foodCost[i]}" pattern="#,###,###" />원</span>
+                                                                            </div>
+                                                                            <div class="text-end col-md-12 d-flex justify-content-end">
+                                                                                <span class="me-2 text-muted" style="font-size: large; font-weight: bold;"><fmt:formatNumber value="${foodCost[i]*foodQn[i]}" pattern="#,###,###" />원</span>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -136,7 +138,7 @@
                                                         <div class="d-flex justify-content-between">
                                                             <div class="text-start" style="font-size: larger; font-weight: bold;"><span>결제금액</span></div> 
                                                             <div class="text-end">
-                                                                <fmt:formatNumber value="${pvo.totalCost}" pattern="#,###,###" />원<br/>
+                                                                <span class="me-2" style="font-size: large; font-weight: bold;"><fmt:formatNumber value="${pvo.totalCost}" pattern="#,###,###" />원</span><br/>
                                                                 <c:choose>
                                                                     <c:when test="${pvo.payMethod eq '0'}"><span class="text-muted">(카카오페이 결제)</span></c:when>
                                                                     <c:when test="${pvo.payMethod eq '1'}"><span class="text-muted">(토스페이 결제)</span></c:when>

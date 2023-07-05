@@ -21,6 +21,9 @@
             <!-- 새로추가 -->
             <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 
+             <!--아이콘 cdn-->
+             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
             <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -106,7 +109,89 @@
                                 </h2>
                             </div>
                         </div>
-                   
+                        <c:choose>
+                            <c:when test="${map.count == 0 }">
+                                <!-- when은 ~~일때 라는 뜻 그러니까 map의 count가 0일때... -->
+                                <!-- xml파일에서 hashmap에 list를 넣어놓았기 때문에 현재 map에 자료가 들어있다.  -->
+                                <!-- map에 자료가 아무것도 없다면 -->
+                                장바구니가 비었습니다.
+                            </c:when>
+
+                            <c:otherwise>
+                                <div class="container-fluid mb-4">
+                                    <div class="row justify-content-center col-md-12 my-5">
+                                        <div  class="col-md-9">
+                                            <div class="card shadow p-3 mb-5 bg-body rounded justify-content-center" style="border: none;">
+                                                <div class="card-body">
+                                            
+                                                    <form name="frm" action="/orderpay" method="post">
+                                                        <div class="row justify-content-start ">
+                                                            <div class="col-6 mb-2 float-start text-start">
+                                                                <a class=" arrow nav-link" onclick="sendKeyword(this.form)" style="font-family: 'suite'; font-weight: bold; color: #887e94; font-size: large;" ><i class="fa fa-arrow-left me-2" aria-hidden="true"></i>메뉴 추가하기</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class=" row ">
+                                                
+                                                            <c:set var="sumPrice" value="0"/>
+                                                            <c:set var="sumCount" value="0"/>
+                                                            <c:set var="fee" value="0"/>
+
+                                                            <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st"> 
+                                                      
+                                                            
+                                                                <hr />
+                                                                <div>
+                                                                    <p style="font-size: 15px; font-weight: bold;">${pvo.restNm}</p>
+                                                                </div>
+                                                                <div>
+                                                                    <p style="font-size: 12px; ">${pvo.restNm} : 2023-06-24</p>
+                                                                </div>
+
+                                                                <div>주문 음식 : ${pvo.foodNm}</div>
+                                                                
+                                                                <div> &nbsp;&nbsp; <fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />원</div>
+                                                                <div>&nbsp;&nbsp; ${pvo.quantity}개</div>
+                                                                <div style="text-align: right;">
+                                                                 <!-- <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button"></button> -->
+                                                                
+                                                                </div>
+                                                         
+                                                            <input type="hidden" value="1" name="p_idx" /> <%--${pvo.p_idx}--%>
+                                                            
+                                                       
+                                                            <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}"/>
+                                                            <c:set var="sumCount" value="${sumCount+pvo.quantity}"/>
+                                                        
+                                                            </c:forEach>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                         <div class="row">
                             <div class="col-md-1"></div>
@@ -195,7 +280,7 @@
                                                                 <div> &nbsp;&nbsp; <fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />원</div>
                                                                 <div>&nbsp;&nbsp; ${pvo.quantity}개</div>
                                                                 <div style="text-align: right;">
-                                                                 <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
+                                                                 <!-- <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button"></button> -->
                                                                 <hr />
                                                                 </div>
                                                             </td>
@@ -234,6 +319,7 @@
                                                             <td>
                                                                 <fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />
                                                             </td>
+                                                            !
                                                             <td><a
                                                                 href="${path}/shop/cart/delete.do?cart_id=${row.cart_id}">[삭제]</a>
                                                                 <!-- 삭제 버튼을 누르면 delete.do로 장바구니 개별 id (삭제하길원하는 장바구니 id)를 보내서 삭제한다. -->
@@ -277,6 +363,10 @@
                        
 
                     </div>
+
+
+
+
                     <div>
                         <!-- footer 시작---------------------------------------------------------------------------------------------->
                         <!-- <body class="d-flex flex-column"> -->
@@ -294,6 +384,7 @@
                             <input type="hidden" name="RestNm" value="${RestNm}">
                             <input type="hidden" name="totalPrice" value="${foodCost}">
                             <input type="hidden" name="quantity" value="1">
+                            <input type="hidden" name="seq" value="${seq}">
                         </form>
                         
 

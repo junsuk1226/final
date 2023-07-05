@@ -9,7 +9,7 @@
 <!--특정 휴게소 클릭 시 DB에 등록된 모든 음식 호출, 관리자 페이지 메뉴관리에서 메뉴 리스트 호출-->
 <select id="getFood" resultType="com.kdt.finalproject.vo.FoodVO" parameterType="String">
   	SELECT * FROM final.food
-    WHERE stdRestNm = #{RestNm} and (f_status = 0 or f_status = 1)
+    WHERE stdRestNm = #{RestNm} and f_status = 0
 </select>
 
 <!--특정 음식 클릭 시 음식 정보 호출-->
@@ -21,7 +21,7 @@
 <!--음식 이미지 호출-->
 <select id="getFood_img" parameterType="String" resultType="com.kdt.finalproject.vo.FoodVO">
   	SELECT * FROM food
-    WHERE foodNm = #{fname}
+    WHERE seq = #{seq}
 </select> 
 
 <!--메뉴 수정 시 특정 음식에 대한 정보 호출-->
@@ -30,10 +30,42 @@
   WHERE f_idx = #{f_idx}
 </select>
 
-<!-- 메뉴 수정
+<!--관리자 페이지에서 음식 리스트 출력-->
+<select id="getFoodList" resultType="com.kdt.finalproject.vo.FoodVO" parameterType="String">
+  	SELECT * FROM final.food
+    WHERE stdRestNm = #{RestNm} and (f_status = 0 or f_status=1)
+</select>
+
+<!--메뉴 수정-->
 <update id="editFood" parameterType="com.kdt.finalproject.vo.FoodVO">
-  UPDATE final.food
-  	SET like_count = like_count-1
-  	WHERE p_idx = #{p_idx}
-<update> -->
+  UPDATE food
+  	SET 
+    foodCost = #{foodCost},
+    foodNm = #{foodNm},
+    foodMaterial = #{foodMaterial},
+    f_status = #{f_status},
+    etc = #{etc},
+    bestfoodyn = #{bestfoodyn},
+    premiumyn = #{premiumyn},
+    recommendyn = #{recommendyn}
+    WHERE f_idx = #{f_idx}
+</update>
+
+<!--메뉴 수정시 로그 기록-->
+<insert id="editFoodLog" parameterType="com.kdt.finalproject.vo.FoodVO">
+  INSERT INTO final.foodlog (foodCost, foodNm, foodMaterial, f_status, etc, seq, editDate, stdRestNm, f_idx, bestfoodyn, premiumyn, recommendyn)
+  VALUES(#{foodCost}, #{foodNm},#{foodMaterial}, #{f_status}, #{etc}, #{seq}, NOW(), #{stdRestNm}, #{f_idx}, #{bestfoodyn}, #{premiumyn}, #{recommendyn})
+</insert>
+
+<!-- 메뉴 추가 신청-->
+<insert id="addFood" parameterType="com.kdt.finalproject.vo.FoodVO">
+  INSERT INTO final.food (foodCost, foodNm, foodMaterial, etc, seq, stdRestNm, bestfoodyn, premiumyn, recommendyn, f_status)
+  VALUES(#{foodCost}, #{foodNm},#{foodMaterial}, #{etc}, #{seq}, #{stdRestNm}, #{bestfoodyn}, #{premiumyn}, #{recommendyn}, 3)
+</insert>
+
+<insert id="addFoodLog" parameterType="com.kdt.finalproject.vo.FoodVO">
+  INSERT INTO foodlog (foodCost, foodNm, foodMaterial, etc, seq, stdRestNm, bestfoodyn, premiumyn, recommendyn, f_status, editDate)
+  VALUES(#{foodCost}, #{foodNm},#{foodMaterial}, #{etc}, #{seq}, #{stdRestNm}, #{bestfoodyn}, #{premiumyn}, #{recommendyn}, 3, NOW())
+</insert>
+
 </mapper>

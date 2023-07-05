@@ -62,7 +62,7 @@
                 <th scope="col">음식명</th>
                 <th scope="col">음식가격</th>
                 <th scope="col">등록상태</th>
-                <th scope="col"></th>
+                <th scope="col"><a class="btn btn-dark" style="width:60px" href="/admin/menuAdd">신청</a></th>
               </tr>
             </thead>
             <tbody>

@@ -142,6 +142,29 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!----------검색창-------------------------------------------------------->
+                            <div class="container-fluid">
+                                <div class="row justify-content-center mt-5">
+                                    <div class="col-md-7 mb-3">
+                                        <div class="input-group input-group-lg mb-3 shadow p-1 mb-1 bg-body rounded" >
+                                            <!--searchtype 안주면 빼기-->
+                                            <button class="btn btns-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;"></button>
+                                            <ul class="dropdown-menu shadow" style="border: none;">
+                                              <li><a class="dropdown-item" href="#">SearchType1</a></li>
+                                              <li><hr class="dropdown-divider"></li>
+                                              <li><a class="dropdown-item" href="#">SearchType2</a></li>
+                                              <li><hr class="dropdown-divider"></li>
+                                              <li><a class="dropdown-item" href="#">SearchType3</a></li>
+                                            </ul>
+                                            <!------------->
+                                            <input type="text" class="form-control"  style="border: none;">
+                                            <button type="button" class="btn btn-outline-secondary" style="border: none;"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-------------------------------------------------------------------------->
                             <div class="row justify-content-center my-5">
                                 <div class="col-md-9 mb-3">
                                         <div class="card ms-2 me-1 shadow p-3 mb-5 bg-body rounded" style="border: none;">
@@ -185,16 +208,44 @@
                                             </c:forEach>
                                             </div> 
                                                       
+                                            <c:if test="${ar eq null }">
+                                                <div class="card-body justify-content-center">
+                                                    <div class="empty" style="text-align: center;">현재 주문내역이 없습니다.</div>
+                                                </div>
+                                            </c:if>
                                         
 
                                             <!-- 페이징------------------------------------------------------------------------------------------------------------->
-                                            <nav aria-label="Page navigation">
-                                                <ul class="pagination justify-content-center">
+                                            <div class="card-body justify-content-center" style="margin:0 auto">
+                                                <c:if test="${ar ne null }">
+                                                <ol class="pagination">
+                                                    <c:if test="${page.startPage < page.pagePerBlock}">
+                                                        <li class="page-item disabled"><a class="page-link">&lt;</a></li>
+                                                    </c:if>
+                                                    <c:if test="${page.startPage >= page.pagePerBlock}">
+                                                        <li class="page-item"><a class="page-link"
+                                                                href="order?cPage=${page.startPage-page.pagePerBlock }<c:if test='${searchType != null}'>&searchType=${searchType}</c:if><c:if test='${searchValue != null}'>&searchValue=${searchValue}</c:if>">&lt;</a></li>
+                                                    </c:if>
+                                                    <c:forEach begin="${page.startPage }" end="${page.endPage }" varStatus="st">
+                                                        <c:if test="${page.nowPage eq st.index}">
+                                                            <li class="page-item active"><a class="page-link">${st.index}</a></li>
+                                                        </c:if>
+                                                        <c:if test="${page.nowPage ne st.index }">
+                                                            <li class="page-item"><a class="page-link" href="order?cPage=${st.index}<c:if test='${searchType != null}'>&searchType=${searchType}</c:if><c:if test='${searchValue != null}'>&searchValue=${searchValue}</c:if>">${st.index }</a>
+                                                            </li>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                    <c:if test="${page.endPage<page.totalPage}">
+                                                        <li class="page-item"><a class="page-link"
+                                                                href="order?cPage=${page.startPage+page.pagePerBlock }<c:if test='${searchType != null}'>&searchType=${searchType}</c:if><c:if test='${searchValue != null}'>&searchValue=${searchValue}</c:if>">&gt;</a></li>
+                                                    </c:if>
+                                                    <c:if test="${page.endPage == page.totalPage}">
+                                                        <li class="page-item disabled"><a class="page-link">&gt;</a></li>
+                                                    </c:if>
+                                                </ol>
+                                                </c:if>
+                                            </div>
                                             
-                                                    ${pageCode}
-                                            
-                                                </ul>
-                                            </nav>
                                             <!-- 페이징끝---------------------------------------------------------------------------------------------------------->
                                             
                                         </div>

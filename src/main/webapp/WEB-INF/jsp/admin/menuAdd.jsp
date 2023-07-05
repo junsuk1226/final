@@ -53,77 +53,50 @@
 
     <!-- 메인 컨텐츠 내용 -->
     <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
-        <form action="/admin/editConfirm" method="post" id="frm">
+        <form action="/admin/menuAdd" method="post" id="frm">
         <table>
             <colgroup>
               <col width="20.4%">
               <col width="79.6%">
             </colgroup>
-            <div class="u-container-layout u-container-layout-1"><span class="u-file-icon u-icon u-icon-1"><img src="/${fvo.f_image }" style="width:750px;"></span>
             <tbody class="u-table-body">
               <tr style="height: 68px;">
                 <td>음식명</td>
-                <td><input type="text" size= "80" name="foodNm" value="${fvo.foodNm }" /></td>
+                <td><input type="text" size= "80" name="foodNm" id="foodNm" value="" /></td>
               </tr>
               <tr style="height: 66px;">
                 <td>음식재료</td>
-                <td><input type="text" size= "80" name="foodMaterial" value="${fvo.foodMaterial}" /></td>
+                <td><input type="text" size= "80" name="foodMaterial" id="foodMaterial" value="" /></td>
               </tr>
               <tr style="height: 63px;">
                 <td>가격</td>
                 <td>
                 
-                       <input type="text" size= "80" name="foodCost" value="${fvo.foodCost}" />
+                       <input type="text" size= "80" name="foodCost" id="foodCost" value="" />
                 </td>
               </tr>
-              <tr style="height: 69px;">
-                <td>판매상태</td>
-                <td>
-                    <select class="form-select" aria-label="Default select example" name="f_status">
-                        <c:choose>
-                            <c:when test="${fvo.f_status eq '0'}">
-                                <option value="0" selected>판매중</option>
-                                <option value="1">품절</option>
-                                <option value="2">삭제</option>
-                            </c:when>
-                            <c:when test="${fvo.f_status eq '1'}">
-                                <option value="0">판매중</option>
-                                <option value="1" selected>품절</option>
-                                <option value="2">삭제</option>
-                            </c:when>
-                            <c:when test="${fvo.f_status eq '2'}">
-                                <option value="0">판매중</option>
-                                <option value="1">품절</option>
-                                <option value="2" selected>삭제</option>
-                            </c:when>
-                        </c:choose>
-                    </select>
-              </td>
-              </tr>
+ 
               <tr style="height: 69px">
                 <td>추천 메뉴관리</td>
                 <td class="form-check-inline form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" name="bestfoodyn" onchange="updateValue(this, 'bestfoodyn')" value="Y" <c:if test="${fvo.bestfoodyn eq 'Y'}">checked</c:if>>
+                  <input class="form-check-input" type="checkbox" role="switch" name="bestfoodyn" onchange="updateValue(this, 'bestfoodyn')" value="Y">
                   <label class="form-check-label" for="bestfoodyn" style="width:100px">베스트 메뉴</label>
                 </td>
                 <td class="form-check-inline form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" name="premiumyn" onchange="updateValue(this, 'premiumyn')" value="Y" <c:if test="${fvo.premiumyn eq 'Y'}">checked</c:if>>
+                  <input class="form-check-input" type="checkbox" role="switch" name="premiumyn" onchange="updateValue(this, 'premiumyn')" value="Y">
                   <label class="form-check-label" for="premiumyn" style="width:120px">프리미엄 메뉴</label>
                 </td>
                 <td class="form-check-inline form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" name="recommendyn" onchange="updateValue(this, 'recommendyn')" value="Y" <c:if test="${fvo.recommendyn eq 'Y'}">checked</c:if>>
+                  <input class="form-check-input" type="checkbox" role="switch" name="recommendyn" onchange="updateValue(this, 'recommendyn')" value="Y">
                   <label class="form-check-label" for="recommendyn" style="width:100px">추천 메뉴</label>
                 </td>
               </tr>
               <tr style="height: 259px;">
                 <td class="u-border-2 u-border-palette-1-base u-first-column u-grey-5 u-table-cell u-table-cell-9">내용</td>
-                <td class="u-border-2 u-border-palette-1-light-1 u-table-cell"><textarea name="etc" cols="80" rows="9">${fvo.etc}</textarea></td>
+                <td class="u-border-2 u-border-palette-1-light-1 u-table-cell"><textarea name="etc" id="etc" cols="80" rows="9"></textarea></td>
               </tr>
-              <td style="width: 50px;"><button type="button" class="btn btn-dark" style="width:60px" onclick="exe(this.form)">수정</button></td>
+              <td style="width: 50px;"><button type="button" class="btn btn-dark" style="width:60px" onclick="exe(this.form)">신청</button></td>
               <td style="width: 50px;"><a class="btn btn-dark" style="width:60px" href="javascript:history.go(-1);">취소</a></td>
-              <input type="hidden" name="f_idx" value="${fvo.f_idx}"/>
-              <input type="hidden" name="seq" value="${fvo.seq}"/>
-              <input type="hidden" name="stdRestNm" value="${fvo.stdRestNm}"/>
             </tbody>
           </table>
         </form>
@@ -149,6 +122,34 @@
 
 
     function exe(frm){
+      let foodNm = document.getElementById("foodNm").value;
+      let foodMaterial = document.getElementById("foodMaterial").value;
+      let foodCost = document.getElementById("foodCost").value;
+      let etc = document.getElementById("etc").value;
+
+      if(foodNm.trim() < 1){
+        alert("음식이름을 입력해주세요.");
+        foodNm.clear();
+        foodNm.focus();
+        return;
+      }else if(foodMaterial.trim() < 1){
+        alert("음식 재료를 입력해주세요.");
+        foodMaterial.clear();
+        foodMaterial.focus();
+        return;
+      }else if(foodCost.trim() < 1){
+        alert("음식 가격을 입력해주세요.");
+        foodCost.clear();
+        foodCost.focus();
+        return;
+      }else if(etc.trim() < 1){
+        alert("음식 상세설명을 입력해주세요.");
+        etc.clear();
+        etc.focus();
+        return; 
+      }
+
+
       frm.submit();
     }
 

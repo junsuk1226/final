@@ -18,8 +18,22 @@
     SELECT * FROM paylog where p_oderId = #{p_oderId}
 </select>
 
-<select id="order_list" parameterType="String" resultType="com.kdt.finalproject.vo.PayVO">
-    SELECT * FROM paylog where m_idx = #{m_idx} and p_status &lt; 2
+<select id="order_list" parameterType="Map" resultType="com.kdt.finalproject.vo.PayVO">
+  SELECT * FROM(
+		SELECT @RN:=@RN+1 AS rnum,a.* FROM(
+      SELECT * FROM paylog
+      WHERE m_idx = #{m_idx} and p_status &lt; 2
+      <if test="searchType != null and searchType == 0">
+				AND foodNm LIKE CONCAT('%', #{searchValue}, '%')
+			</if>
+			<if test="searchType != null and searchType == 1">
+				AND restNm LIKE CONCAT('%', #{searchValue}, '%')
+			</if>
+			<if test="searchType != null and searchType == 2">
+				AND p_date LIKE CONCAT('%', #{searchValue}, '%')
+			</if>
+    ) a, (SELECT @RN:=0) b
+	) c WHERE c.rnum BETWEEN #{begin} AND #{end}
 </select>
 
 <select id="order_selected" parameterType="String" resultType="com.kdt.finalproject.vo.PayVO">
@@ -31,6 +45,11 @@
   SET p_status = 2
   WHERE p_idx = #{p_idx}
 </update>
+
+<select id="totalCount" resultType="int" parameterType="String">
+  	SELECT COUNT(*) FROM paylog
+    WHERE p_status = 0 AND m_idx = #{m_idx}
+</select>
 
 
 <!-- insert -->
