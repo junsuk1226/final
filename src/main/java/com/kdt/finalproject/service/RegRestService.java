@@ -19,6 +19,7 @@ public class RegRestService {
     @Autowired
     private RegRestMapper reg_Mapper;
 
+    // 현재 가입되어있는 휴게소 정보
     public RegRestVO getRegRest(String RestNm) {
         return reg_Mapper.getRegRest(RestNm);
     }

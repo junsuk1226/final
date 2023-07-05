@@ -215,7 +215,7 @@ public class AdminTotalController {
 
             Map<String, String> map2 = new HashMap<>();
             map2.put("reg_restNm", mvo.getM_name());
-            map2.put("reg_restCd", rvo.getRouteCd());
+            map2.put("reg_restCd", rvo.getSvarCd());
             map2.put("reg_addr", rvo.getSvarAddr());
             map2.put("reg_phone", rvo.getRprsTelNo());
             map2.put("reg_ownerPhone", mvo.getM_phone());
@@ -281,6 +281,20 @@ public class AdminTotalController {
             mv.addObject("ar", ar);
             mv.setViewName("/adminTotal/editAdmin");
         }
+
+        return mv;
+    }
+
+    // 어드민 정보 수정
+    @RequestMapping("/editAdminInfo")
+    public ModelAndView editAdminInfo(String RestNm) {
+
+        ModelAndView mv = new ModelAndView();
+
+        RegRestVO rvo = r_Service.getRegRest(RestNm);
+
+        mv.addObject("rvo", rvo);
+        mv.setViewName("/adminTotal/editAdminInfo");
 
         return mv;
     }
