@@ -148,6 +148,7 @@
                                 <div class="row justify-content-center mt-5">
                                     <div class="col-md-7 mb-3">
                                         <div class="input-group input-group-lg mb-3 shadow p-1 mb-1 bg-body rounded" >
+                                            <!--searchtype 안주면 빼기-->
                                             <button class="btn btns-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;"></button>
                                             <ul class="dropdown-menu shadow" style="border: none;">
                                               <li><a class="dropdown-item" href="#">SearchType1</a></li>
@@ -156,6 +157,7 @@
                                               <li><hr class="dropdown-divider"></li>
                                               <li><a class="dropdown-item" href="#">SearchType3</a></li>
                                             </ul>
+                                            <!------------->
                                             <input type="text" class="form-control"  style="border: none;">
                                             <button type="button" class="btn btn-outline-secondary" style="border: none;"><i class="fa fa-search" aria-hidden="true"></i></button>
                                           </div>
