@@ -187,40 +187,15 @@
                                                       
                                         
 
-                                                <div class="col-md-6 d-grid gap-2 my-3 mx-auto justify-content-center">
-                                                    <ol class="pagination">
-                                                        <c:if test="${page.startPage < page.pagePerBlock}">
-                                                            <li class="page-item disabled"><a
-                                                                    class="page-link">&lt;</a></li>
-                                                        </c:if>
-                                                        <c:if test="${page.startPage >= page.pagePerBlock}">
-                                                            <li class="page-item"><a class="page-link"
-                                                                    href="Controller?type=aoList&cPage=${page.startPage-page.pagePerBlock }">&lt;</a>
-                                                            </li>
-                                                        </c:if>
-                                                        <c:forEach begin="${page.startPage }" end="${page.endPage }"
-                                                            varStatus="st">
-                                                            <c:if test="${page.nowPage eq st.index}">
-                                                                <li class="page-item active"><a
-                                                                        class="page-link">${st.index}</a></li>
-                                                            </c:if>
-                                                            <c:if test="${page.nowPage ne st.index }">
-                                                                <li class="page-item"><a class="page-link"
-                                                                        href="Controller?type=aoList&cPage=${st.index}">${st.index
-                                                                        }</a></li>
-                                                            </c:if>
-                                                        </c:forEach>
-                                                        <c:if test="${page.endPage<page.totalPage}">
-                                                            <li class="page-item"><a class="page-link"
-                                                                    href="Controller?type=aoList&cPage=${page.startPage+page.pagePerBlock }">&gt;</a>
-                                                            </li>
-                                                        </c:if>
-                                                        <c:if test="${page.endPage == page.totalPage}">
-                                                            <li class="page-item disabled"><a
-                                                                    class="page-link">&gt;</a></li>
-                                                        </c:if>
-                                                    </ol>
-                                                </div>
+                                            <!-- 페이징------------------------------------------------------------------------------------------------------------->
+                                            <nav aria-label="Page navigation">
+                                                <ul class="pagination justify-content-center">
+                                            
+                                                    ${pageCode}
+                                            
+                                                </ul>
+                                            </nav>
+                                            <!-- 페이징끝---------------------------------------------------------------------------------------------------------->
                                             
                                         </div>
                                     </div>

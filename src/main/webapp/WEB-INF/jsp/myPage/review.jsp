@@ -245,44 +245,81 @@
 
                                                 </c:forEach>
                                             </div> 
-                                                      
+                                                 
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-9">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr style="background:'#353535'">
+                                                            <th colspan="5">리뷰관리</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <c:forEach var="rvo" items="${requestScope.ar }" varStatus="st">
+                                                            <tr>
                                         
-
-                                                <div class="col-md-6 d-grid gap-2 my-3 mx-auto justify-content-center">
-                                                    <ol class="pagination">
-                                                        <c:if test="${page.startPage < page.pagePerBlock}">
-                                                            <li class="page-item disabled"><a
-                                                                    class="page-link">&lt;</a></li>
-                                                        </c:if>
-                                                        <c:if test="${page.startPage >= page.pagePerBlock}">
-                                                            <li class="page-item"><a class="page-link"
-                                                                    href="Controller?type=aoList&cPage=${page.startPage-page.pagePerBlock }">&lt;</a>
-                                                            </li>
-                                                        </c:if>
-                                                        <c:forEach begin="${page.startPage }" end="${page.endPage }"
-                                                            varStatus="st">
-                                                            <c:if test="${page.nowPage eq st.index}">
-                                                                <li class="page-item active"><a
-                                                                        class="page-link">${st.index}</a></li>
-                                                            </c:if>
-                                                            <c:if test="${page.nowPage ne st.index }">
-                                                                <li class="page-item"><a class="page-link"
-                                                                        href="Controller?type=aoList&cPage=${st.index}">${st.index
-                                                                        }</a></li>
-                                                            </c:if>
+                                                                <td style="width: 200px;">휴게소이미지</td>
+                                                                <td colspan="4">
+                                                                    <div>
+                                                                        <p style="font-size: 15px; font-weight: bold;">${rvo.r_restNm}</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p style="font-size: 12px; ">${rvo.r_writedate}</p>
+                                                                    </div>
+                                                                    <div>${rvo.r_content}</div>
+                                                                    <div style="text-align: right;">
+                                                                        <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button"
+                                                                            onclick="del('${rvo.r_idx}')">삭제</button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                        
+                                        
                                                         </c:forEach>
-                                                        <c:if test="${page.endPage<page.totalPage}">
-                                                            <li class="page-item"><a class="page-link"
-                                                                    href="Controller?type=aoList&cPage=${page.startPage+page.pagePerBlock }">&gt;</a>
-                                                            </li>
-                                                        </c:if>
-                                                        <c:if test="${page.endPage == page.totalPage}">
-                                                            <li class="page-item disabled"><a
-                                                                    class="page-link">&gt;</a></li>
-                                                        </c:if>
-                                                    </ol>
-                                                </div>
+                                                    </tbody>
+                                                </table>
+                                                </form>
+                                            </div>
+                                        </div>
                                             
+                                                <tr>
+                                                    <td colspan="4">
+                                                
+                                                        <ol class="pagination">
+                                                            <c:if test="${page.startPage < page.pagePerBlock}">
+                                                                <li class="page-item disabled"><a class="page-link">&lt;</a></li>
+                                                            </c:if>
+                                                            <c:if test="${page.startPage >= page.pagePerBlock}">
+                                                                <li class="page-item"><a class="page-link"
+                                                                        href="ReviewController?type=reviewlist&cPage=${page.startPage-page.pagePerBlock }">&lt;</a></li>
+                                                            </c:if>
+                                                            <c:forEach begin="${page.startPage }" end="${page.endPage }" varStatus="st">
+                                                                <c:if test="${page.nowPage eq st.index}">
+                                                                    <li class="page-item active"><a class="page-link">${st.index}</a></li>
+                                                                </c:if>
+                                                                <c:if test="${page.nowPage ne st.index }">
+                                                                    <li class="page-item"><a class="page-link" href="ReviewController?type=reviewlist&cPage=${st.index}">${st.index }</a>
+                                                                    </li>
+                                                                </c:if>
+                                                            </c:forEach>
+                                                            <c:if test="${page.endPage<page.totalPage}">
+                                                                <li class="page-item"><a class="page-link"
+                                                                        href="ReviewController?type=reviewlist&cPage=${page.startPage+page.pagePerBlock }">&gt;</a></li>
+                                                            </c:if>
+                                                            <c:if test="${page.endPage == page.totalPage}">
+                                                                <li class="page-item disabled"><a class="page-link">&gt;</a></li>
+                                                            </c:if>
+                                                        </ol>
+                                                
+                                                    </td>
+                                                </tr>
+                                            <c:if test="${ar eq null }">
+                                                <tr>
+                                                    <td colspan="5" class="empty">현재 등록된 게시물이 없습니다.</td>
+                                                </tr>
+                                                    </tr>
+                                                    </c:if>
                                         </div>
                                     </div>
                                 </div>

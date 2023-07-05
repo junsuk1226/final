@@ -46,4 +46,8 @@ public interface ReviewMapper {
 
     int get1StarCnt_Rest(String m_idx);
 
+    int totalCount();
+
+    List<ReviewVO> ReviewList(int begin, int end);
+
 }
