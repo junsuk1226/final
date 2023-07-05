@@ -195,7 +195,7 @@
                                                                 <div> &nbsp;&nbsp; <fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />원</div>
                                                                 <div>&nbsp;&nbsp; ${pvo.quantity}개</div>
                                                                 <div style="text-align: right;">
-                                                                 <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button">삭제</button>
+                                                                 <!-- <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button"></button> -->
                                                                 <hr />
                                                                 </div>
                                                             </td>
@@ -234,6 +234,7 @@
                                                             <td>
                                                                 <fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />
                                                             </td>
+                                                            !
                                                             <td><a
                                                                 href="${path}/shop/cart/delete.do?cart_id=${row.cart_id}">[삭제]</a>
                                                                 <!-- 삭제 버튼을 누르면 delete.do로 장바구니 개별 id (삭제하길원하는 장바구니 id)를 보내서 삭제한다. -->

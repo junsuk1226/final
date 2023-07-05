@@ -73,8 +73,15 @@ public class CartController {
     }
 
     @RequestMapping("/cartout")
-    public String logout() {
-        session.removeAttribute("vo");
+    public String clearCart() {
+        // 세션에서 카트 객체 가져오기
+        Cart cart = (Cart) session.getAttribute("cart");
+
+        // 카트 객체가 존재하면 비우기
+        if (cart != null) {
+            cart.cartClear();
+        }
+
         return "/myPage/cart";
     }
 }

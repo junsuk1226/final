@@ -53,7 +53,7 @@
 
     <!-- 메인 컨텐츠 내용 -->
     <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
-        <form action="/admin/EditConfirm" method="post" id="frm">
+        <form action="/admin/editConfirm" method="post" id="frm">
         <table>
             <colgroup>
               <col width="20.4%">
@@ -74,9 +74,6 @@
                 <td>
                 
                        <input type="text" size= "80" name="foodCost" value="${fvo.foodCost}" />
-                
-                
-               
                 </td>
               </tr>
               <tr style="height: 69px;">
@@ -103,12 +100,30 @@
                     </select>
               </td>
               </tr>
+              <tr style="height: 69px">
+                <td>추천 메뉴관리</td>
+                <td class="form-check-inline form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" name="bestfoodyn" onchange="updateValue(this, 'bestfoodyn')" value="Y" <c:if test="${fvo.bestfoodyn eq 'Y'}">checked</c:if>>
+                  <label class="form-check-label" for="bestfoodyn" style="width:100px">베스트 메뉴</label>
+                </td>
+                <td class="form-check-inline form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" name="premiumyn" onchange="updateValue(this, 'premiumyn')" value="Y" <c:if test="${fvo.premiumyn eq 'Y'}">checked</c:if>>
+                  <label class="form-check-label" for="premiumyn" style="width:120px">프리미엄 메뉴</label>
+                </td>
+                <td class="form-check-inline form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" name="recommendyn" onchange="updateValue(this, 'recommendyn')" value="Y" <c:if test="${fvo.recommendyn eq 'Y'}">checked</c:if>>
+                  <label class="form-check-label" for="recommendyn" style="width:100px">추천 메뉴</label>
+                </td>
+              </tr>
               <tr style="height: 259px;">
                 <td class="u-border-2 u-border-palette-1-base u-first-column u-grey-5 u-table-cell u-table-cell-9">내용</td>
                 <td class="u-border-2 u-border-palette-1-light-1 u-table-cell"><textarea name="etc" cols="80" rows="9">${fvo.etc}</textarea></td>
               </tr>
-              <td style="width: 50px;"><a class="btn btn-dark" style="width:60px" href="">수정</a></td>
+              <td style="width: 50px;"><button type="button" class="btn btn-dark" style="width:60px" onclick="exe(this.form)">수정</button></td>
               <td style="width: 50px;"><a class="btn btn-dark" style="width:60px" href="">취소</a></td>
+              <input type="hidden" name="f_idx" value="${fvo.f_idx}"/>
+              <input type="hidden" name="seq" value="${fvo.seq}"/>
+              <input type="hidden" name="stdRestNm" value="${fvo.stdRestNm}"/>
             </tbody>
           </table>
         </form>
@@ -122,7 +137,21 @@
 
     
 <script>
-    
+  function updateValue(checkbox, name) {
+    if (checkbox.checked) {
+      checkbox.value = 'Y';
+    } else {
+      checkbox.value = 'N';
+    }
+    // 값이 변경되었을 때 추가로 수행할 로직을 여기에 작성합니다.
+    console.log(name + ' 값 변경:', checkbox.value);
+  }
+
+
+    function exe(frm){
+      frm.submit();
+    }
+
 </script>
 
 </body>

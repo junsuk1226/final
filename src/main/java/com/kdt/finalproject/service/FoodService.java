@@ -40,4 +40,24 @@ public class FoodService {
     public FoodVO getOneFood(String f_idx) {
         return f_Mapper.getOneFood(f_idx);
     }
+
+    public FoodVO[] allList(String RestNm) {
+        FoodVO[] ar = null;
+
+        List<FoodVO> list = f_Mapper.getFoodList(RestNm);
+        if (list != null && list.size() > 0) {
+            ar = new FoodVO[list.size()];
+            list.toArray(ar);
+        }
+
+        return ar;
+    }
+
+    public int editFood(FoodVO vo) {
+        return f_Mapper.editFood(vo);
+    }
+
+    public int editFoodLog(FoodVO vo) {
+        return f_Mapper.editFoodLog(vo);
+    }
 }
