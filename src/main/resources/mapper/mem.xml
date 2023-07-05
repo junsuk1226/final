@@ -10,7 +10,7 @@
 
 	<select id="login" parameterType="Map" resultType="com.kdt.finalproject.vo.MemVO">
     SELECT * FROM final.member
-    where m_id = #{m_id}
+    where m_id = #{m_id} and m_status = 0
   </select>
 
   <!--회원 정보 수정-->
