@@ -1,6 +1,7 @@
 package com.kdt.finalproject.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kdt.finalproject.vo.ReviewLogVO;
 import com.kdt.finalproject.vo.ReviewVO;
@@ -46,8 +47,8 @@ public interface ReviewMapper {
 
     int get1StarCnt_Rest(String r_restNm);
 
-    int totalCount();
+    int totalCount(String m_idx);
 
-    List<ReviewVO> ReviewList(int begin, int end);
+    List<ReviewVO> getReviewList(Map<String, Integer> map);
 
 }

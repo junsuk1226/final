@@ -18,19 +18,20 @@ public class ReviewService {
     @Autowired
     private ReviewMapper r_Mapper;
 
-    public ReviewVO[] getReviewList(String m_idx) {
-
-        List<ReviewVO> r_list = r_Mapper.getReviewList(m_idx);
-
-        ReviewVO[] ar = null;
-        if (r_list != null && r_list.size() > 0) {
-            ar = new ReviewVO[r_list.size()];
-            r_list.toArray(ar);
-        }
-
-        return ar;
-    }
-
+    /*
+     * public ReviewVO[] getReviewList(String m_idx) {
+     * 
+     * List<ReviewVO> r_list = r_Mapper.getReviewList(m_idx);
+     * 
+     * ReviewVO[] ar = null;
+     * if (r_list != null && r_list.size() > 0) {
+     * ar = new ReviewVO[r_list.size()];
+     * r_list.toArray(ar);
+     * }
+     * 
+     * return ar;
+     * }
+     */
     public int addReview(ReviewVO rvo) {
         return r_Mapper.addReview(rvo);
     }
@@ -97,14 +98,18 @@ public class ReviewService {
         return map;
     }
 
-    public int getTotalCount() {
-        return r_Mapper.totalCount();
+    public int getTotalCount(String m_idx) {
+        return r_Mapper.totalCount(m_idx);
     }
 
-    public ReviewVO[] getList(int begin, int end) {
+    public ReviewVO[] getReviewList(int begin, int end, int m_idx) {
         ReviewVO[] ar = null;
+        Map<String, Integer> map = new HashMap<>();
+        map.put("begin", begin);
+        map.put("end", end);
+        map.put("m_idx", m_idx);
 
-        List<ReviewVO> list = r_Mapper.ReviewList(begin, end);
+        List<ReviewVO> list = r_Mapper.getReviewList(map);
         if (list != null && list.size() > 0) {
             ar = new ReviewVO[list.size()];
             list.toArray(ar);
