@@ -73,7 +73,7 @@
             <img class="mycustom-menuList_main_image" src="${r_photo}">
         </c:if>
         <c:if test="${r_photo == '../images/rest_default_photo.png' || r_photo == null}">
-            <img class="mycustom-menuList_main_image" src="../main_images/hand2.png">
+            <img class="mycustom-menuList_main_image" style="object-fit: contain;" src="../main_images/hand2.png">
         </c:if>
     </div>
 
@@ -275,9 +275,99 @@
            
             <!-- 리뷰 ----------------------------------------------------------------------------------------------------->
             <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab" tabindex="2">
-                <div class="container d-flex flex-wrap justify-content-center">
+                
+                    
+                    <!--별점------------------------------------------->
+                    <div class="container-fluid">
+                        <div class="row justify-content-center mt-5">
+                            <div class=" mb-3">
+                                    <div class ="card shadow-sm p-3 mb-3 bg-body rounded" style="border: none;">
+                                        <div class = "card-body">
+                                            <div class="card-title mb-2">
+                                                <span style="font-size: larger;">${RestNm} 별점 평균
+                                                    <span class="text-muted mb-1" style="font-size: large;">(${scoreCnt}건)
+                                                        
+                                                    </span>
+                                                </span>
+                                                <div class="row justify-content-around align-items-center">
+                                                    <div class="score-num col-md-3 justify-content-end">
+                                                        <h2><i class="fa fa-star me-2" aria-hidden="true" style="color: #ffd000;"></i><span>${scoreAvg}</span></h2>
+                                                    </div>
+                                                    <c:set var="score" value="${score}"></c:set>
+                                                    <div class="col-md-8">
+                                                        <div class="row d-flex mt-2">
+                                                            <table>
+                                                                <colgroup>
+                                                                    <col style="width:65px;"/>
+                                                                    <col style="width:auto;"/>
+                                                                </colgroup>
+                                                                <tbody>
+                                                                  <tr>
+                                                                    <td>
+                                                                      <span>1점<span class="text-muted ms-1" style="font-size: small;">(${score.one})</span></span>
+                                                                    </td>
+                                                                    <td>
+                                                                      <div class="progress mb-2">
+                                                                        <div class="progress-bar bg-warning" style="width: ${(score.one / scoreCnt) * 100}%;" role="progressbar" aria-valuenow="${score.one}" aria-valuemin="0" aria-valuemax="${scoreCnt}"></div>
+                                                                      </div>
+                                                                    </td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                    <td>
+                                                                      <span>2점<span class="text-muted ms-1" style="font-size: small;">(${score.two})</span></span>
+                                                                    </td>
+                                                                    <td>
+                                                                      <div class="progress mb-2">
+                                                                        <div class="progress-bar bg-warning" role="progressbar" style="width: ${(score.two / scoreCnt) * 100}%;" aria-valuenow="${score.two}" aria-valuemin="0" aria-valuemax="${scoreCnt}"></div>
+                                                                      </div>
+                                                                    </td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                    <td>
+                                                                      <span>3점<span class="text-muted ms-1" style="font-size: small;">(${score.three})</span></span>
+                                                                    </td>
+                                                                    <td>
+                                                                      <div class="progress mb-2">
+                                                                        <div class="progress-bar bg-warning" role="progressbar" style="width: ${(score.three / scoreCnt) * 100}%;" aria-valuenow="${score.three}" aria-valuemin="0" aria-valuemax="${scoreCnt}"></div>
+                                                                      </div>
+                                                                    </td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                    <td>
+                                                                      <span>4점<span class="text-muted ms-1" style="font-size: small;">(${score.four})</span></span>
+                                                                    </td>
+                                                                    <td>
+                                                                      <div class="progress mb-2">
+                                                                        <div class="progress-bar bg-warning" role="progressbar" style="width: ${(score.four / scoreCnt) * 100}%;" aria-valuenow="${score.four}" aria-valuemin="0" aria-valuemax="${scoreCnt}"></div>
+                                                                      </div>
+                                                                    </td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                    <td>
+                                                                      <span>5점<span class="text-muted ms-1" style="font-size: small;">(${score.five})</span></span>
+                                                                    </td>
+                                                                    <td>
+                                                                      <div class="progress mb-2">
+                                                                        <div class="progress-bar bg-warning" role="progressbar" style="width: ${(score.five / scoreCnt) * 100}%;" aria-valuenow="${score.five}" aria-valuemin="0" aria-valuemax="${scoreCnt}"></div>
+                                                                      </div>
+                                                                    </td>
+                                                                  </tr>
+                                                                </tbody>
+                                                              </table>
+                                                              
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!------------------------------------------------->
+                    <div class="container d-flex flex-wrap justify-content-center"></div>
                     <ul class="list-group list-group-flush" style="max-width: 700px; width: 100%;">
-
                         <c:forEach var="rvo" items="${rList}">
                             <!-- 반복문 돌릴구간-->
                             <li class="list-group-item" style="padding: 0;">
