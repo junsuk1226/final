@@ -19,8 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kdt.finalproject.service.FoodService;
 import com.kdt.finalproject.service.JoinService;
 import com.kdt.finalproject.service.MemService;
+import com.kdt.finalproject.service.ReviewService;
 import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MemVO;
+import com.kdt.finalproject.vo.ReviewVO;
 
 @Controller
 public class AdminController {
@@ -39,12 +41,15 @@ public class AdminController {
     @Autowired
     private FoodService f_Service;
 
+    @Autowired
+    private ReviewService r_Service;
+
     @RequestMapping("/admin")
     public String adminTest() {
         return "/admin/index";
     }
 
-    int seq = 1;
+    int seq = 700000000;
 
     @RequestMapping(value = "/admin/reqLogin", method = RequestMethod.POST)
     public ModelAndView adminLogin(MemVO vo) {
@@ -180,6 +185,7 @@ public class AdminController {
         vo.setSeq(seq);
 
         f_Service.addFood(vo);
+        f_Service.addFoodLog(vo);
 
         mv.setViewName("redirect:/admin/menu");
 
@@ -191,8 +197,12 @@ public class AdminController {
         return "/admin/sales";
     }
 
-    @RequestMapping("/admin/review")
-    public String adminReview() {
-        return "/admin/review";
-    }
+    // @RequestMapping("/admin/review")
+    // public ModelAndView adminReview() {
+    // ModelAndView mv = new ModelAndView();
+    // MemVO mvo = (MemVO) session.getAttribute("mvo");
+    // ReviewVO[] rvo = r_Service.getRestReviewList(mvo.getM_name());
+
+    // return mv;
+    // }
 }
