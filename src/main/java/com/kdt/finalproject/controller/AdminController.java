@@ -197,12 +197,15 @@ public class AdminController {
         return "/admin/sales";
     }
 
-    // @RequestMapping("/admin/review")
-    // public ModelAndView adminReview() {
-    // ModelAndView mv = new ModelAndView();
-    // MemVO mvo = (MemVO) session.getAttribute("mvo");
-    // ReviewVO[] rvo = r_Service.getRestReviewList(mvo.getM_name());
+    @RequestMapping("/admin/review")
+    public ModelAndView adminReview() {
+        ModelAndView mv = new ModelAndView();
+        MemVO mvo = (MemVO) session.getAttribute("mvo");
+        ReviewVO[] rvo = r_Service.getRestReviewList(mvo.getM_name());
 
-    // return mv;
-    // }
+        mv.addObject("rvo", rvo);
+        mv.setViewName("admin/review");
+
+        return mv;
+    }
 }

@@ -133,6 +133,9 @@
                                 <input type="hidden" name="foodMaterial" value="${fvo.foodMaterial}">
                                 <input type="hidden" name="etc" value="${fvo.etc}">
                                 <input type="hidden" name="f_image" value="${fvo.f_image}">
+                                <input type="hidden" name="seq" value="${fvo.seq}">
+
+
                                 <c:if test="${r_photo != '../images/rest_default_photo.png' || r_photo != null}">
                                     <input type="hidden" name="r_photo" value="${r_photo}">
                                 </c:if>
@@ -190,6 +193,7 @@
                                 <input type="hidden" name="foodNm" value="${fvo.foodNm}">
                                 <input type="hidden" name="foodMaterial" value="${fvo.foodMaterial}">
                                 <input type="hidden" name="etc" value="${fvo.etc}">
+                                <input type="hidden" name="seq" value="${fvo.seq}">
                                 
                                 <input id="addr" type="hidden" name="svarAddr" value="${favo.svarAddr}">
                                 

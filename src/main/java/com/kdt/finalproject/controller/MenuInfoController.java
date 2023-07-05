@@ -9,8 +9,8 @@ public class MenuInfoController {
 
     @RequestMapping("/menu/info")
     public ModelAndView menuInfo(String foodCost, String foodNm, String foodMaterial, String etc, String f_image,
-            String RestNm, String r_photo) {
-
+            String RestNm, String r_photo, String seq) {
+        System.out.println("menuList:" + seq);
         ModelAndView mv = new ModelAndView();
 
         mv.addObject("RestNm", RestNm);
@@ -18,6 +18,7 @@ public class MenuInfoController {
         mv.addObject("foodNm", foodNm);
         mv.addObject("foodMaterial", foodMaterial);
         mv.addObject("etc", etc);
+        mv.addObject("seq", seq);
 
         if (f_image != null)
             mv.addObject("f_image", f_image);
