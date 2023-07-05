@@ -73,6 +73,7 @@
                             <p class="text-left" style="margin-left: 20px;" >전호번호: ${mvo.m_phone}</p>
                         </div></br>
                         <div class="card border-2">
+                            <!--<div id="idPrint">-->
                             <c:set var="sumPrice" value="0"/>
                             <c:set var="RestNm0" value=""/>
                             <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st">
@@ -90,6 +91,7 @@
                                 <span style="display: inline-block; float: left; margin-left: 10px; padding-top: 15px;" >총 결제금액</span>
                                 <span style="display: inline-block; float: right; margin-right: 10px; padding-top: 15px;"><fmt:formatNumber value="${sumPrice}" pattern="#,###,###" />원</span>
                             </p>
+                            <!--</div>-->
                         </div></br>
                         <div class="card border-2" style="text-align: center;">
                             <div class="paybox"></br>
@@ -128,6 +130,9 @@
                         <div style="text-align: right;">
                             <button type="button" class="btn btn-outline-secondary" onclick="location.href='/tosspayment/refund'">토스 환불(테스트)</button>
                         </div>
+                        <div style="text-align: right;">
+                            <button type="button" class="btn btn-outline-secondary" onclick="printArea()">출력(테스트)</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -154,6 +159,34 @@
             function sendData2(){
                 document.frm2.submit();
             }
+
+            /*
+            var initBody
+            function beforePrint(){
+                initBody = document.body.innerHTML;
+                document.body.innerHTML = idPrint.innerHTML;
+            }
+            function afterPrint(){
+                document.body.innerHTML = initBody;
+            }
+            function printArea() {
+                window.print();
+            }
+            window.onbeforeprint = beforePrint;
+            window.onafterprint = afterPrint;  function printArea1(){
+                if (flag == false){
+                initBody = document.body.innerHTML;
+                document.body.innerHTML = idPrint1.innerHTML;
+                flag = true;
+                } else {
+                document.body.innerHTML = initBody;
+                flag = false;
+                }
+            }
+            */
+            
+
+
         </script>
     </body> 
     <!-- footer 끝---------------------------------------------------------------------------------------------->
