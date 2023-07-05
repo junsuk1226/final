@@ -96,7 +96,7 @@
                 <td class="u-border-2 u-border-palette-1-light-1 u-table-cell"><textarea name="etc" cols="80" rows="9"></textarea></td>
               </tr>
               <td style="width: 50px;"><button type="button" class="btn btn-dark" style="width:60px" onclick="exe(this.form)">신청</button></td>
-              <td style="width: 50px;"><a class="btn btn-dark" style="width:60px" href="">취소</a></td>
+              <td style="width: 50px;"><a class="btn btn-dark" style="width:60px" href="javascript:history.go(-1);">취소</a></td>
             </tbody>
           </table>
         </form>

@@ -120,7 +120,7 @@
                 <td class="u-border-2 u-border-palette-1-light-1 u-table-cell"><textarea name="etc" cols="80" rows="9">${fvo.etc}</textarea></td>
               </tr>
               <td style="width: 50px;"><button type="button" class="btn btn-dark" style="width:60px" onclick="exe(this.form)">수정</button></td>
-              <td style="width: 50px;"><a class="btn btn-dark" style="width:60px" href="">취소</a></td>
+              <td style="width: 50px;"><a class="btn btn-dark" style="width:60px" href="javascript:history.go(-1);">취소</a></td>
               <input type="hidden" name="f_idx" value="${fvo.f_idx}"/>
               <input type="hidden" name="seq" value="${fvo.seq}"/>
               <input type="hidden" name="stdRestNm" value="${fvo.stdRestNm}"/>
