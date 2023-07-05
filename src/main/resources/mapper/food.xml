@@ -21,7 +21,7 @@
 <!--음식 이미지 호출-->
 <select id="getFood_img" parameterType="String" resultType="com.kdt.finalproject.vo.FoodVO">
   	SELECT * FROM food
-    WHERE foodNm = #{fname}
+    WHERE seq = #{seq}
 </select> 
 
 <!--메뉴 수정 시 특정 음식에 대한 정보 호출-->

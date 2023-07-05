@@ -98,9 +98,9 @@ public class OrderListController {
 
     @RequestMapping("/getFileName")
     @ResponseBody
-    public String getFileName(String foodNm) {
+    public String getFileName(String seq) {
 
-        FoodVO vo = f_service.getFoodImg(foodNm);
+        FoodVO vo = f_service.getFoodImg(seq);
 
         String fname = vo.getF_image();
 
