@@ -280,11 +280,11 @@
                     <!--별점------------------------------------------->
                     <div class="container-fluid">
                         <div class="row justify-content-center mt-5">
-                            <div class="col-md-9 mb-3">
+                            <div class=" mb-3">
                                     <div class ="card shadow-sm p-3 mb-3 bg-body rounded" style="border: none;">
                                         <div class = "card-body">
                                             <div class="card-title mb-2">
-                                                <span style="font-size: larger;">나의 별점 평균
+                                                <span style="font-size: larger;">${RestNm} 별점 평균
                                                     <span class="text-muted mb-1" style="font-size: large;">(${scoreCnt}건)
                                                         
                                                     </span>
@@ -295,7 +295,7 @@
                                                     </div>
                                                     <c:set var="score" value="${score}"></c:set>
                                                     <div class="col-md-8">
-                                                        <div class="row d-flex">
+                                                        <div class="row d-flex mt-2">
                                                             <table>
                                                                 <colgroup>
                                                                     <col style="width:65px;"/>
