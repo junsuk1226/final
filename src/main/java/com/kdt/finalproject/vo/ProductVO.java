@@ -11,5 +11,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ProductVO {
     private String foodNm, RestNm;
-    private int foodCost, totalPrice, quantity;
+    private int foodCost, totalPrice, quantity, seq;
 }
