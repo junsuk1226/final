@@ -5,13 +5,6 @@
   
 <mapper namespace="com.kdt.finalproject.mapper.ReviewMapper">
 
-<resultMap id="map1" type="com.kdt.finalproject.mapper.ReviewMapper">
-  <id property="r_idx" column="r_idx" />
- <collection property="r_list" ofType="com.kdt.finalproject.mapper.ReviewMapper" 
-  		select="getReviewList" column="r_idx"/>
-</resultMap>
-
-
 <select id="getReview" resultType="com.kdt.finalproject.vo.ReviewVO">
   	SELECT * FROM final.reivew
 </select>
