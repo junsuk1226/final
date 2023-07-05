@@ -83,6 +83,11 @@ public class ReviewController {
 
             int totalRecord = reviewService.getTotalCount(mIdx);
 
+            // 별점
+            Float scoreAvg = reviewService.getScoreAvg_Mem(mIdx);
+            int scoreCnt = reviewService.getScoreCnt(mIdx);
+            Map<String, Integer> score = reviewService.getStarCnt(mIdx);
+
             if (cPage != null)
                 nowPage = Integer.parseInt(cPage);
 
@@ -90,6 +95,11 @@ public class ReviewController {
             String pageCode = page.getSb().toString();
             // -------------------------------
             ReviewVO[] ar = reviewService.getReviewList(page.getBegin(), page.getEnd(), m_idx); // JSP에서 표현할 목록 가져오기
+
+            // 별점
+            mv.addObject("score", score);
+            mv.addObject("scoreAvg", scoreAvg);
+            mv.addObject("scoreCnt", scoreCnt);
 
             mv.addObject("ar", ar);
             mv.addObject("page", page);
