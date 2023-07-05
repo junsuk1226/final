@@ -113,7 +113,7 @@
                                                                 <hr style="border: 1px dashed black;"/>
                                                                 <div class="d-flex ">
                                                                     <div class="d-flex col-md-12">    
-                                                                        <div class="mx-3 col-md-3" style ="width: 100px; height: 100px;">
+                                                                        <div class="me-3 col-md-3" style ="width: 100px; height: 100px;">
                                                                             <img id="${foodNm[i]}_img" style="object-fit: cover; width: 100%; height: 100%; background-color: rgb(240, 240, 240);" class="rounded "/> 
                                                                         </div>
                                                                         
@@ -124,7 +124,10 @@
                                                                                 <span class="ps-2 text-muted">└ ${foodQn[i]}개</span>
                                                                             </div>
                                                                             <div class="text-end col-md-12 d-flex justify-content-end">
-                                                                                <span class="me-2 text-muted">개당</span><fmt:formatNumber value="${foodCost[i]}" pattern="#,###,###" />원
+                                                                                <span class="me-2 text-muted" style="font-size: small; ">개당 <fmt:formatNumber value="${foodCost[i]}" pattern="#,###,###" />원</span>
+                                                                            </div>
+                                                                            <div class="text-end col-md-12 d-flex justify-content-end">
+                                                                                <span class="me-2 text-muted" style="font-size: large; font-weight: bold;"><fmt:formatNumber value="${foodCost[i]*foodQn[i]}" pattern="#,###,###" />원</span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -135,7 +138,7 @@
                                                         <div class="d-flex justify-content-between">
                                                             <div class="text-start" style="font-size: larger; font-weight: bold;"><span>결제금액</span></div> 
                                                             <div class="text-end">
-                                                                <fmt:formatNumber value="${pvo.totalCost}" pattern="#,###,###" />원<br/>
+                                                                <span class="me-2" style="font-size: large; font-weight: bold;"><fmt:formatNumber value="${pvo.totalCost}" pattern="#,###,###" />원</span><br/>
                                                                 <c:choose>
                                                                     <c:when test="${pvo.payMethod eq '0'}"><span class="text-muted">(카카오페이 결제)</span></c:when>
                                                                     <c:when test="${pvo.payMethod eq '1'}"><span class="text-muted">(토스페이 결제)</span></c:when>
