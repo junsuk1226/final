@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kdt.finalproject.mapper.FoodMapper;
 import com.kdt.finalproject.vo.FoodVO;
@@ -59,5 +60,15 @@ public class FoodService {
 
     public int editFoodLog(FoodVO vo) {
         return f_Mapper.editFoodLog(vo);
+    }
+
+    @Transactional
+    public int addFood(FoodVO vo) {
+        return f_Mapper.addFood(vo);
+    }
+
+    @Transactional
+    public int addSeq() {
+        return f_Mapper.addSeq();
     }
 }

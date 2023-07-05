@@ -3,10 +3,12 @@ package com.kdt.finalproject.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,8 @@ import com.kdt.finalproject.vo.MemVO;
 
 @Controller
 public class AdminController {
+    @Autowired
+    HttpServletRequest request;
 
     @Autowired
     private HttpSession session;
@@ -155,6 +159,24 @@ public class AdminController {
         f_Service.editFoodLog(vo);
 
         mv.setViewName("redirect:/admin/menuEdit?f_idx=" + vo.getF_idx());
+
+        return mv;
+    }
+
+    @GetMapping("/admin/menuAdd")
+    public String menuAdd() {
+        return "/admin/menuAdd";
+    }
+
+    @PostMapping("/admin/menuAdd")
+    @Transactional
+    public ModelAndView addConfirm(FoodVO vo) {
+        ModelAndView mv = new ModelAndView();
+        MemVO mvo = (MemVO) session.getAttribute("mvo");
+        vo.setStdRestNm(mvo.getM_name());
+        f_Service.addFood(vo);
+
+        mv.setViewName("redirect:/admin/menu");
 
         return mv;
     }

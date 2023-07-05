@@ -22,4 +22,10 @@ public interface FoodMapper {
 
     int editFoodLog(FoodVO vo);
 
+    int addFood(FoodVO vo);
+
+    int addFoodLog(FoodVO vo);
+
+    int addSeq();
+
 }
