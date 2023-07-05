@@ -190,12 +190,12 @@ public class AdminTotalController {
                 String premiumyn = item.getChildText("premiumyn");
                 String recommendyn = item.getChildText("recommendyn");
                 String seasonMenu = item.getChildText("seasonMenu");
-                String seq = item.getChildText("seq");
+                int seq = Integer.parseInt(item.getChildText("seq"));
                 String f_image = item.getChildText("f_image");
                 String f_status = item.getChildText("f_status");
 
                 FoodVO fvo = new FoodVO(f_idx, foodCost, foodNm, foodMaterial, etc, stdRestNm, bestfoodyn, premiumyn,
-                        recommendyn, seasonMenu, seq, f_image, f_status);
+                        recommendyn, seasonMenu, f_image, f_status, seq);
 
                 f_list.add(fvo);
             }
