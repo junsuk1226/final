@@ -384,7 +384,7 @@
                             <input type="hidden" name="RestNm" value="${RestNm}">
                             <input type="hidden" name="totalPrice" value="${foodCost}">
                             <input type="hidden" name="quantity" value="1">
-                            <input type="hidden" name="quantit" value="1">
+                            <input type="hidden" name="seq" value="${seq}">
                         </form>
                         
 
