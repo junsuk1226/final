@@ -109,26 +109,34 @@
                                 </h2>
                             </div>
                         </div>
-                   
+                        <c:choose>
+                            <c:when test="${map.count == 0 }">
+                                <!-- when은 ~~일때 라는 뜻 그러니까 map의 count가 0일때... -->
+                                <!-- xml파일에서 hashmap에 list를 넣어놓았기 때문에 현재 map에 자료가 들어있다.  -->
+                                <!-- map에 자료가 아무것도 없다면 -->
+                                장바구니가 비었습니다.
+                            </c:when>
 
-                        <form name="frm" action="/orderpay" method="post">
-                        <div class="container-fluid mb-4">
-                            <div class="row justify-content-center col-md-12 my-5">
-                                <div  class="col-md-9">
-                                     <div class="card shadow p-3 mb-5 bg-body rounded justify-content-center" style="border: none;">
-                                        <div class="card-body">
-                                            <div class="row justify-content-end ">
-                                                <div class="col-6 mb-2 float-end text-end">
-                                                    <a class=" arrow nav-link" onclick="sendKeyword(this.form)" style="font-family: 'suite'; font-weight: bold; color: #887e94; font-size: large;" ><i class="fa fa-arrow-left me-2" aria-hidden="true"></i>돌아가기</a>
-                                                </div>
-                                            </div>
-                                            <div class=" row ">
+                            <c:otherwise>
+                                <div class="container-fluid mb-4">
+                                    <div class="row justify-content-center col-md-12 my-5">
+                                        <div  class="col-md-9">
+                                            <div class="card shadow p-3 mb-5 bg-body rounded justify-content-center" style="border: none;">
+                                                <div class="card-body">
+                                            
+                                                    <form name="frm" action="/orderpay" method="post">
+                                                        <div class="row justify-content-start ">
+                                                            <div class="col-6 mb-2 float-start text-start">
+                                                                <a class=" arrow nav-link" onclick="sendKeyword(this.form)" style="font-family: 'suite'; font-weight: bold; color: #887e94; font-size: large;" ><i class="fa fa-arrow-left me-2" aria-hidden="true"></i>메뉴 추가하기</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class=" row ">
                                                 
-                                                    <c:set var="sumPrice" value="0"/>
-                                                    <c:set var="sumCount" value="0"/>
-                                                    <c:set var="fee" value="0"/>
+                                                            <c:set var="sumPrice" value="0"/>
+                                                            <c:set var="sumCount" value="0"/>
+                                                            <c:set var="fee" value="0"/>
 
-                                                    <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st"> 
+                                                            <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st"> 
                                                       
                                                             
                                                                 <hr />
@@ -147,26 +155,23 @@
                                                                  <!-- <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button"></button> -->
                                                                 
                                                                 </div>
-                                                            </td>
-                                                            
+                                                         
                                                             <input type="hidden" value="1" name="p_idx" /> <%--${pvo.p_idx}--%>
                                                             
-                                                        </tr>
-                                                        <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}"/>
-                                                        <c:set var="sumCount" value="${sumCount+pvo.quantity}"/>
+                                                       
+                                                            <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}"/>
+                                                            <c:set var="sumCount" value="${sumCount+pvo.quantity}"/>
                                                         
-                                                    </c:forEach>
-
-
-
+                                                            </c:forEach>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </form>
-
+                            </c:otherwise>
+                        </c:choose>
 
 
 
