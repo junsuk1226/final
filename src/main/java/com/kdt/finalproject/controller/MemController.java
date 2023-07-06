@@ -111,7 +111,8 @@ public class MemController {
 					mlvo.setAccess_token(vo.getAccess_token());
 					mlvo.setRefresh_token(vo.getRefresh_token());
 					mlvo.setM_phone(vo.getM_phone());
-					mlvo.setMl_var1("개인정보수정");
+					mlvo.setEditor("M");
+					mlvo.setMl_var2("개인정보수정");
 
 					memLogService.join_log(mlvo);
 				}
@@ -139,9 +140,9 @@ public class MemController {
 			int cnt = m_Service.updatePw(vo, mvo);
 			if (cnt > 0) {
 				// 세션에 있는 정보도 수정해 줘야 한다.
-				mvo.setM_pw(vo.getNew_pw());
+				// mvo.setM_pw(vo.getNew_pw());
 
-				mvo = j_Service.getMem(vo);
+				mvo = j_Service.getMem(mvo);
 				if (mvo != null) {
 					MemLogVO mlvo = new MemLogVO();
 					mlvo.setM_idx(mvo.getM_idx());
@@ -152,7 +153,8 @@ public class MemController {
 					mlvo.setAccess_token(mvo.getAccess_token());
 					mlvo.setRefresh_token(mvo.getRefresh_token());
 					mlvo.setM_phone(mvo.getM_phone());
-					mlvo.setMl_var1("비밀번호변경");
+					mlvo.setEditor("M");
+					mlvo.setMl_var2("비밀번호변경");
 
 					memLogService.join_log(mlvo);
 				}
