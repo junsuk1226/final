@@ -108,6 +108,44 @@
                         </c:forEach>
                         
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <!-- 페이징------------------------------------------------------------------------------------------------------------->
+                                    <div class="card-body justify-content-center" style="margin:0 auto">
+                                        <c:if test="${ar ne null }">
+                                        <ol class="pagination">
+                                            <c:if test="${page.startPage < page.pagePerBlock}">
+                                                <li class="page-item disabled"><a class="page-link">&lt;</a></li>
+                                            </c:if>
+                                            <c:if test="${page.startPage >= page.pagePerBlock}">
+                                                <li class="page-item"><a class="page-link"
+                                                        href="/adminTotal/adminEditLog?cPage=${page.startPage-page.pagePerBlock }<c:if test='${searchType != null}'>&searchType=${searchType}</c:if><c:if test='${searchValue != null}'>&searchValue=${searchValue}</c:if>">&lt;</a></li>
+                                            </c:if>
+                                            <c:forEach begin="${page.startPage }" end="${page.endPage }" varStatus="st">
+                                                <c:if test="${page.nowPage eq st.index}">
+                                                    <li class="page-item active"><a class="page-link">${st.index}</a></li>
+                                                </c:if>
+                                                <c:if test="${page.nowPage ne st.index }">
+                                                    <li class="page-item"><a class="page-link" href="/adminTotal/adminEditLog?cPage=${st.index}<c:if test='${searchType != null}'>&searchType=${searchType}</c:if><c:if test='${searchValue != null}'>&searchValue=${searchValue}</c:if>">${st.index }</a>
+                                                    </li>
+                                                </c:if>
+                                            </c:forEach>
+                                            <c:if test="${page.endPage<page.totalPage}">
+                                                <li class="page-item"><a class="page-link"
+                                                        href="/adminTotal/adminEditLog?cPage=${page.startPage+page.pagePerBlock }<c:if test='${searchType != null}'>&searchType=${searchType}</c:if><c:if test='${searchValue != null}'>&searchValue=${searchValue}</c:if>">&gt;</a></li>
+                                            </c:if>
+                                            <c:if test="${page.endPage == page.totalPage}">
+                                                <li class="page-item disabled"><a class="page-link">&gt;</a></li>
+                                            </c:if>
+                                        </ol>
+                                        </c:if>
+                                    </div>
+                                    
+                                    <!-- 페이징끝---------------------------------------------------------------------------------------------------------->
+                                </td>
+                            </tr>
+                        </tfoot>
 
                     </table>
                 </div>

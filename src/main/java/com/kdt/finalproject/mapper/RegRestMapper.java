@@ -33,7 +33,9 @@ public interface RegRestMapper {
     // 가입 거절
     void refuse(String m_id);
 
-    List<MemVO> regLogList();
+    int totalCount(Map<String, Object> map);
+
+    List<MemVO> regLogList(Map<String, Object> map);
 
     // 현재 가입되어있는 휴게소 정보
     List<RegRestVO> getRegRestList();
