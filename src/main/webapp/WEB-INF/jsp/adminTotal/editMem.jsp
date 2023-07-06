@@ -34,7 +34,7 @@
             </li>
             <li>
                 <a href="/adminTotal/adminEditLog" class="nav-link text-white">
-                관리자회원 수정내역
+                    가입 승인 내역
                 </a>
             </li>
             <li>

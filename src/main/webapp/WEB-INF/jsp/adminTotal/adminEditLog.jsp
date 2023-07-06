@@ -34,7 +34,7 @@
             </li>
             <li>
                 <a href="/adminTotal/adminEditLog" class="nav-link text-white active">
-                관리자회원 수정내역
+                가입 승인 내역
                 </a>
             </li>
             <li>
@@ -64,7 +64,7 @@
          <!-- 메인 컨텐츠 내용 -->
          <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
             <div class="container" style="width:100%; margin: 0">
-                <h1>관리자회원 수정내역</h1>
+                <h1>가입 승인 내역</h1>
                 <br/>
                 
                 <div class="container">
