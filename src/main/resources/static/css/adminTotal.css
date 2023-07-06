@@ -1,0 +1,75 @@
+@font-face {
+    font-family: "suite";
+    src: url(font/SUITE-Regular.ttf);
+}
+@font-face {
+    font-family: "omyu";
+    src: url(font/오뮤_다예쁨체.ttf);
+}
+@font-face {
+    font-family: "jamsil_bold";
+    src: url(font/The\ Jamsil\ 5\ Bold.ttf);
+}
+@font-face {
+    font-family: "jamsil";
+    src: url(font/The\ Jamsil\ 3\ Regular.ttf);
+}
+@font-face {
+    font-family: "dove";
+    src: url(font/Dovemayo_wild.ttf);
+}
+@font-face {
+    font-family: "dovegothic";
+    src: url(font/Dovemayo_gothic.ttf);
+}
+
+body{
+    background-color: #F7F7F8;
+}
+
+.adminTotal-tablearea{
+    font-family: "jamsil";
+    font-size: 18px;
+}
+
+.table>:not(caption)>*>* {
+    border-top-width: 1px;
+}
+
+.mycustomtable {
+	border-collapse: separate;
+	border-spacing: 0 10px;
+}
+
+.table_head th:first-child{
+    border-left-width: 1px;
+}
+
+.table_head th:last-child{
+    border-right-width: 1px;
+}
+
+.mytr th{
+    border-left-width: 1px;
+}
+
+.mytr td:last-child {
+    border-right-width: 1px;
+}
+
+.mycustomtable td,
+.mycustomtable th {
+	background-color: #fff;
+}
+
+.ok_btn{
+    border: solid 2px #c4c4c4;
+    border-radius: 10px;
+    background-color: #d1e7ff;
+}
+
+.no_btn{
+    border: solid 2px #c4c4c4;
+    border-radius: 10px;
+    background-color: #ffd1d1;
+}

@@ -10,6 +10,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="../css/admin.css" />
+<link rel="stylesheet" href="../css/adminTotal.css" />
 
 </head>
 <body>
@@ -62,23 +63,23 @@
         <!-- 사이드바 끝 -->
 
         <!-- 메인 컨텐츠 내용 -->
-        <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
-            <div class="container" style="width:100%; margin: 0">
+        <div class="d-flex flex-row flex-shrink-0 p-5 admin-main_area" style="width: calc(100% - 280px);">
+            <div class="container adminTotal-tablearea" style="width:100%; margin: 0">
                 <h1>회원정보수정(고객)</h1>
                 <br/>
                 
                 <div class="container">
-                    <table class="table" style="text-align: center;">
+                    <table class="table mycustomtable" style="text-align: center;">
                         <form>
                             <input>
                         </form>
                         <thead>
-                        <tr>
+                        <tr class="table_head">
                             <th scope="col" style="width: 10px;"></th>
                             <th scope="col" style="width: 150px;">닉네임</th>
                             <th scope="col" style="width: 200px;">아이디</th>
                             <th scope="col" style="width: 150px;">연락처</th>
-                            <th scope="col" style="width: 50px;">가입상태</th>
+                            <th scope="col" style="width: 100px;"></th>
                             
                             <th scope="col" style="width: 10px;"></th>
                         </tr>
@@ -87,19 +88,19 @@
 
                         <c:forEach var="mvo" items="${ar}" varStatus="status">
                             
-                            <tr>
+                            <tr class="mytr">
                                 <th scope="row"></th>
                                 <td>
                                     <input id="name_${status.index}" value="${mvo.m_name}" style="text-align: center;" disabled>
-                                    <button type="button" onclick="toggleEditMode('name_${status.index}', this, '${mvo.m_idx}', 'name')">수정</button>
+                                    <button class="ok_btn" type="button" onclick="toggleEditMode('name_${status.index}', this, '${mvo.m_idx}', 'name')">수정</button>
                                 </td>
                                 <td>${mvo.m_id}</td>
                                 <td>
                                     <input id="phone_${status.index}" value="${mvo.m_phone}" style="text-align: center;" disabled>
-                                    <button type="button" onclick="toggleEditMode('phone_${status.index}', this, '${mvo.m_idx}', 'phone')">수정</button>
+                                    <button class="ok_btn" type="button" onclick="toggleEditMode('phone_${status.index}', this, '${mvo.m_idx}', 'phone')">수정</button>
                                 </td>
                                 <td>
-                                    <button type="button" onclick="showModal('${mvo.m_idx}')">탈퇴</button>
+                                    <button class="no_btn" type="button" onclick="showModal('${mvo.m_idx}')">회원탈퇴</button>
                                 </td>
 
                                 <td></td>
