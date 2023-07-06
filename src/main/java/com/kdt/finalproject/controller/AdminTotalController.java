@@ -25,6 +25,7 @@ import com.kdt.finalproject.mapper.MemLogMapper;
 import com.kdt.finalproject.service.MemLogService;
 import com.kdt.finalproject.service.MemService;
 import com.kdt.finalproject.service.RegRestService;
+import com.kdt.finalproject.util.Paging;
 import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MemLogVO;
 import com.kdt.finalproject.vo.MemVO;
@@ -289,14 +290,31 @@ public class AdminTotalController {
 
     // 어드민 정보수정 로그
     @RequestMapping("/adminTotal/adminEditLog")
-    public ModelAndView viewRegStatus() {
+    public ModelAndView viewRegStatus(String searchType, String searchValue, String cPage) {
         ModelAndView mv = new ModelAndView();
+        int nowPage = 1;
 
-        MemVO[] ar = r_Service.regLogList();
+        if (cPage != null)
+            nowPage = Integer.parseInt(cPage);
+
+        int totalRecord = r_Service.totalCount(searchType, searchValue);
+
+        Paging page = new Paging(nowPage, totalRecord, 10, 5);
+
+        MemVO[] ar = r_Service.regLogList(page.getBegin(), page.getEnd(), searchType, searchValue);
 
         if (ar != null) {
 
             mv.addObject("ar", ar);
+            mv.addObject("page", page);
+            mv.addObject("totalRecord", totalRecord);// 총 게시물의 수
+            mv.addObject("nowPage", nowPage);// 현재페이지 값
+            mv.addObject("blockList", page.getNumPerPage());// 한페이지에 표현할 게시물 수
+            if (searchType != null)
+                mv.addObject("searchType", searchType);
+            if (searchValue != null)
+                mv.addObject("searchValue", searchValue);
+
             mv.setViewName("/adminTotal/adminEditLog");
         }
 

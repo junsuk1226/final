@@ -25,6 +25,6 @@ public interface PayMapper {
 
     PayVO order_selected(String p_idx);
 
-    int totalCount(String m_idx);
+    int totalCount(Map<String, Object> map);
 
 }
