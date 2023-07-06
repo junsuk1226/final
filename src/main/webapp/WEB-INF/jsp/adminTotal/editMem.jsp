@@ -33,11 +33,6 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/editAdmin" class="nav-link text-white">
-                회원정보 수정(관리자)
-                </a>
-            </li>
-            <li>
                 <a href="/adminTotal/adminEditLog" class="nav-link text-white">
                 관리자회원 수정내역
                 </a>
@@ -103,7 +98,10 @@
                                     <input id="phone_${status.index}" value="${mvo.m_phone}" style="text-align: center;" disabled>
                                     <button type="button" onclick="toggleEditMode('phone_${status.index}', this, '${mvo.m_idx}', 'phone')">수정</button>
                                 </td>
-                                <td>${mvo.m_status}</td>
+                                <td>
+                                    ${mvo.m_status}
+                                    <button type="button" onclick="toggleEditMode('phone_${status.index}', this, '${mvo.m_idx}', 'phone')"></button>
+                                </td>
 
                                 <td></td>
                             </tr>

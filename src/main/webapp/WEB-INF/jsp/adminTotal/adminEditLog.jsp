@@ -33,11 +33,6 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/editAdmin" class="nav-link text-white">
-                회원정보 수정(관리자)
-                </a>
-            </li>
-            <li>
                 <a href="/adminTotal/adminEditLog" class="nav-link text-white active">
                 관리자회원 수정내역
                 </a>
