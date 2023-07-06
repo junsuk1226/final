@@ -33,7 +33,7 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/adminEditLog" class="nav-link text-white active">
+                <a href="/adminTotal/adminEditLog" class="nav-link text-white">
                 가입 승인 내역
                 </a>
             </li>
@@ -43,7 +43,7 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/editMemLog" class="nav-link text-white">
+                <a href="/adminTotal/editMemLog" class="nav-link text-white active">
                 일반회원 수정내역
                 </a>
             </li>
@@ -64,7 +64,7 @@
          <!-- 메인 컨텐츠 내용 -->
          <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
             <div class="container" style="width:100%; margin: 0">
-                <h1>가입 승인 내역</h1>
+                <h1>회원정보 수정내역</h1>
                 <br/>
                 
                 <div class="container">
@@ -75,11 +75,13 @@
                         <thead>
                         <tr>
                             <th scope="col" style="width: 10px;"></th>
-                            <th scope="col" style="width: 150px;">휴게소명</th>
-                            <th scope="col" style="width: 200px;">요청아이디</th>
-                            <th scope="col" style="width: 150px;">담당자 연락처</th>
-                            <th scope="col" style="width: 150px;">수정일 <button class="arrow_btn"><i class="bi bi-arrow-down-up"></i></button></th>
-                            <th scope="col" style="width: 100px;">상태</th>
+                            <th scope="col" style="width: 150px;">닉네임</th>
+                            <th scope="col" style="width: 200px;">아이디</th>
+                            <th scope="col" style="width: 150px;">연락처</th>
+                            <th scope="col" style="width: 100px;">가입상태</th>
+                            <th scope="col" style="width: 100px;">수정일</th>
+                            <th scope="col" style="width: 100px;">수정인</th>
+                            
                             <th scope="col" style="width: 10px;"></th>
                         </tr>
                         </thead>
@@ -91,17 +93,23 @@
                                 <td>${mvo.m_name}</td>
                                 <td>${mvo.m_id}</td>
                                 <td>${mvo.m_phone}</td>
-                                <td>${mvo.m_joinDate}</td>
 
-                                <c:if test="${mvo.m_status == 3}">
-                                    <td>신청</td>
+                                <c:if test="${mvo.m_status == 0}">
+                                    <td>정회원</td>
                                 </c:if>
-                                <c:if test="${mvo.m_status == 1}">
-                                    <td>승인</td>
+                                <c:if test="${mvo.m_status == 4}">
+                                    <td>탈퇴회원</td>
                                 </c:if>
-                                <c:if test="${mvo.m_status == 5}">
-                                    <td>거절</td>
+
+                                <td>${mvo.m_editDate}</td>
+
+                                <c:if test="${mvo.editor == 'A'}">
+                                    <td>관리자</td>
                                 </c:if>
+                                <c:if test="${mvo.editor == 'M'}">
+                                    <td>회원</td>
+                                </c:if>
+
 
                                 <td></td>
                             </tr>

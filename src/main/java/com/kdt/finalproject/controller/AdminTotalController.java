@@ -21,9 +21,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kdt.finalproject.mapper.MemLogMapper;
+import com.kdt.finalproject.service.MemLogService;
 import com.kdt.finalproject.service.MemService;
 import com.kdt.finalproject.service.RegRestService;
 import com.kdt.finalproject.vo.FoodVO;
+import com.kdt.finalproject.vo.MemLogVO;
 import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.RegRestVO;
 import com.kdt.finalproject.vo.RestVO;
@@ -341,13 +344,25 @@ public class AdminTotalController {
             return "false";
         }
 
+        result = m_Service.updateMemLog(mvo);
+
         return "true";
 
     }
 
-    @RequestMapping("/adminTotal/memEditLog")
-    public String memEditLogTest() {
-        return "/adminTotal/memEditLog";
+    @RequestMapping("/adminTotal/editMemLog")
+    public ModelAndView editMemLogView() {
+        ModelAndView mv = new ModelAndView();
+
+        MemLogVO[] ar = m_Service.allMemLog();
+
+        if (ar != null) {
+
+            mv.addObject("ar", ar);
+            mv.setViewName("/adminTotal/editMemLog");
+        }
+
+        return mv;
     }
 
     @RequestMapping("/adminTotal/menuList")

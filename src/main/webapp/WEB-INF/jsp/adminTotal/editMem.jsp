@@ -169,7 +169,7 @@
         }
         
         function saveData(inputId, m_idx, type) {
-            
+
             let mIdx = $("#s_mIdx").val();
 
             if(type != "del"){
