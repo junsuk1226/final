@@ -116,10 +116,27 @@ public class MemService {
         return cnt;
     }
 
-    public MemVO[] allMem() {
+    public int totalCount(String searchType, String searchValue) {
+        Map<String, Object> map = new HashMap<>();
+        if (searchType != null && searchValue != null) {
+            map.put("searchType", searchType);
+            map.put("searchValue", searchValue);
+        }
+        return m_Mapper.totalCount(map);
+    }
+
+    public MemVO[] allMem(int begin, int end, String searchType, String searchValue) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("begin", begin);
+        map.put("end", end);
+        if (searchType != null && searchValue != null) {
+            map.put("searchType", searchType);
+            map.put("searchValue", searchValue);
+        }
+
         MemVO[] ar = null;
 
-        List<MemVO> list = m_Mapper.allMem();
+        List<MemVO> list = m_Mapper.allMem(map);
         if (list != null && list.size() > 0) {
             ar = new MemVO[list.size()];
             list.toArray(ar);

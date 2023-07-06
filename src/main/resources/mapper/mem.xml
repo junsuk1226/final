@@ -47,9 +47,42 @@
     where m_idx = #{m_idx}
   </select>
 
-  <select id="allMem" resultType="com.kdt.finalproject.vo.MemVO">
-		SELECT * FROM member
+  <select id="totalCount" resultType="int" parameterType="Map">
+  	SELECT COUNT(*) FROM member
     WHERE m_status = 0
+    <if test="searchType != null and searchType == 0">
+      AND m_name LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+    <if test="searchType != null and searchType == 1">
+      AND m_id LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+    <if test="searchType != null and searchType == 2">
+      AND m_phone LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+    <if test="searchType != null and searchType == 3">
+      AND m_joinDate LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+</select>
+
+  <select id="allMem" resultType="com.kdt.finalproject.vo.MemVO" parameterType="Map">
+		SELECT * FROM(
+		SELECT @RN:=@RN+1 AS rnum,a.* FROM(
+      SELECT * FROM member
+      WHERE m_status = 0
+      <if test="searchType != null and searchType == 0">
+        AND m_name LIKE CONCAT('%', #{searchValue}, '%')
+      </if>
+      <if test="searchType != null and searchType == 1">
+        AND m_id LIKE CONCAT('%', #{searchValue}, '%')
+      </if>
+      <if test="searchType != null and searchType == 2">
+        AND m_phone LIKE CONCAT('%', #{searchValue}, '%')
+      </if>
+      <if test="searchType != null and searchType == 3">
+        AND m_joinDate LIKE CONCAT('%', #{searchValue}, '%')
+      </if>
+    ) a, (SELECT @RN:=0) b
+	) c WHERE c.rnum BETWEEN #{begin} AND #{end}
 	</select>
 
   <insert id="updateMemLog" parameterType="com.kdt.finalproject.vo.MemVO">

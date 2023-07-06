@@ -323,14 +323,31 @@ public class AdminTotalController {
 
     // 회원정보 수정(고객)
     @RequestMapping("/adminTotal/editMem")
-    public ModelAndView getMemView() {
+    public ModelAndView getMemView(String searchType, String searchValue, String cPage) {
 
         ModelAndView mv = new ModelAndView();
+        int nowPage = 1;
 
-        MemVO[] ar = m_Service.allMem();
+        if (cPage != null)
+            nowPage = Integer.parseInt(cPage);
+
+        int totalRecord = m_Service.totalCount(searchType, searchValue);
+
+        Paging page = new Paging(nowPage, totalRecord, 10, 5);
+
+        MemVO[] ar = m_Service.allMem(page.getBegin(), page.getEnd(), searchType, searchValue);
 
         if (ar != null) {
             mv.addObject("ar", ar);
+            mv.addObject("page", page);
+            mv.addObject("totalRecord", totalRecord);// 총 게시물의 수
+            mv.addObject("nowPage", nowPage);// 현재페이지 값
+            mv.addObject("blockList", page.getNumPerPage());// 한페이지에 표현할 게시물 수
+            if (searchType != null)
+                mv.addObject("searchType", searchType);
+            if (searchValue != null)
+                mv.addObject("searchValue", searchValue);
+
             mv.setViewName("/adminTotal/editMem");
         }
         return mv;
