@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.JoinService;
+import com.kdt.finalproject.service.MemLogService;
 import com.kdt.finalproject.service.MemService;
 import com.kdt.finalproject.util.Cart;
+import com.kdt.finalproject.vo.MemLogVO;
 import com.kdt.finalproject.vo.MemVO;
 
 @Controller
@@ -38,6 +40,9 @@ public class MemController {
 
 	@Autowired
 	private JoinService j_Service;
+
+	@Autowired
+	private MemLogService memLogService;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -94,6 +99,22 @@ public class MemController {
 				// 세션에 있는 정보도 수정해 줘야 한다.
 				mvo.setM_name(vo.getM_name());
 				mvo.setM_phone(vo.getM_phone());
+
+				vo = j_Service.getMem(mvo);
+				if (vo != null) {
+					MemLogVO mlvo = new MemLogVO();
+					mlvo.setM_idx(vo.getM_idx());
+					mlvo.setM_id(vo.getM_id());
+					mlvo.setM_pw(vo.getM_pw());
+					mlvo.setM_name(vo.getM_name());
+					mlvo.setM_status(vo.getM_status());
+					mlvo.setAccess_token(vo.getAccess_token());
+					mlvo.setRefresh_token(vo.getRefresh_token());
+					mlvo.setM_phone(vo.getM_phone());
+					mlvo.setMl_var1("개인정보수정");
+
+					memLogService.join_log(mlvo);
+				}
 			}
 
 			map.put("updateMem_fail", String.valueOf(cnt));
@@ -120,6 +141,21 @@ public class MemController {
 				// 세션에 있는 정보도 수정해 줘야 한다.
 				mvo.setM_pw(vo.getNew_pw());
 
+				mvo = j_Service.getMem(vo);
+				if (mvo != null) {
+					MemLogVO mlvo = new MemLogVO();
+					mlvo.setM_idx(mvo.getM_idx());
+					mlvo.setM_id(mvo.getM_id());
+					mlvo.setM_pw(mvo.getM_pw());
+					mlvo.setM_name(mvo.getM_name());
+					mlvo.setM_status(mvo.getM_status());
+					mlvo.setAccess_token(mvo.getAccess_token());
+					mlvo.setRefresh_token(mvo.getRefresh_token());
+					mlvo.setM_phone(mvo.getM_phone());
+					mlvo.setMl_var1("비밀번호변경");
+
+					memLogService.join_log(mlvo);
+				}
 			}
 
 			map.put("updatePw_fail", String.valueOf(cnt));

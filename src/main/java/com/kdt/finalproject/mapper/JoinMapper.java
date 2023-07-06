@@ -7,6 +7,8 @@ import com.kdt.finalproject.vo.MemVO;
 public interface JoinMapper {
     int addMem(MemVO vo);
 
+    int addMemLog(MemVO vo);
+
     MemVO check_email(MemVO vo);
 
     int updateToken(MemVO vo);
