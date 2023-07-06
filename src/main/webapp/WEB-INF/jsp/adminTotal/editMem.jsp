@@ -69,7 +69,7 @@
         <!-- 메인 컨텐츠 내용 -->
         <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
             <div class="container" style="width:100%; margin: 0">
-                <h1>회원정보수정(관리자)</h1>
+                <h1>회원정보수정(고객)</h1>
                 <br/>
                 
                 <div class="container">
@@ -90,18 +90,18 @@
                         </thead>
                         <tbody>
 
-                        <c:forEach var="mvo" items="${ar}">
+                        <c:forEach var="mvo" items="${ar}" varStatus="status">
                             
                             <tr>
                                 <th scope="row"></th>
                                 <td>
-                                    <input id="name" value="${mvo.m_name}" style="text-align: center;" disabled>
-                                    <button type="button" onclick="toggleEditMode('name', this, '${mvo.m_idx}')">수정</button>
+                                    <input id="name_${status.index}" value="${mvo.m_name}" style="text-align: center;" disabled>
+                                    <button type="button" onclick="toggleEditMode('name_${status.index}', this, '${mvo.m_idx}', 'name')">수정</button>
                                 </td>
                                 <td>${mvo.m_id}</td>
                                 <td>
-                                    <input id="phone" value="${mvo.m_phone}" style="text-align: center;" disabled>
-                                    <button type="button" onclick="toggleEditMode('phone', this, '${mvo.m_idx}')">수정</button>
+                                    <input id="phone_${status.index}" value="${mvo.m_phone}" style="text-align: center;" disabled>
+                                    <button type="button" onclick="toggleEditMode('phone_${status.index}', this, '${mvo.m_idx}', 'phone')">수정</button>
                                 </td>
                                 <td>${mvo.m_status}</td>
 
@@ -125,7 +125,7 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <script>
-        function toggleEditMode(inputId, button, m_idx) {
+        function toggleEditMode(inputId, button, m_idx, type) {
             var input = document.getElementById(inputId);
             
             if (input.disabled) {
@@ -134,16 +134,19 @@
             } else {
                 input.disabled = true;
                 button.textContent = '수정';
-                saveData(inputId, input.value, m_idx);
+    
+                saveData(inputId, m_idx, type);
             }
         }
         
-        function saveData(inputId, value, m_idx) {
-
+        function saveData(inputId, m_idx, type) {
+            var input =  document.getElementById(inputId);
+            var value = input.value;
+    
             $.ajax({
                 url: '/adminTotal/editMemSave',
                 type: 'POST',
-                data: {"type": inputId, "value": value, "m_idx": m_idx},
+                data: {"type": type, "value": value, "m_idx": m_idx},
                 success: function(response) {
                     // 요청이 성공적으로 완료됨
                     console.log("승인이 완료되었습니다.");
@@ -154,7 +157,6 @@
                     console.error("승인 요청에 실패했습니다.");
                 }
             });
-            
         }
     </script>
 

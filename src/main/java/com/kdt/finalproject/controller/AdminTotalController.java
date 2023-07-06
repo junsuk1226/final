@@ -321,9 +321,15 @@ public class AdminTotalController {
 
         MemVO mvo = m_Service.searchMem(m_idx);
 
-        if (type == "name") {
+        // System.out.println("m_idx|||||||||" + mvo.getM_idx());
+        // System.out.println("m_id|||||||||" + mvo.getM_id());
+        // System.out.println("m_idx|||||||||" + m_idx);
+        // System.out.println("value|||||||||" + value);
+        // System.out.println("type|||||||||" + type);
+
+        if (type.equals("name")) {
             mvo.setM_name(value);
-        } else if (type == "phone") {
+        } else if (type.equals("phone")) {
             mvo.setM_phone(value);
         }
 
