@@ -15,7 +15,6 @@ import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -255,21 +254,7 @@ public class AdminTotalController {
         r_Service.refuse(m_id, map);
     }
 
-    @RequestMapping("/adminTotal/adminEditLog")
-    public ModelAndView viewRegStatus() {
-        ModelAndView mv = new ModelAndView();
-
-        MemVO[] ar = r_Service.regLogList();
-
-        if (ar != null) {
-
-            mv.addObject("ar", ar);
-            mv.setViewName("/adminTotal/adminEditLog");
-        }
-
-        return mv;
-    }
-
+    // 회원정보 수정(관리자)
     @RequestMapping("/adminTotal/editAdmin")
     public ModelAndView getRegRestList() {
 
@@ -297,6 +282,59 @@ public class AdminTotalController {
         mv.setViewName("/adminTotal/editAdminInfo");
 
         return mv;
+    }
+
+    // 어드민 정보수정 로그
+    @RequestMapping("/adminTotal/adminEditLog")
+    public ModelAndView viewRegStatus() {
+        ModelAndView mv = new ModelAndView();
+
+        MemVO[] ar = r_Service.regLogList();
+
+        if (ar != null) {
+
+            mv.addObject("ar", ar);
+            mv.setViewName("/adminTotal/adminEditLog");
+        }
+
+        return mv;
+    }
+
+    // 회원정보 수정(고객)
+    @RequestMapping("/adminTotal/editMem")
+    public ModelAndView getMemView() {
+
+        ModelAndView mv = new ModelAndView();
+
+        MemVO[] ar = m_Service.all();
+
+        if (ar != null) {
+            mv.addObject("ar", ar);
+            mv.setViewName("/adminTotal/editMem");
+        }
+        return mv;
+    }
+
+    @PostMapping("/adminTotal/editMemSave")
+    @ResponseBody
+    public String editMemSave(String m_idx, String value, String type) {
+
+        MemVO mvo = m_Service.searchMem(m_idx);
+
+        if (type == "name") {
+            mvo.setM_name(value);
+        } else if (type == "phone") {
+            mvo.setM_phone(value);
+        }
+
+        int result = m_Service.updateMem(mvo);
+
+        if (result == 0) {
+            return "false";
+        }
+
+        return "true";
+
     }
 
     @RequestMapping("/adminTotal/memEditLog")

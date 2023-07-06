@@ -101,4 +101,18 @@ public class MemService {
         return null;
     }
 
+    public MemVO searchMem(String m_idx) {
+
+        MemVO vo = m_Mapper.searchMem(m_idx);
+
+        return vo;
+    }
+
+    public int updateMem(MemVO mvo) {
+
+        int cnt = m_Mapper.updateMem(mvo);
+
+        return cnt;
+    }
+
 }

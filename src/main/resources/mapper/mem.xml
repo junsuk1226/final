@@ -39,7 +39,12 @@
     SELECT * FROM final.member
     where m_id = #{m_id} and m_status = 2
   </select>
-  
+
+  <!-- 회원정보 가져오기 -->
+  <select id="searchMem" parameterType="String" resultType="com.kdt.finalproject.vo.MemVO">
+    SELECT * FROM final.member
+    where m_idx = #{m_idx}
+  </select>
 
 </mapper>
 

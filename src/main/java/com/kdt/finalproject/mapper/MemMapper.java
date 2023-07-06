@@ -19,4 +19,6 @@ public interface MemMapper {
 
     MemVO adminTotalLogin(String m_id);
 
+    MemVO searchMem(String m_idx);
+
 }

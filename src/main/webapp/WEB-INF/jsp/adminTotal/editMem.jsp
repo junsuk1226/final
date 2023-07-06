@@ -48,7 +48,7 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/memEditLog" class="nav-link text-white">
+                <a href="/adminTotal/editMemLog" class="nav-link text-white">
                 일반회원 수정내역
                 </a>
             </li>
@@ -68,8 +68,53 @@
 
         <!-- 메인 컨텐츠 내용 -->
         <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
-            
-            홈
+            <div class="container" style="width:100%; margin: 0">
+                <h1>회원정보수정(관리자)</h1>
+                <br/>
+                
+                <div class="container">
+                    <table class="table" style="text-align: center;">
+                        <form>
+                            <input>
+                        </form>
+                        <thead>
+                        <tr>
+                            <th scope="col" style="width: 10px;"></th>
+                            <th scope="col" style="width: 150px;">닉네임</th>
+                            <th scope="col" style="width: 200px;">아이디</th>
+                            <th scope="col" style="width: 150px;">연락처</th>
+                            <th scope="col" style="width: 50px;">가입상태</th>
+                            
+                            <th scope="col" style="width: 10px;"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <c:forEach var="mvo" items="${ar}">
+                            
+                            <tr>
+                                <th scope="row"></th>
+                                <td>
+                                    <input id="name" value="${mvo.m_name}" style="text-align: center;" disabled>
+                                    <button type="button" onclick="toggleEditMode('name', this, '${mvo.m_idx}')">수정</button>
+                                </td>
+                                <td>${mvo.m_id}</td>
+                                <td>
+                                    <input id="phone" value="${mvo.m_phone}" style="text-align: center;" disabled>
+                                    <button type="button" onclick="toggleEditMode('phone', this, '${mvo.m_idx}')">수정</button>
+                                </td>
+                                <td>${mvo.m_status}</td>
+
+                                <td></td>
+                            </tr>
+                            
+                        </c:forEach>
+                        
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
             
         </div>
         <!-- 메인 컨텐츠 끝 -->
@@ -79,9 +124,39 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-<script>
-   
-</script>
+    <script>
+        function toggleEditMode(inputId, button, m_idx) {
+            var input = document.getElementById(inputId);
+            
+            if (input.disabled) {
+                input.disabled = false;
+                button.textContent = '저장';
+            } else {
+                input.disabled = true;
+                button.textContent = '수정';
+                saveData(inputId, input.value, m_idx);
+            }
+        }
+        
+        function saveData(inputId, value, m_idx) {
+
+            $.ajax({
+                url: '/adminTotal/editMemSave',
+                type: 'POST',
+                data: {"type": inputId, "value": value, "m_idx": m_idx},
+                success: function(response) {
+                    // 요청이 성공적으로 완료됨
+                    console.log("승인이 완료되었습니다.");
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    // 요청이 실패함
+                    console.error("승인 요청에 실패했습니다.");
+                }
+            });
+            
+        }
+    </script>
 
 </body>
 </html>

@@ -81,7 +81,7 @@
                         <tr>
                             <th scope="col" style="width: 10px;"></th>
                             <th scope="col" style="width: 150px;">휴게소명</th>
-                            <th scope="col" style="width: 200px;">요청아이디</th>
+                            <th scope="col" style="width: 200px;">아이디</th>
                             <th scope="col" style="width: 150px;">담당자 연락처</th>
                             <th scope="col" style="width: 150px;">수정일 <button class="arrow_btn"><i class="bi bi-arrow-down-up"></i></button></th>
                             <th scope="col" style="width: 100px;"></th>
