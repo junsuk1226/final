@@ -24,7 +24,7 @@
   <!--회원 비빌번호 수정-->
   <update id="updatePw" parameterType="com.kdt.finalproject.vo.MemVO">
     UPDATE final.member
-    SET m_pw = #{new_pw}
+    SET m_pw = #{m_pw}
     WHERE m_idx=#{m_idx}
   </update>
 

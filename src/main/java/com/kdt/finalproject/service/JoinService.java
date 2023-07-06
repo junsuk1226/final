@@ -25,8 +25,6 @@ public class JoinService {
     // 비밀번호를 암호화 시킨후 다시 vo에 저장
     vo.setM_pw(passwordEncoder.encode(mvo.getM_pw()));
 
-    j_mapper.addMemLog(vo);
-
     return j_mapper.addMem(vo);
   }
 
