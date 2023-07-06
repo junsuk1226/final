@@ -54,13 +54,13 @@
 
 <!-- insert -->
 <insert id="kakaopay" parameterType="com.kdt.finalproject.vo.PayVO">
-		INSERT INTO paylog(m_idx, restCd, foodNm, foodCost, totalCost, p_date, p_status, p_time, p_oNum, restNm, payMethod, aid, tid, cid, p_oderId, foodQn)
-    VALUES(#{m_idx}, "restCd", #{foodNm}, #{foodCost}, #{totalCost}, #{p_date}, 0, #{p_time},  #{p_oNum}, #{restNm}, 0, #{aid}, #{tid}, #{cid}, #{p_oderId}, #{foodQn})
+		INSERT INTO paylog(m_idx, restCd, foodNm, foodCost, totalCost, p_date, p_status, p_time, p_oNum, restNm, payMethod, aid, tid, cid, p_oderId, foodQn, seq)
+    VALUES(#{m_idx}, "restCd", #{foodNm}, #{foodCost}, #{totalCost}, #{p_date}, 0, #{p_time},  #{p_oNum}, #{restNm}, 0, #{aid}, #{tid}, #{cid}, #{p_oderId}, #{foodQn}, #{seq})
 </insert>
 
 <insert id="tosspay" parameterType="com.kdt.finalproject.vo.PayVO">
-		INSERT INTO paylog(m_idx, restCd, foodNm, foodCost, totalCost, p_date, p_status, p_time, p_oNum, restNm, payMethod, aid, tid, cid, p_oderId, foodQn)
-    VALUES(#{m_idx}, "restCd", #{foodNm}, #{foodCost}, #{totalCost}, #{p_date}, 0, #{p_time}, #{p_oNum}, #{restNm}, 1, #{aid}, #{tid}, "cid", #{p_oderId}, #{foodQn})
+		INSERT INTO paylog(m_idx, restCd, foodNm, foodCost, totalCost, p_date, p_status, p_time, p_oNum, restNm, payMethod, aid, tid, cid, p_oderId, foodQn, seq)
+    VALUES(#{m_idx}, "restCd", #{foodNm}, #{foodCost}, #{totalCost}, #{p_date}, 0, #{p_time}, #{p_oNum}, #{restNm}, 1, #{aid}, #{tid}, "cid", #{p_oderId}, #{foodQn}, #{seq})
 </insert>
 
 <!-- update -->

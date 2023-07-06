@@ -103,6 +103,7 @@
                                         <input type="hidden" name="foodNm" value="${pvo.foodNm}"/>
                                         <input type="hidden" name="foodQn" value="${pvo.quantity}"/>
                                         <input type="hidden" name="ggetfoodCost" value="${pvo.foodCost}"/>
+                                        <input type="hidden" name="seq" value="${pvo.seq}"/>
                                     </c:forEach>
                                     <input type="hidden" name="restNm" value="${RestNm0 }"/>
                                 </form>
@@ -116,6 +117,7 @@
                                         <input type="hidden" name="foodNm" value="${pvo.foodNm}"/>
                                         <input type="hidden" name="foodQn" value="${pvo.quantity}"/>
                                         <input type="hidden" name="ggetfoodCost" value="${pvo.foodCost}"/>
+                                        <input type="hidden" name="seq" value="${pvo.seq}"/>
                                     </c:forEach>
                                     <input type="hidden" name="restNm" value="${RestNm0 }"/>
                                 </form>

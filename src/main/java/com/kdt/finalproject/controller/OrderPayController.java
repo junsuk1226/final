@@ -45,7 +45,7 @@ public class OrderPayController {
 
     @RequestMapping("/kakao/pay") // 음식숫자 DB 만들어야 함.
     public ModelAndView kakaoPay(String sumPrice, String[] foodNm, String[] foodQn,
-            String[] ggetfoodCost, String m_idx, String restNm) {
+            String[] ggetfoodCost, String m_idx, String restNm, String[] seq) {
         ModelAndView mv = new ModelAndView();
 
         // 음식명
@@ -81,6 +81,16 @@ public class OrderPayController {
 
         foodCostsb.setLength(foodCostsb.length() - 1);
         // System.out.println(foodCostsb.toString());
+
+        // 음식 코드
+        String[] getseq = seq;
+        StringBuffer seqsb = new StringBuffer();
+        for (String str : getseq) {
+            seqsb.append(str + "/");
+        }
+
+        seqsb.setLength(seqsb.length() - 1);
+        // System.out.println(seqsb.toString());
 
         String getm_idx = m_idx;
         String getrestNm = restNm;
@@ -120,6 +130,7 @@ public class OrderPayController {
         String next_redirect_mobile_url = "";
         String next_redirect_pc_url = "";
         String created_at = "";
+        String ggetseq = seqsb.toString();
 
         try {
             URL url = new URL(reqURL);
@@ -186,6 +197,7 @@ public class OrderPayController {
                 dto.setFoodCost(foodCost);
                 dto.setRestNm(getrestNm);
                 dto.setFoodQnTotal(foodQnTotal);
+                dto.setSeq(ggetseq);
             }
 
         } catch (Exception e) {
@@ -294,6 +306,7 @@ public class OrderPayController {
                 vo.setCid(cid);
                 vo.setTotalCost(amount);
                 vo.setP_oderId(partner_order_id);
+                vo.setSeq(dto.getSeq());
                 // System.out.println(sb2.toString());
 
                 String poNum_count = String.format("%04d", p_Service.poNum_count(vo) + 1); // vo.setRestNm();
@@ -430,7 +443,7 @@ public class OrderPayController {
 
     @RequestMapping("/toss/pay")
     public ModelAndView tossPay(String sumPrice, String[] foodNm, String[] foodQn,
-            String[] ggetfoodCost, String m_idx, String restNm) {
+            String[] ggetfoodCost, String m_idx, String restNm, String[] seq) {
         ModelAndView mv = new ModelAndView();
 
         // 음식명
@@ -463,9 +476,20 @@ public class OrderPayController {
         foodCostsb.setLength(foodCostsb.length() - 1);
         // System.out.println(foodCostsb.toString());
 
+        // 음식 코드
+        String[] getseq = seq;
+        StringBuffer seqsb = new StringBuffer();
+        for (String str : getseq) {
+            seqsb.append(str + "/");
+        }
+
+        seqsb.setLength(seqsb.length() - 1);
+        // System.out.println(seqsb.toString());
+
         String getm_idx = m_idx;
         String getrestNm = restNm;
         String getsumPrice = sumPrice;
+        String ggetseq = seqsb.toString();
         // System.out.println(getm_idx);
         // System.out.println(getrestNm);
         // System.out.println(getsumPrice);
@@ -488,6 +512,7 @@ public class OrderPayController {
         dto.setFoodQnTotal(getsumPrice);
         dto.setFoodCost(foodCostsb.toString());
         dto.setFoodQnTotal(foodQnsb.toString());
+        dto.setSeq(ggetseq);
 
         mv.addObject("orderId", sb.toString());
         mv.addObject("foodNm", foodNmsb.toString());
@@ -586,6 +611,7 @@ public class OrderPayController {
                 vo.setAid(aid);
                 vo.setTid(tid);
                 vo.setP_oderId(getorderId);
+                vo.setSeq(dto.getSeq());
 
                 String poNum_count = String.format("%04d", p_Service.poNum_count(vo) + 1); // vo.setRestNm();
                 vo.setP_oNum(poNum_count);

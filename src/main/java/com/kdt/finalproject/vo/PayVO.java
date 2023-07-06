@@ -28,7 +28,8 @@ public class PayVO {
             cid, // 가맹점 코드
             p_oderId, // 주문 번호(48자리 랜덤변수)
             foodQn, // 개별 음식 주문량
-            reg_idx; // 등록된 휴게소 외래키
+            reg_idx, // 등록된 휴게소 외래키
+            seq; // 음식 코드
 
     private int totalCost; // 전체 음식 가격
 
