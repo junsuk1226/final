@@ -46,9 +46,18 @@
   WHERE p_idx = #{p_idx}
 </update>
 
-<select id="totalCount" resultType="int" parameterType="String">
+<select id="totalCount" resultType="int" parameterType="Map">
   	SELECT COUNT(*) FROM paylog
     WHERE p_status = 0 AND m_idx = #{m_idx}
+    <if test="searchType != null and searchType == 0">
+      AND foodNm LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+    <if test="searchType != null and searchType == 1">
+      AND restNm LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+    <if test="searchType != null and searchType == 2">
+      AND p_date LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
 </select>
 
 

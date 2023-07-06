@@ -40,7 +40,7 @@ public class OrderListController {
 
             String m_idx = mvo.getM_idx();
 
-            int totalRecord = p_service.getTotalCount(m_idx);
+            int totalRecord = p_service.getTotalCount(m_idx, searchType, searchValue);
 
             if (cPage != null)
                 nowPage = Integer.parseInt(cPage);
@@ -53,7 +53,8 @@ public class OrderListController {
                 for (PayVO pvo : ar) {
                     String[] name_ar = pvo.getFoodNm().split("/");
 
-                    FoodVO fvo = f_service.getFoodImg(name_ar[0]);
+                    // FoodVO fvo = f_service.getFoodImg(name_ar[0]);
+                    FoodVO fvo = f_service.getFoodImg(pvo.getSeq());
                     if (fvo != null)
                         pvo.setF_image(fvo.getF_image());
 
