@@ -254,35 +254,35 @@ public class AdminTotalController {
         r_Service.refuse(m_id, map);
     }
 
-    // 회원정보 수정(관리자)
-    @RequestMapping("/adminTotal/editAdmin")
-    public ModelAndView getRegRestList() {
+    // // 회원정보 수정(관리자)
+    // @RequestMapping("/adminTotal/editAdmin")
+    // public ModelAndView getRegRestList() {
 
-        ModelAndView mv = new ModelAndView();
+    // ModelAndView mv = new ModelAndView();
 
-        RegRestVO[] ar = r_Service.getRegRestList();
+    // RegRestVO[] ar = r_Service.getRegRestList();
 
-        if (ar != null) {
-            mv.addObject("ar", ar);
-            mv.setViewName("/adminTotal/editAdmin");
-        }
+    // if (ar != null) {
+    // mv.addObject("ar", ar);
+    // mv.setViewName("/adminTotal/editAdmin");
+    // }
 
-        return mv;
-    }
+    // return mv;
+    // }
 
-    // 어드민 정보 수정
-    @RequestMapping("/editAdminInfo")
-    public ModelAndView editAdminInfo(String RestNm) {
+    // // 어드민 정보 수정
+    // @RequestMapping("/editAdminInfo")
+    // public ModelAndView editAdminInfo(String RestNm) {
 
-        ModelAndView mv = new ModelAndView();
+    // ModelAndView mv = new ModelAndView();
 
-        RegRestVO rvo = r_Service.getRegRest(RestNm);
+    // RegRestVO rvo = r_Service.getRegRest(RestNm);
 
-        mv.addObject("rvo", rvo);
-        mv.setViewName("/adminTotal/editAdminInfo");
+    // mv.addObject("rvo", rvo);
+    // mv.setViewName("/adminTotal/editAdminInfo");
 
-        return mv;
-    }
+    // return mv;
+    // }
 
     // 어드민 정보수정 로그
     @RequestMapping("/adminTotal/adminEditLog")
@@ -306,7 +306,7 @@ public class AdminTotalController {
 
         ModelAndView mv = new ModelAndView();
 
-        MemVO[] ar = m_Service.all();
+        MemVO[] ar = m_Service.allMem();
 
         if (ar != null) {
             mv.addObject("ar", ar);
@@ -331,6 +331,8 @@ public class AdminTotalController {
             mvo.setM_name(value);
         } else if (type.equals("phone")) {
             mvo.setM_phone(value);
+        } else if (type.equals("del")) {
+            mvo.setM_status("4");
         }
 
         int result = m_Service.updateMem(mvo);

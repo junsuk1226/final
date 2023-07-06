@@ -115,4 +115,16 @@ public class MemService {
         return cnt;
     }
 
+    public MemVO[] allMem() {
+        MemVO[] ar = null;
+
+        List<MemVO> list = m_Mapper.allMem();
+        if (list != null && list.size() > 0) {
+            ar = new MemVO[list.size()];
+            list.toArray(ar);
+        }
+
+        return ar;
+    }
+
 }

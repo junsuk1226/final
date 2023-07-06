@@ -17,7 +17,8 @@
   <update id="updateMem" parameterType="com.kdt.finalproject.vo.MemVO">
     UPDATE final.member
     SET m_name = #{m_name}, 
-      m_phone = #{m_phone}
+      m_phone = #{m_phone},
+      m_status = #{m_status}
     WHERE m_idx=#{m_idx}
   </update>
 
@@ -45,6 +46,11 @@
     SELECT * FROM final.member
     where m_idx = #{m_idx}
   </select>
+
+  <select id="allMem" resultType="com.kdt.finalproject.vo.MemVO">
+		SELECT * FROM member
+    WHERE m_status = 0
+	</select>
 
 </mapper>
 

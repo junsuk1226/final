@@ -21,4 +21,6 @@ public interface MemMapper {
 
     MemVO searchMem(String m_idx);
 
+    List<MemVO> allMem();
+
 }
