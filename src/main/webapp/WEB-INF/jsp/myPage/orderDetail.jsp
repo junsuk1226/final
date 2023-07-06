@@ -93,6 +93,11 @@
                             <div class="container-fluid mb-4">
                                 <div class="row justify-content-center col-md-12 my-5">
                                     <div  class="col-md-6">
+                                        <div class="row justify-content-start ">
+                                            <div class="col-6 mb-2 float-start text-start ms-2">
+                                                <a class=" arrow nav-link" href='/order' style="font-family: 'suite'; font-weight: bold; color: #887e94; font-size: large;" ><i class="fa fa-arrow-left me-2" aria-hidden="true"></i>뒤로가기</a>
+                                            </div>
+                                        </div>
                                          <div class="card shadow p-3 mb-5 bg-body rounded justify-content-center" style="border: none;">
                                             <div class="card-body justify-content-center text-center">
                                                 <form action="" name="frm" method="get">
