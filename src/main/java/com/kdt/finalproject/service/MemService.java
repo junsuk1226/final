@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.kdt.finalproject.mapper.JoinMapper;
 import com.kdt.finalproject.mapper.MemMapper;
+import com.kdt.finalproject.vo.MemLogVO;
 import com.kdt.finalproject.vo.MemVO;
 
 @Service
@@ -121,6 +122,24 @@ public class MemService {
         List<MemVO> list = m_Mapper.allMem();
         if (list != null && list.size() > 0) {
             ar = new MemVO[list.size()];
+            list.toArray(ar);
+        }
+
+        return ar;
+    }
+
+    public int updateMemLog(MemVO vo) {
+
+        return m_Mapper.updateMemLog(vo);
+    }
+
+    public MemLogVO[] allMemLog() {
+
+        MemLogVO[] ar = null;
+
+        List<MemLogVO> list = m_Mapper.allMemLog();
+        if (list != null && list.size() > 0) {
+            ar = new MemLogVO[list.size()];
             list.toArray(ar);
         }
 
