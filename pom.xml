@@ -110,7 +110,11 @@
 		</dependency>
 
 		<!--프린트-->
-		
+		<dependency>
+			<groupId>com.fazecast</groupId>
+			<artifactId>jSerialComm</artifactId>
+			<version>[2.0.0,3.0.0)</version>
+		</dependency>
 
 	</dependencies>
 

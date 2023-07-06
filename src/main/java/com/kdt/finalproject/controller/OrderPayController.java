@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.PayService;
-import com.kdt.finalproject.util.print;
 import com.kdt.finalproject.vo.KakaoReadyResponseDTO;
 import com.kdt.finalproject.vo.PayVO;
 
@@ -320,13 +319,6 @@ public class OrderPayController {
         mv.addObject("foodname", foodname);
         mv.addObject("foodqnt", foodqnt);
         mv.setViewName("orderpaycomplete");
-
-        try {
-            print.main(foodname);
-        } catch (PrinterException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
 
         return mv;
     }
