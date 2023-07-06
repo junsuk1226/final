@@ -24,10 +24,12 @@ public interface MemMapper {
 
     int totalCount(Map<String, Object> map);
 
+    int logTotalCount(Map<String, Object> map);
+
     List<MemVO> allMem(Map<String, Object> map);
 
     int updateMemLog(MemVO vo);
 
-    List<MemLogVO> allMemLog();
+    List<MemLogVO> allMemLog(Map<String, Object> map);
 
 }
