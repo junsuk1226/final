@@ -63,7 +63,7 @@
         <!-- 사이드바 끝 -->
 
          <!-- 메인 컨텐츠 내용 -->
-         <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
+         <div class="d-flex flex-row flex-shrink-0 p-5 admin-main_area" style="width: calc(100% - 280px);">
             <div class="container adminTotal-tablearea" style="width:100%; margin: 0">
                 <h1>회원정보 수정내역</h1>
                 <br/>
