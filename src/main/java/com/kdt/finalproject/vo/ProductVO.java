@@ -10,6 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductVO {
-    private String foodNm, RestNm;
+    private String foodNm, RestNm, seq;
     private int foodCost, totalPrice, quantity;
 }

@@ -105,6 +105,7 @@
                                                         <div class="text-end text-muted" style="font-size: small;">${pvo.p_date}&nbsp;${pvo.p_time}</div>
                                                     </div>
                                                         <div class="mb-3">
+                                                            <c:set var="seq" value="${fn:split(pvo.seq, '/')}"></c:set>
                                                             <c:set var="foodNm" value="${fn:split(pvo.foodNm, '/')}"></c:set>
                                                             <c:set var="foodCost" value="${fn:split(pvo.foodCost, '/')}"></c:set>
                                                             <c:set var="foodQn" value="${fn:split(pvo.foodQn, '/')}"></c:set>
@@ -114,7 +115,7 @@
                                                                 <div class="d-flex ">
                                                                     <div class="d-flex col-md-12">    
                                                                         <div class="me-3 col-md-3" style ="width: 100px; height: 100px;">
-                                                                            <img id="${foodNm[i]}_img" style="object-fit: cover; width: 100%; height: 100%; background-color: rgb(240, 240, 240);" class="rounded "/> 
+                                                                            <img id="${seq[i]}_img" style="object-fit: cover; width: 100%; height: 100%; background-color: rgb(240, 240, 240);" class="rounded "/> 
                                                                         </div>
                                                                         
                                                                         <div class="row col-md-9 ms-1">
@@ -210,24 +211,24 @@
                         //파일이름을 비동기식으로 가져오기
                         $(document).ready(function() {
                             
-                            <c:forEach var="i" begin="0" end="${fn:length(foodNm) - 1}">
-                                var foodNm = "${foodNm[i]}";
-                                sendAjaxRequest(foodNm);
+                            <c:forEach var="i" begin="0" end="${fn:length(seq) - 1}">
+                                var seq = "${seq[i]}";
+                                sendAjaxRequest(seq);
                                 //console.log(foodNm);
                             </c:forEach>
 
 
-                            function sendAjaxRequest(foodNm){
+                            function sendAjaxRequest(seq){
                                 $.ajax({
                                     url:"/getFileName",
                                     method: 'post',
-                                    data: {'foodNm': foodNm},
+                                    data: {'seq': seq},
                                     dataType: 'text'
                                 }).done(function(data){
                                     // var imageUrl = encodeURIComponent(data);
                                     console.log(data);
 
-                                    $("#" + foodNm + "_img").attr("src",data);
+                                    $("#" + seq + "_img").attr("src",data);
                                 });
 
                             }
