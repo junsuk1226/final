@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.mapper.MemLogMapper;
+import com.kdt.finalproject.service.FoodService;
 import com.kdt.finalproject.service.MemLogService;
 import com.kdt.finalproject.service.MemService;
 import com.kdt.finalproject.service.RegRestService;
@@ -43,6 +44,9 @@ public class AdminTotalController {
 
     @Autowired
     private RegRestService r_Service;
+
+    @Autowired
+    private FoodService f_Service;
 
     @RequestMapping("/adminTotal")
     public String adminTest() {
@@ -414,8 +418,30 @@ public class AdminTotalController {
     }
 
     @RequestMapping("/adminTotal/menuList")
-    public String menuListTest() {
-        return "/adminTotal/menuList";
+    public ModelAndView menuListTest(String searchType, String searchValue, String cPage) {
+        ModelAndView mv = new ModelAndView();
+        int nowPage = 1;
+
+        if (cPage != null)
+            nowPage = Integer.parseInt(cPage);
+
+        int totalRecord = f_Service.getMenuTotalCount(searchType, searchValue);
+
+        Paging page = new Paging(nowPage, totalRecord, 10, 5);
+        FoodVO[] ar = f_Service.getMenuList(page.getBegin(), page.getEnd(), searchType, searchValue);
+
+        if (ar != null) {
+
+            mv.addObject("ar", ar);
+            mv.addObject("page", page);
+            mv.addObject("totalRecord", totalRecord);// 총 게시물의 수
+            mv.addObject("nowPage", nowPage);// 현재페이지 값
+            mv.addObject("blockList", page.getNumPerPage());// 한페이지에 표현할 게시물 수
+
+            mv.setViewName("/adminTotal/menuList");
+        }
+
+        return mv;
     }
 
 }
