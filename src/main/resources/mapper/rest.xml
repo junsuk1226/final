@@ -9,4 +9,19 @@
   	SELECT * FROM rest WHERE svarCd = #{svarCd}
 </select>
 
+<!--(휴게소 관리자 계정)m_name으로 휴게소 프로필로 사용할 사진 가져오기-->
+<!--아직 안만듬-->
+
+
+<!--해당 휴게소에서 이번 달 가장 많이 팔린 메뉴 구하기-->
+<!--현재 달과 같은 paylog만 가져오기-->
+<select id="getSameMonth_paylog" resultType="com.kdt.finalproject.vo.PayVO">
+  SELECT * FROM paylog
+  WHERE month(p_date) = month(NOW())
+</select>
+
+
+
+
+
 </mapper>

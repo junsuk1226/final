@@ -55,6 +55,34 @@
         <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
             
             홈
+            <div class="container-fluid">
+                <div class="row justify-content-center mt-5">
+                    <div class="col-md-11 mb-3 text-start">
+                        <div class="">
+                            <img src="" >   
+                            
+                        </div>
+                        <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
+                                ${sessionScope.mvo.m_name}<span class="text-muted"></span>
+                        </h2>
+                    </div>
+                </div>
+                <div>
+                    <c:forEach var="cnt" items="foodOfMonth">
+                        ${vo.foodNm}가 ${vo.cnt}회 판매
+
+                    </c:forEach>
+                </div>
+
+
+
+
+
+
+
+
+
+
             
         </div>
         <!-- 메인 컨텐츠 끝 -->
