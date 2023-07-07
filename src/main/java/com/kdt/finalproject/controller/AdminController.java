@@ -224,10 +224,10 @@ public class AdminController {
         return mv;
     }
 
-    @RequestMapping("/admin/sales")
-    public String adminSalesTest() {
-        return "/admin/sales";
-    }
+    // @RequestMapping("/admin/sales")
+    // public String adminSalesTest() {
+    // return "/admin/sales";
+    // }
 
     @RequestMapping("/admin/review")
     @ResponseBody
