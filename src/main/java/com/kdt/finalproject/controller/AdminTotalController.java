@@ -15,16 +15,19 @@ import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kdt.finalproject.mapper.MemLogMapper;
+import com.kdt.finalproject.service.MemLogService;
 import com.kdt.finalproject.service.MemService;
 import com.kdt.finalproject.service.RegRestService;
+import com.kdt.finalproject.util.Paging;
 import com.kdt.finalproject.vo.FoodVO;
+import com.kdt.finalproject.vo.MemLogVO;
 import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.RegRestVO;
 import com.kdt.finalproject.vo.RestVO;
@@ -255,53 +258,159 @@ public class AdminTotalController {
         r_Service.refuse(m_id, map);
     }
 
-    @RequestMapping("/adminTotal/adminEditLog")
-    public ModelAndView viewRegStatus() {
-        ModelAndView mv = new ModelAndView();
+    // // 회원정보 수정(관리자)
+    // @RequestMapping("/adminTotal/editAdmin")
+    // public ModelAndView getRegRestList() {
 
-        MemVO[] ar = r_Service.regLogList();
+    // ModelAndView mv = new ModelAndView();
+
+    // RegRestVO[] ar = r_Service.getRegRestList();
+
+    // if (ar != null) {
+    // mv.addObject("ar", ar);
+    // mv.setViewName("/adminTotal/editAdmin");
+    // }
+
+    // return mv;
+    // }
+
+    // // 어드민 정보 수정
+    // @RequestMapping("/editAdminInfo")
+    // public ModelAndView editAdminInfo(String RestNm) {
+
+    // ModelAndView mv = new ModelAndView();
+
+    // RegRestVO rvo = r_Service.getRegRest(RestNm);
+
+    // mv.addObject("rvo", rvo);
+    // mv.setViewName("/adminTotal/editAdminInfo");
+
+    // return mv;
+    // }
+
+    // 어드민 정보수정 로그
+    @RequestMapping("/adminTotal/adminEditLog")
+    public ModelAndView viewRegStatus(String searchType, String searchValue, String cPage) {
+        ModelAndView mv = new ModelAndView();
+        int nowPage = 1;
+
+        if (cPage != null)
+            nowPage = Integer.parseInt(cPage);
+
+        int totalRecord = r_Service.totalCount(searchType, searchValue);
+
+        Paging page = new Paging(nowPage, totalRecord, 10, 5);
+
+        MemVO[] ar = r_Service.regLogList(page.getBegin(), page.getEnd(), searchType, searchValue);
 
         if (ar != null) {
 
             mv.addObject("ar", ar);
+            mv.addObject("page", page);
+            mv.addObject("totalRecord", totalRecord);// 총 게시물의 수
+            mv.addObject("nowPage", nowPage);// 현재페이지 값
+            mv.addObject("blockList", page.getNumPerPage());// 한페이지에 표현할 게시물 수
+            if (searchType != null)
+                mv.addObject("searchType", searchType);
+            if (searchValue != null)
+                mv.addObject("searchValue", searchValue);
+
             mv.setViewName("/adminTotal/adminEditLog");
         }
 
         return mv;
     }
 
-    @RequestMapping("/adminTotal/editAdmin")
-    public ModelAndView getRegRestList() {
+    // 회원정보 수정(고객)
+    @RequestMapping("/adminTotal/editMem")
+    public ModelAndView getMemView(String searchType, String searchValue, String cPage) {
 
         ModelAndView mv = new ModelAndView();
+        int nowPage = 1;
 
-        RegRestVO[] ar = r_Service.getRegRestList();
+        if (cPage != null)
+            nowPage = Integer.parseInt(cPage);
+
+        int totalRecord = m_Service.totalCount(searchType, searchValue, "0");
+
+        Paging page = new Paging(nowPage, totalRecord, 10, 5);
+
+        MemVO[] ar = m_Service.allMem(page.getBegin(), page.getEnd(), searchType, searchValue, "0");
 
         if (ar != null) {
             mv.addObject("ar", ar);
-            mv.setViewName("/adminTotal/editAdmin");
+            mv.addObject("page", page);
+            mv.addObject("totalRecord", totalRecord);// 총 게시물의 수
+            mv.addObject("nowPage", nowPage);// 현재페이지 값
+            mv.addObject("blockList", page.getNumPerPage());// 한페이지에 표현할 게시물 수
+            if (searchType != null)
+                mv.addObject("searchType", searchType);
+            if (searchValue != null)
+                mv.addObject("searchValue", searchValue);
+
+            mv.setViewName("/adminTotal/editMem");
+        }
+        return mv;
+    }
+
+    @PostMapping("/adminTotal/editMemSave")
+    @ResponseBody
+    public String editMemSave(String m_idx, String value, String type) {
+
+        MemVO mvo = m_Service.searchMem(m_idx);
+
+        // System.out.println("m_idx|||||||||" + mvo.getM_idx());
+        // System.out.println("m_id|||||||||" + mvo.getM_id());
+        // System.out.println("m_idx|||||||||" + m_idx);
+        // System.out.println("value|||||||||" + value);
+        // System.out.println("type|||||||||" + type);
+
+        if (type.equals("name")) {
+            mvo.setM_name(value);
+        } else if (type.equals("phone")) {
+            mvo.setM_phone(value);
+        } else if (type.equals("del")) {
+            mvo.setM_status("4");
+        }
+
+        int result = m_Service.updateMem(mvo);
+
+        if (result == 0) {
+            return "false";
+        }
+
+        result = m_Service.updateMemLog(mvo);
+
+        return "true";
+
+    }
+
+    @RequestMapping("/adminTotal/editMemLog")
+    public ModelAndView editMemLogView(String searchType, String searchValue, String cPage) {
+        ModelAndView mv = new ModelAndView();
+        int nowPage = 1;
+
+        if (cPage != null)
+            nowPage = Integer.parseInt(cPage);
+
+        int totalRecord = m_Service.logTotalCount(searchType, searchValue, "4");
+
+        Paging page = new Paging(nowPage, totalRecord, 10, 5);
+
+        MemLogVO[] ar = m_Service.allMemLog(page.getBegin(), page.getEnd(), searchType, searchValue, "4");
+
+        if (ar != null) {
+
+            mv.addObject("ar", ar);
+            mv.addObject("page", page);
+            mv.addObject("totalRecord", totalRecord);// 총 게시물의 수
+            mv.addObject("nowPage", nowPage);// 현재페이지 값
+            mv.addObject("blockList", page.getNumPerPage());// 한페이지에 표현할 게시물 수
+
+            mv.setViewName("/adminTotal/editMemLog");
         }
 
         return mv;
-    }
-
-    // 어드민 정보 수정
-    @RequestMapping("/editAdminInfo")
-    public ModelAndView editAdminInfo(String RestNm) {
-
-        ModelAndView mv = new ModelAndView();
-
-        RegRestVO rvo = r_Service.getRegRest(RestNm);
-
-        mv.addObject("rvo", rvo);
-        mv.setViewName("/adminTotal/editAdminInfo");
-
-        return mv;
-    }
-
-    @RequestMapping("/adminTotal/memEditLog")
-    public String memEditLogTest() {
-        return "/adminTotal/memEditLog";
     }
 
     @RequestMapping("/adminTotal/menuList")

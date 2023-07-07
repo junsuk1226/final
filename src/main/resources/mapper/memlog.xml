@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kdt.finalproject.mapper.MemLogMapper">
+
+	
+    <insert id="join_log" parameterType="com.kdt.finalproject.vo.MemLogVO">
+        INSERT INTO memberlog(m_id, m_pw, m_name, m_joinDate, m_status,
+            access_token, refresh_token, m_phone, m_idx, editor, ml_information)
+        VALUES(#{m_id}, #{m_pw}, #{m_name}, NOW(), #{m_status},
+            #{access_token}, #{refresh_token}, #{m_phone}, #{m_idx}, #{editor}, #{ml_information})
+    </insert>
+    <insert id="edit_log" parameterType="com.kdt.finalproject.vo.MemLogVO">
+        INSERT INTO memberlog(m_id, m_pw, m_name, m_editDate, m_status,
+            access_token, refresh_token, m_phone, m_idx, editor, ml_information)
+        VALUES(#{m_id}, #{m_pw}, #{m_name}, NOW(), #{m_status},
+            #{access_token}, #{refresh_token}, #{m_phone}, #{m_idx}, #{editor}, #{ml_information})
+    </insert>
+    <insert id="drop_log" parameterType="com.kdt.finalproject.vo.MemLogVO">
+        INSERT INTO memberlog(m_id, m_pw, m_name, m_dropDate, m_status,
+            access_token, refresh_token, m_phone, m_idx, editor, ml_information)
+        VALUES(#{m_id}, #{m_pw}, #{m_name}, NOW(), #{m_status},
+            #{access_token}, #{refresh_token}, #{m_phone}, #{m_idx}, #{editor}, #{ml_information})
+    </insert>
+</mapper>
+
+
+
+
+
+
+
+

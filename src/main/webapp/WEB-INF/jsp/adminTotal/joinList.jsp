@@ -10,6 +10,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="../css/admin.css" />
+<link rel="stylesheet" href="../css/adminTotal.css" />
 
 </head>
 <body>
@@ -33,13 +34,8 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/editAdmin" class="nav-link text-white">
-                회원정보 수정(관리자)
-                </a>
-            </li>
-            <li>
                 <a href="/adminTotal/adminEditLog" class="nav-link text-white">
-                관리자회원 수정내역
+                    가입 승인 내역
                 </a>
             </li>
             <li>
@@ -48,7 +44,7 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/memEditLog" class="nav-link text-white">
+                <a href="/adminTotal/editMemLog" class="nav-link text-white">
                 일반회원 수정내역
                 </a>
             </li>
@@ -67,21 +63,21 @@
         <!-- 사이드바 끝 -->
 
         <!-- 메인 컨텐츠 내용 -->
-        <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
-            <div class="container" style="width:100%; margin: 0">
-                <h1>가입신청 목록</h1>
-                <br/>
+        <div class="d-flex flex-row flex-shrink-0 p-5 admin-main_area" style="width: calc(100% - 280px);">
+            <div class="container adminTotal-tablearea" style="width:100%; margin: 0">
+                <h1>가입신청 현황</h1>
+                <hr>
                 
                 <div class="container">
-                    <table class="table" style="text-align: center;">
+                    <table class="table mycustomtable" style="text-align: center;">
                         
                         <thead>
-                        <tr>
+                        <tr class="table_head">
                             <th scope="col" style="width: 10px;"></th>
                             <th scope="col" style="width: 150px;">휴게소명</th>
                             <th scope="col" style="width: 200px;">요청아이디</th>
                             <th scope="col" style="width: 150px;">담당자 연락처</th>
-                            <th scope="col" style="width: 150px;">가입신청일 <button class="arrow_btn"><i class="bi bi-arrow-down-up"></i></button></th>
+                            <th scope="col" style="width: 150px;">가입신청일</th>
                             <th scope="col" style="width: 60px;"></th>
                             <th scope="col" style="width: 60px;"></th>
                             <th scope="col" style="width: 10px;"></th>
@@ -90,14 +86,14 @@
                         <tbody>
 
                         <c:forEach var="mvo" items="${ar}">
-                            <tr>
+                            <tr class="mytr">
                                 <th scope="row"></th>
-                                <td>${mvo.m_name}</td>
-                                <td>${mvo.m_id}</td>
-                                <td>${mvo.m_phone}</td>
-                                <td>${mvo.m_joinDate}</td>
-                                <td ><button style="width: 100%;" onclick="approveUser('${mvo.m_id}')">승인</button></td>
-                                <td><button style="width: 100%;" onclick="refuseUser('${mvo.m_id}')">거절</button></td>
+                                <td class="align-middle">${mvo.m_name}</td>
+                                <td class="align-middle">${mvo.m_id}</td>
+                                <td class="align-middle">${mvo.m_phone}</td>
+                                <td class="align-middle">${mvo.m_joinDate}</td>
+                                <td ><button class="ok_btn" style="width: 100%;" onclick="approveUser('${mvo.m_id}')">승인</button></td>
+                                <td><button class="no_btn" style="width: 100%;" onclick="refuseUser('${mvo.m_id}')">거절</button></td>
                                 <td></td>
                             </tr>
                         </c:forEach>

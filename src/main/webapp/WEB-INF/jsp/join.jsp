@@ -154,6 +154,7 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" id="email_chk" value="0"/>
                 <!---------------------------이메일 검사 모달------------------------>
                 <div class="modal" id="modal2" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -271,6 +272,13 @@
                                 $("#m_phone").addClass("is-valid"); 
                             }
 
+                            let email_chk = $("#email_chk").val();
+                            if(email_chk == '1'){
+                                alert("이미 등록된 이메일입니다.");
+                                $("#j_email").focus();
+                                return;
+                            }
+
                             // 비동기식통신
                             $.ajax({
                                 url:"/common/join",
@@ -307,10 +315,13 @@
                                         data: {"email":str},
                                         dataType:"json"
                                     }).done(function(res){
-                                        if(res.chk == true && check1.test(str)){
+                                        
+                                        if(res.chk == true){
                                             $("#j_box").html("&nbsp;사용가능");
+                                            $("#email_chk").val("0");
                                         }else{
                                             $("#j_box").html("&nbsp;사용불가능");
+                                            $("#email_chk").val("1");
                                         }
                                     })
                                 }else{

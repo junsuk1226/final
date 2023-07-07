@@ -17,14 +17,15 @@
   <update id="updateMem" parameterType="com.kdt.finalproject.vo.MemVO">
     UPDATE final.member
     SET m_name = #{m_name}, 
-      m_phone = #{m_phone}
+      m_phone = #{m_phone},
+      m_status = #{m_status}
     WHERE m_idx=#{m_idx}
   </update>
 
   <!--회원 비빌번호 수정-->
   <update id="updatePw" parameterType="com.kdt.finalproject.vo.MemVO">
     UPDATE final.member
-    SET m_pw = #{new_pw}
+    SET m_pw = #{m_pw}
     WHERE m_idx=#{m_idx}
   </update>
 
@@ -38,6 +39,93 @@
   <select id="adminTotalLogin" parameterType="Map" resultType="com.kdt.finalproject.vo.MemVO">
     SELECT * FROM final.member
     where m_id = #{m_id} and m_status = 2
+  </select>
+
+  <!-- 회원정보 가져오기 -->
+  <select id="searchMem" parameterType="String" resultType="com.kdt.finalproject.vo.MemVO">
+    SELECT * FROM final.member
+    where m_idx = #{m_idx}
+  </select>
+
+  <select id="totalCount" resultType="int" parameterType="Map">
+  	SELECT COUNT(*) FROM member
+    WHERE m_status = #{m_status}
+    <if test="searchType != null and searchType == 0">
+      AND m_name LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+    <if test="searchType != null and searchType == 1">
+      AND m_id LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+    <if test="searchType != null and searchType == 2">
+      AND m_phone LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+    <if test="searchType != null and searchType == 3">
+      AND m_joinDate LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+  </select>
+
+  <select id="allMem" resultType="com.kdt.finalproject.vo.MemVO" parameterType="Map">
+		SELECT * FROM(
+      SELECT @RN:=@RN+1 AS rnum,a.* FROM(
+        SELECT * FROM member
+        WHERE m_status = #{m_status}
+        <if test="searchType != null and searchType == 0">
+          AND m_name LIKE CONCAT('%', #{searchValue}, '%')
+        </if>
+        <if test="searchType != null and searchType == 1">
+          AND m_id LIKE CONCAT('%', #{searchValue}, '%')
+        </if>
+        <if test="searchType != null and searchType == 2">
+          AND m_phone LIKE CONCAT('%', #{searchValue}, '%')
+        </if>
+        <if test="searchType != null and searchType == 3">
+          AND m_joinDate LIKE CONCAT('%', #{searchValue}, '%')
+        </if>
+      ) a, (SELECT @RN:=0) b
+    ) c WHERE c.rnum BETWEEN #{begin} AND #{end}
+	</select>
+
+  <insert id="updateMemLog" parameterType="com.kdt.finalproject.vo.MemVO">
+    INSERT INTO memberlog (m_id, m_pw, m_name, m_joinDate, m_editDate, m_status, m_phone, m_idx, editor)
+    VALUES (#{m_id}, #{m_pw}, #{m_name}, #{m_joinDate}, NOW(), #{m_status}, #{m_phone}, #{m_idx}, 'A')
+  </insert>
+
+  <select id="logTotalCount" resultType="int" parameterType="Map">
+  	SELECT COUNT(*) FROM memberlog
+    WHERE m_status IN(0, 4)
+    <if test="searchType != null and searchType == 0">
+      AND m_name LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+    <if test="searchType != null and searchType == 1">
+      AND m_id LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+    <if test="searchType != null and searchType == 2">
+      AND m_phone LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+    <if test="searchType != null and searchType == 3">
+      AND m_joinDate LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+  </select>
+
+  <select id="allMemLog" resultType="com.kdt.finalproject.vo.MemLogVO" parameterType="Map">
+    SELECT * FROM(
+      SELECT @RN:=@RN+1 AS rnum,a.* FROM(
+        SELECT * From final.memberlog
+        WHERE m_status IN(0, 4)
+        <if test="searchType != null and searchType == 0">
+            AND m_name LIKE CONCAT('%', #{searchValue}, '%')
+          </if>
+          <if test="searchType != null and searchType == 1">
+            AND m_id LIKE CONCAT('%', #{searchValue}, '%')
+          </if>
+          <if test="searchType != null and searchType == 2">
+            AND m_phone LIKE CONCAT('%', #{searchValue}, '%')
+          </if>
+          <if test="searchType != null and searchType == 3">
+            AND m_joinDate LIKE CONCAT('%', #{searchValue}, '%')
+          </if>
+      ) a, (SELECT @RN:=0) b
+    ) c WHERE c.rnum BETWEEN #{begin} AND #{end}
   </select>
   
 

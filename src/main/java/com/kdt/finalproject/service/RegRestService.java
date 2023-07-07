@@ -76,11 +76,28 @@ public class RegRestService {
 
     }
 
+    public int totalCount(String searchType, String searchValue) {
+        Map<String, Object> map = new HashMap<>();
+        if (searchType != null && searchValue != null) {
+            map.put("searchType", searchType);
+            map.put("searchValue", searchValue);
+        }
+        return reg_Mapper.totalCount(map);
+    }
+
     // 휴게소 회원 상태 로그
-    public MemVO[] regLogList() {
+    public MemVO[] regLogList(int begin, int end, String searchType, String searchValue) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("begin", begin);
+        map.put("end", end);
+        if (searchType != null && searchValue != null) {
+            map.put("searchType", searchType);
+            map.put("searchValue", searchValue);
+        }
+
         MemVO[] ar = null;
 
-        List<MemVO> list = reg_Mapper.regLogList();
+        List<MemVO> list = reg_Mapper.regLogList(map);
         if (list != null && list.size() > 0) {
             ar = new MemVO[list.size()];
             list.toArray(ar);

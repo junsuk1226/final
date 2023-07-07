@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.JoinService;
+import com.kdt.finalproject.service.MemLogService;
+import com.kdt.finalproject.vo.MemLogVO;
 import com.kdt.finalproject.vo.MemVO;
 
 // import jakarta.servlet.http.HttpSession;
@@ -28,6 +30,9 @@ public class JoinController {
 
     @Autowired
     private JoinService j_Service;
+
+    @Autowired
+    private MemLogService memLogService;
 
     @Autowired
     private javax.servlet.http.HttpSession session;
@@ -131,6 +136,21 @@ public class JoinController {
                     }
 
                     MemVO mvo = j_Service.getMem(vo);
+                    if (chk) {
+                        MemLogVO mlvo = new MemLogVO();
+                        mlvo.setM_idx(mvo.getM_idx());
+                        mlvo.setM_id(mvo.getM_id());
+                        mlvo.setM_pw(mvo.getM_pw());
+                        mlvo.setM_name(mvo.getM_name());
+                        mlvo.setM_status(mvo.getM_status());
+                        mlvo.setAccess_token(mvo.getAccess_token());
+                        mlvo.setRefresh_token(mvo.getRefresh_token());
+                        mlvo.setM_phone(mvo.getM_phone());
+                        mlvo.setEditor("M");
+                        mlvo.setMl_information("개인정보저장");
+
+                        memLogService.join_log(mlvo);
+                    }
 
                     session.setAttribute("mvo", mvo);
                     mv.setViewName("redirect:/tour");
@@ -228,7 +248,6 @@ public class JoinController {
                     if (chk == true) {
 
                         int cnt = j_Service.addMem(vo);
-
                     } else {
 
                         j_Service.updateToken(vo);
@@ -236,6 +255,21 @@ public class JoinController {
 
                     MemVO mvo = j_Service.getMem(vo);
 
+                    if (chk) {
+                        MemLogVO mlvo = new MemLogVO();
+                        mlvo.setM_idx(mvo.getM_idx());
+                        mlvo.setM_id(mvo.getM_id());
+                        mlvo.setM_pw(mvo.getM_pw());
+                        mlvo.setM_name(mvo.getM_name());
+                        mlvo.setM_status(mvo.getM_status());
+                        mlvo.setAccess_token(mvo.getAccess_token());
+                        mlvo.setRefresh_token(mvo.getRefresh_token());
+                        mlvo.setM_phone(mvo.getM_phone());
+                        mlvo.setEditor("M");
+                        mlvo.setMl_information("개인정보저장");
+
+                        memLogService.join_log(mlvo);
+                    }
                     session.setAttribute("mvo", mvo);
                     mv.setViewName("redirect:/tour");
                 }
@@ -274,6 +308,23 @@ public class JoinController {
             // session.setAttribute("commjoin_fail", "commjoin_fail");
             // mv.setViewName("redirect:/join");
             map.put("commjoin_fail", "1");
+        }
+
+        MemVO mvo = j_Service.getMem(vo);
+        if (mvo != null) {
+            MemLogVO mlvo = new MemLogVO();
+            mlvo.setM_idx(mvo.getM_idx());
+            mlvo.setM_id(mvo.getM_id());
+            mlvo.setM_pw(mvo.getM_pw());
+            mlvo.setM_name(mvo.getM_name());
+            mlvo.setM_status(mvo.getM_status());
+            mlvo.setAccess_token(mvo.getAccess_token());
+            mlvo.setRefresh_token(mvo.getRefresh_token());
+            mlvo.setM_phone(mvo.getM_phone());
+            mlvo.setEditor("M");
+            mlvo.setMl_information("개인정보저장");
+
+            memLogService.join_log(mlvo);
         }
 
         return map;

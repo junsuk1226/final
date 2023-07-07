@@ -79,8 +79,14 @@ public class PayService {
         return p_Mapper.order_selected(p_idx);
     }
 
-    public int getTotalCount(String m_idx) {
-        return p_Mapper.totalCount(m_idx);
+    public int getTotalCount(String m_idx, String searchType, String searchValue) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("m_idx", m_idx);
+        if (searchType != null && searchValue != null) {
+            map.put("searchType", searchType);
+            map.put("searchValue", searchValue);
+        }
+        return p_Mapper.totalCount(map);
     }
 
 }

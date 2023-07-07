@@ -30,8 +30,8 @@
 </update>
 
 <insert id="addLog" parameterType="Map">
-  INSERT INTO memberlog (m_id, m_pw, m_name, m_joinDate, m_editDate, m_status, m_phone, restCd, m_idx)
-  VALUES (#{m_id}, #{m_pw}, #{m_name}, #{m_joinDate}, NOW(), #{m_status}, #{m_phone}, #{restCd}, #{m_idx})
+  INSERT INTO memberlog (m_id, m_pw, m_name, m_joinDate, m_editDate, m_status, m_phone, restCd, m_idx, editor)
+  VALUES (#{m_id}, #{m_pw}, #{m_name}, #{m_joinDate}, NOW(), #{m_status}, #{m_phone}, #{restCd}, #{m_idx}, 'A')
 </insert>
 
 <insert id="addRegRest" parameterType="Map">
@@ -64,10 +64,37 @@
   WHERE m_id = #{m_id}
 </update>
 
+<select id="totalCount" resultType="int" parameterType="Map">
+  	SELECT COUNT(*) FROM memberlog
+    WHERE m_status IN (1, 3, 5)
+    <if test="searchType != null and searchType == 0">
+      AND m_name LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+    <if test="searchType != null and searchType == 1">
+      AND m_id LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+    <if test="searchType != null and searchType == 2">
+      AND m_joinDate LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+</select>
+
 <!-- 휴게소 변경 로그 가져오기 -->
-<select id="regLogList" resultType="com.kdt.finalproject.vo.MemVO">
-  SELECT * FROM memberlog
-  WHERE m_status IN (1, 3, 5)
+<select id="regLogList" resultType="com.kdt.finalproject.vo.MemVO" parameterType="Map">
+  SELECT * FROM(
+		SELECT @RN:=@RN+1 AS rnum,a.* FROM(
+      SELECT * FROM memberlog
+      WHERE m_status IN (1, 3, 5)
+      <if test="searchType != null and searchType == 0">
+				AND m_name LIKE CONCAT('%', #{searchValue}, '%')
+			</if>
+			<if test="searchType != null and searchType == 1">
+				AND m_id LIKE CONCAT('%', #{searchValue}, '%')
+			</if>
+			<if test="searchType != null and searchType == 2">
+				AND m_joinDate LIKE CONCAT('%', #{searchValue}, '%')
+			</if>
+    ) a, (SELECT @RN:=0) b
+	) c WHERE c.rnum BETWEEN #{begin} AND #{end}
 </select>
 
 <!-- 가입 되어있는 휴게소 정보 가져오기 -->

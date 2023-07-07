@@ -29,23 +29,10 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
             <link rel="stylesheet" href="../css/main_custom.css" />
             <style>
-                table {
-                    width: 100%;
-                    border-collapse: collapse;
+                .fa-credit-card:hover{
+                    color: #b699ee;
+                    transform: translateY(-4px);
                 }
-
-                table th,
-                table td {
-                    /*border: 2px solid black;*/
-                    padding: 4px;
-                }
-
-                table caption {
-                    text-indent: -9999px;
-                    height: 0;
-                }
-                
-              
 
                 .popup {
                     display: none;
@@ -103,31 +90,54 @@
 
                     <div class="container-fluid">
                         <div class="row justify-content-center mt-5">
-                            <div class="col-md-9 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
                                     ${sessionScope.mvo.m_name}<span class="text-muted">님의 장바구니</span>
                                 </h2>
                             </div>
                         </div>
+                        
                         <c:choose>
-                            <c:when test="${map.count == 0 }">
+                            <c:when test="${fn:length(cart.list) == 0 }">
                                 <!-- when은 ~~일때 라는 뜻 그러니까 map의 count가 0일때... -->
                                 <!-- xml파일에서 hashmap에 list를 넣어놓았기 때문에 현재 map에 자료가 들어있다.  -->
                                 <!-- map에 자료가 아무것도 없다면 -->
-                                장바구니가 비었습니다.
+                                
+                                <div class="container-fluid mb-4">
+                                    <div class="row justify-content-center col-md-12 my-5">
+                                        <div  class="col-md-6 mb-5">
+                                            <div class="mb-2 ms-2">
+                                                <span style="font-family: 'suite'; font-size: large; font-weight: bold;">${RestNm}</span>
+                                            </div>
+                                            <div class="col-6 mb-2 float-start text-start">
+                                                <a class=" arrow nav-link" onclick="sendKeyword(this.form)" style="font-family: 'suite'; font-weight: bold; color: #887e94; font-size: large; cursor: pointer;" ><i class="fa fa-arrow-left me-2" aria-hidden="true"></i>메뉴 추가하기</a>
+                                            </div>    
+                                            <img class="rounded" src="../main_images/cart_is_empty.png" style="object-fit: contain; width: 100%;" alt="장바구니가 비었습니다."/>
+                                        </div>
+                                    </div>
+                                </div>
                             </c:when>
 
                             <c:otherwise>
+                             <!-- map.count가 0이 아닐때, 즉 자료가 있을때 -->
+                                <!-- form을 실행한다.  -->
+                                <!-- form의 id를 form1로 하고, method 방식을 post로 한다. 그리고 update.do페이지로 이동시킨다. -->
                                 <div class="container-fluid mb-4">
                                     <div class="row justify-content-center col-md-12 my-5">
-                                        <div  class="col-md-9">
-                                            <div class="card shadow p-3 mb-5 bg-body rounded justify-content-center" style="border: none;">
+                                        <div  class="col-md-6">
+                                            <div class="mb-2 ms-2">
+                                                <span style="font-family: 'suite'; font-size: large; font-weight: bold;">${RestNm}</span>
+                                            </div>
+                                            <div class="card shadow p-3 mb-5 bg-body rounded justify-content-between" style="border: none;">
                                                 <div class="card-body">
                                             
                                                     <form name="frm" action="/orderpay" method="post">
-                                                        <div class="row justify-content-start ">
+                                                        <div class="row justify-content-start align-items-center">
                                                             <div class="col-6 mb-2 float-start text-start">
-                                                                <a class=" arrow nav-link" onclick="sendKeyword(this.form)" style="font-family: 'suite'; font-weight: bold; color: #887e94; font-size: large;" ><i class="fa fa-arrow-left me-2" aria-hidden="true"></i>메뉴 추가하기</a>
+                                                                <a class=" arrow nav-link" onclick="sendKeyword(this.form)" style="font-family: 'suite'; font-weight: bold; color: #887e94; font-size: large; cursor: pointer;" ><i class="fa fa-arrow-left me-2" aria-hidden="true"></i>메뉴 추가하기</a>
+                                                            </div>
+                                                            <div class="col-6 text-end">
+                                                                <button type="button" id="btnDelete" class="btn mb-3" onclick="senda(this.form)"><span class="me-2">비우기</span><i class="fa fa-undo fa-lg" aria-hidden="true"></i></button>
                                                             </div>
                                                         </div>
                                                         <div class=" row ">
@@ -135,34 +145,55 @@
                                                             <c:set var="sumPrice" value="0"/>
                                                             <c:set var="sumCount" value="0"/>
                                                             <c:set var="fee" value="0"/>
-
+                                                            
                                                             <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st"> 
-                                                      
-                                                            
+                                                                <input type="hidden" value="1" name="p_idx" />
                                                                 <hr />
-                                                                <div>
-                                                                    <p style="font-size: 15px; font-weight: bold;">${pvo.restNm}</p>
+                                                                <div class="d-flex mb-3">
+                                                                    <div class="d-flex col-md-12 align-items-center">    
+                                                                        <div class="me-3 col-md-3" style ="width: 100px; height: 100px;">
+                                                                            <img id="${pvo.seq}_img" style="object-fit: cover; width: 100%; height: 100%; background-color: rgb(240, 240, 240);" class="rounded "/> 
+                                                                        </div>
+                                                                        
+                                                                        <div class="row col-md-9 ms-1">
+                                                                            <div class="col-md-12 text-start">
+                                                                                <span style="font-size: large; font-weight: bold;"> ${pvo.foodNm}</span>
+                                                                                <br/>
+                                                                                <span class="ps-2 text-muted">└ ${pvo.quantity}개</span>
+                                                                            </div>
+                                                                            <hr style="border: 1px dashed; color: #6600db;" class="my-3 px-3"/>
+                                                                            <div class="text-end col-md-12 d-flex justify-content-end">
+                                                                                <span class="me-2 text-muted" style="font-size: small; ">개당 <fmt:formatNumber value="${pvo.foodCost}" pattern="#,###,###" />원</span>
+                                                                            </div>
+                                                                            <div class="text-end col-md-12 d-flex justify-content-end">
+                                                                                <span class="me-2 text-muted" style="font-size: large; font-weight: bold;"><fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />원</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <div>
-                                                                    <p style="font-size: 12px; ">${pvo.restNm} : 2023-06-24</p>
-                                                                </div>
-
-                                                                <div>주문 음식 : ${pvo.foodNm}</div>
                                                                 
-                                                                <div> &nbsp;&nbsp; <fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />원</div>
-                                                                <div>&nbsp;&nbsp; ${pvo.quantity}개</div>
-                                                                <div style="text-align: right;">
-                                                                 <!-- <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button"></button> -->
                                                                 
-                                                                </div>
-                                                         
-                                                            <input type="hidden" value="1" name="p_idx" /> <%--${pvo.p_idx}--%>
-                                                            
-                                                       
+                                                             <!-- <a href="${path}/shop/cart/delete.do?cart_id=${row.cart_id}">[삭제]</a>
+                                                             삭제 버튼을 누르면 delete.do로 장바구니 개별 id (삭제하길원하는 장바구니 id)를 보내서 삭제한다. -->
+                                                             <!--구현되어 있지 않음!-->
                                                             <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}"/>
                                                             <c:set var="sumCount" value="${sumCount+pvo.quantity}"/>
-                                                        
+                                                            
+                                                                
                                                             </c:forEach>
+                                                        </div>
+                                                        <div class="text-end">
+                                                            <hr/>
+                                                            
+                                                            <span>총 <fmt:formatNumber value="${sumCount}" pattern="#,###,###" />개</span>
+                                                            <br/>
+                                                            <span style="font-weight: bold; font-size: large;"><span class="text-muted">합계</span> <fmt:formatNumber value="${sumPrice}" pattern="#,###,###" />원</span>
+                                                            
+
+                                                        </div>
+                                                        <div class="justify-content-end text-end mt-5">
+                                                            <!--btnUpdate와 btnDelete id는 위쪽에 있는 자바스크립트가 처리한다.-->
+                                                            <a style="cursor: pointer; font-family: 'suite'; font-size: large; color: #6600db; font-weight: bold; " onclick="sendData(this.form)">결제하기 <i class="fa fa-credit-card fa-lg" aria-hidden="true"></i></a>    
                                                         </div>
                                                     </form>
                                                 </div>
@@ -173,201 +204,10 @@
                             </c:otherwise>
                         </c:choose>
 
+                       </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <div class="row">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-12 col-md-offset-5">
-                                <form name="frm" action="/orderpay" method="post">
-                                    <input type="hidden" name="type" value="aoList" />
-                                    <table>
-                                        <tbody align=center>
-
-                                            <thead>
-                                                <tr>
-                                                    <td>
-                                                        <div class="row">
-                                                            <div class="col-md-3">
-                                                               
-                                                            </div>
-                                                            <div class="col-md-7">
-                                                                <div class="input-group">
-                                                                    <!-- <input class="form-control"
-                                                                                placeholder="검색어를 입력하세요"
-                                                                                aria-describedby="button-addon"
-                                                                                type="text" id="searchValue"
-                                                                                name="searchValue" /> -->
-                                                                    <input type="button" class="btn btn-outline-success me-2 mycustom-mem-btn"
-                                                                        onclick="sendKeyword(this.form)" value="더 담기(돌아가기)"
-                                                                        id="button-addon" />
-                                                                </div>
-                                                            </div>
-                                                    </td>
-                                                </tr>
-                                            </thead>
-                                    </table>
-                            </div>
-                        </div>
-
-                        <c:choose>
-                            <c:when test="${map.count == 0 }">
-                                <!-- when은 ~~일때 라는 뜻 그러니까 map의 count가 0일때... -->
-                                <!-- xml파일에서 hashmap에 list를 넣어놓았기 때문에 현재 map에 자료가 들어있다.  -->
-                                <!-- map에 자료가 아무것도 없다면 -->
-                                장바구니가 비었습니다.
-                            </c:when>
-
-                            <c:otherwise>
-                                <!-- map.count가 0이 아닐때, 즉 자료가 있을때 -->
-                                <!-- form을 실행한다.  -->
-                                <!-- form의 id를 form1로 하고, method 방식을 post로 한다. 그리고 update.do페이지로 이동시킨다. -->
-                               
-                                    <table id="cart_table">
-                                        <colgroup>
-                                            <col width="20%" />
-                                            <col width="80%" />
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <td colspan="5">
-                                                    <h1></h1>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th><h3>상품리스트</h3></th>
-                                                
-                                                <th>&nbsp;</th>
-                                            </tr>
-                                        </thead>
-                                        
-                                        
-                                        <tbody>
-                                            
-                                            <hr />
-                                            <c:set var="sumPrice" value="0"/>
-                                            <c:set var="sumCount" value="0"/>
-                                            <c:set var="fee" value="0"/>
-                                                <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st"> 
-                                                        <tr >
-                                                            <td>${pvo.foodNm} 이미지</td>
-                                                            <td colspan="4">
-                                                                <div>
-                                                                    <p style="font-size: 15px; font-weight: bold;">${pvo.restNm}</p>
-                                                                </div>
-                                                                <div>
-                                                                    <p style="font-size: 12px; ">${pvo.restNm} : 2023-06-24</p>
-                                                                </div>
-                                                                <div>주문 음식 : ${pvo.foodNm}</div>
-                                                                <hr style="border:3px dotted green;" />
-                                                                <div> &nbsp;&nbsp; <fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />원</div>
-                                                                <div>&nbsp;&nbsp; ${pvo.quantity}개</div>
-                                                                <div style="text-align: right;">
-                                                                 <!-- <button class="btn btn-outline-success me-2 mycustom-mem-btn" type="button"></button> -->
-                                                                <hr />
-                                                                </div>
-                                                            </td>
-                                                            
-                                                            <input type="hidden" value="1" name="p_idx" /> <%--${pvo.p_idx}--%>
-                                                            
-                                                        </tr>
-                                                        <c:set var="sumPrice" value="${sumPrice+pvo.totalPrice}"/>
-                                                        <c:set var="sumCount" value="${sumCount+pvo.quantity}"/>
-                                                        
-                                                    </c:forEach>
-                                                    
-                                                    
-                                                    <!-- map에 있는 list출력하기 위해 forEach문을 사용해 row라는 변수에 넣는다. -->
-                                                    <%--
-                                                    카트:<c:out value="${fn:length(cart.list)}"/>
-                                                    <c:forEach var="pvo" items="${sessionScope.cart.list}">
-                                                        <tr align="center">
-                                                            <td>${pvo.foodNm}</td>
-                                                            
-                                                            <td>
-                                                                <fmt:formatNumber value="${pvo.foodCost}" pattern="#,###,###" />
-                                                            </td>
-                                                            <!-- fmt:formatNumber 태그는 숫자를 양식에 맞춰서 문자열로 변환해주는 태그이다 -->
-                                                            <!-- 여기서는 금액을 표현할 때 사용 -->
-                                                            <!-- ex) 5,000 / 10,000 등등등-->
-                                                            
-                                                            <td><input type="number" name="amount" style="width:30px;"
-                                                                value="<fmt:formatNumber value='${pvo.quantity}'
-                                                                pattern='#,###,###' />">
-                                                                <!-- 물건의 개수 (amount)를 fmt태그를 사용해서 패턴의 형식에 맞춰서 문자열로 변환함 -->
-                                                                <!--1,000 / 5,000 등등~  -->
-                                                                
-                                                                
-                                                            </td>
-                                                            <td>
-                                                                <fmt:formatNumber value="${pvo.totalPrice}" pattern="#,###,###" />
-                                                            </td>
-                                                            !
-                                                            <td><a
-                                                                href="${path}/shop/cart/delete.do?cart_id=${row.cart_id}">[삭제]</a>
-                                                                <!-- 삭제 버튼을 누르면 delete.do로 장바구니 개별 id (삭제하길원하는 장바구니 id)를 보내서 삭제한다. -->
-                                                            </td>
-                                                        </tr>
-                                                        
-                                                    </c:forEach>
-                                                    --%>         
-                                                    
-                                                    <tr>
-                                                        <td colspan="5" align="right">
-                                                            
-                                                            
-                                                            장바구니 금액 합계 :
-                                                            
-                                                            <fmt:formatNumber value="${sumPrice}" pattern="#,###,###" />원
-                                                               
-                                                            
-                                                            <br/>
-                                                            총 개수: <fmt:formatNumber value="${sumCount}" pattern="#,###,###" />
-                                                        </td>
-                                                    </tr>
-                                                    
-                                                    <tr>
-                                                        <td colspan="2" align="right">
-                                                            
-                                                            <button type="button" id="btnDelete" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="senda(this.form)">장바구니 비우기</button>
-                                                            <!--btnUpdate와 btnDelete id는 위쪽에 있는 자바스크립트가 처리한다.-->
-                                                           
-                                                            <button type="button" id="btnList" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="sendData(this.form)">결제하기</button>
-                                                        </td>
-                                                    </tr>
-                                                    
-                                                </tbody>
-                                            </table>
-                                        </form>
-                                            
-                                       
-                            </c:otherwise>
-                        </c:choose>
-                       
-
-                    </div>
-
-
-
-
-                    <div>
+                    
                         <!-- footer 시작---------------------------------------------------------------------------------------------->
                         <!-- <body class="d-flex flex-column"> -->
                         <footer id="sticky-footer"
@@ -392,7 +232,7 @@
                         <!-- </body>  -->
                         <!-- footer 끝---------------------------------------------------------------------------------------------->
 
-                    </div>
+                    
                 </div>
 
                 <%-- 추가Popup --%>
@@ -428,9 +268,7 @@
                         </div>
 
                     </div>
-            </div>
-            </div>
-</div>
+            
 
             <script type="text/javascript" src="js/bootstrap.js"></script>
 
@@ -450,6 +288,30 @@
             <script src="js/scripts.js"></script>
 
             <script>
+                $(document).ready(function() {
+                    <c:forEach var="pvo" items="${sessionScope.cart.list }" varStatus="st"> 
+                        var seq = "${pvo.seq}";
+                        sendAjaxRequest(seq);
+                        console.log(seq);
+                    </c:forEach>  
+                      
+
+                    function sendAjaxRequest(seq){
+                        $.ajax({
+                            url:"/getFileName",
+                            method: 'post',
+                            data: {'seq': seq},
+                            dataType: 'text'
+                        }).done(function(data){
+                            // var imageUrl = encodeURIComponent(data);
+                            console.log(data+"/"+seq);
+                            $("#" + seq + "_img").attr("src",data);
+                        });
+
+                    }
+
+                
+                })
 
                 
                 

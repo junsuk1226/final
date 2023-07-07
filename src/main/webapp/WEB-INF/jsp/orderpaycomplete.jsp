@@ -84,7 +84,7 @@
                         </div></br>
                         <div style="text-align: right;">
                             <button type="button" class="btn btn-outline-secondary" onclick="location.href='/main'">확인</button>
-                            <button type="button" class="btn btn-outline-secondary" onclick="location.href=''">주문상세보기</button>
+                            <button type="button" class="btn btn-outline-secondary" onclick="location.href='/orderDetail?p_idx=${pvo.p_idx}'">주문상세보기</button>
                         </div>
                     </div>
                 </div>

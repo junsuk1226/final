@@ -33,13 +33,8 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/editAdmin" class="nav-link text-white">
-                회원정보 수정(관리자)
-                </a>
-            </li>
-            <li>
                 <a href="/adminTotal/adminEditLog" class="nav-link text-white">
-                관리자회원 수정내역
+                    가입 승인 내역
                 </a>
             </li>
             <li>
@@ -48,7 +43,7 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/memEditLog" class="nav-link text-white">
+                <a href="/adminTotal/editMemLog" class="nav-link text-white">
                 일반회원 수정내역
                 </a>
             </li>

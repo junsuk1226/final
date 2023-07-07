@@ -12,5 +12,5 @@ import lombok.Setter;
 public class MemLogVO {
     private String ml_idx, m_id, m_pw, m_name, m_joinDate, m_dropDate, m_editDate, m_status, access_token,
             refresh_token,
-            m_phone, restCd, m_idx, editor, ml_var2, ml_var3, ml_var4, ml_var5;
+            m_phone, restCd, m_idx, editor, ml_information, ml_var3, ml_var4, ml_var5;
 }

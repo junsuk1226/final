@@ -148,16 +148,17 @@
                                 <div class="row justify-content-center mt-5">
                                     <div class="col-md-7 mb-3">
                                         <div class="input-group input-group-lg mb-3 shadow p-1 mb-1 bg-body rounded" >
-                                            <button class="btn btns-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;"></button>
-                                            <ul class="dropdown-menu shadow" style="border: none;">
-                                              <li><a class="dropdown-item" href="#">주문메뉴 검색</a></li>
-                                              <li><hr class="dropdown-divider"></li>
-                                              <li><a class="dropdown-item" href="#">휴게소 검색</a></li>
-                                              <li><hr class="dropdown-divider"></li>
-                                              <li><a class="dropdown-item" href="#">날짜 검색</a></li>
-                                            </ul>
-                                            <input type="text" class="form-control"  style="border: none;">
-                                            <button type="button" class="btn btn-outline-secondary" style="border: none;"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                            <form name="frm" action="/order" method="post">
+                                                <select style="border: none;" name="searchType" id="searchType" >
+                                                    <option value="0">주문메뉴 검색</option>
+                                                    <option value="1">휴게소 검색</option>
+                                                    <option value="2">날짜 검색</option>
+
+                                                </select>
+                                                <input type="hidden" name="cPage" value="${nowPage}"/>
+                                                <input type="text" class="form-control"  style="border: none;" name="searchValue" id="searchValue">
+                                                <button type="button" class="btn btn-outline-secondary" style="border: none;" onclick="sendData(this.form)"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                            </form>
                                           </div>
                                     </div>
                                 </div>
@@ -318,6 +319,16 @@
                     <script src="js/scripts.js"></script>
 
                     <script>
+
+                        function sendData(frm){
+                            let v1 = $("#searchValue").val();
+
+                            if(v1.trim().length < 1){
+                                alert("검색한 단어를 입력하세요");
+                                return;
+                            }
+                            frm.submit();
+                        }
 
                         function viewDetail(formId){
                             document.getElementById(formId).submit();

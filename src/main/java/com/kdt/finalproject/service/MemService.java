@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.kdt.finalproject.mapper.JoinMapper;
 import com.kdt.finalproject.mapper.MemMapper;
+import com.kdt.finalproject.vo.MemLogVO;
 import com.kdt.finalproject.vo.MemVO;
 
 @Service
@@ -99,6 +100,87 @@ public class MemService {
             }
         }
         return null;
+    }
+
+    public MemVO searchMem(String m_idx) {
+
+        MemVO vo = m_Mapper.searchMem(m_idx);
+
+        return vo;
+    }
+
+    public int updateMem(MemVO mvo) {
+
+        int cnt = m_Mapper.updateMem(mvo);
+
+        return cnt;
+    }
+
+    public int totalCount(String searchType, String searchValue, String m_status) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("m_status", m_status);
+        if (searchType != null && searchValue != null) {
+            map.put("searchType", searchType);
+            map.put("searchValue", searchValue);
+        }
+        return m_Mapper.totalCount(map);
+    }
+
+    public MemVO[] allMem(int begin, int end, String searchType, String searchValue, String m_status) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("begin", begin);
+        map.put("end", end);
+        map.put("m_status", m_status);
+        if (searchType != null && searchValue != null) {
+            map.put("searchType", searchType);
+            map.put("searchValue", searchValue);
+        }
+
+        MemVO[] ar = null;
+
+        List<MemVO> list = m_Mapper.allMem(map);
+        if (list != null && list.size() > 0) {
+            ar = new MemVO[list.size()];
+            list.toArray(ar);
+        }
+
+        return ar;
+    }
+
+    public int updateMemLog(MemVO vo) {
+
+        return m_Mapper.updateMemLog(vo);
+    }
+
+    public int logTotalCount(String searchType, String searchValue, String m_status) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("m_status", m_status);
+        if (searchType != null && searchValue != null) {
+            map.put("searchType", searchType);
+            map.put("searchValue", searchValue);
+        }
+        return m_Mapper.logTotalCount(map);
+    }
+
+    public MemLogVO[] allMemLog(int begin, int end, String searchType, String searchValue, String m_status) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("begin", begin);
+        map.put("end", end);
+        map.put("m_status", m_status);
+        if (searchType != null && searchValue != null) {
+            map.put("searchType", searchType);
+            map.put("searchValue", searchValue);
+        }
+
+        MemLogVO[] ar = null;
+
+        List<MemLogVO> list = m_Mapper.allMemLog(map);
+        if (list != null && list.size() > 0) {
+            ar = new MemLogVO[list.size()];
+            list.toArray(ar);
+        }
+
+        return ar;
     }
 
 }
