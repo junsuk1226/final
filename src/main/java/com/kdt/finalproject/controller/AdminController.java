@@ -151,7 +151,7 @@ public class AdminController {
             // 연도별 - 월별 매출
             MonthTotalVO[] mar = res_Service.getAllMonthTotal(restNm);
             // 연도를 key로 가지는 map 생성
-            Map<String, List<MonthTotalVO>> map = new HashMap<>()
+            Map<String, List<MonthTotalVO>> map = new HashMap<>();
         }
 
         return mv;
