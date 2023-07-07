@@ -27,4 +27,16 @@ public interface PayMapper {
 
     int totalCount(Map<String, Object> map);
 
+    // 관리자 페이지 날짜별 매출내역
+    List<PayVO> daySales(Map<String, String> map);
+
+    // 관리자 페이지 날짜별 매출내역 총 카운트
+    int daySalesCnt(Map<String, String> map);
+
+    // 관리자 페이지 월별 매출내역
+    List<PayVO> monthSales(Map<String, String> map);
+
+    // 관리자 페이지 월별 매출내역 총 카운트
+    int monthSalesCnt(Map<String, String> map);
+
 }

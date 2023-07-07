@@ -76,4 +76,65 @@
 <update id="kakaorefund" parameterType="com.kdt.finalproject.vo.PayVO">
     UPDATE paylog SET c_date = #{c_date}, c_time = #{c_time}, p_status = 1 WHERE tid=#{tid}
   </update>
+
+<!-- 관리자 페이지 날짜별 매출 리스트-->
+<select id="daySales" parameterType="map" resultType="com.kdt.finalproject.vo.PayVO"> 
+ SELECT * FROM(
+		SELECT @RN:=@RN+1 AS rnum,a.* FROM(
+      SELECT * FROM final.paylog
+      WHERE restNm = #{restNm} and p_status = 0
+        <if test="date != null">
+      AND p_date = #{date}
+      </if> 
+      <if test="date == null">
+      And p_date = CURDATE()
+      </if>
+    ) a, (SELECT @RN:=0) b
+	) c WHERE c.rnum BETWEEN #{begin} AND #{end}
+   
+  
+</select>
+
+<!-- 관리자 페이지 날짜별 매출 리스트 총 카운트-->
+<select id="daySalesCnt" resultType="int" parameterType="map">
+  	SELECT COUNT(*) FROM final.paylog
+    WHERE p_status = 0 AND restNm = #{restNm}
+    <if test="date != null">
+       AND DATE_FORMAT(p_date,'%Y-%m-%d') = #{date}
+      </if> 
+      <if test="date == null">
+      AND DATE_FORMAT(p_date,'%Y-%m-%d') = CURDATE()
+      </if>
+</select>
+
+<!-- 관리자 페이지 월별 검색 총 카운트-->
+<select id="monthSalesCnt" resultType="int" parameterType="map">
+  SELECT COUNT(*) FROM final.paylog
+      WHERE p_status = 0 AND restNm = #{restNm}
+     <if test="month != null">
+       AND DATE_FORMAT(p_date,'%m') = #{month}
+      </if> 
+      <if test="month == null">
+        AND DATE_FORMAT(p_date, '%m') = DATE_FORMAT(NOW(), '%m')
+      </if>
+  </select>
+
+
+<!-- 관리자 페이지 월별 검색 리스트-->
+<select id="monthSales" parameterType="map" resultType="com.kdt.finalproject.vo.PayVO"> 
+ SELECT * FROM(
+		SELECT @RN:=@RN+1 AS rnum,a.* FROM(
+      SELECT * FROM final.paylog
+      WHERE restNm = #{restNm} and p_status = 0
+      <if test="month != null">
+       AND DATE_FORMAT(p_date,'%m') = #{month}
+      </if> 
+      <if test="month == null">
+        AND DATE_FORMAT(p_date, '%m') = DATE_FORMAT(NOW(), '%m')
+      </if>
+    ) a, (SELECT @RN:=0) b
+	) c WHERE c.rnum BETWEEN #{begin} AND #{end}
+     
+  
+</select>
 </mapper>
