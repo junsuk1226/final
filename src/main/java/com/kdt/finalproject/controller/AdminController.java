@@ -17,13 +17,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.kdt.finalproject.service.FoodService;
 import com.kdt.finalproject.service.JoinService;
 import com.kdt.finalproject.service.MemService;
+import com.kdt.finalproject.service.RestService;
 import com.kdt.finalproject.service.ReviewService;
 import com.kdt.finalproject.util.Paging;
 import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MemVO;
+import com.kdt.finalproject.vo.OrderCntVO;
 import com.kdt.finalproject.vo.ReviewVO;
 
 @Controller
@@ -45,6 +48,9 @@ public class AdminController {
 
     @Autowired
     private ReviewService r_Service;
+
+    @Autowired
+    private RestService res_Service;
 
     @RequestMapping("/admin")
     public String adminTest() {
@@ -123,8 +129,13 @@ public class AdminController {
     }
 
     @RequestMapping("/admin/main")
-    public String adminMainTest() {
-        return "/admin/main";
+    public ModelAndView adminMainTest() {
+        ModelAndView mv = new ModelAndView("/admin/main");
+        OrderCntVO[] ar = res_Service.getSameMonth_paylog();
+
+        mv.addObject("foodOfMonth", ar);
+
+        return mv;
     }
 
     // @RequestMapping("/admin/menu")

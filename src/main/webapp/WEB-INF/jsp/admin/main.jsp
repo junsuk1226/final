@@ -54,7 +54,6 @@
         <!-- 메인 컨텐츠 내용 -->
         <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
             
-            홈
             <div class="container-fluid">
                 <div class="row justify-content-center mt-5">
                     <div class="col-md-11 mb-3 text-start">
@@ -68,12 +67,15 @@
                     </div>
                 </div>
                 <div>
-                    <c:forEach var="cnt" items="foodOfMonth">
-                        ${vo.foodNm}가 ${vo.cnt}회 판매
-
+                    <c:forEach var="cnt" items="${foodOfMonth}">
+                        <c:if test="${cnt ne null }" >   
+                            ${cnt.foodNm} ${cnt.cnt}회 판매
+                        </c:if>
+                        <c:if test="${cnt eq null}">
+                            값이 없음
+                        </c:if>
                     </c:forEach>
                 </div>
-
 
 
 
