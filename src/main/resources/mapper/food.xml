@@ -36,6 +36,39 @@
     WHERE stdRestNm = #{RestNm} and (f_status = 0 or f_status=1)
 </select>
 
+<!--총관리자의 메뉴관리 페이지에서 리스트 출력-->
+<select id="getMenuList" resultType="com.kdt.finalproject.vo.FoodVO" parameterType="Map">
+  	SELECT * FROM(
+      SELECT @RN:=@RN+1 AS rnum,a.* FROM(
+        SELECT * FROM final.food
+        WHERE f_status = #{f_status}
+        <if test="searchType != null and searchType == 0">
+          AND foodNm LIKE CONCAT('%', #{searchValue}, '%')
+        </if>
+        <if test="searchType != null and searchType == 1">
+          AND stdRestNm LIKE CONCAT('%', #{searchValue}, '%')
+        </if>
+        <if test="searchType != null and searchType == 2">
+          AND foodMaterial LIKE CONCAT('%', #{searchValue}, '%')
+        </if>
+    ) a, (SELECT @RN:=0) b
+	) c WHERE c.rnum BETWEEN #{begin} AND #{end}
+</select>
+
+<select id="getMenuTotalCount" resultType="int" parameterType="Map">
+  	SELECT COUNT(*) FROM final.food
+    WHERE f_status = #{f_status}
+    <if test="searchType != null and searchType == 0">
+      AND foodNm LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+    <if test="searchType != null and searchType == 1">
+      AND stdRestNm LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+    <if test="searchType != null and searchType == 2">
+      AND foodMaterial LIKE CONCAT('%', #{searchValue}, '%')
+    </if>
+</select>
+
 <!--메뉴 수정-->
 <update id="editFood" parameterType="com.kdt.finalproject.vo.FoodVO">
   UPDATE food
