@@ -1,6 +1,8 @@
 package com.kdt.finalproject.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,6 +72,37 @@ public class FoodService {
     public int addFoodLog(FoodVO vo) {
 
         return f_Mapper.addFoodLog(vo);
+    }
+
+    public int getMenuTotalCount(String searchType, String searchValue) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("f_status", "3");
+        if (searchType != null && searchValue != null) {
+            map.put("searchType", searchType);
+            map.put("searchValue", searchValue);
+        }
+        return f_Mapper.getMenuTotalCount(map);
+    }
+
+    public FoodVO[] getMenuList(int begin, int end, String searchType, String searchValue) {
+        FoodVO[] ar = null;
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("f_status", "3");
+        map.put("begin", begin);
+        map.put("end", end);
+        if (searchType != null && searchValue != null) {
+            map.put("searchType", searchType);
+            map.put("searchValue", searchValue);
+        }
+
+        List<FoodVO> list = f_Mapper.getMenuList(map);
+        if (list != null && list.size() > 0) {
+            ar = new FoodVO[list.size()];
+            list.toArray(ar);
+        }
+
+        return ar;
     }
 
 }

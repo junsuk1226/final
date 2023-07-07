@@ -1,6 +1,7 @@
 package com.kdt.finalproject.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -25,5 +26,9 @@ public interface FoodMapper {
     int addFood(FoodVO vo);
 
     int addFoodLog(FoodVO vo);
+
+    List<FoodVO> getMenuList(Map<String, Object> map);
+
+    int getMenuTotalCount(Map<String, Object> map);
 
 }

@@ -53,19 +53,11 @@ public class RestService {
           String seq = seqAr[j];
           int foodQn = Integer.parseInt(fQnAr[j]);
 
-          // 값확인
-          System.out.println(foodNm);
-          System.out.println(foodQn);
-          System.out.println(seq);
-
           boolean chk = false;
           for (OrderCntVO vo : orderCnt) {
             if (vo.getFoodNm().equals(foodNm)) {
               vo.setCnt(vo.getCnt() + foodQn);
               chk = true;
-
-              // 확인
-              System.out.println();
 
               break;
             }
@@ -86,16 +78,17 @@ public class RestService {
       for (OrderCntVO vo : orderCnt) {
         if (vo.getCnt() >= maxCnt) {
           resCnt.add(vo);
-          // 이전의 maxCnt와 작은 값의 객체를 resCnt에서 제거
-          Iterator<OrderCntVO> iterator = resCnt.iterator();
-          while (iterator.hasNext()) {
-            if (iterator.next().getCnt() < maxCnt) {
-              iterator.remove();
-              // 두 개 이상 있을 수 있으므로 break 안됨
-            }
-          }
           maxCnt = vo.getCnt(); // maxCnt를 새로운 값으로 설정
         }
+        // 이전의 maxCnt와 작은 값의 객체를 resCnt에서 제거
+        Iterator<OrderCntVO> iterator = resCnt.iterator();
+        while (iterator.hasNext()) {
+          if (iterator.next().getCnt() < maxCnt) {
+            iterator.remove();
+
+          }
+        }
+
       }
       if (resCnt != null) {
         ar = new OrderCntVO[resCnt.size()];
