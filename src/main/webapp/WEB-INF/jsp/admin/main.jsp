@@ -68,14 +68,22 @@
                 </div>
                 <div>
                     <c:forEach var="cnt" items="${foodOfMonth}">
-                        <c:if test="${cnt ne null }" >   
-                            ${cnt.foodNm} ${cnt.cnt}회 판매
+                        <c:if test="${cnt ne null }" > 
+                            <div class="" style="width: 100px; height: 100px;">
+                                <img class="rounded" id="${cnt.seq}_img" style="object-fit: cover; width: 100%; height: 100%;"/>
+                            </div>  
+                            이번 달 ${cnt.foodNm} ${cnt.cnt}회 판매
                         </c:if>
                         <c:if test="${cnt eq null}">
                             값이 없음
                         </c:if>
                     </c:forEach>
                 </div>
+                <hr/>
+                <div>
+                    이번달매출 ${thisMonthTotal}
+                </div>
+
 
 
 
@@ -95,7 +103,28 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <script>
-   
+    
+     //파일이름을 비동기식으로 가져오기
+     $(document).ready(function() {
+         
+         <c:forEach var="cnt" items="${foodOfMonth}">
+             var seq = "${cnt.seq}";
+             sendAjaxRequest(seq);
+         </c:forEach>
+         function sendAjaxRequest(seq){
+             $.ajax({
+                 url:"/getFileName",
+                 method: 'post',
+                 data: {'seq': seq},
+                 dataType: 'text'
+             }).done(function(data){
+                 $("#" + seq + "_img").attr("src",data);
+             });
+         }
+     
+     })
+
+
 </script>
 
 </body>

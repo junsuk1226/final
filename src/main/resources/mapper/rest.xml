@@ -12,16 +12,23 @@
 <!--(휴게소 관리자 계정)m_name으로 휴게소 프로필로 사용할 사진 가져오기-->
 <!--아직 안만듬-->
 
-
-<!--해당 휴게소에서 이번 달 가장 많이 팔린 메뉴 구하기-->
 <!--현재 달과 같은 paylog만 가져오기-->
-<select id="getSameMonth_paylog" resultType="com.kdt.finalproject.vo.PayVO">
+<select id="getSameMonth_paylog" resultType="com.kdt.finalproject.vo.PayVO" parameterType="String">
   SELECT * FROM paylog
-  WHERE month(p_date) = month(NOW())
+  WHERE month(p_date) = month(NOW()) and year(p_date) = year(NOW()) and restNm = #{restNm}
 </select>
 
+<!--현재 달 총 매출액-->
+<select id="getSameMonth_totalCost" resultType="int" parameterType="String">
+  SELECT SUM(totalCost) FROM paylog
+  WHERE month(p_date) = month(NOW()) and year(p_date) = year(NOW()) and restNm = #{restNm}
+</select>
 
-
-
+<!--월별 매출-->
+<select id="getAllMonthTotal" resultType="com.kdt.finalproject.vo.MonthTotalVO" parameterType="String">
+  SELECT year(p_date) AS year, month(p_date) AS month, SUM(totalCost) AS monthTotal FROM paylog
+  WHERE restNm = #{restNm}
+  GROUP BY month(p_date), year(p_date)
+</select>
 
 </mapper>

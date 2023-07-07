@@ -1,5 +1,6 @@
 package com.kdt.finalproject.service;
 
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kdt.finalproject.mapper.RestMapper;
+import com.kdt.finalproject.vo.MonthTotalVO;
 import com.kdt.finalproject.vo.OrderCntVO;
 import com.kdt.finalproject.vo.PayVO;
 import com.kdt.finalproject.vo.RestPhotoVO;
@@ -25,9 +27,26 @@ public class RestService {
     return rpvo;
   }
 
+  // 월별 매출
+  public MonthTotalVO[] getAllMonthTotal(String restNm) {
+    List<MonthTotalVO> list = r_Mapper.getAllMonthTotal(restNm);
+    MonthTotalVO[] ar = null;
+    if (list != null) {
+      ar = new MonthTotalVO[list.size()];
+      list.toArray(ar);
+    }
+    return ar;
+  }
+
+  // 이번달 총 매출
+  public int getSameMonth_totalCost(String restNm) {
+    int cost = r_Mapper.getSameMonth_totalCost(restNm);
+    return cost;
+  }
+
   // 이번달에 가장 많이 팔린 메뉴 구하기
-  public OrderCntVO[] getSameMonth_paylog() {
-    List<PayVO> list = r_Mapper.getSameMonth_paylog();
+  public OrderCntVO[] getSameMonth_paylog(String restNm) {
+    List<PayVO> list = r_Mapper.getSameMonth_paylog(restNm);
 
     OrderCntVO[] ar = null; // 2개 이상 나올 수 있으므로 배열로 보내자...............
 
