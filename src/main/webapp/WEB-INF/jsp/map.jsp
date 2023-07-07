@@ -300,7 +300,7 @@
 							else if(weatherContents.includes("눈"))
 							var imgSrc = "../images/snow.png"; 
 							else
-							var imgSrc = "../images/cloud	.png"; 
+							var imgSrc = "../images/cloud.png"; 
 
 							var icon = "../images/free-icon-celsius-481431.png";
 
