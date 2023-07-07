@@ -1,6 +1,8 @@
 package com.kdt.finalproject.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +28,7 @@ import com.kdt.finalproject.service.ReviewService;
 import com.kdt.finalproject.util.Paging;
 import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MemVO;
+import com.kdt.finalproject.vo.MonthTotalVO;
 import com.kdt.finalproject.vo.OrderCntVO;
 import com.kdt.finalproject.vo.ReviewVO;
 
@@ -131,9 +134,25 @@ public class AdminController {
     @RequestMapping("/admin/main")
     public ModelAndView adminMainTest() {
         ModelAndView mv = new ModelAndView("/admin/main");
-        OrderCntVO[] ar = res_Service.getSameMonth_paylog();
 
-        mv.addObject("foodOfMonth", ar);
+        Object obj = session.getAttribute("mvo");
+        if (obj != null) {
+            MemVO mvo = (MemVO) obj;
+            String restNm = mvo.getM_name(); // 휴게소이름 받아오기
+
+            // 많이 팔린 메뉴
+            OrderCntVO[] ar = res_Service.getSameMonth_paylog(restNm);
+            mv.addObject("foodOfMonth", ar);
+
+            // 이번달 총매출
+            int cost = res_Service.getSameMonth_totalCost(restNm);
+            mv.addObject("thisMonthTotal", cost);
+
+            // 연도별 - 월별 매출
+            MonthTotalVO[] mar = res_Service.getAllMonthTotal(restNm);
+            // 연도를 key로 가지는 map 생성
+            Map<String, List<MonthTotalVO>> map = new HashMap<>()
+        }
 
         return mv;
     }
