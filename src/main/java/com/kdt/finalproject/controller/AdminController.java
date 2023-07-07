@@ -152,6 +152,14 @@ public class AdminController {
             MonthTotalVO[] mar = res_Service.getAllMonthTotal(restNm);
             // 연도를 key로 가지는 map 생성
             Map<String, List<MonthTotalVO>> map = new HashMap<>();
+
+            for (MonthTotalVO tvo : mar) {
+                String year = tvo.getYear();
+
+                List<MonthTotalVO> yearList = map.computeIfAbsent(year, k -> new ArrayList<>());
+                yearList.add(tvo);
+            }
+            mv.addObject("yearMonthTotal", map);
         }
 
         return mv;

@@ -82,8 +82,19 @@
                 <hr/>
                 <div>
                     이번달매출 ${thisMonthTotal}
+                    <br/>
+                    <c:forEach var="total" items="${yearMonthTotal}">
+                        <c:set var="year" value="${total.key}" />
+                        <c:if test="${year == 2023}">
+                            <h2>${year}년 매출 정보</h2>
+                            <c:forEach var="monthSale" items="${total.value}">
+                                ${monthSale.month}월
+                                ${monthSale.monthTotal}
+                            </c:forEach>
+                        </c:if>
+                    </c:forEach>
                 </div>
-
+                
 
 
 

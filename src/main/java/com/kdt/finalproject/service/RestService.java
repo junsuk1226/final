@@ -44,6 +44,15 @@ public class RestService {
     return cost;
   }
 
+  // 이번달 총 주문 건수(메뉴 낱개당 1)
+  public int getthisMonthCnt(String restNm) {
+    List<PayVO> list = r_Mapper.getSameMonth_paylog(restNm);
+    int cnt = 0;
+
+    return cnt;
+
+  }
+
   // 이번달에 가장 많이 팔린 메뉴 구하기
   public OrderCntVO[] getSameMonth_paylog(String restNm) {
     List<PayVO> list = r_Mapper.getSameMonth_paylog(restNm);
