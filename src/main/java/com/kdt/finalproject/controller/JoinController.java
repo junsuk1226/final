@@ -147,7 +147,7 @@ public class JoinController {
                         mlvo.setRefresh_token(mvo.getRefresh_token());
                         mlvo.setM_phone(mvo.getM_phone());
                         mlvo.setEditor("M");
-                        mlvo.setMl_var2("개인정보저장");
+                        mlvo.setMl_information("개인정보저장");
 
                         memLogService.join_log(mlvo);
                     }
@@ -266,7 +266,7 @@ public class JoinController {
                         mlvo.setRefresh_token(mvo.getRefresh_token());
                         mlvo.setM_phone(mvo.getM_phone());
                         mlvo.setEditor("M");
-                        mlvo.setMl_var2("개인정보저장");
+                        mlvo.setMl_information("개인정보저장");
 
                         memLogService.join_log(mlvo);
                     }
@@ -322,7 +322,7 @@ public class JoinController {
             mlvo.setRefresh_token(mvo.getRefresh_token());
             mlvo.setM_phone(mvo.getM_phone());
             mlvo.setEditor("M");
-            mlvo.setMl_var2("개인정보저장");
+            mlvo.setMl_information("개인정보저장");
 
             memLogService.join_log(mlvo);
         }

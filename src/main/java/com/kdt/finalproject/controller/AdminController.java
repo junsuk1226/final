@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,6 +21,7 @@ import com.kdt.finalproject.service.FoodService;
 import com.kdt.finalproject.service.JoinService;
 import com.kdt.finalproject.service.MemService;
 import com.kdt.finalproject.service.ReviewService;
+import com.kdt.finalproject.util.Paging;
 import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.ReviewVO;
@@ -198,12 +200,34 @@ public class AdminController {
     }
 
     @RequestMapping("/admin/review")
-    public ModelAndView adminReview() {
-        ModelAndView mv = new ModelAndView();
+    @ResponseBody
+    public ModelAndView adminReview(String date, String cPage) {
         MemVO mvo = (MemVO) session.getAttribute("mvo");
-        ReviewVO[] rvo = r_Service.getRestReviewList(mvo.getM_name());
+        ModelAndView mv = new ModelAndView();
+        Map<String, String> map = new HashMap<>();
+        map.put("r_restNm", mvo.getM_name());
+        map.put("date", date);
+        int nowPage = 1;
 
+        int totalRecord = r_Service.adminTotalCount(mvo.getM_name());
+
+        if (cPage != null)
+            nowPage = Integer.parseInt(cPage);
+
+        Paging page = new Paging(nowPage, totalRecord, 10, 5);
+        String pageCode = page.getSb().toString();
+        // -------------------------------
+        map.put("begin", String.valueOf(page.getBegin()));
+        map.put("end", String.valueOf(page.getEnd()));
+        ReviewVO[] rvo = r_Service.adminReview(map); // JSP에서 표현할 목록 가져오기
+
+        mv.addObject("date", date);
+        mv.addObject("page", page);
+        mv.addObject("pageCode", pageCode);
         mv.addObject("rvo", rvo);
+        mv.addObject("totalRecord", totalRecord);// 총 게시물의 수
+        mv.addObject("nowPage", nowPage);// 현재페이지 값
+        mv.addObject("blockList", page.getNumPerPage());// 한페이지에 표현할 게시물 수
         mv.setViewName("admin/review");
 
         return mv;

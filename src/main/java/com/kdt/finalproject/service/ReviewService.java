@@ -118,4 +118,20 @@ public class ReviewService {
         return ar;
     }
 
+    // 관리자 리뷰페이지
+    public ReviewVO[] adminReview(Map<String, String> map) {
+        List<ReviewVO> r_list = r_Mapper.adminReview(map);
+
+        ReviewVO[] ar = null;
+        if (r_list != null && r_list.size() > 0) {
+            ar = new ReviewVO[r_list.size()];
+            r_list.toArray(ar);
+        }
+
+        return ar;
+    }
+
+    public int adminTotalCount(String r_restNm) {
+        return r_Mapper.adminTotalCount(r_restNm);
+    }
 }

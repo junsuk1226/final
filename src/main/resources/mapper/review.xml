@@ -127,4 +127,34 @@
   WHERE m_idx=#{m_idx} AND r_score ='1' AND r_status = '0'
 </select>
 
+<!-- 관리자 페이지 날짜별 리뷰 목록 가져오기 -->
+<select id="adminReview" parameterType="map" resultType="com.kdt.finalproject.vo.ReviewVO">
+  	SELECT * FROM(
+		SELECT @RN:=@RN+1 AS rnum,a.* FROM(
+      SELECT * FROM final.review
+      WHERE r_restNm = #{r_restNm} and r_status = 0
+    ) a, (SELECT @RN:=0) b
+	) c WHERE c.rnum BETWEEN #{begin} AND #{end}
+     <if test="date != null">
+      AND DATE_FORMAT(r_writedate,'%Y-%m-%d') = #{date}
+      </if> 
+  
+</select>
+
+<!--관리자 페이지 리뷰 총 갯수-->
+<select id="adminTotalCount" resultType="int" parameterType="String">
+  	SELECT COUNT(*) FROM final.review
+    WHERE r_status = 0 AND r_restNm = #{r_restNm}
+</select>
+
+
+<!--관리자 페이지 리뷰 날짜별 총 갯수-->
+<!-- <select id="adminTotalCount" resultType="int" parameterType="Map">
+  	SELECT COUNT(*) FROM final.review
+    WHERE r_status = 0 AND r_restNm = #{r_restNm}
+    <if test="date != null">
+      AND DATE_FORMAT(r_writedate,'%Y-%m-%d') = #{date}
+      </if> 
+</select> -->
+
 </mapper>

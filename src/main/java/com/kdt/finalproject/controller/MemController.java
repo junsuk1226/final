@@ -112,7 +112,7 @@ public class MemController {
 					mlvo.setRefresh_token(vo.getRefresh_token());
 					mlvo.setM_phone(vo.getM_phone());
 					mlvo.setEditor("M");
-					mlvo.setMl_var2("개인정보수정");
+					mlvo.setMl_information("개인정보수정");
 
 					memLogService.join_log(mlvo);
 				}
@@ -154,7 +154,7 @@ public class MemController {
 					mlvo.setRefresh_token(mvo.getRefresh_token());
 					mlvo.setM_phone(mvo.getM_phone());
 					mlvo.setEditor("M");
-					mlvo.setMl_var2("비밀번호변경");
+					mlvo.setMl_information("비밀번호변경");
 
 					memLogService.join_log(mlvo);
 				}
