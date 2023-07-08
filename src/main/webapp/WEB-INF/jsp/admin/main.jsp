@@ -13,6 +13,34 @@
 <link rel="stylesheet" href="../css/admin.css" />
 <!--차트 js-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+<style>
+    .intro {
+  height: 100%;
+}
+
+table td,
+table th {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card {
+  border-radius: .5rem;
+}
+
+.table-scroll {
+  border-radius: .5rem;
+}
+
+thead {
+  top: 0;
+  position: sticky;
+}
+
+</style>
+
+
 </head>
 <body>
 
@@ -125,6 +153,45 @@
                 </div>
                 <div class="row justify-content-center mt-5">
                     <!--테이블-->
+                    <section class="intro">
+                        <div class="bg-image h-100" style="">
+                          <div class="mask d-flex align-items-center h-100">
+                            <div class="container">
+                              <div class="row justify-content-center">
+                                <div class="col-12">
+                                  
+                                      <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 500px">
+                                        <table class="table table-dark mb-0">
+                                          <thead style="background-color: #393939;">
+                                            <tr class="text-uppercase text-success">
+                                              <th scope="col">Class name</th>
+                                              <th scope="col">Type</th>
+                                              <th scope="col">Hours</th>
+                                              <th scope="col">Trainer</th>
+                                              <th scope="col">Spots</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <!-- <c:forEach > -->
+                                                <tr>
+                                                  <td>Like a butterflies</td>
+                                                  <td>Boxing</td>
+                                                  <td>9:00 AM - 11:00 AM</td>
+                                                  <td>Aaron Chapman</td>
+                                                  <td>10</td>
+                                                </tr>
+                                            <!-- </c:forEach> -->
+                                          </tbody>
+                                        </table>
+                                      
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                      
                 </div>
 
 
@@ -226,31 +293,31 @@
 			labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
 			datasets: [{
                 label: '${thisYear}',
-				backgroundColor: 'rgba(0, 10, 130, .3)', 
+				backgroundColor: 'rgba(0, 166, 116, .3)', 
 				fill : "start",
-				borderColor: 'rgb(0, 10, 130)', 
+				borderColor: 'rgb(0, 166, 116)', 
 				borderWidth: 3, 
 				lineTension: .5,
-				pointBackgroundColor: "rgb(0, 10, 130)",
-				pointBorderColor: "rgb(0, 10, 130)", 
+				pointBackgroundColor: "rgb(0, 166, 116)",
+				pointBorderColor: "rgb(0, 166, 116)", 
 				hitRadius: 25,
 				pointBorderWidth: 2,
 				pointStyle: pointImages,
-				data: [20, 10, 18, 15, 23, 14],
+				data: [20, 18, 18, 17, 23, 14, 11],
 			},{
                 
                 label: '${thisYear-1}',
-				backgroundColor: 'rgba(105, 0, 132, .2)',
+				backgroundColor: 'rgba(249, 213, 71, .2)',
 				fill : "start",
-				borderColor: 'rgba(105, 0, 132, .3)', 
+				borderColor: 'rgba(249, 213, 71, .3)', 
 				borderWidth: 3,
 				lineTension: .5, 
-				pointBackgroundColor: "rgba(105, 0, 132, .2)",
-				pointBorderColor: "rgba(105, 0, 132, .2)",
+				pointBackgroundColor: "rgba(249, 213, 71, .2)",
+				pointBorderColor: "rgba(249, 213, 71, .2)",
 				hitRadius: 25, 
 				pointBorderWidth: 2,
 				pointStyle: pointImages, 
-				data: [10, 20, 8, 5],
+				data: [10, 20, 21, 15,20, 17, 18, 15, 23, 14, 18, 10]
 
             }]
 		},
@@ -289,8 +356,8 @@
             labels: ["${foodOfMonth.foodNm}김치볶음밥", "기타 메뉴"],
             datasets: [{
                 data: [50, 100],
-                backgroundColor: ["#0080ff", "#cccccc"],
-                hoverBackgroundColor: ["#3399ff", "#EEEEEE"]
+                backgroundColor: ["#00A674", "#cccccc"],
+                hoverBackgroundColor: ["#3CE6B3", "#EEEEEE"]
             }]
             },
             options: {
