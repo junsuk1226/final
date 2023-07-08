@@ -153,44 +153,7 @@ thead {
                 </div>
                 <div class="row justify-content-center mt-5">
                     <!--테이블-->
-                    <section class="intro">
-                        <div class="bg-image h-100" style="">
-                          <div class="mask d-flex align-items-center h-100">
-                            <div class="container">
-                              <div class="row justify-content-center">
-                                <div class="col-12">
-                                  
-                                      <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 500px">
-                                        <table class="table table-dark mb-0">
-                                          <thead style="background-color: #393939;">
-                                            <tr class="text-uppercase text-success">
-                                              <th scope="col">Class name</th>
-                                              <th scope="col">Type</th>
-                                              <th scope="col">Hours</th>
-                                              <th scope="col">Trainer</th>
-                                              <th scope="col">Spots</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody>
-                                            <!-- <c:forEach > -->
-                                                <tr>
-                                                  <td>Like a butterflies</td>
-                                                  <td>Boxing</td>
-                                                  <td>9:00 AM - 11:00 AM</td>
-                                                  <td>Aaron Chapman</td>
-                                                  <td>10</td>
-                                                </tr>
-                                            <!-- </c:forEach> -->
-                                          </tbody>
-                                        </table>
-                                      
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </section>
+                    
                       
                 </div>
 
