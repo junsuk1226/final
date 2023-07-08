@@ -56,17 +56,26 @@
             
             <div class="container-fluid">
                 <div class="row justify-content-center mt-5">
-                    <div class="col-md-11 mb-3 text-start">
-                        <div class="">
-                            <img src="" >   
-                            
+                    <div class="col-md-10 mb-5 text-start d-flex align-items-center">
+                        <div style="width: 100px; height: 100px;" class="me-4">
+                          <img src="../images/경부선0010-19-000003.jpg" class="rounded-circle" style="object-fit: cover; width: 100%; height: 100%;">
                         </div>
-                        <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
-                                ${sessionScope.mvo.m_name}<span class="text-muted"></span>
-                        </h2>
+                        <div class="d-flex flex-column justify-content-center" style="width: auto;">
+                          <h2 class="lh-base ms-1 text-center" style="font-family: 'suite';">죽전(서울)휴게소${sessionScope.mvo.m_name}</h2>
+                        </div>
+                    </div>  
+                    <div class = "card col-md-10 shadow rounded p-3 " style="border: none;">
+                        <div class = "card-body">
+                            <div>
+                                <span>이번 달 매출</span>
+                            </div>
+                        </div> 
                     </div>
                 </div>
-                <div>
+
+
+
+                <!-- <div>
                     <c:forEach var="cnt" items="${foodOfMonth}">
                         <c:if test="${cnt ne null }" > 
                             <div class="" style="width: 100px; height: 100px;">
@@ -94,9 +103,15 @@
                         </c:if>
                     </c:forEach>
                 </div>
-                
+                <div>
+                    최근 리뷰
+                        <c:forEach var="re" items="${recentReview}">
+                            <img class="rounded" src="../editor_upload/${re.r_file}" style="object-fit: cover; width: 100%; height: 100%;">
+                            ${re.r_writedate}/${re.r_content}
+                        </c:forEach>
+                </div>
 
-
+ -->
 
 
 

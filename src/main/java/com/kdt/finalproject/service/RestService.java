@@ -13,6 +13,7 @@ import com.kdt.finalproject.vo.MonthTotalVO;
 import com.kdt.finalproject.vo.OrderCntVO;
 import com.kdt.finalproject.vo.PayVO;
 import com.kdt.finalproject.vo.RestPhotoVO;
+import com.kdt.finalproject.vo.ReviewVO;
 
 @Service
 public class RestService {
@@ -37,6 +38,18 @@ public class RestService {
     }
     return ar;
   }
+
+  //최근 리뷰
+  public ReviewVO[] getRecentReview(String restNm){
+    List<ReviewVO> list = r_Mapper.getRecentReview(restNm);
+    ReviewVO[] ar = null;
+    if(list != null){
+      ar = new ReviewVO[list.size()];
+      list.toArray(ar);
+    }
+    return ar;
+  }
+
 
   // 이번달 총 매출
   public int getSameMonth_totalCost(String restNm) {

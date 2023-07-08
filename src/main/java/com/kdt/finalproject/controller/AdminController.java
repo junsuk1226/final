@@ -1,6 +1,9 @@
 package com.kdt.finalproject.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -134,6 +137,11 @@ public class AdminController {
     @RequestMapping("/admin/main")
     public ModelAndView adminMainTest() {
         ModelAndView mv = new ModelAndView("/admin/main");
+        //현재 날짜 구하기
+        Calendar calendar = Calendar.getInstance();
+        int currentMonth = calendar.get(Calendar.MONTH) + 1;
+        mv.addObject("thisMonth", currentMonth);
+
 
         Object obj = session.getAttribute("mvo");
         if (obj != null) {
@@ -160,6 +168,10 @@ public class AdminController {
                 yearList.add(tvo);
             }
             mv.addObject("yearMonthTotal", map);
+
+            //최근 리뷰 5개
+            ReviewVO[] r_ar = res_Service.getRecentReview(restNm);
+            mv.addObject("recentReview", r_ar);
         }
 
         return mv;

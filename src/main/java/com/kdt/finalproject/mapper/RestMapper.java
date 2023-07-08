@@ -5,6 +5,7 @@ import java.util.List;
 import com.kdt.finalproject.vo.MonthTotalVO;
 import com.kdt.finalproject.vo.PayVO;
 import com.kdt.finalproject.vo.RestPhotoVO;
+import com.kdt.finalproject.vo.ReviewVO;
 
 public interface RestMapper {
 
@@ -15,5 +16,7 @@ public interface RestMapper {
     int getSameMonth_totalCost(String restNm);
 
     List<MonthTotalVO> getAllMonthTotal(String restNm);
+
+    List<ReviewVO> getRecentReview(String restNm);
 
 }
