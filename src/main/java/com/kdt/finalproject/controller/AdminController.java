@@ -1,9 +1,7 @@
 package com.kdt.finalproject.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,11 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.kdt.finalproject.service.FoodService;
 import com.kdt.finalproject.service.JoinService;
 import com.kdt.finalproject.service.MemService;
@@ -140,17 +136,24 @@ public class AdminController {
         //현재 날짜 구하기
         Calendar calendar = Calendar.getInstance();
         int currentMonth = calendar.get(Calendar.MONTH) + 1;
+        int currentYear = calendar.get(Calendar.YEAR);
         mv.addObject("thisMonth", currentMonth);
+        mv.addObject("thisYear", currentYear);
 
 
         Object obj = session.getAttribute("mvo");
         if (obj != null) {
             MemVO mvo = (MemVO) obj;
             String restNm = mvo.getM_name(); // 휴게소이름 받아오기
+            
+            //전체 메뉴 주문 횟수
+            int cnt = res_Service.getthisMonthCnt(restNm);
+            mv.addObject("thisMonthCnt", cnt); 
 
-            // 많이 팔린 메뉴
+            // 많이 팔린 메뉴 하나만
             OrderCntVO[] ar = res_Service.getSameMonth_paylog(restNm);
-            mv.addObject("foodOfMonth", ar);
+            OrderCntVO ovo = ar[0];
+            mv.addObject("foodOfMonth", ovo);
 
             // 이번달 총매출
             int cost = res_Service.getSameMonth_totalCost(restNm);

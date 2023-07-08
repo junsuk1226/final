@@ -19,4 +19,6 @@ public interface RestMapper {
 
     List<ReviewVO> getRecentReview(String restNm);
 
+    
+
 }

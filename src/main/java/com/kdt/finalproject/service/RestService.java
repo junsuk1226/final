@@ -61,9 +61,26 @@ public class RestService {
   public int getthisMonthCnt(String restNm) {
     List<PayVO> list = r_Mapper.getSameMonth_paylog(restNm);
     int cnt = 0;
+    
+    PayVO[] ar= null;
+    if(list != null){
+      ar = new PayVO[list.size()];
+      list.toArray(ar);
 
+      ArrayList<Integer> cntlist = new ArrayList<>();
+      for(int i =0; i< ar.length; i++){
+        String seqLine = ar[i].getSeq();
+
+        String[] sAr = seqLine.split("/");
+        for(String seq:sAr){
+          cntlist.add(Integer.parseInt(seq));
+        }
+      }
+      for(int i: cntlist){
+        cnt+=i;
+      }
+    }
     return cnt;
-
   }
 
   // 이번달에 가장 많이 팔린 메뉴 구하기
