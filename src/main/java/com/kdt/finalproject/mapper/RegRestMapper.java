@@ -40,4 +40,9 @@ public interface RegRestMapper {
     // 현재 가입되어있는 휴게소 정보
     List<RegRestVO> getRegRestList();
 
+    //현재 가입중 휴게소 수
+    int getRegRestCnt();
+
+    //현재 승인 대기중 휴게소 수
+    int waitRegRestCnt();
 }

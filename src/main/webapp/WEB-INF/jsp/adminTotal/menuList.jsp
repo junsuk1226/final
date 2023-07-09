@@ -44,7 +44,7 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/menuList" class="nav-link text-white">
+                <a href="/adminTotal/editMemLog" class="nav-link text-white">
                 일반회원 수정내역
                 </a>
             </li>

@@ -63,20 +63,65 @@
 
         <!-- 메인 컨텐츠 내용 -->
         <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
-            
-            홈
+            <div class="container" style="width:100%; margin: 0">
+
+                <div class="row my-3">
+                    <div class="col-12">
+                        <h4>휴게소 현황</h4>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <canvas id="myChart1"></canvas>
+                            </div>
+                            <div class="card-footer text-center text-dark">
+                              가입 휴게소 현황
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
             
         </div>
         <!-- 메인 컨텐츠 끝 -->
     </div>
 
+    <input id="all" type="hidden" value="${all}">
+    <input id="reg_cnt" type="hidden" value="${reg_cnt}">
+    <input id="wait_cnt" type="hidden" value="${wait_cnt}">
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
-   
-</script>
+
+    var reg_cnt = $('#reg_cnt').val();
+    var wait_cnt = $('#wait_cnt').val();
+    var all = $('#all').val() - reg_cnt - wait_cnt;
+
+  data = {
+        datasets: [{
+            backgroundColor: ['#aaaaaa','#6495ED','#F4A460'],
+            data: [all, reg_cnt, wait_cnt]
+        }],       
+        // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
+        labels: ['비가입','운영중','가입대기'] 
+    };
+
+  // 가운데 구멍이 없는 파이형 차트
+  var ctx1 = document.getElementById("myChart1");
+  var myPieChart = new Chart(ctx1, {
+      type: 'pie',
+      data: data,
+      options: {}
+  });
+
+  </script>
 
 </body>
 </html>
