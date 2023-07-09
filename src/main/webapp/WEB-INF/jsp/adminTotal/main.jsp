@@ -10,6 +10,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="../css/admin.css" />
+<link rel="stylesheet" href="../css/adminTotal.css" />
 
 </head>
 <body>
@@ -63,39 +64,39 @@
 
         <!-- 메인 컨텐츠 내용 -->
         <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
-            <div class="container" style="width:100%; margin: 0">
+            <div class="container adminTotal-grapharea" style="width:100%; margin: 10">
+                <div class="container" style="margin: 0 10px;">
 
-                <div class="row my-3">
-                    <div class="col-12">
-                        <h4>휴게소 현황</h4>
+                    <div class="row my-3">
+                        <div class="col-12">
+                            <h1>휴게소 현황</h1>
+                        </div>
                     </div>
-                </div>
-                <div class="row my-2">
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <canvas id="myChart1"></canvas>
+                    <div class="row my-2">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <canvas id="myChart1"></canvas>
+                                </div>
+                                <div class="card-footer text-center text-dark">
+                                <h4 style="margin: 0;">가입 휴게소 현황</h4>
+                                </div>
                             </div>
-                            <div class="card-footer text-center text-dark">
-                              가입 휴게소 현황
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <canvas id="myChart2"></canvas>
+                                </div>
+                                <div class="card-footer text-center text-dark">
+                                    <h4 style="margin: 0;">월별 회원 가입 수</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <canvas id="myChart2"></canvas>
-                            </div>
-                            <div class="card-footer text-center text-dark">
-                              월별 회원 가입 수
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
 
-            
+                </div>
+            </div>  
         </div>
         <!-- 메인 컨텐츠 끝 -->
     </div>
