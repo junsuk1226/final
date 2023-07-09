@@ -299,36 +299,6 @@ public class AdminTotalController {
         r_Service.refuse(m_id, map);
     }
 
-    // // 회원정보 수정(관리자)
-    // @RequestMapping("/adminTotal/editAdmin")
-    // public ModelAndView getRegRestList() {
-
-    // ModelAndView mv = new ModelAndView();
-
-    // RegRestVO[] ar = r_Service.getRegRestList();
-
-    // if (ar != null) {
-    // mv.addObject("ar", ar);
-    // mv.setViewName("/adminTotal/editAdmin");
-    // }
-
-    // return mv;
-    // }
-
-    // // 어드민 정보 수정
-    // @RequestMapping("/editAdminInfo")
-    // public ModelAndView editAdminInfo(String RestNm) {
-
-    // ModelAndView mv = new ModelAndView();
-
-    // RegRestVO rvo = r_Service.getRegRest(RestNm);
-
-    // mv.addObject("rvo", rvo);
-    // mv.setViewName("/adminTotal/editAdminInfo");
-
-    // return mv;
-    // }
-
     // 어드민 정보수정 로그
     @RequestMapping("/adminTotal/adminEditLog")
     public ModelAndView viewRegStatus(String searchType, String searchValue, String cPage) {

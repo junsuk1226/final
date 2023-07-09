@@ -81,8 +81,18 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <canvas id="myChart2"></canvas>
+                            </div>
+                            <div class="card-footer text-center text-dark">
+                              월별 가입 추세
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
 
             
