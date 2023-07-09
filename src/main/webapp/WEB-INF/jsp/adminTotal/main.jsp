@@ -87,7 +87,7 @@
                                 <canvas id="myChart2"></canvas>
                             </div>
                             <div class="card-footer text-center text-dark">
-                              월별 가입 추세
+                              월별 회원 가입 수
                             </div>
                         </div>
                     </div>
@@ -104,6 +104,10 @@
     <input id="reg_cnt" type="hidden" value="${reg_cnt}">
     <input id="wait_cnt" type="hidden" value="${wait_cnt}">
 
+    <c:forEach var="mjs" items="${monthly}" varStatus="loop">
+        <input id="month${loop.index}" type="hidden" value="${mjs.joinCount}">
+    </c:forEach>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -114,22 +118,62 @@
     var wait_cnt = $('#wait_cnt').val();
     var all = $('#all').val() - reg_cnt - wait_cnt;
 
-  data = {
-        datasets: [{
-            backgroundColor: ['#aaaaaa','#6495ED','#F4A460'],
-            data: [all, reg_cnt, wait_cnt]
-        }],       
-        // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
-        labels: ['비가입','운영중','가입대기'] 
-    };
+    data = {
+            datasets: [{
+                backgroundColor: ['#aaaaaa','#6495ED','#F4A460'],
+                data: [all, reg_cnt, wait_cnt]
+            }],       
+            // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
+            labels: ['비가입','운영중','가입대기'] 
+        };
 
-  // 가운데 구멍이 없는 파이형 차트
-  var ctx1 = document.getElementById("myChart1");
-  var myPieChart = new Chart(ctx1, {
-      type: 'pie',
-      data: data,
-      options: {}
-  });
+    // 가운데 구멍이 없는 파이형 차트
+    var ctx1 = document.getElementById("myChart1");
+    var myPieChart = new Chart(ctx1, {
+        type: 'pie',
+        data: data,
+        options: {}
+    });
+
+
+    var monthly = [];  // 빈 배열 생성
+
+    for (var i = 0; i < 12; i++) {
+        var value = $('#month' + i).val();
+        monthly.push(value);  // 배열에 값 추가
+        console.log($('#month'+i).val());
+    }
+
+    var ctx = document.getElementById('myChart2').getContext('2d');
+    var chart = new Chart(ctx, {
+      // 챠트 종류를 선택
+      type: 'line',
+
+      // 챠트를 그릴 데이타
+      data: {
+        labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        datasets: [{
+            label: '',
+            backgroundColor: 'transparent',
+            borderColor: 'red',
+            data: monthly
+        }]
+      },
+      // 옵션
+      options: {
+        legend: {
+        	display: false
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                }
+            }]
+            
+        }
+      }
+    });
 
   </script>
 

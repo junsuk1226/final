@@ -3,7 +3,9 @@ package com.kdt.finalproject.controller;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kdt.finalproject.service.FoodService;
 import com.kdt.finalproject.service.MemService;
 import com.kdt.finalproject.service.RegRestService;
+import com.kdt.finalproject.util.MonthlyJoinStats;
 import com.kdt.finalproject.util.Paging;
 import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MemLogVO;
@@ -106,6 +109,9 @@ public class AdminTotalController {
 
         int wait_cnt = r_Service.waitRegRestCnt();
 
+        List<MonthlyJoinStats> monthly = m_Service.geMonthlyJoinStats();
+        
+        mv.addObject("monthly", monthly);
         mv.addObject("all", all);
         mv.addObject("reg_cnt", reg_cnt);
         mv.addObject("wait_cnt",wait_cnt);
