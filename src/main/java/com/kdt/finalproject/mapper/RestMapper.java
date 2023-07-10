@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kdt.finalproject.vo.MonthTotalVO;
 import com.kdt.finalproject.vo.PayVO;
+import com.kdt.finalproject.vo.RegRestVO;
 import com.kdt.finalproject.vo.RestPhotoVO;
 import com.kdt.finalproject.vo.ReviewVO;
 
@@ -19,6 +20,6 @@ public interface RestMapper {
 
     List<ReviewVO> getRecentReview(String restNm);
 
-    
+    RegRestVO getRestPic(String restNm);
 
 }

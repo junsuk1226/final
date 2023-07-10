@@ -27,27 +27,32 @@
             <hr> <!--구분선-->
 
             <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a href="/admin/main" class="nav-link text-white active">
-                홈
-                </a>
-            </li>
-            <li>
-                <a href="/admin/menu" class="nav-link text-white">
-                메뉴관리
-                </a>
-            </li>
-            <li>
-                <a href="/admin/sales" class="nav-link text-white">
-                매출관리
-                </a>
-            </li>
-            <li>
-                <a href="/admin/review" class="nav-link text-white">
-                리뷰관리
-                </a>
-            </li>
-            </ul>
+                <li class="nav-item">
+                    <a href="/admin/main" class="nav-link text-white">
+                    홈
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/menu" class="nav-link text-white active">
+                    메뉴관리
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/orderlist" class="nav-link text-white">
+                    주문내역 관리
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/sales" class="nav-link text-white">
+                    매출관리
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/review" class="nav-link text-white">
+                    리뷰관리
+                    </a>
+                </li>
+                </ul>
 
             <hr><!--구분선-->
 
@@ -58,12 +63,16 @@
 
         <!-- 메인 컨텐츠 내용 -->
         <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
-            
             <div class="container-fluid">
                 <div class="row justify-content-center mt-5">
                     <div class="col-md-10 mb-5 text-start d-flex align-items-center">
                         <div style="width: 120px; height: 120px;" class="me-4">
-                          <img src="../images/경부선0010-19-000003.jpg" class="rounded-circle" style="object-fit: cover; width: 100%; height: 100%;">
+                            <c:if test="${rest.reg_image ne null}">
+                                <img src="${rest.reg_image}" class="rounded-circle" style="object-fit: cover; width: 100%; height: 100%;">
+                            </c:if>
+                            <c:if test="${rest.reg_image eq null}">
+                                <img src="../main_images/no_pic.png" class="rounded-circle" style="object-fit: cover; width: 100%; height: 100%;">
+                            </c:if>
                         </div>
                         <div class="d-flex flex-column justify-content-center" style="width: auto;">
                           <h2 class="lh-base ms-1 text-center" style="font-family: 'suite'; font-size: xx-large;">${sessionScope.mvo.m_name}</h2>
@@ -106,7 +115,9 @@
                                                 <p class="ms-3" style="font-family: suite; font-size:larger;"> ${foodOfMonth.foodNm}</p>
                                             </div>
                                             <div class="text-end col-md-12">
-                                                <span class="text-muted me-2" style="font-family: suite;">총 ${foodOfMonth.cnt}회 주문</span>
+                                                <span class="text-muted me-2" style="font-family: suite;">
+                                                    총 <fmt:formatNumber value="${foodOfMonth.foodCost * foodOfMonth.cnt}" pattern="#,###,###"/>원 / ${foodOfMonth.cnt}회 주문
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -115,16 +126,20 @@
                         </div>
                         
                     </div>
-                    <div class = "card col-md-5 shadow rounded p-3 me-3 mt-5 " style="border: none;">
+                    <div class = "card col-md-4 shadow rounded p-3 me-3 mt-5 " style="border: none; ">
                         <span class="ms-1" style="font-size: medium; color: #00A674; font-family: suite; font-weight: bold;">인기 메뉴 주문 비율</span>
-                        <div class = "card-body d-flex">
-                            <canvas style="width: 300px; height: 200px;" id="pieChart"></canvas>
-                            <div class="vr"></div>
+                        <div class = "card-body d-flex justify-content-around">
+                            <div>
+                                <canvas style="width: 200px; height: 200px;" id="pieChart"></canvas>
+                            </div>
+                            <div class="me-2">
+                                <canvas class="ms-1" style="width: 200px; height: 200px;" id="myChart"></canvas>
+                            </div>
                         </div> 
                     </div>
                 </div>
                 <div class="row justify-content-center mt-5">
-                    <div class="col-md-10 ms-5">
+                    <div class="col-md-9 ms-2 ">
                         <h5 style="font-family: suite;">전년도 대비 월별 매출</h5>
                     </div>
                     <div class="col-md-10">
@@ -170,11 +185,6 @@
                         </div>
                         </c:forEach>
                     </div>
-                   
-
-
-                    
-                      
                 </div>
 
 
@@ -252,8 +262,8 @@
 				borderColor: 'rgba(249, 213, 71, .3)', 
 				borderWidth: 3,
 				lineTension: .5, 
-				pointBackgroundColor: "rgba(249, 213, 71, .2)",
-				pointBorderColor: "rgba(249, 213, 71, .2)",
+				pointBackgroundColor: "rgba(249, 213, 71, .3)",
+				pointBorderColor: "rgba(249, 213, 71, .3)",
 				hitRadius: 25, 
 				pointBorderWidth: 2,
 				pointStyle: pointImages, 
@@ -308,6 +318,37 @@
                         }
                     }
                 }
+        });
+
+        //bar
+        var ctxB = document.getElementById("myChart").getContext('2d');
+        var myBarChart = new Chart(ctxB, {
+        type: 'bar',
+        data: {
+            labels: ["${foodOfMonth.foodNm}", "전체 메뉴"],
+            datasets: [{
+            label: '매출',
+            data: ['${foodOfMonth.foodCost * foodOfMonth.cnt}', '${thisMonthTotal}'],
+            backgroundColor: [
+                'rgba(0, 166, 116, .8)',
+                'rgba(249, 213, 71, .8)',
+                
+            ],
+            hoverBackgroundColor: ['rgba(0, 166, 116, .2)',
+            'rgba(249, 213, 71, .2)',],
+            borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            scales: {
+            yAxes: [{
+                ticks: {
+                beginAtZero: true
+                }
+            }]
+            }
+        }
         });
     });
         

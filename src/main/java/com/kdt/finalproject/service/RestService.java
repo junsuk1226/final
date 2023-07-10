@@ -12,6 +12,7 @@ import com.kdt.finalproject.mapper.RestMapper;
 import com.kdt.finalproject.vo.MonthTotalVO;
 import com.kdt.finalproject.vo.OrderCntVO;
 import com.kdt.finalproject.vo.PayVO;
+import com.kdt.finalproject.vo.RegRestVO;
 import com.kdt.finalproject.vo.RestPhotoVO;
 import com.kdt.finalproject.vo.ReviewVO;
 
@@ -26,6 +27,11 @@ public class RestService {
     RestPhotoVO rpvo = r_Mapper.check_photo(svarCd);
 
     return rpvo;
+  }
+
+  // 프로필
+  public RegRestVO getRestPic(String restNm) {
+    return r_Mapper.getRestPic(restNm);
   }
 
   // 월별 매출
@@ -97,10 +103,12 @@ public class RestService {
 
       for (int i = 0; i < ar2.length; i++) {
         String foodNmLine = ar2[i].getFoodNm();// 음식 이름
+        String foodCostLine = ar2[i].getFoodCost();// 음식 가격
         String foodQnLine = ar2[i].getFoodQn();// 음식 수량
         String seqLine = ar2[i].getSeq();// 사진 가져오려면 필요함
 
         String[] fNmAr = foodNmLine.split("/");
+        String[] fCoAr = foodCostLine.split("/");
         String[] fQnAr = foodQnLine.split("/");
         String[] seqAr = seqLine.split("/");
 
@@ -109,6 +117,7 @@ public class RestService {
           String foodNm = fNmAr[j];
           String seq = seqAr[j];
           int foodQn = Integer.parseInt(fQnAr[j]);
+          int foodCost = Integer.parseInt(fCoAr[j]);
 
           boolean chk = false;
           for (OrderCntVO vo : orderCnt) {
@@ -122,7 +131,7 @@ public class RestService {
 
           if (!chk) {
             // foodNm이 같은 vo가 없을 때는 리스트에 vo를 생성한다
-            OrderCntVO vo = new OrderCntVO(foodNm, seq, foodQn);
+            OrderCntVO vo = new OrderCntVO(foodNm, seq, foodQn, foodCost);
             orderCnt.add(vo);
           }
 

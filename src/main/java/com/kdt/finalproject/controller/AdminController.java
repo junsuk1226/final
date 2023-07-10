@@ -29,6 +29,7 @@ import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.MonthTotalVO;
 import com.kdt.finalproject.vo.OrderCntVO;
+import com.kdt.finalproject.vo.RegRestVO;
 import com.kdt.finalproject.vo.ReviewVO;
 
 @Controller
@@ -144,6 +145,10 @@ public class AdminController {
         if (obj != null) {
             MemVO mvo = (MemVO) obj;
             String restNm = mvo.getM_name(); // 휴게소이름 받아오기
+
+            // 프로필
+            RegRestVO resvo = res_Service.getRestPic(restNm);
+            mv.addObject("rest", resvo);
 
             // 평균 별점
             Float scoreAvg = r_Service.getScoreAvg(restNm);
