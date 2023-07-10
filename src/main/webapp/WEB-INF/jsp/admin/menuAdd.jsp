@@ -33,6 +33,11 @@
             </a>
         </li>
         <li>
+          <a href="/admin/orderlist" class="nav-link text-white">
+          주문내역 관리
+          </a>
+      </li>
+        <li>
             <a href="/admin/sales" class="nav-link text-white">
             매출관리
             </a>
