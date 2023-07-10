@@ -10,6 +10,7 @@
 	<title>내 손안에 휴게소, 마이휴</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 	<link rel="stylesheet" href="../css/main_custom.css" />
+	<link rel="stylesheet" href="../css/admin.css" />
 	<!--아이콘 cdn-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
 
@@ -262,8 +263,14 @@
 							console.log('위도와 경도를 controller로 전달했습니다.');
 							console.log(response); // controller에서 반환한 응답 데이터
 
+							if(response.xValue != null && response.yValue != null){
 							var mapX = response.xValue;
 							var mapY = response.yValue;
+							}else{
+							var mapX = response.lon;
+							var mapY = response.lat;	
+							}
+							
 							unitName = response.unitName;
 							var routeName = response.routeName;
 
@@ -283,6 +290,7 @@
 							$("#unitName").text(unitName);
 							$("#routeName").text(routeName);
 
+							if(response.xValue != null && response.yValue != null){
 							// 날씨 정보
 							var unitName2 = response.unitName2;
 							var weatherContents = response.weatherContents;
@@ -321,48 +329,7 @@
 
 							var food_img = null;
 
-							/*
-							for(var i = 0; i < far.length; i++) {
-							//	console.log("i="+i);
-							summerFood = null;
-							winterFood = null;
-							allFood = null;
-								
-
-								if(far[i].seasonMenu === "S") {
-									summerFood = far[i].f_image;
-									
-								//	console.log(far[i].seasonMenu);
-								} else if(far[i].seasonMenu === "W") {
-									winterFood = far[i].f_image;
-								//	console.log(far[i].seasonMenu);
-							
-								} else if(far[i].seasonMenu === "4") {
-									allFood = far[i].f_image;
-									
-								}
-								
-							
-								sFoodImg = $("<img>").attr("src", summerFood).css("width", "70px");
-								
-								wFoodImg = $("<img>").attr("src", winterFood).css("width", "70px");
-							
-								aFoodImg = $("<img>").attr("src", allFood).css("width", "70px");
-								
-						
-
-
-								if(parseInt(tempValue) >= 26)
-								$("#recommFood").append(sFoodImg[0].outerHTML);
-								else if(parseInt(tempValue) <= 10)
-								$("#recommFood").append(wFoodImg[0].outerHTML);
-								else if(parseInt(tempValue) < 26 && parseInt(tempValue) > 10)
-								$("#recommFood").append(aFoodImg[0].outerHTML);
-								
-							}
-							*/
-							
-
+							if(far != null){
 							for(var i = 0; i < 1; i++) {
 								food_img = $("<img>").attr("src", far[0].f_image).css({"width": "80px", "height": "50px"});
 								food_img1 = $("<img>").attr("src", far[1].f_image).css({"width": "80px", "height": "50px"});
@@ -384,6 +351,27 @@
 																															}));
 								
 							}
+						}else{
+							$("#recommFood").text("등록된").css({"text-align": "center",
+							"display": "flex",
+							"align-items": "center",
+							"justify-content": "center",
+							"font-family": "jamsil_bold"
+						,});
+							$("#recommFood1").text("음식이").css({"text-align": "center",
+							"display": "flex",
+							"align-items": "center",
+							"justify-content": "center",
+							"font-family": "jamsil_bold"
+							,});
+							$("#recommFood2").text("없습니다.").css({"text-align": "center",
+							"display": "flex",
+							"align-items": "center",
+							"justify-content": "center",
+							"font-family": "jamsil_bold"
+							,});
+						}
+						}
 							// 마커와 인포윈도우를 표시합니다
 							var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 							mapOption = {

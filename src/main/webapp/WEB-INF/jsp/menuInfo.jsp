@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +28,7 @@
             </button>
             <button class="mycustom-menu_info_icon_btn me-2 position-relative" type="button" onclick='location.href="/cart"'>
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                9+
+                ${sessionScope.listSize}+
                 <span class="visually-hidden">unread messages</span>
               </span>
             

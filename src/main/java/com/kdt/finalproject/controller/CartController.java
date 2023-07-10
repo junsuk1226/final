@@ -33,7 +33,6 @@ public class CartController {
         // System.out.println(RestNm);
         // System.out.println(quantity);
         // System.out.println(totalPrice);
-        System.out.println(seq);
         // 세션에 값 저장하기
 
         session.setAttribute("foodNm", foodNm);
@@ -68,6 +67,9 @@ public class CartController {
                 cart.cartClear();
 
             cart.addProduct(pvo);
+            ProductVO[] size = cart.getList();
+            int listSize = size.length;
+            session.setAttribute("listSize", listSize);
         }
 
         String location = URLEncoder.encode(RestNm, StandardCharsets.UTF_8.toString());
