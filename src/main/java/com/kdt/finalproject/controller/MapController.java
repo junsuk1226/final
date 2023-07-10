@@ -266,9 +266,9 @@ public class MapController {
         LocalTime nowTime = LocalTime.now();
         int hour = nowTime.getHour();
         StringBuffer stdHour = new StringBuffer();
-        if (hour - 2 < 10)
+        if (hour - 3 < 10)
             stdHour.append("0");
-        stdHour.append(hour - 2);
+        stdHour.append(hour - 3);
 
         StringBuffer sb4 = new StringBuffer();
         sb4.append("http://data.ex.co.kr/openapi/restinfo/restWeatherList"); // 휴게소 위치별 날씨정보

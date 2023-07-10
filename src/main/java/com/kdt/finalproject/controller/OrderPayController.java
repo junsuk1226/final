@@ -355,13 +355,13 @@ public class OrderPayController {
     }
 
     @RequestMapping("/kakaopayment/refund")
-    public ModelAndView kakaopaymentRefund() {
+    public ModelAndView kakaopaymentRefund(PayVO payvo) {
         ModelAndView mv = new ModelAndView();
 
         String reqURL = "https://kapi.kakao.com/v1/payment/cancel";
         String adminkey = "22c4183a06a4812b3265f8971a5fed6e"; // Admin key(kakaodeveloper에서 확인)
-
-        String tid = "T4a284f3096f629a86bc"; // 결제 고유번호-----DB셀렉(리스트 선택 값 받고 검색)
+        System.out.println(payvo.getTid());
+        String tid = payvo.getTid(); // 결제 고유번호-----DB셀렉(리스트 선택 값 받고 검색)
 
         PayVO pvo = p_Service.kakao_refunt_select(tid);
 
@@ -436,7 +436,7 @@ public class OrderPayController {
             e.printStackTrace();
         }
 
-        mv.setViewName("redirect:/orderpay");
+        mv.setViewName("redirect:/admin/orderlist");
 
         return mv;
     }
@@ -640,12 +640,12 @@ public class OrderPayController {
     }
 
     @RequestMapping("/tosspayment/refund")
-    public ModelAndView tosspaymentRefund() {
+    public ModelAndView tosspaymentRefund(PayVO pvo) {
         ModelAndView mv = new ModelAndView();
 
         String reqURL = "https://api.tosspayments.com/v1/payments/";
-        String paymentkey = "vdX0wJDpj5mBZ1gQ4YVXKMJ9YwnMNx3l2KPoqNbMGOkn9EW7"; // 결제 고유번호-DB셀렉(리스트 선택 값 받고 검색) tid에
-                                                                                // 저장되어 있음.
+        String paymentkey = pvo.getTid(); // 결제 고유번호-DB셀렉(리스트 선택 값 받고 검색) tid에
+                                          // 저장되어 있음.
         String secretKey = "test_sk_lpP2YxJ4K870lAdMDkJ3RGZwXLOb:"; // toss 시크릿 키
         String cancelReason = "변심";// 그냥 고정값으로 해둠. 필수값
         String approved_at = "";

@@ -35,12 +35,11 @@
             </a>
         </li>
         <li>
-            <a href="/admin/orderlist" class="nav-link text-white">
+            <a href="/admin/orderlist" class="nav-link text-white active">
             주문내역 관리
             </a>
-        </li>
         <li>
-            <a href="/admin/sales" class="nav-link text-white active">
+            <a href="/admin/sales" class="nav-link text-white">
             매출관리
             </a>
         </li>
@@ -64,11 +63,11 @@
             <div class="row justify-content-center mt-5">
                 <div class="col-md-11 mb-3 text-start">
                         <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
-                            ${sessionScope.mvo.m_name}<span class="text-muted"> 매출 관리</span>
+                            ${sessionScope.mvo.m_name}<span class="text-muted"> 주문내역 관리</span>
                         </h2>
                 </div>
             </div>
-            <form action="/admin/sales" method="get">
+            <form action="/admin/orderlist" method="get">
                 <div style="margin-left: 300px; margin-top: 10px">
                     <img src="../images/schedule.png" style="width: 33px;"/>
                     <input type="text" id="datepicker" name="date">
@@ -76,7 +75,7 @@
                 </div>
                 </form>
 
-                <form action="/admin/sales" method="get">
+                <form action="/admin/orderlist" method="get">
                     <select class="form-select" aria-label="Default select example" name="getMonth" id="monthSelect"></select>
                     <input type="submit" value="검색">
                 </form>
@@ -84,7 +83,8 @@
                 <div class="col-md-8">
                     <div class=" shadow rounded" style="border: none;">
                         <!--https://colorlib.com/etc/tb/Table_Fixed_Header/index.html css할때 참고할 것-->
-                        
+                    
+
                             <div class="" >
                                 <table class="table table-rounded">
                                     <thead>
@@ -93,31 +93,51 @@
                                         <th scope="col">주문한 음식</th>
                                         <th scope="col">총가격</th>
                                         <th scope="col">결제 날짜/시간</th>
-
+                                        <th scope="col">결제 상태</th>
+                                        <th scope="col"></th>
+                                        
                                       </tr>
                                     </thead>
+                
                                     <tbody>
                                         <c:forEach var="vo" items="${pvo}">
-                                      <tr>
-                                        <th scope="row">${vo.p_oNum}</th>
-                                        <td>${vo.foodNm}</td>
-                                        <fmt:formatNumber var="totalCost" type='number' maxFractionDigits='3' value='${vo.totalCost}' />
-                                        <td>${totalCost}원</td>
-                                        <td>${vo.p_date}/${vo.p_time}</td>
-                                    
-                                      </tr>
-                                      <c:set var="totalSales" value="${totalSales + vo.totalCost}" /> <!-- 총 매출 누적 계산 -->
-                                    </c:forEach>
+                                            <tr>
+                                                <th scope="row">${vo.p_oNum}</th>
+                                                <td>${vo.foodNm}</td>
+                                                <fmt:formatNumber var="totalCost" type='number' maxFractionDigits='3' value='${vo.totalCost}' />
+                                                <td>${totalCost}원</td>
+                                                <td>${vo.p_date}/${vo.p_time}</td>
+                                                <td>
+                                                    <c:if test="${vo.p_status eq '0'}">
+                                                        결제완료
+                                                    </c:if>
+                                                    <c:if test="${vo.p_status eq '1'}">
+                                                        결제취소
+                                                    </c:if>
+                                                </td>
+                                                <td>
+                                                    
+                                                    <c:if test="${vo.p_status eq '0' and vo.p_date eq now}">
+                                                        <form id="refundForm" method="post" onsubmit="confirmCancel(event, this, '${vo.payMethod}')">
+                                                            <button type="submit" class="btn btn-dark">주문취소</button>
+                                                            <input type="hidden" name="tid" value="${vo.tid}"/>
+                                                            <input type="hidden" name="payMethod" value="${vo.payMethod}"/>
+                                                        </form>
+                                                    </c:if>
+                                                    <c:if test="${vo.p_status eq '1' and vo.p_date eq now}">
+                                                        
+                                                            <button type="button" class="btn btn-secondary" disabled>취소완료</button>
+   
+                                                    </c:if>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
+               
                                   </table>
-                            
                             </div>
                        
                     </div>
-                </div>
-                <div>
-                    <fmt:formatNumber var="formattedTotalSales" type='number' maxFractionDigits='3' value='${totalSales}' />
-                    총 매출: ${formattedTotalSales}원
                 </div>
                 <div class="card-body justify-content-center" style="margin-left: 1000px">
                     <c:if test="${date eq null}">                                       
@@ -127,20 +147,20 @@
                             </c:if>
                             <c:if test="${page.startPage >= page.pagePerBlock}">
                                 <li class="page-item"><a class="page-link"
-                                        href="/admin/sales?cPage=${page.startPage-page.pagePerBlock} <c:if test='${getMonth != null}'>&getMonth=${getMonth}</c:if><c:if test='${date != null}'>&date=${date}</c:if>">&lt;</a></li>
+                                        href="/admin/orderlist?cPage=${page.startPage-page.pagePerBlock} <c:if test='${getMonth != null}'>&getMonth=${getMonth}</c:if><c:if test='${date != null}'>&date=${date}</c:if>">&lt;</a></li>
                             </c:if>
                             <c:forEach begin="${page.startPage }" end="${page.endPage }" varStatus="st">
                                 <c:if test="${page.nowPage eq st.index}">
                                     <li class="page-item active"><a class="page-link">${st.index}</a></li>
                                 </c:if>
                                 <c:if test="${page.nowPage ne st.index }">
-                                    <li class="page-item"><a class="page-link" href="/admin/sales?cPage=${st.index}<c:if test='${getMonth != null}'>&getMonth=${getMonth}</c:if><c:if test='${date != null}'>&date=${date}</c:if>">${st.index }</a>
+                                    <li class="page-item"><a class="page-link" href="/admin/orderlist?cPage=${st.index}<c:if test='${getMonth != null}'>&getMonth=${getMonth}</c:if><c:if test='${date != null}'>&date=${date}</c:if>">${st.index }</a>
                                     </li>
                                 </c:if>
                             </c:forEach>
                             <c:if test="${page.endPage<page.totalPage}">
                                 <li class="page-item"><a class="page-link"
-                                        href="/admin/sales?cPage=${page.startPage+page.pagePerBlock }<c:if test='${getMonth != null}'>&getMonth=${getMonth}</c:if><c:if test='${date != null}'>&date=${date}</c:if>">&gt;</a></li>
+                                        href="/admin/orderlist?cPage=${page.startPage+page.pagePerBlock }<c:if test='${getMonth != null}'>&getMonth=${getMonth}</c:if><c:if test='${date != null}'>&date=${date}</c:if>">&gt;</a></li>
                             </c:if>
                             <c:if test="${page.endPage == page.totalPage}">
                                 <li class="page-item disabled"><a class="page-link">&gt;</a></li>
@@ -148,7 +168,7 @@
                         </ol>
                     </c:if>
         
-                  
+                   
         
                     </div>
                     <c:if test="${pvo eq null }">
@@ -241,6 +261,19 @@ monthSelect.addEventListener('change', function() {
     sessionStorage.setItem('selectedMonth', selectedMonth);
 });
 
+function confirmCancel(event, form, payMethod) {
+    event.preventDefault(); // 폼 제출 방지
+
+    if (confirm("주문을 취소하시겠습니까?")) {
+        if (payMethod === '0') {
+            form.action = '/kakaopayment/refund';
+        } else if (payMethod === '1') {
+            form.action = '/tosspayment/refund';
+        }
+
+        form.submit();
+    }
+}
 </script>
 
 </body>

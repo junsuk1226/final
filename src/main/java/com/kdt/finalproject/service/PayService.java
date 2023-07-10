@@ -122,4 +122,38 @@ public class PayService {
     public int monthSalesCnt(Map<String, String> map) {
         return p_Mapper.monthSalesCnt(map);
     }
+
+    // 관리자 페이지 일별 주문내역 리스트
+    public PayVO[] dayOrder(Map<String, String> map) {
+        List<PayVO> p_list = p_Mapper.dayOrder(map);
+        PayVO[] pvo = null;
+        if (p_list != null && p_list.size() > 0) {
+            pvo = new PayVO[p_list.size()];
+            p_list.toArray(pvo);
+        }
+
+        return pvo;
+    }
+
+    // 관리자 페이지 일별 주문내역 총 카운트
+    public int dayOrderCnt(Map<String, String> map) {
+        return p_Mapper.dayOrderCnt(map);
+    }
+
+    // 관리자 페이지 월별 주문내역 리스트
+    public PayVO[] monthOrder(Map<String, String> map) {
+        List<PayVO> p_list = p_Mapper.monthOrder(map);
+        PayVO[] pvo = null;
+        if (p_list != null && p_list.size() > 0) {
+            pvo = new PayVO[p_list.size()];
+            p_list.toArray(pvo);
+        }
+
+        return pvo;
+    }
+
+    // 관리자 페이지 월별 주문내역 총 카운트
+    public int monthOrderCnt(Map<String, String> map) {
+        return p_Mapper.monthOrderCnt(map);
+    }
 }
