@@ -141,8 +141,8 @@
                                 <div class="row justify-content-center mt-5">
                                     <div class="col-md-7 mb-3">
                                         <form name="frm" action="/order" method="post">
-                                            <div class="input-group mb-3 shadow p-1 mb-1 bg-body rounded-pill" >
-                                                <select class="form-select border-end-0 rounded-pill" name="searchType" id="searchType" >
+                                            <div class="input-group input-group-lg mb-3 shadow p-1 mb-1 bg-body rounded-pill" >
+                                                <select class="form-select border-end-0 rounded-pill"  style="max-width: 200px;" name="searchType" id="searchType" >
                                                     <option value="0">주문메뉴 검색</option>
                                                     <option value="1">휴게소 검색</option>
                                                     <option value="2">날짜 검색</option>

@@ -141,6 +141,16 @@
                 <div class="row justify-content-center mt-5">
                     <div class="col-md-9 ms-2 ">
                         <h5 style="font-family: suite;">전년도 대비 월별 매출</h5>
+                        <c:forEach var="r" items="${yearMonthTotal}">
+                            <c:if test="${r.year eq thisYear}">
+                                
+
+
+                            </c:if>
+                        </c:forEach>
+
+
+
                     </div>
                     <div class="col-md-10">
                         <canvas class="mb-3" id="lineChart" style="object-fit: contain;"></canvas>
@@ -325,7 +335,7 @@
         var myBarChart = new Chart(ctxB, {
         type: 'bar',
         data: {
-            labels: ["${foodOfMonth.foodNm}", "전체 메뉴"],
+            labels: ["${foodOfMonth.foodNm}", "전체 매출"],
             datasets: [{
             label: '매출',
             data: ['${foodOfMonth.foodCost * foodOfMonth.cnt}', '${thisMonthTotal}'],
