@@ -13,6 +13,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link rel="stylesheet" href="../css/main_custom.css" />
 <link rel="stylesheet" href="../css/menu.css" />
+ <!--아이콘 cdn-->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -23,17 +25,31 @@
             ${RestNm}
           </span>
           <form class="d-flex align-items-center">
+           
+
             <button class="mycustom-menu_info_icon_btn me-2" type="button" onclick="location.href='/menu?RestNm=${RestNm}'">
-              <img class="mycustom-menu_info_icon" src="../images/home-icon.png">
+              <img class="mycustom-menu_info_icon" src="../images/back.png">
             </button>
-            <button class="mycustom-menu_info_icon_btn me-2 position-relative" type="button" onclick='location.href="/cart"'>
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                ${sessionScope.listSize}+
-                <span class="visually-hidden">unread messages</span>
-              </span>
-            
-              <img class="mycustom-menu_info_icon" src="../images/cart-icon.png">
-            </button>
+            <c:if test="${sessionScope.listSize ne null}">
+              <button class="mycustom-menu_info_icon_btn me-2 position-relative" type="button" onclick='location.href="/cart"'>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  ${sessionScope.listSize}+
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+              
+                <img class="mycustom-menu_info_icon" src="../images/cart-icon.png">
+              </button>
+           </c:if>
+           <c:if test="${sessionScope.listSize eq null}">
+              <button class="mycustom-menu_info_icon_btn me-2 position-relative" type="button" onclick='location.href="/cart"'>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  0
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+              
+                <img class="mycustom-menu_info_icon" src="../images/cart-icon.png">
+              </button>
+           </c:if>
           </form>
         </div>
     </nav>

@@ -87,6 +87,8 @@ public class CartController {
         // 카트 객체가 존재하면 비우기
         if (cart != null) {
             cart.cartClear();
+            session.removeAttribute("listSize");
+
         }
 
         return "/myPage/cart";
