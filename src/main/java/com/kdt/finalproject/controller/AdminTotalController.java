@@ -1,5 +1,6 @@
 package com.kdt.finalproject.controller;
 
+import java.io.File;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -10,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.jdom2.Document;
@@ -18,18 +21,22 @@ import org.jdom2.input.SAXBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.kdt.finalproject.service.FoodService;
 import com.kdt.finalproject.service.MemService;
 import com.kdt.finalproject.service.RegRestService;
+import com.kdt.finalproject.util.FileRenameUtil;
 import com.kdt.finalproject.util.MonthlyJoinStats;
 import com.kdt.finalproject.util.Paging;
 import com.kdt.finalproject.vo.FoodVO;
+import com.kdt.finalproject.vo.ImageData;
 import com.kdt.finalproject.vo.MemLogVO;
 import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.RestVO;
@@ -48,6 +55,14 @@ public class AdminTotalController {
 
     @Autowired
     private FoodService f_Service;
+
+    @Autowired
+    private ServletContext application;
+
+    @Autowired
+    private HttpServletRequest request;
+
+    private String img_path = "/images";
 
     @RequestMapping("/adminTotal")
     public String adminTest() {
@@ -110,12 +125,12 @@ public class AdminTotalController {
         int wait_cnt = r_Service.waitRegRestCnt();
 
         List<MonthlyJoinStats> monthly = m_Service.geMonthlyJoinStats();
-        
+
         mv.addObject("monthly", monthly);
         mv.addObject("all", all);
         mv.addObject("reg_cnt", reg_cnt);
-        mv.addObject("wait_cnt",wait_cnt);
-        
+        mv.addObject("wait_cnt", wait_cnt);
+
         mv.setViewName("/adminTotal/main");
 
         return mv;
@@ -455,6 +470,104 @@ public class AdminTotalController {
         }
 
         return mv;
+    }
+
+    @RequestMapping("/adminTotal/viewMenu")
+    public ModelAndView viewMenu(String searchType, String searchValue, String cPage, String f_idx) {
+        ModelAndView mv = new ModelAndView();
+
+        FoodVO fvo = f_Service.getOneFood(f_idx);
+
+        mv.addObject("fvo", fvo);
+        mv.addObject("nowPage", cPage);// 현재페이지 값
+        mv.addObject("searchType", searchType);// 현재페이지 값
+        mv.addObject("searchValue", searchValue);// 현재페이지 값
+
+        mv.setViewName("/adminTotal/viewMenu");
+
+        return mv;
+    }
+
+    @RequestMapping("/adminTotal/editMenu")
+    public ModelAndView editMenu(FoodVO fvo, String searchType, String searchValue, String cPage) {
+
+        /*
+         * System.out.println("f_idx:" + fvo.getF_idx());
+         * System.out.println("f_image:" + fvo.getF_image());
+         * System.out.println("foodCost:" + fvo.getFoodCost());
+         * System.out.println("foodNm:" + fvo.getFoodNm());
+         * System.out.println("foodMaterial:" + fvo.getFoodMaterial());
+         * System.out.println("etd:" + fvo.getEtc());
+         * System.out.println("restNm:" + fvo.getStdRestNm());
+         * System.out.println("seq:" + fvo.getSeq());
+         * System.out.println("f_status:" + fvo.getF_status());
+         */
+
+        RedirectView rv = null;
+        if (searchType == null)
+            rv = new RedirectView("/adminTotal/viewMenu?cPage=" + cPage + "&f_idx=" + fvo.getF_idx());
+        else
+            rv = new RedirectView("/adminTotal/viewMenu?searchType=" + searchType + "&searchValue=" + searchValue
+                    + "&cPage=" + cPage + "&f_idx=" + fvo.getF_idx());
+        rv.setExposeModelAttributes(false);
+        ModelAndView mv = new ModelAndView(rv);
+
+        int cnt = f_Service.editFood(fvo);
+
+        return mv;
+    }
+
+    @PostMapping("/adminTotal/saveImg")
+    @ResponseBody
+    public Map<String, String> saveImg(MultipartFile file) { // ajax에서 formdata를 data로 보냈다 -> Spring에서는 파일을 무조건
+                                                             // MultipartFile로 받는다+변수명은 같게
+        Map<String, String> map = new HashMap<String, String>();
+
+        String fname = null;
+
+        if (file.getSize() > 0) {
+            // 첨부파일을 저장할 위치를 절대경로화 시킨다.
+            String realPath = application.getRealPath(img_path);
+
+            String oname = file.getOriginalFilename();
+            // 첨부파일이 이미 저장된 파일과 이름이 동일한 경우 이름을 변경한다.
+            fname = FileRenameUtil.checkFileName(oname, realPath);
+
+            try {
+                file.transferTo(new File(realPath, fname)); // 파일업로드가 수행됨
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            // db작업은 하지 않지만 경로를 반환해야 하기 때문에 현재 서버의 경로를 알아내야 한다.
+            String path = request.getContextPath(); // 서버 경로 알아내기
+
+            // json으로 반환하기 위해 map구조에 저장
+            map.put("path", img_path); // 서버 경로
+            map.put("fname", fname); // 저장된 파일명
+        }
+
+        return map;
+    }
+
+    @PostMapping("/adminTotal/delImg")
+    @ResponseBody
+    public boolean delImg(@RequestBody ImageData data) {
+        Boolean res = false;
+
+        String path = data.getPath();
+        String fname = data.getFname();
+
+        String realPath = application.getRealPath(path);
+        // System.out.println(realPath + fname);
+        File f = new File(realPath, fname);
+
+        if (f.exists()) {
+            res = f.delete();
+            // System.out.println("파일이 존재함");
+        }
+
+        return res;
     }
 
 }

@@ -92,7 +92,7 @@ public class ReviewWriteController {
         String fname = data.getFname();
 
         String realPath = application.getRealPath(path);
-
+        System.out.println(realPath + fname);
         File f = new File(realPath, fname);
 
         if (f.exists()) {
