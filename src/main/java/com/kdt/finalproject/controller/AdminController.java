@@ -133,22 +133,21 @@ public class AdminController {
     @RequestMapping("/admin/main")
     public ModelAndView adminMainTest() {
         ModelAndView mv = new ModelAndView("/admin/main");
-        //현재 날짜 구하기
+        // 현재 날짜 구하기
         Calendar calendar = Calendar.getInstance();
         int currentMonth = calendar.get(Calendar.MONTH) + 1;
         int currentYear = calendar.get(Calendar.YEAR);
         mv.addObject("thisMonth", currentMonth);
         mv.addObject("thisYear", currentYear);
 
-
         Object obj = session.getAttribute("mvo");
         if (obj != null) {
             MemVO mvo = (MemVO) obj;
             String restNm = mvo.getM_name(); // 휴게소이름 받아오기
-            
-            //전체 메뉴 주문 횟수
+            System.out.println(restNm);
+            // 전체 메뉴 주문 횟수
             int cnt = res_Service.getthisMonthCnt(restNm);
-            mv.addObject("thisMonthCnt", cnt); 
+            mv.addObject("thisMonthCnt", cnt);
 
             // 많이 팔린 메뉴 하나만
             OrderCntVO[] ar = res_Service.getSameMonth_paylog(restNm);
@@ -172,7 +171,7 @@ public class AdminController {
             }
             mv.addObject("yearMonthTotal", map);
 
-            //최근 리뷰 5개
+            // 최근 리뷰 5개
             ReviewVO[] r_ar = res_Service.getRecentReview(restNm);
             mv.addObject("recentReview", r_ar);
         }

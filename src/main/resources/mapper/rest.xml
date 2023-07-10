@@ -34,7 +34,7 @@
 <!--(휴게소 관리자)최근 리뷰 5개 출력 -->
 <select id="getRecentReview" parameterType="String" resultType="com.kdt.finalproject.vo.ReviewVO">
   SELECT * FROM final.review
-  WHERE restNm = #{restNm} AND r_status='0'
+  WHERE r_restNm = #{restNm} AND r_status='0'
   ORDER BY r_writedate DESC
   LIMIT 5;
 </select>

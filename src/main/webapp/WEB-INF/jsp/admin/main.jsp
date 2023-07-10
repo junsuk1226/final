@@ -13,32 +13,6 @@
 <link rel="stylesheet" href="../css/admin.css" />
 <!--차트 js-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
-<style>
-    .intro {
-  height: 100%;
-}
-
-table td,
-table th {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.card {
-  border-radius: .5rem;
-}
-
-.table-scroll {
-  border-radius: .5rem;
-}
-
-thead {
-  top: 0;
-  position: sticky;
-}
-
-</style>
 
 
 </head>
@@ -91,7 +65,7 @@ thead {
                           <img src="../images/경부선0010-19-000003.jpg" class="rounded-circle" style="object-fit: cover; width: 100%; height: 100%;">
                         </div>
                         <div class="d-flex flex-column justify-content-center" style="width: auto;">
-                          <h2 class="lh-base ms-1 text-center" style="font-family: 'suite';">죽전(서울)휴게소${sessionScope.mvo.m_name}</h2>
+                          <h2 class="lh-base ms-1 text-center" style="font-family: 'suite';">${sessionScope.mvo.m_name}</h2>
                         </div>
                     </div>
                     <div class=" col-md-5">  
@@ -102,12 +76,12 @@ thead {
                                 </div>
                                 <div class="vr"></div>
                                 <div class="col-md-6 me-4 text-end">
-                                    <span style="font-family: suite; font-weight: bold; font-size: large;"> <fmt:formatNumber value="${thisMonthTotal}" pattern="#,###,###"/>원</span>
+                                    <span style="font-family: suite; font-weight: bold; font-size: large;"><fmt:formatNumber value="${thisMonthTotal}" pattern="#,###,###"/>원</span>
                                 </div>
                             </div> 
                         </div>
                         <div class="d-flex">
-                            <div class = "card mt-3 me-4 col-md-3"  style="background-color: #3f3f3f;">
+                            <div class = "card mt-3 me-4 col-md-3 shadow"  style="background-color: #3f3f3f;">
                                 <div class="card-body">
 
                                 </div>
@@ -119,14 +93,14 @@ thead {
                                 <div class="card rounded" style="border: none;">
                                     <div class="card-body d-flex">
                                         <div class="ms-2" style="width: 100px; height: 100px;">
-                                            <img class="rounded" id="${foodOfMonth.seq}_img" style="object-fit: cover; width: 100%; height: 100%;" src="../images/김치볶음밥.png"/>
+                                            <img class="rounded" id="${foodOfMonth.seq}_img" style="object-fit: cover; width: 100%; height: 100%;" />
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <p class="ms-3" style="font-family: suite; font-size:larger;"> ${foodOfMonth.foodNm}김치볶음밥</p>
+                                                <p class="ms-3" style="font-family: suite; font-size:larger;"> ${foodOfMonth.foodNm}</p>
                                             </div>
                                             <div class="text-end col-md-12">
-                                                <span class="text-muted me-2" style="font-family: suite;"> ${foodOfMonth.cnt}회 주문</span>
+                                                <span class="text-muted me-2" style="font-family: suite;">${foodOfMonth.cnt}회 주문</span>
                                             </div>
                                         </div>
                                     </div>
@@ -152,51 +126,10 @@ thead {
                     </div>
                 </div>
                 <div class="row justify-content-center mt-5">
-                    <!--테이블-->
+
                     
                       
                 </div>
-
-
-
-                <!-- <div>
-                    <c:forEach var="cnt" items="${foodOfMonth}">
-                        전체 메뉴 주문 횟수: ${thisMonthCnt}
-                        <c:if test="${cnt ne null }" > 
-                            <div class="" style="width: 100px; height: 100px;">
-                                <img class="rounded" id="${cnt.seq}_img" style="object-fit: cover; width: 100%; height: 100%;"/>
-                            </div>  
-                            이번 달 ${cnt.foodNm} ${cnt.cnt}회 판매 
-                        </c:if>
-                        <c:if test="${cnt eq null}">
-                            값이 없음
-                        </c:if>
-                    </c:forEach>
-                </div>
-                <hr/>
-                <div>
-                    이번달매출 ${thisMonthTotal}
-                    <br/>
-                    <c:forEach var="total" items="${yearMonthTotal}">
-                        <c:set var="year" value="${total.key}" />
-                        <c:if test="${year == 2023}">
-                            <h2>${year}년 매출 정보</h2>
-                            <c:forEach var="monthSale" items="${total.value}">
-                                ${monthSale.month}월
-                                ${monthSale.monthTotal}
-                            </c:forEach>
-                        </c:if>
-                    </c:forEach>
-                </div>
-                <div>
-                    최근 리뷰
-                        <c:forEach var="re" items="${recentReview}">
-                            <img class="rounded" src="../editor_upload/${re.r_file}" style="object-fit: cover; width: 100%; height: 100%;">
-                            ${re.r_writedate}/${re.r_content}
-                        </c:forEach>
-                </div>
-
- -->
 
 
 
@@ -220,22 +153,20 @@ thead {
     
      //파일이름을 비동기식으로 가져오기
      $(document).ready(function() {
+        var seq = "${foodOfMonth.seq}";
+            sendAjaxRequest(seq);
          
-         <c:forEach var="cnt" items="${foodOfMonth}">
-             var seq = "${cnt.seq}";
-             sendAjaxRequest(seq);
-         </c:forEach>
-         function sendAjaxRequest(seq){
-             $.ajax({
-                 url:"/getFileName",
-                 method: 'post',
-                 data: {'seq': seq},
-                 dataType: 'text'
-             }).done(function(data){
-                 $("#" + seq + "_img").attr("src",data);
-             });
-         }
-     })
+        function sendAjaxRequest(seq){
+            $.ajax({
+                url:"/getFileName",
+                method: 'post',
+                data: {'seq': seq},
+                dataType: 'text'
+            }).done(function(data){
+                $("#" + seq + "_img").attr("src",data);
+            });
+        }
+    })
 
      document.addEventListener('DOMContentLoaded', function() {
         // Chart 객체를 사용하여 차트를 그리는 코드 작성
@@ -313,12 +244,13 @@ thead {
 
     //pie
     var ctxP = document.getElementById("pieChart").getContext('2d');
+    <c:set var="jsonData" value="[${foodOfMonth.cnt}, ${thisMonthCnt - foodOfMonth.cnt}]" />
     var myPieChart = new Chart(ctxP, {
             type: 'pie',
             data: {
-            labels: ["${foodOfMonth.foodNm}김치볶음밥", "기타 메뉴"],
+            labels: ["${foodOfMonth.foodNm}", "기타 메뉴"],
             datasets: [{
-                data: [50, 100],
+                data: [20, 30],
                 backgroundColor: ["#00A674", "#cccccc"],
                 hoverBackgroundColor: ["#3CE6B3", "#EEEEEE"]
             }]
