@@ -81,6 +81,9 @@
     bestfoodyn = #{bestfoodyn},
     premiumyn = #{premiumyn},
     recommendyn = #{recommendyn}
+    <if test="f_image != null">
+      , f_image = #{f_image}
+    </if>
     WHERE f_idx = #{f_idx}
 </update>
 
