@@ -211,7 +211,12 @@
                                                     <!-- <input type="hidden" value="1" name="p_idx"/>  ${pvo.p_idx} -->
                                                     <div class = "row justify-content-around align-items-center">
                                                         <div class="col-md-3 mb-3 .square-div">
-                                                            <img style="object-fit: cover; width: 100%; height:auto;" class="rounded img-fluid" src="../editor_upload/${rvo.r_file}"/>
+                                                            <c:if test ="${rvo.r_file ne null}">
+                                                                <img style="object-fit: cover; width: 100%; height:auto;" class="rounded img-fluid" src="../editor_upload/${rvo.r_file}"/>
+                                                            </c:if>
+                                                            <c:if test ="${rvo.r_file eq null}">
+                                                                <img style="object-fit: cover; width: 100%; height:auto;" class="rounded img-fluid" src="../main_images/no_image.png"/>
+                                                            </c:if>
                                                         </div>
                                                     
                                                         <div class="col-md-7 mx-2">
@@ -339,7 +344,6 @@
                         </div>
                     </div>
 
-
                     <script type="text/javascript" src="js/bootstrap.js"></script>
 
                     <!-- 제이쿼리 -->
@@ -348,9 +352,6 @@
 
                     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-                    </script>
-
-
 
                     <!-- Bootstrap core JS-->
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

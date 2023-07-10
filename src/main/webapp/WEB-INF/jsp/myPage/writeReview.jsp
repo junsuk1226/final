@@ -181,6 +181,7 @@
                                         <input type="hidden" name="r_restNm" value="${restNm}" />
                                         <input type="hidden" name="m_idx" value="${sessionScope.mvo.m_idx}"/>
                                         <input type="hidden" name="m_name" value="${sessionScope.mvo.m_name}"/>
+                                        <input type="hidden" name="r_file"/>
                                         
                                         
                                             <div class="card shadow p-3 mb-5 bg-body rounded mx-1" style="border: none;">
@@ -203,7 +204,7 @@
                                                                 </div>
                                                             </label>
                                                             <input type="file" class="form-control " id="file" name="file" style="display: none;">
-                                                            <div class="ms-3">
+                                                            <div class="ms-2">
                                                                 <div style="background-color: rgb(241, 241, 241); border-radius: 6px; height: 100px; width: 150px; margin: 0 auto;" id="img_area"> </div>
                                                             </div>
                                                         </div>
@@ -271,8 +272,6 @@
 
                     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-                    </script>
-
 
 
                     <!-- Bootstrap core JS-->
@@ -305,7 +304,6 @@
                                     cache: false,      //파일 전송 시
                                     dataType: "json"
                                }).done(function(data){
-                                    //console.log(data.path+"/"+data.fname);
                                     savedpath=data.path;
                                     savedfname=data.fname;
                                     $("#img_area").html("<img src='"+data.path+"/"+data.fname+"' style='object-fit:cover; width: 100%; height:100%' class='rounded shadow mb-5' id='insertedImg'/><button type='button' onclick='delImg()' class='btn-del' id='insertedBtn'><i class='fa fa-times' style ='color: #fff'></i></button> ")
