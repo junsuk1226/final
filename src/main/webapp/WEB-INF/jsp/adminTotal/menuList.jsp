@@ -44,7 +44,7 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/menuList" class="nav-link text-white">
+                <a href="/adminTotal/editMemLog" class="nav-link text-white">
                 일반회원 수정내역
                 </a>
             </li>
@@ -96,7 +96,7 @@
                         <c:forEach var="fvo" items="${ar}">
                             <tr class="mytr">
                                 <th scope="row"></th>
-                                <td>${fvo.m_name}</td>
+                                <td><img src="${fvo.f_image}" width="100px" style="background-size: cover; height: 70px"/></td>
                                 <td>${fvo.foodNm}</td>
                                 <td>${fvo.foodMaterial}</td>
                                 <td>${fvo.stdRestNm}</td>
@@ -108,6 +108,7 @@
                                         승인
                                     </c:if>
                                 </td>
+                                <td></td>
                                 <td></td>
                             </tr>
                         </c:forEach>                        

@@ -72,6 +72,7 @@
                     <table class="table mycustomtable" style="text-align: center;">
                         <form>
                             <input>
+                            <button type="button">검색</button>
                         </form>
                         <thead>
                         <tr class="table_head">

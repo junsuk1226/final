@@ -103,4 +103,14 @@
   WHERE reg_status = 0
 </select>
 
+<!-- 가입 되어있는 휴게소 수 -->
+<select id="getRegRestCnt" resultType="int">
+  SELECT COUNT(*) FROM regrest WHERE reg_status = 0
+</select>
+
+<!-- 가입 승인 대기 중 휴게소 수 -->
+<select id="waitRegRestCnt" resultType="int">
+  SELECT COUNT(*) FROM member WHERE m_status = 3
+</select>
+
 </mapper>

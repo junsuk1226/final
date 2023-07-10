@@ -73,7 +73,7 @@
             <div class="row justify-content-center my-5">
                 <div class="col-md-8">
                     <div class=" shadow rounded" style="border: none;">
-                        <!--https://colorlib.com/etc/tb/Table_Fixed_Header/index.html css할때 참고할 것-->
+                        <!--https://mdbootstrap.com/snippets/standard/mdbootstrap/2920214?view=side css할때 참고할 것-->
                         
                             <div class="" >
                                 <table class="table table-rounded">

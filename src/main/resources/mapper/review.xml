@@ -148,13 +148,13 @@
 </select>
 
 
-<!--관리자 페이지 리뷰 날짜별 총 갯수-->
+<!--관리자 페이지 리뷰 날짜별 총 갯수
  <select id="adminTotalCount" resultType="int" parameterType="Map">
   	SELECT COUNT(*) FROM final.review
     WHERE r_status = 0 AND r_restNm = #{r_restNm}
     <if test="date != null">
       AND DATE_FORMAT(r_writedate,'%Y-%m-%d') = #{date}
       </if> 
-</select>
+</select> -->
 
 </mapper>

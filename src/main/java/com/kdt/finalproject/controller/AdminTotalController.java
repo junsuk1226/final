@@ -3,7 +3,9 @@ package com.kdt.finalproject.controller;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,16 +23,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kdt.finalproject.mapper.MemLogMapper;
+
 import com.kdt.finalproject.service.FoodService;
-import com.kdt.finalproject.service.MemLogService;
 import com.kdt.finalproject.service.MemService;
 import com.kdt.finalproject.service.RegRestService;
+import com.kdt.finalproject.util.MonthlyJoinStats;
 import com.kdt.finalproject.util.Paging;
 import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MemLogVO;
 import com.kdt.finalproject.vo.MemVO;
-import com.kdt.finalproject.vo.RegRestVO;
 import com.kdt.finalproject.vo.RestVO;
 
 @Controller
@@ -74,8 +75,50 @@ public class AdminTotalController {
     }
 
     @RequestMapping("/adminTotal/main")
-    public String adminTotalMainTest() {
-        return "/adminTotal/main";
+    public ModelAndView adminTotalMain() throws Exception {
+
+        ModelAndView mv = new ModelAndView();
+
+        String key = "2077960536"; // 인증키
+        String type = "xml";
+        String svarGsstClssCd = "0"; // 0: 휴게소 1: 주유소
+
+        StringBuffer sb = new StringBuffer();
+        sb.append("http://data.ex.co.kr/openapi/restinfo/hiwaySvarInfoList?"); // 호출 경로
+        sb.append("key=");
+        sb.append(key);
+        sb.append("&type=");
+        sb.append(type);
+        sb.append("&svarGsstClssCd=");
+        sb.append(svarGsstClssCd);
+
+        URL url = new URL(sb.toString());
+
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.connect();
+
+        SAXBuilder builder = new SAXBuilder();
+
+        Document doc = builder.build(conn.getInputStream());
+
+        Element root = doc.getRootElement();
+
+        int all = Integer.parseInt(root.getChildText("count"));
+
+        int reg_cnt = r_Service.getRegRestCnt();
+
+        int wait_cnt = r_Service.waitRegRestCnt();
+
+        List<MonthlyJoinStats> monthly = m_Service.geMonthlyJoinStats();
+        
+        mv.addObject("monthly", monthly);
+        mv.addObject("all", all);
+        mv.addObject("reg_cnt", reg_cnt);
+        mv.addObject("wait_cnt",wait_cnt);
+        
+        mv.setViewName("/adminTotal/main");
+
+        return mv;
     }
 
     @RequestMapping("/adminTotal/joinList")
@@ -261,36 +304,6 @@ public class AdminTotalController {
         // 해당 휴게소의 m_status 값을 5로 변경 & log 추가
         r_Service.refuse(m_id, map);
     }
-
-    // // 회원정보 수정(관리자)
-    // @RequestMapping("/adminTotal/editAdmin")
-    // public ModelAndView getRegRestList() {
-
-    // ModelAndView mv = new ModelAndView();
-
-    // RegRestVO[] ar = r_Service.getRegRestList();
-
-    // if (ar != null) {
-    // mv.addObject("ar", ar);
-    // mv.setViewName("/adminTotal/editAdmin");
-    // }
-
-    // return mv;
-    // }
-
-    // // 어드민 정보 수정
-    // @RequestMapping("/editAdminInfo")
-    // public ModelAndView editAdminInfo(String RestNm) {
-
-    // ModelAndView mv = new ModelAndView();
-
-    // RegRestVO rvo = r_Service.getRegRest(RestNm);
-
-    // mv.addObject("rvo", rvo);
-    // mv.setViewName("/adminTotal/editAdminInfo");
-
-    // return mv;
-    // }
 
     // 어드민 정보수정 로그
     @RequestMapping("/adminTotal/adminEditLog")

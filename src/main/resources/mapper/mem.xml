@@ -127,6 +127,23 @@
       ) a, (SELECT @RN:=0) b
     ) c WHERE c.rnum BETWEEN #{begin} AND #{end}
   </select>
+
+
+  <!-- 월별 회원 가입 통계 조회 -->
+<select id="getMonthlyJoinStats" resultType="com.kdt.finalproject.util.MonthlyJoinStats">
+    SELECT months.month AS month, IFNULL(join_counts.join_count, 0) AS joinCount
+    FROM (
+        SELECT 1 AS month UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL
+        SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL
+        SELECT 9 UNION ALL SELECT 10 UNION ALL SELECT 11 UNION ALL SELECT 12
+    ) AS months
+    LEFT JOIN (
+        SELECT MONTH(m_joindate) AS month, COUNT(*) AS join_count
+        FROM member
+        GROUP BY month
+    ) AS join_counts ON months.month = join_counts.month
+    ORDER BY months.month
+</select>
   
 
 </mapper>

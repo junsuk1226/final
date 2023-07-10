@@ -29,22 +29,6 @@
             <!--아이콘 cdn-->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
                 <style>
-                    table {
-                        width: 800px;
-                        border-collapse: collapse;
-                    }
-
-                    table th,
-                    table td {
-                        /*border: 2px solid black;*/
-                        padding: 4px;
-                    }
-
-                    table caption {
-                        text-indent: -9999px;
-                        height: 0;
-                    }
-
                     .popup {
                         display: none;
                     }
@@ -86,6 +70,15 @@
                         object-fit: cover;
                         width: 100%;
                         height: 100%;
+                    }
+
+                    select[name="searchType"] option {
+                        font-family: "suite";
+                        border: none;
+                    }
+                    select[name="searchType"] {
+                        font-family: "suite";
+                        border: none;
                     }
 
                 </style>
@@ -147,19 +140,18 @@
                             <div class="container-fluid">
                                 <div class="row justify-content-center mt-5">
                                     <div class="col-md-7 mb-3">
-                                        <div class="input-group input-group-lg mb-3 shadow p-1 mb-1 bg-body rounded" >
-                                            <form name="frm" action="/order" method="post">
-                                                <select style="border: none;" name="searchType" id="searchType" >
+                                        <form name="frm" action="/order" method="post">
+                                            <div class="input-group mb-3 shadow p-1 mb-1 bg-body rounded-pill" >
+                                                <select class="form-select border-end-0 rounded-pill" name="searchType" id="searchType" >
                                                     <option value="0">주문메뉴 검색</option>
                                                     <option value="1">휴게소 검색</option>
                                                     <option value="2">날짜 검색</option>
-
                                                 </select>
                                                 <input type="hidden" name="cPage" value="${nowPage}"/>
                                                 <input type="text" class="form-control"  style="border: none;" name="searchValue" id="searchValue">
-                                                <button type="button" class="btn btn-outline-secondary" style="border: none;" onclick="sendData(this.form)"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                            </form>
-                                          </div>
+                                                <button type="button" class="btn btn-outline-secondary rounded-pill" style="border: none;" onclick="sendData(this.form)"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -324,7 +316,7 @@
                             let v1 = $("#searchValue").val();
 
                             if(v1.trim().length < 1){
-                                alert("검색한 단어를 입력하세요");
+                                alert("검색할 단어를 입력하세요");
                                 return;
                             }
                             frm.submit();

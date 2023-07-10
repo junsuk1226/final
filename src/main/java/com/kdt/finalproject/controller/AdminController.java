@@ -1,6 +1,9 @@
 package com.kdt.finalproject.controller;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,11 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.kdt.finalproject.service.FoodService;
 import com.kdt.finalproject.service.JoinService;
 import com.kdt.finalproject.service.MemService;
@@ -26,6 +27,7 @@ import com.kdt.finalproject.service.ReviewService;
 import com.kdt.finalproject.util.Paging;
 import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MemVO;
+import com.kdt.finalproject.vo.MonthTotalVO;
 import com.kdt.finalproject.vo.OrderCntVO;
 import com.kdt.finalproject.vo.ReviewVO;
 
@@ -131,9 +133,48 @@ public class AdminController {
     @RequestMapping("/admin/main")
     public ModelAndView adminMainTest() {
         ModelAndView mv = new ModelAndView("/admin/main");
-        OrderCntVO[] ar = res_Service.getSameMonth_paylog();
+        // 현재 날짜 구하기
+        Calendar calendar = Calendar.getInstance();
+        int currentMonth = calendar.get(Calendar.MONTH) + 1;
+        int currentYear = calendar.get(Calendar.YEAR);
+        mv.addObject("thisMonth", currentMonth);
+        mv.addObject("thisYear", currentYear);
 
-        mv.addObject("foodOfMonth", ar);
+        Object obj = session.getAttribute("mvo");
+        if (obj != null) {
+            MemVO mvo = (MemVO) obj;
+            String restNm = mvo.getM_name(); // 휴게소이름 받아오기
+            System.out.println(restNm);
+            // 전체 메뉴 주문 횟수
+            int cnt = res_Service.getthisMonthCnt(restNm);
+            mv.addObject("thisMonthCnt", cnt);
+
+            // 많이 팔린 메뉴 하나만
+            OrderCntVO[] ar = res_Service.getSameMonth_paylog(restNm);
+            OrderCntVO ovo = ar[0];
+            mv.addObject("foodOfMonth", ovo);
+
+            // 이번달 총매출
+            int cost = res_Service.getSameMonth_totalCost(restNm);
+            mv.addObject("thisMonthTotal", cost);
+
+            // 연도별 - 월별 매출
+            MonthTotalVO[] mar = res_Service.getAllMonthTotal(restNm);
+            // 연도를 key로 가지는 map 생성
+            Map<String, List<MonthTotalVO>> map = new HashMap<>();
+
+            for (MonthTotalVO tvo : mar) {
+                String year = tvo.getYear();
+
+                List<MonthTotalVO> yearList = map.computeIfAbsent(year, k -> new ArrayList<>());
+                yearList.add(tvo);
+            }
+            mv.addObject("yearMonthTotal", map);
+
+            // 최근 리뷰 5개
+            ReviewVO[] r_ar = res_Service.getRecentReview(restNm);
+            mv.addObject("recentReview", r_ar);
+        }
 
         return mv;
     }

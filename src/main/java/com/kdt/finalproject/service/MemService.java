@@ -1,5 +1,8 @@
 package com.kdt.finalproject.service;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.kdt.finalproject.mapper.JoinMapper;
 import com.kdt.finalproject.mapper.MemMapper;
+import com.kdt.finalproject.util.MonthlyJoinStats;
 import com.kdt.finalproject.vo.MemLogVO;
 import com.kdt.finalproject.vo.MemVO;
 
@@ -182,5 +186,13 @@ public class MemService {
 
         return ar;
     }
+
+    public List<MonthlyJoinStats> geMonthlyJoinStats(){
+        return m_Mapper.getMonthlyJoinStats();
+    }
+
+
+    
+    
 
 }
