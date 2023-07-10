@@ -96,7 +96,7 @@
                         <c:forEach var="fvo" items="${ar}">
                             <tr class="mytr">
                                 <th scope="row"></th>
-                                <td>${fvo.m_name}</td>
+                                <td>${fvo.f_image}</td>
                                 <td>${fvo.foodNm}</td>
                                 <td>${fvo.foodMaterial}</td>
                                 <td>${fvo.stdRestNm}</td>
