@@ -96,7 +96,7 @@
                         <c:forEach var="fvo" items="${ar}">
                             <tr class="mytr">
                                 <th scope="row"></th>
-                                <td>${fvo.f_image}</td>
+                                <td><img src="${fvo.f_image}" width="100px" style="background-size: cover; height: 70px"/></td>
                                 <td>${fvo.foodNm}</td>
                                 <td>${fvo.foodMaterial}</td>
                                 <td>${fvo.stdRestNm}</td>
@@ -108,6 +108,7 @@
                                         승인
                                     </c:if>
                                 </td>
+                                <td></td>
                                 <td></td>
                             </tr>
                         </c:forEach>                        
