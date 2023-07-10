@@ -141,16 +141,7 @@
                 <div class="row justify-content-center mt-5">
                     <div class="col-md-9 ms-2 ">
                         <h5 style="font-family: suite;">전년도 대비 월별 매출</h5>
-                        <c:forEach var="r" items="${yearMonthTotal}">
-                            <c:if test="${r.year eq thisYear}">
-                                
-
-
-                            </c:if>
-                        </c:forEach>
-
-
-
+                        
                     </div>
                     <div class="col-md-10">
                         <canvas class="mb-3" id="lineChart" style="object-fit: contain;"></canvas>
@@ -244,6 +235,9 @@
             document.getElementById("point03"),
             document.getElementById("point04"),
         ];
+        
+
+        <c:set var="chk" value="0"/>
 
         var lineChart = new Chart(ctx, {
 		// The type of chart we want to create
@@ -263,7 +257,22 @@
 				hitRadius: 25,
 				pointBorderWidth: 2,
 				pointStyle: pointImages,
-				data: [20, 18, 18, 17, 23, 14, 11],
+				data: [
+                <c:forEach var="total" items="${yearMonthTotal}">
+                    <c:set var="year" value="${total.key}" />
+                    <c:if test="${year == thisYear}">
+                        <c:forEach begin="1" end="${thisMonth}" varStatus="st">
+                        <c:set var="chk" value="0"/>
+                            <c:forEach var="monthSale" items="${total.value}">
+                                <c:if test="${st.index == monthSale.month}">
+                                    <c:set var="chk" value="${monthSale.monthTotal}"/>
+                                </c:if>
+                            </c:forEach>                            
+                            ${chk},
+                        </c:forEach>
+                    </c:if>
+                </c:forEach>
+                ],
 			},{
                 
                 label: '${thisYear-1}',
@@ -277,7 +286,22 @@
 				hitRadius: 25, 
 				pointBorderWidth: 2,
 				pointStyle: pointImages, 
-				data: [10, 20, 21, 15,20, 17, 18, 15, 23, 14, 18, 10]
+				data: [
+                <c:forEach var="total" items="${yearMonthTotal}">
+                    <c:set var="year" value="${total.key}" />
+                    <c:if test="${year == thisYear-1}">
+                        <c:forEach begin="1" end="12" varStatus="st">
+                        <c:set var="chk" value="0"/>
+                            <c:forEach var="monthSale" items="${total.value}">
+                                <c:if test="${st.index == monthSale.month}">
+                                    <c:set var="chk" value="${monthSale.monthTotal}"/>
+                                </c:if>
+                            </c:forEach>                            
+                            ${chk},
+                        </c:forEach>
+                    </c:if>
+                </c:forEach>
+                ]
 
             }]
 		},
