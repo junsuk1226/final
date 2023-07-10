@@ -39,17 +39,16 @@ public class RestService {
     return ar;
   }
 
-  //최근 리뷰
-  public ReviewVO[] getRecentReview(String restNm){
+  // 최근 리뷰
+  public ReviewVO[] getRecentReview(String restNm) {
     List<ReviewVO> list = r_Mapper.getRecentReview(restNm);
     ReviewVO[] ar = null;
-    if(list != null){
+    if (list != null) {
       ar = new ReviewVO[list.size()];
       list.toArray(ar);
     }
     return ar;
   }
-
 
   // 이번달 총 매출
   public int getSameMonth_totalCost(String restNm) {
@@ -61,23 +60,23 @@ public class RestService {
   public int getthisMonthCnt(String restNm) {
     List<PayVO> list = r_Mapper.getSameMonth_paylog(restNm);
     int cnt = 0;
-    
-    PayVO[] ar= null;
-    if(list != null){
+
+    PayVO[] ar = null;
+    if (list != null) {
       ar = new PayVO[list.size()];
       list.toArray(ar);
 
       ArrayList<Integer> cntlist = new ArrayList<>();
-      for(int i =0; i< ar.length; i++){
-        String seqLine = ar[i].getSeq();
+      for (int i = 0; i < ar.length; i++) {
+        String QnLine = ar[i].getFoodQn();
 
-        String[] sAr = seqLine.split("/");
-        for(String seq:sAr){
-          cntlist.add(Integer.parseInt(seq));
+        String[] qAr = QnLine.split("/");
+        for (String qn : qAr) {
+          cntlist.add(Integer.parseInt(qn));
         }
       }
-      for(int i: cntlist){
-        cnt+=i;
+      for (int i : cntlist) {
+        cnt += i;
       }
     }
     return cnt;

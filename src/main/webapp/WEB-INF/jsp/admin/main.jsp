@@ -13,7 +13,8 @@
 <link rel="stylesheet" href="../css/admin.css" />
 <!--차트 js-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
-
+ <!--아이콘 cdn-->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 </head>
 <body>
@@ -61,14 +62,14 @@
             <div class="container-fluid">
                 <div class="row justify-content-center mt-5">
                     <div class="col-md-10 mb-5 text-start d-flex align-items-center">
-                        <div style="width: 100px; height: 100px;" class="me-4">
+                        <div style="width: 120px; height: 120px;" class="me-4">
                           <img src="../images/경부선0010-19-000003.jpg" class="rounded-circle" style="object-fit: cover; width: 100%; height: 100%;">
                         </div>
                         <div class="d-flex flex-column justify-content-center" style="width: auto;">
-                          <h2 class="lh-base ms-1 text-center" style="font-family: 'suite';">${sessionScope.mvo.m_name}</h2>
+                          <h2 class="lh-base ms-1 text-center" style="font-family: 'suite'; font-size: xx-large;">${sessionScope.mvo.m_name}</h2>
                         </div>
                     </div>
-                    <div class=" col-md-5">  
+                    <div class=" col-md-5 mt-5">  
                         <div class = "card shadow rounded p-2 me-4" style="border: none;">
                             <div class = "card-body d-flex justify-content-center">
                                 <div class="col-md-5">
@@ -80,27 +81,32 @@
                                 </div>
                             </div> 
                         </div>
-                        <div class="d-flex">
+                        <div class="d-flex mt-4">
                             <div class = "card mt-3 me-4 col-md-3 shadow"  style="background-color: #3f3f3f;">
-                                <div class="card-body">
-
+                                <div class="card-body  justify-content-center">
+                                    <span class="ms-2" style="font-size: medium; color: #00A674; font-family: suite; font-weight: bold;">별점 평균<i class="fa fa-star ms-2" style="color: #FBB202;"></i></span>
+                                    <hr/>
+                                    <div class="mt-5">
+                                        <span class="ms-2 " style="font-size: medium; color: #FBB202; font-family: suite; font-weight: bold; font-size: xx-large;">${scoreAvg}<span class="ms-2" style="font-size: medium;">점</span></span>
+                                
+                                    </div>
                                 </div>
                             </div>
                             <div class="mt-3 me-3 shadow rounded col-md-8" style="background-color: #3f3f3f;">
                                 <div class="py-2 ms-4">
-                                    <span style="font-family: suite;color: aliceblue;" >${thisMonth}월 최다 주문 메뉴</span>
+                                    <span style="font-family: suite;color: aliceblue;" >${thisMonth}월 인기 메뉴</span>
                                 </div>
                                 <div class="card rounded" style="border: none;">
-                                    <div class="card-body d-flex">
-                                        <div class="ms-2" style="width: 100px; height: 100px;">
+                                    <div class="card-body d-flex justify-content-between">
+                                        <div class="ms-2" style="width: 120px; height: 100px;">
                                             <img class="rounded" id="${foodOfMonth.seq}_img" style="object-fit: cover; width: 100%; height: 100%;" />
                                         </div>
-                                        <div class="row">
+                                        <div class="row col-md-9">
                                             <div class="col-md-12">
                                                 <p class="ms-3" style="font-family: suite; font-size:larger;"> ${foodOfMonth.foodNm}</p>
                                             </div>
                                             <div class="text-end col-md-12">
-                                                <span class="text-muted me-2" style="font-family: suite;">${foodOfMonth.cnt}회 주문</span>
+                                                <span class="text-muted me-2" style="font-family: suite;">총 ${foodOfMonth.cnt}회 주문</span>
                                             </div>
                                         </div>
                                     </div>
@@ -109,7 +115,8 @@
                         </div>
                         
                     </div>
-                    <div class = "card col-md-5 shadow rounded p-3 me-3 " style="border: none;">
+                    <div class = "card col-md-5 shadow rounded p-3 me-3 mt-5 " style="border: none;">
+                        <span class="ms-1" style="font-size: medium; color: #00A674; font-family: suite; font-weight: bold;">인기 메뉴 주문 비율</span>
                         <div class = "card-body d-flex">
                             <canvas style="width: 300px; height: 200px;" id="pieChart"></canvas>
                             <div class="vr"></div>
@@ -126,6 +133,45 @@
                     </div>
                 </div>
                 <div class="row justify-content-center mt-5">
+                    <div class="mt-3 me-3 shadow rounded col-md-8" style="background-color: #3f3f3f;">
+                        <div class="py-2 ms-4">
+                            <span style="font-family: suite;color: aliceblue; font-size: x-large;" >최근 리뷰<span class="ms-2" style="font-size: medium; color: #00A674;">가장 최근 리뷰 5개가 표시됩니다.</span></span>
+                        </div>
+                        <c:forEach var="re" items="${recentReview}">
+                        <div class="card rounded mb-2" style="border: none;">
+                            <div class="card-body d-flex justify-content-between">
+                                <div class="ms-2" style="width: 150px; height: 150px;">
+                                    <c:if test="${re.r_file eq null}">                                   
+                                        <img class="rounded" src="../main_images/no_image.png" id="${foodOfMonth.seq}_img" style="object-fit: cover; width: 100%; height: 100%;" />
+                                    </c:if>
+                                    <c:if test="${re.r_file ne null}">                                   
+                                        <img class="rounded" src="../editor_upload/${re.r_file}" id="${foodOfMonth.seq}_img" style="object-fit: cover; width: 100%; height: 100%;" />
+                                    </c:if>
+                                </div>
+                                <div class="row col-md-10">
+                                    <div class="col-md-12 mt-3">
+                                        <p class="ms-3" style="font-family: suite; font-size:larger;"> ${re.r_content}</p>
+                                    </div>
+                                    <div class="text-end col-md-12 justify-content-end">
+                                        <span class="text-muted me-2 text-end justify-content-end" style="font-family: suite;">
+                                            <div class="me-2 my-2">
+                                                <c:forEach begin="1" end="${re.r_score}">
+                                                    <i class="fa fa-star" style="color: #FBB202;"></i>
+                                                </c:forEach>
+                                                <c:forEach begin="1" end="${5 - re.r_score}">
+                                                    <i class="fa fa-star-o" style="color: #FBB202;"></i>
+                                                </c:forEach>
+                                            </div>
+                                            ${re.r_writedate}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </c:forEach>
+                    </div>
+                   
+
 
                     
                       
@@ -154,7 +200,7 @@
      //파일이름을 비동기식으로 가져오기
      $(document).ready(function() {
         var seq = "${foodOfMonth.seq}";
-            sendAjaxRequest(seq);
+        sendAjaxRequest(seq);
          
         function sendAjaxRequest(seq){
             $.ajax({
@@ -244,13 +290,12 @@
 
     //pie
     var ctxP = document.getElementById("pieChart").getContext('2d');
-    <c:set var="jsonData" value="[${foodOfMonth.cnt}, ${thisMonthCnt - foodOfMonth.cnt}]" />
     var myPieChart = new Chart(ctxP, {
             type: 'pie',
             data: {
             labels: ["${foodOfMonth.foodNm}", "기타 메뉴"],
             datasets: [{
-                data: [20, 30],
+                data: ['${foodOfMonth.cnt}', '${thisMonthCnt-foodOfMonth.cnt}'],
                 backgroundColor: ["#00A674", "#cccccc"],
                 hoverBackgroundColor: ["#3CE6B3", "#EEEEEE"]
             }]
@@ -259,7 +304,7 @@
                 responsive: false,
                     plugins: {
                         legend: {
-                        position: 'right'
+                        position: 'bottom'
                         }
                     }
                 }

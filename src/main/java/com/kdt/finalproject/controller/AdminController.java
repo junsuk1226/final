@@ -144,7 +144,11 @@ public class AdminController {
         if (obj != null) {
             MemVO mvo = (MemVO) obj;
             String restNm = mvo.getM_name(); // 휴게소이름 받아오기
-            System.out.println(restNm);
+
+            // 평균 별점
+            Float scoreAvg = r_Service.getScoreAvg(restNm);
+            mv.addObject("scoreAvg", scoreAvg);
+
             // 전체 메뉴 주문 횟수
             int cnt = res_Service.getthisMonthCnt(restNm);
             mv.addObject("thisMonthCnt", cnt);
