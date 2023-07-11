@@ -18,7 +18,42 @@
       
      th{
         height: 50px;
+        font-family: 'jamsil_bold';
      }
+     td{
+        font-family: 'jamsil';
+     }
+
+      tr {
+        border: 1px solid #e4e4e4;
+        z-index:7;
+      }
+      td {
+        text-align:center;
+        padding: 20px;
+        transition: all 0.2s ease-in-out;
+      }
+      td.highlight {
+        padding:0;
+        width:4px;
+      }
+      td.highlight div {
+        width:4px;
+        height:60px;
+        border-radius:4px;
+        background-color: white;
+        transition: all 0.2s ease-in-out;
+      }
+
+     tr:hover {
+        box-shadow: 0px 9px 4px -6px grey;
+       }
+       tr:hover td{
+         cursor:pointer;
+         color:#00A674;
+         border-top: 1px solid grey;
+         border-bottom: 1px solid grey;
+       }
       
       table td,
       table th {
@@ -26,14 +61,7 @@
         white-space: nowrap;
         overflow: hidden;
       }
-      
-      .card {
-        border-radius: .5rem;
-      }
-      
-      .table-scroll {
-        border-radius: .5rem;
-      }
+
       
       thead {
         top: 0;
@@ -90,7 +118,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center mt-5">
                 <div class="col-md-11 mb-3 text-start">
-                        <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
+                        <h2 class=" lh-base mt-5 ms-1" style="font-family: 'jamsil'">
                             ${sessionScope.mvo.m_name}<span class="text-muted"> 메뉴 관리</span>
                         </h2>
                 </div>
@@ -98,65 +126,7 @@
 
             <div class="row justify-content-center my-5">
                 <div class="col-md-8">
-                    <div><!--테이블-->
-                        <section class="intro">
-                            <div class="bg-image h-100" >
-                              <div class="mask d-flex align-items-center h-100">
-                                <div class="container">
-                                  <div class="row justify-content-center">
-                                    <div class="col-12">
-                                      <div class="card shadow-2-strong">
-                                        <div class="card-body p-0">
-                                          <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 700px; border: none;">
-                                            <table class="table table-dark mb-0">
-                                              <thead style="background-color: #393939;">
-                                                <tr class="text-uppercase text-success">
-                                                  <th scope="col">번호</th>
-                                                  <th scope="col">음식사진</th>
-                                                  <th scope="col">음식명</th>
-                                                  <th scope="col">음식가격</th>
-                                                  <th scope="col">등록상태</th>
-                                                  <th scope="col"></th>
-                                                </tr>
-                                              </thead>
-                                              <tbody>
-                                                <c:forEach var="vo" items="${fvo}">
-                                                    <tr style="height: 100px;" class="align-items-center">
-                                                        <th scope="row">${vo.f_idx}</th>
-                                                        <td> 
-                                                            <img src="${vo.f_image}" style="width:80px; height: 80px; object-fit: cover;" class="rounded">
-                                                        </td>
-                                                        <td>${vo.foodNm}</td>
-                                                        <fmt:formatNumber var="foodCost" type='number' maxFractionDigits='3' value='${vo.foodCost}' />
-                                                        <td>${foodCost}원</td>
-                                                        <c:if test="${vo.f_status == 0}">
-                                                            <td>판매중</td>
-                                                        </c:if>
-                                                        <c:if test="${vo.f_status == 1}">
-                                                            <td>품 절</td>
-                                                        </c:if>
-                                                        <td style="width: 50px;"><a class="btn btn-dark" style="width:60px" href="/admin/menuEdit?f_idx=${vo.f_idx}">수정</a></td>
-                                                    </tr>
-                                                </c:forEach>
-                                              </tbody>
-                                            </table>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </section>
-                          
-
-                    </div>
-
-
-
-
-
+                    
 
                     <div class=" shadow rounded" style="border: none;">
                         <!--https://mdbootstrap.com/snippets/standard/mdbootstrap/2920214?view=side css할때 참고할 것-->
@@ -164,11 +134,11 @@
                             <div class="" >
                                 <table class="table table-rounded">
                                     <thead>
-                                      <tr style="background-color: #2a292c; color:white">
-                                        <th scope="col">번호</th>
-                                        <th scope="col">음식사진</th>
-                                        <th scope="col">음식명</th>
-                                        <th scope="col">음식가격</th>
+                                      <tr style="background-color: #2a292c; color:white; text-align: center;">
+                                        <th scope="col" >번호</th>
+                                        <th scope="col" style="width: 200px;">이미지</th>
+                                        <th scope="col">메뉴</th>
+                                        <th scope="col">가격</th>
                                         <th scope="col">등록상태</th>
                                         <th scope="col"></th>
                                       </tr>
@@ -176,8 +146,8 @@
                                     <tbody>
                                         <c:forEach var="vo" items="${fvo}">
                                       <tr>
-                                        <th scope="row">${vo.f_idx}</th>
-                                        <td> <img src="${vo.f_image}" style="width:80px; height: 60px;"></td>
+                                        <td scope="row"><span class="text-muted" style="font-family: suite;">${vo.f_idx}</span></td>
+                                        <td> <img src="${vo.f_image}" style="width:180px; height: 80px; object-fit: cover;"class="rounded"></td>
                                         <td>${vo.foodNm}</td>
                                         <fmt:formatNumber var="foodCost" type='number' maxFractionDigits='3' value='${vo.foodCost}' />
                                         <td>${foodCost}원</td>
