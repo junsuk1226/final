@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JposEntries PUBLIC "-//JavaPOS//DTD//EN" "jpos/res/jcl.dtd">
+<JposEntries>
+
+  <JposEntry logicalName="JposPrinter_serial">
+    <creation factoryClass="net.jposprinter.javaposdrv.ServiceInstanceFactory" serviceClass="net.jposprinter.javaposdrv.POSPrinterService" />
+    <vendor name="JposPrinter" url="www.JposPrinter.net" />
+    <jpos category="POSPrinter" version="1.13" />
+    <product description="JposPrinter receipt printer" name="JposPrinter POSPrinter controller" url="www.JposPrinter.net" />
+    <prop name="model" type="String" value="POS80" />
+    <prop name="portName" type="String" value="COM1" />
+    <prop name="portSettings" type="String" value="19200" />
+    <prop name="ioTimeoutMillis" type="Integer" value="5000" />
+    <prop name="DBCS" type="String" value="" />
+  </JposEntry>
+
+  <JposEntry logicalName="JposPrinter_USB">
+    <creation factoryClass="net.jposprinter.javaposdrv.ServiceInstanceFactory" serviceClass="net.jposprinter.javaposdrv.POSPrinterService" />
+    <vendor name="JposPrinter" url="www.JposPrinter.net" />
+    <jpos category="POSPrinter" version="1.13" />
+    <product description="JposPrinter receipt printer" name="JposPrinter POSPrinter controller" url="www.JposPrinter.net" />
+    <prop name="model" type="String" value="POS80" />
+    <prop name="portName" type="String" value="usb" />
+    <prop name="portSettings" type="String" value="" />
+    <prop name="ioTimeoutMillis" type="Integer" value="5000" />
+    <prop name="DBCS" type="String" value="GB2312" />
+  </JposEntry>
+
+  <JposEntry logicalName="JposPrinter_ethernet">
+    <creation factoryClass="net.jposprinter.javaposdrv.ServiceInstanceFactory" serviceClass="net.jposprinter.javaposdrv.POSPrinterService" />
+    <vendor name="JposPrinter" url="www.JposPrinter.net" />
+    <jpos category="POSPrinter" version="1.13" />
+    <product description="JposPrinter receipt printer" name="JposPrinter POSPrinter controller" url="www.JposPrinter.net" />
+    <prop name="model" type="String" value="POS80" />
+    <prop name="portName" type="String" value="tcp:192.168.83.100" />
+    <prop name="portSettings" type="String" value="" />
+    <prop name="ioTimeoutMillis" type="Integer" value="5000" />
+    <prop name="DBCS" type="String" value="Big5" />
+  </JposEntry>
+
+  
+</JposEntries>

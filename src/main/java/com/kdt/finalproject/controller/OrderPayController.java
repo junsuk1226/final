@@ -3,6 +3,7 @@ package com.kdt.finalproject.controller;
 import java.awt.print.PrinterException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -27,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.PayService;
 import com.kdt.finalproject.util.Cart;
+import com.kdt.finalproject.util.JposPrinterReceiptTest;
 import com.kdt.finalproject.vo.KakaoReadyResponseDTO;
 import com.kdt.finalproject.vo.PayVO;
 
@@ -45,12 +47,19 @@ public class OrderPayController {
             throws Exception {
         ModelAndView mv = new ModelAndView();
 
+        try {
+            Process p = Runtime.getRuntime()
+                    .exec("c:/Mywork/finalproject/final-4/src/main/java/com/kdt/finalproject/util/TEST.bat");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         mv.setViewName("orderpay");
 
         return mv;
     }
 
-    @RequestMapping("/kakao/pay") // 음식숫자 DB 만들어야 함.
+    @RequestMapping("/kakao/pay")
     public ModelAndView kakaoPay(String sumPrice, String[] foodNm, String[] foodQn,
             String[] ggetfoodCost, String m_idx, String restNm, String[] seq) {
         ModelAndView mv = new ModelAndView();
