@@ -12,6 +12,9 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Random;
+
+import javax.servlet.http.HttpSession;
+
 import java.util.Base64.Encoder;
 
 import org.json.simple.JSONObject;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.PayService;
+import com.kdt.finalproject.util.Cart;
 import com.kdt.finalproject.vo.KakaoReadyResponseDTO;
 import com.kdt.finalproject.vo.PayVO;
 
@@ -32,6 +36,9 @@ public class OrderPayController {
 
     @Autowired
     private PayService p_Service;
+
+    @Autowired
+    private HttpSession session;
 
     @RequestMapping("/orderpay")
     public ModelAndView orderPay()
@@ -202,6 +209,16 @@ public class OrderPayController {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        // 세션에서 카트 객체 가져오기
+        Cart cart = (Cart) session.getAttribute("cart");
+
+        // 카트 객체가 존재하면 비우기
+        if (cart != null) {
+            cart.cartClear();
+            session.removeAttribute("listSize");
+
         }
 
         mv.setViewName("redirect:" + dto.getNext_redirect_pc_url());
