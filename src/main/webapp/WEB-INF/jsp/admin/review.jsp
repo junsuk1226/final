@@ -210,18 +210,21 @@
                 ,maxDate: "+5y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
             });                    
             
-            //초기값을 오늘 날짜로 설정해줘야 합니다.
-            $('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
-            var currentDate = $('#datepicker').val();
-                 console.log(currentDate);
-            $('#datepicker').change(function() {
-                var date = $(this).val();
-              
-                
+           $('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
+
+                $('#datepicker').change(function() {
+                    var date = $(this).val();
+                    sessionStorage.setItem('selectedDate', date); // 선택한 날짜 저장
+                    }
+                );
+                // 페이지 로드 시 선택한 날짜 설정
+                var selectedDate = sessionStorage.getItem('selectedDate');
+                if (selectedDate) {
+                    $('#datepicker').val(selectedDate);
+                    sessionStorage.removeItem('selectedDate');
+
                 }
-            )
-           
-        });
+            });
         
         function exe(frm){
             frm.submit();
