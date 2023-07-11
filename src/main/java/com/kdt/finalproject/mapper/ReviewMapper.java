@@ -53,6 +53,6 @@ public interface ReviewMapper {
 
     List<ReviewVO> adminReview(Map<String, String> map);
 
-    int adminTotalCount(String r_restNm);
+    int adminTotalCount(Map<String, String> map);
 
 }

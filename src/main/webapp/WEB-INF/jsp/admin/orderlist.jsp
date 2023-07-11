@@ -67,23 +67,23 @@
                         </h2>
                 </div>
             </div>
-            <form action="/admin/orderlist" method="get">
-                <div style="margin-left: 300px; margin-top: 10px">
-                    <img src="../images/schedule.png" style="width: 33px;"/>
-                    <input type="text" id="datepicker" name="date">
-                    <button type="button" onclick="exe(this.form)">검색</button>
-                </div>
-                </form>
+         
 
-                <form action="/admin/orderlist" method="get">
-                    <select class="form-select" aria-label="Default select example" name="getMonth" id="monthSelect"></select>
-                    <input type="submit" value="검색">
-                </form>
-            <div class="row justify-content-center my-5">
-                <div class="col-md-8">
-                    <div class=" shadow rounded" style="border: none;">
-                        <!--https://colorlib.com/etc/tb/Table_Fixed_Header/index.html css할때 참고할 것-->
-                    
+                <div class="row justify-content-center my-5">
+                    <div class="col-md-8">
+                        <div class=" shadow rounded" style="border: none;">
+                            <!--https://colorlib.com/etc/tb/Table_Fixed_Header/index.html css할때 참고할 것-->
+                            <form action="/admin/orderlist" method="get">
+                                <div style="margin-left: 300px; margin-top: 10px">
+                                    <img src="../images/schedule.png" style="width: 33px;"/>
+                                    <input type="text" id="datepicker" name="date" >
+                                    <button type="button" onclick="exe(this.form)">검색</button>
+                                </div>
+                                </form>
+                            <form action="/admin/orderlist" method="get" style="width:200px;">
+                                <select class="form-select" aria-label="Default select example" name="getMonth" id="monthSelect" style="width:80px; display:inline"></select>
+                                <input type="submit" value="검색">
+                            </form>
 
                             <div class="" >
                                 <table class="table table-rounded">

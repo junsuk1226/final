@@ -78,7 +78,7 @@
                             <div class="" >
                                 <table class="table table-rounded">
                                     <thead>
-                                      <tr style="background-color: #2a292c;">
+                                      <tr style="background-color: #2a292c; color:white">
                                         <th scope="col">번호</th>
                                         <th scope="col">음식사진</th>
                                         <th scope="col">음식명</th>
@@ -93,7 +93,8 @@
                                         <th scope="row">${vo.f_idx}</th>
                                         <td> <img src="${vo.f_image}" style="width:80px; height: 60px;"></td>
                                         <td>${vo.foodNm}</td>
-                                        <td>${vo.foodCost}</td>
+                                        <fmt:formatNumber var="foodCost" type='number' maxFractionDigits='3' value='${vo.foodCost}' />
+                                        <td>${foodCost}원</td>
                                         <c:if test="${vo.f_status == 0}">
                                             <td>판매중</td>
                                         </c:if>

@@ -265,7 +265,7 @@ public class AdminController {
         map.put("date", date);
         int nowPage = 1;
 
-        int totalRecord = r_Service.adminTotalCount(mvo.getM_name());
+        int totalRecord = r_Service.adminTotalCount(map);
 
         if (cPage != null)
             nowPage = Integer.parseInt(cPage);

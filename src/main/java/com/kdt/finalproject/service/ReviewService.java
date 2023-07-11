@@ -131,7 +131,7 @@ public class ReviewService {
         return ar;
     }
 
-    public int adminTotalCount(String r_restNm) {
-        return r_Mapper.adminTotalCount(r_restNm);
+    public int adminTotalCount(Map<String, String> map) {
+        return r_Mapper.adminTotalCount(map);
     }
 }
