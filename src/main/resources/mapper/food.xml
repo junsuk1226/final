@@ -5,6 +5,15 @@
   
 <mapper namespace="com.kdt.finalproject.mapper.FoodMapper">
 
+<!--휴게소 관리페이지 판매중인 음식 갯수-->
+<select id="getZero" resultType="int" parameterType="String">
+  select COUNT(*) from food where f_status='0' and stdRestNm= '${restNm}'
+</select>
+<!--휴게소 관리페이지 품절인 음식 갯수-->
+<select id="getOne" resultType="int" parameterType="String">
+  select COUNT(*) from food where f_status='1' and stdRestNm= '${restNm}'
+</select>
+
 
 <!--특정 휴게소 클릭 시 DB에 등록된 모든 음식 호출, 관리자 페이지 메뉴관리에서 메뉴 리스트 호출-->
 <select id="getFood" resultType="com.kdt.finalproject.vo.FoodVO" parameterType="String">

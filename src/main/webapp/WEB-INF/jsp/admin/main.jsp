@@ -28,12 +28,12 @@
 
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="/admin/main" class="nav-link text-white">
+                    <a href="/admin/main" class="nav-link text-white active">
                     홈
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/menu" class="nav-link text-white active">
+                    <a href="/admin/menu" class="nav-link text-white ">
                     메뉴관리
                     </a>
                 </li>
@@ -65,7 +65,7 @@
         <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
             <div class="container-fluid">
                 <div class="row justify-content-center mt-5">
-                    <div class="col-md-10 mb-5 text-start d-flex align-items-center">
+                    <div class="col-md-9 mb-5 text-start d-flex align-items-center">
                         <div style="width: 120px; height: 120px;" class="me-4">
                             <c:if test="${rest.reg_image ne null}">
                                 <img src="${rest.reg_image}" class="rounded-circle" style="object-fit: cover; width: 100%; height: 100%;">

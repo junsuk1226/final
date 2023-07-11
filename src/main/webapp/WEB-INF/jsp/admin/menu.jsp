@@ -10,6 +10,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="../css/admin.css" />
+<!--아이콘 cdn-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <style>
 
     .intro {
@@ -19,9 +21,11 @@
      th{
         height: 50px;
         font-family: 'jamsil_bold';
+        vertical-align: middle;
      }
      td{
-        font-family: 'jamsil';
+        font-family: 'suite';
+        vertical-align: middle;
      }
 
       tr {
@@ -31,7 +35,7 @@
       td {
         text-align:center;
         padding: 20px;
-        transition: all 0.2s ease-in-out;
+        transition: all 0.5s ease-in-out;
       }
       td.highlight {
         padding:0;
@@ -42,17 +46,13 @@
         height:60px;
         border-radius:4px;
         background-color: white;
-        transition: all 0.2s ease-in-out;
+        transition: all 0.5s ease-in-out;
       }
 
-     tr:hover {
-        box-shadow: 0px 9px 4px -6px grey;
-       }
        tr:hover td{
          cursor:pointer;
          color:#00A674;
-         border-top: 1px solid grey;
-         border-bottom: 1px solid grey;
+         font-weight: bolder;
        }
       
       table td,
@@ -117,24 +117,20 @@
     <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
         <div class="container-fluid">
             <div class="row justify-content-center mt-5">
-                <div class="col-md-11 mb-3 text-start">
+                <div class="col-md-10 mb-3 text-start">
                         <h2 class=" lh-base mt-5 ms-1" style="font-family: 'jamsil'">
                             ${sessionScope.mvo.m_name}<span class="text-muted"> 메뉴 관리</span>
                         </h2>
                 </div>
             </div>
 
-            <div class="row justify-content-center my-5">
-                <div class="col-md-8">
-                    
-
+            <div class="row justify-content-center my-5 " >
+                <div class="col-md-7">
                     <div class=" shadow rounded" style="border: none;">
-                        <!--https://mdbootstrap.com/snippets/standard/mdbootstrap/2920214?view=side css할때 참고할 것-->
-                        
                             <div class="" >
                                 <table class="table table-rounded">
-                                    <thead>
-                                      <tr style="background-color: #2a292c; color:white; text-align: center;">
+                                    <thead style=" border-top-left-radius: 10px;border-top-right-radius: 10px;">
+                                      <tr style="background-color: #3f3f3f; color:white; text-align: center; ">
                                         <th scope="col" >번호</th>
                                         <th scope="col" style="width: 200px;">이미지</th>
                                         <th scope="col">메뉴</th>
@@ -146,18 +142,21 @@
                                     <tbody>
                                         <c:forEach var="vo" items="${fvo}">
                                       <tr>
-                                        <td scope="row"><span class="text-muted" style="font-family: suite;">${vo.f_idx}</span></td>
+                                        <td scope="row" style="vertical-align: top;"><span class="text-muted" style="font-family: suite;">${vo.f_idx}</span></td>
                                         <td> <img src="${vo.f_image}" style="width:180px; height: 80px; object-fit: cover;"class="rounded"></td>
-                                        <td>${vo.foodNm}</td>
+                                        <td style="font-size: larger;">${vo.foodNm}</td>
                                         <fmt:formatNumber var="foodCost" type='number' maxFractionDigits='3' value='${vo.foodCost}' />
-                                        <td>${foodCost}원</td>
+                                        <td >${foodCost}원</td>
                                         <c:if test="${vo.f_status == 0}">
                                             <td>판매중</td>
                                         </c:if>
                                         <c:if test="${vo.f_status == 1}">
                                             <td>품 절</td>
                                         </c:if>
-                                        <td style="width: 50px;"><a class="btn btn-dark" style="width:60px" href="/admin/menuEdit?f_idx=${vo.f_idx}">수정</a></td>
+                                        <td style="width: 50px;">
+                                            <a class="me-5 btn btn-success" style=" text-decoration: none; font-weight: bold;" href="/admin/menuEdit?f_idx=${vo.f_idx}"><i class="fa fa-pencil-square-o fa-lg me-1" aria-hidden="true"></i>수정
+                                            </a>
+                                        </td>
                                     
                                       </tr>
                                     </c:forEach>
@@ -168,9 +167,27 @@
                        
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div>
-                        <a class="btn btn-dark" href="/admin/menuAdd" >신청하기</a>
+                <div class="col-md-3 banner" >
+                    <div id="chase" style="min-width: 230px; max-width: 230px;">
+                        <div class="bg-dark card mb-5 shadow" >
+                            <div class="card-body justify-content-center text-center">
+                                <a class="btn" style="font-family: jamsil; font-size: larger; color: #e4e4e4;" href="/admin/menuAdd" >메뉴 신청하기</a>
+                            </div>
+                        </div>
+                        <div class="card shadow" style="border: none;">
+                            <div class="card-body p-4">
+                                <h6 class="card-title ms-2"style="font-family:jamsil;">판매중인 메뉴</h6>
+                                <div class="text-end me-5">
+                                    <h3 style="color: #00A674; font-weight: bold;">${zero}</h3>
+                                </div>
+                                <hr/>
+                                <h6 class="card-title ms-2"style="font-family:jamsil;">품절 메뉴</h6>
+                                <div class="text-end me-5">
+                                    <h3 style="color: #00A674; font-weight: bold;">${one}</h3>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -188,7 +205,14 @@
 
     
 <script>
-    
+    $(window).scroll(function(event){
+        if(jQuery(window).scrollTop() > jQuery(".banner").offset().top) { 
+            jQuery("#chase").css("position", "fixed");
+        }
+        else if((jQuery(window).scrollTop() < jQuery(".banner").offset().top)) { 
+            jQuery("#chase").css("position", "static");
+        }
+    });
 </script>
 
 </body>

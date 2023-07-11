@@ -54,7 +54,8 @@ public class OrderListController {
                     String[] name_ar = pvo.getFoodNm().split("/");
 
                     // FoodVO fvo = f_service.getFoodImg(name_ar[0]);
-                    FoodVO fvo = f_service.getFoodImg(pvo.getSeq());
+                    String seq_ar[] = pvo.getSeq().split("/");
+                    FoodVO fvo = f_service.getFoodImg(seq_ar[0]);
                     if (fvo != null)
                         pvo.setF_image(fvo.getF_image());
 

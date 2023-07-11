@@ -31,4 +31,8 @@ public interface FoodMapper {
 
     int getMenuTotalCount(Map<String, Object> map);
 
+    int getOne(String restNm);
+
+    int getZero(String restNm);
+
 }

@@ -195,7 +195,11 @@ public class AdminController {
         MemVO vo = (MemVO) session.getAttribute("mvo");
 
         FoodVO[] foodList = f_Service.allList(vo.getM_name());
+        int one = f_Service.getOne(vo.getM_name());
+        int zero = f_Service.getZero(vo.getM_name());
 
+        mv.addObject("zero", zero);
+        mv.addObject("one", one);
         mv.addObject("fvo", foodList);
         mv.setViewName("/admin/menu");
 

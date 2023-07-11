@@ -105,4 +105,12 @@ public class FoodService {
         return ar;
     }
 
+    public int getOne(String restNm) {
+        return f_Mapper.getOne(restNm);
+    }
+
+    public int getZero(String restNm) {
+        return f_Mapper.getZero(restNm);
+    }
+
 }
