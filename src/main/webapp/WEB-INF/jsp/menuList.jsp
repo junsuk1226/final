@@ -163,6 +163,36 @@
                                 </form>
                             </c:forEach>
 
+                            <c:forEach var="fvo" items="${fvo}">
+                                <form action="/menu/info">
+                                    <input type="hidden" name="RestNm" value="${RestNm}">
+                                    <input type="hidden" name="foodCost" value="${fvo.foodCost}">
+                                    <input type="hidden" name="foodNm" value="${fvo.foodNm}">
+                                    <input type="hidden" name="foodMaterial" value="${fvo.foodMaterial}">
+                                    <input type="hidden" name="etc" value="${fvo.etc}">
+                                    <input type="hidden" name="f_image" value="${fvo.f_image}">
+                                    <input type="hidden" name="seq" value="${fvo.seq}">
+    
+    
+                                  
+                                
+                                        <button type="submit" class="mycustom-menu_list_btn" disabled>
+                                            <li class="list-group-item mycustom-menu_list_group_item">
+                                                <div class="d-flex">
+                                                
+                                                    <div class="mycustom-menu_info">
+                                                        <h3>${fvo.foodNm} <c:if test="${fvo.bestfoodyn eq 'Y'}"><img class="mycustom-menu_img" src="../images/recommend.png" style="width:30px; height: 30px;"></c:if></h3>
+                                                        <a>
+                                                            <c:set var="formattedCost" value="${fvo.foodCost}" />
+                                                            <fmt:formatNumber value="${formattedCost}" pattern="###,###원" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </button>
+                                    </form>
+                                </c:forEach>
+    
                         <!---------------------------------------------->
 
                         
@@ -348,7 +378,7 @@
     <script>
 
         var addr = $("#addr").val();
-            
+            console.log(addr);
         var mapContainer = document.getElementById('info-tab-pane'), // 지도를 표시할 div 
         mapOption = {
             center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
