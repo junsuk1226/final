@@ -114,7 +114,7 @@
                 </div>
                 <div class="col-md-3">
                     <div>
-                        <button class="btn btn-dark" href="/admin/menuAdd" >신청하기</button>
+                        <a class="btn btn-dark" href="/admin/menuAdd" >신청하기</a>
                     </div>
                 </div>
             </div>
