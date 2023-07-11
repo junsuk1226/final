@@ -531,6 +531,16 @@ public class OrderPayController {
         dto.setFoodQnTotal(foodQnsb.toString());
         dto.setSeq(ggetseq);
 
+        // 세션에서 카트 객체 가져오기
+        Cart cart = (Cart) session.getAttribute("cart");
+
+        // 카트 객체가 존재하면 비우기
+        if (cart != null) {
+            cart.cartClear();
+            session.removeAttribute("listSize");
+
+        }
+
         mv.addObject("orderId", sb.toString());
         mv.addObject("foodNm", foodNmsb.toString());
         mv.addObject("sumPrice", getsumPrice);
