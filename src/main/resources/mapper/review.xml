@@ -38,6 +38,7 @@
 		SELECT @RN:=@RN+1 AS rnum,a.* FROM(
       SELECT * FROM final.review
       WHERE m_idx = #{m_idx} and r_status = 0
+      ORDER BY r_idx DESC
     ) a, (SELECT @RN:=0) b
 	) c WHERE c.rnum BETWEEN #{begin} AND #{end}
 </select>
