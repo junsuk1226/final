@@ -70,9 +70,13 @@
                 
                 <div class="container">
                     <table class="table mycustomtable" style="text-align: center;">
-                        <form>
-                            <input>
-                            <button type="button">검색</button>
+                        <form action="/adminTotal/editMemLog" method="post">
+                            <select class="search_select" name="searchType">
+                                <option value="0">닉네임</option>
+                                <option value="1">아이디</option>
+                            </select>&nbsp;
+                            <input name="searchValue">&nbsp;
+                            <button type="button" class="search_btn" onclick="sendData(this.form)">검색</button>
                         </form>
                         <thead>
                         <tr class="table_head">

@@ -77,3 +77,11 @@ body{
 .adminTotal-grapharea{
     font-family: "jamsil";
 }
+
+.search_select {
+    height: 33px;
+}
+
+.search_btn{
+    border-radius: 5px;
+}
