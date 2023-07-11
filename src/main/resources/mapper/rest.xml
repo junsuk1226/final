@@ -10,7 +10,10 @@
 </select>
 
 <!--(휴게소 관리자 계정)m_name으로 휴게소 프로필로 사용할 사진 가져오기-->
-<!--아직 안만듬-->
+<select id="getRestPic" resultType="com.kdt.finalproject.vo.RegRestVO" parameterType="String">
+    SELECT * FROM regrest
+    WHERE reg_restNm=#{restNm} 
+</select>
 
 <!--현재 달과 같은 paylog만 가져오기-->
 <select id="getSameMonth_paylog" resultType="com.kdt.finalproject.vo.PayVO" parameterType="String">
