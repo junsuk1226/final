@@ -188,11 +188,6 @@ public class AdminController {
         return mv;
     }
 
-    // @RequestMapping("/admin/menu")
-    // public String adminMenuTest() {
-    // return "/admin/menu";
-    // }
-
     @RequestMapping("/admin/menu")
     public ModelAndView adminMenu() {
         ModelAndView mv = new ModelAndView();
