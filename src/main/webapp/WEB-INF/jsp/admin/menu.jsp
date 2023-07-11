@@ -11,8 +11,62 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="../css/admin.css" />
 <style>
-    th{background-color: #2a292c;}
 
+    .intro {
+        height: 100%;
+      }
+      
+     th{
+        height: 50px;
+        font-family: 'jamsil_bold';
+     }
+     td{
+        font-family: 'jamsil';
+     }
+
+      tr {
+        border: 1px solid #e4e4e4;
+        z-index:7;
+      }
+      td {
+        text-align:center;
+        padding: 20px;
+        transition: all 0.2s ease-in-out;
+      }
+      td.highlight {
+        padding:0;
+        width:4px;
+      }
+      td.highlight div {
+        width:4px;
+        height:60px;
+        border-radius:4px;
+        background-color: white;
+        transition: all 0.2s ease-in-out;
+      }
+
+     tr:hover {
+        box-shadow: 0px 9px 4px -6px grey;
+       }
+       tr:hover td{
+         cursor:pointer;
+         color:#00A674;
+         border-top: 1px solid grey;
+         border-bottom: 1px solid grey;
+       }
+      
+      table td,
+      table th {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      
+      thead {
+        top: 0;
+        position: sticky;
+      }
 </style>
 </head>
 <body>
@@ -64,7 +118,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center mt-5">
                 <div class="col-md-11 mb-3 text-start">
-                        <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
+                        <h2 class=" lh-base mt-5 ms-1" style="font-family: 'jamsil'">
                             ${sessionScope.mvo.m_name}<span class="text-muted"> 메뉴 관리</span>
                         </h2>
                 </div>
@@ -72,17 +126,19 @@
 
             <div class="row justify-content-center my-5">
                 <div class="col-md-8">
+                    
+
                     <div class=" shadow rounded" style="border: none;">
                         <!--https://mdbootstrap.com/snippets/standard/mdbootstrap/2920214?view=side css할때 참고할 것-->
                         
                             <div class="" >
                                 <table class="table table-rounded">
                                     <thead>
-                                      <tr style="background-color: #2a292c; color:white">
-                                        <th scope="col">번호</th>
-                                        <th scope="col">음식사진</th>
-                                        <th scope="col">음식명</th>
-                                        <th scope="col">음식가격</th>
+                                      <tr style="background-color: #2a292c; color:white; text-align: center;">
+                                        <th scope="col" >번호</th>
+                                        <th scope="col" style="width: 200px;">이미지</th>
+                                        <th scope="col">메뉴</th>
+                                        <th scope="col">가격</th>
                                         <th scope="col">등록상태</th>
                                         <th scope="col"></th>
                                       </tr>
@@ -90,8 +146,8 @@
                                     <tbody>
                                         <c:forEach var="vo" items="${fvo}">
                                       <tr>
-                                        <th scope="row">${vo.f_idx}</th>
-                                        <td> <img src="${vo.f_image}" style="width:80px; height: 60px;"></td>
+                                        <td scope="row"><span class="text-muted" style="font-family: suite;">${vo.f_idx}</span></td>
+                                        <td> <img src="${vo.f_image}" style="width:180px; height: 80px; object-fit: cover;"class="rounded"></td>
                                         <td>${vo.foodNm}</td>
                                         <fmt:formatNumber var="foodCost" type='number' maxFractionDigits='3' value='${vo.foodCost}' />
                                         <td>${foodCost}원</td>

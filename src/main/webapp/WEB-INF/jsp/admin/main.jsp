@@ -75,7 +75,7 @@
                             </c:if>
                         </div>
                         <div class="d-flex flex-column justify-content-center" style="width: auto;">
-                          <h2 class="lh-base ms-1 text-center" style="font-family: 'suite'; font-size: xx-large;">${sessionScope.mvo.m_name}</h2>
+                          <h2 class="lh-base ms-1 text-center" style="font-family: 'jamsil'; font-size: xx-large;">${sessionScope.mvo.m_name}</h2>
                         </div>
                     </div>
                     <div class=" col-md-5 mt-5">  
