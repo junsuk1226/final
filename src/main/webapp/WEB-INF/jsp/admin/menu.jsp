@@ -11,8 +11,34 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="../css/admin.css" />
 <style>
-    th{background-color: #2a292c;}
 
+    .intro {
+        height: 100%;
+      }
+      
+     th{
+        height: 50px;
+     }
+      
+      table td,
+      table th {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      
+      .card {
+        border-radius: .5rem;
+      }
+      
+      .table-scroll {
+        border-radius: .5rem;
+      }
+      
+      thead {
+        top: 0;
+        position: sticky;
+      }
 </style>
 </head>
 <body>
@@ -72,6 +98,66 @@
 
             <div class="row justify-content-center my-5">
                 <div class="col-md-8">
+                    <div><!--테이블-->
+                        <section class="intro">
+                            <div class="bg-image h-100" >
+                              <div class="mask d-flex align-items-center h-100">
+                                <div class="container">
+                                  <div class="row justify-content-center">
+                                    <div class="col-12">
+                                      <div class="card shadow-2-strong">
+                                        <div class="card-body p-0">
+                                          <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 700px; border: none;">
+                                            <table class="table table-dark mb-0">
+                                              <thead style="background-color: #393939;">
+                                                <tr class="text-uppercase text-success">
+                                                  <th scope="col">번호</th>
+                                                  <th scope="col">음식사진</th>
+                                                  <th scope="col">음식명</th>
+                                                  <th scope="col">음식가격</th>
+                                                  <th scope="col">등록상태</th>
+                                                  <th scope="col"></th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <c:forEach var="vo" items="${fvo}">
+                                                    <tr style="height: 100px;" class="align-items-center">
+                                                        <th scope="row">${vo.f_idx}</th>
+                                                        <td> 
+                                                            <img src="${vo.f_image}" style="width:80px; height: 80px; object-fit: cover;" class="rounded">
+                                                        </td>
+                                                        <td>${vo.foodNm}</td>
+                                                        <fmt:formatNumber var="foodCost" type='number' maxFractionDigits='3' value='${vo.foodCost}' />
+                                                        <td>${foodCost}원</td>
+                                                        <c:if test="${vo.f_status == 0}">
+                                                            <td>판매중</td>
+                                                        </c:if>
+                                                        <c:if test="${vo.f_status == 1}">
+                                                            <td>품 절</td>
+                                                        </c:if>
+                                                        <td style="width: 50px;"><a class="btn btn-dark" style="width:60px" href="/admin/menuEdit?f_idx=${vo.f_idx}">수정</a></td>
+                                                    </tr>
+                                                </c:forEach>
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                          
+
+                    </div>
+
+
+
+
+
+
                     <div class=" shadow rounded" style="border: none;">
                         <!--https://mdbootstrap.com/snippets/standard/mdbootstrap/2920214?view=side css할때 참고할 것-->
                         
