@@ -12,7 +12,8 @@
 <link rel="stylesheet" href="../css/admin.css" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
-
+<!--아이콘 cdn-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -61,8 +62,8 @@
     <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
         <div class="container-fluid">
             <div class="row justify-content-center mt-5">
-                <div class="col-md-11 mb-3 text-start">
-                        <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
+                <div class="col-md-10 mb-3 text-start">
+                        <h2 class=" lh-base mt-5 ms-1" style="font-family: 'jamsil'">
                             ${sessionScope.mvo.m_name}<span class="text-muted"> 주문내역 관리</span>
                         </h2>
                 </div>
@@ -71,20 +72,27 @@
 
                 <div class="row justify-content-center my-5">
                     <div class="col-md-8">
-                        <div class=" shadow rounded" style="border: none;">
-                            <!--https://colorlib.com/etc/tb/Table_Fixed_Header/index.html css할때 참고할 것-->
-                            <form action="/admin/orderlist" method="get">
-                                <div style="margin-left: 300px; margin-top: 10px">
-                                    <img src="../images/schedule.png" style="width: 33px;"/>
-                                    <input type="text" id="datepicker" name="date" >
-                                    <button type="button" onclick="exe(this.form)">검색</button>
-                                </div>
+                        <div class="row d-flex justify-content-between">
+                            <div class="col-md-4 d-flex">                            
+                                <form action="/admin/orderlist" method="get">
+                                    <div class="d-flex input-group" style="font-family: suite;">
+                                        <i class="fa fa-calendar fa-lg me-2 pt-2" style="color: #00A674; font-size: xx-large; " aria-hidden="true"></i>
+                                        <input type="text" class="form-control" id="datepicker" name="date" >
+                                        <button type="button" class="btn btn-success" onclick="exe(this.form)" style="font-family: jamsil;">검색</button>
+                                    </div>
                                 </form>
-                            <form action="/admin/orderlist" method="get" style="width:200px;">
-                                <select class="form-select" aria-label="Default select example" name="getMonth" id="monthSelect" style="width:80px; display:inline"></select>
-                                <input type="submit" value="검색">
-                            </form>
+                            </div>
+                            <div class="col-md-5 justify-content-end">
+                                <div class="text-end">
+                                    <form action="/admin/orderlist" method="get" class="mb-3" >
+                                        <select class="form-select pt-1" aria-label="Default select example" name="getMonth" id="monthSelect" style="width:80px; display:inline"></select>
+                                        <input type="submit" class="btn btn-success" style="font-family: jamsil;" value="검색">
+                                    </form>
+                                </div>
+                            </div>    
+                        </div>
 
+                        <div class=" shadow rounded" style="border: none;">
                             <div class="" >
                                 <table class="table table-rounded">
                                     <thead>

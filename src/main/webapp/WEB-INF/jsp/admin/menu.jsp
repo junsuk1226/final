@@ -153,8 +153,9 @@
                                         <c:if test="${vo.f_status == 1}">
                                             <td>품 절</td>
                                         </c:if>
-                                        <td style="width: 50px;">
-                                            <a class="me-5 btn btn-success" style=" text-decoration: none; font-weight: bold;" href="/admin/menuEdit?f_idx=${vo.f_idx}"><i class="fa fa-pencil-square-o fa-lg me-1" aria-hidden="true"></i>수정
+                                        <td style="width: 50px;" class="button-cell">
+                                            <a class="me-5 btn btn-success" style="display: none;  text-decoration: none; font-family: jamsil;" href="/admin/menuEdit?f_idx=${vo.f_idx}">
+                                                <i class="fa fa-pencil me-2" aria-hidden="true"></i>수정
                                             </a>
                                         </td>
                                     
@@ -174,7 +175,7 @@
                                 <a class="btn" style="font-family: jamsil; font-size: larger; color: #e4e4e4;" href="/admin/menuAdd" >메뉴 신청하기</a>
                             </div>
                         </div>
-                        <div class="card shadow" style="border: none;">
+                        <div class="card shadow mb-3" style="border: none;">
                             <div class="card-body p-4">
                                 <h6 class="card-title ms-2"style="font-family:jamsil;">판매중인 메뉴</h6>
                                 <div class="text-end me-5">
@@ -186,6 +187,11 @@
                                     <h3 style="color: #00A674; font-weight: bold;">${one}</h3>
                                 </div>
 
+                            </div>
+                        </div>
+                        <div class="bg-success card mb-5 shadow" >
+                            <div class="card-body justify-content-center text-center">
+                                <a href="http://localhost:8080/menu?RestNm=${sessionScope.mvo.m_name}" style="text-decoration: none; font-family: jamsil; color: #fff;">휴게소 페이지로 이동<i class="ms-2 fa fa-external-link-square" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>
@@ -213,6 +219,23 @@
             jQuery("#chase").css("position", "static");
         }
     });
+
+    // 모든 버튼 요소를 가져옵니다.
+    const buttons = document.querySelectorAll('.button-cell a');
+
+    // 각 tr 요소에 호버 이벤트 리스너를 추가합니다.
+    const tableRows = document.querySelectorAll('tbody tr');
+    tableRows.forEach((row, index) => {
+    row.addEventListener('mouseover', () => {
+        // 해당하는 버튼을 보입니다.
+        buttons[index].style.display = 'inline-block';
+    });
+
+    row.addEventListener('mouseout', () => {
+        // 해당하는 버튼을 숨깁니다.
+        buttons[index].style.display = 'none';
+    });
+});
 </script>
 
 </body>

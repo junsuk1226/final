@@ -89,7 +89,8 @@
     etc = #{etc},
     bestfoodyn = #{bestfoodyn},
     premiumyn = #{premiumyn},
-    recommendyn = #{recommendyn}
+    recommendyn = #{recommendyn},
+    seasonMenu = #{seasonMenu}
     <if test="f_image != null">
       , f_image = #{f_image}
     </if>
@@ -98,8 +99,8 @@
 
 <!--메뉴 수정시 로그 기록-->
 <insert id="editFoodLog" parameterType="com.kdt.finalproject.vo.FoodVO">
-  INSERT INTO final.foodlog (foodCost, foodNm, foodMaterial, f_status, etc, seq, editDate, stdRestNm, f_idx, bestfoodyn, premiumyn, recommendyn)
-  VALUES(#{foodCost}, #{foodNm},#{foodMaterial}, #{f_status}, #{etc}, #{seq}, NOW(), #{stdRestNm}, #{f_idx}, #{bestfoodyn}, #{premiumyn}, #{recommendyn})
+  INSERT INTO final.foodlog (foodCost, foodNm, foodMaterial, f_status, etc, seq, editDate, stdRestNm, f_idx, bestfoodyn, premiumyn, recommendyn, seasonMenu)
+  VALUES(#{foodCost}, #{foodNm},#{foodMaterial}, #{f_status}, #{etc}, #{seq}, NOW(), #{stdRestNm}, #{f_idx}, #{bestfoodyn}, #{premiumyn}, #{recommendyn}, #{seasonMenu})
 </insert>
 
 <!-- 메뉴 추가 신청-->

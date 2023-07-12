@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="../css/admin.css" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
-<!--별 아이콘-->
+<!--아이콘 cdn-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -59,7 +59,7 @@
     </div>
     <form action="/admin/review" method="post">
     <div style="margin-left: 300px; margin-top: 10px">
-        <img src="../images/schedule.png" style="width: 33px;"/>
+        <i class="fa fa-calendar fa-lg" style="color: #00A674; font-size: xx-large;" aria-hidden="true"></i>
         <input type="text" id="datepicker" name="date">
         <button type="button" onclick="exe(this.form)">검색</button>
     </div>
@@ -68,7 +68,14 @@
 
     <!-- 메인 컨텐츠 내용 -->
     <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
-
+        <div class="container-fluid">
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-10 mb-3 text-start">
+                        <h2 class=" lh-base mt-5 ms-1" style="font-family: 'jamsil'">
+                            ${sessionScope.mvo.m_name}<span class="text-muted"> 리뷰 관리</span>
+                        </h2>
+                </div>
+            </div>
         <table class="table table-striped">
             <thead>
               <tr>
@@ -92,24 +99,14 @@
                 </c:if>
                 <td>${vo.r_content}</td>
                 <td>${vo.m_name}</td>
-                     <c:choose>
-                        <c:when test="${vo.r_score eq '5'}">
-                            <td><img src="../images/star.png" style="width:30px"><img src="../images/star.png" style="width:30px"><img src="../images/star.png" style="width:30px"><img src="../images/star.png" style="width:30px"><img src="../images/star.png" style="width:30px"></td>
-                        </c:when>
-                        <c:when test="${vo.r_score eq '4'}">
-                            <td><img src="../images/star.png" style="width:30px"><img src="../images/star.png" style="width:30px"><img src="../images/star.png" style="width:30px"><img src="../images/star.png" style="width:30px"></td>
-                        </c:when>
-                        <c:when test="${vo.r_score eq '3'}">
-                            <td><img src="../images/star.png" style="width:30px"><img src="../images/star.png" style="width:30px"></td>
-                        </c:when>
-                        <c:when test="${vo.r_score eq '2'}">
-                            <td><img src="../images/star.png" style="width:30px"></td>
-                        </c:when>
-                        <c:when test="${vo.r_score eq '1'}">
-                            <td><img src="../images/star.png" style="width:30px"></td>
-                        </c:when>
-                    </c:choose>
-                
+                <td>
+                    <c:forEach begin="1" end="${vo.r_score}">
+                        <i class="fa fa-star" style="color: #FBB202;"></i>
+                    </c:forEach>
+                    <c:forEach begin="1" end="${5 - vo.r_score}">
+                        <i class="fa fa-star-o" style="color: #FBB202;"></i>
+                    </c:forEach>
+                </td>
                 <td>${vo.r_writedate}</td>
                               
               </tr>
@@ -118,7 +115,6 @@
            
             </tbody>
           </table>
-        </div>
         <div class="card-body justify-content-center" style="margin-left: 1000px">
             <c:if test="${date eq null}">                                       
                 <ol class="pagination">
@@ -183,6 +179,7 @@
                 </div>
             </c:if>
             </div>
+        </div>
         <!-- 메인 컨텐츠 끝 -->
 <script type="text/javascript" src="js/bootstrap.js"></script>
 

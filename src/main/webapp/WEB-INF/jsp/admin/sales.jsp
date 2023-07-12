@@ -12,7 +12,8 @@
 <link rel="stylesheet" href="../css/admin.css" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
-
+<!--아이콘 cdn-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -62,15 +63,15 @@
     <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
         <div class="container-fluid">
             <div class="row justify-content-center mt-5">
-                <div class="col-md-11 mb-3 text-start">
-                        <h2 class=" lh-base mt-5 ms-1" style="font-family: 'suite'">
+                <div class="col-md-10 mb-3 text-start">
+                        <h2 class=" lh-base mt-5 ms-1" style="font-family: 'jamsil'">
                             ${sessionScope.mvo.m_name}<span class="text-muted"> 매출 관리</span>
                         </h2>
                 </div>
             </div>
             <form action="/admin/sales" method="get">
                 <div style="margin-left: 300px; margin-top: 10px">
-                    <img src="../images/schedule.png" style="width: 33px;"/>
+                    <i class="fa fa-calendar fa-lg" style="color: #00A674; font-size: xx-large;" aria-hidden="true"></i>
                     <input type="text" id="datepicker" name="date" value="${date}">
                     <button type="button" onclick="exe(this.form)">검색</button>
                 </div>
