@@ -35,7 +35,7 @@
       td {
         text-align:center;
         padding: 20px;
-        transition: all 0.5s ease-in-out;
+        transition: all 0.3s ease-in-out;
       }
       td.highlight {
         padding:0;
@@ -46,7 +46,7 @@
         height:60px;
         border-radius:4px;
         background-color: white;
-        transition: all 0.5s ease-in-out;
+        transition: all 0.3s ease-in-out;
       }
 
        tr:hover td{

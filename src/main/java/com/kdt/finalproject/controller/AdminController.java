@@ -70,7 +70,7 @@ public class AdminController {
             MemVO mvo = m_Service.admin_login(vo);
             if (mvo != null) {
                 session.setAttribute("mvo", mvo);
-                mv.setViewName("/admin/main");
+                mv.setViewName("redirect:/admin/main");
             } else {
                 mv.setViewName("/admin/index");
                 mv.addObject("alat", "alat");
