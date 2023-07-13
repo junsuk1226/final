@@ -120,7 +120,7 @@ public class AdminController {
         return map;
     }
 
-    @PostMapping("/amdin/checkid")
+    @PostMapping("/admin/checkid")
     @ResponseBody
     public Map<String, Object> check_id(String email) {
         boolean chk = j_Service.check_id(email);
