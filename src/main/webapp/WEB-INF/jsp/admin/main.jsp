@@ -183,10 +183,10 @@
                             <div class="card-body d-flex justify-content-between">
                             <c:if test ="${re ne null}">
                                 <div class="ms-2" style="width: 150px; height: 150px;">
-                                    <c:if test="${re.r_file eq null}">                                   
+                                    <c:if test="${re.r_file eq null || fn:length(re.r_file.trim()) eq 0}">                                   
                                         <img class="rounded" src="../main_images/no_image.png" id="${foodOfMonth.seq}_img" style="object-fit: cover; width: 100%; height: 100%;" />
                                     </c:if>
-                                    <c:if test="${re.r_file ne null}">                                   
+                                    <c:if test="${re.r_file ne null && fn:length(re.r_file.trim()) > 0 }">                                   
                                         <img class="rounded" src="../editor_upload/${re.r_file}" id="${foodOfMonth.seq}_img" style="object-fit: cover; width: 100%; height: 100%;" />
                                     </c:if>
                                 </div>

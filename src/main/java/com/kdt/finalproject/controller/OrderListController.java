@@ -104,7 +104,10 @@ public class OrderListController {
 
         FoodVO vo = f_service.getFoodImg(seq);
 
-        String fname = vo.getF_image();
+        String fname = null;
+
+        if (vo != null)
+            fname = vo.getF_image();
 
         return fname;
     }
