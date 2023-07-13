@@ -80,6 +80,7 @@
                         <tr class="table_head" style="width: 100%;">
                             <th scope="col" style="width: 10px;"></th>
                             <th scope="col" style="width: 60px;">주문번호</th>
+                            <th scope="col" style="width: 150px;">휴게소명</th>
                             <th scope="col" style="width: 150px;">리뷰사진</th>
                             <th scope="col" style="width: 200px;">리뷰</th>
                             <th scope="col" style="width: 150px;">작성자</th>
@@ -95,12 +96,13 @@
                             <tr class="mytr">
                                 <th scope="row"></th>
                                 <td class="align-middle">${rvo.p_oNum}</td>
-                                <td class="align-middle"><img style="width: 100%;" src='../editor_upload/${rvo.r_file}'></td>
+                                <td class="align-middle">${rvo.r_restNm}</td>
+                                <td class="align-middle"><img style="width: 150px; height: 120px;" src='../editor_upload/${rvo.r_file}'></td>
                                 <td class="align-middle">${rvo.r_content}</td>
                                 <td class="align-middle">${rvo.m_name}</td>
                                 <td class="align-middle">${rvo.r_score}</td>
                                 <td class="align-middle">${rvo.r_writedate}</td>
-                                <td ><button class="no_btn" style="width: 100%;" onclick="">삭제</button></td>
+                                <td class="align-middle"><button class="no_btn" style="width: 100%;" onclick="showModal('${rvo.r_idx}')">삭제</button></td>
                                 <td></td>
                             </tr>
                         </c:forEach>
@@ -115,48 +117,55 @@
         <!-- 메인 컨텐츠 끝 -->
     </div>
 
+    <div class="modal" id="modal1" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">경고</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>삭제시 복구 불가합니다. 계속 하시겠습니까?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+              <button type="button" class="btn btn-primary" onclick="delReview()">저장</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <input id="s_rIdx" type="hidden" value="${rvo.r_idx}">
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <script>
-   function approveUser(m_id) {
-  
-        // Ajax 요청 보내기
-        $.ajax({
-            url: '/adminTotal/approval',
-            type: 'POST',
-            data: {"m_id": m_id},
-            success: function(response) {
-                // 요청이 성공적으로 완료됨
-                console.log("승인이 완료되었습니다.");
-                location.reload();
-            },
-            error: function(xhr, status, error) {
-            // 요청이 실패함
-            console.error("승인 요청에 실패했습니다.");
-            }
-        });
+
+    function showModal(r_idx){
+        $('#modal1').modal('show');
+        $("#s_rIdx").val(r_idx);
     }
 
-
-    function refuseUser(m_id) {
-        // Ajax 요청 보내기
-        $.ajax({
-            url: '/adminTotal/refuse',
-            type: 'POST',
-            data: {"m_id": m_id},
-            success: function(response) {
-                // 요청이 성공적으로 완료됨
-                console.log("승인거절이 완료되었습니다.");
-                location.reload();
-            },
-            error: function(xhr, status, error) {
-            // 요청이 실패함
-            console.error("승인 요청에 실패했습니다.");
-            }
-        });
+    function delReview(){
+        let r_idx = $("#s_rIdx").val();
+            $.ajax({
+                url: '/adminTotal/delReview',
+                type: 'POST',
+                data: {"r_idx" : r_idx },
+                success: function(response) {
+                    // 요청이 성공적으로 완료됨
+                    console.log("승인이 완료되었습니다.");
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    // 요청이 실패함
+                    console.error("승인 요청에 실패했습니다.");
+                }
+            });
     }
+
 </script>
 
 </body>

@@ -176,7 +176,8 @@
 <!-- 총관리자 페이지 전체 리뷰 -->
 <select id="adminTotalReviewList" parameterType="Map" resultType="com.kdt.finalproject.vo.ReviewVO">
   SELECT * FROM final.review
-  WHERE r_status = 0
+  WHERE r_status = 0 
+  ORDER BY r_idx DESC
   <if test="searchType != null and searchType == 0">
       AND p_oNum LIKE CONCAT('%', #{searchValue}, '%')
     </if>

@@ -607,4 +607,10 @@ public class AdminTotalController {
         return mv;
     }
 
+    @PostMapping("/adminTotal/delReview")
+    @ResponseBody
+    public void delReview(String r_idx) {
+        re_Service.delReview(r_idx);
+    }
+
 }
