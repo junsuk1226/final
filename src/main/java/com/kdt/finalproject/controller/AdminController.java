@@ -131,6 +131,12 @@ public class AdminController {
         return map;
     }
 
+    @RequestMapping("/admin/logout")
+    public String logout() {
+        session.removeAttribute("mvo");
+        return "/admin/index";
+    }
+
     @RequestMapping("/admin/main")
     public ModelAndView adminMainTest() {
         ModelAndView mv = new ModelAndView("/admin/main");
