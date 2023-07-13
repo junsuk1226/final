@@ -73,11 +73,11 @@
                 <h1>리뷰 수정</h1>
                 <hr>
                 
-                <div class="container">
+                <div class="container" style="width:100%;">
                     <table class="table mycustomtable" style="text-align: center;">
                         
                         <thead>
-                        <tr class="table_head">
+                        <tr class="table_head" style="width: 100%;">
                             <th scope="col" style="width: 10px;"></th>
                             <th scope="col" style="width: 60px;">주문번호</th>
                             <th scope="col" style="width: 150px;">리뷰사진</th>
@@ -94,14 +94,13 @@
                         <c:forEach var="rvo" items="${ar}">
                             <tr class="mytr">
                                 <th scope="row"></th>
-                                <td class="align-middle"></td>
                                 <td class="align-middle">${rvo.p_oNum}</td>
-                                <td class="align-middle">${rvo.r_file}</td>
+                                <td class="align-middle"><img style="width: 100%;" src='../editor_upload/${rvo.r_file}'></td>
                                 <td class="align-middle">${rvo.r_content}</td>
                                 <td class="align-middle">${rvo.m_name}</td>
                                 <td class="align-middle">${rvo.r_score}</td>
                                 <td class="align-middle">${rvo.r_writedate}</td>
-                                <td ><button class="ok_btn" style="width: 100%;" onclick="">삭제</button></td>
+                                <td ><button class="no_btn" style="width: 100%;" onclick="">삭제</button></td>
                                 <td></td>
                             </tr>
                         </c:forEach>

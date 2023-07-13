@@ -120,13 +120,13 @@ public class RegRestService {
         return ar;
     }
 
-    //가입 되어있는 휴게소 수
-    public int getRegRestCnt(){
+    // 가입 되어있는 휴게소 수
+    public int getRegRestCnt() {
         return reg_Mapper.getRegRestCnt();
     }
 
-    //승인 대기중 휴게소 수
-    public int waitRegRestCnt(){
+    // 승인 대기중 휴게소 수
+    public int waitRegRestCnt() {
         return reg_Mapper.waitRegRestCnt();
     }
 
