@@ -62,7 +62,7 @@ public class JposPrinterReceiptTest implements OutputCompleteListener, StatusUpd
 		 */
 
 		System.setProperty(JposPropertiesConst.JPOS_POPULATOR_FILE_PROP_NAME,
-				"c:/Mywork/finalproject/final-4/src/main/java/com/kdt/finalproject/util/jpos.xml");
+				"c:/Mywork/finalproject/final-5/src/main/java/com/kdt/finalproject/util/jpos.xml");
 
 		// System.setProperty(JposPropertiesConst.JPOS_POPULATOR_FILE_URL_PROP_NAME,
 		// "E:\JavaPOS\JposPrinterJavaPOS\jpos.xml");
@@ -74,6 +74,10 @@ public class JposPrinterReceiptTest implements OutputCompleteListener, StatusUpd
 		String PDF_PAR = ((char) 0x00) + "" + ((char) 0x00) + "" + ((char) 0x06) + "" + ((char) 0x03) + "" +
 				((char) 0x30) + "" + ((char) 0x32) + "" + ((char) 0x00) + "";
 		String SPACES = "                                                                      ";
+
+		String[] foodname = args[1].split("/");
+		String[] foodcost = args[2].split("/");
+		String[] foodqnt = args[3].split("/");
 
 		// instantiate a new jpos.POSPrinter object
 		POSPrinter printer = new POSPrinter();
@@ -136,7 +140,7 @@ public class JposPrinterReceiptTest implements OutputCompleteListener, StatusUpd
 					// print an image file
 					try {
 						printer.printBitmap(POSPrinterConst.PTR_S_RECEIPT,
-								"c:/Mywork/finalproject/final-4/src/main/java/com/kdt/finalproject/util/logo.png",
+								"c:/Mywork/finalproject/final-5/src/main/java/com/kdt/finalproject/util/logo.png",
 								POSPrinterConst.PTR_BM_ASIS,
 								POSPrinterConst.PTR_BM_CENTER);
 					} catch (JposException e) {
@@ -157,22 +161,27 @@ public class JposPrinterReceiptTest implements OutputCompleteListener, StatusUpd
 				// ESC + "|rA" -> right alignment
 				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT, LF);
 				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT,
-						ESC + "|cA" + ESC + "|bC" + "과과" + LF);
+						ESC + "|cA" + ESC + "|bC" + args[0] + LF);
 				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT,
-						ESC + "|cA" + ESC + "|bC" + "+9999-9999" + LF + LF);
-				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT, ESC + "|bC" + "  [POS 01]" + LF + LF);
-				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT,
-						ESC + "|bC" + "------------------------------------------" + LF);
-				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT, "  Hazel Nut Chocolate    2,000   1   2,000" + LF);
-				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT, "  Vegetable Chicken      3,000   1   3,000" + LF);
-				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT, "  Cabbage                1,000   1   1,000" + LF);
+						ESC + "|cA" + ESC + "|bC" + args[5] + LF + LF);
+
 				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT,
 						ESC + "|bC" + "------------------------------------------" + LF);
-				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT, ESC + "|rA" + "Subtotal:  6000" + LF);
-				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT, ESC + "|rA" + "Tax:        300" + LF);
-				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT, ESC + "|rA" + ESC + "|bC" + "Total:     6300" + LF);
-				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT, ESC + "|rA" + "Cash:      7000" + LF);
-				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT, ESC + "|rA" + ESC + "|bC" + "Change:     700" + LF);
+
+				for (int i = 0; i < foodname.length; i++) {
+					String aa = foodcost[i];
+					String bb = foodqnt[i];
+					int a = Integer.parseInt(aa) * Integer.parseInt(bb);
+
+					printer.printNormal(POSPrinterConst.PTR_S_RECEIPT, foodname[i] + "    ");
+					printer.printNormal(POSPrinterConst.PTR_S_RECEIPT, ESC + "|rA" + foodcost[i] + "    "
+							+ foodqnt[i] + "    " + a + LF);
+				}
+
+				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT,
+						ESC + "|bC" + "------------------------------------------" + LF + LF);
+				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT,
+						ESC + "|rA" + ESC + "|bC" + "Total:     " + args[4] + LF);
 				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT, LF);
 
 				if (printer.getCapRecBarCode() == true) {

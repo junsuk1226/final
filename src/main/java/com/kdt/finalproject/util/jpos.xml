@@ -23,7 +23,7 @@
     <prop name="portName" type="String" value="usb" />
     <prop name="portSettings" type="String" value="" />
     <prop name="ioTimeoutMillis" type="Integer" value="5000" />
-    <prop name="DBCS" type="String" value="GB2312" />
+    <prop name="DBCS" type="String" value="EUC_KR" />
   </JposEntry>
 
   <JposEntry logicalName="JposPrinter_ethernet">
