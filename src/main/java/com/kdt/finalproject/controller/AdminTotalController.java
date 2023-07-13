@@ -32,6 +32,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.kdt.finalproject.service.FoodService;
 import com.kdt.finalproject.service.MemService;
 import com.kdt.finalproject.service.RegRestService;
+import com.kdt.finalproject.service.ReviewService;
 import com.kdt.finalproject.util.FileRenameUtil;
 import com.kdt.finalproject.util.MonthlyJoinStats;
 import com.kdt.finalproject.util.Paging;
@@ -55,6 +56,9 @@ public class AdminTotalController {
 
     @Autowired
     private FoodService f_Service;
+
+    @Autowired
+    private ReviewService re_Service;
 
     @Autowired
     private ServletContext application;
@@ -571,8 +575,35 @@ public class AdminTotalController {
     }
 
     @RequestMapping("/adminTotal/review")
-    public String review() {
-        return "/adminTotal/review";
+    public ModelAndView review(String searchType, String searchValue, String cPage) {
+        ModelAndView mv = new ModelAndView();
+        int nowPage = 1;
+
+        if (cPage != null)
+            nowPage = Integer.parseInt(cPage);
+
+        int totalRecord = re_Service.getTotalCount(cPage);
+
+        Paging page = new Paging(nowPage, totalRecord, 10, 5);
+
+        MemVO[] ar = r_Service.regLogList(page.getBegin(), page.getEnd(), searchType, searchValue);
+
+        if (ar != null) {
+
+            mv.addObject("ar", ar);
+            mv.addObject("page", page);
+            mv.addObject("totalRecord", totalRecord);// 총 게시물의 수
+            mv.addObject("nowPage", nowPage);// 현재페이지 값
+            mv.addObject("blockList", page.getNumPerPage());// 한페이지에 표현할 게시물 수
+            if (searchType != null)
+                mv.addObject("searchType", searchType);
+            if (searchValue != null)
+                mv.addObject("searchValue", searchValue);
+
+            mv.setViewName("/adminTotal/review");
+        }
+
+        return mv;
     }
 
 }

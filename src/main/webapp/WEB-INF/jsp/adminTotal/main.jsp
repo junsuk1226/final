@@ -69,7 +69,7 @@
 
         <!-- 메인 컨텐츠 내용 -->
         <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
-            <div class="container adminTotal-grapharea" style="width:100%; margin: 10">
+            <div class="container adminTotal-grapharea" style="width:100%; margin: 5px">
                 <div class="container" style="margin: 0 10px;">
 
                     <div class="row my-3">

@@ -79,26 +79,29 @@
                         <thead>
                         <tr class="table_head">
                             <th scope="col" style="width: 10px;"></th>
-                            <th scope="col" style="width: 150px;">휴게소명</th>
-                            <th scope="col" style="width: 200px;">요청아이디</th>
-                            <th scope="col" style="width: 150px;">담당자 연락처</th>
-                            <th scope="col" style="width: 150px;">가입신청일</th>
-                            <th scope="col" style="width: 60px;"></th>
+                            <th scope="col" style="width: 60px;">주문번호</th>
+                            <th scope="col" style="width: 150px;">리뷰사진</th>
+                            <th scope="col" style="width: 200px;">리뷰</th>
+                            <th scope="col" style="width: 150px;">작성자</th>
+                            <th scope="col" style="width: 60px;">리뷰점수</th>
+                            <th scope="col" style="width: 150px;">등록일</th>
                             <th scope="col" style="width: 60px;"></th>
                             <th scope="col" style="width: 10px;"></th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        <c:forEach var="mvo" items="${ar}">
+                        <c:forEach var="rvo" items="${ar}">
                             <tr class="mytr">
                                 <th scope="row"></th>
-                                <td class="align-middle">${mvo.m_name}</td>
-                                <td class="align-middle">${mvo.m_id}</td>
-                                <td class="align-middle">${mvo.m_phone}</td>
-                                <td class="align-middle">${mvo.m_joinDate}</td>
-                                <td ><button class="ok_btn" style="width: 100%;" onclick="approveUser('${mvo.m_id}')">승인</button></td>
-                                <td><button class="no_btn" style="width: 100%;" onclick="refuseUser('${mvo.m_id}')">거절</button></td>
+                                <td class="align-middle"></td>
+                                <td class="align-middle">${rvo.p_oNum}</td>
+                                <td class="align-middle">${rvo.r_file}</td>
+                                <td class="align-middle">${rvo.r_content}</td>
+                                <td class="align-middle">${rvo.m_name}</td>
+                                <td class="align-middle">${rvo.r_score}</td>
+                                <td class="align-middle">${rvo.r_writedate}</td>
+                                <td ><button class="ok_btn" style="width: 100%;" onclick="">삭제</button></td>
                                 <td></td>
                             </tr>
                         </c:forEach>

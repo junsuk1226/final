@@ -161,9 +161,9 @@ public class JposPrinterReceiptTest implements OutputCompleteListener, StatusUpd
 				// ESC + "|rA" -> right alignment
 				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT, LF);
 				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT,
-						ESC + "|cA" + ESC + "|bC" + args[0] + LF);
+						ESC + "|cA" + ESC + "|bC" + args[0] + LF + LF);
 				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT,
-						ESC + "|cA" + ESC + "|bC" + args[5] + LF + LF);
+						ESC + "|cA" + ESC + "|bC" + ESC + "|4C" + args[5] + LF + LF);
 
 				printer.printNormal(POSPrinterConst.PTR_S_RECEIPT,
 						ESC + "|bC" + "------------------------------------------" + LF);
@@ -188,14 +188,13 @@ public class JposPrinterReceiptTest implements OutputCompleteListener, StatusUpd
 					// print a PDF417 Code
 					// the 10 * 100, 60 * 100 parameters below specify the barcode's
 					// height and width in the metric map mode (1cm tall, 6cm wide)
-					/*
-					 * printer.printBarCode(POSPrinterConst.PTR_S_RECEIPT,
-					 * ESC+PDF_PAR+"http://miniprinter.com/en/main/main.do",
-					 * POSPrinterConst.PTR_BCS_PDF417,
-					 * 10 * 100, 60 * 100,
-					 * POSPrinterConst.PTR_BC_CENTER,
-					 * POSPrinterConst.PTR_BC_TEXT_NONE);
-					 */
+
+					printer.printBarCode(POSPrinterConst.PTR_S_RECEIPT,
+							ESC + QR_DOT + QR_ER_LV + "http://naver.com/",
+							POSPrinterConst.PTR_BCS_QRCODE,
+							10 * 100, 60 * 100,
+							POSPrinterConst.PTR_BC_CENTER,
+							POSPrinterConst.PTR_BC_TEXT_NONE);
 
 				}
 
