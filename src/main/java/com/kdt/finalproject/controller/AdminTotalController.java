@@ -570,4 +570,9 @@ public class AdminTotalController {
         return res;
     }
 
+    @RequestMapping("/adminTotal/review")
+    public String review() {
+        return "/adminTotal/review";
+    }
+
 }
