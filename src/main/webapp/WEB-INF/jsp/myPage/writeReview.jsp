@@ -181,6 +181,7 @@
                                         <input type="hidden" name="r_restNm" value="${restNm}" />
                                         <input type="hidden" name="m_idx" value="${sessionScope.mvo.m_idx}"/>
                                         <input type="hidden" name="m_name" value="${sessionScope.mvo.m_name}"/>
+                                        <input type="hidden" name="p_oNum" value="${p_oNum}"/>
                                         <input type="hidden" name="r_file"/>
                                         
                                         

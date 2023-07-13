@@ -20,5 +20,5 @@ public class ReviewVO {
             r_restNm,
             m_name,
             r_file,
-            r_var5;
+            p_oNum;
 }

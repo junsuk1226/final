@@ -43,10 +43,10 @@ public class ReviewWriteController {
     private String editor_img = "/editor_upload";
 
     @GetMapping("/writeReview")
-    public ModelAndView writeReview(String cPage, String restNm) {
+    public ModelAndView writeReview(String cPage, String restNm, String p_oNum) {
         ModelAndView mv = new ModelAndView("/myPage/writeReview");
-
         mv.addObject("restNm", restNm);
+        mv.addObject("p_oNum", p_oNum);
         return mv;
     }
 
