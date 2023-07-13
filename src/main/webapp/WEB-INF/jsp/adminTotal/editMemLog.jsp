@@ -53,6 +53,11 @@
                 메뉴 관리
                 </a>
             </li>
+            <li>
+                <a href="/adminTotal/review" class="nav-link text-white">
+                리뷰 관리
+                </a>
+            </li>
             </ul>
 
             <hr><!--구분선-->
