@@ -87,7 +87,7 @@
                         <form action="/admin/review" method="post">
                             <div class="d-flex input-group">
                                 <i class="fa fa-calendar fa-lg me-2 pt-2" style="color: #00A674; font-size: xx-large; " aria-hidden="true"></i>
-                                <input type="text" class="form-control" id="datepicker" name="date" >
+                                <input type="text" class="form-control" id="datepicker" name="date" style="font-family: suite;" >
                                 <button type="button" class="btn btn-success" onclick="exe(this.form)" style="font-family: jamsil;">검색</button>
                             </div>
                         </form>
