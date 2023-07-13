@@ -171,10 +171,10 @@
   SELECT COUNT(*) FROM final.paylog
       WHERE restNm = #{restNm}
      <if test="month != null">
-       AND DATE_FORMAT(p_date,'%m') = #{month}
+       AND DATE_FORMAT(p_date,'%m') = #{month} and year(p_date) = year(Now())
       </if> 
       <if test="month == null">
-        AND DATE_FORMAT(p_date, '%m') = DATE_FORMAT(NOW(), '%m')
+        AND DATE_FORMAT(p_date, '%y-%m') = DATE_FORMAT(NOW(), '%y-%m')
       </if>
   </select>
 
@@ -186,10 +186,10 @@
       SELECT * FROM final.paylog
       WHERE restNm = #{restNm} 
       <if test="month != null">
-       AND DATE_FORMAT(p_date,'%m') = #{month}
+       AND DATE_FORMAT(p_date,'%m') = #{month} and year(p_date) = year(Now())
       </if> 
       <if test="month == null">
-        AND DATE_FORMAT(p_date, '%m') = DATE_FORMAT(NOW(), '%m')
+        AND DATE_FORMAT(p_date, '%y-%m') = DATE_FORMAT(NOW(), '%y-%m')
       </if>
     ) a, (SELECT @RN:=0) b
 	) c WHERE c.rnum BETWEEN #{begin} AND #{end}
