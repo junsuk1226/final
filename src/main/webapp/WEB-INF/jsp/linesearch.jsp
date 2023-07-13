@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/main_custom.css" />
     <!--아이콘 cdn-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style>
       /*모바일 화면 로그인 버튼*/
     .main_custom_menubar .col-md-3 {
@@ -159,8 +159,8 @@
                             <button class="accordion-button" type="submit">
                                 <img class="mycustom-line_search_img" src="${photolist[loop.index].r_photo}"/>
                                 <ul class="mycustom-line_search_ul">${vo.svarNm}(${vo.gudClssNm})
-                                    <li>${vo.svarAddr} | 전화번호: ${vo.rprsTelNo}</li>
-                                    <li>소형차주차대수: ${vo.cocrPrkgTrcn} | 대형차주차대수: ${vo.fscarPrkgTrcn} | 장애인주차대수: ${vo.dspnPrkgTrcn}</li>
+                                    <li>${vo.svarAddr} | <i class="fa fa-phone" aria-hidden="true"></i>: ${vo.rprsTelNo}</li>
+                                    <li><i class="fa fa-car" aria-hidden="true"></i>: ${vo.cocrPrkgTrcn} | <i class="fa fa-bus" aria-hidden="true"></i>: ${vo.fscarPrkgTrcn} | <i class="fa fa-wheelchair" aria-hidden="true"></i>: ${vo.dspnPrkgTrcn}</li>
                                 </ul>
                             </button>
                         </form>
