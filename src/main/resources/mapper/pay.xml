@@ -100,7 +100,7 @@
   	SELECT COUNT(*) FROM final.paylog
     WHERE p_status = 0 AND restNm = #{restNm}
     <if test="date != null">
-       AND DATE_FORMAT(p_date,'%Y-%m-%d') = #{date}
+       AND DATE_FORMAT(p_date,'%Y-%m-%d') = #{date} 
       </if> 
       <if test="date == null">
       AND DATE_FORMAT(p_date,'%Y-%m-%d') = CURDATE()
@@ -112,7 +112,7 @@
   SELECT COUNT(*) FROM final.paylog
       WHERE p_status = 0 AND restNm = #{restNm}
      <if test="month != null">
-       AND DATE_FORMAT(p_date,'%m') = #{month}
+       AND DATE_FORMAT(p_date,'%m') = #{month} and year(p_date) = year(NOW())
       </if> 
       <if test="month == null">
         AND DATE_FORMAT(p_date, '%m') = DATE_FORMAT(NOW(), '%m')
@@ -127,7 +127,7 @@
       SELECT * FROM final.paylog
       WHERE restNm = #{restNm} and p_status = 0
       <if test="month != null">
-       AND DATE_FORMAT(p_date,'%m') = #{month}
+       AND DATE_FORMAT(p_date,'%m') = #{month} and year(p_date) = year(NOW())
       </if> 
       <if test="month == null">
         AND DATE_FORMAT(p_date, '%m') = DATE_FORMAT(NOW(), '%m')
@@ -171,7 +171,7 @@
   SELECT COUNT(*) FROM final.paylog
       WHERE restNm = #{restNm}
      <if test="month != null">
-       AND DATE_FORMAT(p_date,'%m') = #{month} and year(p_date) = year(Now())
+       AND DATE_FORMAT(p_date,'%m') = #{month} and year(p_date) = year(NOW())
       </if> 
       <if test="month == null">
         AND DATE_FORMAT(p_date, '%y-%m') = DATE_FORMAT(NOW(), '%y-%m')
@@ -186,7 +186,7 @@
       SELECT * FROM final.paylog
       WHERE restNm = #{restNm} 
       <if test="month != null">
-       AND DATE_FORMAT(p_date,'%m') = #{month} and year(p_date) = year(Now())
+       AND DATE_FORMAT(p_date,'%m') = #{month} and year(p_date) = year(NOW())
       </if> 
       <if test="month == null">
         AND DATE_FORMAT(p_date, '%y-%m') = DATE_FORMAT(NOW(), '%y-%m')
