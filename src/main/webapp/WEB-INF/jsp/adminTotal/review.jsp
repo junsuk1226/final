@@ -79,12 +79,12 @@
                         <thead>
                         <tr class="table_head" style="width: 100%;">
                             <th scope="col" style="width: 10px;"></th>
-                            <th scope="col" style="width: 60px;">주문번호</th>
+                            <th scope="col" style="width: 60px;">주문<br>번호</th>
                             <th scope="col" style="width: 150px;">휴게소명</th>
                             <th scope="col" style="width: 150px;">리뷰사진</th>
                             <th scope="col" style="width: 200px;">리뷰</th>
                             <th scope="col" style="width: 150px;">작성자</th>
-                            <th scope="col" style="width: 60px;">리뷰점수</th>
+                            <th scope="col" style="width: 60px;">리뷰<br>점수</th>
                             <th scope="col" style="width: 150px;">등록일</th>
                             <th scope="col" style="width: 60px;"></th>
                             <th scope="col" style="width: 10px;"></th>
