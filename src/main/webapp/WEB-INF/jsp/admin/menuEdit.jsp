@@ -80,7 +80,7 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-md-10 mt-5 mb-2">
-            <a class="arrow" style="text-decoration: none; font-family: jamsil; font-size: large; color: #00A674;" href="javascript:history.go(-1);"><i class="fa fa-arrow-left me-2" aria-hidden="true"></i>목록으로 돌아가기</a>
+            <a class="arrow" style="text-decoration: none; font-family: jamsil; font-size: large; color: #00A674;" href="/admin/menu"><i class="fa fa-arrow-left me-2" aria-hidden="true"></i>목록으로 돌아가기</a>
           </div>
         </div>
         <form action="/admin/editConfirm" method="post" id="frm">
