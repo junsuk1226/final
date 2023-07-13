@@ -282,6 +282,8 @@ public class AdminTotalController {
             map.put("m_phone", mvo.getM_phone());
             map.put("restCd", rvo.getSvarCd());
             map.put("m_idx", mvo.getM_idx());
+            map.put("editor","A");
+            map.put("ml_information","개인정보저장");
 
             Map<String, String> map2 = new HashMap<>();
             map2.put("reg_restNm", mvo.getM_name());
@@ -395,12 +397,6 @@ public class AdminTotalController {
     public String editMemSave(String m_idx, String value, String type) {
 
         MemVO mvo = m_Service.searchMem(m_idx);
-
-        // System.out.println("m_idx|||||||||" + mvo.getM_idx());
-        // System.out.println("m_id|||||||||" + mvo.getM_id());
-        // System.out.println("m_idx|||||||||" + m_idx);
-        // System.out.println("value|||||||||" + value);
-        // System.out.println("type|||||||||" + type);
 
         if (type.equals("name")) {
             mvo.setM_name(value);
