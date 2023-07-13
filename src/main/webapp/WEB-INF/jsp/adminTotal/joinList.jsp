@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,40 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="../css/admin.css" />
 <link rel="stylesheet" href="../css/adminTotal.css" />
+<style>
+    /*파일 첨부 버튼 fade*/              
+    .hover-fade img {
+        width: 100%;
+        height: auto;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+    }
+    .hover-fade:hover img {
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -o-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        transform: scale(1.05);
+        -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=2)";
+        filter: alpha(opacity=0.5);
+        opacity: 0.5;
+    }
+    
+    /*사진 삭제 버튼*/
+    button.btn-del {
+        position: absolute;
+        top: -10px;
+        left : 310px;
+        border-radius: 15px;
+        border: none;
+        background-color: #6600db;
+        width: 26px;
 
+    }
+</style>
 </head>
 <body>
 
@@ -97,7 +131,7 @@
                                 <td class="align-middle">${mvo.m_id}</td>
                                 <td class="align-middle">${mvo.m_phone}</td>
                                 <td class="align-middle">${mvo.m_joinDate}</td>
-                                <td ><button class="ok_btn" style="width: 100%;" onclick="approveUser('${mvo.m_id}')">승인</button></td>
+                                <td ><button class="ok_btn" style="width: 100%;" onclick="showModal('${mvo.m_id}')">승인</button></td>
                                 <td><button class="no_btn" style="width: 100%;" onclick="refuseUser('${mvo.m_id}')">거절</button></td>
                                 <td></td>
                             </tr>
@@ -113,18 +147,124 @@
         <!-- 메인 컨텐츠 끝 -->
     </div>
 
+    <!-- 모달 -->
+    <div class="modal" id="modal1" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">경고</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>휴게소 사진 업로드</p>
+              <div class="card shadow p-3 mb-5 bg-body rounded mx-1" style="border: none;">
+                <div class="row card-body justify-content-around">
+                                            
+                    <div class ="row ms-1 mb-3">
+                        <div class=" input-group">
+                            <label for="file">
+                                <div style="height: 100px; width: 150px; margin: 0 auto;" class="hover-fade">
+                                    <img src="../main_images/addfile.png" style='object-fit:cover; width: 100%; height:100%; cursor: pointer;' class='rounded shadow mb-5' alt="inputFile"/>
+                                </div>
+                            </label>
+                            <input type="file" class="form-control " id="file" name="file" style="display: none;">
+                            <div class="ms-3">
+                                <div style="background-color: rgb(241, 241, 241); border-radius: 6px; height: 100px; width: 150px; margin: 0 auto;" id="img_area">
+                                    <c:if test="${fvo.f_image != null and fvo.f_image.trim().length() > 0}">
+                                        <img src="${fvo.f_image}" style='object-fit:cover; width: 100%; height:100%' class='rounded shadow mb-5' id='insertedImg'/><button type='button' onclick='delImg()' class='btn-del' id='insertedBtn'><i class='fa fa-times' style ='color: #fff'></i></button>
+                                    </c:if>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+              <button type="button" class="btn btn-primary" onclick="approveUser()">저장</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="s_mId"/>
+    <input type="hidden" id="f_image"/>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <script>
-   function approveUser(m_id) {
-  
+    function showModal(m_id){
+        $('#modal1').modal('show');
+        $("#s_mId").val(m_id);
+    }
+
+    var savedpath ="../images/";
+    var savedfname ="${fn:substring(fvo.f_image, fvo.f_image.lastIndexOf('/')+1, fn:length(fvo.f_image))}";
+
+    $(function(){
+        $("#file").bind("change", function(){
+            //console.log("DDDDDD");
+            let fileInput = document.getElementById('file');
+            
+            
+            var file = fileInput.files[0];
+            
+            var formData = new FormData();
+            formData.append('file', file);
+            
+            
+            $.ajax({
+                url: "/adminTotal/saveImg",
+                type: "post",
+                data: formData,
+                contentType:false, //파일 전송 시
+                processData:false, //파일 전송 시
+                cache: false,      //파일 전송 시
+                dataType: "json"
+           }).done(function(data){
+                console.log(data.path+"/"+data.fname);
+                savedpath=data.path;
+                savedfname=data.fname;
+                $("#img_area").html("<img src='"+data.path+"/"+data.fname+"' style='object-fit:cover; width: 100%; height:100%' class='rounded shadow mb-5' id='insertedImg'/><button type='button' onclick='delImg()' class='btn-del' id='insertedBtn'><i class='fa fa-times' style ='color: #fff'></i></button> ")
+                $("#f_image").val(data.path+"/"+data.fname);
+                // console.log($("#f_image").val())
+           });
+        });
+    });
+
+    function delImg(){
+
+        $.ajax({
+            url:"/adminTotal/delImg",
+            type:"post",
+            contentType: 'application/json',
+            data: JSON.stringify({"path":savedpath, "fname":savedfname}),  //data: JSON.stringify(senddata),
+            dataType: "json"
+
+        }).done(function(data){
+            if(data){
+                $("img").remove("#insertedImg");
+                $("button").remove("#insertedBtn");
+                $("#file").val(""); //파일 선택기 초기화
+                
+            }else{
+                console.log("삭제 실패");
+            }
+        });
+    }
+
+   function approveUser() {
+        var m_id = $("#s_mId").val();
+        // console.log(m_id);
+        var reg_image = $("#f_image").val();
+        // console.log(reg_image);
         // Ajax 요청 보내기
         $.ajax({
             url: '/adminTotal/approval',
             type: 'POST',
-            data: {"m_id": m_id},
+            data: {"m_id": m_id, "reg_image": reg_image},
             success: function(response) {
                 // 요청이 성공적으로 완료됨
                 console.log("승인이 완료되었습니다.");

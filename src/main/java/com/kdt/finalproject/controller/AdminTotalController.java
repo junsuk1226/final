@@ -158,7 +158,7 @@ public class AdminTotalController {
 
     @PostMapping("/adminTotal/approval")
     @ResponseBody
-    public String approval(String m_id) {
+    public String approval(String m_id, String reg_image) {
 
         try {
 
@@ -293,6 +293,7 @@ public class AdminTotalController {
             map2.put("reg_ownerPhone", mvo.getM_phone());
             map2.put("reg_ownerEmail", mvo.getM_id());
             map2.put("m_idx", mvo.getM_idx());
+            map2.put("reg_image", reg_image);
 
             // 해당 휴게소의 m_status 값을 1로 변경 & log 추가 & regrest테이블에 저장
             r_Service.approval(m_id, map, map2, f_list);
