@@ -152,6 +152,14 @@
             <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/jposPrinterJavaPOS.jar</systemPath>
         </dependency>
 
+		<!-- 서버 재가동 방지-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
 	</dependencies>
 
 	<build>

@@ -3,6 +3,7 @@ package com.kdt.finalproject.controller;
 import java.awt.print.PrinterException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -26,10 +27,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kdt.finalproject.service.MemService;
 import com.kdt.finalproject.service.PayService;
 import com.kdt.finalproject.util.Cart;
 import com.kdt.finalproject.util.JposPrinterReceiptTest;
 import com.kdt.finalproject.vo.KakaoReadyResponseDTO;
+import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.PayVO;
 
 @Controller
@@ -40,19 +43,15 @@ public class OrderPayController {
     private PayService p_Service;
 
     @Autowired
+    private MemService m_Service;
+
+    @Autowired
     private HttpSession session;
 
     @RequestMapping("/orderpay")
     public ModelAndView orderPay()
             throws Exception {
         ModelAndView mv = new ModelAndView();
-
-        try {
-            Process p = Runtime.getRuntime()
-                    .exec("c:/Mywork/finalproject/final-4/src/main/java/com/kdt/finalproject/util/TEST.bat");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         mv.setViewName("orderpay");
 
@@ -357,7 +356,56 @@ public class OrderPayController {
         mv.addObject("pvo", pvo);
         mv.addObject("foodname", foodname);
         mv.addObject("foodqnt", foodqnt);
+
+        // MemVO mvo = m_Service.searchMem(dto.getM_idx());
+        // System.out.println(dto.getM_idx());
+        // System.out.println(mvo.getM_name());
+        // session.setAttribute("mvo", mvo);
+
         mv.setViewName("orderpaycomplete");
+
+        // bat 파일 생성
+
+        String batchFilePath = "C:/Mywork/finalproject/final-5/src/main/java/com/kdt/finalproject/util/TEST.bat";
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(batchFilePath);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
+            BufferedWriter writer = new BufferedWriter(outputStreamWriter);
+            writer.write("\uFEFF");
+            writer.write("@echo off");
+            writer.newLine();
+            writer.write("chcp 65001");
+            writer.newLine();
+            writer.write("cd\\");
+            writer.newLine();
+            writer.write("cd Mywork\\finalproject\\final-5\\src\\main\\java\\com\\kdt\\finalproject\\util\\");
+            writer.newLine();
+            writer.write(
+                    "start javac -encoding utf-8 -classpath jpos113-controls.jar;jcl.jar JposPrinterReceiptTest.java");
+            writer.newLine();
+            writer.write(
+                    "start java -classpath .;JposPrinterJavaPOS.jar;jpos113-controls.jar;jcl.jar;xercesimpl.jar;xml-apis.jar JposPrinterReceiptTest.java "
+                            + pvo.getRestNm() + " " + pvo.getFoodNm().replaceAll(" ", "") + " " + pvo.getFoodCost()
+                            + " " + pvo.getFoodQn() + " " + pvo.getTotalCost() + " " + pvo.getP_oNum());
+            writer.newLine();
+            writer.write("pause");
+
+            writer.close();
+            System.out.println("Batch file created successfully.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while creating the batch file: " + e.getMessage());
+        }
+
+        // bat 파일 실행
+
+        try {
+            Process p = Runtime.getRuntime()
+                    .exec("c:/Mywork/finalproject/final-5/src/main/java/com/kdt/finalproject/util/TEST.bat");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // bat 끝
 
         return mv;
     }

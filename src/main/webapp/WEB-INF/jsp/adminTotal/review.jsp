@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/joinList" class="nav-link text-white active">
+                <a href="/adminTotal/joinList" class="nav-link text-white">
                 가입신청 목록
                 </a>
             </li>
@@ -54,7 +54,7 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/review" class="nav-link text-white">
+                <a href="/adminTotal/review" class="nav-link text-white active">
                 리뷰 관리
                 </a>
             </li>
@@ -70,7 +70,7 @@
         <!-- 메인 컨텐츠 내용 -->
         <div class="d-flex flex-row flex-shrink-0 p-5 admin-main_area" style="width: calc(100% - 280px);">
             <div class="container adminTotal-tablearea" style="width:100%; margin: 0">
-                <h1>가입신청 현황</h1>
+                <h1>리뷰 수정</h1>
                 <hr>
                 
                 <div class="container">
