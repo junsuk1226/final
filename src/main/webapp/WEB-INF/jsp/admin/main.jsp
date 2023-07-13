@@ -86,7 +86,14 @@
                                 </div>
                                 <div class="vr"></div>
                                 <div class="col-md-6 me-4 text-end">
-                                    <span style="font-family: suite; font-weight: bold; font-size: large;"><fmt:formatNumber value="${thisMonthTotal}" pattern="#,###,###"/>원</span>
+                                    <span style="font-family: suite; font-weight: bold; font-size: large;">
+                                        <c:if test="${thisMonthTotal ne null}">
+                                        <fmt:formatNumber value="${thisMonthTotal}" pattern="#,###,###"/>
+                                        </c:if>    
+                                        <c:if test="${thisMonthTotal eq null}">
+                                        0
+                                        </c:if>
+                                        원</span>
                                 </div>
                             </div> 
                         </div>
@@ -96,7 +103,14 @@
                                     <span class="ms-2" style="font-size: medium; color: #00A674; font-family: suite; font-weight: bold;">별점 평균<i class="fa fa-star ms-2" style="color: #FBB202;"></i></span>
                                     <hr/>
                                     <div class="mt-5">
-                                        <span class="ms-2 " style="font-size: medium; color: #FBB202; font-family: suite; font-weight: bold; font-size: xx-large;">${scoreAvg}<span class="ms-2" style="font-size: medium;">점</span></span>
+                                        <span class="ms-2 " style="font-size: medium; color: #FBB202; font-family: suite; font-weight: bold; font-size: xx-large;">
+                                            <c:if test="${scoreAvg ne null}">
+                                            ${scoreAvg}
+                                            </c:if>
+                                            <c:if test="${scoreAvg eq null}">
+                                            0
+                                            </c:if>
+                                        <span class="ms-2" style="font-size: medium;">점</span></span>
                                 
                                     </div>
                                 </div>
@@ -107,6 +121,7 @@
                                 </div>
                                 <div class="card rounded" style="border: none;">
                                     <div class="card-body d-flex justify-content-between">
+                                        <c:if test="${foodOfMonth ne null}">
                                         <div class="ms-2" style="width: 120px; height: 100px;">
                                             <img class="rounded" id="${foodOfMonth.seq}_img" style="object-fit: cover; width: 100%; height: 100%;" />
                                         </div>
@@ -120,6 +135,10 @@
                                                 </span>
                                             </div>
                                         </div>
+                                        </c:if>
+                                        <c:if test="${foodOfMonth eq null}">
+                                            <span style="font-family: suite;"><i class="fa fa-exclamation-circle me-2 fa-lg" aria-hidden="true"></i>주문 내역이 없습니다.</td></span>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>
@@ -156,6 +175,7 @@
                         <c:forEach var="re" items="${recentReview}">
                         <div class="card rounded mb-2" style="border: none;">
                             <div class="card-body d-flex justify-content-between">
+                            <c:if test ="${re ne null}">
                                 <div class="ms-2" style="width: 150px; height: 150px;">
                                     <c:if test="${re.r_file eq null}">                                   
                                         <img class="rounded" src="../main_images/no_image.png" id="${foodOfMonth.seq}_img" style="object-fit: cover; width: 100%; height: 100%;" />
@@ -182,8 +202,13 @@
                                         </span>
                                     </div>
                                 </div>
+                            </c:if>
+                            <c:if test="${re eq null}">
+                                <span style="font-family: suite;"><i class="fa fa-exclamation-circle me-2 fa-lg" aria-hidden="true"></i>리뷰가 없습니다.</td></span>
+                            </c:if>
                             </div>
                         </div>
+
                         </c:forEach>
                     </div>
                 </div>
@@ -288,6 +313,7 @@
 				pointStyle: pointImages, 
 				data: [
                 <c:forEach var="total" items="${yearMonthTotal}">
+                    <c:if test="${total ne null}">
                     <c:set var="year" value="${total.key}" />
                     <c:if test="${year == thisYear-1}">
                         <c:forEach begin="1" end="12" varStatus="st">
@@ -299,6 +325,7 @@
                             </c:forEach>                            
                             ${chk},
                         </c:forEach>
+                    </c:if>
                     </c:if>
                 </c:forEach>
                 ]
