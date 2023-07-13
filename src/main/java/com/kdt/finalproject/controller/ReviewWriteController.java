@@ -45,6 +45,7 @@ public class ReviewWriteController {
     @GetMapping("/writeReview")
     public ModelAndView writeReview(String cPage, String restNm, String p_oNum) {
         ModelAndView mv = new ModelAndView("/myPage/writeReview");
+        mv.addObject("cPage", cPage);
         mv.addObject("restNm", restNm);
         mv.addObject("p_oNum", p_oNum);
         return mv;

@@ -193,6 +193,11 @@
   ) c WHERE c.rnum BETWEEN #{begin} AND #{end}
 </select>
 
+<!--리뷰 작성한 적 있는지 확인하는 xml-->
+<select id="chkP_oNum" resultType="int" parameterType="String">
+  SELECT COUNT(*) FROM review WHERE p_oNum = #{p_oNum}
+</select>
+
 
 <!-- SELECT * FROM(
 		SELECT @RN:=@RN+1 AS rnum,a.* FROM(

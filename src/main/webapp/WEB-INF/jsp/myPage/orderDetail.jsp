@@ -156,7 +156,7 @@
                                                         <div class="text-end"><span class="text-muted"> 결제자: ${sessionScope.mvo.m_name}</span></div>
                                                         <div class="row justify-content-end mt-4">
                                                             <div class="col-6 mb-2 float-end text-end">
-                                                                <a class="nav-link" onclick="writeReview()" style="font-family: 'suite'; font-weight: bold; font-size: large;" >리뷰 작성<i class="fa fa-pencil-square-o fa-lg ms-2" aria-hidden="true"></i></a>
+                                                                <!-- <a class="nav-link" onclick="writeReview()" style="font-family: 'suite'; font-weight: bold; font-size: large;" >리뷰 작성<i class="fa fa-pencil-square-o fa-lg ms-2" aria-hidden="true"></i></a> -->
                                                             </div>
                                                         </div>
             
@@ -232,7 +232,7 @@
                                     dataType: 'text'
                                 }).done(function(data){
                                     // var imageUrl = encodeURIComponent(data);
-                                    console.log(data);
+                                    //console.log(data);
 
                                     $("#" + seq + "_img").attr("src",data);
                                 });
@@ -241,6 +241,28 @@
                         
                         })
 
+                        ///p_oNum을 가지고 이미 리뷰를 작성했는지 확인하기
+                        $(document).ready(function(){
+                            var p_oNum = document.frm.p_oNum.value;
+                            chkP_oNum(p_oNum);
+
+                            function chkP_oNum(p_oNum){
+                                $.ajax({
+                                    url:"/chkP_oNum",
+                                    data:{'p_oNum':p_oNum},
+                                    dataType:"text",
+                                    method:"post"
+                                }).done(function(data){
+                                    //console.log(data);
+                                    if(data ==="0"){
+                                        $(".float-end").html('<a class="nav-link" onclick="writeReview()" style="font-family: \'suite\'; font-weight: bold; font-size: large;">리뷰 작성<i class="fa fa-pencil-square-o fa-lg ms-2" aria-hidden="true"></i></a>');
+                                    }else{
+                                        $(".float-end").html('<a class="nav-link" onclick="" style="font-family: \'suite\'; font-weight: bold; font-size: large;">리뷰를 이미 작성하셨습니다.</a>');
+                                    }
+                                });
+                            }
+
+                        })
 
                     </script>
                 </body>
