@@ -578,6 +578,10 @@ public class AdminTotalController {
     @RequestMapping("/adminTotal/review")
     public ModelAndView review(String searchType, String searchValue, String cPage) {
         ModelAndView mv = new ModelAndView();
+        if (searchType == null || searchValue == null || searchValue.trim().length() < 1) {
+            searchType = null;
+            searchValue = null;
+        }
         int nowPage = 1;
 
         if (cPage != null)

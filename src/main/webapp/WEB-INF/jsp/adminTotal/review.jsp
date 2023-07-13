@@ -72,10 +72,17 @@
             <div class="container adminTotal-tablearea" style="width:100%; margin: 0">
                 <h1>리뷰 수정</h1>
                 <hr>
-                
                 <div class="container" style="width:100%;">
                     <table class="table mycustomtable" style="text-align: center;">
-                        
+                        <form action="/adminTotal/review" method="post">
+                            <select class="search_select" name="searchType">
+                                <option value="0">주문번호</option>
+                                <option value="1">휴게소명</option>
+                                <option value="2">작성자</option>
+                            </select>&nbsp;
+                            <input name="searchValue">&nbsp;
+                            <button type="button" class="search_btn" onclick="searchData(this.form)">검색</button>
+                        </form>
                         <thead>
                         <tr class="table_head" style="width: 100%;">
                             <th scope="col" style="width: 10px;"></th>
@@ -164,6 +171,11 @@
                     console.error("승인 요청에 실패했습니다.");
                 }
             });
+    }
+
+    function searchData(ff) {
+
+        ff.submit();
     }
 
 </script>
