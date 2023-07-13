@@ -143,7 +143,7 @@
                                         </div>
                                         </c:if>
                                         <c:if test="${foodOfMonth eq null}">
-                                            <span style="font-family: suite;"><i class="fa fa-exclamation-circle me-2 fa-lg" aria-hidden="true"></i>주문 내역이 없습니다.</td></span>
+                                            <span style="font-family: suite;" class=" p-5"><i class="fa fa-exclamation-circle me-2 fa-lg" aria-hidden="true"></i>주문 내역이 없습니다.</td></span>
                                         </c:if>
                                     </div>
                                 </div>
@@ -178,6 +178,13 @@
                         <div class="py-2 ms-4">
                             <span style="font-family: suite;color: aliceblue; font-size: x-large;" >최근 리뷰<span class="ms-2" style="font-size: medium; color: #00A674;">가장 최근 리뷰 5개가 표시됩니다.</span></span>
                         </div>
+                        <c:if test="${re eq null}">
+                                <div class="card rounded mb-2" style="border: none;">
+                                    <div class="card-body d-flex justify-content-center">
+                                        <span class="p-5" style="font-family: suite; font-size:large;"><i class="fa fa-exclamation-circle me-2 fa-lg" aria-hidden="true"></i>리뷰가 없습니다.</td></span>
+                                    </div>
+                                </div> 
+                            </c:if>
                         <c:forEach var="re" items="${recentReview}">
                         <div class="card rounded mb-2" style="border: none;">
                             <div class="card-body d-flex justify-content-between">
@@ -209,9 +216,7 @@
                                     </div>
                                 </div>
                             </c:if>
-                            <c:if test="${re eq null}">
-                                <span style="font-family: suite;"><i class="fa fa-exclamation-circle me-2 fa-lg" aria-hidden="true"></i>리뷰가 없습니다.</td></span>
-                            </c:if>
+                            
                             </div>
                         </div>
 
