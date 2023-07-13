@@ -14,6 +14,24 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <!--아이콘 cdn-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<style>
+    th{
+        height: 50px;
+        font-family: 'jamsil_bold';
+        vertical-align: middle;
+     }
+      td{
+        font-family: 'suite';
+        vertical-align: middle;
+     }
+
+     .pagination .page-item.active .page-link { 
+        background-color: #00A674;
+        color: white;
+        border-color: #00A674;
+      }
+</style>
+
 </head>
 <body>
 
@@ -69,35 +87,49 @@
                         </h2>
                 </div>
             </div>
-            <form action="/admin/sales" method="get">
-                <div style="margin-left: 300px; margin-top: 10px">
-                    <i class="fa fa-calendar fa-lg" style="color: #00A674; font-size: xx-large;" aria-hidden="true"></i>
-                    <input type="text" id="datepicker" name="date" value="${date}">
-                    <button type="button" onclick="exe(this.form)">검색</button>
-                </div>
-                </form>
 
-                <form action="/admin/sales" method="get">
-                    <select class="form-select" aria-label="Default select example" name="getMonth" id="monthSelect"></select>
-                    <input type="submit" value="검색">
-                </form>
-            <div class="row justify-content-center my-5">
-                <div class="col-md-8">
+    <div class="row justify-content-center mt-5 mb-3">
+        <div class="col-md-10">
+            <div class="row d-flex justify-content-between mb-3">
+                <div class="col-md-4 d-flex">
+                    <form action="/admin/sales" method="get">
+                        <div class="d-flex input-group" style="font-family: suite;">
+                            <i class="fa fa-calendar fa-lg me-2 pt-2" style="color: #00A674; font-size: xx-large; " aria-hidden="true"></i>
+                            <input type="text" class="form-control" id="datepicker" name="date" >
+                            <button type="button" class="btn btn-success" onclick="exe(this.form)" style="font-family: jamsil;">검색</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-5 justify-content-end">
+                    <div class="text-end">
+                        <form action="/admin/sales" method="get">
+                            <select class="form-select pt-1" aria-label="Default select example" name="getMonth" id="monthSelect" style="width:80px; display:inline"></select>
+                            <input type="submit" class="btn btn-success" style="font-family: jamsil;" value="검색">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+               
+            
                     <div class=" shadow rounded" style="border: none;">
-                        <!--https://colorlib.com/etc/tb/Table_Fixed_Header/index.html css할때 참고할 것-->
-                        
-                            <div class="" >
+                            <div class="justify-content-center" >
                                 <table class="table table-rounded">
                                     <thead>
-                                      <tr style="background-color: #2a292c; color: white;">
+                                      <tr style="background-color: #3f3f3f; color:white; text-align: center;">
                                         <th scope="col">주문번호</th>
-                                        <th scope="col">주문한 음식</th>
-                                        <th scope="col">총가격</th>
+                                        <th scope="col">메뉴</th>
+                                        <th scope="col">결제 금액</th>
                                         <th scope="col">결제 날짜/시간</th>
 
                                       </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody  style="text-align: center;">
+                                        <c:if test="${pvo eq null }">
+                                            <tr class=" justify-content-center" >
+                                                <td colspan="5" class="p-5" style="font-size: large;"><i class="fa fa-exclamation-circle me-2 fa-lg" aria-hidden="true"></i>매출이 없습니다.</td>
+                                            </tr>
+                                        </c:if>
                                         <c:forEach var="vo" items="${pvo}">
                                       <tr>
                                         <th scope="row">${vo.p_oNum}</th>
@@ -116,55 +148,58 @@
                        
                     </div>
                 </div>
-                <div>
-                    <fmt:formatNumber var="formattedTotalSales" type='number' maxFractionDigits='3' value='${totalSales}' />
-                    총 매출: ${formattedTotalSales}원
-                </div>
-                <div class="card-body justify-content-center" style="margin-left: 1000px">
-                    <c:if test="${date eq null}">                                       
-                        <ol class="pagination">
-                            <c:if test="${page.startPage < page.pagePerBlock}">
-                                <li class="page-item disabled"><a class="page-link">&lt;</a></li>
-                            </c:if>
-                            <c:if test="${page.startPage >= page.pagePerBlock}">
-                                <li class="page-item"><a class="page-link"
-                                        href="/admin/sales?cPage=${page.startPage-page.pagePerBlock} <c:if test='${getMonth != null}'>&getMonth=${getMonth}</c:if><c:if test='${date != null}'>&date=${date}</c:if>">&lt;</a></li>
-                            </c:if>
-                            <c:forEach begin="${page.startPage }" end="${page.endPage }" varStatus="st">
-                                <c:if test="${page.nowPage eq st.index}">
-                                    <li class="page-item active"><a class="page-link">${st.index}</a></li>
-                                </c:if>
-                                <c:if test="${page.nowPage ne st.index }">
-                                    <li class="page-item"><a class="page-link" href="/admin/sales?cPage=${st.index}<c:if test='${getMonth != null}'>&getMonth=${getMonth}</c:if><c:if test='${date != null}'>&date=${date}</c:if>">${st.index }</a>
-                                    </li>
-                                </c:if>
-                            </c:forEach>
-                            <c:if test="${page.endPage<page.totalPage}">
-                                <li class="page-item"><a class="page-link"
-                                        href="/admin/sales?cPage=${page.startPage+page.pagePerBlock }<c:if test='${getMonth != null}'>&getMonth=${getMonth}</c:if><c:if test='${date != null}'>&date=${date}</c:if>">&gt;</a></li>
-                            </c:if>
-                            <c:if test="${page.endPage == page.totalPage}">
-                                <li class="page-item disabled"><a class="page-link">&gt;</a></li>
-                            </c:if>
-                        </ol>
-                    </c:if>
-        
-                  
-        
-                    </div>
-                    <c:if test="${pvo eq null }">
-                        <div class="card-body justify-content-center">
-                            <div class="empty">현재 등록된 게시물이 없습니다.</div>
-                        </div>
-                    </c:if>
-                    </div>
+                
 
-              
-            </div>
-        </div> 
+                <div class="container-fluid">
+                    <div class="row  justify-content-center">
+                        <div class="col-md-10 d-flex">
+                            <div class="col-md-4">
+                                <div class="card shadow col-md-8" style="border: none;">
+                                    <div class="card-body text-center">
+                                        <fmt:formatNumber var="formattedTotalSales" type='number' maxFractionDigits='3' value='${totalSales}' />
+                                        <span style="font-family: jamsil;"><p class="text-muted">총 매출</p><hr/> ${formattedTotalSales} 원</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <c:if test="${date eq null}">                                       
+                                    <ol class="pagination justify-content-center">
+                                    <c:if test="${page.startPage < page.pagePerBlock}">
+                                        <li class="page-item disabled"><a class="page-link">&lt;</a></li>
+                                    </c:if>
+                                    <c:if test="${page.startPage >= page.pagePerBlock}">
+                                        <li class="page-item"><a class="page-link"
+                                                href="/admin/sales?cPage=${page.startPage-page.pagePerBlock} <c:if test='${getMonth != null}'>&getMonth=${getMonth}</c:if><c:if test='${date != null}'>&date=${date}</c:if>">&lt;</a></li>
+                                    </c:if>
+                                    <c:forEach begin="${page.startPage }" end="${page.endPage }" varStatus="st">
+                                        <c:if test="${page.nowPage eq st.index}">
+                                            <li class="page-item active"><a class="page-link">${st.index}</a></li>
+                                        </c:if>
+                                        <c:if test="${page.nowPage ne st.index }">
+                                            <li class="page-item"><a class="page-link" href="/admin/sales?cPage=${st.index}<c:if test='${getMonth != null}'>&getMonth=${getMonth}</c:if><c:if test='${date != null}'>&date=${date}</c:if>">${st.index }</a>
+                                            </li>
+                                        </c:if>
+                                    </c:forEach>
+                                    <c:if test="${page.endPage<page.totalPage}">
+                                        <li class="page-item"><a class="page-link"
+                                                href="/admin/sales?cPage=${page.startPage+page.pagePerBlock }<c:if test='${getMonth != null}'>&getMonth=${getMonth}</c:if><c:if test='${date != null}'>&date=${date}</c:if>">&gt;</a></li>
+                                    </c:if>
+                                    <c:if test="${page.endPage == page.totalPage}">
+                                        <li class="page-item disabled"><a class="page-link">&gt;</a></li>
+                                    </c:if>
+                                </ol>
+                            </c:if>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                    </div>
+                    
+                    </div>
 
     </div><!--본문 div의 끝-->
-</div>
+
 
 <<script type="text/javascript" src="js/bootstrap.js"></script>
 
