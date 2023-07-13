@@ -322,11 +322,8 @@
                                 
                                 var formData = new FormData();
                                 var formData = new FormData();
-                                if (file) {
-                                    formData.append('file', file);
-                                } else {
-                                    formData.append('file', null); // 파일을 선택하지 않았을 때는 null로 설정
-                                }
+                                
+                                formData.append('file', file);
                                $.ajax({
                                     url: "/saveImg",
                                     type: "post",
@@ -355,9 +352,8 @@
                                     $("button").remove("#insertedBtn");
                                     $("#file").val(""); //파일 선택기 초기화
                                     // 변수 초기화
-                                    savedpath = "";
-                                    savedfname = "";
-                                    
+                                    document.frm.r_file.value="";
+                                    //console.log(document.frm.r_file.value);
                                 }else{
                                     console.log("삭제 실패");
                                 }

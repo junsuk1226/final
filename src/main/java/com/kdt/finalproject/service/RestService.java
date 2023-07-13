@@ -4,6 +4,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,9 +58,11 @@ public class RestService {
   }
 
   // 이번달 총 매출
-  public int getSameMonth_totalCost(String restNm) {
-    int cost = r_Mapper.getSameMonth_totalCost(restNm);
-    return cost;
+  // public int getSameMonth_totalCost(String restNm) {
+  public Map<String, Long> getSameMonth_totalCost(String restNm) {
+    // int cost = r_Mapper.getSameMonth_totalCost(restNm);
+    // return cost;
+    return r_Mapper.getSameMonth_totalCost(restNm);
   }
 
   // 이번달 총 주문 건수(메뉴 낱개당 1)

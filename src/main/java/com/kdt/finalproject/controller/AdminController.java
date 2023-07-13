@@ -166,12 +166,15 @@ public class AdminController {
 
             // 많이 팔린 메뉴 하나만
             OrderCntVO[] ar = res_Service.getSameMonth_paylog(restNm);
-            OrderCntVO ovo = ar[0];
-            mv.addObject("foodOfMonth", ovo);
-
+            if (ar != null && ar.length > 0) {
+                OrderCntVO ovo = ar[0];
+                mv.addObject("foodOfMonth", ovo);
+            }
             // 이번달 총매출
-            int cost = res_Service.getSameMonth_totalCost(restNm);
-            mv.addObject("thisMonthTotal", cost);
+            // int cost = res_Service.getSameMonth_totalCost(restNm);
+            Map<String, Long> cost = res_Service.getSameMonth_totalCost(restNm);
+            if (cost.get("cnt") > 0)
+                mv.addObject("thisMonthTotal", cost.get("sum_cost"));
 
             // 연도별 - 월별 매출
             MonthTotalVO[] mar = res_Service.getAllMonthTotal(restNm);

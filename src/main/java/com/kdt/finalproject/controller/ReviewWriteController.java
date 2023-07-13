@@ -108,7 +108,11 @@ public class ReviewWriteController {
     public ModelAndView writeReview(ReviewVO rvo, String cPage) {
         ModelAndView mv = new ModelAndView("redirect:/review");
 
+        if (rvo.getR_file() != null && rvo.getR_file().trim().length() < 1)
+            rvo.setR_file(null);
+
         int cnt = reviewService.addReview(rvo);
+
         if (cnt > 0) {
             ReviewLogVO vo = new ReviewLogVO();
             vo.setR_idx(rvo.getR_idx());

@@ -1,6 +1,7 @@
 package com.kdt.finalproject.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kdt.finalproject.vo.MonthTotalVO;
 import com.kdt.finalproject.vo.PayVO;
@@ -14,7 +15,7 @@ public interface RestMapper {
 
     List<PayVO> getSameMonth_paylog(String restNm);
 
-    int getSameMonth_totalCost(String restNm);
+    Map<String, Long> getSameMonth_totalCost(String restNm);
 
     List<MonthTotalVO> getAllMonthTotal(String restNm);
 

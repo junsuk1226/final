@@ -144,6 +144,11 @@
                                       </tr>
                                     </thead>
                                     <tbody>
+                                        <c:if test="${pvo eq null }">
+                                            <tr class="justify-content-center" >
+                                                <td colspan="5" class="p-5" style="font-size: large;"><i class="fa fa-exclamation-circle me-2 fa-lg" aria-hidden="true"></i>메뉴가 없습니다.</td>
+                                            </tr>
+                                        </c:if>
                                         <c:forEach var="vo" items="${fvo}">
                                       <tr>
                                         <td scope="row" style="vertical-align: top;"><span class="text-muted" style="font-family: suite;">${vo.f_idx}</span></td>

@@ -143,7 +143,7 @@
                                         </div>
                                         </c:if>
                                         <c:if test="${foodOfMonth eq null}">
-                                            <span style="font-family: suite;"><i class="fa fa-exclamation-circle me-2 fa-lg" aria-hidden="true"></i>주문 내역이 없습니다.</td></span>
+                                            <span style="font-family: suite;" class=" p-5"><i class="fa fa-exclamation-circle me-2 fa-lg" aria-hidden="true"></i>주문 내역이 없습니다.</td></span>
                                         </c:if>
                                     </div>
                                 </div>
@@ -178,15 +178,22 @@
                         <div class="py-2 ms-4">
                             <span style="font-family: suite;color: aliceblue; font-size: x-large;" >최근 리뷰<span class="ms-2" style="font-size: medium; color: #00A674;">가장 최근 리뷰 5개가 표시됩니다.</span></span>
                         </div>
+                        <c:if test="${re eq null}">
+                                <div class="card rounded mb-2" style="border: none;">
+                                    <div class="card-body d-flex justify-content-center">
+                                        <span class="p-5" style="font-family: suite; font-size:large;"><i class="fa fa-exclamation-circle me-2 fa-lg" aria-hidden="true"></i>리뷰가 없습니다.</td></span>
+                                    </div>
+                                </div> 
+                            </c:if>
                         <c:forEach var="re" items="${recentReview}">
                         <div class="card rounded mb-2" style="border: none;">
                             <div class="card-body d-flex justify-content-between">
                             <c:if test ="${re ne null}">
                                 <div class="ms-2" style="width: 150px; height: 150px;">
-                                    <c:if test="${re.r_file eq null}">                                   
+                                    <c:if test="${re.r_file eq null || fn:length(re.r_file.trim()) eq 0}">                                   
                                         <img class="rounded" src="../main_images/no_image.png" id="${foodOfMonth.seq}_img" style="object-fit: cover; width: 100%; height: 100%;" />
                                     </c:if>
-                                    <c:if test="${re.r_file ne null}">                                   
+                                    <c:if test="${re.r_file ne null && fn:length(re.r_file.trim()) > 0 }">                                   
                                         <img class="rounded" src="../editor_upload/${re.r_file}" id="${foodOfMonth.seq}_img" style="object-fit: cover; width: 100%; height: 100%;" />
                                     </c:if>
                                 </div>
@@ -209,9 +216,7 @@
                                     </div>
                                 </div>
                             </c:if>
-                            <c:if test="${re eq null}">
-                                <span style="font-family: suite;"><i class="fa fa-exclamation-circle me-2 fa-lg" aria-hidden="true"></i>리뷰가 없습니다.</td></span>
-                            </c:if>
+                            
                             </div>
                         </div>
 
