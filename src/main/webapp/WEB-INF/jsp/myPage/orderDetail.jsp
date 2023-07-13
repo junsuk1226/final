@@ -101,6 +101,7 @@
                                          <div class="card shadow p-3 mb-5 bg-body rounded justify-content-center" style="border: none;">
                                             <div class="card-body justify-content-center text-center">
                                                 <form action="" name="frm" method="get">
+                                                    <input type="hidden" name="p_oNum" value="${pvo.p_oNum}"/>
                                                     <input type="hidden" name="restNm" value="${pvo.restNm}"/>
                                                     <span class="text-muted">주문번호</span>
                                                     <div class="text-center"><h1>${pvo.p_oNum}</h1></div>
