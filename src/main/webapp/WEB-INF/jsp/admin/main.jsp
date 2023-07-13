@@ -54,6 +54,10 @@
                 </li>
                 </ul>
 
+                <div class="col-md-12 d-grid ">
+                    <button type="button " class="btn btn-success me-2 mycustom-mem-btn" onclick="location.href='/admin/logout'">로그 아웃<i class="fa fa-sign-out ms-2 fa-lg" aria-hidden="true"></i></button>
+                </div>
+
             <hr><!--구분선-->
 
             
@@ -64,7 +68,7 @@
         <!-- 메인 컨텐츠 내용 -->
         
         <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
-            <button type="button" class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="location.href='/admin/logout'">로그 아웃</button>
+            
             <div class="container-fluid">
                 <div class="row justify-content-center mt-5">
                     <div class="col-md-9 mb-5 text-start d-flex align-items-center">

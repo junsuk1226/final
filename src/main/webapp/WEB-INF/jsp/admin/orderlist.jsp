@@ -69,6 +69,9 @@
             </a>
         </li>
         </ul>
+        <div class="col-md-12 d-grid ">
+            <button type="button " class="btn btn-success me-2 mycustom-mem-btn" onclick="location.href='/admin/logout'">로그 아웃<i class="fa fa-sign-out ms-2 fa-lg" aria-hidden="true"></i></button>
+        </div>
 
         <hr><!--구분선-->
 
