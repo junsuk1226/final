@@ -124,6 +124,7 @@
           <if test="searchType != null and searchType == 3">
             AND m_joinDate LIKE CONCAT('%', #{searchValue}, '%')
           </if>
+          ORDER BY ml_idx DESC
       ) a, (SELECT @RN:=0) b
     ) c WHERE c.rnum BETWEEN #{begin} AND #{end}
   </select>
