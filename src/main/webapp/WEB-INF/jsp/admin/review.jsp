@@ -14,6 +14,15 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <!--아이콘 cdn-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<style>
+    .pagination .page-item.active .page-link { 
+        background-color: #00A674;
+        color: white;
+        border-color: #00A674;
+      }
+
+</style>
 </head>
 <body>
 
@@ -57,13 +66,7 @@
         
         </div>
     </div>
-    <form action="/admin/review" method="post">
-    <div style="margin-left: 300px; margin-top: 10px">
-        <i class="fa fa-calendar fa-lg" style="color: #00A674; font-size: xx-large;" aria-hidden="true"></i>
-        <input type="text" id="datepicker" name="date">
-        <button type="button" onclick="exe(this.form)">검색</button>
-    </div>
-    </form>
+    
     <!-- 사이드바 끝 -->
 
     <!-- 메인 컨텐츠 내용 -->
@@ -76,108 +79,146 @@
                         </h2>
                 </div>
             </div>
-        <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">번호</th>
-                <th scope="col">리뷰사진</th>
-                <th scope="col">리뷰</th>
-                <th scope="col">작성자</th>
-                <th scope="col">리뷰점수</th>
-                <th scope="col">리뷰날짜</th>
-              </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="vo" items="${rvo}">
-              <tr>
-                <th scope="row">${vo.r_idx}</th>
-                <c:if test="${vo.r_file != null}">
-                <td> <img src="../editor_upload/${vo.r_file}" style="width:80px; height: 60px;"></td>
-                </c:if>
-                <c:if test="${vo.r_file == null}">
-                <td> <img src="../main_images/hand2.png" style="width:80px; height: 60px;"></td>
-                </c:if>
-                <td>${vo.r_content}</td>
-                <td>${vo.m_name}</td>
-                <td>
-                    <c:forEach begin="1" end="${vo.r_score}">
-                        <i class="fa fa-star" style="color: #FBB202;"></i>
-                    </c:forEach>
-                    <c:forEach begin="1" end="${5 - vo.r_score}">
-                        <i class="fa fa-star-o" style="color: #FBB202;"></i>
-                    </c:forEach>
-                </td>
-                <td>${vo.r_writedate}</td>
-                              
-              </tr>
-            </c:forEach>
-            
-           
-            </tbody>
-          </table>
-        <div class="card-body justify-content-center" style="margin-left: 1000px">
-            <c:if test="${date eq null}">                                       
-                <ol class="pagination">
-                    <c:if test="${page.startPage < page.pagePerBlock}">
-                        <li class="page-item disabled"><a class="page-link">&lt;</a></li>
-                    </c:if>
-                    <c:if test="${page.startPage >= page.pagePerBlock}">
-                        <li class="page-item"><a class="page-link"
-                                href="/admin/review?cPage=${page.startPage-page.pagePerBlock }">&lt;</a></li>
-                    </c:if>
-                    <c:forEach begin="${page.startPage }" end="${page.endPage }" varStatus="st">
-                        <c:if test="${page.nowPage eq st.index}">
-                            <li class="page-item active"><a class="page-link">${st.index}</a></li>
-                        </c:if>
-                        <c:if test="${page.nowPage ne st.index }">
-                            <li class="page-item"><a class="page-link" href="/admin/review?cPage=${st.index}">${st.index }</a>
-                            </li>
-                        </c:if>
-                    </c:forEach>
-                    <c:if test="${page.endPage<page.totalPage}">
-                        <li class="page-item"><a class="page-link"
-                                href="/admin/review?cPage=${page.startPage+page.pagePerBlock }">&gt;</a></li>
-                    </c:if>
-                    <c:if test="${page.endPage == page.totalPage}">
-                        <li class="page-item disabled"><a class="page-link">&gt;</a></li>
-                    </c:if>
-                </ol>
-            </c:if>
 
-            <c:if test="${date ne null}">                                       
-                <ol class="pagination">
-                    <c:if test="${page.startPage < page.pagePerBlock}">
-                        <li class="page-item disabled"><a class="page-link">&lt;</a></li>
-                    </c:if>
-                    <c:if test="${page.startPage >= page.pagePerBlock}">
-                        <li class="page-item"><a class="page-link"
-                                href="/admin/review?cPage=${page.startPage-page.pagePerBlock }&date=${date}">&lt;</a></li>
-                    </c:if>
-                    <c:forEach begin="${page.startPage }" end="${page.endPage }" varStatus="st">
-                        <c:if test="${page.nowPage eq st.index}">
-                            <li class="page-item active"><a class="page-link">${st.index}</a></li>
-                        </c:if>
-                        <c:if test="${page.nowPage ne st.index }">
-                            <li class="page-item"><a class="page-link" href="/admin/review?cPage=${st.index}&date=${date}">${st.index }</a>
-                            </li>
-                        </c:if>
-                    </c:forEach>
-                    <c:if test="${page.endPage<page.totalPage}">
-                        <li class="page-item"><a class="page-link"
-                                href="/admin/review?cPage=${page.startPage+page.pagePerBlock }&date=${date}">&gt;</a></li>
-                    </c:if>
-                    <c:if test="${page.endPage == page.totalPage}">
-                        <li class="page-item disabled"><a class="page-link">&gt;</a></li>
-                    </c:if>
-                </ol>
-            </c:if>
-
-            </div>
-            <c:if test="${rvo eq null }">
-                <div class="card-body justify-content-center">
-                    <div class="empty">현재 등록된 게시물이 없습니다.</div>
+          <div class="row justify-content-center mt-5 mb-3">
+            <div class="col-md-10">
+                <div class="row justify-content-start">
+                    <div class=" d-flex"> 
+                        <form action="/admin/review" method="post">
+                            <div class="d-flex input-group">
+                                <i class="fa fa-calendar fa-lg me-2 pt-2" style="color: #00A674; font-size: xx-large; " aria-hidden="true"></i>
+                                <input type="text" class="form-control" id="datepicker" name="date" >
+                                <button type="button" class="btn btn-success" onclick="exe(this.form)" style="font-family: jamsil;">검색</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </c:if>
+            </div>
+            <div class="mt-3 me-3 shadow rounded col-md-10" style="background-color: #3f3f3f;">
+                <div class="py-2 ms-4">
+                    <span style="font-family: suite;color: aliceblue; font-size: x-large;" >리뷰 목록<span class="ms-2" style="font-size: medium; color: #00A674;">오래된 순으로 표시됩니다.</span></span>
+                </div>
+                
+                <c:if test="${rvo eq null }">
+                    <div class="card rounded mb-2" style="border: none;">
+                        <div class="card-body d-flex justify-content-center">
+                            <div class="empty p-5" style="font-size: large; font-family: suite;"><i class="fa fa-exclamation-circle me-2 fa-lg" aria-hidden="true"></i>등록된 리뷰가 없습니다.</div>
+                        </div>
+                    </div>
+                </c:if>
+
+                <c:forEach var="vo" items="${rvo}">
+                <div class="card rounded mb-2" style="border: none;">
+                    <div class="card-body d-flex justify-content-between">
+                        
+                    <c:if test ="${vo ne null}">
+                        <div>
+                            <span style="font-family: jamsil; max-width: 50px;" class="text-muted me-2">${vo.r_idx}</span>
+                        </div>
+                        <div class="ms-2" style="width: 200px; height: 120px;">
+                            <c:if test="${vo.r_file eq null}">                                   
+                                <img class="rounded" src="../main_images/no_image.png" style="object-fit: cover; width: 100%; height: 100%;" />
+                            </c:if>
+                            <c:if test="${vo.r_file ne null}">                                   
+                                <img class="rounded" src="../editor_upload/${vo.r_file}" style="object-fit: cover; width: 100%; height: 100%;" />
+                            </c:if>
+                        </div>
+                        <div class="row col-md-8">
+                            <div class="col-md-12 mt-3">
+                                <p class="ms-3" style="font-family: suite; font-size:larger;"> ${vo.r_content}</p>
+                            </div>
+                            <div class="text-end col-md-12 justify-content-end">
+                                <span class="text-muted me-2 text-end justify-content-end" style="font-family: suite;">
+                                    <div class="me-2 my-2">
+                                        <span class="me-4">${vo.m_name}</span>
+                                        <c:forEach begin="1" end="${vo.r_score}">
+                                            <i class="fa fa-star" style="color: #FBB202;"></i>
+                                        </c:forEach>
+                                        <c:forEach begin="1" end="${5 - vo.r_score}">
+                                            <i class="fa fa-star-o" style="color: #FBB202;"></i>
+                                        </c:forEach>
+                                    </div>
+                                    ${vo.r_writedate}
+                                </span>
+                            </div>
+                        </div>
+                        </c:if>
+                        <c:if test="${vo eq null}">
+                            <span style="font-family: suite;"><i class="fa fa-exclamation-circle me-2 fa-lg" aria-hidden="true"></i>리뷰가 없습니다.</td></span>
+                        </c:if>
+                        </div>
+                    </div>
+
+                    </c:forEach>
+                
+                    <div class="card-body justify-content-center" >
+                        <c:if test="${date eq null}">                                       
+                            <ol class="pagination justify-content-center">
+                                <c:if test="${page.startPage < page.pagePerBlock}">
+                                    <li class="page-item disabled"><a class="page-link">&lt;</a></li>
+                                </c:if>
+                                <c:if test="${page.startPage >= page.pagePerBlock}">
+                                    <li class="page-item"><a class="page-link"
+                                            href="/admin/review?cPage=${page.startPage-page.pagePerBlock }">&lt;</a></li>
+                                </c:if>
+                                <c:forEach begin="${page.startPage }" end="${page.endPage }" varStatus="st">
+                                    <c:if test="${page.nowPage eq st.index}">
+                                        <li class="page-item active"><a class="page-link">${st.index}</a></li>
+                                    </c:if>
+                                    <c:if test="${page.nowPage ne st.index }">
+                                        <li class="page-item"><a class="page-link" href="/admin/review?cPage=${st.index}">${st.index }</a>
+                                        </li>
+                                    </c:if>
+                                </c:forEach>
+                                <c:if test="${page.endPage<page.totalPage}">
+                                    <li class="page-item"><a class="page-link"
+                                            href="/admin/review?cPage=${page.startPage+page.pagePerBlock }">&gt;</a></li>
+                                </c:if>
+                                <c:if test="${page.endPage == page.totalPage}">
+                                    <li class="page-item disabled"><a class="page-link">&gt;</a></li>
+                                </c:if>
+                            </ol>
+                        </c:if>
+            
+                        <c:if test="${date ne null}">                                       
+                            <ol class="pagination justify-content-center">
+                                <c:if test="${page.startPage < page.pagePerBlock}">
+                                    <li class="page-item disabled"><a class="page-link">&lt;</a></li>
+                                </c:if>
+                                <c:if test="${page.startPage >= page.pagePerBlock}">
+                                    <li class="page-item"><a class="page-link"
+                                            href="/admin/review?cPage=${page.startPage-page.pagePerBlock }&date=${date}">&lt;</a></li>
+                                </c:if>
+                                <c:forEach begin="${page.startPage }" end="${page.endPage }" varStatus="st">
+                                    <c:if test="${page.nowPage eq st.index}">
+                                        <li class="page-item active"><a class="page-link">${st.index}</a></li>
+                                    </c:if>
+                                    <c:if test="${page.nowPage ne st.index }">
+                                        <li class="page-item"><a class="page-link" href="/admin/review?cPage=${st.index}&date=${date}">${st.index }</a>
+                                        </li>
+                                    </c:if>
+                                </c:forEach>
+                                <c:if test="${page.endPage<page.totalPage}">
+                                    <li class="page-item"><a class="page-link"
+                                            href="/admin/review?cPage=${page.startPage+page.pagePerBlock }&date=${date}">&gt;</a></li>
+                                </c:if>
+                                <c:if test="${page.endPage == page.totalPage}">
+                                    <li class="page-item disabled"><a class="page-link">&gt;</a></li>
+                                </c:if>
+                            </ol>
+                        </c:if>
+            
+                        </div>
+                </div>
+            </div>
+
+
+
+
+
+
+       
+            
             </div>
         </div>
         <!-- 메인 컨텐츠 끝 -->
