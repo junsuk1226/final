@@ -134,4 +134,35 @@ public class ReviewService {
     public int adminTotalCount(Map<String, String> map) {
         return r_Mapper.adminTotalCount(map);
     }
+
+    public int reviewTotalCount(String searchType, String searchValue) {
+        Map<String, Object> map = new HashMap<>();
+        if (searchType != null && searchValue != null) {
+            map.put("searchType", searchType);
+            map.put("searchValue", searchValue);
+        }
+        return r_Mapper.reviewTotalCount(map);
+    }
+
+    public ReviewVO[] adminTotalReviewList(int begin, int end, String searchType, String searchValue) {
+
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("begin", begin);
+        map.put("end", end);
+        if (searchType != null && searchValue != null) {
+            map.put("searchType", searchType);
+            map.put("searchValue", searchValue);
+        }
+
+        List<ReviewVO> r_list = r_Mapper.adminTotalReviewList(map);
+
+        ReviewVO[] ar = null;
+        if (r_list != null && r_list.size() > 0) {
+            ar = new ReviewVO[r_list.size()];
+            r_list.toArray(ar);
+        }
+
+        return ar;
+    }
 }

@@ -41,6 +41,7 @@ import com.kdt.finalproject.vo.ImageData;
 import com.kdt.finalproject.vo.MemLogVO;
 import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.RestVO;
+import com.kdt.finalproject.vo.ReviewVO;
 
 @Controller
 public class AdminTotalController {
@@ -582,11 +583,11 @@ public class AdminTotalController {
         if (cPage != null)
             nowPage = Integer.parseInt(cPage);
 
-        int totalRecord = re_Service.getTotalCount(cPage);
+        int totalRecord = re_Service.reviewTotalCount(searchType, searchValue);
 
         Paging page = new Paging(nowPage, totalRecord, 10, 5);
 
-        MemVO[] ar = r_Service.regLogList(page.getBegin(), page.getEnd(), searchType, searchValue);
+        ReviewVO[] ar = re_Service.adminTotalReviewList(page.getBegin(), page.getEnd(), searchType, searchValue);
 
         if (ar != null) {
 

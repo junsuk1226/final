@@ -55,4 +55,8 @@ public interface ReviewMapper {
 
     int adminTotalCount(Map<String, String> map);
 
+    int reviewTotalCount(Map<String, Object> map);
+
+    List<ReviewVO> adminTotalReviewList(Map<String, Object> map);
+
 }
