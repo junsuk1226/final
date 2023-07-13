@@ -74,7 +74,7 @@
             <c:if test="${lineName != null}">
                 ${lineName}
             </c:if>
-          </button>
+        </button>
         <ul class="dropdown-menu mycustom-line_search_dropdown_menu">
             <li><h6 class="dropdown-header mycustom-line_search_dropdown_header">노선 선택</h6></li>
             <li><a class="dropdown-item" value="0010">경부선</a></li>
