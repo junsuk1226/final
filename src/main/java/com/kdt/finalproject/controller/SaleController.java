@@ -18,6 +18,7 @@ import com.kdt.finalproject.service.FoodService;
 import com.kdt.finalproject.service.JoinService;
 import com.kdt.finalproject.service.MemService;
 import com.kdt.finalproject.service.PayService;
+import com.kdt.finalproject.service.RestService;
 import com.kdt.finalproject.service.ReviewService;
 import com.kdt.finalproject.util.Paging;
 import com.kdt.finalproject.vo.MemVO;
@@ -26,6 +27,10 @@ import com.kdt.finalproject.vo.ReviewVO;
 
 @Controller
 public class SaleController {
+
+    @Autowired
+    private RestService res_service;
+
     @Autowired
     HttpServletRequest request;
 
@@ -75,6 +80,14 @@ public class SaleController {
             mv.addObject("getMonth", getMonth);
             pvo = p_Service.monthSales(map);
 
+            // 매출
+            Map<String, String> searchMap = new HashMap<String, String>();
+            searchMap.put("month", getMonth);
+            searchMap.put("restNm", mvo.getM_name());
+            Map<String, Long> cost = res_service.getMonth_totalCost(searchMap);
+            if (cost.get("cnt") > 0)
+                mv.addObject("searchTotal", cost.get("sum_cost"));
+
             mv.addObject("page", page);
         } else {
             // 일별 매출 내역 확인
@@ -86,6 +99,16 @@ public class SaleController {
 
             mv.addObject("page", page);
             mv.addObject("pageCode", pageCode);
+
+            // 매출
+            Map<String, String> searchMap = new HashMap<String, String>();
+            // System.out.println(date);
+            searchMap.put("date", date);
+            searchMap.put("restNm", mvo.getM_name());
+            Map<String, Long> cost = res_service.getDay_totalCost(searchMap);
+            if (cost.get("cnt") > 0)
+                mv.addObject("searchTotal", cost.get("sum_cost"));
+
         }
 
         mv.addObject("date", date);

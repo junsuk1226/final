@@ -17,6 +17,10 @@ public interface RestMapper {
 
     Map<String, Long> getSameMonth_totalCost(String restNm);
 
+    Map<String, Long> getMonth_totalCost(Map<String, String> map);
+
+    Map<String, Long> getDay_totalCost(Map<String, String> map);
+
     List<MonthTotalVO> getAllMonthTotal(String restNm);
 
     List<ReviewVO> getRecentReview(String restNm);

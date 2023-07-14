@@ -159,7 +159,7 @@
                             <div class="col-md-4">
                                 <div class="card shadow col-md-8" style="border: none;">
                                     <div class="card-body text-center">
-                                        <fmt:formatNumber var="formattedTotalSales" type='number' maxFractionDigits='3' value='${totalSales}' />
+                                        <fmt:formatNumber var="formattedTotalSales" type='number' maxFractionDigits='3' value='${searchTotal}' />
                                         <span style="font-family: jamsil;"><p class="text-muted">총 매출</p><hr/> ${formattedTotalSales} 원</span>
                                     </div>
                                 </div>
@@ -216,7 +216,7 @@
 <script>
     $(function() {
         let date = "${date}";
-   
+
         //input을 datepicker로 선언
         $("#datepicker").datepicker({
             dateFormat: 'yy-mm-dd' //달력 날짜 형태
