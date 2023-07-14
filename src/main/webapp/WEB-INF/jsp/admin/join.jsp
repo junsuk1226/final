@@ -46,6 +46,7 @@
                                         <div class="form-floating ">
                                             <input type="text" placeholder="Email" class="form-control" name = "j_email" id = "j_email" required>
                                             <label for="floatingInput" class="text-secondary">example@email.com</label>
+                                            <span id="j_box"></span>
                                             <div class="valid-feedback">
                                             </div>
                                             <div class="invalid-feedback">
@@ -279,6 +280,7 @@
                         $(function(){
                             $("#j_email").bind("keyup", function(){
                                 var str = $(this).val();
+                                console.log("str");
                                 if(str.trim().length > 4){
                                     $.ajax({
                                         url: "/admin/checkid",
@@ -286,6 +288,8 @@
                                         data: {"email":str},
                                         dataType:"json"
                                     }).done(function(res){
+                                        console.log("str");
+                                        console.log("성공");
                                         if(res.chk == true && check1.test(str)){
                                             $("#j_box").html("&nbsp;사용가능");
                                         }else{

@@ -190,6 +190,7 @@
       let foodMaterial = document.getElementById("foodMaterial").value;
       let foodCost = document.getElementById("foodCost").value;
       let etc = document.getElementById("etc").value;
+    
 
       if(foodNm.trim() < 1){
         alert("음식이름을 입력해주세요.");
@@ -211,6 +212,9 @@
         etc.clear();
         etc.focus();
         return; 
+      }else if(!$('input[name="seasonMenu"]').is(':checked')){
+        alert("계절 메뉴를 선택해주세요.");
+        return;
       }
 
 
