@@ -59,4 +59,5 @@ public interface ReviewMapper {
 
     List<ReviewVO> adminTotalReviewList(Map<String, Object> map);
 
+    int chkP_oNum(String p_oNum);
 }

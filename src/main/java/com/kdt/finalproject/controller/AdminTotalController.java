@@ -158,7 +158,7 @@ public class AdminTotalController {
 
     @PostMapping("/adminTotal/approval")
     @ResponseBody
-    public String approval(String m_id) {
+    public String approval(String m_id, String reg_image) {
 
         try {
 
@@ -282,6 +282,8 @@ public class AdminTotalController {
             map.put("m_phone", mvo.getM_phone());
             map.put("restCd", rvo.getSvarCd());
             map.put("m_idx", mvo.getM_idx());
+            map.put("editor","A");
+            map.put("ml_information","개인정보저장");
 
             Map<String, String> map2 = new HashMap<>();
             map2.put("reg_restNm", mvo.getM_name());
@@ -291,6 +293,7 @@ public class AdminTotalController {
             map2.put("reg_ownerPhone", mvo.getM_phone());
             map2.put("reg_ownerEmail", mvo.getM_id());
             map2.put("m_idx", mvo.getM_idx());
+            map2.put("reg_image", reg_image);
 
             // 해당 휴게소의 m_status 값을 1로 변경 & log 추가 & regrest테이블에 저장
             r_Service.approval(m_id, map, map2, f_list);
@@ -395,12 +398,6 @@ public class AdminTotalController {
     public String editMemSave(String m_idx, String value, String type) {
 
         MemVO mvo = m_Service.searchMem(m_idx);
-
-        // System.out.println("m_idx|||||||||" + mvo.getM_idx());
-        // System.out.println("m_id|||||||||" + mvo.getM_id());
-        // System.out.println("m_idx|||||||||" + m_idx);
-        // System.out.println("value|||||||||" + value);
-        // System.out.println("type|||||||||" + type);
 
         if (type.equals("name")) {
             mvo.setM_name(value);
@@ -578,6 +575,10 @@ public class AdminTotalController {
     @RequestMapping("/adminTotal/review")
     public ModelAndView review(String searchType, String searchValue, String cPage) {
         ModelAndView mv = new ModelAndView();
+        if (searchType == null || searchValue == null || searchValue.trim().length() < 1) {
+            searchType = null;
+            searchValue = null;
+        }
         int nowPage = 1;
 
         if (cPage != null)

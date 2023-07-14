@@ -130,13 +130,13 @@ public class OrderPayController {
         // 가맹점 주문번호 생성 끝
 
         String partner_order_id = sb2.toString(); // 가맹점 주문번호
-        String partner_user_id = "restCd"; // 가맹점 회원 id(휴게소코드)---------값 받기 넘겨주세요.
+        String partner_user_id = "restCd"; // 가맹점 회원 id(휴게소코드)
         String item_name = foodNmsb.toString(); // 상품명
         int quantity = foonQn; // 상품 수량
         String foodQnTotal = foodQnsb.toString(); // 상품 개별 수량
         String foodCost = foodCostsb.toString(); // 상품 개별 가격
         String total_amount = sumPrice; // 상품 총액
-        String tax_free_amount = "0"; // 상품 비과세 금액-----모르겠다.
+        String tax_free_amount = "0"; // 상품 비과세 금액
         String approval_url = "http://localhost:8080/kakaopayment/success"; // 결제 성공 시 redirect url
         String cancel_url = "http://localhost:8080/kakaopayment/cancel"; // 결제 취소 시 redirect url
         String fail_url = "http://localhost:8080/kakaopayment/fail"; // 결제 실패 시 redirect url

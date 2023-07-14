@@ -165,4 +165,8 @@ public class ReviewService {
 
         return ar;
     }
+
+    public int chkP_oNum(String p_oNum) {
+        return r_Mapper.chkP_oNum(p_oNum);
+    }
 }

@@ -72,10 +72,17 @@
             <div class="container adminTotal-tablearea" style="width:100%; margin: 0">
                 <h1>리뷰 수정</h1>
                 <hr>
-                
                 <div class="container" style="width:100%;">
                     <table class="table mycustomtable" style="text-align: center;">
-                        
+                        <form action="/adminTotal/review" method="post">
+                            <select class="search_select" name="searchType">
+                                <option value="0">주문번호</option>
+                                <option value="1">휴게소명</option>
+                                <option value="2">작성자</option>
+                            </select>&nbsp;
+                            <input name="searchValue">&nbsp;
+                            <button type="button" class="search_btn" onclick="searchData(this.form)">검색</button>
+                        </form>
                         <thead>
                         <tr class="table_head" style="width: 100%;">
                             <th scope="col" style="width: 10px;"></th>
@@ -135,7 +142,7 @@
         </div>
     </div>
 
-    <input id="s_rIdx" type="hidden" value="${rvo.r_idx}">
+    <input id="s_rIdx" type="hidden">
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -164,6 +171,11 @@
                     console.error("승인 요청에 실패했습니다.");
                 }
             });
+    }
+
+    function searchData(ff) {
+
+        ff.submit();
     }
 
 </script>

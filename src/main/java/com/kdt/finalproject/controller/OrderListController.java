@@ -7,12 +7,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.FoodService;
 import com.kdt.finalproject.service.PayService;
+import com.kdt.finalproject.service.ReviewService;
 import com.kdt.finalproject.util.Paging;
 import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MemVO;
@@ -20,6 +22,9 @@ import com.kdt.finalproject.vo.PayVO;
 
 @Controller
 public class OrderListController {
+
+    @Autowired
+    private ReviewService r_service;
 
     @Autowired
     private PayService p_service;
@@ -96,6 +101,14 @@ public class OrderListController {
 
         mv.setViewName("/myPage/orderDetail");
         return mv;
+    }
+
+    @PostMapping("/chkP_oNum")
+    @ResponseBody
+    public String chkP_oNum(String p_oNum) {
+        int cnt = r_service.chkP_oNum(p_oNum);
+        String chk = String.valueOf(cnt);
+        return chk;
     }
 
     @RequestMapping("/getFileName")

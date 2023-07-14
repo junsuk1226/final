@@ -112,13 +112,20 @@
                 /*사진 삭제 버튼*/
                 button.btn-del {
                     position: absolute;
-                    top: -10px;
-                    left : 310px;
+                    top: 140px;
+                    left : 320px;
                     border-radius: 15px;
                     border: none;
                     background-color: #6600db;
                     width: 26px;
  
+                }
+
+                .btn.me-2.btn-lg{
+                    background-color: #6600db;
+                    border-color: #6600db;
+                    color: white;
+                    font-family: jamsil;
                 }
                 </style>
                     <!-- Favicon-->
@@ -183,7 +190,11 @@
                                         <input type="hidden" name="m_name" value="${sessionScope.mvo.m_name}"/>
                                         <input type="hidden" name="p_oNum" value="${p_oNum}"/>
                                         <input type="hidden" name="r_file"/>
-                                        
+                                        <div class="row justify-content-start">
+                                            <div class="col-6 float-start text-start ms-2 mb-2">
+                                                <a class="arrow" style="text-decoration: none; font-family: jamsil; font-size: large; color: #6600db;" href="/order"><i class="fa fa-arrow-left me-2" aria-hidden="true"></i>목록으로 돌아가기</a>
+                                            </div>
+                                        </div>
                                         
                                             <div class="card shadow p-3 mb-5 bg-body rounded mx-1" style="border: none;">
                                                 <div class="row card-body justify-content-around">
@@ -197,8 +208,8 @@
                                                         </div>
                                                     </div>
                                                 
-                                                    <div class ="row ms-1 mb-3">
-                                                        <div class=" input-group">
+                                                    <div class ="row mb-3">
+                                                        <div class="d-flex ">
                                                             <label for="file">
                                                                 <div style="height: 100px; width: 150px; margin: 0 auto;" class="hover-fade">
                                                                     <img src="../main_images/addfile.png" style='object-fit:cover; width: 100%; height:100%; cursor: pointer;' class='rounded shadow mb-5' alt="inputFile"/>
@@ -206,7 +217,7 @@
                                                             </label>
                                                             <input type="file" class="form-control " id="file" name="file" style="display: none;">
                                                             <div class="ms-2">
-                                                                <div style="background-color: rgb(241, 241, 241); border-radius: 6px; height: 100px; width: 150px; margin: 0 auto;" id="img_area"> </div>
+                                                                <div style="background-color: rgb(241, 241, 241); border-radius: 6px; height: 100px; width: 130px; margin: 0 auto;" id="img_area"> </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -221,7 +232,7 @@
                                                         </div>
                                                     </div>
                                                     <div style="text-align: right;" class="my-3">
-                                                        <button class="btn btn-outline-success me-2 mycustom-mem-btn" onclick="sendData()" type="button">저장</button>
+                                                        <button class="btn me-2 btn-lg " onclick="sendData()" type="button">등록<i class="fa fa-paper-plane ms-2" aria-hidden="true"></i></button>
                                                     </div>  
                                                 </div>
                                             </div>
@@ -380,6 +391,8 @@
                                 $("#content").addClass("is-valid"); 
                             }
 
+
+
                             document.frm.submit();
                         }
 
@@ -388,9 +401,6 @@
                             document.frm.action="/writeReview";
                             document.frm.submit();
                         }
-
-                       
-                        
 
 
                     </script>
