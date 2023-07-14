@@ -92,6 +92,10 @@
             <div class="card col-md-10 shadow" style="border: none;">
               <div class="card-body row d-flex justify-content-around">
                 <div class="col-md-6 mt-5">
+                  
+                  <div  class="text-end">
+                    <a style="text-decoration: none; font-family: jamsil; color: #00A674;" ><i class="fa fa-info-circle me-2" aria-hidden="true"></i>대표 이미지는 이메일로 보내주세요.</a>
+                  </div>
 
                     <div class = "input-group mb-3" >
                       <span class="input-group-text" style="font-family: jamsil;">메뉴명</span>
