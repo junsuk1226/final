@@ -306,8 +306,10 @@
                         
 
                         $(function(){
-                            $("#j_email").bind("keyup", function(){
+
+                            $("#j_email").on("keyup keypress",function(){
                                 var str = $(this).val();
+                                console.log(str+"::::::::::::::");
                                 if(str.trim().length > 4){
                                     $.ajax({
                                         url: "/join/checkid",

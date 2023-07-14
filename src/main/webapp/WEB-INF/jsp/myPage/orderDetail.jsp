@@ -95,6 +95,7 @@
                                     <div  class="col-md-6">
                                         <div class="row justify-content-start ">
                                             <div class="col-6 mb-2 float-start text-start ms-2">
+                                                <input type="hidden" name="cPage" value="${cPage}"/>
                                                 <a class=" arrow nav-link" href='/order' style="font-family: 'suite'; font-weight: bold; color: #887e94; font-size: large;" ><i class="fa fa-arrow-left me-2" aria-hidden="true"></i>뒤로가기</a>
                                             </div>
                                         </div>

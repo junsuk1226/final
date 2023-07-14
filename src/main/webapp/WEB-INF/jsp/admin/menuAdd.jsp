@@ -92,6 +92,10 @@
             <div class="card col-md-10 shadow" style="border: none;">
               <div class="card-body row d-flex justify-content-around">
                 <div class="col-md-6 mt-5">
+                  
+                  <div  class="text-end">
+                    <a style="text-decoration: none; font-family: jamsil; color: #00A674;" ><i class="fa fa-info-circle me-2" aria-hidden="true"></i>대표 이미지는 이메일로 보내주세요.</a>
+                  </div>
 
                     <div class = "input-group mb-3" >
                       <span class="input-group-text" style="font-family: jamsil;">메뉴명</span>
@@ -190,6 +194,7 @@
       let foodMaterial = document.getElementById("foodMaterial").value;
       let foodCost = document.getElementById("foodCost").value;
       let etc = document.getElementById("etc").value;
+    
 
       if(foodNm.trim() < 1){
         alert("음식이름을 입력해주세요.");
@@ -211,6 +216,9 @@
         etc.clear();
         etc.focus();
         return; 
+      }else if(!$('input[name="seasonMenu"]').is(':checked')){
+        alert("계절 메뉴를 선택해주세요.");
+        return;
       }
 
 

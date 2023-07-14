@@ -164,7 +164,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 mt-3">
                                 <c:if test="${date eq null}">                                       
                                     <ol class="pagination justify-content-center">
                                     <c:if test="${page.startPage < page.pagePerBlock}">
@@ -215,6 +215,8 @@
     
 <script>
     $(function() {
+        let date = "${date}";
+   
         //input을 datepicker로 선언
         $("#datepicker").datepicker({
             dateFormat: 'yy-mm-dd' //달력 날짜 형태
@@ -234,16 +236,10 @@
         //초기값을 오늘 날짜로 설정해줘야 합니다.
         $('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
      
-        $('#datepicker').change(function() {
-            var date = $(this).val();
-            sessionStorage.setItem('selectedDate', date); // 선택한 날짜 저장
-            }
-        );
+       
          // 페이지 로드 시 선택한 날짜 설정
-        var selectedDate = sessionStorage.getItem('selectedDate');
-        if (selectedDate) {
-            $('#datepicker').val(selectedDate);
-            sessionStorage.removeItem('selectedDate');
+         if (date) {
+            $('#datepicker').datepicker('setDate', date);
 
         }
     });
@@ -254,7 +250,7 @@
 
     var monthSelect = document.getElementById('monthSelect');
     var currentMonth = new Date().getMonth() + 1; // 현재 월 가져오기 (1부터 시작)
-
+    var month = "${getMonth}";
     for (var i = 1; i <= 12; i++) {
         var option = document.createElement('option');
         option.value = i.toString().padStart(2, '0'); // 두 자리 숫자로 만들기 (01, 02, ..., 12)
@@ -262,24 +258,20 @@
 
         if (i === currentMonth) {
             option.selected = true; // 현재 월 선택하기
-        }
+        } 
 
         monthSelect.appendChild(option);
     }
 
     // 페이지 로드 시 선택한 월 설정
-window.onload = function() {
-    var selectedMonth = sessionStorage.getItem('selectedMonth');
-    if (selectedMonth) {
-        monthSelect.value = selectedMonth;
-    }
-};
+    window.onload = function() {
+ 
+        if (month) {
+            monthSelect.value = month;
+        }
+    };
 
-// 월 선택 시 선택한 월 저장
-monthSelect.addEventListener('change', function() {
-    var selectedMonth = monthSelect.value;
-    sessionStorage.setItem('selectedMonth', selectedMonth);
-});
+
 
 </script>
 
