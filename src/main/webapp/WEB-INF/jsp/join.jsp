@@ -95,7 +95,7 @@
                                             <div class="valid-feedback">
                                             </div>
                                             <div class="invalid-feedback">
-                                                휴대폰 번호를 입력해주세요.
+                                                올바른 휴대폰 번호를 입력해주세요.
                                             </div>
                                         </div>
         

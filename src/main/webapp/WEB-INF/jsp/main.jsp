@@ -101,7 +101,7 @@
             <div class ="container-fluid text-center">
                 <div class="row justify-content-center ">
                     <div class="col-md-12">
-                        <a href=""><img class="img-fluid" style="max-height: 400px;" src="../main_images/hand2.png"/></a>
+                        <a href="/main"><img class="img-fluid" style="max-height: 400px;" src="../main_images/hand2.png"/></a>
                     </div>
                 </div>
             </div>   

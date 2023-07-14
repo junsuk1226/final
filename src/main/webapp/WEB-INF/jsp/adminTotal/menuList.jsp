@@ -101,7 +101,11 @@
                         <c:forEach var="fvo" items="${ar}">
                             <tr class="mytr" onclick="viewMenu('${fvo.f_idx}')" style="cursor: pointer;">
                                 <th scope="row"></th>
-                                <td><img src="${fvo.f_image}" width="100px" style="background-size: cover; height: 70px"/></td>
+                                <td>
+                                    <c:if test="${fvo.f_image != null}">
+                                        <img src="${fvo.f_image}" width="100px" style="background-size: cover; height: 70px"/>
+                                    </c:if>
+                                </td>
                                 <td>${fvo.foodNm}</td>
                                 <td>${fvo.foodMaterial}</td>
                                 <td>${fvo.stdRestNm}</td>
