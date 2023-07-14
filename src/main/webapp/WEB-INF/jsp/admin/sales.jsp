@@ -164,7 +164,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 mt-3">
                                 <c:if test="${date eq null}">                                       
                                     <ol class="pagination justify-content-center">
                                     <c:if test="${page.startPage < page.pagePerBlock}">
