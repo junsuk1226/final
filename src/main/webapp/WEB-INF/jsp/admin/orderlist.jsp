@@ -285,11 +285,6 @@
     
     };
 
-// 월 선택 시 선택한 월 저장
-monthSelect.addEventListener('change', function() {
-    var selectedMonth = monthSelect.value;
-    sessionStorage.setItem('selectedMonth', selectedMonth);
-});
 
 function confirmCancel(event, form, payMethod) {
     event.preventDefault(); // 폼 제출 방지
