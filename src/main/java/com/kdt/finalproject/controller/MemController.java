@@ -9,7 +9,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -185,7 +184,7 @@ public class MemController {
 
 			StringBuffer sb = new StringBuffer();
 			sb.append("grant_type=authorization_code");
-			sb.append("&client_id=c691b066d7c57c4085e1fa5fc3e2c47b");
+			sb.append("&client_id=86232d0bde1862adbc69b920971724cc");
 			sb.append("&redirect_uri=http://localhost:8080/kakao/login");
 			sb.append("&code=" + code);
 

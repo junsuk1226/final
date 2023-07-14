@@ -299,6 +299,11 @@
                         $("#new_pw").addClass("is-valid");
                     }
 
+                    if(new_pw == j_confirmpassword){
+                         alert("비밀번호가 같습니다.");
+                        return;
+                    }
+
                     // 비동기식통신
                     $.ajax({
                         url: "/myPage/changePw",

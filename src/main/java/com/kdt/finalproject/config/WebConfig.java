@@ -16,4 +16,5 @@ public class WebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/menu/info", "/bbs/*") // 적용할 패턴
                 .excludePathPatterns("/test/*"); // 제외할 패턴
     }
+
 }
