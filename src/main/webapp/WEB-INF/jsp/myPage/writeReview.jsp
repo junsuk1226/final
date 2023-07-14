@@ -185,6 +185,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-9 ">
                                     <form action="/writeReview" name="frm" method="post">
+                                        <input type="hidden" name="cPage" value="${cPage}"/>
                                         <input type="hidden" name="r_restNm" value="${restNm}" />
                                         <input type="hidden" name="m_idx" value="${sessionScope.mvo.m_idx}"/>
                                         <input type="hidden" name="m_name" value="${sessionScope.mvo.m_name}"/>
