@@ -29,8 +29,8 @@
 
 <!-- 카카오-->
 <insert id="addkakao" parameterType="com.kdt.finalproject.vo.MemVO">
-INSERT INTO member (m_id, m_pw,  m name, access_token, refresh_token, m_joinDate, m_status)
-VALUES(#{m_email},#{m_pw},  #{m_name}, #{access_token}, #{refresh_token}, NOW() , 0)
+INSERT INTO member (m_id, m_pw,  m_name, access_token, refresh_token, m_joinDate, m_status) 
+VALUES(#{m_id},#{m_pw},  #{m_name}, #{access_token}, #{refresh_token}, NOW() , 0)
 </insert>
 
 <!-- update -->

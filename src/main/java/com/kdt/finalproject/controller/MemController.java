@@ -229,11 +229,11 @@ public class MemController {
 
 					StringBuffer result2 = new StringBuffer();
 					String line2 = null;
+					System.out.println("line2" + line2);
 
 					while ((line2 = br2.readLine()) != null) {
 						result2.append(line2);
 					}
-
 					Object obj2 = jsonParser.parse(result2.toString());
 					JSONObject json2 = (JSONObject) obj2;
 					JSONObject props = (JSONObject) json2.get("properties");
@@ -250,7 +250,7 @@ public class MemController {
 					vo.setRefresh_token(refresh_token);
 
 					Boolean chk = j_Service.check_email(vo);
-
+					System.out.println("chk" + chk);
 					if (chk == true) {
 						int cnt = j_Service.addkakao(vo);
 					} else {
