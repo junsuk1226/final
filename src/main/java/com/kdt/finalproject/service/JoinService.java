@@ -60,6 +60,18 @@ public class JoinService {
     return mvo;
   }
 
+  public int addkakao(MemVO mvo) {
+
+    MemVO vo = new MemVO();
+    vo.setM_id(mvo.getM_id());
+    vo.setM_name(mvo.getM_name());
+    vo.setM_pw(mvo.getM_pw());
+    vo.setAccess_token(mvo.getAccess_token());
+    vo.setRefresh_token(mvo.getRefresh_token());
+
+    return j_mapper.addkakao(vo);
+  }
+
   // 관리자 회원가입 신청
   public int addAdmin(MemVO mvo) {
     MemVO vo = new MemVO();

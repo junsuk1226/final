@@ -172,7 +172,6 @@ public class MemController {
 		String access_token = "";
 		String refresh_token = "";
 		String reqURL = "https://kauth.kakao.com/oauth/token";
-		String status = "1";
 
 		try {
 			URL url = new URL(reqURL);
@@ -246,14 +245,14 @@ public class MemController {
 					MemVO vo = new MemVO();
 					vo.setM_name(name);
 					vo.setM_id(email);
+					vo.setM_pw("0000");
 					vo.setAccess_token(access_token);
 					vo.setRefresh_token(refresh_token);
-					vo.setM_status(status);
 
 					Boolean chk = j_Service.check_email(vo);
 
 					if (chk == true) {
-						int cnt = j_Service.addMem(vo);
+						int cnt = j_Service.addkakao(vo);
 					} else {
 						j_Service.updateToken(vo);
 					}

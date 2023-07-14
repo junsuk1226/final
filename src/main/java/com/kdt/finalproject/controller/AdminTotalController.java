@@ -4,9 +4,7 @@ import java.io.File;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.time.YearMonth;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -282,8 +280,8 @@ public class AdminTotalController {
             map.put("m_phone", mvo.getM_phone());
             map.put("restCd", rvo.getSvarCd());
             map.put("m_idx", mvo.getM_idx());
-            map.put("editor","A");
-            map.put("ml_information","개인정보저장");
+            map.put("editor", "A");
+            map.put("ml_information", "개인정보저장");
 
             Map<String, String> map2 = new HashMap<>();
             map2.put("reg_restNm", mvo.getM_name());

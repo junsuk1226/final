@@ -18,7 +18,7 @@ public class SecurityJavaConfig {
         http.authorizeRequests()
                 .antMatchers("/", "/**", "/css/**", "/main", "/login", "/join", "/**/*.jpg", "/**/*.png",
                         "/**/*.css",
-                        "/**/*.js", "/error", "/favicon.ico", "/resources/**")
+                        "/**/*.js", "/error", "/favicon.ico", "/resources/**", "/reqlogin")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
