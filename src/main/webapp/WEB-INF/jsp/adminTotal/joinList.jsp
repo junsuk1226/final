@@ -257,9 +257,8 @@
 
    function approveUser() {
         var m_id = $("#s_mId").val();
-        // console.log(m_id);
         var reg_image = $("#f_image").val();
-        // console.log(reg_image);
+        
         // Ajax 요청 보내기
         $.ajax({
             url: '/adminTotal/approval',

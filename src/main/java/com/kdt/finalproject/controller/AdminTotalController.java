@@ -165,8 +165,6 @@ public class AdminTotalController {
             // 해당 아이디와 일치하는 휴게소 멤버 정보 가져오기
             MemVO mvo = r_Service.getRestInfo(m_id);
 
-            System.out.println(mvo.getM_name());
-
             String key = "2077960536"; // 인증키
             String type = "xml";
             String svarGsstClssCd = "0"; // 0: 휴게소 1: 주유소
@@ -177,7 +175,6 @@ public class AdminTotalController {
             sb.append(key);
             sb.append("&type=");
             sb.append(type);
-            // sb.append("&routeCd=");
             sb.append("&svarNm=");
             sb.append(URLEncoder.encode(mvo.getM_name(), "utf-8"));
             sb.append("&svarGsstClssCd=");
