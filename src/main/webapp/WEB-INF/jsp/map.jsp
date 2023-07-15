@@ -389,25 +389,27 @@
 								position: locPosition
 							});
 
-							// 커스텀 오버레이에 표시할 컨텐츠 입니다
+							var rrvo = response.rrvo;
+							// 커스텀 오버레이에 표시할 컨텐츠입니다.
 							// 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
-							// 별도의 이벤트 메소드를 제공하지 않습니다 
-							var content = '<div class="wrap" id="overlay">' + 
-										'    <div class="info">' + 
-										'        <div class="title">' + 
-																unitName + 
-										'            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-										'        </div>' + 
-										'        <div class="body">' + 
-										'            <div class="img">' +
-										'                <img src="../main_images/hand2.png" width="73" height="70">' +
-										'           </div>' + 
-										'            <div class="desc">' + 
-										'                <div class="ellipsis">'+info[0].svarAddr+'</div>' + 
-											'                <div class="jibun ellipsis"><img src="../images/star.png" style="width:30px; height:30px; padding-bottom:5px">&nbsp;'+avg+ "&nbsp;리뷰"+'('+review+')'+'</div>' + 
-										'             </div>' + 
-										'        </div>' + 
-										'    </div>' +    
+							// 별도의 이벤트 메소드를 제공하지 않습니다.
+							var imageUrl = rrvo ? rrvo.reg_image : '../main_images/no_image.png';
+							var content = '<div class="wrap" id="overlay">' +
+										'    <div class="info">' +
+										'        <div class="title">' +
+															unitName +
+										'            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+										'        </div>' +
+										'        <div class="body">' +
+										'            <div class="img" style="border:none;">' +
+										'                <img style="object-fit:cover;" class="rounded" src="' + imageUrl + '" width="73" height="70">' +
+										'           </div>' +
+										'            <div class="desc">' +
+										'                <div class="ellipsis">' + info[0].svarAddr + '</div>' +
+										'                <div class="jibun ellipsis"><img src="../images/star.png" style="width:30px; height:30px; padding-bottom:5px">&nbsp;' + avg + "&nbsp;리뷰" + '(' + review + ')' + '</div>' +
+										'             </div>' +
+										'        </div>' +
+										'    </div>' +
 										'</div>';
 
 							// 마커 위에 커스텀오버레이를 표시합니다

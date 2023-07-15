@@ -18,7 +18,7 @@ public class SecurityJavaConfig {
         http.authorizeRequests()
                 .antMatchers("/", "/**", "/css/**", "/main", "/login", "/join", "/**/*.jpg", "/**/*.png",
                         "/**/*.css",
-                        "/**/*.js")
+                        "/**/*.js", "/error", "/favicon.ico", "/resources/**", "/reqlogin")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -35,4 +35,5 @@ public class SecurityJavaConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }

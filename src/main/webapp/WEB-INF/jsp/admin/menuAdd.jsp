@@ -223,6 +223,7 @@
 
 
       frm.submit();
+      alert("메뉴 신청이 완료되었습니다.");
     }
 
 </script>

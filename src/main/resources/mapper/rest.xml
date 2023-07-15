@@ -18,26 +18,47 @@
 <!--현재 달과 같은 paylog만 가져오기-->
 <select id="getSameMonth_paylog" resultType="com.kdt.finalproject.vo.PayVO" parameterType="String">
   SELECT * FROM paylog
-  WHERE month(p_date) = month(NOW()) and year(p_date) = year(NOW()) and restNm = #{restNm}
+  WHERE month(p_date) = month(NOW()) and year(p_date) = year(NOW()) and restNm = #{restNm} and p_status = 0
 </select>
 
 <!--현재 달 총 매출액-->
 <select id="getSameMonth_totalCost" resultType="Map" parameterType="String">
   SELECT SUM(totalCost) as sum_cost, COUNT(*) as cnt  FROM paylog
-  WHERE month(p_date) = month(NOW()) and year(p_date) = year(NOW()) and restNm = #{restNm}
+  WHERE month(p_date) = month(NOW()) and year(p_date) = year(NOW()) and restNm = #{restNm} and p_status = 0
 </select>
+
+<!--검색 월 총 매출액-->
+<select id="getMonth_totalCost" resultType="Map" parameterType="Map">
+  SELECT SUM(totalCost) as sum_cost, COUNT(*) as cnt  FROM paylog
+  WHERE month(p_date) = #{month} and year(p_date) = year(Now()) and restNm = #{restNm} and p_status = 0
+</select>
+
+<!--검색 일 총 매출액-->
+<select id="getDay_totalCost" resultType="Map" parameterType="Map">
+  SELECT SUM(totalCost) as sum_cost, COUNT(*) as cnt  FROM paylog
+  WHERE 
+    <if test="date != null">
+    DATE_FORMAT(p_date, '%Y-%m-%d') = #{date} 
+    </if>
+    <if test="date == null">
+     DATE_FORMAT(p_date, '%y-%m-%d') =DATE_FORMAT(NOW(), '%y-%m-%d')
+    </if>
+     and restNm = #{restNm} and p_status = 0 
+</select>
+
+
 
 <!--월별 매출-->
 <select id="getAllMonthTotal" resultType="com.kdt.finalproject.vo.MonthTotalVO" parameterType="String">
   SELECT year(p_date) AS year, month(p_date) AS month, SUM(totalCost) AS monthTotal FROM paylog
-  WHERE restNm = #{restNm}
-  GROUP BY month(p_date), year(p_date)
+  WHERE restNm = #{restNm} and p_status = 0
+  GROUP BY month(p_date), year(p_date) 
 </select>
 
 <!--(휴게소 관리자)최근 리뷰 5개 출력 -->
 <select id="getRecentReview" parameterType="String" resultType="com.kdt.finalproject.vo.ReviewVO">
   SELECT * FROM final.review
-  WHERE r_restNm = #{restNm} AND r_status='0'
+  WHERE r_restNm = #{restNm} AND r_status=0
   ORDER BY r_writedate DESC
   LIMIT 5;
 </select>

@@ -324,7 +324,8 @@
                 function sendKeyword(form) {
 
                  
-                   window.history.back();
+                   //window.history.back();
+                location.href = "/menu?RestNm=${RestNm}";
                 }
 
            

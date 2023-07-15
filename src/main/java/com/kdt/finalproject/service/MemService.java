@@ -1,8 +1,5 @@
 package com.kdt.finalproject.service;
 
-import java.time.LocalDate;
-import java.time.YearMonth;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,6 +67,7 @@ public class MemService {
 
     public int updatePw(MemVO vo, MemVO mvo) {
         int cnt = -1;
+
         if (passwordEncoder.matches(vo.getM_pw(), mvo.getM_pw())) {
             vo.setM_pw(passwordEncoder.encode(vo.getNew_pw()));
             cnt = m_Mapper.updatePw(vo);
@@ -187,12 +185,8 @@ public class MemService {
         return ar;
     }
 
-    public List<MonthlyJoinStats> geMonthlyJoinStats(){
+    public List<MonthlyJoinStats> geMonthlyJoinStats() {
         return m_Mapper.getMonthlyJoinStats();
     }
-
-
-    
-    
 
 }

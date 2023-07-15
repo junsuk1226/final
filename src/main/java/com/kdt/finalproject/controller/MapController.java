@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kdt.finalproject.service.FoodService;
+import com.kdt.finalproject.service.RegRestService;
 import com.kdt.finalproject.service.ReviewService;
 import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.MapInfoVO;
 import com.kdt.finalproject.vo.MapVO;
+import com.kdt.finalproject.vo.RegRestVO;
 import com.kdt.finalproject.vo.ReviewVO;
 import com.kdt.finalproject.vo.WeatherVO;
 
@@ -35,6 +37,8 @@ public class MapController {
 
     @Autowired
     ReviewService r_sService;
+    @Autowired
+    RegRestService rr_Service;
 
     @RequestMapping("map")
     public String map() {
@@ -384,6 +388,9 @@ public class MapController {
             map.put("avg", avg);
 
         }
+        RegRestVO rrvo = rr_Service.getRegRest(vo.getUnitName());
+        map.put("rrvo", rrvo);
+
         return map;
     }
 

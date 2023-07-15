@@ -1,7 +1,5 @@
 package com.kdt.finalproject.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import com.kdt.finalproject.vo.MemVO;
 
 public interface JoinMapper {
@@ -20,4 +18,6 @@ public interface JoinMapper {
     int addAdmin(MemVO vo); // 관리자 회원가입
 
     int addAdminLog(MemVO vo); // 관리자 회원가입시 로그기록
+
+    int addkakao(MemVO vo);
 }

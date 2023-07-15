@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="media-options  mb-2 mx-auto">
-                                        <a href="https://kauth.kakao.com/oauth/authorize?client_id=c691b066d7c57c4085e1fa5fc3e2c47b&redirect_uri=http://localhost:8080/kakao/login&response_type=code">
+                                        <a href="https://kauth.kakao.com/oauth/authorize?client_id=86232d0bde1862adbc69b920971724cc&redirect_uri=http://localhost:8080/kakao/login&response_type=code">
                                             <img style="width: 306px;" src="../images/kakao_login.png">
                                         </a>
                                     </div>

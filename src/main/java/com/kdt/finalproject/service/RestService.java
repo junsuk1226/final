@@ -65,6 +65,19 @@ public class RestService {
     return r_Mapper.getSameMonth_totalCost(restNm);
   }
 
+  // 검색 월 총 매출
+  public Map<String, Long> getMonth_totalCost(Map<String, String> map) {
+    Map<String, Long> map3 = r_Mapper.getMonth_totalCost(map);
+
+    return r_Mapper.getMonth_totalCost(map);
+
+  }
+
+  // 검색 일 총 매출
+  public Map<String, Long> getDay_totalCost(Map<String, String> map) {
+    return r_Mapper.getDay_totalCost(map);
+  }
+
   // 이번달 총 주문 건수(메뉴 낱개당 1)
   public int getthisMonthCnt(String restNm) {
     List<PayVO> list = r_Mapper.getSameMonth_paylog(restNm);

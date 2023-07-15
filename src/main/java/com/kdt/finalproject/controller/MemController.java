@@ -9,7 +9,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -173,7 +172,6 @@ public class MemController {
 		String access_token = "";
 		String refresh_token = "";
 		String reqURL = "https://kauth.kakao.com/oauth/token";
-		String status = "1";
 
 		try {
 			URL url = new URL(reqURL);
@@ -185,7 +183,7 @@ public class MemController {
 
 			StringBuffer sb = new StringBuffer();
 			sb.append("grant_type=authorization_code");
-			sb.append("&client_id=c691b066d7c57c4085e1fa5fc3e2c47b");
+			sb.append("&client_id=86232d0bde1862adbc69b920971724cc");
 			sb.append("&redirect_uri=http://localhost:8080/kakao/login");
 			sb.append("&code=" + code);
 
@@ -231,11 +229,11 @@ public class MemController {
 
 					StringBuffer result2 = new StringBuffer();
 					String line2 = null;
+					System.out.println("line2" + line2);
 
 					while ((line2 = br2.readLine()) != null) {
 						result2.append(line2);
 					}
-
 					Object obj2 = jsonParser.parse(result2.toString());
 					JSONObject json2 = (JSONObject) obj2;
 					JSONObject props = (JSONObject) json2.get("properties");
@@ -247,14 +245,14 @@ public class MemController {
 					MemVO vo = new MemVO();
 					vo.setM_name(name);
 					vo.setM_id(email);
+					vo.setM_pw("0000");
 					vo.setAccess_token(access_token);
 					vo.setRefresh_token(refresh_token);
-					vo.setM_status(status);
 
 					Boolean chk = j_Service.check_email(vo);
-
+					System.out.println("chk" + chk);
 					if (chk == true) {
-						int cnt = j_Service.addMem(vo);
+						int cnt = j_Service.addkakao(vo);
 					} else {
 						j_Service.updateToken(vo);
 					}

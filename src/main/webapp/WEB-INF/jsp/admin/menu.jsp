@@ -152,7 +152,12 @@
                                         <c:forEach var="vo" items="${fvo}">
                                       <tr>
                                         <td scope="row" style="vertical-align: top;"><span class="text-muted" style="font-family: suite;">${vo.f_idx}</span></td>
-                                        <td> <img src="${vo.f_image}" style="width:180px; height: 80px; object-fit: cover;"class="rounded"></td>
+                                        <c:if test="${vo.f_image != null and not empty vo.f_image}">
+                                            <td> <img src="${vo.f_image}" style="width:180px; height: 80px; object-fit: cover;"class="rounded"></td>
+                                        </c:if>
+                                        <c:if test="${vo.f_image == null and empty vo.f_image}">
+                                            <td> <img src="../main_images/no_image.png" style="width:180px; height: 80px; object-fit: cover;"class="rounded"></td>
+                                        </c:if>
                                         <td style="font-size: larger;">${vo.foodNm}</td>
                                         <fmt:formatNumber var="foodCost" type='number' maxFractionDigits='3' value='${vo.foodCost}' />
                                         <td >${foodCost}원</td>
