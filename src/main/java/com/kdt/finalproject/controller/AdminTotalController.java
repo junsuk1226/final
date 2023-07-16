@@ -4,11 +4,20 @@ import java.io.File;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Properties;
 
+
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Store;
+import javax.mail.internet.InternetAddress;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,7 +26,10 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +48,7 @@ import com.kdt.finalproject.util.MonthlyJoinStats;
 import com.kdt.finalproject.util.Paging;
 import com.kdt.finalproject.vo.FoodVO;
 import com.kdt.finalproject.vo.ImageData;
+import com.kdt.finalproject.vo.MailVO;
 import com.kdt.finalproject.vo.MemLogVO;
 import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.RestVO;
@@ -64,6 +77,15 @@ public class AdminTotalController {
 
     @Autowired
     private HttpServletRequest request;
+
+    @Autowired
+    private JavaMailSender mailSender;
+
+    @Value("${spring.mail.username}")
+        private String username;
+
+    @Value("${spring.mail.password}")
+    private String password;
 
     private String img_path = "/images";
 
@@ -608,5 +630,67 @@ public class AdminTotalController {
     public void delReview(String r_idx) {
         re_Service.delReview(r_idx);
     }
+
+    @RequestMapping("/adminTotal/mail")
+    public ModelAndView showMail() {
+        ModelAndView mv = new ModelAndView();
+        String host = "imap.naver.com";
+    
+        Properties properties = new Properties();
+        properties.setProperty("mail.imaps.partialfetch", "false");
+        properties.setProperty("mail.store.protocol", "imaps");
+    
+        try {
+            // 메일 세션 생성
+            Session session = Session.getInstance(properties);
+    
+            // 메일 스토어 생성 및 연결
+            Store store = session.getStore("imaps");
+            store.connect(host, username, password);
+    
+            // 받은 메일함 열기
+            Folder inbox = store.getFolder("INBOX");
+            inbox.open(Folder.READ_ONLY);
+    
+            // 메일 메시지들 가져오기
+            Message[] messages = inbox.getMessages();
+    
+            // 포맷
+            SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd(E)", Locale.KOREA);
+
+            // 메일 메시지 순회
+            int i = 0;
+            MailVO[] mailList = new MailVO[messages.length];
+            for (Message message : messages) {
+                
+                InternetAddress address = (InternetAddress) message.getFrom()[0];
+
+                // 메일 정보 추가
+                String from = address.getAddress();
+                String subject = message.getSubject();
+                String sentDate = format.format(message.getSentDate());
+                String content = (String)message.getContent();
+            
+                mailList[i] = new MailVO(from, subject, sentDate, content);
+                i++;
+            }
+    
+            // 연결 종료
+            inbox.close(false);
+            store.close();
+    
+            mv.addObject("m_list", mailList);
+            mv.addObject("message", "메일을 읽어오는데 성공했습니다.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            mv.addObject("message", "메일을 읽어오는데 실패했습니다.");
+        }
+
+        mv.setViewName("/adminTotal/mail");
+    
+        return mv;
+    }
+
+    
 
 }

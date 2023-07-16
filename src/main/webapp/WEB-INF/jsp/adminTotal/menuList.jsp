@@ -58,6 +58,11 @@
                 리뷰 관리
                 </a>
             </li>
+            <li>
+                <a href="/adminTotal/mail" class="nav-link text-white">
+                받은 메일
+                </a>
+            </li>
             </ul>
 
             <hr><!--구분선-->

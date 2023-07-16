@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>내 손안에 휴게소, 마이휴 어드민</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="../css/admin.css"/>
-<link rel="stylesheet" href="../css/adminTotal.css"/>
+<link rel="stylesheet" href="../css/admin.css" />
+<link rel="stylesheet" href="../css/adminTotal.css" />
 
 </head>
 <body>
@@ -34,8 +35,8 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/adminEditLog" class="nav-link text-white active">
-                가입 승인 내역
+                <a href="/adminTotal/adminEditLog" class="nav-link text-white">
+                    가입 승인 내역
                 </a>
             </li>
             <li>
@@ -54,12 +55,12 @@
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/review" class="nav-link text-white">
+                <a href="/adminTotal/review" class="nav-link text-white ">
                 리뷰 관리
                 </a>
             </li>
             <li>
-                <a href="/adminTotal/mail" class="nav-link text-white">
+                <a href="/adminTotal/mail" class="nav-link text-white active">
                 받은 메일
                 </a>
             </li>
@@ -72,18 +73,18 @@
         </div>
         <!-- 사이드바 끝 -->
 
-         <!-- 메인 컨텐츠 내용 -->
-         <div class="d-flex flex-row flex-shrink-0 p-5 admin-main_area" style="width: calc(100% - 280px);">
+        <!-- 메인 컨텐츠 내용 -->
+        <div class="d-flex flex-row flex-shrink-0 p-5 admin-main_area" style="width: calc(100% - 280px);">
             <div class="container adminTotal-tablearea" style="width:100%; margin: 0">
-                <h1>가입 승인 내역</h1>
+                <h1>회원정보수정(고객)</h1>
                 <br/>
                 
                 <div class="container">
                     <table class="table mycustomtable" style="text-align: center;">
-                        <form action="/adminTotal/adminEditLog" method="post">
+                        <form action="/adminTotal/editMem" method="post">
                             <select class="search_select" name="searchType">
-                                <option value="0">휴게소명</option>
-                                <option value="1">요청아이디</option>
+                                <option value="0">닉네임</option>
+                                <option value="1">아이디</option>
                             </select>&nbsp;
                             <input name="searchValue">&nbsp;
                             <button type="button" class="search_btn" onclick="sendData(this.form)">검색</button>
@@ -91,42 +92,34 @@
                         <thead>
                         <tr class="table_head">
                             <th scope="col" style="width: 10px;"></th>
-                            <th scope="col" style="width: 150px;">휴게소명</th>
-                            <th scope="col" style="width: 200px;">요청아이디</th>
-                            <th scope="col" style="width: 150px;">담당자 연락처</th>
-                            <th scope="col" style="width: 150px;">수정일 <button class="arrow_btn"><i class="bi bi-arrow-down-up"></i></button></th>
-                            <th scope="col" style="width: 100px;">상태</th>
+                            <th scope="col" style="width: 150px;">보낸사람</th>
+                            <th scope="col" style="width: 200px;">메일제목</th>
+                            <th scope="col" style="width: 150px;">보낸날짜</th>
                             <th scope="col" style="width: 10px;"></th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        <c:forEach var="mvo" items="${ar}">
+                        <c:forEach var="mail" items="${m_list}" varStatus="status">
                             <tr class="mytr">
                                 <th scope="row"></th>
-                                <td>${mvo.m_name}</td>
-                                <td>${mvo.m_id}</td>
-                                <td>${mvo.m_phone}</td>
-                                <td>${mvo.m_joinDate}</td>
-
-                                <c:if test="${mvo.m_status == 3}">
-                                    <td>신청</td>
-                                </c:if>
-                                <c:if test="${mvo.m_status == 1}">
-                                    <td>승인</td>
-                                </c:if>
-                                <c:if test="${mvo.m_status == 5}">
-                                    <td>거절</td>
-                                </c:if>
-
+                                <td>
+                                    ${mail.from.substring(0, mail.from.indexOf("@"))}
+                                </td>
+                                <td>
+                                    <a onclick="showModal('${mail.content}')">${mail.subject}</a>
+                                </td>
+                                <td>
+                                    ${mail.sentDate}
+                                </td>
                                 <td></td>
                             </tr>
                         </c:forEach>
-                        
+
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="7">
+                                <td colspan="6">
                                     <!-- 페이징------------------------------------------------------------------------------------------------------------->
                                     <div class="card-body justify-content-center" style="margin:0 auto">
                                         <c:if test="${ar ne null }">
@@ -136,20 +129,20 @@
                                             </c:if>
                                             <c:if test="${page.startPage >= page.pagePerBlock}">
                                                 <li class="page-item"><a class="page-link"
-                                                        href="/adminTotal/adminEditLog?cPage=${page.startPage-page.pagePerBlock }<c:if test='${searchType != null}'>&searchType=${searchType}</c:if><c:if test='${searchValue != null}'>&searchValue=${searchValue}</c:if>">&lt;</a></li>
+                                                        href="/adminTotal/editMem?cPage=${page.startPage-page.pagePerBlock }<c:if test='${searchType != null}'>&searchType=${searchType}</c:if><c:if test='${searchValue != null}'>&searchValue=${searchValue}</c:if>">&lt;</a></li>
                                             </c:if>
                                             <c:forEach begin="${page.startPage }" end="${page.endPage }" varStatus="st">
                                                 <c:if test="${page.nowPage eq st.index}">
                                                     <li class="page-item active"><a class="page-link">${st.index}</a></li>
                                                 </c:if>
                                                 <c:if test="${page.nowPage ne st.index }">
-                                                    <li class="page-item"><a class="page-link" href="/adminTotal/adminEditLog?cPage=${st.index}<c:if test='${searchType != null}'>&searchType=${searchType}</c:if><c:if test='${searchValue != null}'>&searchValue=${searchValue}</c:if>">${st.index }</a>
+                                                    <li class="page-item"><a class="page-link" href="/adminTotal/editMem?cPage=${st.index}<c:if test='${searchType != null}'>&searchType=${searchType}</c:if><c:if test='${searchValue != null}'>&searchValue=${searchValue}</c:if>">${st.index }</a>
                                                     </li>
                                                 </c:if>
                                             </c:forEach>
                                             <c:if test="${page.endPage<page.totalPage}">
                                                 <li class="page-item"><a class="page-link"
-                                                        href="/adminTotal/adminEditLog?cPage=${page.startPage+page.pagePerBlock }<c:if test='${searchType != null}'>&searchType=${searchType}</c:if><c:if test='${searchValue != null}'>&searchValue=${searchValue}</c:if>">&gt;</a></li>
+                                                        href="/adminTotal/editMem?cPage=${page.startPage+page.pagePerBlock }<c:if test='${searchType != null}'>&searchType=${searchType}</c:if><c:if test='${searchValue != null}'>&searchValue=${searchValue}</c:if>">&gt;</a></li>
                                             </c:if>
                                             <c:if test="${page.endPage == page.totalPage}">
                                                 <li class="page-item disabled"><a class="page-link">&gt;</a></li>
@@ -169,18 +162,43 @@
             
         </div>
         <!-- 메인 컨텐츠 끝 -->
+
+        <!-- 모달 -->
+        <div class="modal" id="modal1" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">메일</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="mail_content" class="modal-body">
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+
+                </div>
+              </div>
+            </div>
+        </div>
+        
+        
     </div>
+
+
+    <input type="hidden" id="s_mIdx"/>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-<script>
-    function sendData(ff){
-        //유효성검사
-        ff.submit();
-    }
-</script>
+    <script>
+        function showModal(index) {
+            $('#modal1').modal('show');
+            $('#mail_content').html(index);
+            
+        }
+    </script>
 
 </body>
 </html>
