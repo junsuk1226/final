@@ -1,23 +1,32 @@
 package com.kdt.finalproject.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
-
+import javax.activation.DataHandler;
+import javax.mail.BodyPart;
 import javax.mail.Folder;
 import javax.mail.Message;
+import javax.mail.Part;
 import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.MimeUtility;
+import javax.mail.search.ComparisonTerm;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -29,7 +38,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,7 +90,7 @@ public class AdminTotalController {
     private JavaMailSender mailSender;
 
     @Value("${spring.mail.username}")
-        private String username;
+    private String username;
 
     @Value("${spring.mail.password}")
     private String password;
@@ -150,6 +158,117 @@ public class AdminTotalController {
         int wait_cnt = r_Service.waitRegRestCnt();
 
         List<MonthlyJoinStats> monthly = m_Service.geMonthlyJoinStats();
+        // ==========================================
+
+        String host = "imap.naver.com";
+
+        Properties properties = new Properties();
+        properties.setProperty("mail.imaps.partialfetch", "false");
+        properties.setProperty("mail.store.protocol", "imaps");
+
+        try {
+            // 메일 세션 생성
+            Session session = Session.getInstance(properties);
+
+            // 메일 스토어 생성 및 연결
+            Store store = session.getStore("imaps");
+            store.connect(host, username, password);
+
+            // 받은 메일함 열기
+            Folder inbox = store.getFolder("INBOX");
+            inbox.open(Folder.READ_ONLY);
+
+            // 메일 메시지들 가져오기 (최근 5개 메일만 가져오도록 설정)
+            int mailCount = 5; // 최대 5개 메일만 가져오도록 설정
+            int totalMessageCount = inbox.getMessageCount();
+            int startIndex = Math.max(1, totalMessageCount - mailCount + 1);
+            Message[] messages = inbox.getMessages(startIndex, totalMessageCount);
+
+            // 포맷
+            SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd(E)", Locale.KOREA);
+
+            int i = 0;
+            MailVO[] mailList = new MailVO[messages.length];
+            for (Message message : messages) {
+
+                InternetAddress address = (InternetAddress) message.getFrom()[0];
+
+                // 메일 정보 추가
+                String from = address.getAddress();
+                String subject = message.getSubject();
+                String sentDate = format.format(message.getSentDate());
+                // 본문 처리
+                Object content = message.getContent();
+                String textContent = "";
+                String downloadUrl = "";
+
+                if (content instanceof MimeMultipart) {
+                    MimeMultipart multipart = (MimeMultipart) content;
+                    int count = multipart.getCount();
+
+                    for (int j = 0; j < count; j++) {
+                        BodyPart bodyPart = multipart.getBodyPart(j);
+                        String disposition = bodyPart.getDisposition();
+                        String decodedFileName = "";
+
+                        if (disposition != null && (disposition.equalsIgnoreCase(Part.INLINE)
+                                || disposition.equalsIgnoreCase(Part.ATTACHMENT))) {
+                            // 이미지나 첨부 파일인 경우
+                            String fileName = bodyPart.getFileName();
+                            try {
+                                decodedFileName = MimeUtility.decodeText(fileName);
+
+                                String path = application.getRealPath("/mail_download/");
+                                DataHandler dataHandler = bodyPart.getDataHandler();
+                                dataHandler.writeTo(new FileOutputStream(path + decodedFileName));
+                                downloadUrl = "/mail_download/"
+                                        + URLEncoder.encode(decodedFileName, StandardCharsets.UTF_8.toString());
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
+
+                        } else {
+                            // 텍스트 본문인 경우
+                            if (bodyPart.isMimeType("text/plain")) {
+                                textContent = bodyPart.getContent().toString();
+                                break;
+                            } else if (bodyPart.isMimeType("text/html")) {
+                                textContent = bodyPart.getContent().toString();
+                                break;
+                            } else if (bodyPart.isMimeType("multipart/alternative")) {
+                                // alternative 멀티파트일 경우, 본문을 다시 확인해야 함
+                                MimeMultipart alternativeMultipart = (MimeMultipart) bodyPart.getContent();
+                                int alternativeCount = alternativeMultipart.getCount();
+
+                                for (int k = 0; k < alternativeCount; k++) {
+                                    BodyPart alternativeBodyPart = alternativeMultipart.getBodyPart(k);
+                                    if (alternativeBodyPart.isMimeType("text/plain")
+                                            || alternativeBodyPart.isMimeType("text/html")) {
+                                        textContent = alternativeBodyPart.getContent().toString();
+                                        break; // 본문을 찾았으므로 반복문 종료
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    textContent = (String) message.getContent();
+                }
+
+                mailList[i] = new MailVO(from, subject, sentDate, textContent, downloadUrl);
+                i++;
+            }
+
+            // 연결 종료
+            inbox.close(false);
+            store.close();
+
+            mv.addObject("m_list", mailList);
+            mv.addObject("message", "메일을 읽어오는데 성공했습니다.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            mv.addObject("message", "메일을 읽어오는데 실패했습니다.");
+        }
 
         mv.addObject("monthly", monthly);
         mv.addObject("all", all);
@@ -635,50 +754,108 @@ public class AdminTotalController {
     public ModelAndView showMail() {
         ModelAndView mv = new ModelAndView();
         String host = "imap.naver.com";
-    
+
         Properties properties = new Properties();
         properties.setProperty("mail.imaps.partialfetch", "false");
         properties.setProperty("mail.store.protocol", "imaps");
-    
+
         try {
             // 메일 세션 생성
             Session session = Session.getInstance(properties);
-    
+
             // 메일 스토어 생성 및 연결
             Store store = session.getStore("imaps");
             store.connect(host, username, password);
-    
+
             // 받은 메일함 열기
             Folder inbox = store.getFolder("INBOX");
             inbox.open(Folder.READ_ONLY);
-    
-            // 메일 메시지들 가져오기
-            Message[] messages = inbox.getMessages();
-    
+
+            // 메일 메시지들 가져오기 (최근 5개 메일만 가져오도록 설정)
+            int mailCount = 5; // 최대 5개 메일만 가져오도록 설정
+            int totalMessageCount = inbox.getMessageCount();
+            int startIndex = Math.max(1, totalMessageCount - mailCount + 1);
+            Message[] messages = inbox.getMessages(startIndex, totalMessageCount);
+
             // 포맷
             SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd(E)", Locale.KOREA);
 
-            // 메일 메시지 순회
             int i = 0;
             MailVO[] mailList = new MailVO[messages.length];
             for (Message message : messages) {
-                
+
                 InternetAddress address = (InternetAddress) message.getFrom()[0];
 
                 // 메일 정보 추가
                 String from = address.getAddress();
                 String subject = message.getSubject();
                 String sentDate = format.format(message.getSentDate());
-                String content = (String)message.getContent();
-            
-                mailList[i] = new MailVO(from, subject, sentDate, content);
+                // 본문 처리
+                Object content = message.getContent();
+                String textContent = "";
+                String downloadUrl = "";
+
+                if (content instanceof MimeMultipart) {
+                    MimeMultipart multipart = (MimeMultipart) content;
+                    int count = multipart.getCount();
+
+                    for (int j = 0; j < count; j++) {
+                        BodyPart bodyPart = multipart.getBodyPart(j);
+                        String disposition = bodyPart.getDisposition();
+                        String decodedFileName = "";
+
+                        if (disposition != null && (disposition.equalsIgnoreCase(Part.INLINE)
+                                || disposition.equalsIgnoreCase(Part.ATTACHMENT))) {
+                            // 이미지나 첨부 파일인 경우
+                            String fileName = bodyPart.getFileName();
+                            try {
+                                decodedFileName = MimeUtility.decodeText(fileName);
+
+                                String path = application.getRealPath("/mail_download/");
+                                DataHandler dataHandler = bodyPart.getDataHandler();
+                                dataHandler.writeTo(new FileOutputStream(path + decodedFileName));
+                                downloadUrl = "/mail_download/"
+                                        + URLEncoder.encode(decodedFileName, StandardCharsets.UTF_8.toString());
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
+
+                        } else {
+                            // 텍스트 본문인 경우
+                            if (bodyPart.isMimeType("text/plain")) {
+                                textContent = bodyPart.getContent().toString();
+                                break;
+                            } else if (bodyPart.isMimeType("text/html")) {
+                                textContent = bodyPart.getContent().toString();
+                                break;
+                            } else if (bodyPart.isMimeType("multipart/alternative")) {
+                                // alternative 멀티파트일 경우, 본문을 다시 확인해야 함
+                                MimeMultipart alternativeMultipart = (MimeMultipart) bodyPart.getContent();
+                                int alternativeCount = alternativeMultipart.getCount();
+
+                                for (int k = 0; k < alternativeCount; k++) {
+                                    BodyPart alternativeBodyPart = alternativeMultipart.getBodyPart(k);
+                                    if (alternativeBodyPart.isMimeType("text/plain")
+                                            || alternativeBodyPart.isMimeType("text/html")) {
+                                        textContent = alternativeBodyPart.getContent().toString();
+                                        break; // 본문을 찾았으므로 반복문 종료
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    textContent = (String) message.getContent();
+                }
+
+                mailList[i] = new MailVO(from, subject, sentDate, textContent, downloadUrl);
                 i++;
             }
-    
+
             // 연결 종료
             inbox.close(false);
             store.close();
-    
+
             mv.addObject("m_list", mailList);
             mv.addObject("message", "메일을 읽어오는데 성공했습니다.");
         } catch (Exception e) {
@@ -687,10 +864,8 @@ public class AdminTotalController {
         }
 
         mv.setViewName("/adminTotal/mail");
-    
+
         return mv;
     }
-
-    
 
 }

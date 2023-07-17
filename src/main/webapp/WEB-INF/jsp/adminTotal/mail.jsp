@@ -76,19 +76,12 @@
         <!-- 메인 컨텐츠 내용 -->
         <div class="d-flex flex-row flex-shrink-0 p-5 admin-main_area" style="width: calc(100% - 280px);">
             <div class="container adminTotal-tablearea" style="width:100%; margin: 0">
-                <h1>회원정보수정(고객)</h1>
+                <h1>받은 수정요청</h1>
                 <br/>
                 
                 <div class="container">
                     <table class="table mycustomtable" style="text-align: center;">
-                        <form action="/adminTotal/editMem" method="post">
-                            <select class="search_select" name="searchType">
-                                <option value="0">닉네임</option>
-                                <option value="1">아이디</option>
-                            </select>&nbsp;
-                            <input name="searchValue">&nbsp;
-                            <button type="button" class="search_btn" onclick="sendData(this.form)">검색</button>
-                        </form>
+                        
                         <thead>
                         <tr class="table_head">
                             <th scope="col" style="width: 10px;"></th>
@@ -101,13 +94,15 @@
                         <tbody>
 
                         <c:forEach var="mail" items="${m_list}" varStatus="status">
+                            <c:set var="msg" value="${mail.textContent}" />
                             <tr class="mytr">
                                 <th scope="row"></th>
                                 <td>
                                     ${mail.from.substring(0, mail.from.indexOf("@"))}
                                 </td>
                                 <td>
-                                    <a onclick="showModal('${mail.content}')">${mail.subject}</a>
+                                    <input id="msg${status.index}" type="hidden" value="<c:out value='${msg}'/>" />
+                                    <a style="cursor: pointer" onclick="showModal('${status.index}','${mail.subject}','${mail.downloadUrl}')">${mail.subject}</a>
                                 </td>
                                 <td>
                                     ${mail.sentDate}
@@ -117,44 +112,6 @@
                         </c:forEach>
 
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="6">
-                                    <!-- 페이징------------------------------------------------------------------------------------------------------------->
-                                    <div class="card-body justify-content-center" style="margin:0 auto">
-                                        <c:if test="${ar ne null }">
-                                        <ol class="pagination">
-                                            <c:if test="${page.startPage < page.pagePerBlock}">
-                                                <li class="page-item disabled"><a class="page-link">&lt;</a></li>
-                                            </c:if>
-                                            <c:if test="${page.startPage >= page.pagePerBlock}">
-                                                <li class="page-item"><a class="page-link"
-                                                        href="/adminTotal/editMem?cPage=${page.startPage-page.pagePerBlock }<c:if test='${searchType != null}'>&searchType=${searchType}</c:if><c:if test='${searchValue != null}'>&searchValue=${searchValue}</c:if>">&lt;</a></li>
-                                            </c:if>
-                                            <c:forEach begin="${page.startPage }" end="${page.endPage }" varStatus="st">
-                                                <c:if test="${page.nowPage eq st.index}">
-                                                    <li class="page-item active"><a class="page-link">${st.index}</a></li>
-                                                </c:if>
-                                                <c:if test="${page.nowPage ne st.index }">
-                                                    <li class="page-item"><a class="page-link" href="/adminTotal/editMem?cPage=${st.index}<c:if test='${searchType != null}'>&searchType=${searchType}</c:if><c:if test='${searchValue != null}'>&searchValue=${searchValue}</c:if>">${st.index }</a>
-                                                    </li>
-                                                </c:if>
-                                            </c:forEach>
-                                            <c:if test="${page.endPage<page.totalPage}">
-                                                <li class="page-item"><a class="page-link"
-                                                        href="/adminTotal/editMem?cPage=${page.startPage+page.pagePerBlock }<c:if test='${searchType != null}'>&searchType=${searchType}</c:if><c:if test='${searchValue != null}'>&searchValue=${searchValue}</c:if>">&gt;</a></li>
-                                            </c:if>
-                                            <c:if test="${page.endPage == page.totalPage}">
-                                                <li class="page-item disabled"><a class="page-link">&gt;</a></li>
-                                            </c:if>
-                                        </ol>
-                                        </c:if>
-                                    </div>
-                                    
-                                    <!-- 페이징끝---------------------------------------------------------------------------------------------------------->
-                                </td>
-                            </tr>
-                        </tfoot>
 
                     </table>
                 </div>
@@ -166,19 +123,25 @@
         <!-- 모달 -->
         <div class="modal" id="modal1" tabindex="-1">
             <div class="modal-dialog">
-              <div class="modal-content">
+            <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">메일</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 id="modal_title" class="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div id="mail_content" class="modal-body">
-                  
+                <div class="modal-body">
+                    <!-- 파일 미리보기 -->
+                    <div id="file_preview"></div>
+                    <!-- 파일 다운로드 링크 -->
+                    <a id="download_link" href="" class="btn btn-primary" target="_blank" rel="noopener noreferrer">다운로드</a>
+                    <div id="mail_content">
+
+                    </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 
                 </div>
-              </div>
+            </div>
             </div>
         </div>
         
@@ -193,10 +156,52 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <script>
-        function showModal(index) {
+        function showModal(index, subject, downloadUrl) {
+            let msg = $('#msg' + index).val();
             $('#modal1').modal('show');
-            $('#mail_content').html(index);
-            
+            $('#modal_title').text(subject);
+            $('#mail_content').html(msg);
+    
+            console.log(downloadUrl);
+        
+            var fileExtension = downloadUrl.split('.').pop().toLowerCase();
+    
+            // 파일 다운로드 설정
+            $('#download_link').attr('href', downloadUrl);
+    
+            // 이미지 파일인 경우 미리보기 활성화
+            if (fileExtension === 'png' || fileExtension === 'jpg' || fileExtension === 'jpeg' || fileExtension === 'gif') {
+                $('#file_preview').html('<img src="' + downloadUrl + '" class="img-fluid" alt="File Preview">');
+            } else {
+                $('#file_preview').html('');
+            }
+        }
+    
+        // 다운로드 링크 클릭 이벤트 핸들러
+        $('#download_link').on('click', function() {
+            var downloadUrl = $(this).attr('href');
+            var fileName = getFileNameFromUrl(downloadUrl);
+            var decodedFileName = decodeURIComponent(fileName);
+            downloadFile(downloadUrl, decodedFileName);
+            return false; // 기본 동작(링크 이동)을 취소합니다.
+        });
+    
+        // 파일 다운로드 함수
+        function downloadFile(url, fileName) {
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = fileName;
+            link.target = '_blank';
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    
+        // URL에서 파일 이름을 추출하는 함수
+        function getFileNameFromUrl(url) {
+            var startIndex = url.lastIndexOf('/') + 1;
+            return url.substr(startIndex);
         }
     </script>
 

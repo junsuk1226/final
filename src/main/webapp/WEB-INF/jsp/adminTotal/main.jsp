@@ -108,7 +108,72 @@
                 </div>
             </div>  
         </div>
+
+        <div class="d-flex flex-row flex-shrink-0 p-3 admin-main_area" style="width: calc(100% - 280px);">
+            <div class="container admin-mail_area">
+                <table class="table mycustomtable" style="text-align: center;">
+                    <h1>최근 수정신청 메일</h1>
+                    
+                    <thead>
+                    <tr class="table_head">
+                        <th scope="col" style="width: 10px;"></th>
+                        <th scope="col" style="width: 150px;">보낸사람</th>
+                        <th scope="col" style="width: 200px;">메일제목</th>
+                        <th scope="col" style="width: 150px;">보낸날짜</th>
+                        <th scope="col" style="width: 10px;"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                        <c:forEach var="mail" items="${m_list}" varStatus="status">
+                            <c:set var="msg" value="${mail.textContent}" />
+                            <tr class="mytr">
+                                <th scope="row"></th>
+                                <td>
+                                    ${mail.from.substring(0, mail.from.indexOf("@"))}
+                                </td>
+                                <td>
+                                    <input id="msg${status.index}" type="hidden" value="<c:out value='${msg}'/>" />
+                                    <a style="cursor: pointer" onclick="showModal('${status.index}','${mail.subject}','${mail.downloadUrl}')">${mail.subject}</a>
+                                </td>
+                                <td>
+                                    ${mail.sentDate}
+                                </td>
+                                <td></td>
+                            </tr>
+                        </c:forEach>
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
         <!-- 메인 컨텐츠 끝 -->
+    </div>
+
+    <!-- 모달 -->
+    <div class="modal" id="modal1" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 id="modal_title" class="modal-title"></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- 파일 미리보기 -->
+                <div id="file_preview"></div>
+                <!-- 파일 다운로드 링크 -->
+                <a id="download_link" href="" class="btn btn-primary" target="_blank" rel="noopener noreferrer">다운로드</a>
+                <div id="mail_content">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+
+            </div>
+          </div>
+        </div>
     </div>
 
     <input id="all" type="hidden" value="${all}">
@@ -185,6 +250,55 @@
         }
       }
     });
+
+
+    function showModal(index, subject, downloadUrl) {
+        let msg = $('#msg' + index).val();
+        $('#modal1').modal('show');
+        $('#modal_title').text(subject);
+        $('#mail_content').html(msg);
+
+        console.log(downloadUrl);
+    
+        var fileExtension = downloadUrl.split('.').pop().toLowerCase();
+
+        // 파일 다운로드 설정
+        $('#download_link').attr('href', downloadUrl);
+
+        // 이미지 파일인 경우 미리보기 활성화
+        if (fileExtension === 'png' || fileExtension === 'jpg' || fileExtension === 'jpeg' || fileExtension === 'gif') {
+            $('#file_preview').html('<img src="' + downloadUrl + '" class="img-fluid" alt="File Preview">');
+        } else {
+            $('#file_preview').html('');
+        }
+    }
+
+    // 다운로드 링크 클릭 이벤트 핸들러
+    $('#download_link').on('click', function() {
+        var downloadUrl = $(this).attr('href');
+        var fileName = getFileNameFromUrl(downloadUrl);
+        var decodedFileName = decodeURIComponent(fileName);
+        downloadFile(downloadUrl, decodedFileName);
+        return false; // 기본 동작(링크 이동)을 취소합니다.
+    });
+
+    // 파일 다운로드 함수
+    function downloadFile(url, fileName) {
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = fileName;
+        link.target = '_blank';
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // URL에서 파일 이름을 추출하는 함수
+    function getFileNameFromUrl(url) {
+        var startIndex = url.lastIndexOf('/') + 1;
+        return url.substr(startIndex);
+    }
 
   </script>
 

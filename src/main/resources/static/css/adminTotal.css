@@ -85,3 +85,9 @@ body{
 .search_btn{
     border-radius: 5px;
 }
+
+.admin-mail_area{
+    margin: 5px;
+    padding: 0 22px;
+    font-family: "jamsil";
+}

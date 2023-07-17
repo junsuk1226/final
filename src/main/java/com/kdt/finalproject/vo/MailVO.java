@@ -10,5 +10,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MailVO {
-    private String from, subject, sentDate, content;
+    private String from, subject, sentDate, textContent, downloadUrl;
 }
