@@ -105,10 +105,17 @@ public class OrderListController {
 
     @PostMapping("/chkP_oNum")
     @ResponseBody
-    public String chkP_oNum(String p_oNum) {
-        int cnt = r_service.chkP_oNum(p_oNum);
-        String chk = String.valueOf(cnt);
-        return chk;
+    public String chkP_oNum(String p_oNum, String restNm) {
+        System.out.println("p_oNum" + p_oNum);
+        System.out.println("restNm" + restNm);
+        int cnt = 0;
+        System.out.println("-----------------------------------------------------------------");
+        Map<String, String> map = new HashMap<>();
+        map.put("restNm", restNm);
+        map.put("p_oNum", p_oNum);
+        cnt = r_service.chkP_oNum(map);
+        String data = String.valueOf(cnt);
+        return data;
     }
 
     @RequestMapping("/getFileName")

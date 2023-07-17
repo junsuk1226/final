@@ -194,8 +194,8 @@
 </select>
 
 <!--리뷰 작성한 적 있는지 확인하는 xml-->
-<select id="chkP_oNum" resultType="int" parameterType="String">
-  SELECT COUNT(*) FROM review WHERE p_oNum = #{p_oNum}
+<select id="chkP_oNum" resultType="int" parameterType="Map">
+  SELECT COUNT(*) FROM review WHERE p_oNum = #{p_oNum} and r_restNm = #{restNm}
 </select>
 
 
