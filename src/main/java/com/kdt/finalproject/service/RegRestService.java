@@ -56,9 +56,12 @@ public class RegRestService {
 
             reg_Mapper.addRegRest(map2);
 
-            reg_Mapper.insertMenuData(f_list);
+            if (f_list.size() > 0) {
 
-            reg_Mapper.insertMenuDataLog(f_list);
+                reg_Mapper.insertMenuData(f_list);
+
+                reg_Mapper.insertMenuDataLog(f_list);
+            }
 
         } catch (Exception e) {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
