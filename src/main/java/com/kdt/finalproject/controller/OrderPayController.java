@@ -384,7 +384,6 @@ public class OrderPayController {
                             + " " + pvo.getFoodQn() + " " + pvo.getTotalCost() + " " + pvo.getP_oNum());
             writer.newLine();
             writer.write("pause");
-
             writer.close();
             System.out.println("Batch file created successfully.");
         } catch (IOException e) {
@@ -430,7 +429,7 @@ public class OrderPayController {
         String reqURL = "https://kapi.kakao.com/v1/payment/cancel";
         String adminkey = "22c4183a06a4812b3265f8971a5fed6e"; // Admin key(kakaodeveloper에서 확인)
         System.out.println(payvo.getTid());
-        String tid = payvo.getTid(); // 결제 고유번호-----DB셀렉(리스트 선택 값 받고 검색)
+        String tid = payvo.getTid(); // 결제 고유번호
 
         PayVO pvo = p_Service.kakao_refunt_select(tid);
 
