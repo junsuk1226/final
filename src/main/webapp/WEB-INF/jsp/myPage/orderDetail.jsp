@@ -245,20 +245,25 @@
                         ///p_oNum을 가지고 이미 리뷰를 작성했는지 확인하기
                         $(document).ready(function(){
                             var p_oNum = document.frm.p_oNum.value;
-                            chkP_oNum(p_oNum);
+                            var restNm = document.frm.restNm.value;
 
-                            function chkP_oNum(p_oNum){
+                            //console.log("restNm"+restNm);
+                            //console.log("p_oNum"+p_oNum);
+
+                            chkP_oNum(p_oNum, restNm);
+
+                            function chkP_oNum(p_oNum, restNm){
                                 $.ajax({
                                     url:"/chkP_oNum",
-                                    data:{'p_oNum':p_oNum},
+                                    data:{'p_oNum':p_oNum,'restNm':restNm},
                                     dataType:"text",
                                     method:"post"
                                 }).done(function(data){
-                                    //console.log(data);
+                                    console.log(data);
                                     if(data ==="0"){
                                         $(".float-end").html('<a class="nav-link" onclick="writeReview()" style="font-family: \'suite\'; font-weight: bold; font-size: large;">리뷰 작성<i class="fa fa-pencil-square-o fa-lg ms-2" aria-hidden="true"></i></a>');
                                     }else{
-                                        $(".float-end").html('<a class="nav-link" onclick="" style="font-family: \'suite\'; font-weight: bold; font-size: large;">리뷰를 이미 작성하셨습니다.</a>');
+                                        $(".float-end").html('<a class="nav-link" style="font-family: \'suite\'; font-weight: bold; font-size: large;">리뷰를 이미 작성하셨습니다.</a>');
                                     }
                                 });
                             }
