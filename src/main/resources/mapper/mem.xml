@@ -141,6 +141,7 @@
     LEFT JOIN (
         SELECT MONTH(m_joindate) AS month, COUNT(*) AS join_count
         FROM member
+        WHERE m_status = 0
         GROUP BY month
     ) AS join_counts ON months.month = join_counts.month
     ORDER BY months.month
