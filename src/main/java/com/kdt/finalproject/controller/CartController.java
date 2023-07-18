@@ -1,9 +1,7 @@
 package com.kdt.finalproject.controller;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
@@ -88,7 +86,7 @@ public class CartController {
         if (cart != null) {
             cart.cartClear();
             session.removeAttribute("listSize");
-
+            session.removeAttribute("RestNm");
         }
 
         return "/myPage/cart";
