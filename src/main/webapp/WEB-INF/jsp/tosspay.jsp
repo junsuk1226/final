@@ -97,6 +97,7 @@
             // 더 많은 결제 정보 파라미터는 결제위젯 SDK에서 확인하세요.
             // https://docs.tosspayments.com/reference/widget-sdk#requestpayment결제-정보
             button.addEventListener("click", function () {
+                //모바일, PC환경 구분
                 var filter = "win16|win32|win64|macintel|mac|";
                 if( navigator.platform)
                 if( filter.indexOf(navigator.platform.toLowerCase())<0 ){

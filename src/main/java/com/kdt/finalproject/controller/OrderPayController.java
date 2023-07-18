@@ -67,6 +67,7 @@ public class OrderPayController {
             String[] ggetfoodCost, String m_idx, String restNm, String[] seq) {
         ModelAndView mv = new ModelAndView();
 
+        // 모바일, PC환경 구분
         String userAgent = request.getHeader("user-agent");
         boolean mobile1 = userAgent.matches(
                 ".*(iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson).*");
@@ -319,6 +320,9 @@ public class OrderPayController {
             String approval_url = "http://localhost:8080/kakaopayment/success"; // 결제 성공 시 redirect url
             String cancel_url = "http://localhost:8080/kakaopayment/cancel"; // 결제 취소 시 redirect url
             String fail_url = "http://localhost:8080/kakaopayment/fail"; // 결제 실패 시 redirect url
+            // String approval_url = "http://3.34.181.221/kakaopayment/success";
+            // String cancel_url = "http://3.34.181.221/kakaopayment/cancel";
+            // String fail_url = "http://3.34.181.221/kakaopayment/fail";
             String header = "KakaoAK " + adminkey;
             String tid = "";
             String next_redirect_mobile_url = "";
