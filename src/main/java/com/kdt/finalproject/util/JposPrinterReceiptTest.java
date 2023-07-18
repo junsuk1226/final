@@ -190,7 +190,7 @@ public class JposPrinterReceiptTest implements OutputCompleteListener, StatusUpd
 					// height and width in the metric map mode (1cm tall, 6cm wide)
 
 					printer.printBarCode(POSPrinterConst.PTR_S_RECEIPT,
-							ESC + QR_DOT + QR_ER_LV + "http://naver.com/",
+							ESC + QR_DOT + QR_ER_LV + "http://3.34.181.221/main/",
 							POSPrinterConst.PTR_BCS_QRCODE,
 							10 * 100, 60 * 100,
 							POSPrinterConst.PTR_BC_CENTER,
@@ -233,8 +233,8 @@ public class JposPrinterReceiptTest implements OutputCompleteListener, StatusUpd
 		System.out.println("JposPrinterReceiptTest finished.");
 	}
 
-	public static void main(String[] args) {
+	// public static void main(String[] args) {
 
-		new JposPrinterReceiptTest().runTest(args);
-	}
+	// new JposPrinterReceiptTest().runTest(args);
+	// }
 }

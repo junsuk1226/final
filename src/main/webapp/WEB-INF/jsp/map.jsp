@@ -249,7 +249,7 @@
 				
 				var lat = position.coords.latitude, // 위도
 					lon = position.coords.longitude; // 경도
-
+				
 					$.ajax({
 						url: 'reqMap',
 						type: 'POST',

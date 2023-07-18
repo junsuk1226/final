@@ -37,7 +37,7 @@ public class OrderListController {
 
     @RequestMapping("/order")
     public ModelAndView order(String cPage, String searchType, String searchValue) {
-        ModelAndView mv = new ModelAndView("/myPage/orderList");
+        ModelAndView mv = new ModelAndView();
         int nowPage = 1;
         Object obj = session.getAttribute("mvo");
         if (obj != null) {
@@ -76,6 +76,8 @@ public class OrderListController {
             if (searchValue != null)
                 mv.addObject("searchValue", searchValue);
         }
+
+        mv.setViewName("/myPage/orderList");
 
         return mv;
     }

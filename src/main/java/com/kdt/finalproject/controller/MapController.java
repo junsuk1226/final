@@ -388,8 +388,18 @@ public class MapController {
             map.put("avg", avg);
 
         }
-        RegRestVO rrvo = rr_Service.getRegRest(vo.getUnitName());
-        map.put("rrvo", rrvo);
+        try {
+            RegRestVO rrvo = rr_Service.getRegRest(vo.getUnitName());
+            if (rrvo != null) {
+                rrvo = rr_Service.getRegRest(vo.getUnitName());
+                map.put("rrvo", rrvo);
+            } else {
+                rrvo.setReg_image("../main_images/no_image.png");
+                map.put("rrvo", rrvo);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return map;
     }
