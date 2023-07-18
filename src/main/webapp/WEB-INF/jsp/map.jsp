@@ -230,7 +230,7 @@
 	
 
 	<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=092a22d4a329417bd5fb9544ca6bb378"></script>
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=daab217be798762767954f16d5ecc6a5"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 
@@ -249,7 +249,7 @@
 				
 				var lat = position.coords.latitude, // 위도
 					lon = position.coords.longitude; // 경도
-
+				
 					$.ajax({
 						url: 'reqMap',
 						type: 'POST',

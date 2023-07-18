@@ -233,8 +233,8 @@ public class JposPrinterReceiptTest implements OutputCompleteListener, StatusUpd
 		System.out.println("JposPrinterReceiptTest finished.");
 	}
 
-	public static void main(String[] args) {
+	// public static void main(String[] args) {
 
-		new JposPrinterReceiptTest().runTest(args);
-	}
+	// new JposPrinterReceiptTest().runTest(args);
+	// }
 }
