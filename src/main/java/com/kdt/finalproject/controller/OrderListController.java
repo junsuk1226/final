@@ -128,6 +128,7 @@ public class OrderListController {
 
         if (vo != null)
             fname = vo.getF_image();
+            System.out.println(fname);
 
         return fname;
     }

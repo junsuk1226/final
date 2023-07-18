@@ -15,6 +15,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import java.util.Base64.Encoder;
@@ -47,6 +48,9 @@ public class OrderPayController {
 
     @Autowired
     private HttpSession session;
+
+    @Autowired
+    HttpServletRequest request;
 
     @RequestMapping("/orderpay")
     public ModelAndView orderPay()
@@ -229,7 +233,16 @@ public class OrderPayController {
 
         }
 
-        mv.setViewName("redirect:" + dto.getNext_redirect_pc_url());
+        String userAgent = request.getHeader("user-agent");
+        boolean mobile1 = userAgent.matches(
+                ".*(iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson).*");
+        boolean mobile2 = userAgent.matches(".*(LG|SAMSUNG|Samsung).*");
+
+        if (mobile1 || mobile2) {
+            mv.setViewName("redirect:" + dto.getNext_redirect_mobile_url());
+        } else {
+            mv.setViewName("redirect:" + dto.getNext_redirect_pc_url());
+        }
 
         return mv;
     }

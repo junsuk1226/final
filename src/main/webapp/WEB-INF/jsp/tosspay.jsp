@@ -97,14 +97,28 @@
             // 더 많은 결제 정보 파라미터는 결제위젯 SDK에서 확인하세요.
             // https://docs.tosspayments.com/reference/widget-sdk#requestpayment결제-정보
             button.addEventListener("click", function () {
-            paymentWidget.requestPayment({
-                orderId: "${orderId}",            // 48자리 랜덤변수 예정
-                orderName: "${foodNm}",                 // foodNm으로 표시 
-                successUrl: "http://localhost:8080/tosspayment/success",  // 결제에 성공시 이동하는 페이지
-                failUrl: "http://localhost:8080/orderpay",        // 결제에 실패시 이동하는 페이지
-                customerEmail: "${mvo.m_id}", //m_id
-                customerName: "${mvo.m_name}"  //m_name
-            })
+                var filter = "win16|win32|win64|macintel|mac|";
+                if( navigator.platform)
+                if( filter.indexOf(navigator.platform.toLowerCase())<0 ){
+                    paymentWidget.requestPayment({
+                        orderId: "${orderId}",            // 48자리 랜덤변수 예정
+                        orderName: "${foodNm}",                 // foodNm으로 표시 
+                        successUrl: "http://3.34.181.221/tosspayment/success",  // 결제에 성공시 이동하는 페이지
+                        failUrl: "http://3.34.181.221/orderpay",        // 결제에 실패시 이동하는 페이지
+                        customerEmail: "${mvo.m_id}", //m_id
+                        customerName: "${mvo.m_name}"  //m_name
+                    })
+                }else{
+                    paymentWidget.requestPayment({
+                        orderId: "${orderId}",            // 48자리 랜덤변수 예정
+                        orderName: "${foodNm}",                 // foodNm으로 표시 
+                        successUrl: "http://localhost:8080/tosspayment/success",  // 결제에 성공시 이동하는 페이지
+                        failUrl: "http://localhost:8080/orderpay",        // 결제에 실패시 이동하는 페이지
+                        customerEmail: "${mvo.m_id}", //m_id
+                        customerName: "${mvo.m_name}"  //m_name
+                    })
+                }
+            
             })
         </script>
         <!-----------토스페이 끝-------------->

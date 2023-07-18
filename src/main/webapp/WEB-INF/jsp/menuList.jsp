@@ -148,7 +148,7 @@
                                         <li class="list-group-item mycustom-menu_list_group_item">
                                             <div class="d-flex">
                                                 <div class="mycustom-menu_img">
-                                                    <img class="mycustom-menu_img position-relative" src="${fvo.f_image}">
+                                                    <img class="rounded mycustom-menu_img position-relative" src="${fvo.f_image}" style="object-fit: cover;">
                                                 </div>
                                                 <div class="mycustom-menu_info">
                                                     <h3>${fvo.foodNm} <c:if test="${fvo.bestfoodyn eq 'Y'}"><img class="mycustom-menu_img" src="../images/recommend.png" style="width:30px; height: 30px;"></c:if></h3>

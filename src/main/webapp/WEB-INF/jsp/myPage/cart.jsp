@@ -151,7 +151,7 @@
                                                                 <hr />
                                                                 <div class="d-flex mb-3">
                                                                     <div class="d-flex col-md-12 align-items-center">    
-                                                                        <div class="me-3 col-md-3" style ="width: 100px; height: 100px;">
+                                                                        <div class="me-3 col-md-3" style ="min-width: 100px; height: 100px;">
                                                                             <img id="${pvo.seq}_img" style="object-fit: cover; width: 100%; height: 100%; background-color: rgb(240, 240, 240);" class="rounded "/> 
                                                                         </div>
                                                                         
