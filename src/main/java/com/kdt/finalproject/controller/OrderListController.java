@@ -123,15 +123,10 @@ public class OrderListController {
     @RequestMapping("/getFileName")
     @ResponseBody
     public String getFileName(String seq) {
-
         FoodVO vo = f_service.getFoodImg(seq);
-
         String fname = null;
-
         if (vo != null)
             fname = vo.getF_image();
-            System.out.println(fname);
-
         return fname;
     }
 
