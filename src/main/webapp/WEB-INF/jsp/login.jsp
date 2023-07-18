@@ -96,14 +96,14 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="media-options  mb-2 mx-auto">
-                                        <a href="https://kauth.kakao.com/oauth/authorize?client_id=86232d0bde1862adbc69b920971724cc&redirect_uri=http://localhost:8080/kakao/login&response_type=code">
+                                        <a href="https://kauth.kakao.com/oauth/authorize?client_id=86232d0bde1862adbc69b920971724cc&redirect_uri=http://3.34.181.221/kakao/login&response_type=code">
                                             <img style="width: 306px;" src="../images/kakao_login.png">
                                         </a>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center ">
                                     <div class="media-options  mb-3 mx-auto">
-                                        <a href="https://nid.naver.com/oauth2.0/authorize?client_id=py8uuUtaAKsCCxoOKiY3&redirect_uri=http://localhost:8080/naver/login&response_type=code&state=test">
+                                        <a href="https://nid.naver.com/oauth2.0/authorize?client_id=py8uuUtaAKsCCxoOKiY3&redirect_uri=http://3.34.181.221/naver/login&response_type=code&state=test">
                                             <img style="width: 306px;" src="../images/naver_login.png">
                                         </a>
                                     </div>
