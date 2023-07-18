@@ -175,7 +175,6 @@
                     <div class="container-fluid">
                             <div class="row justify-content-center">
                                 <div class="col-md-10">
-                                    <c:if test="${date eq null}">                                       
                                         <ol class="pagination justify-content-center">
                                             <c:if test="${page.startPage < page.pagePerBlock}">
                                                 <li class="page-item disabled"><a class="page-link">&lt;</a></li>
@@ -201,7 +200,6 @@
                                                 <li class="page-item disabled"><a class="page-link">&gt;</a></li>
                                             </c:if>
                                         </ol>
-                                    </c:if>
                                 </div>
                             </div>
                         </div>
