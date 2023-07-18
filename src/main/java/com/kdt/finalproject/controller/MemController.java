@@ -184,7 +184,7 @@ public class MemController {
 			StringBuffer sb = new StringBuffer();
 			sb.append("grant_type=authorization_code");
 			sb.append("&client_id=86232d0bde1862adbc69b920971724cc");
-			sb.append("&redirect_uri=http://localhost:8080/kakao/login");
+			sb.append("&redirect_uri=http://3.34.181.221/kakao/login");
 			sb.append("&code=" + code);
 
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
