@@ -180,7 +180,7 @@
                                 <!-- <body class="d-flex flex-column"> -->
                                 <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mycustom-main_footer">
                                     <div class="container text-center">
-                                        <small>Copyright &copy; 2023 쉬-잇 </small>
+                                        <small>Copyright &copy; 2023 마이휴 </small>
                                     </div>
                                 </footer>
                             
@@ -263,7 +263,7 @@
                                     if(data ==="0"){
                                         $(".float-end").html('<a class="nav-link" onclick="writeReview()" style="font-family: \'suite\'; font-weight: bold; font-size: large;">리뷰 작성<i class="fa fa-pencil-square-o fa-lg ms-2" aria-hidden="true"></i></a>');
                                     }else{
-                                        $(".float-end").html('<a class="nav-link" style="font-family: \'suite\'; font-weight: bold; font-size: large;">리뷰 작성 완료</a>');
+                                        $(".float-end").html('<a class="nav-link" style="font-family: \'suite\'; font-weight: bold; font-size: large;">리뷰 작성 완료<i class="fa fa-check-square-o fa-lg ms-2" aria-hidden="true"></i></a>');
                                     }
                                 });
                             }

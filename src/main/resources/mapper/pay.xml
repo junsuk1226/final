@@ -32,6 +32,7 @@
 			<if test="searchType != null and searchType == 2">
 				AND p_date LIKE CONCAT('%', #{searchValue}, '%')
 			</if>
+      ORDER BY p_idx DESC
     ) a, (SELECT @RN:=0) b
 	) c WHERE c.rnum BETWEEN #{begin} AND #{end}
 </select>

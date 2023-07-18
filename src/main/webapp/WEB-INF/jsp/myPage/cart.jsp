@@ -151,7 +151,7 @@
                                                                 <hr />
                                                                 <div class="d-flex mb-3">
                                                                     <div class="d-flex col-md-12 align-items-center">    
-                                                                        <div class="me-3 col-md-3" style ="width: 100px; height: 100px;">
+                                                                        <div class="me-3 col-md-3" style ="min-width: 100px; height: 100px;">
                                                                             <img id="${pvo.seq}_img" style="object-fit: cover; width: 100%; height: 100%; background-color: rgb(240, 240, 240);" class="rounded "/> 
                                                                         </div>
                                                                         
@@ -213,7 +213,7 @@
                         <footer id="sticky-footer"
                             class="flex-shrink-0 py-4 bg-dark text-white-50 mycustom-main_footer">
                             <div class="container text-center">
-                                <small>Copyright &copy; 2023 쉬-잇 </small>
+                                <small>Copyright &copy; 2023 마이휴 </small>
                             </div>
                         </footer>
 
