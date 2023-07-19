@@ -108,7 +108,7 @@ public class AdminTotalController {
             MemVO mvo = m_Service.adminTotal_login(vo);
             if (mvo != null) {
                 session.setAttribute("mvo", mvo);
-                mv.setViewName("/adminTotal/main");
+                mv.setViewName("redirect:/adminTotal/main");
             } else {
                 mv.setViewName("/adminTotal/index");
                 mv.addObject("alat", "alat");
