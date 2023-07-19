@@ -35,4 +35,5 @@ public interface FoodMapper {
 
     int getZero(String restNm);
 
+    List<FoodVO> allSeason(Map<String, String> map);
 }

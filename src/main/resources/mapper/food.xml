@@ -114,4 +114,9 @@
   VALUES(#{foodCost}, #{foodNm},#{foodMaterial}, #{etc}, #{seq}, #{stdRestNm}, #{bestfoodyn}, #{premiumyn}, #{recommendyn}, 3, NOW())
 </insert>
 
+<select id="allSeason" parameterType="Map" resultType="com.kdt.finalproject.vo.FoodVO">
+  SELECT * FROM final.food WHERE stdRestNm = #{restNm} and seasonMenu = #{type}
+</select>
+
+
 </mapper>

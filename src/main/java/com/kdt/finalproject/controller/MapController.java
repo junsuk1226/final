@@ -96,8 +96,8 @@ public class MapController {
         double minDistance = Double.MAX_VALUE;
         if (lat != null && lon != null) {
 
-            lat = 37.332583;
-            lon = 127.104397;
+            // lat = 37.332583;
+            // lon = 127.104397;
             for (Element item : list) {
                 // item이 가지는 값들 중 내가 필요한 값들(addr1, addr2, firstimage, ....)
                 String unitCode = item.getChildText("unitCode");
@@ -346,25 +346,76 @@ public class MapController {
 
             } // 복문의 끝
 
-            FoodVO[] far = f_Service.all(vo.getUnitName());
+            FoodVO[] pick_ar = new FoodVO[3];
+            Set<FoodVO> set = new HashSet<>();
+            int temp = (int) (Double.parseDouble(wvo.getTempValue()));
 
-            if (far != null) {
-                FoodVO[] pick_ar = new FoodVO[3];
-                Set<FoodVO> set = new HashSet<>();
+            FoodVO[] far = f_Service.allSeason(vo.getUnitName(), "4");
+            FoodVO[] far1 = f_Service.allSeason(vo.getUnitName(), "S");
+            FoodVO[] far2 = f_Service.allSeason(vo.getUnitName(), "W");
+
+            FoodVO fvo;
+            if (temp >= 25) {
+                if (far1 != null && far1.length > 0) {
+                    while (true) {
+                        fvo = far1[(int) (Math.random() * far1.length)];
+                        if (fvo == null)
+                            continue;
+
+                        set.add(fvo);
+
+                        if (set.size() >= 3)
+                            break;
+                        else if (set.size() == far1.length)
+                            break;
+                    }
+                }
+                set.toArray(pick_ar);
+                map.put("far", pick_ar);
+            } else if (temp < 25 && temp > 10) {
+                if (far != null && far.length > 0) {
+                    while (true) {
+                        fvo = far[(int) (Math.random() * far.length)];
+                        if (fvo == null)
+                            continue;
+
+                        set.add(fvo);
+
+                        if (set.size() >= 3)
+                            break;
+                        else if (set.size() == far.length)
+                            break;
+                    }
+                }
+                set.toArray(pick_ar);
+                map.put("far", pick_ar);
+            } else if (temp <= 10) {
+                if (far2 != null && far2.length > 0) {
+                    while (true) {
+                        fvo = far2[(int) (Math.random() * far2.length)];
+                        if (fvo == null)
+                            continue;
+
+                        set.add(fvo);
+
+                        if (set.size() >= 3)
+                            break;
+                        else if (set.size() == far2.length)
+                            break;
+                    }
+                }
+                set.toArray(pick_ar);
+                map.put("far", pick_ar);
+            }
+
+            if (set.size() < 3) {
+
                 while (true) {
-                    FoodVO fvo = far[(int) (Math.random() * far.length)];
+                    fvo = far[(int) (Math.random() * far.length)];
                     if (fvo == null)
                         continue;
 
-                    int temp = (int) (Double.parseDouble(wvo.getTempValue()));
-
-                    if (temp >= 25 && fvo.getSeasonMenu().equals("S")) {
-                        set.add(fvo);
-                    } else if (temp < 25 && temp > 10 && fvo.getSeasonMenu().equals("4")) {
-                        set.add(fvo);
-                    } else if (temp <= 10 && fvo.getSeasonMenu().equals("W")) {
-                        set.add(fvo);
-                    }
+                    set.add(fvo);
 
                     if (set.size() >= 3)
                         break;

@@ -113,4 +113,19 @@ public class FoodService {
         return f_Mapper.getZero(restNm);
     }
 
+    public FoodVO[] allSeason(String restNm, String type) {
+        FoodVO[] ar = null;
+
+        Map<String, String> map = new HashMap<>();
+        map.put("restNm", restNm);
+        map.put("type", type);
+
+        List<FoodVO> list = f_Mapper.allSeason(map);
+        if (list != null && list.size() > 0) {
+            ar = new FoodVO[list.size()];
+            list.toArray(ar);
+        }
+
+        return ar;
+    }
 }
