@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kdt.finalproject.service.JoinService;
 import com.kdt.finalproject.service.MemLogService;
+import com.kdt.finalproject.util.Cart;
 import com.kdt.finalproject.vo.MemLogVO;
 import com.kdt.finalproject.vo.MemVO;
 
@@ -42,14 +43,13 @@ public class JoinController {
         return "/join";
     }
 
-    @RequestMapping("/kakao/join")
+    @RequestMapping("/kakao/login")
     public ModelAndView kakaoLogin(String code) {
         ModelAndView mv = new ModelAndView();
 
         String access_token = "";
         String refresh_token = "";
         String reqURL = "https://kauth.kakao.com/oauth/token";
-        String status = "1";
 
         try {
             URL url = new URL(reqURL);
@@ -61,8 +61,8 @@ public class JoinController {
 
             StringBuffer sb = new StringBuffer();
             sb.append("grant_type=authorization_code");
-            sb.append("&client_id=c691b066d7c57c4085e1fa5fc3e2c47b");
-            sb.append("&redirect_uri=http://localhost:8080/kakao/join");
+            sb.append("&client_id=86232d0bde1862adbc69b920971724cc");
+            sb.append("&redirect_uri=https://rest.o-r.kr/kakao/login");
             sb.append("&code=" + code);
 
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
@@ -107,11 +107,11 @@ public class JoinController {
 
                     StringBuffer result2 = new StringBuffer();
                     String line2 = null;
+                    System.out.println("line2" + line2);
 
                     while ((line2 = br2.readLine()) != null) {
                         result2.append(line2);
                     }
-
                     Object obj2 = jsonParser.parse(result2.toString());
                     JSONObject json2 = (JSONObject) obj2;
                     JSONObject props = (JSONObject) json2.get("properties");
@@ -123,37 +123,24 @@ public class JoinController {
                     MemVO vo = new MemVO();
                     vo.setM_name(name);
                     vo.setM_id(email);
+                    vo.setM_pw("0000");
                     vo.setAccess_token(access_token);
                     vo.setRefresh_token(refresh_token);
-                    vo.setM_status(status);
 
                     Boolean chk = j_Service.check_email(vo);
-
+                    System.out.println("chk" + chk);
                     if (chk == true) {
-                        int cnt = j_Service.addMem(vo);
+                        int cnt = j_Service.addkakao(vo);
                     } else {
                         j_Service.updateToken(vo);
                     }
 
                     MemVO mvo = j_Service.getMem(vo);
-                    if (chk) {
-                        MemLogVO mlvo = new MemLogVO();
-                        mlvo.setM_idx(mvo.getM_idx());
-                        mlvo.setM_id(mvo.getM_id());
-                        mlvo.setM_pw(mvo.getM_pw());
-                        mlvo.setM_name(mvo.getM_name());
-                        mlvo.setM_status(mvo.getM_status());
-                        mlvo.setAccess_token(mvo.getAccess_token());
-                        mlvo.setRefresh_token(mvo.getRefresh_token());
-                        mlvo.setM_phone(mvo.getM_phone());
-                        mlvo.setEditor("M");
-                        mlvo.setMl_information("개인정보저장");
-
-                        memLogService.join_log(mlvo);
-                    }
 
                     session.setAttribute("mvo", mvo);
-                    mv.setViewName("redirect:/tour");
+                    Cart cart = new Cart();
+                    session.setAttribute("cart", cart);
+                    mv.setViewName("redirect:/main");
                 }
             }
         } catch (Exception e) {
@@ -162,7 +149,7 @@ public class JoinController {
         return mv;
     }
 
-    @RequestMapping("/naver/join")
+    @RequestMapping("/naver/login")
     public ModelAndView naverLogin(String code, String state, String error, String error_description) {
         ModelAndView mv = new ModelAndView();
 
@@ -179,8 +166,8 @@ public class JoinController {
 
             StringBuffer sb = new StringBuffer();
             sb.append("grant_type=authorization_code");
-            sb.append("&client_id=6BPvD8rTeGLnG7fdps1C");
-            sb.append("&client_secret=xcqAzUEomv");
+            sb.append("&client_id=py8uuUtaAKsCCxoOKiY3");
+            sb.append("&client_secret=iSXwl3_nLz");
             sb.append("&code=" + code);
             sb.append("&state=" + state);
 
@@ -248,6 +235,7 @@ public class JoinController {
                     if (chk == true) {
 
                         int cnt = j_Service.addMem(vo);
+
                     } else {
 
                         j_Service.updateToken(vo);
@@ -255,23 +243,10 @@ public class JoinController {
 
                     MemVO mvo = j_Service.getMem(vo);
 
-                    if (chk) {
-                        MemLogVO mlvo = new MemLogVO();
-                        mlvo.setM_idx(mvo.getM_idx());
-                        mlvo.setM_id(mvo.getM_id());
-                        mlvo.setM_pw(mvo.getM_pw());
-                        mlvo.setM_name(mvo.getM_name());
-                        mlvo.setM_status(mvo.getM_status());
-                        mlvo.setAccess_token(mvo.getAccess_token());
-                        mlvo.setRefresh_token(mvo.getRefresh_token());
-                        mlvo.setM_phone(mvo.getM_phone());
-                        mlvo.setEditor("M");
-                        mlvo.setMl_information("개인정보저장");
-
-                        memLogService.join_log(mlvo);
-                    }
                     session.setAttribute("mvo", mvo);
-                    mv.setViewName("redirect:/tour");
+                    Cart cart = new Cart();
+                    session.setAttribute("cart", cart);
+                    mv.setViewName("redirect:/main");
                 }
             }
         } catch (Exception e) {
