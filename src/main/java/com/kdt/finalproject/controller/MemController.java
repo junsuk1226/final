@@ -184,7 +184,7 @@ public class MemController {
 			StringBuffer sb = new StringBuffer();
 			sb.append("grant_type=authorization_code");
 			sb.append("&client_id=86232d0bde1862adbc69b920971724cc");
-			sb.append("&redirect_uri=https://rest.o-r.kr/kakao/login");
+			sb.append("&redirect_uri=http://rest.o-r.kr/kakao/login");
 			sb.append("&code=" + code);
 
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
@@ -348,6 +348,7 @@ public class MemController {
 					MemVO vo = new MemVO();
 					vo.setM_name(name);
 					vo.setM_id(email);
+					vo.setM_pw("0000");
 					vo.setAccess_token(access_token);
 					vo.setRefresh_token(refresh_token);
 					vo.setM_status(status);
