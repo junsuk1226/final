@@ -108,10 +108,7 @@ public class OrderListController {
     @PostMapping("/chkP_oNum")
     @ResponseBody
     public String chkP_oNum(String p_oNum, String restNm) {
-        System.out.println("p_oNum" + p_oNum);
-        System.out.println("restNm" + restNm);
         int cnt = 0;
-        System.out.println("-----------------------------------------------------------------");
         Map<String, String> map = new HashMap<>();
         map.put("restNm", restNm);
         map.put("p_oNum", p_oNum);
@@ -123,15 +120,10 @@ public class OrderListController {
     @RequestMapping("/getFileName")
     @ResponseBody
     public String getFileName(String seq) {
-
         FoodVO vo = f_service.getFoodImg(seq);
-
         String fname = null;
-
         if (vo != null)
             fname = vo.getF_image();
-            System.out.println(fname);
-
         return fname;
     }
 

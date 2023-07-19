@@ -93,7 +93,7 @@ public class AdminTotalController {
     @Value("${spring.mail.password}")
     private String password;
 
-    private String img_path = "/images";
+    private String img_path = "../images";
 
     @RequestMapping("/adminTotal")
     public String adminTest() {

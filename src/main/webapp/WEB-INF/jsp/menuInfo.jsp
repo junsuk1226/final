@@ -157,8 +157,9 @@
         // 값 가져오기
         var restNm = inputElement.value;
         var getRestNm = "${sessionScope.RestNm}";
+        console.log(getRestNm)
         
-        if (restNm != getRestNm && getRestNm != null) {
+        if (restNm != getRestNm && getRestNm.trim().length !== 0 ) {
           var confirmMessage = "장바구니에는 같은 휴게소의 메뉴만 담을 수 있습니다.\n\n";
           confirmMessage += "선택하신 메뉴를 장바구니에 담을 경우 이전에 담은 메뉴가 삭제됩니다.\n\n";
 

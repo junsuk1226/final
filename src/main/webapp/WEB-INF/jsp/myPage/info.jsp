@@ -177,7 +177,7 @@
                                     </div>
                                 </div>
 
-                                <p class="fw-bold text-muted ms-1" style="font-family: 'suite';">궁금하신 사항은! 고객센터&nbsp;<span class="me-2">02-112</span><a onclick=""><i class="fa fa-phone phone fa-lg" aria-hidden="true"></i></a> </p>
+                                <p class="fw-bold text-muted ms-1" style="font-family: 'suite';">궁금하신 사항은!&nbsp;<span class="me-2">https://rest.o-r.kr</span><a onclick=""><i class="fa fa-phone phone fa-lg" aria-hidden="true"></i></a> </p>
 
                             </div>
                         </div>
