@@ -96,8 +96,8 @@ public class MapController {
         double minDistance = Double.MAX_VALUE;
         if (lat != null && lon != null) {
 
-            // lat = 37.332583;
-            // lon = 127.104397;
+            lat = 37.332583;
+            lon = 127.104397;
             for (Element item : list) {
                 // item이 가지는 값들 중 내가 필요한 값들(addr1, addr2, firstimage, ....)
                 String unitCode = item.getChildText("unitCode");
