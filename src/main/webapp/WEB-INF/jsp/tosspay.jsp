@@ -100,15 +100,17 @@
                 //모바일, PC환경 구분
                 var filter = "win16|win32|win64|macintel|mac|";
                 if( navigator.platform)
+                //모바일
                 if( filter.indexOf(navigator.platform.toLowerCase())<0 ){
                     paymentWidget.requestPayment({
                         orderId: "${orderId}",            // 48자리 랜덤변수 예정
                         orderName: "${foodNm}",                 // foodNm으로 표시 
-                        successUrl: "http://3.34.181.221/tosspayment/success",  // 결제에 성공시 이동하는 페이지
-                        failUrl: "http://3.34.181.221/orderpay",        // 결제에 실패시 이동하는 페이지
+                        successUrl: "http://rest.o-r.kr/tosspayment/success",  // 결제에 성공시 이동하는 페이지
+                        failUrl: "http://rest.o-r.kr/orderpay",        // 결제에 실패시 이동하는 페이지
                         customerEmail: "${mvo.m_id}", //m_id
                         customerName: "${mvo.m_name}"  //m_name
                     })
+                    //PC
                 }else{
                     paymentWidget.requestPayment({
                         orderId: "${orderId}",            // 48자리 랜덤변수 예정

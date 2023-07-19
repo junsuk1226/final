@@ -73,6 +73,7 @@ public class OrderPayController {
                 ".*(iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson).*");
         boolean mobile2 = userAgent.matches(".*(LG|SAMSUNG|Samsung).*");
 
+        // 모바일 환경
         if (mobile1 || mobile2) {
             // 음식명
             String[] getfoodNm = foodNm;
@@ -148,9 +149,9 @@ public class OrderPayController {
             String foodCost = foodCostsb.toString(); // 상품 개별 가격
             String total_amount = sumPrice; // 상품 총액
             String tax_free_amount = "0"; // 상품 비과세 금액
-            String approval_url = "http://3.34.181.221/kakaopayment/success"; // 결제 성공 시 redirect url
-            String cancel_url = "http://3.34.181.221/kakaopayment/cancel"; // 결제 취소 시 redirect url
-            String fail_url = "http://3.34.181.221/kakaopayment/fail"; // 결제 실패 시 redirect url
+            String approval_url = "http://rest.o-r.kr/kakaopayment/success"; // 결제 성공 시 redirect url
+            String cancel_url = "http://rest.o-r.kr/kakaopayment/cancel"; // 결제 취소 시 redirect url
+            String fail_url = "http://rest.o-r.kr/kakaopayment/fail"; // 결제 실패 시 redirect url
             String header = "KakaoAK " + adminkey;
             String tid = "";
             String next_redirect_mobile_url = "";
@@ -242,6 +243,7 @@ public class OrderPayController {
 
             mv.setViewName("redirect:" + dto.getNext_redirect_mobile_url());
 
+            // PC 환경
         } else {
             // 음식명
             String[] getfoodNm = foodNm;
@@ -320,9 +322,9 @@ public class OrderPayController {
             String approval_url = "http://localhost:8080/kakaopayment/success"; // 결제 성공 시 redirect url
             String cancel_url = "http://localhost:8080/kakaopayment/cancel"; // 결제 취소 시 redirect url
             String fail_url = "http://localhost:8080/kakaopayment/fail"; // 결제 실패 시 redirect url
-            // String approval_url = "http://3.34.181.221/kakaopayment/success";
-            // String cancel_url = "http://3.34.181.221/kakaopayment/cancel";
-            // String fail_url = "http://3.34.181.221/kakaopayment/fail";
+            // String approval_url = "http://rest.o-r.kr/kakaopayment/success";
+            // String cancel_url = "http://rest.o-r.kr/kakaopayment/cancel";
+            // String fail_url = "http://rest.o-r.kr/kakaopayment/fail";
             String header = "KakaoAK " + adminkey;
             String tid = "";
             String next_redirect_mobile_url = "";
