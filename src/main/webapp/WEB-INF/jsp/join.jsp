@@ -113,14 +113,14 @@
                         <div class="line"></div>
     
                         <div class="media-options mb-2">
-                            <a href="https://kauth.kakao.com/oauth/authorize?client_id=c691b066d7c57c4085e1fa5fc3e2c47b&redirect_uri=http://localhost:8080/kakao/join&response_type=code">
+                            <a href="https://kauth.kakao.com/oauth/authorize?client_id=86232d0bde1862adbc69b920971724cc&redirect_uri=https://rest.o-r.kr/kakao/login&response_type=code">
                                 <img style="width: 282px;" src="images/kakao_login.png">
                             </a>
                         </br>
                         </div>
     
                         <div class="media-options mb-5">
-                            <a href="https://nid.naver.com/oauth2.0/authorize?client_id=6BPvD8rTeGLnG7fdps1C&redirect_uri=http://localhost:8080/naver/join&response_type=code&state=test">
+                            <a href="https://nid.naver.com/oauth2.0/authorize?client_id=py8uuUtaAKsCCxoOKiY3&redirect_uri=https://rest.o-r.kr/naver/login&response_type=code&state=test">
                                 <img style="width: 282px;" src="images/naver_login.png">
                             </a>
                         </div>
