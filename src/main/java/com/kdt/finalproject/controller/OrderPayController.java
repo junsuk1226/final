@@ -588,6 +588,7 @@ public class OrderPayController {
 
         // bat 끝
 
+        session.removeAttribute("RestNm");
         return mv;
     }
 
@@ -943,7 +944,7 @@ public class OrderPayController {
         }
 
         // bat 끝
-
+        session.removeAttribute("RestNm");
         return mv;
     }
 
