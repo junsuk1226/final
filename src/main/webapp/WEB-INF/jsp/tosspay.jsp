@@ -115,8 +115,10 @@
                     paymentWidget.requestPayment({
                         orderId: "${orderId}",            // 48자리 랜덤변수 예정
                         orderName: "${foodNm}",                 // foodNm으로 표시 
-                        successUrl: "http://localhost:8080/tosspayment/success",  // 결제에 성공시 이동하는 페이지
-                        failUrl: "http://localhost:8080/orderpay",        // 결제에 실패시 이동하는 페이지
+                        // successUrl: "http://localhost:8080/tosspayment/success",  // 결제에 성공시 이동하는 페이지
+                        // failUrl: "http://localhost:8080/orderpay",        // 결제에 실패시 이동하는 페이지
+                        successUrl: "http://rest.o-r.kr/tosspayment/success",  // 결제에 성공시 이동하는 페이지
+                        failUrl: "http://rest.o-r.kr/orderpay",        // 결제에 실패시 이동하는 페이지
                         customerEmail: "${mvo.m_id}", //m_id
                         customerName: "${mvo.m_name}"  //m_name
                     })
