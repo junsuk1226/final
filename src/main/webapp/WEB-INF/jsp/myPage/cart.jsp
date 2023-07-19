@@ -317,16 +317,25 @@
                 
                 function sendData(frm) {
                    
-                   document.frm2.submit();
+                  
+                        document.frm2.submit();
+                    
                }
 
 
                 function sendKeyword(form) {
 
+                    var value = "${RestNm}";
                  
-                   //window.history.back();
-                location.href = "/menu?RestNm=${RestNm}";
+
+                    if (value != "") {
+                        location.href = "/menu?RestNm=${RestNm}";
+                    }else
+                    location.href = "/lineSearchList";
+                    
                 }
+
+            
 
            
                
