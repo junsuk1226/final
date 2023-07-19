@@ -15,6 +15,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import java.util.Base64.Encoder;
@@ -48,6 +49,9 @@ public class OrderPayController {
     @Autowired
     private HttpSession session;
 
+    @Autowired
+    HttpServletRequest request;
+
     @RequestMapping("/orderpay")
     public ModelAndView orderPay()
             throws Exception {
@@ -63,173 +67,354 @@ public class OrderPayController {
             String[] ggetfoodCost, String m_idx, String restNm, String[] seq) {
         ModelAndView mv = new ModelAndView();
 
-        // 음식명
-        String[] getfoodNm = foodNm;
-        StringBuffer foodNmsb = new StringBuffer();
-        for (String str : getfoodNm) {
-            foodNmsb.append(str + "/");
-        }
+        // 모바일, PC환경 구분
+        String userAgent = request.getHeader("user-agent");
+        boolean mobile1 = userAgent.matches(
+                ".*(iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson).*");
+        boolean mobile2 = userAgent.matches(".*(LG|SAMSUNG|Samsung).*");
 
-        foodNmsb.setLength(foodNmsb.length() - 1);
-        // System.out.println(foodNmsb.toString());
-
-        // 음식숫자
-        String[] getfoodQn = foodQn;
-        StringBuffer foodQnsb = new StringBuffer();
-        for (String str : getfoodQn) {
-            foodQnsb.append(str + "/");
-        }
-
-        foodQnsb.setLength(foodQnsb.length() - 1);
-        // System.out.println(foodQnsb.toString());
-
-        // quantity값이 int라 배열의 문자열은 넣을 수 없음. 첫번쨰 수량만 대표로 넣는다.
-        int foonQn = Integer.valueOf(getfoodQn[0]);
-        // System.out.println(foonQn);
-
-        // 음식개별 가격
-        String[] getfoodCost = ggetfoodCost;
-        StringBuffer foodCostsb = new StringBuffer();
-        for (String str : getfoodCost) {
-            foodCostsb.append(str + "/");
-        }
-
-        foodCostsb.setLength(foodCostsb.length() - 1);
-        // System.out.println(foodCostsb.toString());
-
-        // 음식 코드
-        String[] getseq = seq;
-        StringBuffer seqsb = new StringBuffer();
-        for (String str : getseq) {
-            seqsb.append(str + "/");
-        }
-
-        seqsb.setLength(seqsb.length() - 1);
-        // System.out.println(seqsb.toString());
-
-        String getm_idx = m_idx;
-        String getrestNm = restNm;
-        // System.out.println(getm_idx);
-        // System.out.println(getrestNm);
-
-        String reqURL = "https://kapi.kakao.com/v1/payment/ready";
-        String adminkey = "22c4183a06a4812b3265f8971a5fed6e"; // Admin key(kakaodeveloper에서 확인)
-        String cid = "TC0ONETIME"; // 테스트용 가맹점 코드
-
-        // 가맹점 주문번호 생성 시작
-        Random rnd = new Random();
-        StringBuffer sb2 = new StringBuffer();
-
-        for (int i = 0; i < 48; i++) {
-            if (rnd.nextBoolean()) {
-                sb2.append((char) ((int) (rnd.nextInt(26)) + 97));
-            } else {
-                sb2.append((rnd.nextInt(10)));
+        if (mobile1 || mobile2) {
+            // 음식명
+            String[] getfoodNm = foodNm;
+            StringBuffer foodNmsb = new StringBuffer();
+            for (String str : getfoodNm) {
+                foodNmsb.append(str + "/");
             }
-        }
-        // 가맹점 주문번호 생성 끝
 
-        String partner_order_id = sb2.toString(); // 가맹점 주문번호
-        String partner_user_id = "restCd"; // 가맹점 회원 id(휴게소코드)
-        String item_name = foodNmsb.toString(); // 상품명
-        int quantity = foonQn; // 상품 수량
-        String foodQnTotal = foodQnsb.toString(); // 상품 개별 수량
-        String foodCost = foodCostsb.toString(); // 상품 개별 가격
-        String total_amount = sumPrice; // 상품 총액
-        String tax_free_amount = "0"; // 상품 비과세 금액
-        String approval_url = "http://localhost:8080/kakaopayment/success"; // 결제 성공 시 redirect url
-        String cancel_url = "http://localhost:8080/kakaopayment/cancel"; // 결제 취소 시 redirect url
-        String fail_url = "http://localhost:8080/kakaopayment/fail"; // 결제 실패 시 redirect url
-        String header = "KakaoAK " + adminkey;
-        String tid = "";
-        String next_redirect_mobile_url = "";
-        String next_redirect_pc_url = "";
-        String created_at = "";
-        String ggetseq = seqsb.toString();
+            foodNmsb.setLength(foodNmsb.length() - 1);
+            // System.out.println(foodNmsb.toString());
 
-        try {
-            URL url = new URL(reqURL);
+            // 음식숫자
+            String[] getfoodQn = foodQn;
+            StringBuffer foodQnsb = new StringBuffer();
+            for (String str : getfoodQn) {
+                foodQnsb.append(str + "/");
+            }
 
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            foodQnsb.setLength(foodQnsb.length() - 1);
+            // System.out.println(foodQnsb.toString());
 
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
-            conn.setRequestProperty("Authorization", header);
-            conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+            // quantity값이 int라 배열의 문자열은 넣을 수 없음. 첫번쨰 수량만 대표로 넣는다.
+            int foonQn = Integer.valueOf(getfoodQn[0]);
+            // System.out.println(foonQn);
 
-            StringBuffer sb = new StringBuffer();
-            sb.append("cid=" + cid);
-            sb.append("&partner_order_id=" + partner_order_id);
-            sb.append("&partner_user_id=" + partner_user_id);
-            sb.append("&item_name=" + URLEncoder.encode(item_name, "UTF-8"));
-            sb.append("&quantity=" + quantity);
-            sb.append("&total_amount=" + total_amount);
-            sb.append("&tax_free_amount=" + tax_free_amount);
-            sb.append("&approval_url=" + approval_url);
-            sb.append("&cancel_url=" + cancel_url);
-            sb.append("&fail_url=" + fail_url);
+            // 음식개별 가격
+            String[] getfoodCost = ggetfoodCost;
+            StringBuffer foodCostsb = new StringBuffer();
+            for (String str : getfoodCost) {
+                foodCostsb.append(str + "/");
+            }
 
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+            foodCostsb.setLength(foodCostsb.length() - 1);
+            // System.out.println(foodCostsb.toString());
 
-            bw.write(sb.toString());
-            // System.out.println(sb.toString());
-            bw.flush();
+            // 음식 코드
+            String[] getseq = seq;
+            StringBuffer seqsb = new StringBuffer();
+            for (String str : getseq) {
+                seqsb.append(str + "/");
+            }
 
-            int res_code = conn.getResponseCode();
-            // System.out.println(res_code);
+            seqsb.setLength(seqsb.length() - 1);
+            // System.out.println(seqsb.toString());
 
-            if (res_code == HttpURLConnection.HTTP_OK) {
-                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                StringBuffer result = new StringBuffer();
-                String line = null;
+            String getm_idx = m_idx;
+            String getrestNm = restNm;
+            // System.out.println(getm_idx);
+            // System.out.println(getrestNm);
 
-                while ((line = br.readLine()) != null) {
-                    result.append(line);
+            String reqURL = "https://kapi.kakao.com/v1/payment/ready";
+            String adminkey = "22c4183a06a4812b3265f8971a5fed6e"; // Admin key(kakaodeveloper에서 확인)
+            String cid = "TC0ONETIME"; // 테스트용 가맹점 코드
+
+            // 가맹점 주문번호 생성 시작
+            Random rnd = new Random();
+            StringBuffer sb2 = new StringBuffer();
+
+            for (int i = 0; i < 48; i++) {
+                if (rnd.nextBoolean()) {
+                    sb2.append((char) ((int) (rnd.nextInt(26)) + 97));
+                } else {
+                    sb2.append((rnd.nextInt(10)));
+                }
+            }
+            // 가맹점 주문번호 생성 끝
+
+            String partner_order_id = sb2.toString(); // 가맹점 주문번호
+            String partner_user_id = "restCd"; // 가맹점 회원 id(휴게소코드)
+            String item_name = foodNmsb.toString(); // 상품명
+            int quantity = foonQn; // 상품 수량
+            String foodQnTotal = foodQnsb.toString(); // 상품 개별 수량
+            String foodCost = foodCostsb.toString(); // 상품 개별 가격
+            String total_amount = sumPrice; // 상품 총액
+            String tax_free_amount = "0"; // 상품 비과세 금액
+            String approval_url = "http://3.34.181.221/kakaopayment/success"; // 결제 성공 시 redirect url
+            String cancel_url = "http://3.34.181.221/kakaopayment/cancel"; // 결제 취소 시 redirect url
+            String fail_url = "http://3.34.181.221/kakaopayment/fail"; // 결제 실패 시 redirect url
+            String header = "KakaoAK " + adminkey;
+            String tid = "";
+            String next_redirect_mobile_url = "";
+            String next_redirect_pc_url = "";
+            String created_at = "";
+            String ggetseq = seqsb.toString();
+
+            try {
+                URL url = new URL(reqURL);
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                conn.setRequestMethod("POST");
+                conn.setDoOutput(true);
+                conn.setRequestProperty("Authorization", header);
+                conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+
+                StringBuffer sb = new StringBuffer();
+                sb.append("cid=" + cid);
+                sb.append("&partner_order_id=" + partner_order_id);
+                sb.append("&partner_user_id=" + partner_user_id);
+                sb.append("&item_name=" + URLEncoder.encode(item_name, "UTF-8"));
+                sb.append("&quantity=" + quantity);
+                sb.append("&total_amount=" + total_amount);
+                sb.append("&tax_free_amount=" + tax_free_amount);
+                sb.append("&approval_url=" + approval_url);
+                sb.append("&cancel_url=" + cancel_url);
+                sb.append("&fail_url=" + fail_url);
+
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+
+                bw.write(sb.toString());
+                // System.out.println(sb.toString());
+                bw.flush();
+
+                int res_code = conn.getResponseCode();
+                // System.out.println(res_code);
+
+                if (res_code == HttpURLConnection.HTTP_OK) {
+                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    StringBuffer result = new StringBuffer();
+                    String line = null;
+
+                    while ((line = br.readLine()) != null) {
+                        result.append(line);
+                    }
+
+                    JSONParser jsonParser = new JSONParser();
+
+                    Object obj = jsonParser.parse(result.toString());
+                    JSONObject json = (JSONObject) obj;
+
+                    tid = (String) json.get("tid");
+                    next_redirect_mobile_url = (String) json.get("next_redirect_mobile_url");
+                    next_redirect_pc_url = (String) json.get("next_redirect_pc_url");
+                    created_at = (String) json.get("created_at");
+                    // System.out.println(tid);
+                    // System.out.println(next_redirect_mobile_url);
+                    // System.out.println(next_redirect_pc_url);
+                    // System.out.println(created_at);
+
+                    dto.setTid(tid);
+                    dto.setNext_redirect_mobile_url(next_redirect_mobile_url);
+                    dto.setNext_redirect_pc_url(next_redirect_pc_url);
+                    dto.setCreated_at(created_at);
+                    dto.setPartner_order_id(partner_order_id);
+                    dto.setPartner_user_id(partner_user_id);
+                    dto.setM_idx(getm_idx);
+                    dto.setFoonNm(item_name);
+                    dto.setFoodCost(foodCost);
+                    dto.setRestNm(getrestNm);
+                    dto.setFoodQnTotal(foodQnTotal);
+                    dto.setSeq(ggetseq);
                 }
 
-                JSONParser jsonParser = new JSONParser();
-
-                Object obj = jsonParser.parse(result.toString());
-                JSONObject json = (JSONObject) obj;
-
-                tid = (String) json.get("tid");
-                next_redirect_mobile_url = (String) json.get("next_redirect_mobile_url");
-                next_redirect_pc_url = (String) json.get("next_redirect_pc_url");
-                created_at = (String) json.get("created_at");
-                // System.out.println(tid);
-                // System.out.println(next_redirect_mobile_url);
-                // System.out.println(next_redirect_pc_url);
-                // System.out.println(created_at);
-
-                dto.setTid(tid);
-                dto.setNext_redirect_mobile_url(next_redirect_mobile_url);
-                dto.setNext_redirect_pc_url(next_redirect_pc_url);
-                dto.setCreated_at(created_at);
-                dto.setPartner_order_id(partner_order_id);
-                dto.setPartner_user_id(partner_user_id);
-                dto.setM_idx(getm_idx);
-                dto.setFoonNm(item_name);
-                dto.setFoodCost(foodCost);
-                dto.setRestNm(getrestNm);
-                dto.setFoodQnTotal(foodQnTotal);
-                dto.setSeq(ggetseq);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            // 세션에서 카트 객체 가져오기
+            Cart cart = (Cart) session.getAttribute("cart");
+
+            // 카트 객체가 존재하면 비우기
+            if (cart != null) {
+                cart.cartClear();
+                session.removeAttribute("listSize");
+
+            }
+
+            mv.setViewName("redirect:" + dto.getNext_redirect_mobile_url());
+
+        } else {
+            // 음식명
+            String[] getfoodNm = foodNm;
+            StringBuffer foodNmsb = new StringBuffer();
+            for (String str : getfoodNm) {
+                foodNmsb.append(str + "/");
+            }
+
+            foodNmsb.setLength(foodNmsb.length() - 1);
+            // System.out.println(foodNmsb.toString());
+
+            // 음식숫자
+            String[] getfoodQn = foodQn;
+            StringBuffer foodQnsb = new StringBuffer();
+            for (String str : getfoodQn) {
+                foodQnsb.append(str + "/");
+            }
+
+            foodQnsb.setLength(foodQnsb.length() - 1);
+            // System.out.println(foodQnsb.toString());
+
+            // quantity값이 int라 배열의 문자열은 넣을 수 없음. 첫번쨰 수량만 대표로 넣는다.
+            int foonQn = Integer.valueOf(getfoodQn[0]);
+            // System.out.println(foonQn);
+
+            // 음식개별 가격
+            String[] getfoodCost = ggetfoodCost;
+            StringBuffer foodCostsb = new StringBuffer();
+            for (String str : getfoodCost) {
+                foodCostsb.append(str + "/");
+            }
+
+            foodCostsb.setLength(foodCostsb.length() - 1);
+            // System.out.println(foodCostsb.toString());
+
+            // 음식 코드
+            String[] getseq = seq;
+            StringBuffer seqsb = new StringBuffer();
+            for (String str : getseq) {
+                seqsb.append(str + "/");
+            }
+
+            seqsb.setLength(seqsb.length() - 1);
+            // System.out.println(seqsb.toString());
+
+            String getm_idx = m_idx;
+            String getrestNm = restNm;
+            // System.out.println(getm_idx);
+            // System.out.println(getrestNm);
+
+            String reqURL = "https://kapi.kakao.com/v1/payment/ready";
+            String adminkey = "22c4183a06a4812b3265f8971a5fed6e"; // Admin key(kakaodeveloper에서 확인)
+            String cid = "TC0ONETIME"; // 테스트용 가맹점 코드
+
+            // 가맹점 주문번호 생성 시작
+            Random rnd = new Random();
+            StringBuffer sb2 = new StringBuffer();
+
+            for (int i = 0; i < 48; i++) {
+                if (rnd.nextBoolean()) {
+                    sb2.append((char) ((int) (rnd.nextInt(26)) + 97));
+                } else {
+                    sb2.append((rnd.nextInt(10)));
+                }
+            }
+            // 가맹점 주문번호 생성 끝
+
+            String partner_order_id = sb2.toString(); // 가맹점 주문번호
+            String partner_user_id = "restCd"; // 가맹점 회원 id(휴게소코드)
+            String item_name = foodNmsb.toString(); // 상품명
+            int quantity = foonQn; // 상품 수량
+            String foodQnTotal = foodQnsb.toString(); // 상품 개별 수량
+            String foodCost = foodCostsb.toString(); // 상품 개별 가격
+            String total_amount = sumPrice; // 상품 총액
+            String tax_free_amount = "0"; // 상품 비과세 금액
+            String approval_url = "http://localhost:8080/kakaopayment/success"; // 결제 성공 시 redirect url
+            String cancel_url = "http://localhost:8080/kakaopayment/cancel"; // 결제 취소 시 redirect url
+            String fail_url = "http://localhost:8080/kakaopayment/fail"; // 결제 실패 시 redirect url
+            // String approval_url = "http://3.34.181.221/kakaopayment/success";
+            // String cancel_url = "http://3.34.181.221/kakaopayment/cancel";
+            // String fail_url = "http://3.34.181.221/kakaopayment/fail";
+            String header = "KakaoAK " + adminkey;
+            String tid = "";
+            String next_redirect_mobile_url = "";
+            String next_redirect_pc_url = "";
+            String created_at = "";
+            String ggetseq = seqsb.toString();
+
+            try {
+                URL url = new URL(reqURL);
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                conn.setRequestMethod("POST");
+                conn.setDoOutput(true);
+                conn.setRequestProperty("Authorization", header);
+                conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+
+                StringBuffer sb = new StringBuffer();
+                sb.append("cid=" + cid);
+                sb.append("&partner_order_id=" + partner_order_id);
+                sb.append("&partner_user_id=" + partner_user_id);
+                sb.append("&item_name=" + URLEncoder.encode(item_name, "UTF-8"));
+                sb.append("&quantity=" + quantity);
+                sb.append("&total_amount=" + total_amount);
+                sb.append("&tax_free_amount=" + tax_free_amount);
+                sb.append("&approval_url=" + approval_url);
+                sb.append("&cancel_url=" + cancel_url);
+                sb.append("&fail_url=" + fail_url);
+
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+
+                bw.write(sb.toString());
+                // System.out.println(sb.toString());
+                bw.flush();
+
+                int res_code = conn.getResponseCode();
+                // System.out.println(res_code);
+
+                if (res_code == HttpURLConnection.HTTP_OK) {
+                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    StringBuffer result = new StringBuffer();
+                    String line = null;
+
+                    while ((line = br.readLine()) != null) {
+                        result.append(line);
+                    }
+
+                    JSONParser jsonParser = new JSONParser();
+
+                    Object obj = jsonParser.parse(result.toString());
+                    JSONObject json = (JSONObject) obj;
+
+                    tid = (String) json.get("tid");
+                    next_redirect_mobile_url = (String) json.get("next_redirect_mobile_url");
+                    next_redirect_pc_url = (String) json.get("next_redirect_pc_url");
+                    created_at = (String) json.get("created_at");
+                    // System.out.println(tid);
+                    // System.out.println(next_redirect_mobile_url);
+                    // System.out.println(next_redirect_pc_url);
+                    // System.out.println(created_at);
+
+                    dto.setTid(tid);
+                    dto.setNext_redirect_mobile_url(next_redirect_mobile_url);
+                    dto.setNext_redirect_pc_url(next_redirect_pc_url);
+                    dto.setCreated_at(created_at);
+                    dto.setPartner_order_id(partner_order_id);
+                    dto.setPartner_user_id(partner_user_id);
+                    dto.setM_idx(getm_idx);
+                    dto.setFoonNm(item_name);
+                    dto.setFoodCost(foodCost);
+                    dto.setRestNm(getrestNm);
+                    dto.setFoodQnTotal(foodQnTotal);
+                    dto.setSeq(ggetseq);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            // 세션에서 카트 객체 가져오기
+            Cart cart = (Cart) session.getAttribute("cart");
+
+            // 카트 객체가 존재하면 비우기
+            if (cart != null) {
+                cart.cartClear();
+                session.removeAttribute("listSize");
+
+            }
+
+            mv.setViewName("redirect:" + dto.getNext_redirect_pc_url());
+
         }
-
-        // 세션에서 카트 객체 가져오기
-        Cart cart = (Cart) session.getAttribute("cart");
-
-        // 카트 객체가 존재하면 비우기
-        if (cart != null) {
-            cart.cartClear();
-            session.removeAttribute("listSize");
-
-        }
-
-        mv.setViewName("redirect:" + dto.getNext_redirect_pc_url());
 
         return mv;
     }

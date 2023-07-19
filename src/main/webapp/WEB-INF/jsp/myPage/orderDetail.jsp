@@ -180,7 +180,7 @@
                                 <!-- <body class="d-flex flex-column"> -->
                                 <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mycustom-main_footer">
                                     <div class="container text-center">
-                                        <small>Copyright &copy; 2023 쉬-잇 </small>
+                                        <small>Copyright &copy; 2023 마이휴 </small>
                                     </div>
                                 </footer>
                             
@@ -221,7 +221,6 @@
                             <c:forEach var="i" begin="0" end="${fn:length(seq) - 1}">
                                 var seq = "${seq[i]}";
                                 sendAjaxRequest(seq);
-                                //console.log(foodNm);
                             </c:forEach>
 
 
@@ -232,14 +231,10 @@
                                     data: {'seq': seq},
                                     dataType: 'text'
                                 }).done(function(data){
-                                    // var imageUrl = encodeURIComponent(data);
-                                    //console.log(data);
-
                                     $("#" + seq + "_img").attr("src",data);
                                 });
 
                             }
-                        
                         })
 
                         ///p_oNum을 가지고 이미 리뷰를 작성했는지 확인하기

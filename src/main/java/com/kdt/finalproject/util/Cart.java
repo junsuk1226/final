@@ -83,6 +83,11 @@ public class Cart {
             // 먼저 기존 제품의 수량을 얻어낸다.
             int q = vo.getQuantity();
             vo.setQuantity(q + 1);
+
+            int p = vo.getTotalPrice();
+            vo.setTotalPrice(p + vo.getFoodCost());
+
+            // System.out.println(vo.getTotalPrice());
             return; // 더 이상 하지 않고 제어권 반환
         }
 

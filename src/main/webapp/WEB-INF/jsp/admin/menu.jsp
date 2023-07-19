@@ -14,6 +14,12 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <style>
 
+    div.shadow.rounded {
+        display: inline-block;
+        width: 100%; /* 또는 원하는 가로 너비로 설정 */
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+      }
     .intro {
         height: 100%;
       }
@@ -49,11 +55,13 @@
         transition: all 0.3s ease-in-out;
       }
 
-       tr:hover td{
-         cursor:pointer;
-         color:#00A674;
-         font-weight: bolder;
-       }
+      tr:hover td {
+        cursor: pointer;
+        color: #00A674;
+        font-weight: bolder;
+        transition: all 0.3s ease-in-out; /* 부드러운 애니메이션 효과를 위한 트랜지션 추가 */
+      }
+      
       
       table td,
       table th {
@@ -136,7 +144,7 @@
                                     <thead style=" border-top-left-radius: 10px;border-top-right-radius: 10px;">
                                       <tr style="background-color: #3f3f3f; color:white; text-align: center; ">
                                         <th scope="col" >번호</th>
-                                        <th scope="col" style="width: 200px;">이미지</th>
+                                        <th scope="col" style="width: 190px;">이미지</th>
                                         <th scope="col">메뉴</th>
                                         <th scope="col">가격</th>
                                         <th scope="col">등록상태</th>
@@ -158,7 +166,7 @@
                                         <c:if test="${vo.f_image == null and empty vo.f_image}">
                                             <td> <img src="../main_images/no_image.png" style="width:180px; height: 80px; object-fit: cover;"class="rounded"></td>
                                         </c:if>
-                                        <td style="font-size: larger;">${vo.foodNm}</td>
+                                        <td style="">${vo.foodNm}</td>
                                         <fmt:formatNumber var="foodCost" type='number' maxFractionDigits='3' value='${vo.foodCost}' />
                                         <td >${foodCost}원</td>
                                         <c:if test="${vo.f_status == 0}">
