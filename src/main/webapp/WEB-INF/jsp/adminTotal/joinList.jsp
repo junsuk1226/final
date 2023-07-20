@@ -272,6 +272,7 @@
             success: function(response) {
                 // 요청이 성공적으로 완료됨
                 console.log("승인이 완료되었습니다.");
+                alert("승인이 완료되었습니다.");
                 location.reload();
             },
             error: function(xhr, status, error) {
@@ -291,6 +292,7 @@
             success: function(response) {
                 // 요청이 성공적으로 완료됨
                 console.log("승인거절이 완료되었습니다.");
+                alert("승인거절이 완료되었습니다.");
                 location.reload();
             },
             error: function(xhr, status, error) {

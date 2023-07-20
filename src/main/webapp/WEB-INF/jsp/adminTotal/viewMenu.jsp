@@ -300,6 +300,7 @@
     }
 
     function sendData(){
+        alert("메뉴가 추가되었습니다.");
         document.frm.submit();
     }
 
