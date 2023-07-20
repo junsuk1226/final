@@ -1,6 +1,5 @@
 package com.kdt.finalproject.controller;
 
-import java.awt.print.PrinterException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
@@ -13,12 +12,11 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.Base64.Encoder;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import java.util.Base64.Encoder;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -31,9 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kdt.finalproject.service.MemService;
 import com.kdt.finalproject.service.PayService;
 import com.kdt.finalproject.util.Cart;
-import com.kdt.finalproject.util.JposPrinterReceiptTest;
 import com.kdt.finalproject.vo.KakaoReadyResponseDTO;
-import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.PayVO;
 
 @Controller
@@ -417,6 +413,7 @@ public class OrderPayController {
             mv.setViewName("redirect:" + dto.getNext_redirect_pc_url());
 
         }
+        session.removeAttribute("RestNm");
 
         return mv;
     }
@@ -691,7 +688,7 @@ public class OrderPayController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        session.removeAttribute("RestNm");
         mv.setViewName("redirect:/admin/orderlist");
 
         return mv;
@@ -780,6 +777,7 @@ public class OrderPayController {
 
         }
 
+        session.removeAttribute("RestNm");
         mv.addObject("orderId", sb.toString());
         mv.addObject("foodNm", foodNmsb.toString());
         mv.addObject("sumPrice", getsumPrice);
