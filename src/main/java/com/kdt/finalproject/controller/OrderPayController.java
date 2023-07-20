@@ -413,7 +413,6 @@ public class OrderPayController {
             mv.setViewName("redirect:" + dto.getNext_redirect_pc_url());
 
         }
-        session.removeAttribute("RestNm");
 
         return mv;
     }
@@ -688,7 +687,7 @@ public class OrderPayController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        session.removeAttribute("RestNm");
+
         mv.setViewName("redirect:/admin/orderlist");
 
         return mv;
@@ -777,7 +776,6 @@ public class OrderPayController {
 
         }
 
-        session.removeAttribute("RestNm");
         mv.addObject("orderId", sb.toString());
         mv.addObject("foodNm", foodNmsb.toString());
         mv.addObject("sumPrice", getsumPrice);
