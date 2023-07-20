@@ -192,7 +192,7 @@
 <script>
    function viewMenu(f_idx){
         document.ff.f_idx.value = f_idx;
-
+        
         document.ff.submit();
    }
 </script>

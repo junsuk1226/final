@@ -475,7 +475,7 @@ public class AdminTotalController {
 
         Paging page = new Paging(nowPage, totalRecord, 10, 5);
 
-        MemVO[] ar = r_Service.regLogList(page.getBegin(), page.getEnd(), searchType, searchValue);
+        MemLogVO[] ar = r_Service.regLogList(page.getBegin(), page.getEnd(), searchType, searchValue);
 
         if (ar != null) {
 
