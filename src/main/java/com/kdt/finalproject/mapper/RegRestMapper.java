@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.kdt.finalproject.vo.FoodVO;
+import com.kdt.finalproject.vo.MemLogVO;
 import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.RegRestVO;
 
@@ -35,14 +36,14 @@ public interface RegRestMapper {
 
     int totalCount(Map<String, Object> map);
 
-    List<MemVO> regLogList(Map<String, Object> map);
+    List<MemLogVO> regLogList(Map<String, Object> map);
 
     // 현재 가입되어있는 휴게소 정보
     List<RegRestVO> getRegRestList();
 
-    //현재 가입중 휴게소 수
+    // 현재 가입중 휴게소 수
     int getRegRestCnt();
 
-    //현재 승인 대기중 휴게소 수
+    // 현재 승인 대기중 휴게소 수
     int waitRegRestCnt();
 }

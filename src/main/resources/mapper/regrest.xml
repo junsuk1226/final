@@ -66,7 +66,7 @@
 
 <select id="totalCount" resultType="int" parameterType="Map">
   	SELECT COUNT(*) FROM memberlog
-    WHERE m_status IN (1, 3, 5)
+    WHERE m_status IN (1, 3, 5) and editor = "A"
     <if test="searchType != null and searchType == 0">
       AND m_name LIKE CONCAT('%', #{searchValue}, '%')
     </if>
@@ -79,11 +79,11 @@
 </select>
 
 <!-- 휴게소 변경 로그 가져오기 -->
-<select id="regLogList" resultType="com.kdt.finalproject.vo.MemVO" parameterType="Map">
+<select id="regLogList" resultType="com.kdt.finalproject.vo.MemLogVO" parameterType="Map">
   SELECT * FROM(
 		SELECT @RN:=@RN+1 AS rnum,a.* FROM(
       SELECT * FROM memberlog
-      WHERE m_status IN (1, 3, 5)
+      WHERE m_status IN (1, 3, 5) and editor = "A"
       <if test="searchType != null and searchType == 0">
 				AND m_name LIKE CONCAT('%', #{searchValue}, '%')
 			</if>
@@ -93,6 +93,7 @@
 			<if test="searchType != null and searchType == 2">
 				AND m_joinDate LIKE CONCAT('%', #{searchValue}, '%')
 			</if>
+      ORDER BY ml_idx DESC
     ) a, (SELECT @RN:=0) b
 	) c WHERE c.rnum BETWEEN #{begin} AND #{end}
 </select>

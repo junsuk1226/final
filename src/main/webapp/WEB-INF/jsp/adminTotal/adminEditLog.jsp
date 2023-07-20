@@ -107,7 +107,7 @@
                                 <td>${mvo.m_name}</td>
                                 <td>${mvo.m_id}</td>
                                 <td>${mvo.m_phone}</td>
-                                <td>${mvo.m_joinDate}</td>
+                                <td>${mvo.m_editDate}</td>
 
                                 <c:if test="${mvo.m_status == 3}">
                                     <td>신청</td>

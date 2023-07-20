@@ -11,6 +11,7 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.kdt.finalproject.mapper.RegRestMapper;
 import com.kdt.finalproject.vo.FoodVO;
+import com.kdt.finalproject.vo.MemLogVO;
 import com.kdt.finalproject.vo.MemVO;
 import com.kdt.finalproject.vo.RegRestVO;
 
@@ -89,7 +90,7 @@ public class RegRestService {
     }
 
     // 휴게소 회원 상태 로그
-    public MemVO[] regLogList(int begin, int end, String searchType, String searchValue) {
+    public MemLogVO[] regLogList(int begin, int end, String searchType, String searchValue) {
         Map<String, Object> map = new HashMap<>();
         map.put("begin", begin);
         map.put("end", end);
@@ -98,11 +99,11 @@ public class RegRestService {
             map.put("searchValue", searchValue);
         }
 
-        MemVO[] ar = null;
+        MemLogVO[] ar = null;
 
-        List<MemVO> list = reg_Mapper.regLogList(map);
+        List<MemLogVO> list = reg_Mapper.regLogList(map);
         if (list != null && list.size() > 0) {
-            ar = new MemVO[list.size()];
+            ar = new MemLogVO[list.size()];
             list.toArray(ar);
         }
 
